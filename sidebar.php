@@ -8,7 +8,7 @@
  */ ?>
     
 <?php
-if ( ! is_active_sidebar( 'sidebar-1' ) || ( function_exists('show_sidebar') && !show_sidebar() ) ) {
+if ( ! is_active_sidebar( 'sidebar-1' ) || ( function_exists('flexible_show_sidebar') && !flexible_show_sidebar() ) ) {
 	return;
 }
 ?>

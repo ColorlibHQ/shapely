@@ -134,6 +134,35 @@ class flexible_home_features extends WP_Widget
       }
     }
 
+    /**
+	 * Sanitize widget form values as they are saved.
+	 *
+	 * @see WP_Widget::update()
+	 *
+	 * @param array $new_instance Values just sent to be saved.
+	 * @param array $old_instance Previously saved values from database.
+	 *
+	 * @return array Updated safe values to be saved.
+	 */
+	public function update( $new_instance, $old_instance ) {
+		$instance = array();
+		$instance['title'] = ( ! empty( $new_instance['title'] ) ) ? esc_html( $new_instance['title'] ) : '';
+		$instance['body_content'] = ( ! empty( $new_instance['body_content'] ) ) ? esc_html( $new_instance['body_content'] ) : '';
+		
+        $instance['title1'] = ( ! empty( $new_instance['title1'] ) ) ? esc_html( $new_instance['title1'] ) : '';
+        $instance['title2'] = ( ! empty( $new_instance['title2'] ) ) ? esc_html( $new_instance['title2'] ) : '';
+        $instance['title3'] = ( ! empty( $new_instance['title3'] ) ) ? esc_html( $new_instance['title3'] ) : '';
+		
+        $instance['body_content1'] = ( ! empty( $new_instance['body_content1'] ) ) ? esc_html( $new_instance['body_content1'] ) : '';
+        $instance['body_content2'] = ( ! empty( $new_instance['body_content2'] ) ) ? esc_html( $new_instance['body_content2'] ) : '';
+        $instance['body_content3'] = ( ! empty( $new_instance['body_content3'] ) ) ? esc_html( $new_instance['body_content3'] ) : '';
+        
+        $instance['icon1'] = ( ! empty( $new_instance['icon1'] ) ) ? esc_html( $new_instance['icon1'] ) : '';
+        $instance['icon2'] = ( ! empty( $new_instance['icon2'] ) ) ? esc_html( $new_instance['icon2'] ) : '';
+        $instance['icon3'] = ( ! empty( $new_instance['icon3'] ) ) ? esc_html( $new_instance['icon3'] ) : '';
+        
+		return $instance;
+	}
 }
 
 ?>

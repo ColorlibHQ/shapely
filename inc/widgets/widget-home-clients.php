@@ -97,6 +97,34 @@ class flexible_home_clients extends WP_Widget
       </ul><?php
       
     }
+    
+    /**
+	 * Sanitize widget form values as they are saved.
+	 *
+	 * @see WP_Widget::update()
+	 *
+	 * @param array $new_instance Values just sent to be saved.
+	 * @param array $old_instance Previously saved values from database.
+	 *
+	 * @return array Updated safe values to be saved.
+	 */
+	public function update( $new_instance, $old_instance ) {
+		$instance = array();
+		$instance['title'] = ( ! empty( $new_instance['title'] ) ) ? esc_html( $new_instance['title'] ) : '';
+		if( isset( $instance['client_logo']['img'] ) && count( $instance['client_logo']['img'] ) != 0 ){
+          for( $i=0; $i<count( $instance['client_logo']['img'] ); $i++ ){
+            $instance['client_logo']['img'][$i] = ( ! empty( $instance['client_logo']['img'][$i] ) ) ? esc_url( $instance['client_logo']['img'][$i] ) : '';
+          }
+        }
+		if( isset( $instance['client_logo']['link'] ) && count( $instance['client_logo']['link'] ) != 0 ){
+          for( $i=0; $i<count( $instance['client_logo']['link'] ); $i++ ){
+            $instance['client_logo']['link'][$i] = ( ! empty( $instance['client_logo']['link'][$i] ) ) ? esc_url( $instance['client_logo']['link'][$i] ) : '';
+          }
+        }
+        
+		return $instance;
+	}
+
 }
 
 ?>

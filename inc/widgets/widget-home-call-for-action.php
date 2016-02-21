@@ -79,6 +79,25 @@ class flexible_home_CFA extends WP_Widget
                           class="widefat" />
       </p><?php
     }
+    
+    /**
+	 * Sanitize widget form values as they are saved.
+	 *
+	 * @see WP_Widget::update()
+	 *
+	 * @param array $new_instance Values just sent to be saved.
+	 * @param array $old_instance Previously saved values from database.
+	 *
+	 * @return array Updated safe values to be saved.
+	 */
+	public function update( $new_instance, $old_instance ) {
+		$instance = array();
+		$instance['title'] = ( ! empty( $new_instance['title'] ) ) ? esc_html( $new_instance['title'] ) : '';
+		$instance['button'] = ( ! empty( $new_instance['button'] ) ) ? esc_html( $new_instance['button'] ) : '';
+		$instance['button_link'] = ( ! empty( $new_instance['button_link'] ) ) ? esc_url( $new_instance['button_link'] ) : '';
+
+		return $instance;
+	}
 
 }
 

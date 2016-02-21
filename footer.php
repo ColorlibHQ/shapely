@@ -15,7 +15,7 @@
 		</div><!-- #main -->
 	</section><!-- section -->
     
-    <?php footer_callout(); ?>
+    <?php flexible_footer_callout(); ?>
     
 	<footer id="colophon" class="site-footer footer bg-dark" role="contentinfo">
       <div class="container footer-inner">

@@ -336,8 +336,8 @@ function flexible_register_required_plugins() {
  * GLOBALS
  */
 /* Globals */
-global $site_layout;
-$site_layout = array('pull-right' =>  esc_html__('Left Sidebar','flexible'), 'side-right' => esc_html__('Right Sidebar','flexible'), 'no-sidebar' => esc_html__('No Sidebar','flexible'),'full-width' => esc_html__('Full Width', 'flexible'));
+global $flexible_site_layout;
+$flexible_site_layout = array('pull-right' =>  esc_html__('Left Sidebar','flexible'), 'side-right' => esc_html__('Right Sidebar','flexible'), 'no-sidebar' => esc_html__('No Sidebar','flexible'),'full-width' => esc_html__('Full Width', 'flexible'));
 
 /**
  * WooCoomerce Support

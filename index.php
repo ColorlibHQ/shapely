@@ -13,7 +13,7 @@
  */
 
 get_header(); ?>
-    <?php $layout_class = ( function_exists('get_layout_class') ) ? get_layout_class(): ''; ?>  
+    <?php $layout_class = ( function_exists('flexible_get_layout_class') ) ? flexible_get_layout_class(): ''; ?>  
     <div id="primary" class="col-md-9 mb-xs-24 <?php echo $layout_class; ?>"><?php
         if ( have_posts() ) :
 

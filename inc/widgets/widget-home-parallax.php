@@ -164,6 +164,29 @@ class flexible_home_parallax extends WP_Widget
 			<?php
     }
 
+    /**
+	 * Sanitize widget form values as they are saved.
+	 *
+	 * @see WP_Widget::update()
+	 *
+	 * @param array $new_instance Values just sent to be saved.
+	 * @param array $old_instance Previously saved values from database.
+	 *
+	 * @return array Updated safe values to be saved.
+	 */
+	public function update( $new_instance, $old_instance ) {
+		$instance = array();
+		$instance['title'] = ( ! empty( $new_instance['title'] ) ) ? esc_html( $new_instance['title'] ) : '';
+		$instance['image_src'] = ( ! empty( $new_instance['image_src'] ) ) ? esc_url( $new_instance['image_src'] ) : '';
+		$instance['image_pos'] = ( ! empty( $new_instance['image_pos'] ) ) ? esc_html( $new_instance['image_pos'] ) : '';
+		$instance['body_content'] = ( ! empty( $new_instance['body_content'] ) ) ? esc_html( $new_instance['body_content'] ) : '';
+		$instance['button1'] = ( ! empty( $new_instance['button1'] ) ) ? esc_html( $new_instance['button1'] ) : '';
+		$instance['button2'] = ( ! empty( $new_instance['button2'] ) ) ? esc_html( $new_instance['button2'] ) : '';
+		$instance['button1_link'] = ( ! empty( $new_instance['button1_link'] ) ) ? esc_url( $new_instance['button1_link'] ) : '';
+		$instance['button2_link'] = ( ! empty( $new_instance['button2_link'] ) ) ? esc_url( $new_instance['button2_link'] ) : '';
+		
+		return $instance;
+	}
 }
 
 ?>

@@ -54,7 +54,7 @@ function flexible_customizer( $wp_customize ) {
             'panel' => 'flexible_main_options'
         ));
             // Layout options
-            global $site_layout;
+            global $flexible_site_layout;
             $wp_customize->add_setting('flexible_sidebar_position', array(
                  'default' => 'side-right',
                  'sanitize_callback' => 'flexible_sanitize_layout'
@@ -64,7 +64,7 @@ function flexible_customizer( $wp_customize ) {
                  'section' => 'flexible_layout_section',
                  'type'    => 'select',
                  'description' => __('Choose between different layout options to be used as default', 'flexible'),
-                 'choices'    => $site_layout
+                 'choices'    => $flexible_site_layout
             ));	
 	
             $wp_customize->add_setting('link_color', array(
@@ -272,8 +272,8 @@ function flexible_sanitize_checkbox( $input ) {
  * @package Flexible
  */
 function flexible_sanitize_layout( $input ) {
-    global $site_layout;
-    if ( array_key_exists( $input, $site_layout ) ) {
+    global $flexible_site_layout;
+    if ( array_key_exists( $input, $flexible_site_layout ) ) {
         return $input;
     } else {
         return '';

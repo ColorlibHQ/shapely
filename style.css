@@ -558,7 +558,7 @@ a:active {
 }
 
 .main-navigation ul ul li {
-
+  width: 100%;
 }
 
 .main-navigation li:hover > a,
@@ -748,12 +748,6 @@ a:active {
 .single .byline,
 .group-blog .byline {
 	display: inline;
-}
-
-.page-content,
-.entry-content,
-.entry-summary {
-	margin: 1.5em 0 0;
 }
 
 .page-links {
@@ -1459,6 +1453,7 @@ nav {
   margin-right: 0;
 }
 .menu > li ul {
+  left: 0;
   width: 200px;
   padding: 0;
   background: #0e1015;
@@ -1544,9 +1539,15 @@ nav.fixed.scrolled {
   opacity: 1;
 }
 
+.dropdown-menu{
+  border-radius: 0;
+}
 .nav-open {
   max-height: 10000px !important;
   height: auto !important;
+}
+.nav-open .navbar-collapse, .nav-open #menu {
+  display: block;
 }
 .module.widget-handle {
   padding: 0 24px;
@@ -1789,6 +1790,7 @@ nav.fixed.scrolled {
   }
   .widget-handle .function {
     width: 100%;
+    max-width: 300px;
     position: relative;
     opacity: 1;
     transform: translate3d(0, 0px, 0);
@@ -1798,6 +1800,12 @@ nav.fixed.scrolled {
     margin-top: 0;
     display: none;
     box-shadow: none !important;
+  }
+  .toggle-search .function{
+    display: block;
+  }
+  .search-widget-handle .search{
+    padding: 0 15px;
   }
   .mobile-toggle i {
     line-height: 53px !important;
@@ -1881,8 +1889,10 @@ input[type="submit"] {
   height: 50px;
   letter-spacing: 1px;
   line-height: 48px;
+  max-width: 250px;
   padding: 0;
   text-transform: uppercase;
+  width: 100%;
  }
 .bg-primary input[type="submit"] {
   background: #fff;
@@ -2563,10 +2573,15 @@ iframe {
 }
 .page-title-section {
   height: 140px;
-  padding: 50px;
+  padding: 50px 0;
 }
 .page-title {
   margin-bottom: 0 !important;
+}
+@media all and (max-width: 767px) {
+  .page-title-section, #breadcrumbs {
+    text-align: center;
+  }
 }
 .author-bio {
   display: block;

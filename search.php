@@ -10,7 +10,7 @@
 get_header(); ?>
 
 	
-    <?php $layout_class = ( function_exists('get_layout_class') ) ? get_layout_class(): ''; ?>  
+    <?php $layout_class = ( function_exists('flexible_get_layout_class') ) ? flexible_get_layout_class(): ''; ?>  
         <section id="primary" class="content-area col-md-9 mb-xs-24 <?php echo $layout_class; ?>">
           <main id="main" class="site-main" role="main">
 

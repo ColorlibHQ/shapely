@@ -84,7 +84,7 @@ if ( post_password_required() ) {
 	endif;
     
     /* comment form */
-    $comments_args = ( function_exists( 'custom_comment_form' ) ) ? custom_comment_form() : '';
+    $comments_args = ( function_exists( 'flexible_custom_comment_form' ) ) ? flexible_custom_comment_form() : '';
 	comment_form($comments_args);
 	?>
 

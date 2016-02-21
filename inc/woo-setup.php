@@ -63,7 +63,7 @@ add_action('woocommerce_before_main_content', 'flexible_wrapper_start', 10);
 add_action('woocommerce_after_main_content', 'flexible_wrapper_end', 10);
 
 function flexible_wrapper_start() {
-  $layout_class = ( function_exists('get_layout_class') ) ? get_layout_class(): '';
+  $layout_class = ( function_exists('flexible_get_layout_class') ) ? flexible_get_layout_class(): '';
   echo '<div id="primary" class="col-md-9 mb-xs-24 '.$layout_class.'">';
   echo '<main id="main" class="site-main" role="main">';
 }

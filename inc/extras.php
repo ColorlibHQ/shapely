@@ -331,9 +331,9 @@ add_action('admin_head', 'flexible_admin_style');
 add_action('customize_controls_print_styles', 'flexible_admin_style');
 
 /* Social Fields in Author Profile */
-if( !function_exists('author_socialLinks') ){
+if( !function_exists('flexible_author_socialLinks') ){
   
-  function author_socialLinks( $contactmethods ) {
+  function flexible_author_socialLinks( $contactmethods ) {
     // Add Twitter
     $contactmethods['twitter'] = 'Twitter';
     //add Facebook
@@ -349,7 +349,7 @@ if( !function_exists('author_socialLinks') ){
   }
 }
 
-add_filter('user_contactmethods','author_socialLinks',10,1);
+add_filter('user_contactmethods','flexible_author_socialLinks',10,1);
 
 
 /*
@@ -503,7 +503,7 @@ function flexible_reply_link_class($class){
 /*
  * Comment form template
  */
-function custom_comment_form(){
+function flexible_custom_comment_form(){
     $commenter = wp_get_current_commenter();
     $req = get_option( 'require_name_email' );
     $aria_req = ( $req ? " aria-required='true'" : '' );
@@ -533,11 +533,12 @@ function custom_comment_form(){
 /* 
  * Header Logo
  */
-function get_header_logo(){
-  $logo = get_theme_mod('header_logo', ''); ?>
+function flexible_get_header_logo(){
+  $logo_id = get_theme_mod('header_logo', ''); 
+  $logo = wp_get_attachment_image_src($logo_id, 'full'); ?>
     
-  <a href="<?php echo esc_url( home_url( '/' ) ); ?>"><?php    
-      echo wp_get_attachment_image($logo, '', false, array('class' => "logo", 'alt' => get_bloginfo('name'))); ?>  
+  <a href="<?php echo esc_url( home_url( '/' ) ); ?>">
+  <img src="<?php echo $logo[0]; ?>" class="logo" alt="<?php echo get_bloginfo('name'); ?>">
   </a><?php  
 }
 
@@ -545,7 +546,7 @@ function get_header_logo(){
  * Get layout class from single page
  * then from themeoptions
  */
-function get_layout_class(){
+function flexible_get_layout_class(){
   global $post;                            
   if( is_singular() && get_post_meta($post->ID, 'site_layout', true) ){
       $layout_class = get_post_meta($post->ID, 'site_layout', true);
@@ -559,7 +560,7 @@ function get_layout_class(){
 /*
  * Show Sidebar or not
  */
-function show_sidebar(){
+function flexible_show_sidebar(){
   global $post;
   $show_sidebar = true;
   if( is_singular() && ( get_post_meta($post->ID, 'site_layout', true) ) ){
@@ -576,12 +577,12 @@ function show_sidebar(){
 /*
  * Top Callout
  */
-function top_callout(){ 
+function flexible_top_callout(){ 
   if( get_theme_mod('top_callout', true) ) { ?>
     <section class="page-title-section bg-secondary">
       <div class="container">
           <div class="row">
-              <div class="col-md-6">
+              <div class="col-md-6 col-sm-6 col-xs-12">
                   <h3 class="page-title">
                       <?php 
                       if( is_home() ){
@@ -598,7 +599,7 @@ function top_callout(){
                       }?>
                   </h3>
               </div>
-              <div class="col-md-6 text-right">
+              <div class="col-md-6 col-sm-6 col-xs-12 text-right">
               <?php if ( function_exists('yoast_breadcrumb') ) {
                   yoast_breadcrumb('<p id="breadcrumbs">','</p>');
               } ?>
@@ -621,7 +622,7 @@ function top_callout(){
 /*
  * Footer Callout
  */
-function footer_callout(){ 
+function flexible_footer_callout(){ 
   if( get_theme_mod('footer_callout_text') != '' ){ ?>
     <section class="cfa-section bg-secondary">
         <div class="container">

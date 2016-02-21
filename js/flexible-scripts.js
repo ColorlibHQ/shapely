@@ -127,9 +127,9 @@ jQuery(document).ready(function($) {
     });
 
     $('.module.widget-handle').click(function() {
-        $(this).toggleClass('toggle-widget-handle');
+        $(this).toggleClass('toggle-search');
     });
-
+    
     $('.search-widget-handle .search-form input').click(function(e){
         if (!e) e = window.event;
         e.stopPropagation();

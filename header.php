@@ -30,7 +30,7 @@
                 <div class="container nav-bar">
                         <div class="row">
                             <div class="module left">
-                                <?php get_header_logo(); ?>
+                                <?php flexible_get_header_logo(); ?>
                             </div>
                             <div class="module widget-handle mobile-toggle right visible-sm visible-xs">
                                 <i class="fa fa-bars"></i>
@@ -58,7 +58,7 @@
 	</header><!-- #masthead -->
     
 	<div id="content" class="main-container">
-        <?php ( is_page_template('template-home.php') ) ? '' : top_callout(); ?>
+        <?php ( is_page_template('template-home.php') ) ? '' : flexible_top_callout(); ?>
         <section class="content-area <?php echo ( get_theme_mod('top_callout', true ) ) ? '' : ' pt0 ' ?>">
           <div id="main" class="<?php echo ( !is_page_template( 'template-home.php' )) ? 'container': ''; ?>" role="main">
                 <div class="row">
