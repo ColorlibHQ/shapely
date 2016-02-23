@@ -26,15 +26,15 @@ function flexible_customizer( $wp_customize ) {
 	// logo
 	$wp_customize->add_setting( 'header_logo', array(
 		'default' => '',
-		'transport'   => 'refresh',
+		'transport' => 'refresh',
         'sanitize_callback' => 'flexible_sanitize_number'
 	) );
-        $wp_customize->add_control(new WP_Customize_Media_Control( $wp_customize, 'header_logo', array(
-    		'label' => __( 'Logo', 'flexible' ),
-    		'section' => 'title_tagline',
-    		'mime_type' => 'image',
-    		'priority'  => 10,
-    	) ) );
+    $wp_customize->add_control(new WP_Customize_Media_Control( $wp_customize, 'header_logo', array(
+		'label' => __( 'Logo', 'flexible' ),
+		'section' => 'title_tagline',
+		'mime_type' => 'image',
+		'priority'  => 10,
+	) ) );
     	
         
       /* Main option Settings Panel */

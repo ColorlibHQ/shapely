@@ -6,7 +6,7 @@
  */
 class flexible_home_testimonial extends WP_Widget
 {
-    function flexible_home_testimonial(){
+    function __construct(){
 
         $widget_ops = array('classname' => 'flexible_home_testimonial','description' => esc_html__( "Flexible Testimonial Widget Section" ,'flexible') );
         parent::__construct('flexible_home_testimonial', esc_html__('Flexible Testimonial Widget Section','flexible'), $widget_ops);

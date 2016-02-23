@@ -111,14 +111,15 @@ class flexible_home_clients extends WP_Widget
 	public function update( $new_instance, $old_instance ) {
 		$instance = array();
 		$instance['title'] = ( ! empty( $new_instance['title'] ) ) ? esc_html( $new_instance['title'] ) : '';
-		if( isset( $instance['client_logo']['img'] ) && count( $instance['client_logo']['img'] ) != 0 ){
-          for( $i=0; $i<count( $instance['client_logo']['img'] ); $i++ ){
-            $instance['client_logo']['img'][$i] = ( ! empty( $instance['client_logo']['img'][$i] ) ) ? esc_url( $instance['client_logo']['img'][$i] ) : '';
+		
+		if( isset( $new_instance['client_logo']['img'] ) && count( $new_instance['client_logo']['img'] ) != 0 ){
+          for( $i=0; $i<count( $new_instance['client_logo']['img'] ); $i++ ){
+            $instance['client_logo']['img'][$i] = ( ! empty( $new_instance['client_logo']['img'][$i] ) ) ? esc_url( $new_instance['client_logo']['img'][$i] ) : '';
           }
         }
-		if( isset( $instance['client_logo']['link'] ) && count( $instance['client_logo']['link'] ) != 0 ){
-          for( $i=0; $i<count( $instance['client_logo']['link'] ); $i++ ){
-            $instance['client_logo']['link'][$i] = ( ! empty( $instance['client_logo']['link'][$i] ) ) ? esc_url( $instance['client_logo']['link'][$i] ) : '';
+		if( isset( $new_instance['client_logo']['link'] ) && count( $new_instance['client_logo']['link'] ) != 0 ){
+          for( $i=0; $i<count( $new_instance['client_logo']['link'] ); $i++ ){
+            $instance['client_logo']['link'][$i] = ( ! empty( $new_instance['client_logo']['link'][$i] ) ) ? esc_url( $new_instance['client_logo']['link'][$i] ) : '';
           }
         }
         

@@ -537,8 +537,13 @@ function flexible_get_header_logo(){
   $logo_id = get_theme_mod('header_logo', ''); 
   $logo = wp_get_attachment_image_src($logo_id, 'full'); ?>
     
-  <a href="<?php echo esc_url( home_url( '/' ) ); ?>">
-  <img src="<?php echo $logo[0]; ?>" class="logo" alt="<?php echo get_bloginfo('name'); ?>">
+  <a href="<?php echo esc_url( home_url( '/' ) ); ?>"><?php
+  if( $logo[0] != '' ){ ?>
+    <img src="<?php echo $logo[0]; ?>" class="logo" alt="<?php echo esc_html( get_bloginfo( 'name' ) ); ?>"><?php
+  }
+  else{ ?>
+    <h1 class="site-title"><?php echo esc_html( get_bloginfo( 'name' ) ); ?></h1><?php 
+  } ?>
   </a><?php  
 }
 
