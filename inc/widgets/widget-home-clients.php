@@ -83,9 +83,9 @@ class flexible_home_clients extends WP_Widget
               <li class="toclone">
                 <br>
                   <label class="logo_heading"><b><?php _e( 'Logo #', 'flexible' ); ?><span class="count"><?php echo absint( $i )+1; ?></span></b></label>
-                  <input name="<?php echo $this->get_field_name('client_logo').'[img]['.$i.']';?>" id="image_src<?php echo '-'.$i; ?>" class="widefat image_src" type="hidden" size="36"  value="<?php echo (isset( $image_src[$i] )) ? esc_url( $image_src[$i] ) : ''; ?>" /><br>
-                  <button class="upload_image_button button button-primary" ><?php _e('Upload Logo','flexible'); ?></button>
-                  <img class="image_demo" width="50px" height="50px" style="border:0; margin-left: 20px; vertical-align: top;" src="<?php echo ( isset($image_src[$i]) ) ? esc_url( $image_src[$i] ) : ''; ?>" />
+                  <input name="<?php echo $this->get_field_name('client_logo').'[img]['.$i.']';?>" id="<?php echo $this->get_field_id('image_src').'-'.$i; ?>" class="widefat image_src" type="hidden" size="36"  value="<?php echo (isset( $image_src[$i] )) ? esc_url( $image_src[$i] ) : ''; ?>" /><br>
+                  <button id="<?php echo $this->get_field_id('image_src_button').'-'.$i; ?>" class="button button-primary custom_media_button" data-fieldid="<?php echo $this->get_field_id('image_src').'-'.$i; ?>"><?php _e( 'Upload Logo','flexible' ); ?></button>
+                  <img class="image_demo" id="img_demo_<?php echo $this->get_field_id( 'image_src' ).'-'.$i; ?>" width="50px" height="50px" style="border:0; margin-left: 20px; vertical-align: top;" src="<?php echo ( isset($image_src[$i]) ) ? esc_url( $image_src[$i] ) : ''; ?>" />
                   <br/><br/>
                   <label><?php _e( 'Link:', 'flexible' ); ?></label>
                   <input name="<?php echo $this->get_field_name('client_logo').'[link]['.$i."]"; ?>" id="link<?php echo '-'.$i; ?>" class="widefat client-link" type="text" size="36"  value="<?php echo (isset( $logo_link[$i] )) ? esc_url( $logo_link[$i] ) : ''; ?>" /><br><br>
