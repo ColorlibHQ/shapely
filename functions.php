@@ -170,9 +170,8 @@ function flexible_scripts() {
 		wp_enqueue_script( 'comment-reply' );
 	}
     
-    if (post_type_exists( 'jetpack-portfolio' ) ) {
-      wp_enqueue_script( 'flexible-masonary', get_template_directory_uri() . '/js/masonry.min.js', array('jquery'), '20130115', true );
-    }
+    wp_enqueue_script( 'flexible-masonary', get_template_directory_uri() . '/js/masonry.min.js', array('jquery'), '20130115', true );
+    
     // Add slider JS only if is front page ans slider is enabled
     if( ( is_home() || is_front_page() ) ) {
       wp_enqueue_script( 'flexslider-js', get_template_directory_uri() . '/js/flexslider.min.js', array('jquery'), '20140222', true );
