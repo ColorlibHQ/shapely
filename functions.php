@@ -130,13 +130,13 @@ function flexible_widgets_init() {
     
     register_widget( 'flexible_recent_posts' );
     register_widget( 'flexible_categories' );
-    register_widget( 'flexible_instagram_widget' );
     register_widget( 'flexible_home_parallax' );
-    register_widget( 'flexible_home_portfolio' );
     register_widget( 'flexible_home_features' );
     register_widget( 'flexible_home_testimonial' );
     register_widget( 'flexible_home_CFA' );
     register_widget( 'flexible_home_clients' );
+    register_widget( 'flexible_home_portfolio' );
+    
 }
 add_action( 'widgets_init', 'flexible_widgets_init' );
 
@@ -170,7 +170,9 @@ function flexible_scripts() {
 		wp_enqueue_script( 'comment-reply' );
 	}
     
-    wp_enqueue_script( 'flexible-masonary', get_template_directory_uri() . '/js/masonry.min.js', array('jquery'), '20130115', true );
+    if( post_type_exists( 'jetpack-portfolio' ) ){
+    	 wp_enqueue_script( 'jquery-masonry' );
+    }
     
     // Add slider JS only if is front page ans slider is enabled
     if( ( is_home() || is_front_page() ) ) {

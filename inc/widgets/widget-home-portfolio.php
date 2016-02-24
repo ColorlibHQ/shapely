@@ -17,6 +17,8 @@ class flexible_home_portfolio extends WP_Widget
         $title = isset($instance['title']) ? $instance['title'] : '';
         $body_content = isset($instance['body_content']) ? $instance['body_content'] : '';
         
+        if (post_type_exists( 'jetpack-portfolio' ) ) {
+          
         echo $before_widget;
         
         /**
@@ -77,6 +79,8 @@ class flexible_home_portfolio extends WP_Widget
 		<?php
 
 		echo $after_widget;
+		
+        }
     }
 
 

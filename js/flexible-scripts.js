@@ -201,7 +201,7 @@ jQuery(window).load(function($) {
 
     // Initialize Masonry
 
-    if (jQuery('.masonry').length) {
+    if (jQuery('.masonry').length && typeof Masonry != 'undefined') {
         var container = document.querySelector('.masonry');
         var msnry = new Masonry(container, {
             itemSelector: '.masonry-item'
@@ -267,12 +267,12 @@ function updateNav() {
                 cl_navFixed = true;
             }
 
-            if (scrollY > cl_navOuterHeight * 2) {console.log('1');
+            if (scrollY > cl_navOuterHeight * 2) {
                 if (!cl_outOfSight) {
                     cl_nav.addClass('outOfSight');
                     cl_outOfSight = true;
                 }
-            } else {console.log('2');
+            } else {
                 if (cl_outOfSight) {
                     cl_outOfSight = false;
                     cl_nav.removeClass('outOfSight');
