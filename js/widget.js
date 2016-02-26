@@ -11,6 +11,11 @@ jQuery(document).ready( function($) {
   
   flexibleSort();/* Client widget sorting and cloning*/
   
+  /* Font awsome selector */
+  jQuery('select.flexible-icon').change( function(){
+    jQuery(this).siblings('span').removeClass().addClass('fa ' +jQuery(this).val());console.log(jQuery(this).val());
+  });
+  
   /* 
    * Function for sorting
    */
@@ -47,6 +52,7 @@ jQuery(document).ready( function($) {
   function media_upload(button_class) {
         var _custom_media = true,
         _orig_send_attachment = wp.media.editor.send.attachment;
+
 
         $('body').on('click', button_class, function(e) {
             var button_id ='#'+$(this).attr('id');            

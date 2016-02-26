@@ -191,10 +191,15 @@ add_action( 'wp_enqueue_scripts', 'flexible_scripts' );
 
 // add admin scripts
 function flexible_admin_script($hook) {
+    wp_enqueue_media();
     
     if( $hook == 'widgets.php' || $hook == 'customize.php' ){
       wp_enqueue_script( 'flexible_cloneya_js', get_template_directory_uri() . '/js/jquery-cloneya.min.js', array( 'jquery' ) );	
       wp_enqueue_script('widget-js', get_template_directory_uri() . '/js/widget.js', array('media-upload'), '1.0', true);
+      
+      // Add Font Awesome stylesheet    
+      wp_enqueue_style( 'flexible-icons', get_template_directory_uri().'/inc/css/font-awesome.min.css' );
+    
     }
 }
 add_action('admin_enqueue_scripts', 'flexible_admin_script');
