@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Flexible functions and definitions.
  *
@@ -130,11 +131,12 @@ function flexible_widgets_init() {
     register_widget( 'flexible_recent_posts' );
     register_widget( 'flexible_categories' );
     register_widget( 'flexible_home_parallax' );
-    register_widget( 'flexible_home_portfolio' );
     register_widget( 'flexible_home_features' );
     register_widget( 'flexible_home_testimonial' );
     register_widget( 'flexible_home_CFA' );
     register_widget( 'flexible_home_clients' );
+    register_widget( 'flexible_home_portfolio' );
+    
 }
 add_action( 'widgets_init', 'flexible_widgets_init' );
 
@@ -168,9 +170,16 @@ function flexible_scripts() {
 		wp_enqueue_script( 'comment-reply' );
 	}
 
+    
+    if( post_type_exists( 'jetpack-portfolio' ) ){
+    	 wp_enqueue_script( 'jquery-masonry' );
+    	}
+
     if (post_type_exists( 'jetpack-portfolio' ) ) {
 			wp_enqueue_script( 'jquery-masonry', array( 'jquery' ), '20160115', true );
+
     }
+    
     // Add slider JS only if is front page ans slider is enabled
     if( ( is_home() || is_front_page() ) ) {
       wp_enqueue_script( 'flexslider-js', get_template_directory_uri() . '/js/flexslider.min.js', array('jquery'), '20160222', true );
@@ -189,9 +198,15 @@ add_action( 'wp_enqueue_scripts', 'flexible_scripts' );
 // add admin scripts
 function flexible_admin_script($hook) {
 
+    wp_enqueue_media();
+    
     if( $hook == 'widgets.php' || $hook == 'customize.php' ){
       wp_enqueue_script( 'flexible_cloneya_js', get_template_directory_uri() . '/js/jquery-cloneya.min.js', array( 'jquery' ) );
       wp_enqueue_script('widget-js', get_template_directory_uri() . '/js/widget.js', array('media-upload'), '1.0', true);
+      
+      // Add Font Awesome stylesheet    
+      wp_enqueue_style( 'flexible-icons', get_template_directory_uri().'/inc/css/font-awesome.min.css' );
+    
     }
 }
 add_action('admin_enqueue_scripts', 'flexible_admin_script');

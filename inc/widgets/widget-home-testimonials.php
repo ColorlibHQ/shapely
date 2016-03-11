@@ -18,6 +18,7 @@ class flexible_home_testimonial extends WP_Widget
         $limit = isset($instance['limit']) ? $instance['limit'] : 5;
         $image_src = isset($instance['image_src']) ? $instance['image_src'] : '';
 
+        if (post_type_exists( 'jetpack-testimonial' ) ) {
         echo $before_widget;
 
         /**
@@ -77,6 +78,7 @@ class flexible_home_testimonial extends WP_Widget
           endif;
           wp_reset_postdata();
 		echo $after_widget;
+      }
     }
 
 
