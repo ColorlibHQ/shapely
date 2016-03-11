@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Flexible Categories Widget
+ * [Flexible] Categories Widget
  * flexible Theme
  */
 class flexible_categories extends WP_Widget
@@ -9,7 +9,7 @@ class flexible_categories extends WP_Widget
 	 function __construct(){
 
         $widget_ops = array('classname' => 'flexible-cats','description' => esc_html__( "Flexible Categories" ,'flexible') );
-		    parent::__construct('flexible-cats', esc_html__('Flexible Categories','flexible'), $widget_ops);
+		    parent::__construct('flexible-cats', esc_html__('[Flexible] Categories','flexible'), $widget_ops);
     }
 
     function widget($args , $instance) {
@@ -106,7 +106,7 @@ class flexible_categories extends WP_Widget
 
     	<?php
     }
-    
+
     /**
 	 * Sanitize widget form values as they are saved.
 	 *

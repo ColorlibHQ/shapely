@@ -9,7 +9,7 @@ class flexible_home_testimonial extends WP_Widget
     function __construct(){
 
         $widget_ops = array('classname' => 'flexible_home_testimonial','description' => esc_html__( "Flexible Testimonial Widget Section" ,'flexible') );
-        parent::__construct('flexible_home_testimonial', esc_html__('Flexible Testimonial Widget Section','flexible'), $widget_ops);
+        parent::__construct('flexible_home_testimonial', esc_html__('[Flexible] Testimonial Section For FrontPage','flexible'), $widget_ops);
     }
 
     function widget($args , $instance) {
@@ -56,7 +56,7 @@ class flexible_home_testimonial extends WP_Widget
                                             <p><?php the_content(); ?></p>
                                               <div class="testimonial-author-section"><?php
                                                   the_post_thumbnail( 'thumbnail', array( 'class' => 'testimonial-img')); ?>
-                                                  
+
                                                   <div class="testimonial-author">
                                                       <strong><?php echo get_the_title(); ?></strong>
                                                   </div>
@@ -86,7 +86,7 @@ class flexible_home_testimonial extends WP_Widget
         if(!isset($instance['title']) ) $instance['title']='';
         if(!isset($instance['limit']) ) $instance['limit']='';
         if(!isset($instance['image_src'])) $instance['image_src']='';
-        
+
     ?>
 
       <p><label for="<?php echo $this->get_field_id('title'); ?>"><?php esc_html_e('Title ','flexible') ?></label>
@@ -96,7 +96,7 @@ class flexible_home_testimonial extends WP_Widget
                           id="<?php $this->get_field_id('title'); ?>"
                           class="widefat" />
       </p>
-      
+
       <p><label for="<?php echo $this->get_field_id('limit'); ?>"><?php esc_html_e('Limit ','flexible') ?></label>
 
       <input type="text" value="<?php echo esc_attr($instance['limit']); ?>"
@@ -111,10 +111,10 @@ class flexible_home_testimonial extends WP_Widget
         <button id="<?php echo $this->get_field_id('image_src_button'); ?>" class="button button-primary custom_media_button" data-fieldid="<?php echo $this->get_field_id('image_src'); ?>"><?php _e( 'Upload Image','flexible' ); ?></button>
         <img class="image_demo" id="img_demo_<?php echo $this->get_field_id( 'image_src' ); ?>" width="100px" height="100px" style="margin-left: 20px; vertical-align: top;" src="<?php echo esc_url( $instance['image_src'] ); ?>" />
       </p>
-        
+
         <?php
     }
-    
+
     /**
 	 * Sanitize widget form values as they are saved.
 	 *

@@ -9,7 +9,7 @@ class flexible_social_widget extends WP_Widget
 	 function __construct(){
 
         $widget_ops = array('classname' => 'flexible-social','description' => esc_html__( "flexible Social Widget" ,'flexible') );
-		    parent::__construct('flexible-social', esc_html__('flexible Social Widget','flexible'), $widget_ops);
+		    parent::__construct('flexible-social', esc_html__('[Flexible] Social Widget','flexible'), $widget_ops);
     }
 
     function widget($args , $instance) {

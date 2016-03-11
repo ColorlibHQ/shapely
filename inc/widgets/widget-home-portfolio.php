@@ -9,18 +9,22 @@ class flexible_home_portfolio extends WP_Widget
     function __construct(){
 
         $widget_ops = array('classname' => 'flexible_home_portfolio','description' => esc_html__( "Flexible Porfolio for Home Widget Section" ,'flexible') );
-        parent::__construct('flexible_home_portfolio', esc_html__('Flexible Porfolio for Home Widget Section','flexible'), $widget_ops);
+        parent::__construct('flexible_home_portfolio', esc_html__('[Flexible] Porfolio for Home Widget Section','flexible'), $widget_ops);
     }
 
     function widget($args , $instance) {
     	extract($args);
         $title = isset($instance['title']) ? $instance['title'] : '';
         $body_content = isset($instance['body_content']) ? $instance['body_content'] : '';
+<<<<<<< HEAD
         
         if (post_type_exists( 'jetpack-portfolio' ) ) {
           
+=======
+
+>>>>>>> master
         echo $before_widget;
-        
+
         /**
 		 * Widget Content
 		 */
@@ -32,7 +36,7 @@ class flexible_home_portfolio extends WP_Widget
                     <p class="mb40"><?php echo $body_content; ?></p>
                 </div>
               </div><?php
-              
+
               $portfolio_args = array(
                   'post_type' => 'jetpack-portfolio',
                   'posts_per_page' => 10,
@@ -40,19 +44,19 @@ class flexible_home_portfolio extends WP_Widget
               );
 
               $portfolio_query = new WP_Query($portfolio_args);
-              
-              if ( $portfolio_query->have_posts() ) : ?>         
-          
+
+              if ( $portfolio_query->have_posts() ) : ?>
+
                 <div class="row masonry-loader fixed-center fadeOut">
                     <div class="col-sm-12 text-center">
                         <div class="spinner"></div>
                     </div>
                 </div>
                 <div class="row masonry masonryFlyIn fadeIn"><?php
-                
+
                   while ($portfolio_query->have_posts()) : $portfolio_query->the_post();
-                  
-                  if( has_post_thumbnail() ){ ?>                      
+
+                  if( has_post_thumbnail() ){ ?>
                     <div class="col-md-3 col-sm-6 masonry-item project fadeIn">
                         <div class="image-tile inner-title hover-reveal text-center">
                           <a href="<?php the_permalink(); ?>" title="<?php the_title_attribute(); ?>">
@@ -71,7 +75,7 @@ class flexible_home_portfolio extends WP_Widget
                   }
                   endwhile; ?>
                 </div><?php
-              endif; 
+              endif;
               wp_reset_postdata(); ?>
       </section>
 
@@ -86,7 +90,7 @@ class flexible_home_portfolio extends WP_Widget
 
     function form($instance) {
         if(!isset($instance['title']) ) $instance['title']='';
-        if(!isset($instance['body_content'])) $instance['body_content']='';        
+        if(!isset($instance['body_content'])) $instance['body_content']='';
     ?>
 
       <p><label for="<?php echo $this->get_field_id('title'); ?>"><?php esc_html_e('Title ','flexible') ?></label>
@@ -104,7 +108,7 @@ class flexible_home_portfolio extends WP_Widget
                           class="widefat"><?php echo esc_attr($instance['body_content']); ?></textarea>
       </p><?php
     }
-    
+
     /**
 	 * Sanitize widget form values as they are saved.
 	 *
@@ -119,7 +123,7 @@ class flexible_home_portfolio extends WP_Widget
 		$instance = array();
 		$instance['title'] = ( ! empty( $new_instance['title'] ) ) ? esc_html( $new_instance['title'] ) : '';
 		$instance['body_content'] = ( ! empty( $new_instance['body_content'] ) ) ? esc_html( $new_instance['body_content'] ) : '';
-		
+
 		return $instance;
 	}
 

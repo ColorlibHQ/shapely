@@ -1,5 +1,5 @@
 <?php
-error_reporting(-1);
+
 /**
  * Flexible functions and definitions.
  *

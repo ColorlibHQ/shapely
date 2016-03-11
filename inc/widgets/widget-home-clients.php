@@ -8,17 +8,17 @@ class flexible_home_clients extends WP_Widget
 {
     function __construct(){
 
-        $widget_ops = array('classname' => 'flexible_home_clients','description' => esc_html__( "Flexible Our Client Section" ,'flexible') );
-        parent::__construct('flexible_home_clients', esc_html__('Flexible Our Client section','flexible'), $widget_ops);
+        $widget_ops = array('classname' => 'flexible_home_clients','description' => esc_html__( "Flexible Client Section That Displays Logos In A Slider" ,'flexible') );
+        parent::__construct('flexible_home_clients', esc_html__('[Flexible] Client Section For FrontPage','flexible'), $widget_ops);
     }
 
     function widget($args , $instance) {
     	extract($args);
         $title = isset($instance['title']) && !empty($instance['title']) ? $instance['title'] : __('Our Main Clients','flexible');
         $logos = isset($instance['client_logo']) ? $instance['client_logo'] : [''];
-        
+
         echo $before_widget;
-        
+
         /**
 		 * Widget Content
 		 */
@@ -73,12 +73,12 @@ class flexible_home_clients extends WP_Widget
                           id="<?php $this->get_field_id('title'); ?>"
                           class="widefat" />
       </p>
-      
+
       <ul class="client-sortable clone-wrapper"><?php
           $image_src = $instance['client_logo']['img'];
           $logo_link = $instance['client_logo']['link'];
           $slider_count = ( isset($image_src) && count( $image_src ) > 0 ) ? count( $image_src ) : 3 ;
-                    
+
           for ( $i = 0; $i < $slider_count; $i++ ): ?>
               <li class="toclone">
                 <br>
@@ -89,15 +89,15 @@ class flexible_home_clients extends WP_Widget
                   <br/><br/>
                   <label><?php _e( 'Link:', 'flexible' ); ?></label>
                   <input name="<?php echo $this->get_field_name('client_logo').'[link]['.$i."]"; ?>" id="link<?php echo '-'.$i; ?>" class="widefat client-link" type="text" size="36"  value="<?php echo (isset( $logo_link[$i] )) ? esc_url( $logo_link[$i] ) : ''; ?>" /><br><br>
-                  
+
                   <a href="#" class="clone button-primary"><?php _e('Add', 'flexible'); ?></a>
                   <a href="#" class="delete button"><?php _e('Delete', 'flexible'); ?></a>
               </li>
           <?php endfor; ?>
       </ul><?php
-      
+
     }
-    
+
     /**
 	 * Sanitize widget form values as they are saved.
 	 *
@@ -111,7 +111,7 @@ class flexible_home_clients extends WP_Widget
 	public function update( $new_instance, $old_instance ) {
 		$instance = array();
 		$instance['title'] = ( ! empty( $new_instance['title'] ) ) ? esc_html( $new_instance['title'] ) : '';
-		
+
 		if( isset( $new_instance['client_logo']['img'] ) && count( $new_instance['client_logo']['img'] ) != 0 ){
           for( $i=0; $i<count( $new_instance['client_logo']['img'] ); $i++ ){
             $instance['client_logo']['img'][$i] = ( ! empty( $new_instance['client_logo']['img'][$i] ) ) ? esc_url( $new_instance['client_logo']['img'][$i] ) : '';
@@ -122,7 +122,7 @@ class flexible_home_clients extends WP_Widget
             $instance['client_logo']['link'][$i] = ( ! empty( $new_instance['client_logo']['link'][$i] ) ) ? esc_url( $new_instance['client_logo']['link'][$i] ) : '';
           }
         }
-        
+
 		return $instance;
 	}
 
