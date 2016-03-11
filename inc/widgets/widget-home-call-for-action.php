@@ -8,8 +8,8 @@ class flexible_home_CFA extends WP_Widget
 {
     function __construct(){
 
-        $widget_ops = array('classname' => 'flexible_home_CFA','description' => esc_html__( "Flexible Call for Action Section" ,'flexible') );
-        parent::__construct('flexible_home_CFA', esc_html__('Flexible Call for Action Section','flexible'), $widget_ops);
+        $widget_ops = array('classname' => 'flexible_home_CFA','description' => esc_html__( "[Flexible] Call for Action Section" ,'flexible') );
+        parent::__construct('flexible_home_CFA', esc_html__('[Flexible] Call for Action Section For FrontPage','flexible'), $widget_ops);
     }
 
     function widget($args , $instance) {
@@ -17,9 +17,9 @@ class flexible_home_CFA extends WP_Widget
         $title = isset($instance['title']) ? $instance['title'] : '';
         $button = isset($instance['button']) ? $instance['button'] : '';
         $button_link = isset($instance['button_link']) ? $instance['button_link'] : '';
-     
+
         echo $before_widget;
-        
+
         /**
 		 * Widget Content
 		 */
@@ -43,7 +43,7 @@ class flexible_home_CFA extends WP_Widget
               </div>
               <!--end of container-->
         </section><?php
-      endif; 
+      endif;
 
       echo $after_widget;
     }
@@ -70,7 +70,7 @@ class flexible_home_CFA extends WP_Widget
                           id="<?php $this->get_field_id('button'); ?>"
                           class="widefat" />
       </p>
-      
+
       <p><label for="<?php echo $this->get_field_id('button_link'); ?>"><?php esc_html_e('Button Link ','flexible') ?></label>
 
       <input type="text" value="<?php echo esc_url($instance['button_link']); ?>"
@@ -79,7 +79,7 @@ class flexible_home_CFA extends WP_Widget
                           class="widefat" />
       </p><?php
     }
-    
+
     /**
 	 * Sanitize widget form values as they are saved.
 	 *

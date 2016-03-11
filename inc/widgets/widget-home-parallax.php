@@ -8,8 +8,8 @@ class flexible_home_parallax extends WP_Widget
 {
     function __construct(){
 
-        $widget_ops = array('classname' => 'flexible_home_parallax','description' => esc_html__( "Flexible Home Widget Section" ,'flexible') );
-        parent::__construct('flexible_home_parallax', esc_html__('Flexible Home Widget for Parralax section','flexible'), $widget_ops);
+        $widget_ops = array('classname' => 'flexible_home_parallax','description' => esc_html__( "Flexible FrontPage Parallax Section" ,'flexible') );
+        parent::__construct('flexible_home_parallax', esc_html__('[Flexible] Parralax Section For FrontPage','flexible'), $widget_ops);
     }
 
     function widget($args , $instance) {
@@ -22,9 +22,9 @@ class flexible_home_parallax extends WP_Widget
         $button2 = isset($instance['button2']) ? $instance['button2'] : '';
         $button1_link = isset($instance['button1_link']) ? $instance['button1_link'] : '';
         $button2_link = isset($instance['button2_link']) ? $instance['button2_link'] : '';
-     
+
         echo $before_widget;
-        
+
         /* Classes */
         $class1 = ( $image_pos == 'background-full' )  ? 'cover fullscreen image-bg' : ( ( $image_pos == 'background-small' ) ? 'small-screen image-bg p0' : ( ( $image_pos == 'right' ) ? 'bg-secondary' : ( ( $image_pos == 'bottom' ) ? 'bg-secondary pb0' : '' ) ) );
         $class2 = ( ( $image_pos == 'background-full' ) || ( $image_pos == 'background-small' ) ) ? 'top-parallax-section' : ( ( $image_pos == 'right' ) ? 'col-md-4 col-sm-5 mb-xs-24' : ( ( $image_pos == 'left' ) ? 'col-md-4 col-md-offset-1 col-sm-5 col-sm-offset-1' : ( ( $image_pos == 'bottom' ) ? 'col-sm-10 col-sm-offset-1 text-center' : ( ( $image_pos == 'top' ) ? 'col-sm-10 col-sm-offset-1 text-center mt30' : '' ) ) ) );
@@ -33,7 +33,7 @@ class flexible_home_parallax extends WP_Widget
         $class5 = ( $image_pos == 'right' ) ? 'col-md-7 col-md-offset-1 col-sm-6 col-sm-offset-1 text-center' : '';
         $class6 = ( $image_pos == 'left' ) ? 'col-md-7 col-sm-6 text-center mb-xs-24' : '';
         $class7 = ( $image_pos == 'background-full' ) ? 'fullscreen' : '';
-        
+
         /**
 		 * Widget Content
 		 */
@@ -46,16 +46,16 @@ class flexible_home_parallax extends WP_Widget
             else { ?>
                  <div class="container"><?php
             } ?>
-              
+
                 <div class="<?php echo $class4; ?>">
-                  
+
                       <?php
                         if( ( $image_pos == 'left' || $image_pos == 'top' ) && $image_src != ''){ ?>
                         <div class="<?php echo $class6; ?>">
                               <img class="cast-shadow" alt="<?php echo $title; ?>" src="<?php echo $image_src; ?>">
                         </div><?php
                       } ?>
-                  
+
                       <div class="<?php echo $class2; ?>">
                             <div class="<?php echo $class3; ?>"><?php
                               echo ( $title != '' ) ? ( ( $image_pos == 'background-full' ) || ( $image_pos == 'background-small' ) ) ? '<h1>'.$title.'</h1>': '<h3>'.$title.'</h3>' : '';
@@ -73,7 +73,7 @@ class flexible_home_parallax extends WP_Widget
                       } ?>
                 </div>
               </div>
-            <?php if( $image_pos == 'background-full' || $image_pos == 'background-small' ) { ?>                
+            <?php if( $image_pos == 'background-full' || $image_pos == 'background-small' ) { ?>
               </div><?php
             } ?>
           </section>
@@ -110,26 +110,26 @@ class flexible_home_parallax extends WP_Widget
             <button id="<?php echo $this->get_field_id('image_src_button'); ?>" class="button button-primary custom_media_button" data-fieldid="<?php echo $this->get_field_id('image_src'); ?>"><?php _e( 'Upload Image','flexible' ); ?></button>
             <img class="image_demo" id="img_demo_<?php echo $this->get_field_id( 'image_src' ); ?>" width="100px" height="100px" style="margin-left: 20px; vertical-align: top;" src="<?php echo esc_url( $instance['image_src'] ); ?>" />
       </p>
-			
+
       <p><label for="<?php echo $this->get_field_id('body_content'); ?>"><?php esc_html_e('Content ','flexible') ?></label>
 
       <textarea name="<?php echo $this->get_field_name('body_content'); ?>"
                           id="<?php $this->get_field_id('body_content'); ?>"
                           class="widefat"><?php echo esc_attr($instance['body_content']); ?></textarea>
       </p>
-      
+
       <p><label for="<?php echo $this->get_field_id('image_pos'); ?>"><?php esc_html_e('Image Position ','flexible') ?></label>
-      <select name="<?php echo $this->get_field_name('image_pos'); ?>" 
+      <select name="<?php echo $this->get_field_name('image_pos'); ?>"
               id="<?php $this->get_field_id('image_pos'); ?>" class="widefat">
-              <option value="left" <?php selected( $instance['image_pos'], 'left' ); ?>><?php _e('Left', 'flexible'); ?></option>        
-              <option value="right" <?php selected( $instance['image_pos'], 'right' ); ?>><?php _e('Right', 'flexible'); ?></option>        
-              <option value="top" <?php selected( $instance['image_pos'], 'top' ); ?>><?php _e('Top', 'flexible'); ?></option>        
-              <option value="bottom" <?php selected( $instance['image_pos'], 'bottom' ); ?>><?php _e('Bottom', 'flexible'); ?></option>        
-              <option value="background-full" <?php selected( $instance['image_pos'], 'background-full' ); ?>><?php _e('Background Full', 'flexible'); ?></option>        
-              <option value="background-small" <?php selected( $instance['image_pos'], 'background-small' ); ?>><?php _e('Background Small', 'flexible'); ?></option>        
+              <option value="left" <?php selected( $instance['image_pos'], 'left' ); ?>><?php _e('Left', 'flexible'); ?></option>
+              <option value="right" <?php selected( $instance['image_pos'], 'right' ); ?>><?php _e('Right', 'flexible'); ?></option>
+              <option value="top" <?php selected( $instance['image_pos'], 'top' ); ?>><?php _e('Top', 'flexible'); ?></option>
+              <option value="bottom" <?php selected( $instance['image_pos'], 'bottom' ); ?>><?php _e('Bottom', 'flexible'); ?></option>
+              <option value="background-full" <?php selected( $instance['image_pos'], 'background-full' ); ?>><?php _e('Background Full', 'flexible'); ?></option>
+              <option value="background-small" <?php selected( $instance['image_pos'], 'background-small' ); ?>><?php _e('Background Small', 'flexible'); ?></option>
       </select>
       </p>
-      
+
       <p><label for="<?php echo $this->get_field_id('button1'); ?>"><?php esc_html_e('Button 1 Text ','flexible') ?></label>
 
       <input type="text" value="<?php echo esc_attr($instance['button1']); ?>"
@@ -137,7 +137,7 @@ class flexible_home_parallax extends WP_Widget
                           id="<?php $this->get_field_id('button1'); ?>"
                           class="widefat" />
       </p>
-      
+
       <p><label for="<?php echo $this->get_field_id('button1_link'); ?>"><?php esc_html_e('Button 1 Link ','flexible') ?></label>
 
       <input type="text" value="<?php echo esc_url($instance['button1_link']); ?>"
@@ -145,15 +145,15 @@ class flexible_home_parallax extends WP_Widget
                           id="<?php $this->get_field_id('button1_link'); ?>"
                           class="widefat" />
       </p>
-      
+
       <p><label for="<?php echo $this->get_field_id('button2'); ?>"><?php esc_html_e('Button 2 Text ','flexible') ?></label>
 
       <input type="text" value="<?php echo esc_attr($instance['button2']); ?>"
                           name="<?php echo $this->get_field_name('button2'); ?>"
                           id="<?php $this->get_field_id('button2'); ?>"
                           class="widefat" />
-      </p>	
-      
+      </p>
+
       <p><label for="<?php echo $this->get_field_id('button2_link'); ?>"><?php esc_html_e('Button 1 Link ','flexible') ?></label>
 
       <input type="text" value="<?php echo esc_url($instance['button2_link']); ?>"
@@ -184,7 +184,7 @@ class flexible_home_parallax extends WP_Widget
 		$instance['button2'] = ( ! empty( $new_instance['button2'] ) ) ? esc_html( $new_instance['button2'] ) : '';
 		$instance['button1_link'] = ( ! empty( $new_instance['button1_link'] ) ) ? esc_url( $new_instance['button1_link'] ) : '';
 		$instance['button2_link'] = ( ! empty( $new_instance['button2_link'] ) ) ? esc_url( $new_instance['button2_link'] ) : '';
-		
+
 		return $instance;
 	}
 }

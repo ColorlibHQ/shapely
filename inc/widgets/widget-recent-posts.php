@@ -8,8 +8,8 @@ class flexible_recent_posts extends WP_Widget {
 
   function __construct() {
 
-    $widget_ops = array('classname' => 'flexible-recent-posts', 'description' => esc_html__("Widget to show recent posts", 'flexible'));
-    parent::__construct('flexible_recent_posts', esc_html__('Flexible Recent Posts', 'flexible'), $widget_ops);
+    $widget_ops = array('classname' => 'flexible-recent-posts', 'description' => esc_html__("Widget to show recent posts with thumbnails", 'flexible'));
+    parent::__construct('flexible_recent_posts', esc_html__('[Flexible] Recent Posts', 'flexible'), $widget_ops);
   }
 
   function widget($args, $instance) {
@@ -39,11 +39,11 @@ class flexible_recent_posts extends WP_Widget {
       $featured_query = new WP_Query($featured_args);
 
       if ($featured_query->have_posts()) : ?>
-      
+
         <ul class="link-list recent-posts"><?php
-            
+
           while ($featured_query->have_posts()) : $featured_query->the_post(); ?>
-          
+
             <?php if (get_the_content() != '') : ?>
 
               <!-- content -->
@@ -57,7 +57,7 @@ class flexible_recent_posts extends WP_Widget {
 
           <?php endwhile; ?>
         </ul><?php
-          
+
       endif;
       wp_reset_query();
       ?>
@@ -94,7 +94,7 @@ class flexible_recent_posts extends WP_Widget {
 
     <?php
   }
-  
+
   /**
 	 * Sanitize widget form values as they are saved.
 	 *
