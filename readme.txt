@@ -17,7 +17,11 @@ Sparkling is based on Underscores http://underscores.me/, (C) 2012-2016 Automatt
 
 == Description ==
 
-Hi. I'm a starter theme called Flexible, or underscores, if you like. I'm a theme meant for hacking so don't use me as a Parent Theme. Instead try turning me into the next, most awesome, WordPress theme out there. That's what I'm here for.
+Flexible is a powerful and versatile one page WordPress theme with pixel perfect design and outstanding functionality. It is by far the most advanced free WordPress theme available today with loads of unmatched customization options. This theme comes with several homepage widgets that can be used to add portfolio, testimonials, parallax sections, your product or service information, call for action and much more.
+
+Flexible supports most free and premium WordPress plugins such as WooCommerce, Jetpack, Gravity Forms, Contact Form 7, Yoast SEO, Google Analytics by Yoast and much more.
+
+This theme is the best suited for business, landing page, portfolio, ecommerce, store, local business,  personal websites but can be tweaked to be used as blog, magazine or any other awesome website while highlighting its unique one page setup. This is going to be the last WordPress theme you will ever want to use because it is so much better than anything you have seen. We promise.
 
 == Installation ==
 
@@ -25,11 +29,13 @@ Hi. I'm a starter theme called Flexible, or underscores, if you like. I'm a them
 2. Click Upload and Choose File, then select the theme's .zip file. Click Install Now.
 3. Click Activate to use your new theme right away.
 
+For more detailed Flexible theme setup please read documentation: https://colorlib.com/wp/support/flexible/
+
 == Frequently Asked Questions ==
 
 = Does this theme support any plugins? =
 
-Flexible includes support for Infinite Scroll in Jetpack.
+Flexible includes support for Infinite Scroll, Portfolio, Testimonials, Tiled Galleries for Jetpack.
 
 
 == Credits ==
