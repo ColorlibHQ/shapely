@@ -9,28 +9,30 @@ class flexible_home_features extends WP_Widget
     function __construct(){
 
         $widget_ops = array('classname' => 'flexible_home_features','description' => esc_html__( "Widget to set Features in Home Section" ,'flexible') );
-        parent::__construct('flexible_home_features', esc_html__('[Flexible] Features Widgets','flexible'), $widget_ops);
+
+        parent::__construct('flexible_home_features', esc_html__('[Flexible] Features Section For FrontPage','flexible'), $widget_ops);
+
     }
 
     function widget($args , $instance) {
         extract($args);
         $title[0] = isset($instance['title']) ? $instance['title'] : '';
         $body_content[0] = isset($instance['body_content']) ? $instance['body_content'] : '';
-                
+
         $title[1] = isset($instance['title1']) ? $instance['title1'] : '';
         $title[2] = isset($instance['title2']) ? $instance['title2'] : '';
         $title[3] = isset($instance['title3']) ? $instance['title3'] : '';
-        
+
         $icon[1] = isset($instance['icon1']) && !empty( $instance['icon1']) ? $instance['icon1'] : 'fa fa-cogs';
         $icon[2] = isset($instance['icon2']) && !empty( $instance['icon2']) ? $instance['icon2'] : 'fa fa-heartbeat';
         $icon[3] = isset($instance['icon3']) && !empty( $instance['icon3']) ? $instance['icon3'] : 'fa fa-paper-plane-o';
-        
+
         $body_content[1] = isset($instance['body_content1']) ? $instance['body_content1'] : '';
         $body_content[2] = isset($instance['body_content2']) ? $instance['body_content2'] : '';
         $body_content[3] = isset($instance['body_content3']) ? $instance['body_content3'] : '';
-        
+
         echo $before_widget;
-        
+
         /**
          * Widget Content
          */

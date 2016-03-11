@@ -13,7 +13,7 @@ class flexible_home_portfolio extends WP_Widget
     }
 
     function widget($args , $instance) {
-    	extract($args);
+      extract($args);
         $title = isset($instance['title']) ? $instance['title'] : '';
         $body_content = isset($instance['body_content']) ? $instance['body_content'] : '';
 
@@ -22,8 +22,8 @@ class flexible_home_portfolio extends WP_Widget
         echo $before_widget;
 
         /**
-		 * Widget Content
-		 */
+     * Widget Content
+     */
     ?>
         <section class="projects bg-dark pb0">
               <div class="container">
@@ -76,9 +76,9 @@ class flexible_home_portfolio extends WP_Widget
       </section>
 
 
-		<?php
+    <?php
 
-		echo $after_widget;
+    echo $after_widget;
 
         }
     }
@@ -106,22 +106,22 @@ class flexible_home_portfolio extends WP_Widget
     }
 
     /**
-	 * Sanitize widget form values as they are saved.
-	 *
-	 * @see WP_Widget::update()
-	 *
-	 * @param array $new_instance Values just sent to be saved.
-	 * @param array $old_instance Previously saved values from database.
-	 *
-	 * @return array Updated safe values to be saved.
-	 */
-	public function update( $new_instance, $old_instance ) {
-		$instance = array();
-		$instance['title'] = ( ! empty( $new_instance['title'] ) ) ? esc_html( $new_instance['title'] ) : '';
-		$instance['body_content'] = ( ! empty( $new_instance['body_content'] ) ) ? esc_html( $new_instance['body_content'] ) : '';
+   * Sanitize widget form values as they are saved.
+   *
+   * @see WP_Widget::update()
+   *
+   * @param array $new_instance Values just sent to be saved.
+   * @param array $old_instance Previously saved values from database.
+   *
+   * @return array Updated safe values to be saved.
+   */
+  public function update( $new_instance, $old_instance ) {
+    $instance = array();
+    $instance['title'] = ( ! empty( $new_instance['title'] ) ) ? esc_html( $new_instance['title'] ) : '';
+    $instance['body_content'] = ( ! empty( $new_instance['body_content'] ) ) ? esc_html( $new_instance['body_content'] ) : '';
 
-		return $instance;
-	}
+    return $instance;
+  }
 
 }
 
