@@ -35,8 +35,8 @@ function shapely_customizer( $wp_customize ) {
 		'mime_type' => 'image',
 		'priority'  => 10,
 	) ) );
-    	
-        
+
+
       /* Main option Settings Panel */
     $wp_customize->add_panel('shapely_main_options', array(
         'capability' => 'edit_theme_options',
@@ -65,8 +65,8 @@ function shapely_customizer( $wp_customize ) {
                  'type'    => 'select',
                  'description' => __('Choose between different layout options to be used as default', 'shapely'),
                  'choices'    => $shapely_site_layout
-            ));	
-	
+            ));
+
             $wp_customize->add_setting('link_color', array(
                     'default' => '',
                     'sanitize_callback' => 'shapely_sanitize_hexcolor'
@@ -103,7 +103,7 @@ function shapely_customizer( $wp_customize ) {
                 'description'   => __('Default used if no color is selected','shapely'),
                 'section' => 'shapely_layout_section',
             )));
-            
+
             $wp_customize->add_setting('social_color', array(
                     'default' => '',
                     'sanitize_callback' => 'shapely_sanitize_hexcolor'
@@ -113,15 +113,14 @@ function shapely_customizer( $wp_customize ) {
                 'description'   => __('Default used if no color is selected','shapely'),
                 'section' => 'shapely_layout_section',
             )));
-            
+
         // add "Sidebar" section
     $wp_customize->add_section('shapely_main_section', array(
         'title' => __('Main options', 'shapely'),
-        'description' => sprintf(__('', 'shapely')),
         'priority' => 11,
         'panel' => 'shapely_main_options'
     ));
-      
+
       $wp_customize->add_setting( 'top_callout', array(
 		'default' => 1,
 		'sanitize_callback' => 'shapely_sanitize_checkbox',
@@ -133,7 +132,7 @@ function shapely_customizer( $wp_customize ) {
           'priority'	=> 20,
           'type'      => 'checkbox',
       ) );
-      
+
       $wp_customize->add_setting('blog_name', array(
           'default' => '',
           'sanitize_callback' => 'shapely_sanitize_strip_slashes'
@@ -142,8 +141,8 @@ function shapely_customizer( $wp_customize ) {
           'label' => __('Blog Name in top callout', 'shapely'),
           'description'   => __('Heading for the Blog page','shapely'),
           'section' => 'shapely_main_section',
-      ) );    
-    
+      ) );
+
       if( post_type_exists('jetpack-portfolio') ){
         $wp_customize->add_setting('portfolio_name', array(
           'default' => '',
@@ -152,8 +151,8 @@ function shapely_customizer( $wp_customize ) {
         $wp_customize->add_control('portfolio_name', array(
             'label' => __('Portfolio Archive Title', 'shapely'),
             'section' => 'shapely_main_section',
-        ) ); 
-        
+        ) );
+
         $wp_customize->add_setting('portfolio_description', array(
           'default' => '',
           'sanitize_callback' => 'shapely_sanitize_strip_slashes'
@@ -164,7 +163,7 @@ function shapely_customizer( $wp_customize ) {
             'section' => 'shapely_main_section',
         ) );
       }
-      
+
       $wp_customize->add_setting( 'footer_callout_text', array(
 		'default' => "",
 		'sanitize_callback' => 'shapely_sanitize_strip_slashes',
@@ -174,7 +173,7 @@ function shapely_customizer( $wp_customize ) {
           'description'   => __('Footer Callout','shapely'),
           'section' => 'shapely_main_section',
       ) );
-      
+
       $wp_customize->add_setting( 'footer_callout_btntext', array(
 		'default' => "",
 		'sanitize_callback' => 'shapely_sanitize_strip_slashes',
@@ -182,7 +181,7 @@ function shapely_customizer( $wp_customize ) {
       $wp_customize->add_control('footer_callout_btntext', array(
           'label' => __('Text for footer callout button', 'shapely'),
           'section' => 'shapely_main_section',
-      ) ); 
+      ) );
       $wp_customize->add_setting('footer_callout_link', array(
           'default' => '',
           'sanitize_callback' => 'esc_url_raw'
@@ -193,14 +192,14 @@ function shapely_customizer( $wp_customize ) {
           'description' => __('Enter the link for Call For Action button in footer', 'shapely'),
           'type' => 'text'
       ));
-      
-    
+
+
 	// add "Footer" section
 	$wp_customize->add_section( 'shapely_footer_section' , array(
 		'title'      => esc_html__( 'Footer', 'shapely' ),
 		'priority'   => 90,
-	) );	
-	
+	) );
+
 	$wp_customize->add_setting( 'shapely_footer_copyright', array(
 		'default' => '',
 		'transport'   => 'refresh',
@@ -212,7 +211,7 @@ function shapely_customizer( $wp_customize ) {
 		'label' => 'Copyright Text',
 		'section' => 'shapely_footer_section',
 	) );
-        
+
         /* Shapely Other Options */
         $wp_customize->add_section('shapely_other_options', array(
             'title' => __('Other', 'shapely'),
@@ -229,7 +228,7 @@ function shapely_customizer( $wp_customize ) {
                 'section' => 'shapely_other_options',
                 'type' => 'textarea'
             ));
-            
+
         /* Support & Documentation */
         $wp_customize->add_section('shapely_important_links', array(
         'priority' => 5,
@@ -295,7 +294,7 @@ function shapely_sanitize_hexcolor($color) {
  * @package Shapely
  */
 function shapely_sanitize_slidecat( $input ) {
-    
+
     if ( array_key_exists( $input, shapely_cats()) ) {
         return $input;
     } else {
