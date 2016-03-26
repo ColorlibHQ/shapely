@@ -2,15 +2,15 @@
 
 /**
  * Homepage features section Widget
- * Flexible Theme
+ * Shapely Theme
  */
-class flexible_home_features extends WP_Widget
+class shapely_home_features extends WP_Widget
 {
     function __construct(){
 
-        $widget_ops = array('classname' => 'flexible_home_features','description' => esc_html__( "Widget to set Features in Home Section" ,'flexible') );
+        $widget_ops = array('classname' => 'shapely_home_features','description' => esc_html__( "Widget to set Features in Home Section" ,'shapely') );
 
-        parent::__construct('flexible_home_features', esc_html__('[Flexible] Features Section For FrontPage','flexible'), $widget_ops);
+        parent::__construct('shapely_home_features', esc_html__('[Shapely] Features Section For FrontPage','shapely'), $widget_ops);
 
     }
 
@@ -91,7 +91,7 @@ class flexible_home_features extends WP_Widget
         if(!isset($instance['body_content3'])) $instance['body_content3']='';        
     ?>
 
-      <p><label for="<?php echo $this->get_field_id('title'); ?>"><?php esc_html_e('Title ','flexible') ?></label>
+      <p><label for="<?php echo $this->get_field_id('title'); ?>"><?php esc_html_e('Title ','shapely') ?></label>
 
       <input type="text" value="<?php echo esc_attr($instance['title']); ?>"
                           name="<?php echo $this->get_field_name('title'); ?>"
@@ -99,7 +99,7 @@ class flexible_home_features extends WP_Widget
                           class="widefat" />
       </p>      
       
-      <p><label for="<?php echo $this->get_field_id('body_content'); ?>"><?php esc_html_e('Content ','flexible') ?></label>
+      <p><label for="<?php echo $this->get_field_id('body_content'); ?>"><?php esc_html_e('Content ','shapely') ?></label>
 
       <textarea name="<?php echo $this->get_field_name('body_content'); ?>"
                           id="<?php $this->get_field_id('body_content'); ?>"
@@ -109,9 +109,9 @@ class flexible_home_features extends WP_Widget
       
       <?php for ( $i=1; $i<4; $i++ ) { ?>
       <br>
-      <b><?php echo sprintf( __( "Feature %s", 'flexible' ), $i ); ?></b>
+      <b><?php echo sprintf( __( "Feature %s", 'shapely' ), $i ); ?></b>
       
-      <p><label for="<?php echo $this->get_field_id('title'.$i); ?>"><?php esc_html_e('Title ','flexible') ?></label>
+      <p><label for="<?php echo $this->get_field_id('title'.$i); ?>"><?php esc_html_e('Title ','shapely') ?></label>
 
       <input type="text" value="<?php echo esc_attr($instance['title'.$i]); ?>"
                           name="<?php echo $this->get_field_name('title'.$i); ?>"
@@ -119,13 +119,13 @@ class flexible_home_features extends WP_Widget
                           class="widefat" />
       </p>
       
-      <p><label for="<?php echo $this->get_field_id('icon'.$i); ?>"><?php esc_html_e('Icon( Font Awsome ) ','flexible') ?></label><?php
+      <p><label for="<?php echo $this->get_field_id('icon'.$i); ?>"><?php esc_html_e('Icon( Font Awsome ) ','shapely') ?></label><?php
       
         $get_fontawesome_icons = $this->get_fontawesome_icons(); 
         $icon = ( isset( $instance['icon'.$i] ) && $instance['icon'.$i] != '' ) ? esc_html($instance['icon'.$i]): '';?>
         
-        <select class="flexible-icon" id="<?php echo $this->get_field_id('icon'.$i); ?>" name="<?php echo $this->get_field_name( 'icon'.$i ); ?>">
-            <option value=""><?php _e( 'Select Icon', 'flexible' ); ?></option>
+        <select class="shapely-icon" id="<?php echo $this->get_field_id('icon'.$i); ?>" name="<?php echo $this->get_field_name( 'icon'.$i ); ?>">
+            <option value=""><?php _e( 'Select Icon', 'shapely' ); ?></option>
             <?php foreach( $get_fontawesome_icons as $key => $get_fontawesome_icon ): ?>
                 <option value="fa <?php echo esc_attr( $key ); ?>" <?php selected( $icon, 'fa '.$key ); ?>><?php echo esc_html( $get_fontawesome_icon ); ?></option>
             <?php endforeach; ?>
@@ -133,7 +133,7 @@ class flexible_home_features extends WP_Widget
         <span class="<?php echo $icon; ?>" style="font-size: 24px;vertical-align: middle;margin-left: 10px;"></span>
       </p>
 
-      <p><label for="<?php echo $this->get_field_id('body_content'.$i); ?>"><?php esc_html_e('Content ','flexible') ?></label>
+      <p><label for="<?php echo $this->get_field_id('body_content'.$i); ?>"><?php esc_html_e('Content ','shapely') ?></label>
 
       <textarea name="<?php echo $this->get_field_name('body_content'.$i); ?>"
                           id="<?php $this->get_field_id('body_content'.$i); ?>"

@@ -1,13 +1,13 @@
 <?php
 
 /**
- * Flexible functions and definitions.
+ * Shapely functions and definitions.
  *
  * @link https://developer.wordpress.org/themes/basics/theme-functions/
  *
- * @package Flexible
+ * @package Shapely
  */
-if ( ! function_exists( 'flexible_setup' ) ) :
+if ( ! function_exists( 'shapely_setup' ) ) :
 /**
  * Sets up theme defaults and registers support for various WordPress features.
  *
@@ -15,14 +15,14 @@ if ( ! function_exists( 'flexible_setup' ) ) :
  * runs before the init hook. The init hook is too late for some features, such
  * as indicating support for post thumbnails.
  */
-function flexible_setup() {
+function shapely_setup() {
 	/*
 	 * Make theme available for translation.
 	 * Translations can be filed in the /languages/ directory.
-	 * If you're building a theme based on Flexible, use a find and replace
-	 * to change 'flexible' to the name of your theme in all the template files.
+	 * If you're building a theme based on Shapely, use a find and replace
+	 * to change 'shapely' to the name of your theme in all the template files.
 	 */
-	load_theme_textdomain( 'flexible', get_template_directory() . '/languages' );
+	load_theme_textdomain( 'shapely', get_template_directory() . '/languages' );
 
 	// Add default posts and comments RSS feed links to head.
 	add_theme_support( 'automatic-feed-links' );
@@ -44,7 +44,7 @@ function flexible_setup() {
 
 	// This theme uses wp_nav_menu() in one location.
 	register_nav_menus( array(
-		'primary' => esc_html__( 'Primary', 'flexible' ),
+		'primary' => esc_html__( 'Primary', 'shapely' ),
 	) );
 
 	/*
@@ -72,13 +72,13 @@ function flexible_setup() {
 	) );
 
 	// Set up the WordPress core custom background feature.
-	add_theme_support( 'custom-background', apply_filters( 'flexible_custom_background_args', array(
+	add_theme_support( 'custom-background', apply_filters( 'shapely_custom_background_args', array(
 		'default-color' => 'ffffff',
 		'default-image' => '',
 	) ) );
 }
 endif;
-add_action( 'after_setup_theme', 'flexible_setup' );
+add_action( 'after_setup_theme', 'shapely_setup' );
 
 /**
  * Set the content width in pixels, based on the theme's design and stylesheet.
@@ -87,19 +87,19 @@ add_action( 'after_setup_theme', 'flexible_setup' );
  *
  * @global int $content_width
  */
-function flexible_content_width() {
-	$GLOBALS['content_width'] = apply_filters( 'flexible_content_width', 1140 );
+function shapely_content_width() {
+	$GLOBALS['content_width'] = apply_filters( 'shapely_content_width', 1140 );
 }
-add_action( 'after_setup_theme', 'flexible_content_width', 0 );
+add_action( 'after_setup_theme', 'shapely_content_width', 0 );
 
 /**
  * Register widget area.
  *
  * @link https://developer.wordpress.org/themes/functionality/sidebars/#registering-a-sidebar
  */
-function flexible_widgets_init() {
+function shapely_widgets_init() {
 	register_sidebar( array(
-      'name'          => esc_html__( 'Sidebar', 'flexible' ),
+      'name'          => esc_html__( 'Sidebar', 'shapely' ),
       'id'            => 'sidebar-1',
       'description'   => '',
       'before_widget' => '<section id="%1$s" class="widget %2$s">',
@@ -108,7 +108,7 @@ function flexible_widgets_init() {
       'after_title'   => '</h2>',
 	) );
 	register_sidebar( array(
-      'name'          => esc_html__( 'Homepage', 'flexible' ),
+      'name'          => esc_html__( 'Homepage', 'shapely' ),
       'id'            => 'sidebar-home',
       'description'   => '',
       'before_widget' => '<div id="%1$s" class="%2$s">',
@@ -119,8 +119,8 @@ function flexible_widgets_init() {
     for( $i=1; $i<5; $i++ ) {
       register_sidebar(array(
         'id'            => 'footer-widget-'.$i,
-        'name'          =>  sprintf( esc_html__( 'Footer Widget %s', 'flexible' ), $i),
-        'description'   =>  esc_html__( 'Used for footer widget area', 'flexible' ),
+        'name'          =>  sprintf( esc_html__( 'Footer Widget %s', 'shapely' ), $i),
+        'description'   =>  esc_html__( 'Used for footer widget area', 'shapely' ),
         'before_widget' => '<div id="%1$s" class="widget %2$s">',
         'after_widget'  => '</div>',
         'before_title'  => '<h2 class="widget-title">',
@@ -128,30 +128,30 @@ function flexible_widgets_init() {
       ));
     }
 
-    register_widget( 'flexible_recent_posts' );
-    register_widget( 'flexible_categories' );
-    register_widget( 'flexible_home_parallax' );
-    register_widget( 'flexible_home_features' );
-    register_widget( 'flexible_home_testimonial' );
-    register_widget( 'flexible_home_CFA' );
-    register_widget( 'flexible_home_clients' );
-    register_widget( 'flexible_home_portfolio' );
+    register_widget( 'shapely_recent_posts' );
+    register_widget( 'shapely_categories' );
+    register_widget( 'shapely_home_parallax' );
+    register_widget( 'shapely_home_features' );
+    register_widget( 'shapely_home_testimonial' );
+    register_widget( 'shapely_home_CFA' );
+    register_widget( 'shapely_home_clients' );
+    register_widget( 'shapely_home_portfolio' );
     
 }
-add_action( 'widgets_init', 'flexible_widgets_init' );
+add_action( 'widgets_init', 'shapely_widgets_init' );
 
 /**
  * Enqueue scripts and styles.
  */
-function flexible_scripts() {
+function shapely_scripts() {
     // Add Bootstrap default CSS
-    wp_enqueue_style( 'flexible-bootstrap', get_template_directory_uri() . '/inc/css/bootstrap.min.css' );
+    wp_enqueue_style( 'shapely-bootstrap', get_template_directory_uri() . '/inc/css/bootstrap.min.css' );
 
     // Add Font Awesome stylesheet
-    wp_enqueue_style( 'flexible-icons', get_template_directory_uri().'/inc/css/font-awesome.min.css' );
+    wp_enqueue_style( 'shapely-icons', get_template_directory_uri().'/inc/css/font-awesome.min.css' );
 
     // Add Google Fonts
-    wp_enqueue_style( 'flexible-fonts', '//fonts.googleapis.com/css?family=Raleway:100,300,400,500,600,700%7COpen+Sans:400,500,600');
+    wp_enqueue_style( 'shapely-fonts', '//fonts.googleapis.com/css?family=Raleway:100,300,400,500,600,700%7COpen+Sans:400,500,600');
 
 
     // Add slider CSS only if is front page ans slider is enabled
@@ -160,11 +160,11 @@ function flexible_scripts() {
     }
 
     //Add custom theme css
-    wp_enqueue_style( 'flexible-style', get_stylesheet_uri() );
+    wp_enqueue_style( 'shapely-style', get_stylesheet_uri() );
 
-		wp_enqueue_script( 'flexible-navigation', get_template_directory_uri() . '/js/navigation.js', array(), '20120206', true );
+		wp_enqueue_script( 'shapely-navigation', get_template_directory_uri() . '/js/navigation.js', array(), '20120206', true );
 
-		wp_enqueue_script( 'flexible-skip-link-focus-fix', get_template_directory_uri() . '/js/skip-link-focus-fix.js', array(), '20160115', true );
+		wp_enqueue_script( 'shapely-skip-link-focus-fix', get_template_directory_uri() . '/js/skip-link-focus-fix.js', array(), '20160115', true );
 
     if ( is_singular() && comments_open() && get_option( 'thread_comments' ) ) {
 		wp_enqueue_script( 'comment-reply' );
@@ -185,31 +185,31 @@ function flexible_scripts() {
       wp_enqueue_script( 'flexslider-js', get_template_directory_uri() . '/js/flexslider.min.js', array('jquery'), '20160222', true );
     }
 
-    wp_enqueue_script( 'flexible-scroll', get_template_directory_uri() . '/js/smooth-scroll.min.js', array('jquery'), '20160115', true );
+    wp_enqueue_script( 'shapely-scroll', get_template_directory_uri() . '/js/smooth-scroll.min.js', array('jquery'), '20160115', true );
 
     if ( is_page_template( 'template-home.php' ) ) {
-        wp_enqueue_script( 'flexible-parallax', get_template_directory_uri() . '/js/parallax.min.js', array('jquery'), '20160115', true );
+        wp_enqueue_script( 'shapely-parallax', get_template_directory_uri() . '/js/parallax.min.js', array('jquery'), '20160115', true );
     }
 
-    wp_enqueue_script( 'flexible-scripts', get_template_directory_uri() . '/js/flexible-scripts.js', array('jquery'), '20160115', true );
+    wp_enqueue_script( 'shapely-scripts', get_template_directory_uri() . '/js/shapely-scripts.js', array('jquery'), '20160115', true );
 }
-add_action( 'wp_enqueue_scripts', 'flexible_scripts' );
+add_action( 'wp_enqueue_scripts', 'shapely_scripts' );
 
 // add admin scripts
-function flexible_admin_script($hook) {
+function shapely_admin_script($hook) {
 
     wp_enqueue_media();
     
     if( $hook == 'widgets.php' || $hook == 'customize.php' ){
-      wp_enqueue_script( 'flexible_cloneya_js', get_template_directory_uri() . '/js/jquery-cloneya.min.js', array( 'jquery' ) );
+      wp_enqueue_script( 'shapely_cloneya_js', get_template_directory_uri() . '/js/jquery-cloneya.min.js', array( 'jquery' ) );
       wp_enqueue_script('widget-js', get_template_directory_uri() . '/js/widget.js', array('media-upload'), '1.0', true);
       
       // Add Font Awesome stylesheet    
-      wp_enqueue_style( 'flexible-icons', get_template_directory_uri().'/inc/css/font-awesome.min.css' );
+      wp_enqueue_style( 'shapely-icons', get_template_directory_uri().'/inc/css/font-awesome.min.css' );
     
     }
 }
-add_action('admin_enqueue_scripts', 'flexible_admin_script');
+add_action('admin_enqueue_scripts', 'shapely_admin_script');
 
 /**
 * Enable support for Post Thumbnails on posts and pages.
@@ -218,7 +218,7 @@ add_action('admin_enqueue_scripts', 'flexible_admin_script');
 */
 add_theme_support( 'post-thumbnails' );
 
-add_image_size( 'flexible-featured', 848, 566, true );
+add_image_size( 'shapely-featured', 848, 566, true );
 
 /**
  * Implement the Custom Header feature.
@@ -286,14 +286,14 @@ foreach ( glob( get_template_directory() . '/inc/widgets/*.php' ) as $lib_filena
  */
 require_once get_template_directory() . '/inc/class-tgm-plugin-activation.php';
 
-add_action( 'tgmpa_register', 'flexible_register_required_plugins' );
+add_action( 'tgmpa_register', 'shapely_register_required_plugins' );
 /**
  * Register the required plugins for this theme.
  *
  * This function is hooked into tgmpa_init, which is fired within the
  * TGM_Plugin_Activation class constructor.
  */
-function flexible_register_required_plugins() {
+function shapely_register_required_plugins() {
 	/*
 	 * Array of plugin arrays. Required keys are name and slug.
 	 * If the source is NOT from the .org repo, then source is also required.
@@ -338,8 +338,8 @@ function flexible_register_required_plugins() {
  * GLOBALS
  */
 /* Globals */
-global $flexible_site_layout;
-$flexible_site_layout = array('pull-right' =>  esc_html__('Left Sidebar','flexible'), 'side-right' => esc_html__('Right Sidebar','flexible'), 'no-sidebar' => esc_html__('No Sidebar','flexible'),'full-width' => esc_html__('Full Width', 'flexible'));
+global $shapely_site_layout;
+$shapely_site_layout = array('pull-right' =>  esc_html__('Left Sidebar','shapely'), 'side-right' => esc_html__('Right Sidebar','shapely'), 'no-sidebar' => esc_html__('No Sidebar','shapely'),'full-width' => esc_html__('Full Width', 'shapely'));
 
 /**
  * WooCoomerce Support

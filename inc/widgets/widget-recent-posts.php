@@ -1,20 +1,20 @@
 <?php
 
 /**
- * Flexible Top Posts Widget
- * Flexible Theme
+ * Shapely Top Posts Widget
+ * Shapely Theme
  */
-class flexible_recent_posts extends WP_Widget {
+class shapely_recent_posts extends WP_Widget {
 
   function __construct() {
 
-    $widget_ops = array('classname' => 'flexible-recent-posts', 'description' => esc_html__("Widget to show recent posts with thumbnails", 'flexible'));
-    parent::__construct('flexible_recent_posts', esc_html__('[Flexible] Recent Posts', 'flexible'), $widget_ops);
+    $widget_ops = array('classname' => 'shapely-recent-posts', 'description' => esc_html__("Widget to show recent posts with thumbnails", 'shapely'));
+    parent::__construct('shapely_recent_posts', esc_html__('[Shapely] Recent Posts', 'shapely'), $widget_ops);
   }
 
   function widget($args, $instance) {
     extract($args);
-    $title = isset($instance['title']) ? $instance['title'] : esc_html__('recent Posts', 'flexible');
+    $title = isset($instance['title']) ? $instance['title'] : esc_html__('recent Posts', 'shapely');
     $limit = isset($instance['limit']) ? $instance['limit'] : 5;
 
     echo $before_widget;
@@ -71,12 +71,12 @@ class flexible_recent_posts extends WP_Widget {
   function form($instance) {
 
     if (!isset($instance['title']))
-      $instance['title'] = esc_html__('recent Posts', 'flexible');
+      $instance['title'] = esc_html__('recent Posts', 'shapely');
     if (!isset($instance['limit']))
       $instance['limit'] = 5;
     ?>
 
-    <p><label for="<?php echo $this->get_field_id('title'); ?>"><?php esc_html_e('Title', 'flexible') ?></label>
+    <p><label for="<?php echo $this->get_field_id('title'); ?>"><?php esc_html_e('Title', 'shapely') ?></label>
 
       <input  type="text" value="<?php echo esc_attr($instance['title']); ?>"
               name="<?php echo $this->get_field_name('title'); ?>"
@@ -84,7 +84,7 @@ class flexible_recent_posts extends WP_Widget {
               class="widefat" />
     </p>
 
-    <p><label for="<?php echo $this->get_field_id('limit'); ?>"><?php esc_html_e('Limit Posts Number', 'flexible') ?></label>
+    <p><label for="<?php echo $this->get_field_id('limit'); ?>"><?php esc_html_e('Limit Posts Number', 'shapely') ?></label>
 
       <input  type="text" value="<?php echo esc_attr($instance['limit']); ?>"
               name="<?php echo $this->get_field_name('limit'); ?>"

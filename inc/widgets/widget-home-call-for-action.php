@@ -2,14 +2,14 @@
 
 /**
  * Homepage Call for Action section Widget
- * Flexible Theme
+ * Shapely Theme
  */
-class flexible_home_CFA extends WP_Widget
+class shapely_home_CFA extends WP_Widget
 {
     function __construct(){
 
-        $widget_ops = array('classname' => 'flexible_home_CFA','description' => esc_html__( "[Flexible] Call for Action Section" ,'flexible') );
-        parent::__construct('flexible_home_CFA', esc_html__('[Flexible] Call for Action Section For FrontPage','flexible'), $widget_ops);
+        $widget_ops = array('classname' => 'shapely_home_CFA','description' => esc_html__( "[Shapely] Call for Action Section" ,'shapely') );
+        parent::__construct('shapely_home_CFA', esc_html__('[Shapely] Call for Action Section For FrontPage','shapely'), $widget_ops);
     }
 
     function widget($args , $instance) {
@@ -55,7 +55,7 @@ class flexible_home_CFA extends WP_Widget
         if(!isset($instance['button_link'])) $instance['button_link']='';
     ?>
 
-      <p><label for="<?php echo $this->get_field_id('title'); ?>"><?php esc_html_e('Callout Text ','flexible') ?></label>
+      <p><label for="<?php echo $this->get_field_id('title'); ?>"><?php esc_html_e('Callout Text ','shapely') ?></label>
 
       <input type="text" value="<?php echo esc_attr($instance['title']); ?>"
                           name="<?php echo $this->get_field_name('title'); ?>"
@@ -63,7 +63,7 @@ class flexible_home_CFA extends WP_Widget
                           class="widefat" />
       </p>
 
-      <p><label for="<?php echo $this->get_field_id('button'); ?>"><?php esc_html_e('Button Text ','flexible') ?></label>
+      <p><label for="<?php echo $this->get_field_id('button'); ?>"><?php esc_html_e('Button Text ','shapely') ?></label>
 
       <input type="text" value="<?php echo esc_attr($instance['button']); ?>"
                           name="<?php echo $this->get_field_name('button'); ?>"
@@ -71,7 +71,7 @@ class flexible_home_CFA extends WP_Widget
                           class="widefat" />
       </p>
 
-      <p><label for="<?php echo $this->get_field_id('button_link'); ?>"><?php esc_html_e('Button Link ','flexible') ?></label>
+      <p><label for="<?php echo $this->get_field_id('button_link'); ?>"><?php esc_html_e('Button Link ','shapely') ?></label>
 
       <input type="text" value="<?php echo esc_url($instance['button_link']); ?>"
                           name="<?php echo $this->get_field_name('button_link'); ?>"

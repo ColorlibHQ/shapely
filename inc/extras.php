@@ -4,7 +4,7 @@
  *
  * Eventually, some of the functionality here could be replaced by core features.
  *
- * @package Flexible
+ * @package Shapely
  */
 
 /**
@@ -13,7 +13,7 @@
  * @param array $classes Classes for the body element.
  * @return array
  */
-function flexible_body_classes( $classes ) {
+function shapely_body_classes( $classes ) {
 	// Adds a class of group-blog to blogs with more than 1 published author.
 	if ( is_multi_author() ) {
 		$classes[] = 'group-blog';
@@ -24,11 +24,11 @@ function flexible_body_classes( $classes ) {
 		$classes[] = 'hfeed';
 	}
 	
-	if ( get_theme_mod( 'flexible_sidebar_position' ) == "pull-right" ) {
+	if ( get_theme_mod( 'shapely_sidebar_position' ) == "pull-right" ) {
 		$classes[] = 'has-sidebar-left';
-	} else if ( get_theme_mod( 'flexible_sidebar_position' ) == "no-sidebar" ) {
+	} else if ( get_theme_mod( 'shapely_sidebar_position' ) == "no-sidebar" ) {
 		$classes[] = 'has-no-sidebar';
-	} else if ( get_theme_mod( 'flexible_sidebar_position' ) == "full-width" ) {
+	} else if ( get_theme_mod( 'shapely_sidebar_position' ) == "full-width" ) {
 		$classes[] = 'has-full-width';
 	} else {
 		$classes[] = 'has-sidebar-right';
@@ -36,7 +36,7 @@ function flexible_body_classes( $classes ) {
     
 	return $classes;
 }
-add_filter( 'body_class', 'flexible_body_classes' );
+add_filter( 'body_class', 'shapely_body_classes' );
 
 /**
  * Get our wp_nav_menu() fallback, wp_page_menu(), to show a home link.
@@ -44,16 +44,16 @@ add_filter( 'body_class', 'flexible_body_classes' );
  * @param array $args Configuration arguments.
  * @return array
  */
-function flexible_page_menu_args( $args ) {
+function shapely_page_menu_args( $args ) {
   $args['show_home'] = true;
   return $args;
 }
-add_filter( 'wp_page_menu_args', 'flexible_page_menu_args' );
+add_filter( 'wp_page_menu_args', 'shapely_page_menu_args' );
 
 // Mark Posts/Pages as Untiled when no title is used
-add_filter( 'the_title', 'flexible_title' );
+add_filter( 'the_title', 'shapely_title' );
 
-function flexible_title( $title ) {
+function shapely_title( $title ) {
   if ( $title == '' ) {
     return 'Untitled';
   } else {
@@ -72,11 +72,11 @@ function custom_password_form() {
   $o = '<form class="protected-post-form" action="' . get_option('siteurl') . '/wp-login.php?action=postpass" method="post">
   <div class="row">
     <div class="col-lg-10">
-        <p>' . esc_html__( "This post is password protected. To view it please enter your password below:" ,'flexible') . '</p>
-        <label for="' . $label . '">' . esc_html__( "Password:" ,'flexible') . ' </label>
+        <p>' . esc_html__( "This post is password protected. To view it please enter your password below:" ,'shapely') . '</p>
+        <label for="' . $label . '">' . esc_html__( "Password:" ,'shapely') . ' </label>
       <div class="input-group">
         <input class="form-control" value="' . get_search_query() . '" name="post_password" id="' . $label . '" type="password">
-        <span class="input-group-btn"><button type="submit" class="btn btn-default" name="submit" id="searchsubmit" value="' . esc_attr__( "Submit",'flexible' ) . '">' . esc_html__( "Submit" ,'flexible') . '</button>
+        <span class="input-group-btn"><button type="submit" class="btn btn-default" name="submit" id="searchsubmit" value="' . esc_attr__( "Submit",'shapely' ) . '">' . esc_html__( "Submit" ,'shapely') . '</button>
         </span>
       </div>
     </div>
@@ -86,16 +86,16 @@ function custom_password_form() {
 }
 
 // Add Bootstrap classes for table
-add_filter( 'the_content', 'flexible_add_custom_table_class' );
-function flexible_add_custom_table_class( $content ) {
+add_filter( 'the_content', 'shapely_add_custom_table_class' );
+function shapely_add_custom_table_class( $content ) {
   return preg_replace( '/(<table) ?(([^>]*)class="([^"]*)")?/', '$1 $3 class="$4 table table-hover" ', $content);
 }
 
-if ( ! function_exists( 'flexible_header_menu' ) ) :
+if ( ! function_exists( 'shapely_header_menu' ) ) :
 /**
  * Header menu (should you choose to use one)
  */
-function flexible_header_menu() {
+function shapely_header_menu() {
   // display the WordPress Custom Menu if available
   wp_nav_menu(array(
     'menu'              => 'primary',
@@ -114,16 +114,16 @@ endif;
 /**
  * function to show the footer info, copyright information
  */
-function flexible_footer_info() {
-  printf( esc_html__( 'Theme by %1$s Powered by %2$s', 'flexible' ) , '<a href="http://colorlib.com/" target="_blank">Colorlib</a>', '<a href="http://wordpress.org/" target="_blank">WordPress</a>');
+function shapely_footer_info() {
+  printf( esc_html__( 'Theme by %1$s Powered by %2$s', 'shapely' ) , '<a href="http://colorlib.com/" target="_blank">Colorlib</a>', '<a href="http://wordpress.org/" target="_blank">WordPress</a>');
 }
 
 
-if ( ! function_exists( 'get_flexible_theme_options' ) ) {
+if ( ! function_exists( 'get_shapely_theme_options' ) ) {
 /**
  * Get information from Theme Options and add it into wp_head
  */
-    function get_flexible_theme_options(){
+    function get_shapely_theme_options(){
 
       echo '<style type="text/css">';
 
@@ -161,7 +161,7 @@ if ( ! function_exists( 'get_flexible_theme_options' ) ) {
         echo '</style>';
     }
 }
-add_action( 'wp_head', 'get_flexible_theme_options', 10 );
+add_action( 'wp_head', 'get_shapely_theme_options', 10 );
 
 /**
  * Add Bootstrap thumbnail styling to images with captions
@@ -169,7 +169,7 @@ add_action( 'wp_head', 'get_flexible_theme_options', 10 );
  *
  * @link http://justintadlock.com/archives/2011/07/01/captions-in-wordpress
  */
-function flexible_caption($output, $attr, $content) {
+function shapely_caption($output, $attr, $content) {
   if (is_feed()) {
     return $output;
   }
@@ -200,32 +200,32 @@ function flexible_caption($output, $attr, $content) {
 
   return $output;
 }
-add_filter('img_caption_shortcode', 'flexible_caption', 10, 3);
+add_filter('img_caption_shortcode', 'shapely_caption', 10, 3);
 
 /**
  * Skype URI support for social media icons
  */
-function flexible_allow_skype_protocol( $protocols ){
+function shapely_allow_skype_protocol( $protocols ){
     $protocols[] = 'skype';
     return $protocols;
 }
-add_filter( 'kses_allowed_protocols' , 'flexible_allow_skype_protocol' );
+add_filter( 'kses_allowed_protocols' , 'shapely_allow_skype_protocol' );
 
 /**
  * Adds the URL to the top level navigation menu item
  */
-function  flexible_add_top_level_menu_url( $atts, $item, $args ){
+function  shapely_add_top_level_menu_url( $atts, $item, $args ){
   if ( !wp_is_mobile() && isset($args->has_children) && $args->has_children  ) {
     $atts['href'] = ! empty( $item->url ) ? $item->url : '';
   }
   return $atts;
 }
-add_filter( 'nav_menu_link_attributes', 'flexible_add_top_level_menu_url', 99, 3 );
+add_filter( 'nav_menu_link_attributes', 'shapely_add_top_level_menu_url', 99, 3 );
 
 /**
  * Makes the top level navigation menu item clickable
  */
-function flexible_make_top_level_menu_clickable(){
+function shapely_make_top_level_menu_clickable(){
 if ( !wp_is_mobile() ) { ?>
   <script type="text/javascript">
     jQuery( document ).ready( function( $ ){
@@ -238,22 +238,22 @@ if ( !wp_is_mobile() ) { ?>
   </script>
 <?php }
 }
-add_action('wp_footer', 'flexible_make_top_level_menu_clickable', 1);
+add_action('wp_footer', 'shapely_make_top_level_menu_clickable', 1);
 
 /*
  * Add Read More button to post archive
  */
-function flexible_excerpt_more( $more ) {
-	return '<div><a class="btn-filled btn" href="'.get_the_permalink().'" title="'.get_the_title().'">'.esc_html_x( 'Read More', 'Read More', 'flexible' ).'</a></div>';
+function shapely_excerpt_more( $more ) {
+	return '<div><a class="btn-filled btn" href="'.get_the_permalink().'" title="'.get_the_title().'">'.esc_html_x( 'Read More', 'Read More', 'shapely' ).'</a></div>';
 }
-add_filter('excerpt_more', 'flexible_excerpt_more');
+add_filter('excerpt_more', 'shapely_excerpt_more');
 
 /*
  * Pagination
  */
-if( !function_exists('flexible_pagination') ){
+if( !function_exists('shapely_pagination') ){
 
-function flexible_pagination($pages = '', $range = 2){
+function shapely_pagination($pages = '', $range = 2){
     global $paged;
     $showitems = ( $range * 2 )+1;
     
@@ -287,23 +287,23 @@ function flexible_pagination($pages = '', $range = 2){
 /*
  * Search Widget
  */
-function flexible_search_form( $form ) {
+function shapely_search_form( $form ) {
     $form = '<form role="search" method="get" id="searchform" class="search-form" action="' . home_url( '/' ) . '" >
-    <label class="screen-reader-text" for="s">' . __( 'Search for:', 'flexible' ) . '</label>
-    <input type="text" placeholder="'.  __('Type Here', 'flexible').'" type="text" value="' . get_search_query() . '" name="s" id="s" />
-    <input type="submit" class="btn btn-fillded searchsubmit" id="searchsubmit" value="'. esc_attr__( 'Search', 'flexible' ) .'" />
+    <label class="screen-reader-text" for="s">' . __( 'Search for:', 'shapely' ) . '</label>
+    <input type="text" placeholder="'.  __('Type Here', 'shapely').'" type="text" value="' . get_search_query() . '" name="s" id="s" />
+    <input type="submit" class="btn btn-fillded searchsubmit" id="searchsubmit" value="'. esc_attr__( 'Search', 'shapely' ) .'" />
     
     </form>';
 
     return $form;
 }
 
-add_filter( 'get_search_form', 'flexible_search_form', 100 );
+add_filter( 'get_search_form', 'shapely_search_form', 100 );
         
 /*
  * Admin Css
  */
-function flexible_admin_style() {
+function shapely_admin_style() {
   echo '<style>
         .wrap .notice{  display : block; } 
         .client-sortable .logo_heading{
@@ -327,13 +327,13 @@ function flexible_admin_style() {
                 
       </style>';
 }
-add_action('admin_head', 'flexible_admin_style');
-add_action('customize_controls_print_styles', 'flexible_admin_style');
+add_action('admin_head', 'shapely_admin_style');
+add_action('customize_controls_print_styles', 'shapely_admin_style');
 
 /* Social Fields in Author Profile */
-if( !function_exists('flexible_author_socialLinks') ){
+if( !function_exists('shapely_author_socialLinks') ){
   
-  function flexible_author_socialLinks( $contactmethods ) {
+  function shapely_author_socialLinks( $contactmethods ) {
     // Add Twitter
     $contactmethods['twitter'] = 'Twitter';
     //add Facebook
@@ -349,15 +349,15 @@ if( !function_exists('flexible_author_socialLinks') ){
   }
 }
 
-add_filter('user_contactmethods','flexible_author_socialLinks',10,1);
+add_filter('user_contactmethods','shapely_author_socialLinks',10,1);
 
 
 /*
  * Author bio on single page
  */
-if( !function_exists('flexible_author_bio') ){
+if( !function_exists('shapely_author_bio') ){
 
-function flexible_author_bio(){
+function shapely_author_bio(){
   
   if( !get_the_ID() ) 
     return;
@@ -443,7 +443,7 @@ function flexible_author_bio(){
 /**
  * Custom comment template
  */
-function flexible_cb_comment($comment, $args, $depth) {
+function shapely_cb_comment($comment, $args, $depth) {
 	$GLOBALS['comment'] = $comment;
 	extract($args, EXTR_SKIP); 
     
@@ -468,7 +468,7 @@ function flexible_cb_comment($comment, $args, $depth) {
               <time datetime="2016-01-28T12:43:17+00:00">
               <?php
                 /* translators: 1: date, 2: time */
-                printf( __( '%1$s at %2$s', 'flexible' ), get_comment_date(), get_comment_time() ); ?></time><?php edit_comment_link( __( 'Edit', 'flexible' ), '  ', '' );
+                printf( __( '%1$s at %2$s', 'shapely' ), get_comment_date(), get_comment_time() ); ?></time><?php edit_comment_link( __( 'Edit', 'shapely' ), '  ', '' );
               ?>
             </div>
             
@@ -476,7 +476,7 @@ function flexible_cb_comment($comment, $args, $depth) {
             
             <?php if ( $comment->comment_approved == '0' ) : ?>
               <p>
-                  <em class="comment-awaiting-moderation"><?php _e( 'Your comment is awaiting moderation.', 'flexible' ); ?></em>
+                  <em class="comment-awaiting-moderation"><?php _e( 'Your comment is awaiting moderation.', 'shapely' ); ?></em>
                   <br />
               </p>
               <?php endif; ?>
@@ -495,7 +495,7 @@ function flexible_cb_comment($comment, $args, $depth) {
  * Filter to replace
  * Reply button class 
  */
-function flexible_reply_link_class($class){
+function shapely_reply_link_class($class){
     $class = str_replace("class='comment-reply-link", "class='btn btn-sm comment-reply", $class);
     return $class;
 }
@@ -503,27 +503,27 @@ function flexible_reply_link_class($class){
 /*
  * Comment form template
  */
-function flexible_custom_comment_form(){
+function shapely_custom_comment_form(){
     $commenter = wp_get_current_commenter();
     $req = get_option( 'require_name_email' );
     $aria_req = ( $req ? " aria-required='true'" : '' );
     $fields =  array(
       'author' =>
-        '<input id="author" placeholder="'.__( 'Your Name', 'flexible' ).( $req ? '*' : '' ).'" name="author" type="text" value="' . esc_attr( $commenter['comment_author'] ) .
+        '<input id="author" placeholder="'.__( 'Your Name', 'shapely' ).( $req ? '*' : '' ).'" name="author" type="text" value="' . esc_attr( $commenter['comment_author'] ) .
         '" size="30"' . $aria_req . ' required="required" />',
 
       'email' =>
-        '<input id="email" name="email" type="email" placeholder="'. __( 'Email Address', 'flexible' ) .( $req ? '*' : '' ).'" value="' . esc_attr(  $commenter['comment_author_email'] ) .
+        '<input id="email" name="email" type="email" placeholder="'. __( 'Email Address', 'shapely' ) .( $req ? '*' : '' ).'" value="' . esc_attr(  $commenter['comment_author_email'] ) .
         '" size="30"' . $aria_req . ' required="required" />',
 
       'url' =>
-        '<input placeholder="'.__( 'Your Website (optional)', 'flexible' ).'" id="url" name="url" type="text" value="' . esc_attr( $commenter['comment_author_url'] ) .
+        '<input placeholder="'.__( 'Your Website (optional)', 'shapely' ).'" id="url" name="url" type="text" value="' . esc_attr( $commenter['comment_author_url'] ) .
         '" size="30" />',
     );
     
     $comments_args = array(
-        'label_submit'      => __( 'Leave Comment', 'flexible' ),
-        'comment_field' =>  '<textarea placeholder="'._x( 'Comment', 'noun', 'flexible' ).'" id="comment" name="comment" cols="45" rows="8" aria-required="true" required="required">' .
+        'label_submit'      => __( 'Leave Comment', 'shapely' ),
+        'comment_field' =>  '<textarea placeholder="'._x( 'Comment', 'noun', 'shapely' ).'" id="comment" name="comment" cols="45" rows="8" aria-required="true" required="required">' .
                             '</textarea>',
         'fields' => apply_filters( 'comment_form_default_fields', $fields )
     );
@@ -533,7 +533,7 @@ function flexible_custom_comment_form(){
 /* 
  * Header Logo
  */
-function flexible_get_header_logo(){
+function shapely_get_header_logo(){
   $logo_id = get_theme_mod('header_logo', ''); 
   $logo = wp_get_attachment_image_src($logo_id, 'full'); ?>
     
@@ -551,13 +551,13 @@ function flexible_get_header_logo(){
  * Get layout class from single page
  * then from themeoptions
  */
-function flexible_get_layout_class(){
+function shapely_get_layout_class(){
   global $post;                            
   if( is_singular() && get_post_meta($post->ID, 'site_layout', true) ){
       $layout_class = get_post_meta($post->ID, 'site_layout', true);
   }
   else{
-      $layout_class = get_theme_mod( 'flexible_sidebar_position', 'side-right' );
+      $layout_class = get_theme_mod( 'shapely_sidebar_position', 'side-right' );
   }
   return $layout_class;
 }
@@ -565,7 +565,7 @@ function flexible_get_layout_class(){
 /*
  * Show Sidebar or not
  */
-function flexible_show_sidebar(){
+function shapely_show_sidebar(){
   global $post;
   $show_sidebar = true;
   if( is_singular() && ( get_post_meta($post->ID, 'site_layout', true) ) ){
@@ -573,7 +573,7 @@ function flexible_show_sidebar(){
          $show_sidebar = false;               
      }
   }
-  elseif( get_theme_mod( 'flexible_sidebar_position' ) == "no-sidebar" ||  get_theme_mod( 'flexible_sidebar_position' ) == "full-width" ) {
+  elseif( get_theme_mod( 'shapely_sidebar_position' ) == "no-sidebar" ||  get_theme_mod( 'shapely_sidebar_position' ) == "full-width" ) {
       $show_sidebar = false;
   }
   return $show_sidebar;
@@ -582,7 +582,7 @@ function flexible_show_sidebar(){
 /*
  * Top Callout
  */
-function flexible_top_callout(){ 
+function shapely_top_callout(){ 
   if( get_theme_mod('top_callout', true) ) { ?>
     <section class="page-title-section bg-secondary">
       <div class="container">
@@ -591,16 +591,16 @@ function flexible_top_callout(){
                   <h3 class="page-title">
                       <?php 
                       if( is_home() ){
-                        _e( ( get_theme_mod('blog_name') ) ? get_theme_mod('blog_name') : 'Blog'  , 'flexible' ); 
+                        _e( ( get_theme_mod('blog_name') ) ? get_theme_mod('blog_name') : 'Blog'  , 'shapely' ); 
                       }
                       else if( is_search() ){
-                        _e( 'Search'  , 'flexible' ); 
+                        _e( 'Search'  , 'shapely' ); 
                       }
                       else if ( is_archive() ) {
-                        echo ( is_post_type_archive('jetpack-portfolio') ) ? __('Portfolio', 'flexible') : get_the_archive_title();
+                        echo ( is_post_type_archive('jetpack-portfolio') ) ? __('Portfolio', 'shapely') : get_the_archive_title();
                       }
                       else {
-                        echo ( is_singular('jetpack-portfolio') ) ? __('Portfolio', 'flexible') : get_the_title();
+                        echo ( is_singular('jetpack-portfolio') ) ? __('Portfolio', 'shapely') : get_the_title();
                       }?>
                   </h3>
               </div>
@@ -627,7 +627,7 @@ function flexible_top_callout(){
 /*
  * Footer Callout
  */
-function flexible_footer_callout(){ 
+function shapely_footer_callout(){ 
   if( get_theme_mod('footer_callout_text') != '' ){ ?>
     <section class="cfa-section bg-secondary">
         <div class="container">
@@ -635,11 +635,11 @@ function flexible_footer_callout(){
             <div class="col-sm-12 text-center p0">
               <div class="overflow-hidden">
                 <div class="col-sm-9">
-                  <h3 class="cfa-text"><?php _e( get_theme_mod('footer_callout_text'), 'flexible'); ?></h3>
+                  <h3 class="cfa-text"><?php _e( get_theme_mod('footer_callout_text'), 'shapely'); ?></h3>
                 </div>
                 <div class="col-sm-3">
                   <a href='<?php echo esc_url( get_theme_mod('footer_callout_link') ); ?>' class="mb0 btn btn-lg btn-filled cfa-button">
-                   <?php _e( get_theme_mod('footer_callout_btntext'), 'flexible'); ?>
+                   <?php _e( get_theme_mod('footer_callout_btntext'), 'shapely'); ?>
                   </a>
                 </div>
               </div>

@@ -2,19 +2,19 @@
 
 /**
  * Social  Widget
- * flexible Theme
+ * shapely Theme
  */
-class flexible_social_widget extends WP_Widget
+class shapely_social_widget extends WP_Widget
 {
 	 function __construct(){
 
-        $widget_ops = array('classname' => 'flexible-social','description' => esc_html__( "flexible Social Widget" ,'flexible') );
-		    parent::__construct('flexible-social', esc_html__('[Flexible] Social Widget','flexible'), $widget_ops);
+        $widget_ops = array('classname' => 'shapely-social','description' => esc_html__( "shapely Social Widget" ,'shapely') );
+		    parent::__construct('shapely-social', esc_html__('[Shapely] Social Widget','shapely'), $widget_ops);
     }
 
     function widget($args , $instance) {
     	extract($args);
-        $title = isset($instance['title']) ? $instance['title'] : esc_html__('Follow us' , 'flexible');
+        $title = isset($instance['title']) ? $instance['title'] : esc_html__('Follow us' , 'shapely');
 
       echo $before_widget;
       echo $before_title;
@@ -30,7 +30,7 @@ class flexible_social_widget extends WP_Widget
     <div class="social-icons sticky-sidebar-social">
 
 
-    <?php flexible_social_icons(); ?>
+    <?php shapely_social_icons(); ?>
 
 
     </div><!-- end social icons -->
@@ -43,10 +43,10 @@ class flexible_social_widget extends WP_Widget
 
 
     function form($instance) {
-      if(!isset($instance['title'])) $instance['title'] = esc_html__('Follow us' , 'flexible');
+      if(!isset($instance['title'])) $instance['title'] = esc_html__('Follow us' , 'shapely');
     ?>
 
-      <p><label for="<?php echo $this->get_field_id('title'); ?>"><?php esc_html_e('Title ','flexible') ?></label>
+      <p><label for="<?php echo $this->get_field_id('title'); ?>"><?php esc_html_e('Title ','shapely') ?></label>
 
       <input type="text" value="<?php echo esc_attr($instance['title']); ?>"
                           name="<?php echo $this->get_field_name('title'); ?>"

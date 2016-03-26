@@ -4,13 +4,13 @@
  *
  * @link https://developer.wordpress.org/themes/basics/template-hierarchy/#search-result
  *
- * @package Flexible
+ * @package Shapely
  */
 
 get_header(); ?>
 
 	
-    <?php $layout_class = ( function_exists('flexible_get_layout_class') ) ? flexible_get_layout_class(): ''; ?>  
+    <?php $layout_class = ( function_exists('shapely_get_layout_class') ) ? shapely_get_layout_class(): ''; ?>  
         <section id="primary" class="content-area col-md-9 mb-xs-24 <?php echo $layout_class; ?>">
           <main id="main" class="site-main" role="main">
 
@@ -18,7 +18,7 @@ get_header(); ?>
 		if ( have_posts() ) : ?>
 
 			<header class="entry-header nolist">
-				<h1 class="post-title entry-title"><?php printf( esc_html__( 'Search Results for: %s', 'flexible' ), '<span>' . get_search_query() . '</span>' ); ?></h1>
+				<h1 class="post-title entry-title"><?php printf( esc_html__( 'Search Results for: %s', 'shapely' ), '<span>' . get_search_query() . '</span>' ); ?></h1>
 			</header><!-- .page-header -->
 
 			<?php

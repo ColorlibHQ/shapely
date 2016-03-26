@@ -10,16 +10,16 @@
 add_action( 'init', 'register_social_menu' );
 
 function register_social_menu() {
-	register_nav_menu( 'social-menu', _x( 'Social Menu', 'nav menu location', 'flexible' ) );
+	register_nav_menu( 'social-menu', _x( 'Social Menu', 'nav menu location', 'shapely' ) );
 }
 
-if ( ! function_exists( 'flexible_social_icons' ) ) :
+if ( ! function_exists( 'shapely_social_icons' ) ) :
 /**
  * Display social links in footer and widgets
  *
- * @package flexible
+ * @package shapely
  */
-function flexible_social_icons(){
+function shapely_social_icons(){
   if ( has_nav_menu( 'social-menu' ) ) {
   	wp_nav_menu(
   		array(
@@ -39,8 +39,8 @@ function flexible_social_icons(){
 }
 endif;
 
-/* Flexible Social Nav CSS */
-function flexible_social_css(){ ?>
+/* Shapely Social Nav CSS */
+function shapely_social_css(){ ?>
     <style type="text/css">
         #social { background: transparent; float: right; }
         #social li{
@@ -125,4 +125,4 @@ function flexible_social_css(){ ?>
         }
     </style><?php
 }
-add_action( 'wp_head', 'flexible_social_css', 10 );
+add_action( 'wp_head', 'shapely_social_css', 10 );

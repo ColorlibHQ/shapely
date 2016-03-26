@@ -1,40 +1,40 @@
 <?php
 /**
- * Flexible Meta Boxes
+ * Shapely Meta Boxes
  *
  */
 
-add_action('add_meta_boxes', 'flexible_add_custom_box');
+add_action('add_meta_boxes', 'shapely_add_custom_box');
 /**
  * Add Meta Boxes.
  *
  * Add Meta box in page and post post types.
  */
-function flexible_add_custom_box()
+function shapely_add_custom_box()
 {
     add_meta_box('post-siderbar-layout', //Unique ID
-        __('Select layout for this specific Page only ( Note: This setting only reflects if page Template is set as Default Template and Blog Type Templates.)', 'flexible'), //Title
-        'flexible_sidebar_layout', //Callback function
+        __('Select layout for this specific Page only ( Note: This setting only reflects if page Template is set as Default Template and Blog Type Templates.)', 'shapely'), //Title
+        'shapely_sidebar_layout', //Callback function
         'page' //show metabox in pages
         );
     add_meta_box('page-siderbar-layout', //Unique ID
-        __('Select layout for this specific Post only', 'flexible'), //Title
-        'flexible_sidebar_layout', //Callback function
+        __('Select layout for this specific Post only', 'shapely'), //Title
+        'shapely_sidebar_layout', //Callback function
         'post', //show metabox in posts
         'side'
         );
     if ( class_exists( 'WooCommerce' ) ) {
         add_meta_box('product-siderbar-layout', //Unique ID
-            __('Select layout for this specific Product only', 'flexible'), //Title
-            'flexible_sidebar_layout', //Callback function
+            __('Select layout for this specific Product only', 'shapely'), //Title
+            'shapely_sidebar_layout', //Callback function
             'product', //show metabox in posts
             'side'
             );
     }
     if (post_type_exists( 'jetpack-portfolio' ) ) {
         add_meta_box('product-siderbar-layout', //Unique ID
-            __('Select layout for this specific Portfolio only', 'flexible'), //Title
-            'flexible_sidebar_layout', //Callback function
+            __('Select layout for this specific Portfolio only', 'shapely'), //Title
+            'shapely_sidebar_layout', //Callback function
             'jetpack-portfolio', //show metabox in posts
             'side'
             );
@@ -44,16 +44,16 @@ function flexible_add_custom_box()
 
 /****************************************************************************************/
 
-global $flexible_site_layout;
+global $shapely_site_layout;
 
 /****************************************************************************************/
 
 /**
  * Displays metabox to for sidebar layout
  */
-function flexible_sidebar_layout()
+function shapely_sidebar_layout()
 {
-    global $flexible_site_layout, $post;
+    global $shapely_site_layout, $post;
     // Use nonce for verification
     wp_nonce_field(basename(__FILE__), 'custom_meta_box_nonce'); ?>
 	
@@ -64,7 +64,7 @@ function flexible_sidebar_layout()
                     $layout = get_post_meta($post->ID, 'site_layout', true);?>                        
                     <select name="site_layout" id="site_layout">
                         <option value="">Default</option><?php
-                        foreach( $flexible_site_layout as $key=>$val ) { ?>
+                        foreach( $shapely_site_layout as $key=>$val ) { ?>
                         <option value="<?php echo $key; ?>" <?php selected( $layout, $key ); ?> ><?php echo $val; ?></option><?php
                         }?>
                     </select>                           
@@ -77,14 +77,14 @@ function flexible_sidebar_layout()
 /****************************************************************************************/
 
 
-add_action('save_post', 'flexible_save_custom_meta');
+add_action('save_post', 'shapely_save_custom_meta');
 /**
  * save the custom metabox data
  * @hooked to save_post hook
  */
-function flexible_save_custom_meta($post_id)
+function shapely_save_custom_meta($post_id)
 {
-    global $flexible_site_layout, $post;
+    global $shapely_site_layout, $post;
     
     // Verify the nonce before proceeding.
     if (!isset($_POST['custom_meta_box_nonce']) || !wp_verify_nonce($_POST['custom_meta_box_nonce'], basename(__FILE__)))

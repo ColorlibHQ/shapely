@@ -12,33 +12,33 @@
  *
  * @link https://developer.wordpress.org/themes/functionality/custom-headers/
  *
- * @package Flexible
+ * @package Shapely
  */
 
 /**
  * Set up the WordPress core custom header feature.
  *
- * @uses flexible_header_style()
+ * @uses shapely_header_style()
  */
-function flexible_custom_header_setup() {
-	add_theme_support( 'custom-header', apply_filters( 'flexible_custom_header_args', array(
+function shapely_custom_header_setup() {
+	add_theme_support( 'custom-header', apply_filters( 'shapely_custom_header_args', array(
 		'default-image'          => '',
 		'default-text-color'     => '000000',
 		'width'                  => 1000,
 		'height'                 => 250,
 		'flex-height'            => true,
-		'wp-head-callback'       => 'flexible_header_style',
+		'wp-head-callback'       => 'shapely_header_style',
 	) ) );
 }
-add_action( 'after_setup_theme', 'flexible_custom_header_setup' );
+add_action( 'after_setup_theme', 'shapely_custom_header_setup' );
 
-if ( ! function_exists( 'flexible_header_style' ) ) :
+if ( ! function_exists( 'shapely_header_style' ) ) :
 /**
  * Styles the header image and text displayed on the blog.
  *
- * @see flexible_custom_header_setup().
+ * @see shapely_custom_header_setup().
  */
-function flexible_header_style() {
+function shapely_header_style() {
 	$header_text_color = get_header_textcolor();
 
 	/*

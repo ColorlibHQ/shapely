@@ -2,14 +2,14 @@
 
 /**
  * Homepage parralax section Widget
- * Flexible Theme
+ * Shapely Theme
  */
-class flexible_home_portfolio extends WP_Widget
+class shapely_home_portfolio extends WP_Widget
 {
     function __construct(){
 
-        $widget_ops = array('classname' => 'flexible_home_portfolio','description' => esc_html__( "Flexible Porfolio for Home Widget Section" ,'flexible') );
-        parent::__construct('flexible_home_portfolio', esc_html__('[Flexible] Porfolio for Home Widget Section','flexible'), $widget_ops);
+        $widget_ops = array('classname' => 'shapely_home_portfolio','description' => esc_html__( "Shapely Porfolio for Home Widget Section" ,'shapely') );
+        parent::__construct('shapely_home_portfolio', esc_html__('[Shapely] Porfolio for Home Widget Section','shapely'), $widget_ops);
     }
 
     function widget($args , $instance) {
@@ -89,7 +89,7 @@ class flexible_home_portfolio extends WP_Widget
         if(!isset($instance['body_content'])) $instance['body_content']='';
     ?>
 
-      <p><label for="<?php echo $this->get_field_id('title'); ?>"><?php esc_html_e('Title ','flexible') ?></label>
+      <p><label for="<?php echo $this->get_field_id('title'); ?>"><?php esc_html_e('Title ','shapely') ?></label>
 
       <input type="text" value="<?php echo esc_attr($instance['title']); ?>"
                           name="<?php echo $this->get_field_name('title'); ?>"
@@ -97,7 +97,7 @@ class flexible_home_portfolio extends WP_Widget
                           class="widefat" />
       </p>
 
-      <p><label for="<?php echo $this->get_field_id('body_content'); ?>"><?php esc_html_e('Content ','flexible') ?></label>
+      <p><label for="<?php echo $this->get_field_id('body_content'); ?>"><?php esc_html_e('Content ','shapely') ?></label>
 
       <textarea name="<?php echo $this->get_field_name('body_content'); ?>"
                           id="<?php $this->get_field_id('body_content'); ?>"

@@ -6,7 +6,7 @@
  *
  * @link https://developer.wordpress.org/themes/basics/template-files/#template-partials
  *
- * @package Flexible
+ * @package Shapely
  */
 
 ?><!DOCTYPE html>
@@ -22,7 +22,7 @@
 
 <body <?php body_class(); ?>>
 <div id="page" class="site">
-	<a class="skip-link screen-reader-text" href="#content"><?php esc_html_e( 'Skip to content', 'flexible' ); ?></a>
+	<a class="skip-link screen-reader-text" href="#content"><?php esc_html_e( 'Skip to content', 'shapely' ); ?></a>
 
 	<header id="masthead" class="site-header" role="banner">
         <div class="nav-container">
@@ -30,20 +30,20 @@
                 <div class="container nav-bar">
                         <div class="row">
                             <div class="module left">
-                                <?php flexible_get_header_logo(); ?>
+                                <?php shapely_get_header_logo(); ?>
                             </div>
                             <div class="module widget-handle mobile-toggle right visible-sm visible-xs">
                                 <i class="fa fa-bars"></i>
                             </div>
                             <div class="module-group right">
                                 <div class="module left">
-                                    <?php flexible_header_menu(); // main navigation ?>
+                                    <?php shapely_header_menu(); // main navigation ?>
                                 </div>
                                 <!--end of menu module-->
                                 <div class="module widget-handle search-widget-handle left">
                                     <div class="search">
                                         <i class="fa fa-search"></i>
-                                        <span class="title"><?php _e("Site Search", 'flexible'); ?></span>
+                                        <span class="title"><?php _e("Site Search", 'shapely'); ?></span>
                                     </div>
                                     <div class="function"><?php
                                         get_search_form(); ?>
@@ -58,7 +58,7 @@
 	</header><!-- #masthead -->
     
 	<div id="content" class="main-container">
-        <?php ( is_page_template('template-home.php') ) ? '' : flexible_top_callout(); ?>
+        <?php ( is_page_template('template-home.php') ) ? '' : shapely_top_callout(); ?>
         <section class="content-area <?php echo ( get_theme_mod('top_callout', true ) ) ? '' : ' pt0 ' ?>">
           <div id="main" class="<?php echo ( !is_page_template( 'template-home.php' )) ? 'container': ''; ?>" role="main">
                 <div class="row">

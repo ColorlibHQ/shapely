@@ -2,19 +2,19 @@
 
 /**
  * Homepage parralax section Widget
- * Flexible Theme
+ * Shapely Theme
  */
-class flexible_home_clients extends WP_Widget
+class shapely_home_clients extends WP_Widget
 {
     function __construct(){
 
-        $widget_ops = array('classname' => 'flexible_home_clients','description' => esc_html__( "Flexible Client Section That Displays Logos In A Slider" ,'flexible') );
-        parent::__construct('flexible_home_clients', esc_html__('[Flexible] Client Section For FrontPage','flexible'), $widget_ops);
+        $widget_ops = array('classname' => 'shapely_home_clients','description' => esc_html__( "Shapely Client Section That Displays Logos In A Slider" ,'shapely') );
+        parent::__construct('shapely_home_clients', esc_html__('[Shapely] Client Section For FrontPage','shapely'), $widget_ops);
     }
 
     function widget($args , $instance) {
     	extract($args);
-        $title = isset($instance['title']) && !empty($instance['title']) ? $instance['title'] : __('Our Main Clients','flexible');
+        $title = isset($instance['title']) && !empty($instance['title']) ? $instance['title'] : __('Our Main Clients','shapely');
         $logos = isset($instance['client_logo']) ? $instance['client_logo'] : [''];
 
         echo $before_widget;
@@ -39,7 +39,7 @@ class flexible_home_clients extends WP_Widget
                       if( $logos['img'] != '' && $logos['link'] != '' ){ ?>
                         <li>
                             <a href="<?php echo $logos['link'][$i]; ?>">
-                                <img alt="<?php _e('Logos', 'flexible'); ?>" src="<?php echo $logos['img'][$i]; ?>" />
+                                <img alt="<?php _e('Logos', 'shapely'); ?>" src="<?php echo $logos['img'][$i]; ?>" />
                             </a>
                         </li><?php
                       }
@@ -66,7 +66,7 @@ class flexible_home_clients extends WP_Widget
         if(!isset($instance['client_logo']['link'])) $instance['client_logo']['link']=[''];
     ?>
 
-      <p><label for="<?php echo $this->get_field_id('title'); ?>"><?php esc_html_e('Title ','flexible') ?></label>
+      <p><label for="<?php echo $this->get_field_id('title'); ?>"><?php esc_html_e('Title ','shapely') ?></label>
 
       <input type="text" value="<?php echo esc_attr($instance['title']); ?>"
                           name="<?php echo $this->get_field_name('title'); ?>"
@@ -82,16 +82,16 @@ class flexible_home_clients extends WP_Widget
           for ( $i = 0; $i < $slider_count; $i++ ): ?>
               <li class="toclone">
                 <br>
-                  <label class="logo_heading"><b><?php _e( 'Logo #', 'flexible' ); ?><span class="count"><?php echo absint( $i )+1; ?></span></b></label>
+                  <label class="logo_heading"><b><?php _e( 'Logo #', 'shapely' ); ?><span class="count"><?php echo absint( $i )+1; ?></span></b></label>
                   <input name="<?php echo $this->get_field_name('client_logo').'[img]['.$i.']';?>" id="<?php echo $this->get_field_id('image_src').'-'.$i; ?>" class="widefat image_src" type="hidden" size="36"  value="<?php echo (isset( $image_src[$i] )) ? esc_url( $image_src[$i] ) : ''; ?>" /><br>
-                  <button id="<?php echo $this->get_field_id('image_src_button').'-'.$i; ?>" class="button button-primary custom_media_button" data-fieldid="<?php echo $this->get_field_id('image_src').'-'.$i; ?>"><?php _e( 'Upload Logo','flexible' ); ?></button>
+                  <button id="<?php echo $this->get_field_id('image_src_button').'-'.$i; ?>" class="button button-primary custom_media_button" data-fieldid="<?php echo $this->get_field_id('image_src').'-'.$i; ?>"><?php _e( 'Upload Logo','shapely' ); ?></button>
                   <img class="image_demo" id="img_demo_<?php echo $this->get_field_id( 'image_src' ).'-'.$i; ?>" width="50px" height="50px" style="border:0; margin-left: 20px; vertical-align: top;" src="<?php echo ( isset($image_src[$i]) ) ? esc_url( $image_src[$i] ) : ''; ?>" />
                   <br/><br/>
-                  <label><?php _e( 'Link:', 'flexible' ); ?></label>
+                  <label><?php _e( 'Link:', 'shapely' ); ?></label>
                   <input name="<?php echo $this->get_field_name('client_logo').'[link]['.$i."]"; ?>" id="link<?php echo '-'.$i; ?>" class="widefat client-link" type="text" size="36"  value="<?php echo (isset( $logo_link[$i] )) ? esc_url( $logo_link[$i] ) : ''; ?>" /><br><br>
 
-                  <a href="#" class="clone button-primary"><?php _e('Add', 'flexible'); ?></a>
-                  <a href="#" class="delete button"><?php _e('Delete', 'flexible'); ?></a>
+                  <a href="#" class="clone button-primary"><?php _e('Add', 'shapely'); ?></a>
+                  <a href="#" class="delete button"><?php _e('Delete', 'shapely'); ?></a>
               </li>
           <?php endfor; ?>
       </ul><?php

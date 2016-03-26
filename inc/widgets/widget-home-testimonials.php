@@ -2,19 +2,19 @@
 
 /**
  * Homepage parralax section Widget
- * Flexible Theme
+ * Shapely Theme
  */
-class flexible_home_testimonial extends WP_Widget
+class shapely_home_testimonial extends WP_Widget
 {
     function __construct(){
 
-        $widget_ops = array('classname' => 'flexible_home_testimonial','description' => esc_html__( "Flexible Testimonial Widget Section" ,'flexible') );
-        parent::__construct('flexible_home_testimonial', esc_html__('[Flexible] Testimonial Section For FrontPage','flexible'), $widget_ops);
+        $widget_ops = array('classname' => 'shapely_home_testimonial','description' => esc_html__( "Shapely Testimonial Widget Section" ,'shapely') );
+        parent::__construct('shapely_home_testimonial', esc_html__('[Shapely] Testimonial Section For FrontPage','shapely'), $widget_ops);
     }
 
     function widget($args , $instance) {
     	extract($args);
-        $title = isset($instance['title']) ? $instance['title'] : esc_html__('People just like you are already loving Colorlib', 'flexible');
+        $title = isset($instance['title']) ? $instance['title'] : esc_html__('People just like you are already loving Colorlib', 'shapely');
         $limit = isset($instance['limit']) ? $instance['limit'] : 5;
         $image_src = isset($instance['image_src']) ? $instance['image_src'] : '';
 
@@ -89,7 +89,7 @@ class flexible_home_testimonial extends WP_Widget
 
     ?>
 
-      <p><label for="<?php echo $this->get_field_id('title'); ?>"><?php esc_html_e('Title ','flexible') ?></label>
+      <p><label for="<?php echo $this->get_field_id('title'); ?>"><?php esc_html_e('Title ','shapely') ?></label>
 
       <input type="text" value="<?php echo esc_attr($instance['title']); ?>"
                           name="<?php echo $this->get_field_name('title'); ?>"
@@ -97,7 +97,7 @@ class flexible_home_testimonial extends WP_Widget
                           class="widefat" />
       </p>
 
-      <p><label for="<?php echo $this->get_field_id('limit'); ?>"><?php esc_html_e('Limit ','flexible') ?></label>
+      <p><label for="<?php echo $this->get_field_id('limit'); ?>"><?php esc_html_e('Limit ','shapely') ?></label>
 
       <input type="text" value="<?php echo esc_attr($instance['limit']); ?>"
                           name="<?php echo $this->get_field_name('limit'); ?>"
@@ -106,9 +106,9 @@ class flexible_home_testimonial extends WP_Widget
       </p>
 
       <p>
-        <label for="<?php echo $this->get_field_name( 'image_src' ); ?>"><?php _e( 'Background Parallax Image:', 'flexible' ); ?></label>
+        <label for="<?php echo $this->get_field_name( 'image_src' ); ?>"><?php _e( 'Background Parallax Image:', 'shapely' ); ?></label>
         <input name="<?php echo $this->get_field_name( 'image_src' ); ?>" id="<?php echo $this->get_field_id( 'image_src' ); ?>" class="widefat image_src" type="hidden" value="<?php echo esc_url( $instance['image_src'] ); ?>" /><br><br>
-        <button id="<?php echo $this->get_field_id('image_src_button'); ?>" class="button button-primary custom_media_button" data-fieldid="<?php echo $this->get_field_id('image_src'); ?>"><?php _e( 'Upload Image','flexible' ); ?></button>
+        <button id="<?php echo $this->get_field_id('image_src_button'); ?>" class="button button-primary custom_media_button" data-fieldid="<?php echo $this->get_field_id('image_src'); ?>"><?php _e( 'Upload Image','shapely' ); ?></button>
         <img class="image_demo" id="img_demo_<?php echo $this->get_field_id( 'image_src' ); ?>" width="100px" height="100px" style="margin-left: 20px; vertical-align: top;" src="<?php echo esc_url( $instance['image_src'] ); ?>" />
       </p>
 

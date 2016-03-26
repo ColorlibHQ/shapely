@@ -5,21 +5,21 @@ jQuery(document).ready( function($) {
     
   /* Clonning of Logo Client Widgets */
   jQuery(document).on('widget-updated', function(e, widget){
-    flexibleSort();
+    shapelySort();
   });
   
   
-  flexibleSort();/* Client widget sorting and cloning*/
+  shapelySort();/* Client widget sorting and cloning*/
   
   /* Font awsome selector */
-  jQuery('select.flexible-icon').change( function(){
+  jQuery('select.shapely-icon').change( function(){
     jQuery(this).siblings('span').removeClass().addClass('fa ' +jQuery(this).val());console.log(jQuery(this).val());
   });
   
   /* 
    * Function for sorting
    */
-  function flexibleSort(){
+  function shapelySort(){
       jQuery('.client-sortable').sortable({
          handle: '.logo_heading' })
          .bind( 'sortupdate', function(event, ui) {

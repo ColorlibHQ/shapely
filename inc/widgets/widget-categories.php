@@ -1,20 +1,20 @@
 <?php
 
 /**
- * [Flexible] Categories Widget
- * flexible Theme
+ * [Shapely] Categories Widget
+ * shapely Theme
  */
-class flexible_categories extends WP_Widget
+class shapely_categories extends WP_Widget
 {
 	 function __construct(){
 
-        $widget_ops = array('classname' => 'flexible-cats','description' => esc_html__( "Flexible Categories" ,'flexible') );
-		    parent::__construct('flexible-cats', esc_html__('[Flexible] Categories','flexible'), $widget_ops);
+        $widget_ops = array('classname' => 'shapely-cats','description' => esc_html__( "Shapely Categories" ,'shapely') );
+		    parent::__construct('shapely-cats', esc_html__('[Shapely] Categories','shapely'), $widget_ops);
     }
 
     function widget($args , $instance) {
     	extract($args);
-        $title = isset($instance['title']) ? $instance['title'] : esc_html__('Categories' , 'flexible');
+        $title = isset($instance['title']) ? $instance['title'] : esc_html__('Categories' , 'shapely');
         $enable_count = '';
         if(isset($instance['enable_count']))
         $enable_count = $instance['enable_count'] ? $instance['enable_count'] : 'checked';
@@ -73,14 +73,14 @@ class flexible_categories extends WP_Widget
 
 
     function form($instance) {
-      if(!isset($instance['title'])) $instance['title'] = esc_html__('Categories' , 'flexible');
+      if(!isset($instance['title'])) $instance['title'] = esc_html__('Categories' , 'shapely');
       if(!isset($instance['limit'])) $instance['limit'] = 4;
       if(!isset($instance['enable_count'])) $instance['enable_count'] = '';
 
 
     	?>
 
-      <p><label for="<?php echo $this->get_field_id('title'); ?>"><?php esc_html_e('Title ','flexible') ?></label>
+      <p><label for="<?php echo $this->get_field_id('title'); ?>"><?php esc_html_e('Title ','shapely') ?></label>
 
         <input  type="text" value="<?php echo esc_attr($instance['title']); ?>"
                 name="<?php echo $this->get_field_name('title'); ?>"
@@ -88,7 +88,7 @@ class flexible_categories extends WP_Widget
                 class="widefat" />
       </p>
 
-      <p><label for="<?php echo $this->get_field_id('limit'); ?>"> <?php esc_html_e('Limit Categories ','flexible') ?></label>
+      <p><label for="<?php echo $this->get_field_id('limit'); ?>"> <?php esc_html_e('Limit Categories ','shapely') ?></label>
 
         <input  type="text" value="<?php echo esc_attr($instance['limit']); ?>"
                 name="<?php echo $this->get_field_name('limit'); ?>"
@@ -101,7 +101,7 @@ class flexible_categories extends WP_Widget
                 name="<?php echo $this->get_field_name('enable_count'); ?>"
                 id="<?php $this->get_field_id('enable_count'); ?>" <?php if($instance['enable_count'] != '') echo 'checked=checked '; ?>
          />
-         <?php esc_html_e('Enable Posts Count','flexible') ?></label>
+         <?php esc_html_e('Enable Posts Count','shapely') ?></label>
        </p>
 
     	<?php

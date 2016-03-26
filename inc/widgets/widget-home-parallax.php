@@ -2,21 +2,21 @@
 
 /**
  * Homepage parralax section Widget
- * Flexible Theme
+ * Shapely Theme
  */
-class flexible_home_parallax extends WP_Widget
+class shapely_home_parallax extends WP_Widget
 {
     function __construct(){
 
-        $widget_ops = array('classname' => 'flexible_home_parallax','description' => esc_html__( "Flexible FrontPage Parallax Section" ,'flexible') );
-        parent::__construct('flexible_home_parallax', esc_html__('[Flexible] Parralax Section For FrontPage','flexible'), $widget_ops);
+        $widget_ops = array('classname' => 'shapely_home_parallax','description' => esc_html__( "Shapely FrontPage Parallax Section" ,'shapely') );
+        parent::__construct('shapely_home_parallax', esc_html__('[Shapely] Parralax Section For FrontPage','shapely'), $widget_ops);
     }
 
     function widget($args , $instance) {
     	extract($args);
         $title = isset($instance['title']) ? $instance['title'] : '';
         $image_src = isset($instance['image_src']) ? $instance['image_src'] : '';
-        $image_pos = isset($instance['image_pos']) ? $instance['image_pos'] : esc_html__('left' , 'flexible');
+        $image_pos = isset($instance['image_pos']) ? $instance['image_pos'] : esc_html__('left' , 'shapely');
         $body_content = isset($instance['body_content']) ? $instance['body_content'] : '';
         $button1 = isset($instance['button1']) ? $instance['button1'] : '';
         $button2 = isset($instance['button2']) ? $instance['button2'] : '';
@@ -96,7 +96,7 @@ class flexible_home_parallax extends WP_Widget
         if(!isset($instance['button2_link'])) $instance['button2_link']='';
     ?>
 
-      <p><label for="<?php echo $this->get_field_id('title'); ?>"><?php esc_html_e('Title ','flexible') ?></label>
+      <p><label for="<?php echo $this->get_field_id('title'); ?>"><?php esc_html_e('Title ','shapely') ?></label>
 
       <input type="text" value="<?php echo esc_attr($instance['title']); ?>"
                           name="<?php echo $this->get_field_name('title'); ?>"
@@ -105,32 +105,32 @@ class flexible_home_parallax extends WP_Widget
       </p>
 
       <p>
-            <label for="<?php echo $this->get_field_name( 'image_src' ); ?>"><?php _e( 'Image:', 'flexible' ); ?></label>
+            <label for="<?php echo $this->get_field_name( 'image_src' ); ?>"><?php _e( 'Image:', 'shapely' ); ?></label>
             <input name="<?php echo $this->get_field_name( 'image_src' ); ?>" id="<?php echo $this->get_field_id( 'image_src' ); ?>" class="widefat image_src" type="hidden" value="<?php echo esc_url( $instance['image_src'] ); ?>" /><br><br>
-            <button id="<?php echo $this->get_field_id('image_src_button'); ?>" class="button button-primary custom_media_button" data-fieldid="<?php echo $this->get_field_id('image_src'); ?>"><?php _e( 'Upload Image','flexible' ); ?></button>
+            <button id="<?php echo $this->get_field_id('image_src_button'); ?>" class="button button-primary custom_media_button" data-fieldid="<?php echo $this->get_field_id('image_src'); ?>"><?php _e( 'Upload Image','shapely' ); ?></button>
             <img class="image_demo" id="img_demo_<?php echo $this->get_field_id( 'image_src' ); ?>" width="100px" height="100px" style="margin-left: 20px; vertical-align: top;" src="<?php echo esc_url( $instance['image_src'] ); ?>" />
       </p>
 
-      <p><label for="<?php echo $this->get_field_id('body_content'); ?>"><?php esc_html_e('Content ','flexible') ?></label>
+      <p><label for="<?php echo $this->get_field_id('body_content'); ?>"><?php esc_html_e('Content ','shapely') ?></label>
 
       <textarea name="<?php echo $this->get_field_name('body_content'); ?>"
                           id="<?php $this->get_field_id('body_content'); ?>"
                           class="widefat"><?php echo esc_attr($instance['body_content']); ?></textarea>
       </p>
 
-      <p><label for="<?php echo $this->get_field_id('image_pos'); ?>"><?php esc_html_e('Image Position ','flexible') ?></label>
+      <p><label for="<?php echo $this->get_field_id('image_pos'); ?>"><?php esc_html_e('Image Position ','shapely') ?></label>
       <select name="<?php echo $this->get_field_name('image_pos'); ?>"
               id="<?php $this->get_field_id('image_pos'); ?>" class="widefat">
-              <option value="left" <?php selected( $instance['image_pos'], 'left' ); ?>><?php _e('Left', 'flexible'); ?></option>
-              <option value="right" <?php selected( $instance['image_pos'], 'right' ); ?>><?php _e('Right', 'flexible'); ?></option>
-              <option value="top" <?php selected( $instance['image_pos'], 'top' ); ?>><?php _e('Top', 'flexible'); ?></option>
-              <option value="bottom" <?php selected( $instance['image_pos'], 'bottom' ); ?>><?php _e('Bottom', 'flexible'); ?></option>
-              <option value="background-full" <?php selected( $instance['image_pos'], 'background-full' ); ?>><?php _e('Background Full', 'flexible'); ?></option>
-              <option value="background-small" <?php selected( $instance['image_pos'], 'background-small' ); ?>><?php _e('Background Small', 'flexible'); ?></option>
+              <option value="left" <?php selected( $instance['image_pos'], 'left' ); ?>><?php _e('Left', 'shapely'); ?></option>
+              <option value="right" <?php selected( $instance['image_pos'], 'right' ); ?>><?php _e('Right', 'shapely'); ?></option>
+              <option value="top" <?php selected( $instance['image_pos'], 'top' ); ?>><?php _e('Top', 'shapely'); ?></option>
+              <option value="bottom" <?php selected( $instance['image_pos'], 'bottom' ); ?>><?php _e('Bottom', 'shapely'); ?></option>
+              <option value="background-full" <?php selected( $instance['image_pos'], 'background-full' ); ?>><?php _e('Background Full', 'shapely'); ?></option>
+              <option value="background-small" <?php selected( $instance['image_pos'], 'background-small' ); ?>><?php _e('Background Small', 'shapely'); ?></option>
       </select>
       </p>
 
-      <p><label for="<?php echo $this->get_field_id('button1'); ?>"><?php esc_html_e('Button 1 Text ','flexible') ?></label>
+      <p><label for="<?php echo $this->get_field_id('button1'); ?>"><?php esc_html_e('Button 1 Text ','shapely') ?></label>
 
       <input type="text" value="<?php echo esc_attr($instance['button1']); ?>"
                           name="<?php echo $this->get_field_name('button1'); ?>"
@@ -138,7 +138,7 @@ class flexible_home_parallax extends WP_Widget
                           class="widefat" />
       </p>
 
-      <p><label for="<?php echo $this->get_field_id('button1_link'); ?>"><?php esc_html_e('Button 1 Link ','flexible') ?></label>
+      <p><label for="<?php echo $this->get_field_id('button1_link'); ?>"><?php esc_html_e('Button 1 Link ','shapely') ?></label>
 
       <input type="text" value="<?php echo esc_url($instance['button1_link']); ?>"
                           name="<?php echo $this->get_field_name('button1_link'); ?>"
@@ -146,7 +146,7 @@ class flexible_home_parallax extends WP_Widget
                           class="widefat" />
       </p>
 
-      <p><label for="<?php echo $this->get_field_id('button2'); ?>"><?php esc_html_e('Button 2 Text ','flexible') ?></label>
+      <p><label for="<?php echo $this->get_field_id('button2'); ?>"><?php esc_html_e('Button 2 Text ','shapely') ?></label>
 
       <input type="text" value="<?php echo esc_attr($instance['button2']); ?>"
                           name="<?php echo $this->get_field_name('button2'); ?>"
@@ -154,7 +154,7 @@ class flexible_home_parallax extends WP_Widget
                           class="widefat" />
       </p>
 
-      <p><label for="<?php echo $this->get_field_id('button2_link'); ?>"><?php esc_html_e('Button 1 Link ','flexible') ?></label>
+      <p><label for="<?php echo $this->get_field_id('button2_link'); ?>"><?php esc_html_e('Button 1 Link ','shapely') ?></label>
 
       <input type="text" value="<?php echo esc_url($instance['button2_link']); ?>"
                           name="<?php echo $this->get_field_name('button2_link'); ?>"
