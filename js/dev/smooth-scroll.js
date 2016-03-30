@@ -1,106 +1,311 @@
 /*!
- * jQuery Smooth Scroll - v1.5.7 - 2015-12-16
+ * jQuery Smooth Scroll - v1.7.2 - 2016-01-23
  * https://github.com/kswedberg/jquery-smooth-scroll
- * Copyright (c) 2015 Karl Swedberg
- * Licensed MIT (https://github.com/kswedberg/jquery-smooth-scroll/blob/master/LICENSE-MIT)
+ * Copyright (c) 2016 Karl Swedberg
+ * Licensed MIT
  */
-(function(t) {
-    "function" == typeof define && define.amd ? define(["jquery"], t) : "object" == typeof module && module.exports ? t(require("jquery")) : t(jQuery)
-})(function(t) {
-    function e(t) {
-        return t.replace(/(:|\.|\/)/g, "\\$1")
-    }
-    var l = "1.5.7",
-        o = {},
-        n = {
-            exclude: [],
-            excludeWithin: [],
-            offset: 0,
-            direction: "top",
-            scrollElement: null,
-            scrollTarget: null,
-            beforeScroll: function() {},
-            afterScroll: function() {},
-            easing: "swing",
-            speed: 400,
-            autoCoefficient: 2,
-            preventDefault: !0
-        },
-        s = function(e) {
-            var l = [],
-                o = !1,
-                n = e.dir && "left" === e.dir ? "scrollLeft" : "scrollTop";
-            return this.each(function() {
-                var e = t(this);
-                if (this !== document && this !== window) return !document.scrollingElement || this !== document.documentElement && this !== document.body ? (e[n]() > 0 ? l.push(this) : (e[n](1), o = e[n]() > 0, o && l.push(this), e[n](0)), void 0) : (l.push(document.scrollingElement), !1)
-            }), l.length || this.each(function() {
-                "BODY" === this.nodeName && (l = [this])
-            }), "first" === e.el && l.length > 1 && (l = [l[0]]), l
-        };
-    t.fn.extend({
-        scrollable: function(t) {
-            var e = s.call(this, {
-                dir: t
-            });
-            return this.pushStack(e)
-        },
-        firstScrollable: function(t) {
-            var e = s.call(this, {
-                el: "first",
-                dir: t
-            });
-            return this.pushStack(e)
-        },
-        smoothScroll: function(l, o) {
-            if (l = l || {}, "options" === l) return o ? this.each(function() {
-                var e = t(this),
-                    l = t.extend(e.data("ssOpts") || {}, o);
-                t(this).data("ssOpts", l)
-            }) : this.first().data("ssOpts");
-            var n = t.extend({}, t.fn.smoothScroll.defaults, l),
-                s = t.smoothScroll.filterPath(location.pathname);
-            return this.unbind("click.smoothscroll").bind("click.smoothscroll", function(l) {
-                var o = this,
-                    r = t(this),
-                    i = t.extend({}, n, r.data("ssOpts") || {}),
-                    c = n.exclude,
-                    a = i.excludeWithin,
-                    f = 0,
-                    u = 0,
-                    h = !0,
-                    d = {},
-                    m = location.hostname === o.hostname || !o.hostname,
-                    p = i.scrollTarget || t.smoothScroll.filterPath(o.pathname) === s,
-                    g = e(o.hash);
-                if (i.scrollTarget || m && p && g) {
-                    for (; h && c.length > f;) r.is(e(c[f++])) && (h = !1);
-                    for (; h && a.length > u;) r.closest(a[u++]).length && (h = !1)
-                } else h = !1;
-                h && (i.preventDefault && l.preventDefault(), t.extend(d, i, {
-                    scrollTarget: i.scrollTarget || g,
-                    link: o
-                }), t.smoothScroll(d))
-            }), this
+
+(function(factory) {
+  if (typeof define === 'function' && define.amd) {
+    // AMD. Register as an anonymous module.
+    define(['jquery'], factory);
+  } else if (typeof module === 'object' && module.exports) {
+    // CommonJS
+    factory(require('jquery'));
+  } else {
+    // Browser globals
+    factory(jQuery);
+  }
+}(function($) {
+
+  var version = '1.7.2';
+  var optionOverrides = {};
+  var defaults = {
+    exclude: [],
+    excludeWithin: [],
+    offset: 0,
+
+    // one of 'top' or 'left'
+    direction: 'top',
+
+    // if set, bind click events through delegation
+    //  supported since jQuery 1.4.2
+    delegateSelector: null,
+
+    // jQuery set of elements you wish to scroll (for $.smoothScroll).
+    //  if null (default), $('html, body').firstScrollable() is used.
+    scrollElement: null,
+
+    // only use if you want to override default behavior
+    scrollTarget: null,
+
+    // fn(opts) function to be called before scrolling occurs.
+    // `this` is the element(s) being scrolled
+    beforeScroll: function() {},
+
+    // fn(opts) function to be called after scrolling occurs.
+    // `this` is the triggering element
+    afterScroll: function() {},
+    easing: 'swing',
+    speed: 400,
+
+    // coefficient for "auto" speed
+    autoCoefficient: 2,
+
+    // $.fn.smoothScroll only: whether to prevent the default click action
+    preventDefault: true
+  };
+
+  var getScrollable = function(opts) {
+    var scrollable = [];
+    var scrolled = false;
+    var dir = opts.dir && opts.dir === 'left' ? 'scrollLeft' : 'scrollTop';
+
+    this.each(function() {
+      var el = $(this);
+
+      if (this === document || this === window) {
+        return;
+      }
+
+      if (document.scrollingElement && (this === document.documentElement || this === document.body)) {
+        scrollable.push(document.scrollingElement);
+
+        return false;
+      }
+
+      if (el[dir]() > 0) {
+        scrollable.push(this);
+      } else {
+        // if scroll(Top|Left) === 0, nudge the element 1px and see if it moves
+        el[dir](1);
+        scrolled = el[dir]() > 0;
+
+        if (scrolled) {
+          scrollable.push(this);
         }
-    }), t.smoothScroll = function(e, l) {
-        if ("options" === e && "object" == typeof l) return t.extend(o, l);
-        var n, s, r, i, c, a = 0,
-            f = "offset",
-            u = "scrollTop",
-            h = {},
-            d = {};
-        "number" == typeof e ? (n = t.extend({
-            link: null
-        }, t.fn.smoothScroll.defaults, o), r = e) : (n = t.extend({
-            link: null
-        }, t.fn.smoothScroll.defaults, e || {}, o), n.scrollElement && (f = "position", "static" === n.scrollElement.css("position") && n.scrollElement.css("position", "relative"))), u = "left" === n.direction ? "scrollLeft" : u, n.scrollElement ? (s = n.scrollElement, /^(?:HTML|BODY)$/.test(s[0].nodeName) || (a = s[u]())) : s = t("html, body").firstScrollable(n.direction), n.beforeScroll.call(s, n), r = "number" == typeof e ? e : l || t(n.scrollTarget)[f]() && t(n.scrollTarget)[f]()[n.direction] || 0, h[u] = r + a + n.offset, i = n.speed, "auto" === i && (c = Math.abs(h[u] - s[u]()), i = c / n.autoCoefficient), d = {
-            duration: i,
-            easing: n.easing,
-            complete: function() {
-                n.afterScroll.call(n.link, n)
+        // then put it back, of course
+        el[dir](0);
+      }
+    });
+
+    if (!scrollable.length) {
+      this.each(function() {
+        // If no scrollable elements and <html> has scroll-behavior:smooth because
+        // "When this property is specified on the root element, it applies to the viewport instead."
+        // and "The scroll-behavior property of the … body element is *not* propagated to the viewport."
+        // → https://drafts.csswg.org/cssom-view/#propdef-scroll-behavior
+        if (this === document.documentElement && $(this).css('scrollBehavior') === 'smooth') {
+          scrollable = [this];
+        }
+
+        // If still no scrollable elements, fall back to <body>,
+        // if it's in the jQuery collection
+        // (doing this because Safari sets scrollTop async,
+        // so can't set it to 1 and immediately get the value.)
+        if (!scrollable.length && this.nodeName === 'BODY') {
+          scrollable = [this];
+        }
+      });
+    }
+
+    // Use the first scrollable element if we're calling firstScrollable()
+    if (opts.el === 'first' && scrollable.length > 1) {
+      scrollable = [scrollable[0]];
+    }
+
+    return scrollable;
+  };
+
+  $.fn.extend({
+    scrollable: function(dir) {
+      var scrl = getScrollable.call(this, {dir: dir});
+
+      return this.pushStack(scrl);
+    },
+    firstScrollable: function(dir) {
+      var scrl = getScrollable.call(this, {el: 'first', dir: dir});
+
+      return this.pushStack(scrl);
+    },
+
+    smoothScroll: function(options, extra) {
+      options = options || {};
+
+      if (options === 'options') {
+        if (!extra) {
+          return this.first().data('ssOpts');
+        }
+
+        return this.each(function() {
+          var $this = $(this);
+          var opts = $.extend($this.data('ssOpts') || {}, extra);
+
+          $(this).data('ssOpts', opts);
+        });
+      }
+
+      var opts = $.extend({}, $.fn.smoothScroll.defaults, options);
+
+      var clickHandler = function(event) {
+        var escapeSelector = function(str) {
+          return str.replace(/(:|\.|\/)/g, '\\$1');
+        };
+
+        var link = this;
+        var $link = $(this);
+        var thisOpts = $.extend({}, opts, $link.data('ssOpts') || {});
+        var exclude = opts.exclude;
+        var excludeWithin = thisOpts.excludeWithin;
+        var elCounter = 0;
+        var ewlCounter = 0;
+        var include = true;
+        var clickOpts = {};
+        var locationPath = $.smoothScroll.filterPath(location.pathname);
+        var linkPath = $.smoothScroll.filterPath(link.pathname);
+        var hostMatch = location.hostname === link.hostname || !link.hostname;
+        var pathMatch = thisOpts.scrollTarget || (linkPath === locationPath);
+        var thisHash = escapeSelector(link.hash);
+
+        if (thisHash && !$(thisHash).length) {
+          include = false;
+        }
+
+        if (!thisOpts.scrollTarget && (!hostMatch || !pathMatch || !thisHash)) {
+          include = false;
+        } else {
+          while (include && elCounter < exclude.length) {
+            if ($link.is(escapeSelector(exclude[elCounter++]))) {
+              include = false;
             }
-        }, n.step && (d.step = n.step), s.length ? s.stop().animate(h, d) : n.afterScroll.call(n.link, n)
-    }, t.smoothScroll.version = l, t.smoothScroll.filterPath = function(t) {
-        return t = t || "", t.replace(/^\//, "").replace(/(?:index|default).[a-zA-Z]{3,4}$/, "").replace(/\/$/, "")
-    }, t.fn.smoothScroll.defaults = n
-});
+          }
+
+          while (include && ewlCounter < excludeWithin.length) {
+            if ($link.closest(excludeWithin[ewlCounter++]).length) {
+              include = false;
+            }
+          }
+        }
+
+        if (include) {
+          if (thisOpts.preventDefault) {
+            event.preventDefault();
+          }
+
+          $.extend(clickOpts, thisOpts, {
+            scrollTarget: thisOpts.scrollTarget || thisHash,
+            link: link
+          });
+
+          $.smoothScroll(clickOpts);
+        }
+      };
+
+      if (options.delegateSelector !== null) {
+        this
+        .undelegate(options.delegateSelector, 'click.smoothscroll')
+        .delegate(options.delegateSelector, 'click.smoothscroll', clickHandler);
+      } else {
+        this
+        .unbind('click.smoothscroll')
+        .bind('click.smoothscroll', clickHandler);
+      }
+
+      return this;
+    }
+  });
+
+  $.smoothScroll = function(options, px) {
+    if (options === 'options' && typeof px === 'object') {
+      return $.extend(optionOverrides, px);
+    }
+    var opts, $scroller, scrollTargetOffset, speed, delta;
+    var scrollerOffset = 0;
+    var offPos = 'offset';
+    var scrollDir = 'scrollTop';
+    var aniProps = {};
+    var aniOpts = {};
+
+    if (typeof options === 'number') {
+      opts = $.extend({link: null}, $.fn.smoothScroll.defaults, optionOverrides);
+      scrollTargetOffset = options;
+    } else {
+      opts = $.extend({link: null}, $.fn.smoothScroll.defaults, options || {}, optionOverrides);
+
+      if (opts.scrollElement) {
+        offPos = 'position';
+
+        if (opts.scrollElement.css('position') === 'static') {
+          opts.scrollElement.css('position', 'relative');
+        }
+      }
+    }
+
+    scrollDir = opts.direction === 'left' ? 'scrollLeft' : scrollDir;
+
+    if (opts.scrollElement) {
+      $scroller = opts.scrollElement;
+
+      if (!(/^(?:HTML|BODY)$/).test($scroller[0].nodeName)) {
+        scrollerOffset = $scroller[scrollDir]();
+      }
+    } else {
+      $scroller = $('html, body').firstScrollable(opts.direction);
+    }
+
+    // beforeScroll callback function must fire before calculating offset
+    opts.beforeScroll.call($scroller, opts);
+
+    scrollTargetOffset = (typeof options === 'number') ? options :
+                          px ||
+                          ($(opts.scrollTarget)[offPos]() &&
+                          $(opts.scrollTarget)[offPos]()[opts.direction]) ||
+                          0;
+
+    aniProps[scrollDir] = scrollTargetOffset + scrollerOffset + opts.offset;
+    speed = opts.speed;
+
+    // automatically calculate the speed of the scroll based on distance / coefficient
+    if (speed === 'auto') {
+
+      // $scroller[scrollDir]() is position before scroll, aniProps[scrollDir] is position after
+      // When delta is greater, speed will be greater.
+      delta = Math.abs(aniProps[scrollDir] - $scroller[scrollDir]());
+
+      // Divide the delta by the coefficient
+      speed = delta / opts.autoCoefficient;
+    }
+
+    aniOpts = {
+      duration: speed,
+      easing: opts.easing,
+      complete: function() {
+        opts.afterScroll.call(opts.link, opts);
+      }
+    };
+
+    if (opts.step) {
+      aniOpts.step = opts.step;
+    }
+
+    if ($scroller.length) {
+      $scroller.stop().animate(aniProps, aniOpts);
+    } else {
+      opts.afterScroll.call(opts.link, opts);
+    }
+  };
+
+  $.smoothScroll.version = version;
+  $.smoothScroll.filterPath = function(string) {
+    string = string || '';
+
+    return string
+      .replace(/^\//, '')
+      .replace(/(?:index|default).[a-zA-Z]{3,4}$/, '')
+      .replace(/\/$/, '');
+  };
+
+  // default options
+  $.fn.smoothScroll.defaults = defaults;
+
+}));
