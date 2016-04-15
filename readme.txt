@@ -55,7 +55,8 @@ Shapely includes support for Infinite Scroll, Portfolio, Testimonials, Tiled Gal
 
 = 1.0.2 - April 15 2016 =
 
-* Fixed parse error for older version of PHP. 
+* Fixed parse error for older version of PHP.
+* Fixed error when mobile menu was appearing along regular menu between 990px - 991px. 
 
 = 1.0.1 - March 30 2016 =
 

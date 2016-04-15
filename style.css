@@ -776,7 +776,7 @@ hr {
   flex-direction: row;
   -webkit-flex-direction: row;
 }
-@media all and (max-width: 990px) {
+@media all and (max-width: 991px) {
   .align-children {
     display: block !important;
   }
@@ -1316,7 +1316,7 @@ nav.fixed.scrolled {
     padding: 0 16px;
   }
 }
-@media all and (max-width: 990px) {
+@media all and (max-width: 991px) {
   .toggle-sub > ul {
     display: block !important;
   }
@@ -1457,7 +1457,7 @@ nav.fixed.scrolled {
     margin-right: 24px;
   }
 }
-@media all and (max-width: 990px) {
+@media all and (max-width: 991px) {
   .nav-bar, .nav-bar .module-group, .nav-bar .module {
     height: auto;
     overflow: hidden;
@@ -1922,7 +1922,7 @@ img {
   height: 13.08vw;
   border: none;
 }
-@media all and (max-width: 990px) {
+@media all and (max-width: 991px) {
   .lightbox-grid li {
     width: 33.33333%;
   }
