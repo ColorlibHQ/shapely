@@ -2,7 +2,7 @@
 
 Theme Name: Shapely
 Theme URI: http://colorlib.com/wp/shapely/
-Version: 1.0.1
+Version: 1.0.2
 Tested up to: WP 4.5
 
 Author: Aigars Silkalns
@@ -52,6 +52,10 @@ Shapely includes support for Infinite Scroll, Portfolio, Testimonials, Tiled Gal
 
 
 == Changelog ==
+
+= 1.0.2 - April 15 2016 =
+
+* Fixed parse error for older version of PHP. 
 
 = 1.0.1 - March 30 2016 =
 

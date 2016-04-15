@@ -15,11 +15,11 @@ class shapely_home_clients extends WP_Widget
     function widget($args , $instance) {
     	extract($args);
         $title = isset($instance['title']) && !empty($instance['title']) ? $instance['title'] : __('Our Main Clients','shapely');
-        $logos = isset($instance['client_logo']) ? $instance['client_logo'] : [''];
+        $logos = isset($instance['client_logo']) ? $instance['client_logo'] : '';
 
         echo $before_widget;
 
-        /**
+    /**
 		 * Widget Content
 		 */
     ?>

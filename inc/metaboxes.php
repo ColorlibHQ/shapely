@@ -39,7 +39,7 @@ function shapely_add_custom_box()
             'side'
             );
     }
-    
+
 }
 
 /****************************************************************************************/
@@ -56,18 +56,18 @@ function shapely_sidebar_layout()
     global $shapely_site_layout, $post;
     // Use nonce for verification
     wp_nonce_field(basename(__FILE__), 'custom_meta_box_nonce'); ?>
-	
+
     <table id="sidebar-metabox" class="form-table" width="100%">
         <tbody>
             <tr>
                 <label class="description"><?php
-                    $layout = get_post_meta($post->ID, 'site_layout', true);?>                        
+                    $layout = get_post_meta($post->ID, 'site_layout', true);?>
                     <select name="site_layout" id="site_layout">
                         <option value="">Default</option><?php
                         foreach( $shapely_site_layout as $key=>$val ) { ?>
                         <option value="<?php echo $key; ?>" <?php selected( $layout, $key ); ?> ><?php echo $val; ?></option><?php
                         }?>
-                    </select>                           
+                    </select>
                 </label>
             </tr>
         </tbody>
@@ -85,15 +85,15 @@ add_action('save_post', 'shapely_save_custom_meta');
 function shapely_save_custom_meta($post_id)
 {
     global $shapely_site_layout, $post;
-    
+
     // Verify the nonce before proceeding.
     if (!isset($_POST['custom_meta_box_nonce']) || !wp_verify_nonce($_POST['custom_meta_box_nonce'], basename(__FILE__)))
         return;
-    
+
     // Stop WP from clearing custom fields on autosave
     if (defined('DOING_AUTOSAVE') && DOING_AUTOSAVE)
         return;
-    
+
     if ('page' == $_POST['post_type']) {
         if (!current_user_can('edit_page', $post_id))
             return $post_id;
