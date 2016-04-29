@@ -27,12 +27,6 @@ jQuery(document).ready(function($) {
         });
     }
 
-    // Update scroll variable for scrolling functions
-
-    addEventListener('scroll', function() {
-        cl_scrollTop = window.pageYOffset;
-    }, false);
-
     // Append .background-image-holder <img>'s as CSS backgrounds
 
     jQuery('.background-image-holder').each(function() {
@@ -56,7 +50,7 @@ jQuery(document).ready(function($) {
 
         // Make nav container height of nav
 
-        jQuery('.nav-container').css('min-height', jQuery('nav').outerHeight(true));
+        //jQuery('.nav-container').css('min-height', jQuery('nav').outerHeight(true));
 
         jQuery(window).resize(function() {
             jQuery('.nav-container').css('min-height', jQuery('nav').outerHeight(true));
@@ -89,6 +83,9 @@ jQuery(document).ready(function($) {
     cl_navOuterHeight = $('body .nav-container nav:first').outerHeight();
     window.addEventListener("scroll", updateNav, false);
 
+    updateNav();
+    
+    
     // Menu dropdown positioning
 
     $('.menu > li > ul').each(function() {
@@ -108,6 +105,7 @@ jQuery(document).ready(function($) {
     $('.mobile-toggle').click(function() {
         $('.nav-bar').toggleClass('nav-open');
         $(this).toggleClass('active');
+        $('.search-widget-handle').toggleClass('hidden-xs hidden-sm');
     });
 
     $('.menu li').click(function(e) {
@@ -234,66 +232,12 @@ jQuery(window).load(function($) {
 
 });
 
-function updateNav() {
-
-    var scrollY = cl_scrollTop;
-
-    if (scrollY <= 0) {
-        if (cl_navFixed) {
-            cl_navFixed = false;
-            cl_nav.removeClass('fixed');
-        }
-        if (cl_outOfSight) {
-            cl_outOfSight = false;
-            cl_nav.removeClass('outOfSight');
-        }
-        if (cl_navScrolled) {
-            cl_navScrolled = false;
-            cl_nav.removeClass('scrolled');
-        }
-        return;
+function updateNav(){
+    if( $(window).scrollTop() > cl_navOuterHeight ){//if href = #element id
+        cl_nav.addClass('fixed scrolled');
     }
-    
-    if (scrollY > 100) {
-        if (!cl_navScrolled) {
-            cl_nav.addClass('scrolled');
-            cl_navScrolled = true;
-            return;
-        }
-    } else {
-        if (scrollY > cl_navOuterHeight) {
-            if (!cl_navFixed) {
-                cl_nav.addClass('fixed');
-                cl_navFixed = true;
-            }
-
-            if (scrollY > cl_navOuterHeight * 2) {
-                if (!cl_outOfSight) {
-                    cl_nav.addClass('outOfSight');
-                    cl_outOfSight = true;
-                }
-            } else {
-                if (cl_outOfSight) {
-                    cl_outOfSight = false;
-                    cl_nav.removeClass('outOfSight');
-                }
-            }
-        } else {
-            if (cl_navFixed) {
-                cl_navFixed = false;
-                cl_nav.removeClass('fixed');
-            }
-            if (cl_outOfSight) {
-                cl_outOfSight = false;
-                cl_nav.removeClass('outOfSight');
-            }
-        }
-
-        if (cl_navScrolled) {
-            cl_navScrolled = false;
-            cl_nav.removeClass('scrolled');
-        }
-
+    else{
+        cl_nav.removeClass('fixed scrolled');
     }
 }
 

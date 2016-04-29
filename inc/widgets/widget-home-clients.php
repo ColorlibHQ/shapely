@@ -23,7 +23,7 @@ class shapely_home_clients extends WP_Widget
 		 * Widget Content
 		 */
     ?>
-    <?php if( count( $logos['img'] ) != 0 ){ ?>
+    <?php if( isset( $logos['img'] ) && count( $logos['img'] ) != 0 ){ ?>
       <section>
         <div class="container">
             <div class="row">

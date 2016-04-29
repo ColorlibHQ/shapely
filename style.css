@@ -407,7 +407,7 @@ a:hover, a:active {
 .menu-toggle, .main-navigation.toggled ul {
   display: block;
 }
-@media screen and (min-width: 37.5em) {
+@media screen and (min-width: 992px) {
   .menu-toggle {
     display: none;
   }
@@ -1229,7 +1229,7 @@ nav {
 }
 .menu > li > ul > .dropdown:after {
   color: #0e1015;
-  top: 3px;
+  top: 1px;
   right: 24px;
   content: "\f105";
 }
@@ -1445,9 +1445,17 @@ nav.fixed.scrolled {
   color: #292929;
   width: 100%;
 }
-.menu > li > ul li a:hover {
+.menu > li > ul li a:hover, .dropdown-menu>.active>a:hover {
   background: #745cf9;
   color: #fff;
+}
+.dropdown-menu>.active>a, .dropdown-menu>.active>a:focus {
+    color: #0e1015;
+    background-color: #fff;
+}
+.menu > li > ul li a {
+    color: #292929;
+    width: 100%;
 }
 .menu > li > ul > .dropdown:hover:after {
   color: #fff;
@@ -1458,16 +1466,17 @@ nav.fixed.scrolled {
   }
 }
 @media all and (max-width: 991px) {
+  .site-title-container{
+    width: 84%;
+  }
   .nav-bar, .nav-bar .module-group, .nav-bar .module {
     height: auto;
-    overflow: hidden;
   }
   .nav-bar .module {
     padding: 0 16px;
   }
   .nav-bar .module-group {
     width: 100%;
-    padding: 16px 0;
   }
   .nav-bar .module-group .module {
     display: block;
@@ -1498,6 +1507,8 @@ nav.fixed.scrolled {
     -webkit-transform: translate3d(0, 0px, 0);
     -moz-transform: translate3d(0, 0px, 0);
     left: 0;
+    border: 0!important;
+    box-shadow: none;
   }
   .menu > li > ul {
     position: relative;
@@ -1512,7 +1523,7 @@ nav.fixed.scrolled {
     content: "\f107";
   }
   .menu > li > ul > li > ul {
-    left: 0;
+    left: 0 !important;
     display: none;
     padding: 0;
   }

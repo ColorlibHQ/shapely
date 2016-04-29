@@ -154,10 +154,8 @@ function shapely_scripts() {
     wp_enqueue_style( 'shapely-fonts', '//fonts.googleapis.com/css?family=Raleway:100,300,400,500,600,700%7COpen+Sans:400,500,600');
 
 
-    // Add slider CSS only if is front page ans slider is enabled
-    if( ( is_home() || is_front_page() ) ) {
-      wp_enqueue_style( 'flexslider-css', get_template_directory_uri().'/inc/css/flexslider.css' );
-    }
+    // Add slider CSS
+	wp_enqueue_style( 'flexslider-css', get_template_directory_uri().'/inc/css/flexslider.css' );
 
     //Add custom theme css
     wp_enqueue_style( 'shapely-style', get_stylesheet_uri() );
@@ -180,11 +178,8 @@ function shapely_scripts() {
 
     }
     
-    // Add slider JS only if is front page ans slider is enabled
-    if( ( is_home() || is_front_page() ) ) {
-      wp_enqueue_script( 'flexslider-js', get_template_directory_uri() . '/js/flexslider.min.js', array('jquery'), '20160222', true );
-    }
-
+    // Add slider JS
+	wp_enqueue_script( 'flexslider-js', get_template_directory_uri() . '/js/flexslider.min.js', array('jquery'), '20160222', true );
     wp_enqueue_script( 'shapely-scroll', get_template_directory_uri() . '/js/smooth-scroll.min.js', array('jquery'), '20160115', true );
 
     if ( is_page_template( 'template-home.php' ) ) {
