@@ -1,12 +1,7 @@
 ;(function($){
     
-var cl_firstSectionHeight,
-    cl_nav,
-    cl_navOuterHeight,
-    cl_navScrolled = false,
-    cl_navFixed = false,
-    cl_outOfSight = false,
-    cl_scrollTop = 0;
+var cl_nav,
+    cl_navOuterHeight;
 
 jQuery(document).ready(function($) {
     //"use strict";
@@ -44,45 +39,12 @@ jQuery(document).ready(function($) {
         });
     }, 200);
 
-    // Navigation
-
-    if (!jQuery('nav').hasClass('fixed') && !jQuery('nav').hasClass('absolute')) {
-
-        // Make nav container height of nav
-
-        //jQuery('.nav-container').css('min-height', jQuery('nav').outerHeight(true));
-
-        jQuery(window).resize(function() {
-            jQuery('.nav-container').css('min-height', jQuery('nav').outerHeight(true));
-        });
-
-        // Compensate the height of parallax element for inline nav
-
-        if ($(window).width() > 768) {
-            $('.parallax:nth-of-type(1) .background-image-holder').css('top', -($('nav').outerHeight(true)));
-        }
-
-        // Adjust fullscreen elements
-
-        if ($(window).width() > 768) {
-            $('section.fullscreen:nth-of-type(1)').css('height', ($(window).height() - $('nav').outerHeight(true)) + 2);
-        }
-
-    } else {
-        $('body').addClass('nav-is-overlay');
-    }
-
-    if ($('nav').hasClass('bg-dark')) {
-        $('.nav-container').addClass('bg-dark');
-    }
-
-
+    
     // Fix nav to top while scrolling
 
     cl_nav = $('body .nav-container nav:first');
     cl_navOuterHeight = $('body .nav-container nav:first').outerHeight();
     window.addEventListener("scroll", updateNav, false);
-
     updateNav();
     
     
@@ -232,6 +194,9 @@ jQuery(window).load(function($) {
 
 });
 
+/* Function To 
+ * keep menu fixed
+ **/
 function updateNav(){
     if( $(window).scrollTop() > cl_navOuterHeight ){//if href = #element id
         cl_nav.addClass('fixed scrolled');
