@@ -4,6 +4,9 @@ jQuery(document).ready( function($) {
   media_upload('.button.custom_media_button.button-primary');
     
   /* Clonning of Logo Client Widgets */
+  jQuery(document).on('widget-added', function(e, widget){
+    shapelySort();
+  });
   jQuery(document).on('widget-updated', function(e, widget){
     shapelySort();
   });

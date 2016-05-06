@@ -305,7 +305,7 @@ add_filter( 'get_search_form', 'shapely_search_form', 100 );
  */
 function shapely_admin_style() {
   echo '<style>
-        .wrap .notice{  display : block; } 
+        #setting-error-tgmpa.notice{  display : block; } 
         .client-sortable .logo_heading{
                         background: #f3f3f3;
                         border: 1px dotted;

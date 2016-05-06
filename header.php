@@ -29,7 +29,7 @@
             <nav id="site-navigation" class="main-navigation" role="navigation">
                 <div class="container nav-bar">
                         <div class="row">
-                            <div class="module left">
+                            <div class="module left site-title-container">
                                 <?php shapely_get_header_logo(); ?>
                             </div>
                             <div class="module widget-handle mobile-toggle right visible-sm visible-xs">
@@ -40,7 +40,7 @@
                                     <?php shapely_header_menu(); // main navigation ?>
                                 </div>
                                 <!--end of menu module-->
-                                <div class="module widget-handle search-widget-handle left">
+                                <div class="module widget-handle search-widget-handle left hidden-xs hidden-sm">
                                     <div class="search">
                                         <i class="fa fa-search"></i>
                                         <span class="title"><?php _e("Site Search", 'shapely'); ?></span>
