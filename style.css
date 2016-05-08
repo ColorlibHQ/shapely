@@ -2401,6 +2401,7 @@ footer.bg-dark a {
   opacity: 1;
 }
 .back-to-top {
+  background: none;
   position: absolute;
   right: 0;
   bottom: 0;
