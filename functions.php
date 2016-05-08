@@ -180,8 +180,7 @@ function shapely_scripts() {
     
     // Add slider JS
 	wp_enqueue_script( 'flexslider-js', get_template_directory_uri() . '/js/flexslider.min.js', array('jquery'), '20160222', true );
-    //wp_enqueue_script( 'shapely-scroll', get_template_directory_uri() . '/js/smooth-scroll.min.js', array('jquery'), '20160115', true );
-
+    
     if ( is_page_template( 'template-home.php' ) ) {
         wp_enqueue_script( 'shapely-parallax', get_template_directory_uri() . '/js/parallax.min.js', array('jquery'), '20160115', true );
     }
