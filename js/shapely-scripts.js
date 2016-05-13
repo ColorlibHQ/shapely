@@ -15,12 +15,12 @@ jQuery(document).ready(function($) {
         }
     });
 
-    if(jQuery('.inner-link').length){
-        jQuery('.inner-link').smoothScroll({
-            offset: -55,
-            speed: 800
-        });
-    }
+    jQuery('.inner-link').click(function() {
+          jQuery('html, body').animate({
+            scrollTop: 0
+          }, 1000);
+          return false;
+    });
 
     // Append .background-image-holder <img>'s as CSS backgrounds
 
