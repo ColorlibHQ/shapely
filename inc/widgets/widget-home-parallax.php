@@ -60,7 +60,7 @@ class shapely_home_parallax extends WP_Widget
                             <div class="<?php echo $class3; ?>"><?php
                               echo ( $title != '' ) ? ( ( $image_pos == 'background-full' ) || ( $image_pos == 'background-small' ) ) ? '<h1>'.$title.'</h1>': '<h3>'.$title.'</h3>' : '';
                               echo ( $body_content != '' ) ? '<p class="mb32">'. $body_content.'</p>' : '';
-                              echo ( $button2 != '' && $button2_link != '' ) ? '<a class="btn btn-lg btn-white" href="'.$button2_link.'">'.$button2.'</a>': '';
+                              echo ( $button2 != '' && $button2_link != '' ) ? '<a class="btn btn-lg btn-filled" href="'.$button2_link.'">'.$button2.'</a>': '';
                               echo ( $button1 != '' && $button1_link != '' ) ? '<a class="btn btn-lg btn-filled" href="'.$button1_link.'">'.$button1.'</a>': ''; ?>
                           </div>
                       </div>
