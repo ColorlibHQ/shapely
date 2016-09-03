@@ -226,21 +226,7 @@ function shapely_customizer($wp_customize)
                 'type' => 'textarea',
             ));
 
-        /* Support & Documentation */
-        $wp_customize->add_section('shapely_important_links', array(
-        'priority' => 5,
-        'title' => __('Support and Documentation', 'shapely'),
-        ));
-    $wp_customize->add_setting('shapely[imp_links]', array(
-              'sanitize_callback' => 'esc_url_raw',
-            ));
-    $wp_customize->add_control(
-            new Shapely_Important_Links(
-            $wp_customize,
-                'shapely[imp_links]', array(
-                'section' => 'shapely_important_links',
-                'type' => 'shapely-important-links',
-            )));
+
 }
 add_action('customize_register', 'shapely_customizer');
 
@@ -347,70 +333,4 @@ add_action('customize_controls_print_styles', 'shapely_customizer_custom_control
 
 if (!class_exists('WP_Customize_Control')) {
     return;
-}
-/**
- * Class to create a Shapely important links.
- */
-class Shapely_Important_Links extends WP_Customize_Control
-{
-    public $type = 'shapely-important-links';
-
-    public function render_content()
-    {
-        ?>
-        <!-- Twitter -->
-        <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
-
-        <!-- Facebook -->
-        <div id="fb-root"></div>
-        <div id="fb-root"></div>
-        <script>
-            (function(d, s, id) {
-            var js, fjs = d.getElementsByTagName(s)[0];
-            if (d.getElementById(id)) return;
-            js = d.createElement(s); js.id = id;
-            js.src = "//connect.facebook.net/en_US/all.js#xfbml=1&appId=328285627269392";
-            fjs.parentNode.insertBefore(js, fjs);
-            }(document, 'script', 'facebook-jssdk'));
-        </script>
-
-        <div class="inside">
-            <div id="social-share">
-              <div class="fb-like" data-href="https://www.facebook.com/colorlib" data-send="false" data-layout="button_count" data-width="90" data-show-faces="true"></div>
-              <div class="tw-follow" ><a href="https://twitter.com/colorlib" class="twitter-follow-button" data-show-count="false">Follow @colorlib</a></div>
-            </div>
-            <p><b><a href="http://colorlib.com/wp/support/shapely"><?php _e('Shapely Documentation', 'shapely');
-        ?></a></b></p>
-            <p><?php _e('The best way to contact us with <b>support questions</b> and <b>bug reports</b> is via', 'shapely') ?> <a href="http://colorlib.com/wp/forums"><?php _e('Colorlib support forum', 'shapely') ?></a>.</p>
-            <p><?php _e('If you like this theme, I\'d appreciate any of the following:', 'shapely') ?></p>
-            <ul>
-                <li><a class="button" href="http://wordpress.org/support/view/theme-reviews/shapely?filter=5" title="<?php esc_attr_e('Rate this Theme', 'shapely');
-        ?>" target="_blank"><?php printf(__('Rate this Theme', 'shapely'));
-        ?></a></li>
-                <li><a class="button" href="http://www.facebook.com/colorlib" title="Like Colorlib on Facebook" target="_blank"><?php printf(__('Like on Facebook', 'shapely'));
-        ?></a></li>
-                <li><a class="button" href="http://twitter.com/colorlib/" title="Follow Colrolib on Twitter" target="_blank"><?php printf(__('Follow on Twitter', 'shapely'));
-        ?></a></li>
-            </ul>
-        </div><?php
-
-    }
-}
-
-/*
- * Custom Scripts
- */
-add_action('customize_controls_print_footer_scripts', 'customizer_custom_scripts');
-
-function customizer_custom_scripts()
-{
-    ?>
-<style>
-    li#accordion-section-shapely_important_links h3.accordion-section-title, li#accordion-section-shapely_important_links h3.accordion-section-title:focus { background-color: #00cc00 !important; color: #fff !important; }
-    li#accordion-section-shapely_important_links h3.accordion-section-title:hover { background-color: #00b200 !important; color: #fff !important; }
-    li#accordion-section-shapely_important_links h3.accordion-section-title:after { color: #fff !important; }
-    #TB_window{ z-index: 999999!important; }
-</style>
-<?php
-
 }

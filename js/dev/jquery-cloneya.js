@@ -1,138 +1,534 @@
-! function(a) {
+/**
+ * CloneYa!: Plugin to clone form elements in a nested manner
+ * @author Saurabh Shukla <saurabh@yapapaya.com>
+ * http://hookrefineandtinker.com
+ * License GNU/GPL & MIT
+ */
+
+(function ($) {
+
     "use strict";
 
-    function b(b, c) {
-        this.regex = /^(.*)(\d)+$/i, this.elem = b, this.$elem = a(b), "undefined" != typeof c && "undefined" != typeof c.limit && c.limit > 0 && (c.maximum = c.limit), this.config = a.extend({}, d, c), this.clones = this.$elem.closestChild(this.config.cloneThis), this.init()
+    var name = "cloneya", defaults = {
+        cloneThis: '.toclone',
+        cloneButton: '.clone',
+        deleteButton: '.delete',
+        clonePosition: 'after',
+        minimum: 1,
+        // renaming limit
+        maximum: 999, //setting it to a high number, by default
+
+        //limit: 999,
+
+        valueClone: false,
+        dataClone: false,
+        deepClone: false,
+        serializeID: true,
+        ignore: 'label.error',
+        preserveChildCount: false
+    };
+    /**
+     * Create the class CloneYa
+     *
+     * @class CloneYa
+     * @classdesc Adds cloning functionality to element
+     *
+     * @param {String | Object} element - the clone wrapper
+     *
+     * @param {Object} options - options to initialise with
+     *
+     * @param {String} options.cloneThis - Selector for the  clone element
+     * @param {String} options.cloneButton - Selector for the  clone button
+     * @param {String} options.deleteButton - Selector for the  delete button
+     *
+     * @param {String} options.clonePosition - Where should the clone be added 'before' or 'after'
+     *
+     * @param {Number} options.limit - The maximum number of clones
+     *
+     * @param {Boolean} options.valueClone - Clone the input values as well?
+     * @param {Boolean} options.dataClone - Clone the data attributes?
+     * @param {Boolean} options.deepClone - Clone other data added to the jQuery object
+     *
+     * @param {Boolean} options.serializeID - Whether to serialize the IDs, automatically
+     * @param {String} options.ignore - Selectors for clonables' elements that should not be cloned
+     * @param {Boolean} options.defaultRender - Start with this number of clones, by default
+     * @param {Boolean} options.preserveChildCount - whether to preserve the initial number of clone's child clones, works with nesting as well.
+     *
+     * @returns {_L13.CloneYa}
+     */
+    function CloneYa(element, options) {
+        /**
+         * regex for recalculating the ids
+         *
+         * @type RegExp
+         */
+        this.regex = /^(.*)(\d)+$/i;
+
+
+        this.elem = element;
+
+        this.$elem = $(element);
+
+	this.elemClass = name + '-wrap';
+
+        /**
+         * creating a jQuery object, just in case
+         *
+         * @type @call;$
+         */
+        //var elem = $(element);
+
+
+        /**
+         * Support deprecated parameters
+         */
+        if (typeof options !== 'undefined') {
+            if (typeof options.limit !== 'undefined' && options.limit > 0) {
+                options.maximum = options.limit;
+            }
+        }
+
+        /**
+         * merge the passed options object with defaults
+         *
+         * @type @exp;$@call;extend
+         */
+        this.config = $.extend({}, defaults, options);
+
+
+        /**
+         *
+         * @type @exp;elem@call;closestChild
+         */
+        this.clones = this.$elem.closestChild(this.config.cloneThis);
+
+        this.init();
+
     }
-    var c = "cloneya",
-        d = {
-            cloneThis: ".toclone",
-            cloneButton: ".clone",
-            deleteButton: ".delete",
-            clonePosition: "after",
-            minimum: 1,
-            maximum: 999,
-            valueClone: !1,
-            dataClone: !1,
-            deepClone: !1,
-            serializeID: !0,
-            ignore: "label.error",
-            preserveChildCount: !1
-        };
-    b.prototype = {
-        init: function() {
-            var b = this;
-            b.$elem.addClass(c + "-wrap"), b.clones.addClass(c), b.clones.data("initialCount", b.clones.length), b.$elem.on("click." + c, b.config.cloneThis + ">" + b.config.cloneButton, function(d) {
-                d.preventDefault(), d.stopPropagation();
-                var e = a(this).closest(b.config.cloneThis);
-                b.$elem.triggerAll("clone_clone clone." + c, [e])
-            }), b.$elem.on("clone." + c, function(a, c) {
-                b._cloneAndAppend(c)
-            }), b.$elem.on("click." + c, b.config.cloneThis + ">" + b.config.deleteButton, function(d) {
-                d.preventDefault(), d.stopPropagation();
-                var e = a(this).closest(b.config.cloneThis);
-                b.$elem.triggerAll("clone_delete delete." + c, [e])
-            }), b.$elem.on("delete." + c, function(d, e) {
-                var f = e.closest(b.elem).closestChild(b.config.cloneThis).length;
-                f > b.config.minimum ? (b.$elem.triggerAll("clone_before_delete before_delete." + c, [e, f]), b.$elem.triggerHandler("remove." + c, [e]), b.$elem.triggerAll("clone_after_delete after_delete." + c)) : (b.$elem.triggerHandler("minimum." + c, b.config.minimum, [e]), e.find("input, textarea, select").each(function() {
-                    b._clearForm(a(this))
-                }))
-            }), b.$elem.on("remove." + c, function(b, c) {
-                a(c).remove()
-            })
+
+    CloneYa.prototype = {
+        init: function () {
+
+            var $this = this;
+
+
+            // add our classes
+            $this.$elem.addClass($this.elemClass);
+            $this.clones.addClass(name);
+
+            // save the sibling count into data attr
+            $this.clones.data('initialCount', $this.clones.length);
+
+            //Now, what if the clone button and delete button are not contained in
+            //the clonable?
+            // add a click handler for the clone buttons
+            $this.$elem.on('click.' + name, $this.config.cloneThis + '>' + $this.config.cloneButton, function (event) {
+                event.preventDefault();
+                event.stopPropagation();
+
+                var toClone = $(this).closest($this.config.cloneThis);
+
+                // this is just a wrapper for the custom clone event
+                $this.$elem.triggerAll('clone_clone clone.' + name, [toClone]);
+            });
+
+
+            // the custom clone event
+            $this.$elem.on('clone.' + name, function (event, toClone) {
+
+                $this._cloneAndAppend(toClone);
+
+            });
+
+            // click handler for delete button
+            $this.$elem.on('click.' + name, $this.config.cloneThis + '>' + $this.config.deleteButton, function (event) {
+                event.preventDefault();
+                event.stopPropagation();
+
+                var toDelete = $(this).closest($this.config.cloneThis);
+                // just a wrapper for delclone event
+                $this.$elem.triggerAll('clone_delete delete.' + name, [toDelete]);
+            });
+
+            //  the delete clone event
+            $this.$elem.on('delete.' + name, function (event, toDelete) {
+
+                // get the count of all the sibling clones
+                /**
+                 *
+                 * @type @exp;$todelete@call;closest@call;closestChild@pro;length
+                 */
+                var cloneCount = toDelete.closest('.' + $this.elemClass).closestChild($this.config.cloneThis).length;
+
+                if (cloneCount > $this.config.minimum) {
+                    // trigger hook
+                    $this.$elem.triggerAll('clone_before_delete before_delete.' + name, [toDelete, cloneCount]);
+                    $this.$elem.triggerHandler('remove.' + name, [toDelete]);
+                    $this.$elem.triggerAll('clone_after_delete after_delete.' + name);
+
+                }
+                else {
+
+                    $this.$elem.triggerHandler('minimum.' + name, $this.config.minimum, [toDelete]);
+
+
+                    // First clone form can't be deleted, but the values should be removed from first form
+                    // is this expected behaviour? especially since we use minimum?
+                    toDelete.find('input, textarea, select').each(function () {
+                        $this._clearForm($(this));
+                    });
+
+                }
+            });
+
+
+
+            $this.$elem.on('remove.' + name, function (event, toDelete) {
+                $(toDelete).remove();
+
+            });
+
         },
-        _clean: function() {
-            var a = this;
-            a.$elem.removeClass(c + "-wrap"), a.clones.removeClass(c), a.$elem.off("click." + c, a.config.cloneThis + ">" + a.config.cloneButton), a.$elem.off("click." + c, a.config.cloneThis + ">" + a.config.deleteButton), a.$elem.off("clone_clone clone_delete clone_before_delete clone." + c + " delete." + c + " before_delete." + c)
+        _clean: function () {
+            var $this = this;
+            $this.$elem.removeClass(name + '-wrap');
+            $this.clones.removeClass(name);
+            $this.$elem.off('click.' + name, $this.config.cloneThis + '>' + $this.config.cloneButton);
+            $this.$elem.off('click.' + name, $this.config.cloneThis + '>' + $this.config.deleteButton);
+            $this.$elem.off('clone_clone clone_delete clone_before_delete clone.' + name + ' delete.' + name + ' before_delete.' + name);
+
         },
-        destroy: function() {
-            this._clean(), this.$elem.removeData(c)
+        destroy: function () {
+            this._clean();
+            this.$elem.removeData(name);
         },
-        getOption: function() {
-            return this.config
+        getOption: function () {
+            return this.config;
         },
-        setOption: function(b) {
-            a.extend(this.config, b || {}), this._clean(), this.init()
+        setOption: function (lateOptions) {
+            $.extend(this.config, lateOptions || {});
+            this._clean();
+            this.init();
+
         },
-        _cloneAndAppend: function(a) {
-            var b = a.closest(this.elem).closestChild(this.config.cloneThis).length;
-            if (b < this.config.maximum) {
-                this.$elem.triggerAll("clone_before_clone before_clone." + c, [a]);
-                var d = this._cloneItem(a);
-                this.$elem.triggerAll("clone_after_clone after_clone." + c, [a, d]), this.clones.add(d), this.$elem.triggerAll("clone_before_append before_append." + c, [a, d]), "after" !== this.config.clonePosition ? a.before(d) : a.after(d), this.config.ignore && d.find(this.config.ignore).remove(), this._redoIDs(), this.$elem.triggerAll("clone_after_append after_append." + c, [a, d])
-            } else this.$elem.triggerAll("clone_limit maximum." + c, this.config.maximum, [a])
+        _cloneAndAppend: function (toClone) {
+
+
+            // get the count of all the sibling clones
+            /**
+             *
+             * @type @exp;$toclone@call;closest@call;closestChild@pro;length
+             */
+            var cloneCount = toClone.closest('.' + this.elemClass).closestChild(this.config.cloneThis).length;
+
+
+            // check if we've reached the maximum limit
+            if (cloneCount < this.config.maximum) {
+
+                // trigger a custom event for hooking in
+                this.$elem.triggerAll('clone_before_clone before_clone.' + name, [toClone]);
+
+                var newClone = this._cloneItem(toClone);
+
+
+
+                // trigger custom event on the original element
+                this.$elem.triggerAll('clone_after_clone after_clone.' + name, [toClone, newClone]);
+
+                // add to our clones object
+                this.clones.add(newClone);
+
+                // trigger custom event on the new clone
+                this.$elem.triggerAll('clone_before_append before_append.' + name, [toClone, newClone]);
+
+                // get the position where the clone has to be added
+                // and add the newclone
+                if (this.config.clonePosition !== 'after') {
+                    toClone.before(newClone);
+                } else {
+                    toClone.after(newClone);
+
+                }
+
+                if (this.config.ignore) {
+                    newClone.find(this.config.ignore).remove();
+                }
+
+                // reformat the id attributes
+                this._redoIDs();
+
+                // trigger custom event for hooking
+                this.$elem.triggerAll('clone_after_append after_append.' + name, [toClone, newClone]);
+            } else {
+                // trigger a custom event for hooking
+                this.$elem.triggerAll('clone_limit maximum.' + name, this.config.maximum, [toClone]);
+            }
+
         },
-        _cloneItem: function(b) {
-            var d = this,
-                e = b.clone({
-                    withDataAndEvents: d.config.dataClone,
-                    deepWithDataAndEvents: d.config.deepClone
+        _cloneItem: function (toClone) {
+            var $this = this;
+
+            // clone it
+            /**
+             *
+             * @type @exp;$toclone@call;clone
+             */
+            var newClone = toClone.clone($this.config.dataClone, $this.config.deepClone);
+
+            // we want to preserve the initial child count
+            if ($this.config.preserveChildCount !== false) {
+                // the child count only needs preservation if they are clonable.
+
+                var originalChildren = toClone.find('.' + name + '-wrap');
+
+                // for each wrapper
+                newClone.find('.' + name + '-wrap').each(function (index) {
+
+                    /**
+                     *
+                     * @type @call;jquery-cloneya_L8.$@call;closestChild
+                     */
+                    var inNewClone = $(this).closestChild('.' + name);
+
+                    var inOriginal = $(originalChildren[index]).closestChild('.' + name);
+
+                    /**
+                     *
+                     * @type @exp;inOriginal@call;data
+                     */
+                    var originalCount = inOriginal.data('initialCount');
+
+                    /**
+                     *
+                     * @type @exp;inNewClone@call;slice
+                     */
+                    var $extra = inNewClone.slice(originalCount, inNewClone.length);
+
+                    $extra.remove();
+
+                    inNewClone.data('initial-count', originalCount);
                 });
-            return d.config.preserveChildCount !== !1 && e.find("." + c + "-wrap").each(function() {
-                var b = a(this).closestChild("." + c),
-                    d = b.data("initialCount"),
-                    e = b.slice(d, b.length);
-                e.remove()
-            }), e.find("input, textarea, select").each(function() {
-                d._clearForm(a(this)), d.$elem.triggerAll("clone_form_input form_input." + c, [a(this), b, e])
-            }), e
+
+            }
+
+            // get the form input
+            newClone.find('input, textarea, select').each(function () {
+
+                // check if the values need to be copied, if not empty them
+                $this._clearForm($(this));
+
+                // removed the portion taking care of the index
+                // each case is specific and I'd rather leave it to the developer
+
+                // custom event hook for index handling
+                $this.$elem.triggerAll('clone_form_input form_input.' + name, [$(this), toClone, newClone]);
+            });
+
+            return newClone;
+
         },
-        _clearForm: function(a) {
-            this.config.valueClone || a.hasClass("noEmpty") || (a.is(":checkbox") || a.is(":radio") ? a.prop("checked", !1) : a.val(""))
+        /*
+         * Clear Form will used to clear the values of the form
+         */
+        /**
+         *
+         * @param {type} $el
+         * @returns {undefined}
+         */
+        _clearForm: function ($el) {
+
+            if (!this.config.valueClone && !$el.hasClass('noEmpty')) {
+
+                if ($el.is(':checkbox') || $el.is(':radio')) {
+
+                    $el.prop('checked', false);
+                }
+                else {
+                    $el.val('');
+                }
+
+            }
+
         },
-        _redoIDs: function() {
-            var b = this;
-            if (b.config.serializeID === !0) {
-                var c = b.$elem.find(b.config.cloneThis).first().attr("id");
-                b.$elem.find(b.config.cloneThis).each(function(d) {
-                    var e;
-                    e = 0 !== d ? d : "", a(this).attr("id") && a(this).attr("id", c + e);
-                    var f, g;
-                    a(this).find("*").each(function() {
-                        if (f = a(this).attr("id")) {
-                            var c = f.match(b.regex);
-                            c && 3 === c.length ? (g = f.replace(/\d+$/, "") + e, a(this).attr("id", g)) : (g = f + e, a(this).attr("id", g))
+        /**
+         * Redo the id attribute, serially
+         */
+        /**
+         *
+         * @returns {undefined}
+         */
+        _redoIDs: function () {
+
+            var $this = this;
+
+            // check if this even needs to be done
+            if ($this.config.serializeID !== true) {
+                return;
+            }
+
+            // get the id of the first clone (hoping to increment the ids)
+            /**
+             *
+             * @type @exp;elem@call;find@call;first@call;attr
+             */
+            var mainid = $this.$elem.find($this.config.cloneThis).first().attr('id');
+
+            $this.$elem.find($this.config.cloneThis).each(function (i) {
+
+                var j;
+                // assign the index to a string var for appending to the ids
+                // 0 index will have no number at the end
+                if (i !== 0) {
+                    j = i;
+                } else {
+                    j = '';
+                }
+
+                // first modify the clone id
+                if ($(this).attr('id')) {
+                    $(this).attr('id', mainid + j);
+                }
+
+                var id, nId;
+                // take all the elements inside the clone
+                $(this).find('*').each(function () {
+
+                    id = $(this).attr('id');
+                    if (id) {
+                        // match the id with the regex to get the string part
+                        // separate from the number part
+                        var match = id.match($this.regex);
+
+                        // if there was a number
+                        if (match && match.length === 3) {
+                            // just take the string part
+                            // add the new number to it
+                            nId = id.replace(/\d+$/, "") + j;
+
+                            $(this).attr('id', nId);
+                        } else {
+                            // else there was no number,
+                            // this was earlier the first element
+                            // just add the number to its id
+                            nId = id + j;
+                            $(this).attr('id', nId);
                         }
-                        if (a(this).closest(b.config.cloneThis).find("label[for='" + f + "']").attr("for", g), b.config.serializeIndex) {
-                            var h = a(this).attr("name");
-                            if (h) {
-                                var i = h.match(/\[([^}]+)\]/);
-                                if (i && i.length >= 1) {
-                                    var j = h;
-                                    h = [].map.call(j, function(a, b) {
-                                        return isNaN(+a) || "[" !== j[b - 1] || "]" !== j[b + 1] ? a : d
-                                    }).join(""), a(this).attr("name", h)
-                                }
+                    }
+
+                    //update label
+                    $(this).closest($this.config.cloneThis).find("label[for='" + id + "']").attr('for', nId);
+
+                    if ($this.config.serializeIndex) {
+                        var name = $(this).attr('name');
+                        // This will increment the numeric array index for cloned field names
+                        if (name) {
+                            var matches = name.match(/\[([^}]+)\]/);
+
+                            if (matches && matches.length >= 1) {
+
+                                var st = name;
+                                name = [].map.call(st, function (s, n) {
+                                    return (!isNaN(+s) && st[n - 1] === '[' && st[n + 1] === ']') ? i : s;
+                                }).join('');
+
+                                $(this).attr('name', name);
                             }
                         }
-                    })
-                })
+                    }
+
+                });
+            });
+
+        }
+
+
+    };
+
+    // add the cloneya to the global object
+    /**
+     *
+     * @param {type} options
+     * @returns {jquery-cloneya_L8.$.fn@call;each}
+     */
+    $.fn[name] = function (options)
+    {
+        var args = arguments;
+
+        if (options === undefined || typeof options === 'object') {
+            // Creates a new plugin instance, for each selected element, and
+            // stores a reference withint the element's data
+            return this.each(function () {
+                if (!$.data(this, name)) {
+                    $.data(this, name, new CloneYa(this, options));
+                }
+            });
+        } else if (typeof options === 'string' && options[0] !== '_' && options !== 'init') {
+            // Call a public pluguin method (not starting with an underscore) for each
+            // selected element.
+            if (Array.prototype.slice.call(args, 1).length === 0 && $.inArray(options, $.fn[name].getters) !== -1) {
+                // If the user does not pass any arguments and the method allows to
+                // work as a getter then break the chainability so we can return a value
+                // instead the element reference.
+                var instance = $.data(this[0], name);
+                return instance[options].apply(instance, Array.prototype.slice.call(args, 1));
+            } else {
+                // Invoke the speficied method on each selected element
+                return this.each(function () {
+                    var instance = $.data(this, name);
+                    if (instance instanceof CloneYa && typeof instance[options] === 'function') {
+                        instance[options].apply(instance, Array.prototype.slice.call(args, 1));
+                    }
+                });
             }
         }
-    }, a.fn[c] = function(d) {
-        var e = arguments;
-        if (void 0 === d || "object" == typeof d) return this.each(function() {
-            a.data(this, c) || a.data(this, c, new b(this, d))
-        });
-        if ("string" == typeof d && "_" !== d[0] && "init" !== d) {
-            if (0 === Array.prototype.slice.call(e, 1).length && -1 !== a.inArray(d, a.fn[c].getters)) {
-                var f = a.data(this[0], c);
-                return f[d].apply(f, Array.prototype.slice.call(e, 1))
+    };
+
+    $.fn[name].getters = ['getOption'];
+
+
+
+    /*
+     * jquery.closestchild 0.1.1
+     *
+     * Author: Andrey Mikhaylov aka lolmaus
+     * Email: lolmaus@gmail.com
+     *
+     */
+    /**
+     *
+     * @param {type} selector
+     * @returns {$}
+     */
+    $.fn.closestChild = function (selector) {
+        var $children, $results;
+
+        $children = this.children();
+
+        if ($children.length === 0) {
+            return $();
+        }
+
+        $results = $children.filter(selector);
+
+        if ($results.length > 0) {
+            return $results;
+        } else {
+            return $children.closestChild(selector);
+        }
+    };
+
+    /*
+     * TriggerAll, modified from stackoverflow
+     * http://stackoverflow.com/questions/11850625/jquery-trigger-multiple-events
+     */
+    $.fn.extend({
+        triggerAll: function (events, params) {
+            var el = this, i, evts = events.split(' ');
+            for (i = 0; i < evts.length; i += 1) {
+                el.triggerHandler(evts[i], params);
             }
-            return this.each(function() {
-                var f = a.data(this, c);
-                f instanceof b && "function" == typeof f[d] && f[d].apply(f, Array.prototype.slice.call(e, 1))
-            })
+            return el;
         }
-    }, a.fn[c].getters = ["getOption"], a.fn.closestChild = function(b) {
-        var c, d;
-        return c = this.children(), 0 === c.length ? a() : (d = c.filter(b), d.length > 0 ? d : c.closestChild(b))
-    }, a.fn.extend({
-        triggerAll: function(a, b) {
-            var c, d = this,
-                e = a.split(" ");
-            for (c = 0; c < e.length; c += 1) d.triggerHandler(e[c], b);
-            return d
-        }
-    })
-}(jQuery);
+    });
+
+})(jQuery);

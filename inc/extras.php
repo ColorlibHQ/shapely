@@ -23,7 +23,7 @@ function shapely_body_classes( $classes ) {
 	if ( ! is_singular() ) {
 		$classes[] = 'hfeed';
 	}
-	
+
 	if ( get_theme_mod( 'shapely_sidebar_position' ) == "pull-right" ) {
 		$classes[] = 'has-sidebar-left';
 	} else if ( get_theme_mod( 'shapely_sidebar_position' ) == "no-sidebar" ) {
@@ -33,7 +33,7 @@ function shapely_body_classes( $classes ) {
 	} else {
 		$classes[] = 'has-sidebar-right';
 	}
-    
+
 	return $classes;
 }
 add_filter( 'body_class', 'shapely_body_classes' );
@@ -115,7 +115,7 @@ endif;
  * function to show the footer info, copyright information
  */
 function shapely_footer_info() {
-  printf( esc_html__( 'Theme by %1$s Powered by %2$s', 'shapely' ) , '<a href="http://colorlib.com/" target="_blank">Colorlib</a>', '<a href="http://wordpress.org/" target="_blank">WordPress</a>');
+  printf( esc_html__( 'Theme by %1$s Powered by %2$s', 'shapely' ) , '<a href="https://colorlib.com/" target="_blank" title="Colorlib">Colorlib</a>', '<a href="http://wordpress.org/" target="_blank" title="WordPress.org">WordPress</a>');
 }
 
 
@@ -135,26 +135,26 @@ if ( ! function_exists( 'get_shapely_theme_options' ) ) {
         .woocommerce nav.woocommerce-pagination ul li a:focus, .woocommerce nav.woocommerce-pagination ul li a:hover,
         .woocommerce nav.woocommerce-pagination ul li span.current  { color: '.get_theme_mod('link_hover_color').';}';
       }
-      
+
       if ( get_theme_mod('button_color')) {
-        echo '.btn-filled, .btn-filled:visited, .woocommerce #respond input#submit.alt, 
-          .woocommerce a.button.alt, .woocommerce button.button.alt, 
-          .woocommerce input.button.alt, .woocommerce #respond input#submit, 
-          .woocommerce a.button, .woocommerce button.button, 
+        echo '.btn-filled, .btn-filled:visited, .woocommerce #respond input#submit.alt,
+          .woocommerce a.button.alt, .woocommerce button.button.alt,
+          .woocommerce input.button.alt, .woocommerce #respond input#submit,
+          .woocommerce a.button, .woocommerce button.button,
           .woocommerce input.button { background:' . get_theme_mod('button_color') . ' !important; border: 2px solid'. get_theme_mod('button_color').' !important;}';
       }
       if ( get_theme_mod('button_hover_color')) {
-        echo '.btn-filled:hover, .woocommerce #respond input#submit.alt:hover, 
+        echo '.btn-filled:hover, .woocommerce #respond input#submit.alt:hover,
           .woocommerce a.button.alt:hover, .woocommerce button.button.alt:hover,
-          .woocommerce input.button.alt:hover, .woocommerce #respond input#submit:hover, 
-          .woocommerce a.button:hover, .woocommerce button.button:hover, 
+          .woocommerce input.button.alt:hover, .woocommerce #respond input#submit:hover,
+          .woocommerce a.button:hover, .woocommerce button.button:hover,
           .woocommerce input.button:hover  { background: '.get_theme_mod('button_hover_color').' !important; border: 2px solid'. get_theme_mod('button_hover_color').' !important;}';
-      }      
-      
+      }
+
       if ( get_theme_mod('social_color')) {
         echo '.social-icons li a {color: '.get_theme_mod('social_color').' !important ;}';
       }
-      
+
       if ( get_theme_mod('custom_css')) {
         echo html_entity_decode( get_theme_mod( 'custom_css', 'no entry' ) );
       }
@@ -256,9 +256,9 @@ if( !function_exists('shapely_pagination') ){
 function shapely_pagination($pages = '', $range = 2){
     global $paged;
     $showitems = ( $range * 2 )+1;
-    
+
     if( empty( $paged) ) $paged = 1;
-    
+
     if($pages == ''){
         global $wp_query;
         $pages = $wp_query->max_num_pages;
@@ -292,20 +292,20 @@ function shapely_search_form( $form ) {
     <label class="screen-reader-text" for="s">' . __( 'Search for:', 'shapely' ) . '</label>
     <input type="text" placeholder="'.  __('Type Here', 'shapely').'" type="text" value="' . get_search_query() . '" name="s" id="s" />
     <input type="submit" class="btn btn-fillded searchsubmit" id="searchsubmit" value="'. esc_attr__( 'Search', 'shapely' ) .'" />
-    
+
     </form>';
 
     return $form;
 }
 
 add_filter( 'get_search_form', 'shapely_search_form', 100 );
-        
+
 /*
  * Admin Css
  */
 function shapely_admin_style() {
   echo '<style>
-        #setting-error-tgmpa.notice{  display : block; } 
+        #setting-error-tgmpa.notice{  display : block; }
         .client-sortable .logo_heading{
                         background: #f3f3f3;
                         border: 1px dotted;
@@ -321,10 +321,10 @@ function shapely_admin_style() {
                     }
         .client-sortable .cloneya a.clone,
         .client-sortable .cloneya a.delete { display: none; }
-        
+
         .client-sortable .cloneya:last-child a.clone,
         .client-sortable .cloneya:last-child a.delete { display: inline-block; }
-                
+
       </style>';
 }
 add_action('admin_head', 'shapely_admin_style');
@@ -332,12 +332,12 @@ add_action('customize_controls_print_styles', 'shapely_admin_style');
 
 /* Social Fields in Author Profile */
 if( !function_exists('shapely_author_socialLinks') ){
-  
+
   function shapely_author_socialLinks( $contactmethods ) {
     // Add Twitter
     $contactmethods['twitter'] = 'Twitter';
     //add Facebook
-    $contactmethods['facebook'] = 'Facebook';  
+    $contactmethods['facebook'] = 'Facebook';
     //add Github
     $contactmethods['github'] = 'Github';
     //add Dribble
@@ -358,18 +358,18 @@ add_filter('user_contactmethods','shapely_author_socialLinks',10,1);
 if( !function_exists('shapely_author_bio') ){
 
 function shapely_author_bio(){
-  
-  if( !get_the_ID() ) 
+
+  if( !get_the_ID() )
     return;
-  
+
   $author_fields = "'user_url','display_name', 'nickname', 'first_name','last_name','description', 'ID'";
-  $author_displayname = get_the_author_meta('display_name'); 
-  $author_nickname = get_the_author_meta('nickname'); 
+  $author_displayname = get_the_author_meta('display_name');
+  $author_nickname = get_the_author_meta('nickname');
   $author_fullname = ( get_the_author_meta('first_name') != "" && get_the_author_meta('last_name') != "" ) ? get_the_author_meta('first_name')." ".get_the_author_meta('last_name') : "";
-  $author_url = get_the_author_meta('user_url'); 
-  $author_description = get_the_author_meta('description'); 
+  $author_url = get_the_author_meta('user_url');
+  $author_description = get_the_author_meta('description');
   $author_name = ( trim( $author_nickname ) != "" ) ? $author_nickname : ( trim( $author_displayname ) != "" ) ? $author_displayname : $author_fullname ?>
-  
+
   <div class="author-bio">
     <div class="row">
       <div class="col-sm-2">
@@ -393,7 +393,7 @@ function shapely_author_bio(){
                 </a>
               </li><?php
               }
-              
+
               $fb_profile = get_the_author_meta( 'facebook' );
               if ( $fb_profile && $fb_profile != '' ) { ?>
               <li>
@@ -402,7 +402,7 @@ function shapely_author_bio(){
                 </a>
               </li><?php
               }
-              
+
               $dribble_profile = get_the_author_meta( 'dribble' );
               if ( $dribble_profile && $dribble_profile != '' ) { ?>
               <li>
@@ -412,7 +412,7 @@ function shapely_author_bio(){
               </li>
                 <?php
               }
-              
+
               $github_profile = get_the_author_meta( 'github' );
               if ( $github_profile && $github_profile != '' ) { ?>
               <li>
@@ -421,7 +421,7 @@ function shapely_author_bio(){
                 </a>
               </li><?php
               }
-              
+
               $vimeo_profile = get_the_author_meta( 'vimeo' );
               if ( $vimeo_profile && $vimeo_profile != '' ) { ?>
               <li>
@@ -435,7 +435,7 @@ function shapely_author_bio(){
     </div>
   </div>
   <!--end of author-bio-->
-<?php    
+<?php
 
 }
 }
@@ -445,8 +445,8 @@ function shapely_author_bio(){
  */
 function shapely_cb_comment($comment, $args, $depth) {
 	$GLOBALS['comment'] = $comment;
-	extract($args, EXTR_SKIP); 
-    
+	extract($args, EXTR_SKIP);
+
     if ( 'ul' == $args['style'] ) {
 		$tag = 'ul';
 		$add_below = 'comment';
@@ -471,9 +471,9 @@ function shapely_cb_comment($comment, $args, $depth) {
                 printf( __( '%1$s at %2$s', 'shapely' ), get_comment_date(), get_comment_time() ); ?></time><?php edit_comment_link( __( 'Edit', 'shapely' ), '  ', '' );
               ?>
             </div>
-            
+
             <?php comment_reply_link( array_merge( $args, array( 'add_below' => $add_below, 'depth' => $depth, 'max_depth' => $args['max_depth'] ) ) ); ?>
-            
+
             <?php if ( $comment->comment_approved == '0' ) : ?>
               <p>
                   <em class="comment-awaiting-moderation"><?php _e( 'Your comment is awaiting moderation.', 'shapely' ); ?></em>
@@ -482,7 +482,7 @@ function shapely_cb_comment($comment, $args, $depth) {
               <?php endif; ?>
 
               <?php comment_text(); ?>
-            
+
         </div>
       <?php if ( 'div' != $args['style'] ) : ?>
         </div>
@@ -491,9 +491,9 @@ function shapely_cb_comment($comment, $args, $depth) {
 <?php
 }
 
-/* 
+/*
  * Filter to replace
- * Reply button class 
+ * Reply button class
  */
 function shapely_reply_link_class($class){
     $class = str_replace("class='comment-reply-link", "class='btn btn-sm comment-reply", $class);
@@ -520,7 +520,7 @@ function shapely_custom_comment_form(){
         '<input placeholder="'.__( 'Your Website (optional)', 'shapely' ).'" id="url" name="url" type="text" value="' . esc_attr( $commenter['comment_author_url'] ) .
         '" size="30" />',
     );
-    
+
     $comments_args = array(
         'label_submit'      => __( 'Leave Comment', 'shapely' ),
         'comment_field' =>  '<textarea placeholder="'._x( 'Comment', 'noun', 'shapely' ).'" id="comment" name="comment" cols="45" rows="8" aria-required="true" required="required">' .
@@ -530,21 +530,21 @@ function shapely_custom_comment_form(){
     return $comments_args;
 }
 
-/* 
+/*
  * Header Logo
  */
 function shapely_get_header_logo(){
-  $logo_id = get_theme_mod('header_logo', ''); 
+  $logo_id = get_theme_mod('header_logo', '');
   $logo = wp_get_attachment_image_src($logo_id, 'full'); ?>
-    
+
   <a href="<?php echo esc_url( home_url( '/' ) ); ?>"><?php
   if( $logo[0] != '' ){ ?>
     <img src="<?php echo $logo[0]; ?>" class="logo" alt="<?php echo esc_html( get_bloginfo( 'name' ) ); ?>"><?php
   }
   else{ ?>
-    <h1 class="site-title"><?php echo esc_html( get_bloginfo( 'name' ) ); ?></h1><?php 
+    <h1 class="site-title"><?php echo esc_html( get_bloginfo( 'name' ) ); ?></h1><?php
   } ?>
-  </a><?php  
+  </a><?php
 }
 
 /*
@@ -552,7 +552,7 @@ function shapely_get_header_logo(){
  * then from themeoptions
  */
 function shapely_get_layout_class(){
-  global $post;                            
+  global $post;
   if( is_singular() && get_post_meta($post->ID, 'site_layout', true) ){
       $layout_class = get_post_meta($post->ID, 'site_layout', true);
   }
@@ -570,7 +570,7 @@ function shapely_show_sidebar(){
   $show_sidebar = true;
   if( is_singular() && ( get_post_meta($post->ID, 'site_layout', true) ) ){
      if( get_post_meta($post->ID, 'site_layout', true) == 'no-sidebar' || get_post_meta($post->ID, 'site_layout', true) == 'full-width' ) {
-         $show_sidebar = false;               
+         $show_sidebar = false;
      }
   }
   elseif( get_theme_mod( 'shapely_sidebar_position' ) == "no-sidebar" ||  get_theme_mod( 'shapely_sidebar_position' ) == "full-width" ) {
@@ -582,19 +582,19 @@ function shapely_show_sidebar(){
 /*
  * Top Callout
  */
-function shapely_top_callout(){ 
+function shapely_top_callout(){
   if( get_theme_mod('top_callout', true) ) { ?>
     <section class="page-title-section bg-secondary">
       <div class="container">
           <div class="row">
               <div class="col-md-6 col-sm-6 col-xs-12">
                   <h3 class="page-title">
-                      <?php 
+                      <?php
                       if( is_home() ){
-                        _e( ( get_theme_mod('blog_name') ) ? get_theme_mod('blog_name') : 'Blog'  , 'shapely' ); 
+                        _e( ( get_theme_mod('blog_name') ) ? get_theme_mod('blog_name') : 'Blog'  , 'shapely' );
                       }
                       else if( is_search() ){
-                        _e( 'Search'  , 'shapely' ); 
+                        _e( 'Search'  , 'shapely' );
                       }
                       else if ( is_archive() ) {
                         echo ( is_post_type_archive('jetpack-portfolio') ) ? __('Portfolio', 'shapely') : get_the_archive_title();
@@ -615,9 +615,9 @@ function shapely_top_callout(){
       <!--end of container-->
     </section><?php
   }
-  else { ?> 
+  else { ?>
     <?php if ( function_exists('yoast_breadcrumb') ) { ?>
-      <div class="container mt20"><?php                        
+      <div class="container mt20"><?php
           yoast_breadcrumb('<p id="breadcrumbs">','</p>'); ?>
       </div><?php
       }
@@ -627,7 +627,7 @@ function shapely_top_callout(){
 /*
  * Footer Callout
  */
-function shapely_footer_callout(){ 
+function shapely_footer_callout(){
   if( get_theme_mod('footer_callout_text') != '' ){ ?>
     <section class="cfa-section bg-secondary">
         <div class="container">
