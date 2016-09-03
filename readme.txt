@@ -2,17 +2,17 @@
 
 Theme Name: Shapely
 Theme URI: http://colorlib.com/wp/shapely/
-Version: 1.0.2
-Tested up to: WP 4.5
+Version: 1.0.3
+Tested up to: WP 4.6
 
 Author: Aigars Silkalns
 Author URI: http://colorlib.com/wp/
 License: GNU General Public License v3.0
 License URI: http://www.gnu.org/licenses/gpl.html
 -------------------------------------------------------
-Sparkling theme, Copyright 2014-2016 colorlib.com
-Sparkling WordPress theme is distributed under the terms of the GNU GPL
-Sparkling is based on Underscores http://underscores.me/, (C) 2012-2016 Automattic, Inc.
+Shapely theme, Copyright 2016 colorlib.com
+Shapely WordPress theme is distributed under the terms of the GNU GPL
+Shapely is based on Underscores http://underscores.me/, (C) 2012-2016 Automattic, Inc.
 -------------------------------------------------------
 
 == Description ==
@@ -53,10 +53,14 @@ Shapely includes support for Infinite Scroll, Portfolio, Testimonials, Tiled Gal
 
 == Changelog ==
 
+= 1.0.3 - Sept 3 2016 =
+
+* Small bug fixes and improvements
+
 = 1.0.2 - April 15 2016 =
 
 * Fixed parse error for older version of PHP.
-* Fixed error when mobile menu was appearing along regular menu between 990px - 991px. 
+* Fixed error when mobile menu was appearing along regular menu between 990px - 991px.
 
 = 1.0.1 - March 30 2016 =
 
