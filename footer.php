@@ -14,18 +14,18 @@
             </div><!-- row -->
 		</div><!-- #main -->
 	</section><!-- section -->
-    
+
     <?php shapely_footer_callout(); ?>
-    
+
 	<footer id="colophon" class="site-footer footer bg-dark" role="contentinfo">
       <div class="container footer-inner">
         <div class="row">
           <?php get_sidebar( 'footer' ); ?>
-        </div> 
-        
+        </div>
+
         <div class="row">
           <div class="site-info col-sm-6">
-            <div class="copyright-text"><?php _e( get_theme_mod( 'shapely_footer_copyright'), 'shapely' ); ?></div>
+            <div class="copyright-text"><?php esc_attr(get_theme_mod( 'shapely_footer_copyright' )); ?></div>
             <div class="footer-credits"><?php shapely_footer_info(); ?></div>
           </div><!-- .site-info -->
           <div class="col-sm-6 text-right">
@@ -33,7 +33,7 @@
           </div>
         </div>
       </div>
-      
+
       <a class="btn btn-sm fade-half back-to-top inner-link" href="#top"><i class="fa fa-angle-up"></i></a>
     </footer><!-- #colophon -->
 </div><!-- #page -->

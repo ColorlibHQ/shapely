@@ -3,14 +3,14 @@ msgid ""
 msgstr ""
 "Plural-Forms: nplurals=INTEGER; plural=EXPRESSION;\n"
 "Project-Id-Version: Shapely\n"
-"POT-Creation-Date: 2016-03-26 13:26+0200\n"
+"POT-Creation-Date: 2016-09-03 14:20+0300\n"
 "PO-Revision-Date: 2016-03-26 13:24+0200\n"
 "Last-Translator: \n"
 "Language-Team: Colorlib <support@colorlib.com>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 1.8.7\n"
+"X-Generator: Poedit 1.8.9\n"
 "X-Poedit-Basepath: ..\n"
 "X-Poedit-WPHeader: style.css\n"
 "X-Poedit-SourceCharset: UTF-8\n"
@@ -84,19 +84,19 @@ msgstr ""
 msgid "Used for footer widget area"
 msgstr ""
 
-#: functions.php:342
+#: functions.php:336
 msgid "Left Sidebar"
 msgstr ""
 
-#: functions.php:342
+#: functions.php:336
 msgid "Right Sidebar"
 msgstr ""
 
-#: functions.php:342
+#: functions.php:336
 msgid "No Sidebar"
 msgstr ""
 
-#: functions.php:342
+#: functions.php:336
 msgid "Full Width"
 msgstr ""
 
@@ -564,147 +564,113 @@ msgstr ""
 msgid "Installing Plugin %1$s (%2$d/%3$d)"
 msgstr ""
 
-#: inc/customizer.php:33
+#: inc/customizer.php:32
 msgid "Logo"
 msgstr ""
 
-#: inc/customizer.php:44
+#: inc/customizer.php:42
 msgid "Shapely Options"
 msgstr ""
 
-#: inc/customizer.php:45
+#: inc/customizer.php:43
 msgid "Panel to update shapely theme options"
 msgstr ""
 
-#: inc/customizer.php:51
+#: inc/customizer.php:49
 msgid "Layout options"
 msgstr ""
 
-#: inc/customizer.php:63
+#: inc/customizer.php:61
 msgid "Website Layout Options"
 msgstr ""
 
-#: inc/customizer.php:66
+#: inc/customizer.php:64
 msgid "Choose between different layout options to be used as default"
 msgstr ""
 
-#: inc/customizer.php:75
+#: inc/customizer.php:73
 msgid "Link Color"
 msgstr ""
 
-#: inc/customizer.php:76 inc/customizer.php:85 inc/customizer.php:94
-#: inc/customizer.php:103 inc/customizer.php:113
+#: inc/customizer.php:74 inc/customizer.php:83 inc/customizer.php:92
+#: inc/customizer.php:101 inc/customizer.php:111
 msgid "Default used if no color is selected"
 msgstr ""
 
-#: inc/customizer.php:84
+#: inc/customizer.php:82
 msgid "Link Hover Color"
 msgstr ""
 
-#: inc/customizer.php:93
+#: inc/customizer.php:91
 msgid "Button Color"
 msgstr ""
 
-#: inc/customizer.php:102
+#: inc/customizer.php:100
 msgid "Button Hover Color"
 msgstr ""
 
-#: inc/customizer.php:112
+#: inc/customizer.php:110
 msgid "Social Icon Color"
 msgstr ""
 
-#: inc/customizer.php:119
+#: inc/customizer.php:117
 msgid "Main options"
 msgstr ""
 
-#: inc/customizer.php:130
+#: inc/customizer.php:128
 msgid "check to show title in top call out box"
 msgstr ""
 
-#: inc/customizer.php:141
+#: inc/customizer.php:139
 msgid "Blog Name in top callout"
 msgstr ""
 
-#: inc/customizer.php:142
+#: inc/customizer.php:140
 msgid "Heading for the Blog page"
 msgstr ""
 
-#: inc/customizer.php:152
+#: inc/customizer.php:150
 msgid "Portfolio Archive Title"
 msgstr ""
 
-#: inc/customizer.php:162
+#: inc/customizer.php:160
 msgid "Portfolio Archive Description"
 msgstr ""
 
-#: inc/customizer.php:172
+#: inc/customizer.php:170
 msgid "Text for footer callout"
 msgstr ""
 
-#: inc/customizer.php:173
+#: inc/customizer.php:171
 msgid "Footer Callout"
 msgstr ""
 
-#: inc/customizer.php:182
+#: inc/customizer.php:180
 msgid "Text for footer callout button"
 msgstr ""
 
-#: inc/customizer.php:190
+#: inc/customizer.php:188
 msgid "CFA button link"
 msgstr ""
 
-#: inc/customizer.php:192
+#: inc/customizer.php:190
 msgid "Enter the link for Call For Action button in footer"
 msgstr ""
 
-#: inc/customizer.php:199
+#: inc/customizer.php:196
 msgid "Footer"
 msgstr ""
 
-#: inc/customizer.php:217
+#: inc/customizer.php:214
 msgid "Other"
 msgstr ""
 
-#: inc/customizer.php:226
+#: inc/customizer.php:223
 msgid "Custom CSS"
 msgstr ""
 
-#: inc/customizer.php:227
+#: inc/customizer.php:224
 msgid "Additional CSS"
-msgstr ""
-
-#: inc/customizer.php:235
-msgid "Support and Documentation"
-msgstr ""
-
-#: inc/customizer.php:378
-msgid "Shapely Documentation"
-msgstr ""
-
-#: inc/customizer.php:379
-msgid ""
-"The best way to contact us with <b>support questions</b> and <b>bug reports</"
-"b> is via"
-msgstr ""
-
-#: inc/customizer.php:379
-msgid "Colorlib support forum"
-msgstr ""
-
-#: inc/customizer.php:380
-msgid "If you like this theme, I'd appreciate any of the following:"
-msgstr ""
-
-#: inc/customizer.php:382
-msgid "Rate this Theme"
-msgstr ""
-
-#: inc/customizer.php:383
-msgid "Like on Facebook"
-msgstr ""
-
-#: inc/customizer.php:384
-msgid "Follow on Twitter"
 msgstr ""
 
 #: inc/extras.php:75
@@ -1010,12 +976,15 @@ msgid "Button 1 Text "
 msgstr ""
 
 #: inc/widgets/widget-home-parallax.php:141
-#: inc/widgets/widget-home-parallax.php:157
 msgid "Button 1 Link "
 msgstr ""
 
 #: inc/widgets/widget-home-parallax.php:149
 msgid "Button 2 Text "
+msgstr ""
+
+#: inc/widgets/widget-home-parallax.php:157
+msgid "Button 2 Link "
 msgstr ""
 
 #: inc/widgets/widget-home-portfolio.php:11
@@ -1055,15 +1024,15 @@ msgid "[Shapely] Recent Posts"
 msgstr ""
 
 #: inc/widgets/widget-recent-posts.php:17
-#: inc/widgets/widget-recent-posts.php:74
+#: inc/widgets/widget-recent-posts.php:83
 msgid "recent Posts"
 msgstr ""
 
-#: inc/widgets/widget-recent-posts.php:79
+#: inc/widgets/widget-recent-posts.php:88
 msgid "Title"
 msgstr ""
 
-#: inc/widgets/widget-recent-posts.php:87
+#: inc/widgets/widget-recent-posts.php:96
 msgid "Limit Posts Number"
 msgstr ""
 

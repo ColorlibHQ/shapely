@@ -635,11 +635,11 @@ function shapely_footer_callout(){
             <div class="col-sm-12 text-center p0">
               <div class="overflow-hidden">
                 <div class="col-sm-9">
-                  <h3 class="cfa-text"><?php _e( get_theme_mod('footer_callout_text'), 'shapely'); ?></h3>
+                  <h3 class="cfa-text"><?php esc_attr(get_theme_mod('footer_callout_text')); ?></h3>
                 </div>
                 <div class="col-sm-3">
                   <a href='<?php echo esc_url( get_theme_mod('footer_callout_link') ); ?>' class="mb0 btn btn-lg btn-filled cfa-button">
-                   <?php _e( get_theme_mod('footer_callout_btntext'), 'shapely'); ?>
+                   <?php esc_attr( get_theme_mod('footer_callout_btntext'), 'shapely'); ?>
                   </a>
                 </div>
               </div>
