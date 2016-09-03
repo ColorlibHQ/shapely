@@ -8,7 +8,7 @@ class shapely_recent_posts extends WP_Widget {
 
   function __construct() {
 
-    $widget_ops = array('classname' => 'shapely-recent-posts', 'description' => esc_html__("Widget to show recent posts with thumbnails", 'shapely'));
+    $widget_ops = array('classname' => 'shapely-recent-posts col-sm-12 text-center', 'description' => esc_html__("Widget to show recent posts with thumbnails", 'shapely'));
     parent::__construct('shapely_recent_posts', esc_html__('[Shapely] Recent Posts', 'shapely'), $widget_ops);
   }
 
@@ -18,6 +18,9 @@ class shapely_recent_posts extends WP_Widget {
     $limit = isset($instance['limit']) ? $instance['limit'] : 5;
 
     echo $before_widget;
+    ?>
+    <section>
+    <?php
     echo $before_title;
     echo $title;
     echo $after_title;
@@ -33,11 +36,12 @@ class shapely_recent_posts extends WP_Widget {
       <?php
       $featured_args = array(
           'posts_per_page' => $limit,
+          'post_type' => 'post',
           'ignore_sticky_posts' => 1
       );
 
       $featured_query = new WP_Query($featured_args);
-
+      $bootstrapColWidth = floor(12/$featured_query->post_count);
       if ($featured_query->have_posts()) : ?>
 
         <ul class="link-list recent-posts"><?php
@@ -47,8 +51,13 @@ class shapely_recent_posts extends WP_Widget {
             <?php if (get_the_content() != '') : ?>
 
               <!-- content -->
-              <li class="post-content">
-                <a href="<?php echo get_permalink(); ?>"><?php echo get_the_title(); ?></a>
+              <li class="post-content col-sm-<?php echo $bootstrapColWidth; ?>">
+                <a href="<?php echo get_permalink(); ?>">
+                  <?php if ( has_post_thumbnail() ) {
+                  	the_post_thumbnail();
+                  } ?>
+                  <?php echo get_the_title(); ?>
+                </a>
                 <span class="date"><?php echo get_the_date('d M , Y'); ?></span>
               </li>
               <!-- end content -->
@@ -63,7 +72,7 @@ class shapely_recent_posts extends WP_Widget {
       ?>
 
     </div> <!-- end posts wrapper -->
-
+  </section>
     <?php
     echo $after_widget;
   }
