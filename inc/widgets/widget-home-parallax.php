@@ -154,7 +154,7 @@ class shapely_home_parallax extends WP_Widget
                           class="widefat" />
       </p>
 
-      <p><label for="<?php echo $this->get_field_id('button2_link'); ?>"><?php esc_html_e('Button 1 Link ','shapely') ?></label>
+      <p><label for="<?php echo $this->get_field_id('button2_link'); ?>"><?php esc_html_e('Button 2 Link ','shapely') ?></label>
 
       <input type="text" value="<?php echo esc_url($instance['button2_link']); ?>"
                           name="<?php echo $this->get_field_name('button2_link'); ?>"
