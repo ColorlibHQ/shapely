@@ -8,7 +8,7 @@ class shapely_recent_posts extends WP_Widget {
 
   function __construct() {
 
-    $widget_ops = array('classname' => 'shapely-recent-posts col-sm-12 text-center', 'description' => esc_html__("Widget to show recent posts with thumbnails", 'shapely'));
+    $widget_ops = array('classname' => 'shapely-recent-posts text-center', 'description' => esc_html__("Widget to show recent posts with thumbnails", 'shapely'));
     parent::__construct('shapely_recent_posts', esc_html__('[Shapely] Recent Posts', 'shapely'), $widget_ops);
   }
 
