@@ -155,15 +155,15 @@ class shapely_home_features extends WP_Widget
     public function update( $new_instance, $old_instance ) {
         $instance = array();
         $instance['title'] = ( ! empty( $new_instance['title'] ) ) ? esc_html( $new_instance['title'] ) : '';
-        $instance['body_content'] = ( ! empty( $new_instance['body_content'] ) ) ? esc_html( $new_instance['body_content'] ) : '';
+        $instance['body_content'] = ( ! empty( $new_instance['body_content'] ) ) ? wp_kses_post( $new_instance['body_content'] ) : '';
         
         $instance['title1'] = ( ! empty( $new_instance['title1'] ) ) ? esc_html( $new_instance['title1'] ) : '';
         $instance['title2'] = ( ! empty( $new_instance['title2'] ) ) ? esc_html( $new_instance['title2'] ) : '';
         $instance['title3'] = ( ! empty( $new_instance['title3'] ) ) ? esc_html( $new_instance['title3'] ) : '';
         
-        $instance['body_content1'] = ( ! empty( $new_instance['body_content1'] ) ) ? esc_html( $new_instance['body_content1'] ) : '';
-        $instance['body_content2'] = ( ! empty( $new_instance['body_content2'] ) ) ? esc_html( $new_instance['body_content2'] ) : '';
-        $instance['body_content3'] = ( ! empty( $new_instance['body_content3'] ) ) ? esc_html( $new_instance['body_content3'] ) : '';
+        $instance['body_content1'] = ( ! empty( $new_instance['body_content1'] ) ) ? wp_kses_post( $new_instance['body_content1'] ) : '';
+        $instance['body_content2'] = ( ! empty( $new_instance['body_content2'] ) ) ? wp_kses_post( $new_instance['body_content2'] ) : '';
+        $instance['body_content3'] = ( ! empty( $new_instance['body_content3'] ) ) ? wp_kses_post( $new_instance['body_content3'] ) : '';
         
         $instance['icon1'] = ( ! empty( $new_instance['icon1'] ) ) ? esc_html( $new_instance['icon1'] ) : '';
         $instance['icon2'] = ( ! empty( $new_instance['icon2'] ) ) ? esc_html( $new_instance['icon2'] ) : '';
