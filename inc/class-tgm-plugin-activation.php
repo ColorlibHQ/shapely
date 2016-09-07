@@ -1924,6 +1924,7 @@ if ( ! function_exists( 'shapely' ) ) {
 	 * @param array $plugins An array of plugin arrays.
 	 * @param array $config  Optional. An array of configuration values.
 	 */
+	if ( ! function_exists('tgmpa') ) {
 	function tgmpa( $plugins, $config = array() ) {
 		$instance = call_user_func( array( get_class( $GLOBALS['shapely'] ), 'get_instance' ) );
 
@@ -1949,6 +1950,7 @@ if ( ! function_exists( 'shapely' ) ) {
 
 			call_user_func( array( $instance, 'config' ), $config );
 		}
+	}
 	}
 }
 
