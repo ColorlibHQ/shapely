@@ -5,7 +5,7 @@ Author: colorlib
 Author URI: https://colorlib.com/
 Description: Shapely is a powerful and versatile one page WordPress theme with pixel perfect design and outstanding functionality. It is by far the most advanced free WordPress theme available today with loads of unmatched customization options. This theme comes with several homepage widgets that can be used to add portfolio, testimonials, parallax sections, your product or service information, call for action and much more. Shapely supports most free and premium WordPress plugins such as WooCommerce, Jetpack, Gravity Forms, Contact Form 7, Yoast SEO, Google Analytics by Yoast and much more. This theme is the best suited for business, landing page, portfolio, ecommerce, store, local business,  personal websites but can be tweaked to be used as blog, magazine or any other awesome website while highlighting its unique one page setup. This is going to be the last WordPress theme you will ever want to use because it is so much better than anything you have seen. Needless to say that this theme is SEO friendly thanks to its well optimized strucutre. Shapely theme is mobile friendly and fully responsive making it your best multipurpose partnert for any project and website.
 Version: 1.0.5
-License: GNU General Public License v2 or later
+License: GNU General Public License v3
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 Text Domain: shapely
 Tags: left-sidebar, right-sidebar, featured-images, post-formats, threaded-comments, theme-options, photography, portfolio, full-width-template, grid-layout
@@ -117,7 +117,7 @@ svg:not(:root) {
   overflow: hidden;
 }
 figure {
-  margin: 1em 40px;
+  padding: 1em;
 }
 hr {
   box-sizing: content-box;
@@ -221,7 +221,6 @@ pre {
   background: #eee;
   font-family: "Courier 10 Pitch", Courier, monospace;
   font-size: 15px;
-  font-size: 0.9375rem;
   line-height: 1.6;
   margin-bottom: 1.6em;
   max-width: 100%;
@@ -231,7 +230,6 @@ pre {
 code, kbd, tt, var {
   font-family: Monaco, Consolas, "Andale Mono", "DejaVu Sans Mono", monospace;
   font-size: 15px;
-  font-size: 0.9375rem;
 }
 abbr, acronym {
   border-bottom: 1px dotted #666;
@@ -2535,4 +2533,112 @@ section {
 }
 .full-width {
   width: 100%;
+}
+
+
+.tags-links{
+  display:block;
+}
+
+#social { background: transparent; float: right; }
+#social li{
+  display: inline-block;
+}
+#social li,
+#social ul {
+  border: 0!important;
+  list-style: none;
+  padding-left: 0;
+  text-align: center;
+}
+#social .social_icon span { display: none; }
+#social li a[href*="twitter.com"] .fa:before,
+.fa-twitter:before {
+  content: "\f099"
+}
+#social li a[href*="facebook.com"] .fa:before,
+.fa-facebook-f:before,
+.fa-facebook:before {
+  content: "\f09a"
+}
+#social li a[href*="github.com"] .fa:before,
+.fa-github:before {
+  content: "\f09b"
+}
+#social li a[href*="/feed"] .fa:before,
+.fa-rss:before {
+  content: "\f09e"
+}
+#social li a[href*="pinterest.com"] .fa:before,
+.fa-pinterest:before {
+  content: "\f0d2"
+}
+#social li a[href*="plus.google.com"] .fa:before,
+.fa-google-plus:before {
+  content: "\f0d5"
+}
+#social li a[href*="linkedin.com"] .fa:before,
+.fa-linkedin:before {
+  content: "\f0e1"
+}
+#social li a[href*="youtube.com"] .fa:before,
+.fa-youtube:before {
+  content: "\f167"
+}
+#social li a[href*="instagram.com"] .fa:before,
+.fa-instagram:before {
+  content: "\f16d"
+}
+#social li a[href*="flickr.com"] .fa:before,
+.fa-flickr:before {
+  content: "\f16e"
+}
+#social li a[href*="tumblr.com"] .fa:before,
+.fa-tumblr:before {
+  content: "\f173"
+}
+#social li a[href*="dribbble.com"] .fa:before,
+.fa-dribbble:before {
+  content: "\f17d"
+}
+#social li a[href*="skype.com"] .fa:before,
+.fa-skype:before {
+  content: "\f17e"
+}
+#social li a[href*="foursquare.com"] .fa:before,
+.fa-foursquare:before {
+  content: "\f180"
+}
+#social li a[href*="vimeo.com"] .fa:before,
+.fa-vimeo-square:before {
+  content: "\f194"
+}
+#social li a[href*="spotify.com"] .fa:before,
+.fa-spotify:before {
+  content: "\f1bc"
+}
+#social li a[href*="soundcloud.com"] .fa:before,
+.fa-soundcloud:before {
+  content: "\f1be"
+}
+
+.header-image-bg{
+    background-size:cover;
+    position:relative;
+}
+
+.header-image-bg:after{
+    position:absolute;
+    top:0;
+    left:0;
+    right:0;
+    bottom:0;
+    background:rgba(245, 245, 245, .7);
+    content:'';
+    display:block;
+}
+
+.header-image-bg .page-title{
+    position:relative;
+    z-index:2;
 }
