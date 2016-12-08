@@ -133,12 +133,12 @@ if ( ! function_exists( 'get_shapely_theme_options' ) ) {
 		echo '<style type="text/css">';
 
 		if ( get_theme_mod( 'link_color' ) ) {
-			echo 'a {color:' . get_theme_mod( 'link_color' ) . '}';
+			echo 'a {color:' . esc_html( get_theme_mod( 'link_color' ) ) . '}';
 		}
 		if ( get_theme_mod( 'link_hover_color' ) ) {
 			echo 'a:hover, a:active, .post-title a:hover,
         .woocommerce nav.woocommerce-pagination ul li a:focus, .woocommerce nav.woocommerce-pagination ul li a:hover,
-        .woocommerce nav.woocommerce-pagination ul li span.current  { color: ' . get_theme_mod( 'link_hover_color' ) . ';}';
+        .woocommerce nav.woocommerce-pagination ul li span.current  { color: ' . esc_html( get_theme_mod( 'link_hover_color' ) ) . ';}';
 		}
 
 		if ( get_theme_mod( 'button_color' ) ) {
@@ -146,18 +146,18 @@ if ( ! function_exists( 'get_shapely_theme_options' ) ) {
           .woocommerce a.button.alt, .woocommerce button.button.alt,
           .woocommerce input.button.alt, .woocommerce #respond input#submit,
           .woocommerce a.button, .woocommerce button.button,
-          .woocommerce input.button { background:' . get_theme_mod( 'button_color' ) . ' !important; border: 2px solid' . get_theme_mod( 'button_color' ) . ' !important;}';
+          .woocommerce input.button { background:' . esc_html( get_theme_mod( 'button_color' ) ) . ' !important; border: 2px solid' . esc_html( get_theme_mod( 'button_color' ) ) . ' !important;}';
 		}
 		if ( get_theme_mod( 'button_hover_color' ) ) {
 			echo '.btn-filled:hover, .woocommerce #respond input#submit.alt:hover,
           .woocommerce a.button.alt:hover, .woocommerce button.button.alt:hover,
           .woocommerce input.button.alt:hover, .woocommerce #respond input#submit:hover,
           .woocommerce a.button:hover, .woocommerce button.button:hover,
-          .woocommerce input.button:hover  { background: ' . get_theme_mod( 'button_hover_color' ) . ' !important; border: 2px solid' . get_theme_mod( 'button_hover_color' ) . ' !important;}';
+          .woocommerce input.button:hover  { background: ' . esc_html( get_theme_mod( 'button_hover_color' ) ) . ' !important; border: 2px solid' . esc_html( get_theme_mod( 'button_hover_color' ) ) . ' !important;}';
 		}
 
 		if ( get_theme_mod( 'social_color' ) ) {
-			echo '.social-icons li a {color: ' . get_theme_mod( 'social_color' ) . ' !important ;}';
+			echo '.social-icons li a {color: ' . esc_html( get_theme_mod( 'social_color' ) ) . ' !important ;}';
 		}
 
 		echo '</style>';
@@ -271,7 +271,7 @@ if ( ! function_exists( 'shapely_pagination' ) ) {
  * Search Widget
  */
 function shapely_search_form( $form ) {
-	$form = '<form role="search" method="get" id="searchform" class="search-form" action="' . home_url( '/' ) . '" >
+	$form = '<form role="search" method="get" id="searchform" class="search-form" action="' . esc_url( home_url( '/' ) ) . '" >
     <label class="screen-reader-text" for="s">' . __( 'Search for:', 'shapely' ) . '</label>
     <input type="text" placeholder="' . __( 'Type Here', 'shapely' ) . '" type="text" value="' . get_search_query() . '" name="s" id="s" />
     <input type="submit" class="btn btn-fillded searchsubmit" id="searchsubmit" value="' . esc_attr__( 'Search', 'shapely' ) . '" />
@@ -283,36 +283,6 @@ function shapely_search_form( $form ) {
 
 add_filter( 'get_search_form', 'shapely_search_form', 100 );
 
-/*
- * Admin Css
- */
-function shapely_admin_style() {
-	echo '<style>
-        #setting-error-tgmpa.notice{  display : block; }
-        .client-sortable .logo_heading{
-                        background: #f3f3f3;
-                        border: 1px dotted;
-                        cursor: move;
-                        display: block;
-                        font-size: 14px;
-                        padding: 8px 0;
-                        text-align: center;
-                        width: 100%;
-                      }
-        .client-sortable .logo_heading:hover{
-                      border: 1px solid;
-                    }
-        .client-sortable .cloneya a.clone,
-        .client-sortable .cloneya a.delete { display: none; }
-
-        .client-sortable .cloneya:last-child a.clone,
-        .client-sortable .cloneya:last-child a.delete { display: inline-block; }
-
-      </style>';
-}
-
-add_action( 'admin_head', 'shapely_admin_style' );
-add_action( 'customize_controls_print_styles', 'shapely_admin_style' );
 
 /*
  * Author bio on single page
