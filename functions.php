@@ -300,9 +300,15 @@ require get_template_directory() . '/inc/metaboxes.php';
 /* --------------------------------------------------------------
        Theme Widgets
 -------------------------------------------------------------- */
-foreach ( glob( get_template_directory() . '/inc/widgets/*.php' ) as $lib_filename ) {
-	require_once( $lib_filename );
-}
+require_once(get_stylesheet_directory() . '/inc/widgets/widget-categories.php');
+require_once(get_stylesheet_directory() . '/inc/widgets/widget-home-call-for-action.php');
+require_once(get_stylesheet_directory() . '/inc/widgets/widget-home-clients.php');
+require_once(get_stylesheet_directory() . '/inc/widgets/widget-home-features.php');
+require_once(get_stylesheet_directory() . '/inc/widgets/widget-home-parallax.php');
+require_once(get_stylesheet_directory() . '/inc/widgets/widget-home-portfolio.php');
+require_once(get_stylesheet_directory() . '/inc/widgets/widget-home-testimonials.php');
+require_once(get_stylesheet_directory() . '/inc/widgets/widget-recent-posts.php');
+require_once(get_stylesheet_directory() . '/inc/widgets/widget-social.php');
 
 /* Globals */
 global $shapely_site_layout;
