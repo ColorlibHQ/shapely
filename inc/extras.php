@@ -251,39 +251,19 @@ add_filter( 'excerpt_more', 'shapely_excerpt_more' );
  */
 if ( ! function_exists( 'shapely_pagination' ) ) {
 
-	function shapely_pagination( $pages = '', $range = 2 ) {
-		global $paged;
-		$showitems = ( $range * 2 ) + 1;
-
-		if ( empty( $paged ) ) {
-			$paged = 1;
-		}
-
-		if ( $pages == '' ) {
-			global $wp_query;
-			$pages = $wp_query->max_num_pages;
-			if ( ! $pages ) {
-				$pages = 1;
-			}
-		}
-
-		if ( 1 != $pages ) {
-			echo "<div class=\"text-center\"><ul class=\"pagination\">";
-			//if($paged > 2 && $paged > $range+1 && $showitems < $pages) echo "<a href='".get_pagenum_link(1)."'>&laquo; First</a>";
-			if ( $paged > 1 && $showitems < $pages ) {
-				echo "</li><a aria-label=\"Previous\" href='" . get_pagenum_link( $paged - 1 ) . "'><span aria-hidden=\"true\">&laquo;</span></a></li>";
-			}
-			for ( $i = 1; $i <= $pages; $i ++ ) {
-				if ( 1 != $pages && ( ! ( $i >= $paged + $range + 1 || $i <= $paged - $range - 1 ) || $pages <= $showitems ) ) {
-					echo ( $paged == $i ) ? "<li class=\"active\"><a href=\"#\">" . $i . "</li>" : "<li><a href='" . get_pagenum_link( $i ) . "' class=\"inactive\">" . $i . "</a></li>";
-				}
-			}
-			if ( $paged < $pages && $showitems < $pages ) {
-				echo "<li><a aria-label=\"Next\" href='" . get_pagenum_link( $paged + 1 ) . "'><span aria-hidden=\"true\">&raquo;</span></a></li>";
-			}
-			//if ($paged < ($pages-1) && ( $paged+$range-1 < $pages ) && $showitems < $pages) echo '<a href="'. get_pagenum_link($pages).'">Last &raquo;</a>';
-			echo "</ul></div>\n";
-		}
+	function shapely_pagination() {
+		?>
+		<div class="text-center">
+			<nav class="pagination">
+				<?php
+				the_posts_pagination( array(
+					                      'mid_size'  => 2,
+					                      'prev_text' => '<icon class="fa fa-angle-left"></icon>',
+					                      'next_text' => '<icon class="fa fa-angle-right"></icon>',
+				                      ) ); ?>
+			</nav>
+		</div>
+		<?php
 	}
 }
 

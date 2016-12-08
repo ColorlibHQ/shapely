@@ -30,62 +30,6 @@ class shapely_Welcome {
 			$this,
 			'shapely_dismiss_required_action_callback'
 		) );
-
-		add_action( 'admin_init', array( $this, 'shapely_activate_plugin' ) );
-		add_action( 'admin_init', array( $this, 'shapely_deactivate_plugin' ) );
-		add_action( 'admin_init', array( $this, 'shapely_set_pages' ) );
-	}
-
-	public function shapely_set_pages() {
-		if ( ! empty( $_GET ) ) {
-			/**
-			 * Check action
-			 */
-			if ( ! empty( $_GET['action'] ) && $_GET['action'] === 'set_page_automatic' ) {
-				$active_tab = $_GET['tab'];
-				$about      = get_page_by_title( 'Homepage' );
-				update_option( 'page_on_front', $about->ID );
-				update_option( 'show_on_front', 'page' );
-
-				// Set the blog page
-				$blog = get_page_by_title( 'Blog' );
-				update_option( 'page_for_posts', $blog->ID );
-
-				wp_redirect( self_admin_url( 'themes.php?page=shapely-welcome&tab=' . $active_tab ) );
-			}
-		}
-	}
-
-
-	public function shapely_activate_plugin() {
-		if ( ! empty( $_GET ) ) {
-			/**
-			 * Check action
-			 */
-			if ( ! empty( $_GET['action'] ) && ! empty( $_GET['plugin'] ) && $_GET['action'] === 'activate_plugin' ) {
-				$active_tab = $_GET['tab'];
-				$url        = self_admin_url( 'themes.php?page=shapely-welcome&tab=' . $active_tab );
-				activate_plugin( $_GET['plugin'], $url );
-			}
-		}
-	}
-
-	public function shapely_deactivate_plugin() {
-		if ( ! empty( $_GET ) ) {
-			/**
-			 * Check action
-			 */
-			if ( ! empty( $_GET['action'] ) && ! empty( $_GET['plugin'] ) && $_GET['action'] === 'deactivate_plugin' ) {
-				$active_tab = $_GET['tab'];
-				$url        = self_admin_url( 'themes.php?page=shapely-welcome&tab=' . $active_tab );
-				$current    = get_option( 'active_plugins', array() );
-				$search     = array_search( $_GET['plugin'], $current );
-				if ( array_key_exists( $search, $current ) ) {
-					unset( $current[ $search ] );
-				}
-				update_option( 'active_plugins', $current );
-			}
-		}
 	}
 
 	/**
@@ -374,10 +318,10 @@ class shapely_Welcome {
 
 		<div class="wrap about-wrap epsilon-wrap">
 
-			<h1><?php echo __( 'Welcome to shapely! - Version ', 'shapely' ) . $shapely['Version']; ?></h1>
+			<h1><?php echo __( 'Welcome to Shapely! - Version ', 'shapely' ) . $shapely['Version']; ?></h1>
 
 			<div
-				class="about-text"><?php echo esc_html__( 'shapely is now installed and ready to use! Get ready to build something beautiful. We hope you enjoy it! We want to make sure you have the best experience using shapely and that is why we gathered here all the necessary information for you. We hope you will enjoy using shapely, as much as we enjoy creating great products.', 'shapely' ); ?></div>
+				class="about-text"><?php echo esc_html__( 'Shapely is now installed and ready to use! Get ready to build something beautiful. We hope you enjoy it! We want to make sure you have the best experience using shapely and that is why we gathered here all the necessary information for you. We hope you will enjoy using shapely, as much as we enjoy creating great products.', 'shapely' ); ?></div>
 
 			<div class="wp-badge epsilon-welcome-logo"></div>
 
@@ -390,7 +334,8 @@ class shapely_Welcome {
 					<?php echo $action_count > 0 ? '<span class="badge-action-count">' . esc_html( $action_count ) . '</span>' : '' ?></a>
 				<a href="<?php echo admin_url( 'themes.php?page=shapely-welcome&tab=recommended_plugins' ); ?>"
 				   class="nav-tab <?php echo $active_tab == 'recommended_plugins' ? 'nav-tab-active' : ''; ?> "><?php echo esc_html__( 'Recommended Plugins', 'shapely' ); ?></a>
-				<?php if ( $this->check_active( 'shapely-companion' ) ): ?>
+				<?php $shapely_companion = $this->check_active( 'shapely-companion' ); ?>
+				<?php if ( $shapely_companion['needs'] === 'deactivate' ): ?>
 					<a href="<?php echo admin_url( 'themes.php?page=shapely-welcome&tab=demo_content' ); ?>"
 					   class="nav-tab <?php echo $active_tab == 'demo_content' ? 'nav-tab-active' : ''; ?> "><?php echo esc_html__( 'Demo Content', 'shapely' ); ?></a>
 				<?php endif; ?>
@@ -418,8 +363,9 @@ class shapely_Welcome {
 					require_once get_template_directory() . '/inc/admin/welcome-screen/sections/changelog.php';
 					break;
 				case 'demo_content':
-					if ( $this->check_active( 'shapely-companion' ) ) {
-						require_once ABSPATH . 'wp-content/plugins/shapely-companion/shapely-demo-content.php';
+					$shapely_companion = $this->check_active( 'shapely-companion' );
+					if ( $shapely_companion['needs'] === 'deactivate' ) {
+						require_once ABSPATH . 'wp-content/plugins/shapely-companion/inc/views/shapely-demo-content.php';
 					}
 					break;
 				default:

@@ -12,10 +12,7 @@ wp_enqueue_script( 'updates' );
 
 	<?php
 	global $shapely_required_actions;
-
 	if ( ! empty( $shapely_required_actions ) ):
-
-		/* shapely_show_required_actions is an array of true/false for each required action that was dismissed */
 		$shapely_show_required_actions = get_option( "shapely_show_required_actions" );
 		$hooray = true;
 

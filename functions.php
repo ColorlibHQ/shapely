@@ -100,7 +100,7 @@ if ( ! function_exists( 'shapely_setup' ) ) :
 			global $shapely_required_actions, $shapely_recommended_plugins;
 
 			$shapely_recommended_plugins = array(
-				'force-regenerate-thumbnails' => array( 'recommended' => true )
+				'fancybox-for-wordpress' => array( 'recommended' => false )
 			);
 
 			/*
@@ -113,14 +113,21 @@ if ( ! function_exists( 'shapely_setup' ) ) :
 			 */
 			$shapely_required_actions = array(
 				array(
-					"id"          => 'shapely-req-ac-install-wp-import-plugin',
+					"id"          => 'shapely-req-ac-install-companion-plugin',
+					"title"       => Shapely_Notify_System::shapely_companion_title(),
+					"description" => Shapely_Notify_System::shapely_companion_description(),
+					"check"       => Shapely_Notify_System::shapely_has_plugin( 'shapely-companion' ),
+					"plugin_slug" => 'shapely-companion'
+				),
+				array(
+					"id"          => 'shapely-req-ac-install-wp-jetpack-plugin',
 					"title"       => Shapely_Notify_System::shapely_jetpack_title(),
 					"description" => Shapely_Notify_System::shapely_jetpack_description(),
 					"check"       => Shapely_Notify_System::shapely_has_plugin( 'jetpack' ),
 					"plugin_slug" => 'jetpack'
 				),
 				array(
-					"id"          => 'shapely-req-ac-install-wp-import-widget-plugin',
+					"id"          => 'shapely-req-ac-install-wp-yoast-plugin',
 					"title"       => Shapely_Notify_System::shapely_yoast_title(),
 					'description' => Shapely_Notify_System::shapely_yoast_description(),
 					"check"       => Shapely_Notify_System::shapely_has_plugin( 'wordpress-seo' ),
@@ -129,7 +136,7 @@ if ( ! function_exists( 'shapely_setup' ) ) :
 				array(
 					"id"          => 'shapely-req-import-content',
 					"title"       => esc_html__( 'Import content', 'shapely' ),
-					"description" => esc_html__( 'Head over to the Demo Content tab and import sample content data.', 'shapely' ),
+					"description" => esc_html__( 'Head over to the Demo Content tab (available only if you installed Shapely Companion plugin) and import sample content data.', 'shapely' ),
 					"help"        => '<a href="' . self_admin_url( 'themes.php?page=shapely-welcome&tab=demo_content' ) . '">' . __( 'Demo Content', 'shapely' ) . '</a>',
 					"check"       => Shapely_Notify_System::shapely_has_content(),
 				),

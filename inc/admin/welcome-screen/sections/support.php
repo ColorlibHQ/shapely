@@ -6,7 +6,7 @@
 			<i><?php esc_html_e( 'We offer excellent support through our advanced ticketing system. Make sure to register your purchase before contacting support!', 'shapely' ) ?></i>
 		</p>
 		<p><a target="_blank"  class="button button-primary"
-		      href="<?php echo esc_url( 'https://www.machothemes.com/support/' ); ?>"><?php esc_html_e( 'Contact Support', 'shapely' ); ?></a>
+		      href="<?php echo esc_url( 'https://colorlib.com/wp/forums/' ); ?>"><?php esc_html_e( 'Contact Support', 'shapely' ); ?></a>
 		</p>
 	</div><!--/.col-->
 
@@ -16,7 +16,7 @@
 			<i><?php esc_html_e( 'This is the place to go to reference different aspects of the theme. Our online documentation is an incredible resource for learning the ins and outs of using shapely.', 'shapely' ) ?></i>
 		</p>
 		<p>
-			<a target="_blank" href="<?php echo esc_url( 'http://docs.machothemes.com/' ); ?>"><?php esc_html_e( 'See our full documentation', 'shapely' ); ?></a>
+			<a target="_blank" href="<?php echo esc_url( 'https://colorlib.com/wp/support/shapely/' ); ?>"><?php esc_html_e( 'See our full documentation', 'shapely' ); ?></a>
 		</p>
 	</div><!--/.col-->
 

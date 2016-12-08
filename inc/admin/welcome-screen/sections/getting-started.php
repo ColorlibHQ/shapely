@@ -25,7 +25,7 @@ $count = $this->count_actions();
 		<p><?php esc_html_e( 'Even if you\'re a long-time WordPress user, we still believe you should give our documentation a very quick Read.', 'shapely' ) ?></p>
 		<p>
 			<a target="_blank"
-			   href="<?php echo esc_url( 'http://docs.machothemes.com/' ); ?>"><?php esc_html_e( 'Full documentation', 'shapely' ); ?></a>
+			   href="<?php echo esc_url( 'https://colorlib.com/wp/support/shapely/' ); ?>"><?php esc_html_e( 'Full documentation', 'shapely' ); ?></a>
 		</p>
 	</div><!--/.col-->
 
