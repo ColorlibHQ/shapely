@@ -256,6 +256,13 @@ blockquote {
     margin: 0 1.5em;
 }
 
+
+q:before, q:after {
+    content: '"' !important;
+    display: inline-block;
+    position: relative;
+}
+
 address {
     margin: 0 0 1.5em;
 }
@@ -1969,10 +1976,12 @@ input[type="submit"]:focus {
     border-top-left-radius: 3px;
     border-bottom-left-radius: 3px;
 }
+
 .pagination .nav-links *:last-child {
     border-top-right-radius: 3px;
     border-bottom-right-radius: 3px;
 }
+
 .pagination a, .pagination span {
     width: 32px;
     height: 32px;
