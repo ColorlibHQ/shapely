@@ -102,7 +102,7 @@ function shapely_save_custom_meta($post_id)
     }
 
     if ( $_POST['site_layout'] ) {
-        update_post_meta($post_id, 'site_layout', esc_html( $_POST['site_layout']) );
+        update_post_meta($post_id, 'site_layout', stripslashes( $_POST['site_layout']) );
     } else{
         delete_post_meta($post_id, 'site_layout');
     }

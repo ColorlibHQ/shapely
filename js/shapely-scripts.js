@@ -1,5 +1,5 @@
 ;(function($){
-    
+
 var cl_nav,
     cl_navOuterHeight;
 
@@ -39,15 +39,15 @@ jQuery(document).ready(function($) {
         });
     }, 200);
 
-    
+
     // Fix nav to top while scrolling
 
     cl_nav = $('body .nav-container nav:first');
     cl_navOuterHeight = $('body .nav-container nav:first').outerHeight();
     window.addEventListener("scroll", updateNav, false);
     updateNav();
-    
-    
+
+
     // Menu dropdown positioning
 
     $('.menu > li > ul').each(function() {
@@ -89,7 +89,7 @@ jQuery(document).ready(function($) {
     $('.module.widget-handle').click(function() {
         $(this).toggleClass('toggle-search');
     });
-    
+
     $('.search-widget-handle .search-form input').click(function(e){
         if (!e) e = window.event;
         e.stopPropagation();
@@ -194,7 +194,7 @@ jQuery(window).load(function($) {
 
 });
 
-/* Function To 
+/* Function To
  * keep menu fixed
  **/
 function updateNav(){

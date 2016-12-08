@@ -14,4 +14,4 @@ Theme documentation available [here](https://colorlib.com/wp/themes/shapely/).
 
 ## License
 
-This theme is licensed under GPLv2. You can feel free to modify it as loon gas you keep the original copyright information.
+This theme is licensed under GPLv3. You can feel free to modify it as loon gas you keep the original copyright information.

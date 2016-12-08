@@ -1,0 +1,47 @@
+### 1.0.6
+<a href="https://github.com/puikinsh/shapely/issues">Issues</a>
+
+ #83 - don't register widgets if jetpack is not installed/activated (testimonials and portfolio)
+ #82 - changed loading files method
+ #69 - changed pagination
+
+### 1.0.5
+<a href="https://github.com/puikinsh/shapely/issues">Issues</a>
+
+ #62 - done
+ #89 - in plugin
+ #87 - removed from theme - ADDED TO COMPANION
+ #86 - widgets are in the plugin
+ #85 - sanitized the dropdown instead of escaping it
+ #84 - found in the plugin
+ #82 - widget files are found in the plugin, this is no longer an issue
+ #81 - removed if condition in the social menu
+ #80 - followed guide
+ #79 - already fixed
+ #78 - removed REM font size declaration, fixed
+ #77 - figure had a margin left/right that was messing up the columns, changed it to padding . works
+ #76 - added tags in single post
+ #75 - seems to be fixed
+ #74 - redone title section ( if yoast seo is not installed/breadcrumbs not used, title will have a 12 column size )
+ #72 - removed custom css
+ #71 - remooved from extras.php
+ #67 - no longer relevant - widgets are in the companion plugin now
+ #65 - moved to style.css
+ #61 - prefixed
+ #60 - made them translation ready
+ #59 - removed sanitization
+ #58 - added custom logo functionality
+ #57 - moved them in the after theme setup hook
+ #55 - removed one of the enqueues
+ #54 - changed handler names
+ #53 - license changed to gpl v3
+ #52 - this should definitely be esc_html
+ #51 - changed get_template_directory to get_stylesheet_directory (allowed to be overridden in child themes) - but i don`t think this is quite OK
+ #50 - echo esc_html(). esc_attr is used inside html tags (value=<?php echo esc_attr() ?>, etc)
+ #47 - design? or just throw it in there?
+ #44 - no longer relevant
+ #43 - no longer relevant ?
+ #37 - fixed problems during activation
+ #35 - no longer relevant, widgets moved to plugin
+ #21 - added custom header image
+ #25 - fixed
