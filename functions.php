@@ -247,16 +247,7 @@ function shapely_scripts() {
 }
 
 add_action( 'wp_enqueue_scripts', 'shapely_scripts' );
-// add admin scripts
-function shapely_admin_script( $hook ) {
-	if ( $hook == 'widgets.php' || $hook == 'customize.php' ) {
-		wp_enqueue_media();
-		wp_enqueue_style( 'font-awesome', get_template_directory_uri() . '/inc/css/font-awesome.min.css' );
 
-	}
-}
-
-add_action( 'admin_enqueue_scripts', 'shapely_admin_script' );
 /**
  * Implement the Custom Header feature.
  */
@@ -297,13 +288,6 @@ require get_template_directory() . '/inc/socialnav.php';
  */
 require get_template_directory() . '/inc/metaboxes.php';
 
-/* --------------------------------------------------------------
-       Theme Widgets
--------------------------------------------------------------- */
-foreach ( glob( get_template_directory() . '/inc/widgets/*.php' ) as $lib_filename ) {
-	require_once( $lib_filename );
-}
-
 /* Globals */
 global $shapely_site_layout;
 $shapely_site_layout = array(
@@ -313,12 +297,6 @@ $shapely_site_layout = array(
 	'full-width' => esc_html__( 'Full Width', 'shapely' )
 );
 
-/**
- * WooCoomerce Support
- */
-if ( class_exists( 'WooCommerce' ) ) {
-	require get_stylesheet_directory() . '/inc/woo-setup.php';
-}
 
 /**
  * Load the system checks ( used for notifications )
