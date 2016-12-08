@@ -56,7 +56,6 @@
             </nav><!-- #site-navigation -->
         </div>
 	</header><!-- #masthead -->
-    
 	<div id="content" class="main-container">
         <?php ( is_page_template('template-home.php') ) ? '' : shapely_top_callout(); ?>
         <section class="content-area <?php echo ( get_theme_mod('top_callout', true ) ) ? '' : ' pt0 ' ?>">
