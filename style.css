@@ -256,7 +256,6 @@ blockquote {
     margin: 0 1.5em;
 }
 
-
 q:before, q:after {
     content: '"' !important;
     display: inline-block;
@@ -530,6 +529,8 @@ a:hover, a:active {
     transition: all 0.3s ease;
     -webkit-transition: all 0.3s ease;
     -moz-transition: all 0.3s ease;
+    font-weight: 300;
+    font-family: 'Raleway';
 }
 
 .site-title:hover {
@@ -1478,10 +1479,14 @@ nav {
     visibility: visible;
 }
 
+.nav-container {
+    min-height: 56px;
+}
+
 nav.outOfSight {
-    transform: translate3d(0, -200px, 0);
-    -webkit-transform: translate3d(0, -200px, 0);
-    -moz-transform: translate3d(0, -200px, 0);
+    transform: translate3d(0, -100px, 0);
+    -webkit-transform: translate3d(0, -100px, 0);
+    -moz-transform: translate3d(0, -100px, 0);
     transition: all 0.3s ease;
     -webkit-transition: all 0.3s ease;
     -moz-transition: all 0.3s ease;
@@ -1491,19 +1496,27 @@ nav.scrolled {
     transform: translate3d(0, 0px, 0);
     -webkit-transform: translate3d(0, 0px, 0);
     -moz-transform: translate3d(0, 0px, 0);
+    transition: all 0.3s ease;
+    -webkit-transition: all 0.3s ease;
+    -moz-transition: all 0.3s ease;
 }
 
 nav.fixed.scrolled {
     visibility: visible;
     opacity: 1;
+    transition: all 0.3s ease;
+    -webkit-transition: all 0.3s ease;
+    -moz-transition: all 0.3s ease;
 }
 
 nav.fixed {
     top: 0;
-    width: 100%;
     z-index: 999;
     left: 0;
     right: 0;
+    transition: all 0.3s ease;
+    -webkit-transition: all 0.3s ease;
+    -moz-transition: all 0.3s ease;
 }
 
 nav.fixed {
@@ -1759,7 +1772,6 @@ nav.fixed.scrolled {
 
     .menu li {
         line-height: 24px;
-        float: none;
         display: block;
         width: 100%;
         max-width: 100%;
@@ -2639,6 +2651,11 @@ iframe {
     font-style: italic;
 }
 
+.content q {
+    background: #fafafa;
+    font-style: italic;
+}
+
 .content blockquote p {
     font-style: italic;
 }
@@ -2956,7 +2973,7 @@ footer.bg-dark a {
 
 /*!---------- 23. OTHER ----------*/
 
-section {
+.border-bottom {
     border-bottom: 1px solid rgba(0, 0, 0, 0.1);
 }
 
@@ -2968,6 +2985,10 @@ section {
     padding-top: 0;
     padding-bottom: 0;
     border: 0;
+}
+
+.parallax-window {
+    background: transparent;
 }
 
 .small-screen .top-parallax-section {

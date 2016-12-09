@@ -133,12 +133,12 @@ if ( ! function_exists( 'get_shapely_theme_options' ) ) {
 		echo '<style type="text/css">';
 
 		if ( get_theme_mod( 'link_color' ) ) {
-			echo 'a {color:' . esc_html( get_theme_mod( 'link_color' ) ) . '}';
+			echo 'a {color:' . esc_attr( get_theme_mod( 'link_color' ) ) . '}';
 		}
 		if ( get_theme_mod( 'link_hover_color' ) ) {
 			echo 'a:hover, a:active, .post-title a:hover,
         .woocommerce nav.woocommerce-pagination ul li a:focus, .woocommerce nav.woocommerce-pagination ul li a:hover,
-        .woocommerce nav.woocommerce-pagination ul li span.current  { color: ' . esc_html( get_theme_mod( 'link_hover_color' ) ) . ';}';
+        .woocommerce nav.woocommerce-pagination ul li span.current  { color: ' . esc_attr( get_theme_mod( 'link_hover_color' ) ) . ';}';
 		}
 
 		if ( get_theme_mod( 'button_color' ) ) {
@@ -146,18 +146,18 @@ if ( ! function_exists( 'get_shapely_theme_options' ) ) {
           .woocommerce a.button.alt, .woocommerce button.button.alt,
           .woocommerce input.button.alt, .woocommerce #respond input#submit,
           .woocommerce a.button, .woocommerce button.button,
-          .woocommerce input.button { background:' . esc_html( get_theme_mod( 'button_color' ) ) . ' !important; border: 2px solid' . esc_html( get_theme_mod( 'button_color' ) ) . ' !important;}';
+          .woocommerce input.button { background:' . esc_attr( get_theme_mod( 'button_color' ) ) . ' !important; border: 2px solid' . esc_attr( get_theme_mod( 'button_color' ) ) . ' !important;}';
 		}
 		if ( get_theme_mod( 'button_hover_color' ) ) {
 			echo '.btn-filled:hover, .woocommerce #respond input#submit.alt:hover,
           .woocommerce a.button.alt:hover, .woocommerce button.button.alt:hover,
           .woocommerce input.button.alt:hover, .woocommerce #respond input#submit:hover,
           .woocommerce a.button:hover, .woocommerce button.button:hover,
-          .woocommerce input.button:hover  { background: ' . esc_html( get_theme_mod( 'button_hover_color' ) ) . ' !important; border: 2px solid' . esc_html( get_theme_mod( 'button_hover_color' ) ) . ' !important;}';
+          .woocommerce input.button:hover  { background: ' . esc_attr( get_theme_mod( 'button_hover_color' ) ) . ' !important; border: 2px solid' . esc_attr( get_theme_mod( 'button_hover_color' ) ) . ' !important;}';
 		}
 
 		if ( get_theme_mod( 'social_color' ) ) {
-			echo '.social-icons li a {color: ' . esc_html( get_theme_mod( 'social_color' ) ) . ' !important ;}';
+			echo '.social-icons li a {color: ' . esc_attr( get_theme_mod( 'social_color' ) ) . ' !important ;}';
 		}
 
 		echo '</style>';
@@ -481,9 +481,9 @@ function shapely_get_header_logo() {
 
 	<a href="<?php echo esc_url( home_url( '/' ) ); ?>"><?php
 	if ( $logo[0] != '' ) { ?>
-		<img src="<?php echo $logo[0]; ?>" class="logo" alt="<?php echo esc_html( get_bloginfo( 'name' ) ); ?>"><?php
+		<img src="<?php echo esc_url($logo[0]); ?>" class="logo" alt="<?php echo esc_html( get_bloginfo( 'name' ) ); ?>"><?php
 	} else { ?>
-		<h1 class="site-title"><?php echo esc_html( get_bloginfo( 'name' ) ); ?></h1><?php
+		<span class="site-title"><?php echo esc_html( get_bloginfo( 'name' ) ); ?></span><?php
 	} ?>
 	</a><?php
 }
@@ -586,12 +586,12 @@ function shapely_footer_callout() {
 				<div class="col-sm-12 text-center p0">
 					<div class="overflow-hidden">
 						<div class="col-sm-9">
-							<h3 class="cfa-text"><?php echo esc_html( get_theme_mod( 'footer_callout_text' ) ); ?></h3>
+							<h3 class="cfa-text"><?php echo wp_kses_post( get_theme_mod( 'footer_callout_text' ) ); ?></h3>
 						</div>
 						<div class="col-sm-3">
 							<a href='<?php echo esc_url( get_theme_mod( 'footer_callout_link' ) ); ?>'
 							   class="mb0 btn btn-lg btn-filled cfa-button">
-								<?php echo esc_html( get_theme_mod( 'footer_callout_btntext' ) ); ?>
+								<?php echo wp_kses_post( get_theme_mod( 'footer_callout_btntext' ) ); ?>
 							</a>
 						</div>
 					</div>
@@ -612,7 +612,7 @@ function shapely_get_attachment_image() {
 	$src = wp_get_attachment_image_src( $id, 'full', false );
 
 	if ( ! empty( $src[0] ) ) {
-		echo $src[0];
+		echo esc_url($src[0]);
 	}
 
 	die();
