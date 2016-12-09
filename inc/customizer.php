@@ -115,7 +115,7 @@ function shapely_customizer( $wp_customize ) {
 			                            'top_callout',
 			                            array(
 				                            'type'     => 'mte-toggle',
-				                            'label'    => esc_html__( 'Show title in top call out box', 'newsmag' ),
+				                            'label'    => esc_html__( 'Show title in top call out box', 'shapely' ),
 				                            'section'  => 'shapely_main_section',
 				                            'priority' => 20
 			                            )
