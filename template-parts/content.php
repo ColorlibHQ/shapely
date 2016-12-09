@@ -12,7 +12,7 @@
 <article id="post-<?php the_ID(); ?>" <?php post_class('post-snippet mb64'.( is_single() ? ' content': "")); ?>>
 	<header class="entry-header nolist">
 		<?php
-        if( has_post_thumbnail() && !is_single() ){ ?>
+        if( has_post_thumbnail() ){ ?>
             <a class="text-center" href="<?php the_permalink(); ?>" title="<?php the_title_attribute(); ?>"><?php
                 the_post_thumbnail( 'shapely-featured', array( 'class' => 'mb24')); ?>
             </a><?php

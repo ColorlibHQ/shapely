@@ -2,9 +2,9 @@
 # This file is distributed under the GNU General Public License v3.
 msgid ""
 msgstr ""
-"Project-Id-Version: Shapely 1.0.5\n"
+"Project-Id-Version: Shapely 1.0.6\n"
 "Report-Msgid-Bugs-To: https://www.colorlib.com/\n"
-"POT-Creation-Date: 2016-12-08 12:16:12+00:00\n"
+"POT-Creation-Date: 2016-12-09 08:04:09+00:00\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -93,19 +93,19 @@ msgstr ""
 msgid "Used for footer widget area"
 msgstr ""
 
-#: functions.php:310
+#: functions.php:294
 msgid "Left Sidebar"
 msgstr ""
 
-#: functions.php:311
+#: functions.php:295
 msgid "Right Sidebar"
 msgstr ""
 
-#: functions.php:312
+#: functions.php:296
 msgid "No Sidebar"
 msgstr ""
 
-#: functions.php:313
+#: functions.php:297
 msgid "Full Width"
 msgstr ""
 
@@ -456,109 +456,99 @@ msgstr ""
 msgid "Type Here"
 msgstr ""
 
-#: inc/extras.php:277 inc/extras.php:577
+#: inc/extras.php:277 inc/extras.php:547
 msgid "Search"
 msgstr ""
 
-#: inc/extras.php:437
+#: inc/extras.php:407
 #. translators: 1: date, 2: time
 msgid "%1$s at %2$s"
 msgstr ""
 
-#: inc/extras.php:437
+#: inc/extras.php:407
 msgid "Edit"
 msgstr ""
 
-#: inc/extras.php:449
+#: inc/extras.php:419
 msgid "Your comment is awaiting moderation."
 msgstr ""
 
-#: inc/extras.php:483
+#: inc/extras.php:453
 msgid "Your Name"
 msgstr ""
 
-#: inc/extras.php:487
+#: inc/extras.php:457
 msgid "Email Address"
 msgstr ""
 
-#: inc/extras.php:491
+#: inc/extras.php:461
 msgid "Your Website (optional)"
 msgstr ""
 
-#: inc/extras.php:496
+#: inc/extras.php:466
 msgid "Leave Comment"
 msgstr ""
 
-#: inc/extras.php:579 inc/extras.php:581
+#: inc/extras.php:549 inc/extras.php:551
 msgid "Portfolio"
 msgstr ""
 
-#: inc/metaboxes.php:16
+#: inc/metaboxes.php:15
 msgid ""
 "Select layout for this specific Page only ( Note: This setting only "
 "reflects if page Template is set as Default Template and Blog Type "
 "Templates.)"
 msgstr ""
 
-#: inc/metaboxes.php:21
+#: inc/metaboxes.php:20
 msgid "Select layout for this specific Post only"
 msgstr ""
 
-#: inc/metaboxes.php:28
+#: inc/metaboxes.php:27
 msgid "Select layout for this specific Product only"
 msgstr ""
 
-#: inc/metaboxes.php:36
+#: inc/metaboxes.php:35
 msgid "Select layout for this specific Portfolio only"
 msgstr ""
 
-#: inc/template-tags.php:44 inc/template-tags.php:50
+#: inc/metaboxes.php:64
+msgid "Default"
+msgstr ""
+
+#: inc/template-tags.php:47 inc/template-tags.php:53
 #. translators: used between list items, there is a space after the comma
 msgid ", "
 msgstr ""
 
-#: inc/template-tags.php:46
+#: inc/template-tags.php:49
 msgid "Posted in %1$s"
 msgstr ""
 
-#: inc/template-tags.php:53
+#: inc/template-tags.php:56
 msgid "Tagged %1$s"
 msgstr ""
 
-#: inc/template-tags.php:59
+#: inc/template-tags.php:62
 msgid "Leave a comment"
 msgstr ""
 
-#: inc/template-tags.php:59
+#: inc/template-tags.php:62
 msgid "1 Comment"
 msgstr ""
 
-#: inc/template-tags.php:59
+#: inc/template-tags.php:62
 msgid "% Comments"
 msgstr ""
 
-#: inc/template-tags.php:66 template-parts/content-page.php:33
+#: inc/template-tags.php:69 template-parts/content-page.php:33
 #. translators: %s: Name of current post
 msgid "Edit %s"
 msgstr ""
 
-#: inc/template-tags.php:127
+#: inc/template-tags.php:131
 msgid "View all posts in %s"
 msgstr ""
-
-#: inc/woo-setup.php:98
-msgid "View your shopping cart"
-msgstr ""
-
-#: inc/woo-setup.php:99
-msgid "Start shopping"
-msgstr ""
-
-#: inc/woo-setup.php:103
-msgid "%d item"
-msgid_plural "%d items"
-msgstr[0] ""
-msgstr[1] ""
 
 #: search.php:21
 msgid "Search Results for: %s"
@@ -650,7 +640,7 @@ msgctxt "Read More"
 msgid "Read More"
 msgstr ""
 
-#: inc/extras.php:497
+#: inc/extras.php:467
 msgctxt "noun"
 msgid "Comment"
 msgstr ""
