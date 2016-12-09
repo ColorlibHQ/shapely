@@ -1,3 +1,22 @@
+### 1.7.0
+<a href="https://github.com/puikinsh/shapely/issues">Issues</a>
+	#79 - restyled <q> a little bit ( added a bg, set font style to italic )
+	#66 - woo-setup.php was not deleted from the theme files, fixed
+	#63 - escaped echoes
+	#52 - changed esc_html to wp_kses_post to allow some html tags
+	#51 - related to #66, deleted woo-setup.php
+	#47 - added support for Post thumb in page as well
+	#35 - fixed in the first update
+	#46 - reworked script that fixes the navbar top ( listen event, wait for a specific offset, animate it )
+	#48 - added prev / next for content
+	#29 - this does not happen in the current version of the theme
+	#50 - Content is escaped with wp_kses_post where appropriate
+	#49 - seems to be fixed in the current theme version ( also, added a clearfix after the section - just in case )
+	#39 - sticky navigation removed for hamburger menus ( larger menus could not be used, you can't scroll in a fixed element )
+	#30 - archive page did not implement layout styles
+	#45 - added border-bottom checkbox toggle for widget
+	#79 - added epsilon toggles for widgets
+
 ### 1.0.7
 <a href="https://github.com/puikinsh/shapely/issues">Issues</a>
 	#23 - html was missing a closing tag

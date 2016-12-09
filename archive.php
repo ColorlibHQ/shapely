@@ -6,25 +6,19 @@
  *
  * @package Shapely
  */
-
 get_header(); ?>
+<?php $layout_class = ( function_exists( 'shapely_get_layout_class' ) ) ? shapely_get_layout_class() : ''; ?>
+	<div id="primary" class="col-md-9 mb-xs-24 <?php echo esc_attr( $layout_class ); ?>"><?php
+		if ( have_posts() ) :
 
-	<div id="primary" class="content-area col-md-9 mb-xs-24">
-		<main id="main" class="site-main" role="main">
+			if ( is_home() && ! is_front_page() ) : ?>
+				<header>
+					<h1 class="page-title screen-reader-text"><?php single_post_title(); ?></h1>
+				</header>
 
-		<?php
-		if ( have_posts() ) : ?>
-          
-          <?php if( !get_theme_mod('top_callout', true ) ) { ?>
-			<header class="page-header">
 				<?php
-					the_archive_title( '<h1 class="page-title">', '</h1>' );
-					the_archive_description( '<div class="taxonomy-description">', '</div>' );
-				?>
-			</header><!-- .page-header --><?php
-          } ?>
+			endif;
 
-			<?php
 			/* Start the Loop */
 			while ( have_posts() ) : the_post();
 
@@ -37,17 +31,16 @@ get_header(); ?>
 
 			endwhile;
 
-			the_posts_navigation();
+			if ( function_exists( "shapely_pagination" ) ):
+				shapely_pagination();
+			endif;
 
 		else :
 
 			get_template_part( 'template-parts/content', 'none' );
 
 		endif; ?>
-
-		</main><!-- #main -->
 	</div><!-- #primary -->
-
 <?php
 get_sidebar();
 get_footer();
