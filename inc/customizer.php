@@ -109,12 +109,26 @@ function shapely_customizer( $wp_customize ) {
 		'sanitize_callback' => 'shapely_sanitize_checkbox',
 	) );
 
-	$wp_customize->add_control( 'top_callout', array(
-		'label'    => esc_html__( 'check to show title in top call out box', 'shapely' ),
-		'section'  => 'shapely_main_section',
-		'priority' => 20,
-		'type'     => 'checkbox',
-	) );
+	if(class_exists('Epsilon_Control_Toggle')){
+		$wp_customize->add_control( new Epsilon_Control_Toggle(
+			                            $wp_customize,
+			                            'top_callout',
+			                            array(
+				                            'type'     => 'mte-toggle',
+				                            'label'    => esc_html__( 'Show title in top call out box', 'newsmag' ),
+				                            'section'  => 'shapely_main_section',
+				                            'priority' => 20
+			                            )
+		                            )
+		);
+	} else {
+		$wp_customize->add_control( 'top_callout', array(
+			'label'    => esc_html__( 'check to show title in top call out box', 'shapely' ),
+			'section'  => 'shapely_main_section',
+			'priority' => 20,
+			'type'     => 'checkbox',
+		) );
+	}
 
 	$wp_customize->add_setting( 'blog_name', array(
 		'default'           => '',
@@ -190,7 +204,7 @@ function shapely_customizer( $wp_customize ) {
 
 	$wp_customize->add_control( 'shapely_footer_copyright', array(
 		'type'    => 'textarea',
-		'label'   => __('Copyright Text', 'shapely'),
+		'label'   => __( 'Copyright Text', 'shapely' ),
 		'section' => 'shapely_footer_section',
 	) );
 
@@ -206,13 +220,13 @@ function shapely_sanitize_strip_slashes( $input ) {
 }
 
 /**
- * Sanitzie checkbox for WordPress customizer.
+ * Sanitize checkbox for WordPress customizer.
  */
 function shapely_sanitize_checkbox( $input ) {
 	if ( $input == 1 ) {
-		return 1;
+		return true;
 	} else {
-		return '';
+		return false;
 	}
 }
 
