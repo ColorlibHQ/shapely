@@ -241,15 +241,6 @@ function shapely_sanitize_hexcolor( $color ) {
 
 
 /**
- * Adds sanitization callback function: Number.
- */
-function shapely_sanitize_number( $input ) {
-	if ( isset( $input ) && is_numeric( $input ) ) {
-		return $input;
-	}
-}
-
-/**
  * Binds JS handlers to make Theme Customizer preview reload changes asynchronously.
  */
 function shapely_customize_preview_js() {

@@ -1,3 +1,19 @@
+### 1.0.7
+<a href="https://github.com/puikinsh/shapely/issues">Issues</a>
+	#23 - html was missing a closing tag
+	#85 - sanitized with strip_tags
+	#85 - sanitized dropdown with strip_tags
+	#56 - removed admin styles
+	#66 - moved to plugin
+	#79 - re-added the quotes for q element
+	#82 - this was no longer used, widgets were moved to a plugin
+	#68 - this should be in the plugin repo, fixed
+	#93 #47 - Post thumb is now shown in content ( above the title )
+	#63 - escapes/sanitizes where needed
+	#60 - Default string is now translatable
+	#58 - removed sanitization function that's no longer used
+	#28 - this should be in the companion plugin, fixed.
+
 ### 1.0.6
 <a href="https://github.com/puikinsh/shapely/issues">Issues</a>
 
