@@ -364,7 +364,7 @@ class shapely_Welcome {
 					break;
 				case 'demo_content':
 					$shapely_companion = $this->check_active( 'shapely-companion' );
-					if ( $shapely_companion['needs'] === 'deactivate' ) {
+					if ( $shapely_companion['needs'] === 'deactivate' && file_exists( ABSPATH . 'wp-content/plugins/shapely-companion/inc/views/shapely-demo-content.php' ) ) {
 						require_once ABSPATH . 'wp-content/plugins/shapely-companion/inc/views/shapely-demo-content.php';
 					}
 					break;

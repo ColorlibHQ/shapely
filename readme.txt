@@ -1,12 +1,12 @@
 /*========= About Theme =========*/
 
 Theme Name: Shapely
-Theme URI: http://colorlib.com/wp/shapely/
+Theme URI: https://colorlib.com/wp/shapely/
 Version: 1.0.5
 Tested up to: WP 4.6
 
 Author: Aigars Silkalns
-Author URI: http://colorlib.com/wp/
+Author URI: https://colorlib.com/wp/
 License: GNU General Public License v3.0
 License URI: http://www.gnu.org/licenses/gpl.html
 -------------------------------------------------------
