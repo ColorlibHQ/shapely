@@ -136,9 +136,8 @@ if ( ! function_exists( 'shapely_setup' ) ) :
 				array(
 					"id"          => 'shapely-req-import-content',
 					"title"       => esc_html__( 'Import content', 'shapely' ),
-					"description" => esc_html__( 'Head over to the Demo Content tab (available only if you installed Shapely Companion plugin) and import sample content data.', 'shapely' ),
-					"help"        => '<a href="' . self_admin_url( 'themes.php?page=shapely-welcome&tab=demo_content' ) . '">' . __( 'Demo Content', 'shapely' ) . '</a>',
-					"check"       => Shapely_Notify_System::shapely_has_content(),
+					"external"    => ABSPATH . 'wp-content/plugins/shapely-companion/inc/views/shapely-demo-content.php',
+					"check"       => Shapely_Notify_System::shapely_check_import_req(),
 				),
 
 			);

@@ -28,8 +28,8 @@ if ( ! class_exists( 'Shapely_Notify_System' ) ) {
 		 * @return bool
 		 */
 		public static function shapely_has_content() {
-			$option = get_option( "shapely_show_required_actions" );
-			if ( $option['shapely-req-import-content'] ) {
+			$option = get_option( "shapely_imported_demo", false );
+			if ( $option ) {
 				return true;
 			};
 
@@ -37,16 +37,23 @@ if ( ! class_exists( 'Shapely_Notify_System' ) ) {
 		}
 
 		/**
-		 * @return bool
+		 * @return bool|mixed
 		 */
-		public static function shapely_check_wordpress_importer() {
-			if ( file_exists( ABSPATH . 'wp-content/plugins/wordpress-importer/wordpress-importer.php' ) ) {
-				include_once( ABSPATH . 'wp-admin/includes/plugin.php' );
+		public static function shapely_check_import_req() {
+			$needs = array(
+				'has_content' => self::shapely_has_content(),
+				'has_plugin'  => self::shapely_has_plugin( 'shapely-companion' )
+			);
 
-				return is_plugin_active( 'wordpress-importer/wordpress-importer.php' );
+			if ( $needs['has_content'] ) {
+				return true;
 			}
 
-			return false;
+			if ( $needs['has_plugin'] ) {
+				return false;
+			}
+
+			return true;
 		}
 
 		/**

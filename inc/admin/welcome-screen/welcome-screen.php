@@ -334,11 +334,6 @@ class shapely_Welcome {
 					<?php echo $action_count > 0 ? '<span class="badge-action-count">' . esc_html( $action_count ) . '</span>' : '' ?></a>
 				<a href="<?php echo admin_url( 'themes.php?page=shapely-welcome&tab=recommended_plugins' ); ?>"
 				   class="nav-tab <?php echo $active_tab == 'recommended_plugins' ? 'nav-tab-active' : ''; ?> "><?php echo esc_html__( 'Recommended Plugins', 'shapely' ); ?></a>
-				<?php $shapely_companion = $this->check_active( 'shapely-companion' ); ?>
-				<?php if ( $shapely_companion['needs'] === 'deactivate' ): ?>
-					<a href="<?php echo admin_url( 'themes.php?page=shapely-welcome&tab=demo_content' ); ?>"
-					   class="nav-tab <?php echo $active_tab == 'demo_content' ? 'nav-tab-active' : ''; ?> "><?php echo esc_html__( 'Demo Content', 'shapely' ); ?></a>
-				<?php endif; ?>
 				<a href="<?php echo admin_url( 'themes.php?page=shapely-welcome&tab=support' ); ?>"
 				   class="nav-tab <?php echo $active_tab == 'support' ? 'nav-tab-active' : ''; ?> "><?php echo esc_html__( 'Support', 'shapely' ); ?></a>
 				<a href="<?php echo admin_url( 'themes.php?page=shapely-welcome&tab=changelog' ); ?>"
@@ -361,12 +356,6 @@ class shapely_Welcome {
 					break;
 				case 'changelog':
 					require_once get_template_directory() . '/inc/admin/welcome-screen/sections/changelog.php';
-					break;
-				case 'demo_content':
-					$shapely_companion = $this->check_active( 'shapely-companion' );
-					if ( $shapely_companion['needs'] === 'deactivate' && file_exists( ABSPATH . 'wp-content/plugins/shapely-companion/inc/views/shapely-demo-content.php' ) ) {
-						require_once ABSPATH . 'wp-content/plugins/shapely-companion/inc/views/shapely-demo-content.php';
-					}
 					break;
 				default:
 					require_once get_template_directory() . '/inc/admin/welcome-screen/sections/getting-started.php';
