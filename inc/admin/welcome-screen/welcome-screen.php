@@ -266,6 +266,10 @@ class shapely_Welcome {
 	}
 
 	public function create_action_link( $state, $slug ) {
+		$slug2 = $slug;
+		if ( $slug === 'wordpress-seo' ) {
+			$slug2 = 'wp-seo';
+		}
 		switch ( $state ) {
 			case 'install':
 				return wp_nonce_url(
@@ -282,19 +286,19 @@ class shapely_Welcome {
 			case 'deactivate':
 				return add_query_arg( array(
 					                      'action'        => 'deactivate',
-					                      'plugin'        => rawurlencode( $slug . '/' . $slug . '.php' ),
+					                      'plugin'        => rawurlencode( $slug . '/' . $slug2 . '.php' ),
 					                      'plugin_status' => 'all',
 					                      'paged'         => '1',
-					                      '_wpnonce'      => wp_create_nonce( 'deactivate-plugin_' . $slug . '/' . $slug . '.php' ),
+					                      '_wpnonce'      => wp_create_nonce( 'deactivate-plugin_' . $slug . '/' . $slug2 . '.php' ),
 				                      ), network_admin_url( 'plugins.php' ) );
 				break;
 			case 'activate':
 				return add_query_arg( array(
 					                      'action'        => 'activate',
-					                      'plugin'        => rawurlencode( $slug . '/' . $slug . '.php' ),
+					                      'plugin'        => rawurlencode( $slug . '/' . $slug2 . '.php' ),
 					                      'plugin_status' => 'all',
 					                      'paged'         => '1',
-					                      '_wpnonce'      => wp_create_nonce( 'activate-plugin_' . $slug . '/' . $slug . '.php' ),
+					                      '_wpnonce'      => wp_create_nonce( 'activate-plugin_' . $slug . '/' . $slug2 . '.php' ),
 				                      ), network_admin_url( 'plugins.php' ) );
 				break;
 		}

@@ -130,6 +130,30 @@ function shapely_customizer( $wp_customize ) {
 		) );
 	}
 
+	$wp_customize->add_setting( 'hide_post_title', array(
+		'default'           => 1,
+		'sanitize_callback' => 'shapely_sanitize_checkbox',
+	) );
+
+	if(class_exists('Epsilon_Control_Toggle')){
+		$wp_customize->add_control( new Epsilon_Control_Toggle(
+			                            $wp_customize,
+			                            'hide_post_title',
+			                            array(
+				                            'type'     => 'mte-toggle',
+				                            'label'    => esc_html__( 'Title in blog post', 'shapely' ),
+				                            'section'  => 'wpseo_breadcrumbs_customizer_section',
+			                            )
+		                            )
+		);
+	} else {
+		$wp_customize->add_control( 'hide_post_title', array(
+			'label'    => esc_html__( 'Title in blog post', 'shapely' ),
+			'section'  => 'wpseo_breadcrumbs_customizer_section',
+			'type'     => 'checkbox',
+		) );
+	}
+
 	$wp_customize->add_setting( 'blog_name', array(
 		'default'           => '',
 		'sanitize_callback' => 'shapely_sanitize_strip_slashes',
