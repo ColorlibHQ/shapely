@@ -481,7 +481,8 @@ function shapely_get_header_logo() {
 
 	<a href="<?php echo esc_url( home_url( '/' ) ); ?>"><?php
 	if ( $logo[0] != '' ) { ?>
-		<img src="<?php echo esc_url($logo[0]); ?>" class="logo" alt="<?php echo esc_html( get_bloginfo( 'name' ) ); ?>"><?php
+		<img src="<?php echo esc_url( $logo[0] ); ?>" class="logo"
+		     alt="<?php echo esc_html( get_bloginfo( 'name' ) ); ?>"><?php
 	} else { ?>
 		<span class="site-title"><?php echo esc_html( get_bloginfo( 'name' ) ); ?></span><?php
 	} ?>
@@ -533,29 +534,34 @@ function shapely_top_callout() {
 			<div class="row">
 				<?php
 				$breadcrumbs_enabled = false;
+				$title_in_post       = false;
 				if ( function_exists( 'yoast_breadcrumb' ) ) {
 					$options             = get_option( 'wpseo_internallinks' );
 					$breadcrumbs_enabled = ( $options['breadcrumbs-enable'] === true );
+					$title_in_post       = get_theme_mod( 'hide_post_title', false );
 				}
 				?>
-				<div class="<?php echo $breadcrumbs_enabled ? 'col-md-6 col-sm-6 col-xs-12' : 'col-xs-12'; ?>">
-					<h3 class="page-title">
-						<?php
-						if ( is_home() ) {
-							_e( ( get_theme_mod( 'blog_name' ) ) ? get_theme_mod( 'blog_name' ) : 'Blog', 'shapely' );
-						} else if ( is_search() ) {
-							_e( 'Search', 'shapely' );
-						} else if ( is_archive() ) {
-							echo ( is_post_type_archive( 'jetpack-portfolio' ) ) ? __( 'Portfolio', 'shapely' ) : get_the_archive_title();
-						} else {
-							echo ( is_singular( 'jetpack-portfolio' ) ) ? __( 'Portfolio', 'shapely' ) : get_the_title();
-						} ?>
-					</h3>
-				</div>
+				<?php if ( $title_in_post ): ?>
+					<div
+						class="<?php echo $breadcrumbs_enabled ? 'col-md-6 col-sm-6 col-xs-12' : 'col-xs-12'; ?>">
+						<h3 class="page-title">
+							<?php
+							if ( is_home() ) {
+								_e( ( get_theme_mod( 'blog_name' ) ) ? get_theme_mod( 'blog_name' ) : 'Blog', 'shapely' );
+							} else if ( is_search() ) {
+								_e( 'Search', 'shapely' );
+							} else if ( is_archive() ) {
+								echo ( is_post_type_archive( 'jetpack-portfolio' ) ) ? __( 'Portfolio', 'shapely' ) : get_the_archive_title();
+							} else {
+								echo ( is_singular( 'jetpack-portfolio' ) ) ? __( 'Portfolio', 'shapely' ) : get_the_title();
+							} ?>
+						</h3>
+					</div>
+				<?php endif; ?>
 				<?php if ( function_exists( 'yoast_breadcrumb' ) ) { ?>
 					<?php
 					if ( $breadcrumbs_enabled ) { ?>
-						<div class="col-md-6 col-sm-6 col-xs-12 text-right">
+						<div class="<?php echo $title_in_post ? 'col-md-6 col-sm-6' : ''; ?> col-xs-12 text-right">
 							<?php yoast_breadcrumb( '<p id="breadcrumbs">', '</p>' ); ?>
 						</div>
 					<?php } ?>
@@ -612,7 +618,7 @@ function shapely_get_attachment_image() {
 	$src = wp_get_attachment_image_src( $id, 'full', false );
 
 	if ( ! empty( $src[0] ) ) {
-		echo esc_url($src[0]);
+		echo esc_url( $src[0] );
 	}
 
 	die();

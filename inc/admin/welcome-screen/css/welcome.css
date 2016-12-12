@@ -182,3 +182,20 @@
 .about-wrap .three-col .plugin_box.col {
     width: 29.81%;
 }
+
+.shapely-media-control img {
+    width: 100%;
+}
+
+#demo_content .spinner {
+    float: none;
+}
+
+#demo_content .updated-message,
+#demo_content .spinner {
+    display: none;
+}
+
+#demo_content .spinner.is-active {
+    display: inline-block;
+}

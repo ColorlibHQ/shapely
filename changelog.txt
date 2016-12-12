@@ -16,6 +16,9 @@
 	#30 - archive page did not implement layout styles
 	#45 - added border-bottom checkbox toggle for widget
 	#79 - added epsilon toggles for widgets
+	#95 - changed import demo content to required action
+	#103 - removed margin bottom from the widgets only in the main content
+	#16 - added the first option
 
 ### 1.0.7
 <a href="https://github.com/puikinsh/shapely/issues">Issues</a>
