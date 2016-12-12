@@ -266,6 +266,10 @@ class shapely_Welcome {
 	}
 
 	public function create_action_link( $state, $slug ) {
+		$slug2 = $slug;
+		if ( $slug === 'wordpress-seo' ) {
+			$slug2 = 'wp-seo';
+		}
 		switch ( $state ) {
 			case 'install':
 				return wp_nonce_url(
@@ -282,19 +286,19 @@ class shapely_Welcome {
 			case 'deactivate':
 				return add_query_arg( array(
 					                      'action'        => 'deactivate',
-					                      'plugin'        => rawurlencode( $slug . '/' . $slug . '.php' ),
+					                      'plugin'        => rawurlencode( $slug . '/' . $slug2 . '.php' ),
 					                      'plugin_status' => 'all',
 					                      'paged'         => '1',
-					                      '_wpnonce'      => wp_create_nonce( 'deactivate-plugin_' . $slug . '/' . $slug . '.php' ),
+					                      '_wpnonce'      => wp_create_nonce( 'deactivate-plugin_' . $slug . '/' . $slug2 . '.php' ),
 				                      ), network_admin_url( 'plugins.php' ) );
 				break;
 			case 'activate':
 				return add_query_arg( array(
 					                      'action'        => 'activate',
-					                      'plugin'        => rawurlencode( $slug . '/' . $slug . '.php' ),
+					                      'plugin'        => rawurlencode( $slug . '/' . $slug2 . '.php' ),
 					                      'plugin_status' => 'all',
 					                      'paged'         => '1',
-					                      '_wpnonce'      => wp_create_nonce( 'activate-plugin_' . $slug . '/' . $slug . '.php' ),
+					                      '_wpnonce'      => wp_create_nonce( 'activate-plugin_' . $slug . '/' . $slug2 . '.php' ),
 				                      ), network_admin_url( 'plugins.php' ) );
 				break;
 		}
@@ -334,11 +338,6 @@ class shapely_Welcome {
 					<?php echo $action_count > 0 ? '<span class="badge-action-count">' . esc_html( $action_count ) . '</span>' : '' ?></a>
 				<a href="<?php echo admin_url( 'themes.php?page=shapely-welcome&tab=recommended_plugins' ); ?>"
 				   class="nav-tab <?php echo $active_tab == 'recommended_plugins' ? 'nav-tab-active' : ''; ?> "><?php echo esc_html__( 'Recommended Plugins', 'shapely' ); ?></a>
-				<?php $shapely_companion = $this->check_active( 'shapely-companion' ); ?>
-				<?php if ( $shapely_companion['needs'] === 'deactivate' ): ?>
-					<a href="<?php echo admin_url( 'themes.php?page=shapely-welcome&tab=demo_content' ); ?>"
-					   class="nav-tab <?php echo $active_tab == 'demo_content' ? 'nav-tab-active' : ''; ?> "><?php echo esc_html__( 'Demo Content', 'shapely' ); ?></a>
-				<?php endif; ?>
 				<a href="<?php echo admin_url( 'themes.php?page=shapely-welcome&tab=support' ); ?>"
 				   class="nav-tab <?php echo $active_tab == 'support' ? 'nav-tab-active' : ''; ?> "><?php echo esc_html__( 'Support', 'shapely' ); ?></a>
 				<a href="<?php echo admin_url( 'themes.php?page=shapely-welcome&tab=changelog' ); ?>"
@@ -361,12 +360,6 @@ class shapely_Welcome {
 					break;
 				case 'changelog':
 					require_once get_template_directory() . '/inc/admin/welcome-screen/sections/changelog.php';
-					break;
-				case 'demo_content':
-					$shapely_companion = $this->check_active( 'shapely-companion' );
-					if ( $shapely_companion['needs'] === 'deactivate' ) {
-						require_once ABSPATH . 'wp-content/plugins/shapely-companion/inc/views/shapely-demo-content.php';
-					}
 					break;
 				default:
 					require_once get_template_directory() . '/inc/admin/welcome-screen/sections/getting-started.php';

@@ -28,15 +28,21 @@ wp_enqueue_script( 'updates' );
 			<div class="shapely-action-required-box">
 				<?php if ( ! $hidden ): ?>
 					<span data-action="dismiss" class="dashicons dashicons-visibility shapely-required-action-button"
-					      id="<?php echo $shapely_required_action_value['id']; ?>"></span>
+					      id="<?php echo esc_attr( $shapely_required_action_value['id'] ); ?>"></span>
 				<?php else: ?>
-					<span data-action="add" class="dashicons dashicons-hidden shapely-required-action-button" id="<?php echo $shapely_required_action_value['id']; ?>"></span>
+					<span data-action="add" class="dashicons dashicons-hidden shapely-required-action-button"
+					      id="<?php echo esc_attr( $shapely_required_action_value['id'] ); ?>"></span>
 				<?php endif; ?>
-				<h3><?php if ( ! empty( $shapely_required_action_value['title'] ) ): echo $shapely_required_action_value['title']; endif; ?></h3>
+				<h3><?php if ( ! empty( $shapely_required_action_value['title'] ) ): echo esc_html( $shapely_required_action_value['title'] ); endif; ?></h3>
 				<p>
-					<?php if ( ! empty( $shapely_required_action_value['description'] ) ): echo $shapely_required_action_value['description']; endif; ?>
-					<?php if ( ! empty( $shapely_required_action_value['help'] ) ): echo '<br/>' . $shapely_required_action_value['help']; endif; ?>
+					<?php if ( ! empty( $shapely_required_action_value['description'] ) ): echo esc_html( $shapely_required_action_value['description'] ); endif; ?>
+					<?php if ( ! empty( $shapely_required_action_value['help'] ) ): echo '<br/>' . wp_kses_post( $shapely_required_action_value['help'] ); endif; ?>
 				</p>
+				<?php
+				if ( ! empty( $shapely_required_action_value['external'] ) && file_exists( $shapely_required_action_value['external'] ) ) {
+					require_once $shapely_required_action_value['external'];
+				}
+				?>
 				<?php
 				if ( ! empty( $shapely_required_action_value['plugin_slug'] ) ) {
 					$active = $this->check_active( $shapely_required_action_value['plugin_slug'] );
@@ -72,6 +78,7 @@ wp_enqueue_script( 'updates' );
 			$hooray = false;
 		endforeach;
 	endif;
+
 
 	if ( $hooray ):
 		echo '<span class="hooray">' . __( 'Hooray! There are no required actions for you right now.', 'shapely' ) . '</span>';
