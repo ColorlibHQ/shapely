@@ -95,6 +95,7 @@ if ( ! function_exists( 'shapely_setup' ) ) :
 
 		add_image_size( 'shapely-featured', 848, 566, true );
 
+		add_theme_support( 'customize-selective-refresh-widgets' );
 		// Welcome screen
 		if ( is_admin() ) {
 			global $shapely_required_actions, $shapely_recommended_plugins;
