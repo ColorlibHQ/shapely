@@ -2053,6 +2053,10 @@ input[type="submit"]:focus {
     margin-bottom: 48px;
 }
 
+.content-area .widget {
+    margin-bottom: 0;
+}
+
 .category-list {
     line-height: 32px;
 }
