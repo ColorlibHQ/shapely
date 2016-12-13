@@ -109,7 +109,7 @@ function shapely_customizer( $wp_customize ) {
 		'sanitize_callback' => 'shapely_sanitize_checkbox',
 	) );
 
-	if(class_exists('Epsilon_Control_Toggle')){
+	if ( class_exists( 'Epsilon_Control_Toggle' ) ) {
 		$wp_customize->add_control( new Epsilon_Control_Toggle(
 			                            $wp_customize,
 			                            'top_callout',
@@ -135,22 +135,22 @@ function shapely_customizer( $wp_customize ) {
 		'sanitize_callback' => 'shapely_sanitize_checkbox',
 	) );
 
-	if(class_exists('Epsilon_Control_Toggle')){
+	if ( class_exists( 'Epsilon_Control_Toggle' ) ) {
 		$wp_customize->add_control( new Epsilon_Control_Toggle(
 			                            $wp_customize,
 			                            'hide_post_title',
 			                            array(
-				                            'type'     => 'mte-toggle',
-				                            'label'    => esc_html__( 'Title in blog post', 'shapely' ),
-				                            'section'  => 'wpseo_breadcrumbs_customizer_section',
+				                            'type'    => 'mte-toggle',
+				                            'label'   => esc_html__( 'Title in blog post', 'shapely' ),
+				                            'section' => 'wpseo_breadcrumbs_customizer_section',
 			                            )
 		                            )
 		);
 	} else {
 		$wp_customize->add_control( 'hide_post_title', array(
-			'label'    => esc_html__( 'Title in blog post', 'shapely' ),
-			'section'  => 'wpseo_breadcrumbs_customizer_section',
-			'type'     => 'checkbox',
+			'label'   => esc_html__( 'Title in blog post', 'shapely' ),
+			'section' => 'wpseo_breadcrumbs_customizer_section',
+			'type'    => 'checkbox',
 		) );
 	}
 
@@ -232,6 +232,66 @@ function shapely_customizer( $wp_customize ) {
 		'section' => 'shapely_footer_section',
 	) );
 
+	if ( class_exists( 'Epsilon_Control_Color_Scheme' ) ) {
+		$wp_customize->add_setting( 'shapely_color_scheme',
+		                            array(
+			                            'sanitize_callback' => 'sanitize_text_field',
+			                            'default'           => 'default',
+			                            'transport'         => 'postMessage',
+		                            ) );
+
+		$wp_customize->add_control( new Epsilon_Control_Color_Scheme(
+			                            $wp_customize,
+			                            'shapely_color_scheme',
+			                            array(
+				                            'label'       => esc_html__( 'Color scheme', 'newsmag-pro' ),
+				                            'description' => esc_html__( 'Select a color scheme', 'newsmag-pro' ),
+				                            'choices'     => array(
+					                            array(
+						                            'id'     => 'purple',
+						                            'name'   => 'Default',
+						                            'colors' => array(
+							                            'accent'               => '#745cf9',
+							                            'text'                 => '#666666',
+							                            'content-widget-title' => '#0e1015',
+							                            'footer-bg'            => '#0e1015',
+							                            'footer-widget-title'  => '#ffffff',
+							                            'footer-links'         => '#ffffff'
+						                            ),
+					                            ),
+					                            array(
+						                            'id'     => 'yellow',
+						                            'name'   => 'Yellow',
+						                            'colors' => array(
+							                            'accent'               => '#FFC107',
+							                            'text'                 => '#666666',
+							                            'content-widget-title' => '#0e1015',
+							                            'footer-bg'            => '#0e1015',
+							                            'footer-widget-title'  => '#ffffff',
+							                            'footer-links'         => '#ffffff'
+						                            ),
+					                            ),
+					                            array(
+						                            'id'     => 'green',
+						                            'name'   => 'Green',
+						                            'colors' => array(
+							                            'accent'               => '#2ecc71',
+							                            'text'                 => '#666666',
+							                            'content-widget-title' => '#0e1015',
+							                            'footer-bg'            => '#0e1015',
+							                            'footer-widget-title'  => '#ffffff',
+							                            'footer-links'         => '#ffffff'
+						                            ),
+					                            ),
+				                            ),
+				                            'priority'    => 0,
+				                            'default'     => 'purple',
+				                            'section'     => 'colors',
+			                            )
+		                            )
+		);
+	}
+
 }
 
 add_action( 'customize_register', 'shapely_customizer' );
@@ -276,16 +336,6 @@ function shapely_sanitize_hexcolor( $color ) {
 
 	return $color;
 }
-
-
-/**
- * Binds JS handlers to make Theme Customizer preview reload changes asynchronously.
- */
-function shapely_customize_preview_js() {
-	wp_enqueue_script( 'shapely_customizer', get_template_directory_uri() . '/js/customizer.js', array( 'customize-preview' ), false, true );
-}
-
-add_action( 'customize_preview_init', 'shapely_customize_preview_js' );
 
 /**
  * Add CSS for custom controls.
