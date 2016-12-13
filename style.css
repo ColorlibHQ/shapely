@@ -2834,9 +2834,14 @@ iframe {
     -webkit-box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.2);
     -moz-box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.2);
     box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.2);
+    margin-bottom: 10px;
 }
 
-/*!---------- 20. PORTOFLIO ----------*/
+.cast-shadow.img-responsive {
+    margin: 10px auto;
+}
+
+/*!---------- 20. PORTFOLIO ----------*/
 
 .project {
     transition: all 0.3s ease;
