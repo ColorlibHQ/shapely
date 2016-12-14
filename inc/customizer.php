@@ -244,8 +244,8 @@ function shapely_customizer( $wp_customize ) {
 			                            $wp_customize,
 			                            'shapely_color_scheme',
 			                            array(
-				                            'label'       => esc_html__( 'Color scheme', 'newsmag-pro' ),
-				                            'description' => esc_html__( 'Select a color scheme', 'newsmag-pro' ),
+				                            'label'       => esc_html__( 'Color scheme', 'shapely' ),
+				                            'description' => esc_html__( 'Select a color scheme', 'shapely' ),
 				                            'choices'     => array(
 					                            array(
 						                            'id'     => 'purple',
