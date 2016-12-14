@@ -609,17 +609,3 @@ function shapely_footer_callout() {
 		</section><?php
 	}
 }
-
-add_action( 'wp_ajax_shapely_get_attachment_image', 'shapely_get_attachment_image' );
-add_action( 'wp_ajax_nopriv_shapely_get_attachment_image', 'shapely_get_attachment_image' );
-
-function shapely_get_attachment_image() {
-	$id  = intval( $_POST['attachment_id'] );
-	$src = wp_get_attachment_image_src( $id, 'full', false );
-
-	if ( ! empty( $src[0] ) ) {
-		echo esc_url( $src[0] );
-	}
-
-	die();
-}
