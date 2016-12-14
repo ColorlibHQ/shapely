@@ -2,9 +2,9 @@
 # This file is distributed under the GNU General Public License v3.
 msgid ""
 msgstr ""
-"Project-Id-Version: Shapely 1.0.6\n"
+"Project-Id-Version: Shapely 1.7.0\n"
 "Report-Msgid-Bugs-To: https://www.colorlib.com/\n"
-"POT-Creation-Date: 2016-12-09 08:04:09+00:00\n"
+"POT-Creation-Date: 2016-12-14 14:41:15+00:00\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -63,18 +63,8 @@ msgstr ""
 msgid "Primary"
 msgstr ""
 
-#: functions.php:138
-msgid "Import content"
-msgstr ""
-
 #: functions.php:139
-msgid ""
-"Head over to the Demo Content tab (available only if you installed Shapely "
-"Companion plugin) and import sample content data."
-msgstr ""
-
-#: functions.php:140 inc/admin/welcome-screen/welcome-screen.php:340
-msgid "Demo Content"
+msgid "Import content"
 msgstr ""
 
 #: functions.php:173
@@ -93,19 +83,19 @@ msgstr ""
 msgid "Used for footer widget area"
 msgstr ""
 
-#: functions.php:294
+#: functions.php:293
 msgid "Left Sidebar"
 msgstr ""
 
-#: functions.php:295
+#: functions.php:294
 msgid "Right Sidebar"
 msgstr ""
 
-#: functions.php:296
+#: functions.php:295
 msgid "No Sidebar"
 msgstr ""
 
-#: functions.php:297
+#: functions.php:296
 msgid "Full Width"
 msgstr ""
 
@@ -117,80 +107,80 @@ msgstr ""
 msgid "Site Search"
 msgstr ""
 
-#: inc/admin/welcome-screen/notify-system-checks.php:99
-#: inc/admin/welcome-screen/notify-system-checks.php:107
+#: inc/admin/welcome-screen/notify-system-checks.php:106
+#: inc/admin/welcome-screen/notify-system-checks.php:114
 msgid "Install: Shapely Companion Plugin"
 msgstr ""
 
-#: inc/admin/welcome-screen/notify-system-checks.php:104
+#: inc/admin/welcome-screen/notify-system-checks.php:111
 msgid "Activate: Shapely Companion Plugin"
 msgstr ""
 
-#: inc/admin/welcome-screen/notify-system-checks.php:113
-#: inc/admin/welcome-screen/notify-system-checks.php:121
+#: inc/admin/welcome-screen/notify-system-checks.php:120
+#: inc/admin/welcome-screen/notify-system-checks.php:128
 msgid "Install: Yoast SEO Plugin"
 msgstr ""
 
-#: inc/admin/welcome-screen/notify-system-checks.php:118
+#: inc/admin/welcome-screen/notify-system-checks.php:125
 msgid "Activate: Yoast SEO Plugin"
 msgstr ""
 
-#: inc/admin/welcome-screen/notify-system-checks.php:127
-#: inc/admin/welcome-screen/notify-system-checks.php:135
+#: inc/admin/welcome-screen/notify-system-checks.php:134
+#: inc/admin/welcome-screen/notify-system-checks.php:142
 msgid "Install: Jetpack by WordPress"
 msgstr ""
 
-#: inc/admin/welcome-screen/notify-system-checks.php:132
+#: inc/admin/welcome-screen/notify-system-checks.php:139
 msgid "Activate: Jetpack by WordPress"
 msgstr ""
 
-#: inc/admin/welcome-screen/notify-system-checks.php:145
-#: inc/admin/welcome-screen/notify-system-checks.php:153
+#: inc/admin/welcome-screen/notify-system-checks.php:152
+#: inc/admin/welcome-screen/notify-system-checks.php:160
 msgid "Please install Shapely Companion plugin."
 msgstr ""
 
-#: inc/admin/welcome-screen/notify-system-checks.php:150
+#: inc/admin/welcome-screen/notify-system-checks.php:157
 msgid "Please activate Shapely Companion plugin."
 msgstr ""
 
-#: inc/admin/welcome-screen/notify-system-checks.php:163
-#: inc/admin/welcome-screen/notify-system-checks.php:171
+#: inc/admin/welcome-screen/notify-system-checks.php:170
+#: inc/admin/welcome-screen/notify-system-checks.php:178
 msgid ""
 "Please install Jetpack by WordPress. Note that you won't be able to use the "
 "Testimonials and Portfolio widgets without it."
 msgstr ""
 
-#: inc/admin/welcome-screen/notify-system-checks.php:168
+#: inc/admin/welcome-screen/notify-system-checks.php:175
 msgid ""
 "Please activate Jetpack by WordPress. Note that you won't be able to use "
 "the Testimonials and Portfolio widgets without it."
 msgstr ""
 
-#: inc/admin/welcome-screen/notify-system-checks.php:177
-#: inc/admin/welcome-screen/notify-system-checks.php:185
+#: inc/admin/welcome-screen/notify-system-checks.php:184
+#: inc/admin/welcome-screen/notify-system-checks.php:192
 msgid "Please install Yoast SEO plugin."
 msgstr ""
 
-#: inc/admin/welcome-screen/notify-system-checks.php:182
+#: inc/admin/welcome-screen/notify-system-checks.php:189
 msgid "Please activate Yoast SEO plugin."
 msgstr ""
 
-#: inc/admin/welcome-screen/sections/actions-required.php:49
+#: inc/admin/welcome-screen/sections/actions-required.php:55
 #: inc/admin/welcome-screen/sections/recommended-plugins.php:24
 msgid "Install"
 msgstr ""
 
-#: inc/admin/welcome-screen/sections/actions-required.php:53
+#: inc/admin/welcome-screen/sections/actions-required.php:59
 #: inc/admin/welcome-screen/sections/recommended-plugins.php:28
 msgid "Activate"
 msgstr ""
 
-#: inc/admin/welcome-screen/sections/actions-required.php:57
+#: inc/admin/welcome-screen/sections/actions-required.php:63
 #: inc/admin/welcome-screen/sections/recommended-plugins.php:32
 msgid "Deactivate"
 msgstr ""
 
-#: inc/admin/welcome-screen/sections/actions-required.php:77
+#: inc/admin/welcome-screen/sections/actions-required.php:84
 #: inc/admin/welcome-screen/welcome-screen.php:93
 msgid "Hooray! There are no required actions for you right now."
 msgstr ""
@@ -272,7 +262,7 @@ msgid "See our full documentation"
 msgstr ""
 
 #: inc/admin/welcome-screen/sections/support.php:24
-#: inc/admin/welcome-screen/welcome-screen.php:345
+#: inc/admin/welcome-screen/welcome-screen.php:344
 msgid "Changelog"
 msgstr ""
 
@@ -300,11 +290,11 @@ msgstr ""
 msgid "View Theme Info"
 msgstr ""
 
-#: inc/admin/welcome-screen/welcome-screen.php:321
+#: inc/admin/welcome-screen/welcome-screen.php:325
 msgid "Welcome to Shapely! - Version "
 msgstr ""
 
-#: inc/admin/welcome-screen/welcome-screen.php:324
+#: inc/admin/welcome-screen/welcome-screen.php:328
 msgid ""
 "Shapely is now installed and ready to use! Get ready to build something "
 "beautiful. We hope you enjoy it! We want to make sure you have the best "
@@ -313,19 +303,19 @@ msgid ""
 "enjoy creating great products."
 msgstr ""
 
-#: inc/admin/welcome-screen/welcome-screen.php:331
+#: inc/admin/welcome-screen/welcome-screen.php:335
 msgid "Getting Started"
 msgstr ""
 
-#: inc/admin/welcome-screen/welcome-screen.php:333
+#: inc/admin/welcome-screen/welcome-screen.php:337
 msgid "Recommended Actions"
 msgstr ""
 
-#: inc/admin/welcome-screen/welcome-screen.php:336
+#: inc/admin/welcome-screen/welcome-screen.php:340
 msgid "Recommended Plugins"
 msgstr ""
 
-#: inc/admin/welcome-screen/welcome-screen.php:343
+#: inc/admin/welcome-screen/welcome-screen.php:342
 msgid "Support"
 msgstr ""
 
@@ -378,52 +368,68 @@ msgstr ""
 msgid "Main options"
 msgstr ""
 
-#: inc/customizer.php:113
+#: inc/customizer.php:118
+msgid "Show title in top call out box"
+msgstr ""
+
+#: inc/customizer.php:126
 msgid "check to show title in top call out box"
 msgstr ""
 
-#: inc/customizer.php:124
+#: inc/customizer.php:144 inc/customizer.php:151
+msgid "Title in blog post"
+msgstr ""
+
+#: inc/customizer.php:162
 msgid "Blog Name in top callout"
 msgstr ""
 
-#: inc/customizer.php:125
+#: inc/customizer.php:163
 msgid "Heading for the Blog page"
 msgstr ""
 
-#: inc/customizer.php:135
+#: inc/customizer.php:173
 msgid "Portfolio Archive Title"
 msgstr ""
 
-#: inc/customizer.php:145
+#: inc/customizer.php:183
 msgid "Portfolio Archive Description"
 msgstr ""
 
-#: inc/customizer.php:155
+#: inc/customizer.php:193
 msgid "Text for footer callout"
 msgstr ""
 
-#: inc/customizer.php:156
+#: inc/customizer.php:194
 msgid "Footer Callout"
 msgstr ""
 
-#: inc/customizer.php:165
+#: inc/customizer.php:203
 msgid "Text for footer callout button"
 msgstr ""
 
-#: inc/customizer.php:173
+#: inc/customizer.php:211
 msgid "CFA button link"
 msgstr ""
 
-#: inc/customizer.php:175
+#: inc/customizer.php:213
 msgid "Enter the link for Call For Action button in footer"
 msgstr ""
 
-#: inc/customizer.php:181
+#: inc/customizer.php:219
 msgid "Footer"
 msgstr ""
 
-#: inc/customizer.php:193
+#: inc/customizer.php:231
 msgid "Copyright Text"
+msgstr ""
+
+#: inc/customizer.php:247
+msgid "Color scheme"
+msgstr ""
+
+#: inc/customizer.php:248
+msgid "Select a color scheme"
 msgstr ""
 
 #: inc/extras.php:63
@@ -456,7 +462,7 @@ msgstr ""
 msgid "Type Here"
 msgstr ""
 
-#: inc/extras.php:277 inc/extras.php:547
+#: inc/extras.php:277 inc/extras.php:552
 msgid "Search"
 msgstr ""
 
@@ -489,7 +495,7 @@ msgstr ""
 msgid "Leave Comment"
 msgstr ""
 
-#: inc/extras.php:549 inc/extras.php:551
+#: inc/extras.php:554 inc/extras.php:556
 msgid "Portfolio"
 msgstr ""
 
@@ -541,7 +547,7 @@ msgstr ""
 msgid "% Comments"
 msgstr ""
 
-#: inc/template-tags.php:69 template-parts/content-page.php:33
+#: inc/template-tags.php:69 template-parts/content-page.php:58
 #. translators: %s: Name of current post
 msgid "Edit %s"
 msgstr ""
@@ -578,7 +584,7 @@ msgid ""
 "searching can help."
 msgstr ""
 
-#: template-parts/content-page.php:22 template-parts/content.php:47
+#: template-parts/content-page.php:29 template-parts/content.php:46
 msgid "Pages:"
 msgstr ""
 
