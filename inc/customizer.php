@@ -12,6 +12,51 @@ function shapely_customize_register( $wp_customize ) {
 	$wp_customize->get_setting( 'blogname' )->transport         = 'postMessage';
 	$wp_customize->get_setting( 'blogdescription' )->transport  = 'postMessage';
 	$wp_customize->get_setting( 'header_textcolor' )->transport = 'postMessage';
+	$wp_customize->get_setting( 'custom_logo' )->transport      = 'refresh';
+
+	// Abort if selective refresh is not available.
+	if ( ! isset( $wp_customize->selective_refresh ) ) {
+		return;
+	}
+
+	$wp_customize->selective_refresh->add_partial( 'blogname', array(
+		'selector'        => '.site-title',
+		'render_callback' => function () {
+			bloginfo( 'name' );
+		},
+	) );
+
+	$wp_customize->selective_refresh->add_partial( 'footer_callout_text', array(
+		'selector'        => '.footer-callout',
+		'render_callback' => function () {
+			shapely_footer_callout();
+		}
+	) );
+	$wp_customize->selective_refresh->add_partial( 'footer_callout_btntext', array(
+		'selector'        => '.footer-callout',
+		'render_callback' => function () {
+			shapely_footer_callout();
+		}
+	) );
+	$wp_customize->selective_refresh->add_partial( 'footer_callout_link', array(
+		'selector'        => '.footer-callout',
+		'render_callback' => function () {
+			shapely_footer_callout();
+		}
+	) );
+	$wp_customize->selective_refresh->add_partial( 'blog_name', array(
+		'selector'        => '.header-callout',
+		'render_callback' => function () {
+			shapely_top_callout();
+		}
+	) );
+	$wp_customize->selective_refresh->add_partial( 'header_textcolor', array(
+		'selector'        => '.header-callout',
+		'render_callback' => function () {
+			shapely_top_callout();
+		}
+	) );
+
 }
 
 add_action( 'customize_register', 'shapely_customize_register' );
@@ -131,7 +176,7 @@ function shapely_customizer( $wp_customize ) {
 	}
 
 	$wp_customize->add_setting( 'hide_post_title', array(
-		'default'           => 1,
+		'default'           => 0,
 		'sanitize_callback' => 'shapely_sanitize_checkbox',
 	) );
 
@@ -157,6 +202,7 @@ function shapely_customizer( $wp_customize ) {
 	$wp_customize->add_setting( 'blog_name', array(
 		'default'           => '',
 		'sanitize_callback' => 'shapely_sanitize_strip_slashes',
+		'transport'         => 'postMessage'
 	) );
 	$wp_customize->add_control( 'blog_name', array(
 		'label'       => __( 'Blog Name in top callout', 'shapely' ),
@@ -188,6 +234,7 @@ function shapely_customizer( $wp_customize ) {
 	$wp_customize->add_setting( 'footer_callout_text', array(
 		'default'           => '',
 		'sanitize_callback' => 'shapely_sanitize_strip_slashes',
+		'transport'         => 'postMessage'
 	) );
 	$wp_customize->add_control( 'footer_callout_text', array(
 		'label'       => __( 'Text for footer callout', 'shapely' ),
@@ -198,6 +245,7 @@ function shapely_customizer( $wp_customize ) {
 	$wp_customize->add_setting( 'footer_callout_btntext', array(
 		'default'           => '',
 		'sanitize_callback' => 'shapely_sanitize_strip_slashes',
+		'transport'         => 'postMessage'
 	) );
 	$wp_customize->add_control( 'footer_callout_btntext', array(
 		'label'   => __( 'Text for footer callout button', 'shapely' ),
@@ -206,6 +254,7 @@ function shapely_customizer( $wp_customize ) {
 	$wp_customize->add_setting( 'footer_callout_link', array(
 		'default'           => '',
 		'sanitize_callback' => 'esc_url_raw',
+		'transport'         => 'postMessage'
 	) );
 	$wp_customize->add_control( 'footer_callout_link', array(
 		'label'       => __( 'CFA button link', 'shapely' ),

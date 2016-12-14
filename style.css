@@ -1986,6 +1986,7 @@ input[type="submit"]:focus {
 .pagination {
     margin: 0;
     border: none;
+    background: transparent;
 }
 
 .pagination .nav-links *:first-child {
@@ -3182,7 +3183,7 @@ footer.bg-dark a {
     left: 0 !important;
 }
 
-#colophon .customize-partial-edit-shortcut button, #colophon .widget .customize-partial-edit-shortcut button, #secondary .customize-partial-edit-shortcut button, #secondary .widget .customize-partial-edit-shortcut button {
+#site-navigation .customize-partial-edit-shortcut button, #site-navigation .widget .customize-partial-edit-shortcut button, #colophon .customize-partial-edit-shortcut button, #colophon .widget .customize-partial-edit-shortcut button, #secondary .customize-partial-edit-shortcut button, #secondary .widget .customize-partial-edit-shortcut button {
     left: -30px !important;
 }
 
@@ -3221,4 +3222,8 @@ footer.bg-dark a {
 .shapely_home_parallax {
     width: 100%;
     display: inline-block;
+}
+
+.bg-secondary .text-right {
+    z-index: 2;
 }
