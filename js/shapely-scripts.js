@@ -54,7 +54,7 @@
 			window_w = $(window).width();
 			if ( window_w < 992 ) {
 				cl_nav.removeClass('fixed scrolled outOfSight');
-			} else{
+			} else {
 				window.addEventListener("scroll", updateNav, false);
 				updateNav();
 			}
@@ -160,6 +160,78 @@
 			$(this).attr('data-lightbox', galleryTitle);
 		});
 
+
+		var videos = $('.video-widget');
+		if ( videos.length ) {
+			$.each(videos, function () {
+				var play = $(this).find('.play-button'),
+						pause = $(this).find('.pause-button'),
+						isYoutube = $(this).hasClass('youtube');
+
+				if ( isYoutube ) {
+					var videoId = $(this).attr('data-video-id'),
+							autoplay = parseInt($(this).attr('data-autoplay')),
+							instance = $(this).YTPlayer({
+								fitToBackground: true,
+								videoId        : videoId,
+								playerVars     : {
+									modestbranding: 0,
+									autoplay      : autoplay,
+									controls      : 0,
+									showinfo      : 0,
+									branding      : 0,
+									rel           : 0,
+									autohide      : 0
+								}
+							}),
+							self = $(this);
+
+
+					$(document).on('YTBGREADY', function () {
+						var iframe = self.find('iframe'),
+								height = iframe.height();
+
+						if ( self.height() == 0 ) {
+							self.height(height);
+						}
+					});
+
+
+					$(play).on('click', function (e) {
+						e.preventDefault();
+						var parent = $(this).parents('.video-widget'),
+								instance = $(parent).data('ytPlayer').player;
+						instance.playVideo();
+					});
+
+					$(pause).on('click', function (e) {
+						e.preventDefault();
+						var parent = $(this).parents('.video-widget'),
+								instance = $(parent).data('ytPlayer').player;
+						instance.pauseVideo();
+					});
+
+				} else {
+					$(play).on('click', function (e) {
+						e.preventDefault();
+						var parent = $(this).parents('.video-widget'),
+								instance = $(parent).data('vide'),
+								video = instance.getVideoObject();
+
+						video.play();
+					});
+
+					$(pause).on('click', function (e) {
+						e.preventDefault();
+						var parent = $(this).parents('.video-widget'),
+								instance = $(parent).data('vide'),
+								video = instance.getVideoObject();
+
+						video.pause();
+					});
+				}
+			});
+		}
 	});
 
 	jQuery(window).load(function ($) {
@@ -253,3 +325,4 @@ function testimonialHeight() {
 	jQuery('.testimonial-section .parallax-window').css('height', jQuery('.testimonial-section .parallax-window .container').outerHeight() + 150);
 	jQuery(window).trigger('resize').trigger('scroll');
 }
+
