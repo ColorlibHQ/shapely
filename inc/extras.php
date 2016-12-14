@@ -540,11 +540,12 @@ function shapely_top_callout() {
 					$breadcrumbs_enabled = ( $options['breadcrumbs-enable'] === true );
 					$title_in_post       = get_theme_mod( 'hide_post_title', false );
 				}
+				$header_color = get_theme_mod( 'header_textcolor', false );
 				?>
 				<?php if ( $title_in_post ): ?>
 					<div
 						class="<?php echo $breadcrumbs_enabled ? 'col-md-6 col-sm-6 col-xs-12' : 'col-xs-12'; ?>">
-						<h3 class="page-title">
+						<h3 class="page-title" <?php echo $header_color ? 'style="color:#' . esc_attr( $header_color ) . '"' : '' ?>>
 							<?php
 							if ( is_home() ) {
 								_e( ( get_theme_mod( 'blog_name' ) ) ? get_theme_mod( 'blog_name' ) : 'Blog', 'shapely' );
