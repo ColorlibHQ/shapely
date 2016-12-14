@@ -3185,3 +3185,39 @@ footer.bg-dark a {
 #colophon .customize-partial-edit-shortcut button, #colophon .widget .customize-partial-edit-shortcut button, #secondary .customize-partial-edit-shortcut button, #secondary .widget .customize-partial-edit-shortcut button {
     left: -30px !important;
 }
+
+.video-widget {
+    position: relative;
+    overflow: hidden;
+}
+
+.video-widget .video-controls {
+    position: absolute;
+    bottom: 20px;
+    left: 20px;
+}
+
+.video-widget .video-controls button {
+    background: #745cf9;
+    color: #fff;
+    border: none;
+    outline: none;
+    padding: 5px 10px;
+    text-align: center;
+}
+
+.video-widget.youtube {
+    position: relative;
+    background: transparent;
+}
+
+.ytplayer-container {
+    position: absolute;
+    top: 0;
+    z-index: -1;
+}
+
+.shapely_home_parallax {
+    width: 100%;
+    display: inline-block;
+}
