@@ -192,7 +192,7 @@
 								height = iframe.height();
 
 						if ( self.height() == 0 ) {
-							self.height(height);
+							//self.height(height);
 						}
 					});
 
