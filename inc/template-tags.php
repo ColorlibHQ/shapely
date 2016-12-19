@@ -29,7 +29,7 @@ if ( ! function_exists( 'shapely_posted_on' ) ) :
 					href="<?php echo esc_url( get_author_posts_url( get_the_author_meta( 'ID' ) ) ); ?>"
 					title="<?php echo esc_attr( get_the_author() ); ?>"><?php esc_html( the_author() ); ?></a></span>
 		</li>
-		<li><i class="fa fa-calendar"></i><span class="posted-on"><?php echo $time_string; ?></span></li>
+		<li><i class="fa fa-calendar"></i><span class="posted-on"><?php echo esc_html( $time_string ); ?></span></li>
 		<?php shapely_post_category(); ?>
 		</ul><?php
 		echo ( is_archive() ) ? '<hr>' : '';

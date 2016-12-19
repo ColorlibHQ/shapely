@@ -82,7 +82,6 @@ function shapely_customizer( $wp_customize ) {
 		'panel'       => 'shapely_main_options',
 	) );
 	// Layout options
-	global $shapely_site_layout;
 	$wp_customize->add_setting( 'shapely_sidebar_position', array(
 		'default'           => 'side-right',
 		'sanitize_callback' => 'shapely_sanitize_layout',
@@ -92,12 +91,17 @@ function shapely_customizer( $wp_customize ) {
 		'section'     => 'shapely_layout_section',
 		'type'        => 'select',
 		'description' => __( 'Choose between different layout options to be used as default', 'shapely' ),
-		'choices'     => $shapely_site_layout,
+		'choices'     => array(
+			'pull-right' => esc_html__( 'Left Sidebar', 'shapely' ),
+			'side-right' => esc_html__( 'Right Sidebar', 'shapely' ),
+			'no-sidebar' => esc_html__( 'No Sidebar', 'shapely' ),
+			'full-width' => esc_html__( 'Full Width', 'shapely' )
+		),
 	) );
 
 	$wp_customize->add_setting( 'link_color', array(
 		'default'           => '',
-		'sanitize_callback' => 'shapely_sanitize_hexcolor',
+		'sanitize_callback' => 'sanitize_hex_color',
 	) );
 	$wp_customize->add_control( new WP_Customize_Color_Control( $wp_customize, 'link_color', array(
 		'label'       => __( 'Link Color', 'shapely' ),
@@ -106,7 +110,7 @@ function shapely_customizer( $wp_customize ) {
 	) ) );
 	$wp_customize->add_setting( 'link_hover_color', array(
 		'default'           => '',
-		'sanitize_callback' => 'shapely_sanitize_hexcolor',
+		'sanitize_callback' => 'sanitize_hex_color',
 	) );
 	$wp_customize->add_control( new WP_Customize_Color_Control( $wp_customize, 'link_hover_color', array(
 		'label'       => __( 'Link Hover Color', 'shapely' ),
@@ -115,7 +119,7 @@ function shapely_customizer( $wp_customize ) {
 	) ) );
 	$wp_customize->add_setting( 'button_color', array(
 		'default'           => '',
-		'sanitize_callback' => 'shapely_sanitize_hexcolor',
+		'sanitize_callback' => 'sanitize_hex_color',
 	) );
 	$wp_customize->add_control( new WP_Customize_Color_Control( $wp_customize, 'button_color', array(
 		'label'       => __( 'Button Color', 'shapely' ),
@@ -124,7 +128,7 @@ function shapely_customizer( $wp_customize ) {
 	) ) );
 	$wp_customize->add_setting( 'button_hover_color', array(
 		'default'           => '',
-		'sanitize_callback' => 'shapely_sanitize_hexcolor',
+		'sanitize_callback' => 'sanitize_hex_color',
 	) );
 	$wp_customize->add_control( new WP_Customize_Color_Control( $wp_customize, 'button_hover_color', array(
 		'label'       => __( 'Button Hover Color', 'shapely' ),
@@ -134,7 +138,7 @@ function shapely_customizer( $wp_customize ) {
 
 	$wp_customize->add_setting( 'social_color', array(
 		'default'           => '',
-		'sanitize_callback' => 'shapely_sanitize_hexcolor',
+		'sanitize_callback' => 'sanitize_hex_color',
 	) );
 	$wp_customize->add_control( new WP_Customize_Color_Control( $wp_customize, 'social_color', array(
 		'label'       => __( 'Social Icon Color', 'shapely' ),
@@ -201,7 +205,7 @@ function shapely_customizer( $wp_customize ) {
 
 	$wp_customize->add_setting( 'blog_name', array(
 		'default'           => '',
-		'sanitize_callback' => 'shapely_sanitize_strip_slashes',
+		'sanitize_callback' => 'wp_kses_stripslashes',
 		'transport'         => 'postMessage'
 	) );
 	$wp_customize->add_control( 'blog_name', array(
@@ -213,7 +217,7 @@ function shapely_customizer( $wp_customize ) {
 	if ( post_type_exists( 'jetpack-portfolio' ) ) {
 		$wp_customize->add_setting( 'portfolio_name', array(
 			'default'           => '',
-			'sanitize_callback' => 'shapely_sanitize_strip_slashes',
+			'sanitize_callback' => 'wp_kses_stripslashes',
 		) );
 		$wp_customize->add_control( 'portfolio_name', array(
 			'label'   => __( 'Portfolio Archive Title', 'shapely' ),
@@ -222,7 +226,7 @@ function shapely_customizer( $wp_customize ) {
 
 		$wp_customize->add_setting( 'portfolio_description', array(
 			'default'           => '',
-			'sanitize_callback' => 'shapely_sanitize_strip_slashes',
+			'sanitize_callback' => 'wp_kses_stripslashes',
 		) );
 		$wp_customize->add_control( 'portfolio_description', array(
 			'type'    => 'textarea',
@@ -233,7 +237,7 @@ function shapely_customizer( $wp_customize ) {
 
 	$wp_customize->add_setting( 'footer_callout_text', array(
 		'default'           => '',
-		'sanitize_callback' => 'shapely_sanitize_strip_slashes',
+		'sanitize_callback' => 'wp_kses_stripslashes',
 		'transport'         => 'postMessage'
 	) );
 	$wp_customize->add_control( 'footer_callout_text', array(
@@ -244,7 +248,7 @@ function shapely_customizer( $wp_customize ) {
 
 	$wp_customize->add_setting( 'footer_callout_btntext', array(
 		'default'           => '',
-		'sanitize_callback' => 'shapely_sanitize_strip_slashes',
+		'sanitize_callback' => 'wp_kses_stripslashes',
 		'transport'         => 'postMessage'
 	) );
 	$wp_customize->add_control( 'footer_callout_btntext', array(
@@ -272,7 +276,7 @@ function shapely_customizer( $wp_customize ) {
 	$wp_customize->add_setting( 'shapely_footer_copyright', array(
 		'default'           => '',
 		'transport'         => 'refresh',
-		'sanitize_callback' => 'shapely_sanitize_strip_slashes',
+		'sanitize_callback' => 'wp_kses_stripslashes',
 	) );
 
 	$wp_customize->add_control( 'shapely_footer_copyright', array(
@@ -346,13 +350,6 @@ function shapely_customizer( $wp_customize ) {
 add_action( 'customize_register', 'shapely_customizer' );
 
 /**
- * Adds sanitization callback function: Strip Slashes.
- */
-function shapely_sanitize_strip_slashes( $input ) {
-	return wp_kses_stripslashes( $input );
-}
-
-/**
  * Sanitize checkbox for WordPress customizer.
  */
 function shapely_sanitize_checkbox( $input ) {
@@ -367,23 +364,18 @@ function shapely_sanitize_checkbox( $input ) {
  * Adds sanitization callback function: Sidebar Layout.
  */
 function shapely_sanitize_layout( $input ) {
-	global $shapely_site_layout;
+	$shapely_site_layout = array(
+		'pull-right' => esc_html__( 'Left Sidebar', 'shapely' ),
+		'side-right' => esc_html__( 'Right Sidebar', 'shapely' ),
+		'no-sidebar' => esc_html__( 'No Sidebar', 'shapely' ),
+		'full-width' => esc_html__( 'Full Width', 'shapely' )
+	);
+
 	if ( array_key_exists( $input, $shapely_site_layout ) ) {
 		return $input;
 	} else {
 		return '';
 	}
-}
-
-/**
- * Adds sanitization callback function: colors.
- */
-function shapely_sanitize_hexcolor( $color ) {
-	if ( $unhashed = sanitize_hex_color_no_hash( $color ) ) {
-		return '#' . $unhashed;
-	}
-
-	return $color;
 }
 
 /**

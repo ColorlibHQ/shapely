@@ -7,7 +7,7 @@ $shapely = wp_get_theme( 'shapely' );
 
 ?>
 <div class="featured-section changelog">
-	
+
 
 	<?php
 	WP_Filesystem();
@@ -16,9 +16,9 @@ $shapely = wp_get_theme( 'shapely' );
 	$shapely_changelog_lines = explode( PHP_EOL, $shapely_changelog );
 	foreach ( $shapely_changelog_lines as $shapely_changelog_line ) {
 		if ( substr( $shapely_changelog_line, 0, 3 ) === "###" ) {
-			echo '<h4>' . substr( $shapely_changelog_line, 3 ) . '</h4>';
+			echo '<h4>' . esc_html( substr( $shapely_changelog_line, 3 ) ) . '</h4>';
 		} else {
-			echo $shapely_changelog_line, '<br/>';
+			echo esc_html( $shapely_changelog_line ), '<br/>';
 		}
 
 

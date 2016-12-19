@@ -13,7 +13,8 @@
 	<header class="entry-header nolist">
 		<?php
 		if ( has_post_thumbnail() ){ ?>
-		<a class="text-center" href="<?php the_permalink(); ?>" title="<?php the_title_attribute(); ?>"><?php
+		<a class="text-center" href="<?php the_permalink(); ?>"
+		   title="<?php esc_attr( the_title_attribute() ); ?>"><?php
 			the_post_thumbnail( 'shapely-featured', array( 'class' => 'mb24' ) ); ?>
 		</a><?php
 		}

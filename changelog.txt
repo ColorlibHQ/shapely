@@ -1,3 +1,18 @@
+### 1.7.1
+<a href="https://github.com/puikinsh/shapely/issues">Issues</a>
+	#112 - #1 - there's nothing wrong in using abspath, it's a WordPress core define, nothing added by the theme/plugin. Changed it to incorporate MU
+			 - #2 - removed from global scope
+			 - #3 - removed custom sanitize for hex
+			 - #4 - removed shapely_sanitize_strip_slashes
+			 - #5 - escaped variable
+			 - #6 - I don't think Colorlib and WordPress are translatable
+			 - #7 - escaped where needed
+			 - #8 - removed registration of menu from socialnav.php
+			 - #9 - removed theme support for post formats
+			 - #10 - escaped where needed
+			 - #11 - translated
+			 - #12 - escaped where needed
+
 ### 1.7.0
 <a href="https://github.com/puikinsh/shapely/issues">Issues</a>
 	#79 - restyled <q> a little bit ( added a bg, set font style to italic )

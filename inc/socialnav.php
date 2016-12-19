@@ -4,15 +4,6 @@
  * Social Navigation Menu
  */
 
-/**
- * Register Social Icon menu
- */
-add_action( 'init', 'register_social_menu' );
-
-function register_social_menu() {
-	register_nav_menu( 'social-menu', _x( 'Social Menu', 'nav menu location', 'shapely' ) );
-}
-
 if ( ! function_exists( 'shapely_social_icons' ) ) :
 	/**
 	 * Display social links in footer and widgets

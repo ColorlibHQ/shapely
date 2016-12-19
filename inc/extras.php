@@ -78,9 +78,9 @@ function shapely_custom_password_form() {
   <div class="row">
     <div class="col-lg-10">
         <p>' . esc_html__( "This post is password protected. To view it please enter your password below:", 'shapely' ) . '</p>
-        <label for="' . $label . '">' . esc_html__( "Password:", 'shapely' ) . ' </label>
+        <label for="' . esc_attr( $label ) . '">' . esc_html__( "Password:", 'shapely' ) . ' </label>
       <div class="input-group">
-        <input class="form-control" value="' . get_search_query() . '" name="post_password" id="' . $label . '" type="password">
+        <input class="form-control" value="' . get_search_query() . '" name="post_password" id="' . esc_attr( $label ) . '" type="password">
         <span class="input-group-btn"><button type="submit" class="btn btn-default" name="submit" id="searchsubmit" value="' . esc_attr__( "Submit", 'shapely' ) . '">' . esc_html__( "Submit", 'shapely' ) . '</button>
         </span>
       </div>
@@ -177,7 +177,7 @@ function shapely_caption( $output, $attr, $content ) {
 	}
 
 	$defaults = array(
-		'id'      => '',
+		'id'      => 'shapely_caption_' . rand( 1, 192282 ),
 		'align'   => 'alignnone',
 		'width'   => '',
 		'caption' => ''
@@ -190,14 +190,9 @@ function shapely_caption( $output, $attr, $content ) {
 		return $content;
 	}
 
-	// Set up the attributes for the caption <figure>
-	$attributes = ( ! empty( $attr['id'] ) ? ' id="' . esc_attr( $attr['id'] ) . '"' : '' );
-	$attributes .= ' class="thumbnail wp-caption ' . esc_attr( $attr['align'] ) . '"';
-	$attributes .= ' style="width: ' . ( esc_attr( $attr['width'] ) + 10 ) . 'px"';
-
-	$output = '<figure' . $attributes . '>';
+	$output = '<figure id="' . esc_attr( $attr['id'] ) . '" class="thumbnail wp-caption ' . esc_attr( $attr['align'] ) . ' style="width: ' . ( esc_attr( $attr['width'] ) + 10 ) . 'px">';
 	$output .= do_shortcode( $content );
-	$output .= '<figcaption class="caption wp-caption-text">' . $attr['caption'] . '</figcaption>';
+	$output .= '<figcaption class="caption wp-caption-text">' . esc_html( $attr['caption'] ) . '</figcaption>';
 	$output .= '</figure>';
 
 	return $output;
@@ -210,7 +205,7 @@ add_filter( 'img_caption_shortcode', 'shapely_caption', 10, 3 );
  */
 function shapely_add_top_level_menu_url( $atts, $item, $args ) {
 	if ( ! wp_is_mobile() && isset( $args->has_children ) && $args->has_children ) {
-		$atts['href'] = ! empty( $item->url ) ? $item->url : '';
+		$atts['href'] = ! empty( $item->url ) ? esc_url( $item->url ) : '';
 	}
 
 	return $atts;
@@ -241,7 +236,7 @@ add_action( 'wp_footer', 'shapely_make_top_level_menu_clickable', 1 );
  * Add Read More button to post archive
  */
 function shapely_excerpt_more( $more ) {
-	return '<div><a class="btn-filled btn" href="' . esc_url_raw( get_the_permalink() ) . '" title="' . the_title_attribute( array( 'echo' => false ) ) . '">' . esc_html_x( 'Read More', 'Read More', 'shapely' ) . '</a></div>';
+	return '<div><a class="btn-filled btn" href="' . esc_url( get_the_permalink() ) . '" title="' . the_title_attribute( array( 'echo' => false ) ) . '">' . esc_html_x( 'Read More', 'Read More', 'shapely' ) . '</a></div>';
 }
 
 add_filter( 'excerpt_more', 'shapely_excerpt_more' );
@@ -273,7 +268,7 @@ if ( ! function_exists( 'shapely_pagination' ) ) {
 function shapely_search_form( $form ) {
 	$form = '<form role="search" method="get" id="searchform" class="search-form" action="' . esc_url( home_url( '/' ) ) . '" >
     <label class="screen-reader-text" for="s">' . __( 'Search for:', 'shapely' ) . '</label>
-    <input type="text" placeholder="' . __( 'Type Here', 'shapely' ) . '" type="text" value="' . get_search_query() . '" name="s" id="s" />
+    <input type="text" placeholder="' . __( 'Type Here', 'shapely' ) . '" type="text" value="' . esc_attr( get_search_query() ) . '" name="s" id="s" />
     <input type="submit" class="btn btn-fillded searchsubmit" id="searchsubmit" value="' . esc_attr__( 'Search', 'shapely' ) . '" />
 
     </form>';
@@ -311,10 +306,10 @@ if ( ! function_exists( 'shapely_author_bio' ) ) {
 					</div>
 				</div>
 				<div class="col-sm-10">
-					<b class="fn"><?php echo $author_name; ?></b>
+					<b class="fn"><?php echo esc_html( $author_name ); ?></b>
 					<p><?php
 						if ( trim( $author_description ) != "" ) {
-							echo $author_description;
+							echo esc_html( $author_description );
 						} ?>
 					</p>
 					<ul class="list-inline social-list author-social">
@@ -399,7 +394,7 @@ function shapely_cb_comment( $comment, $args, $depth ) {
 				} ?>
 			</div>
 			<div class="comment">
-				<b class="fn"><?php echo get_comment_author(); ?></b>
+				<b class="fn"><?php echo esc_html( get_comment_author() ); ?></b>
 				<div class="comment-date">
 					<time datetime="2016-01-28T12:43:17+00:00">
 						<?php
@@ -451,7 +446,7 @@ function shapely_custom_comment_form() {
 	$fields    = array(
 		'author' =>
 			'<input id="author" placeholder="' . __( 'Your Name', 'shapely' ) . ( $req ? '*' : '' ) . '" name="author" type="text" value="' . esc_attr( $commenter['comment_author'] ) .
-			'" size="30"' . $aria_req . ' required="required" />',
+			'" size="30" ' . $aria_req . ' required="required" />',
 
 		'email' =>
 			'<input id="email" name="email" type="email" placeholder="' . __( 'Email Address', 'shapely' ) . ( $req ? '*' : '' ) . '" value="' . esc_attr( $commenter['comment_author_email'] ) .

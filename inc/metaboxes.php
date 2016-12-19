@@ -41,17 +41,18 @@ function shapely_add_custom_box() {
 
 }
 
-/****************************************************************************************/
-
-global $shapely_site_layout;
-
-/****************************************************************************************/
-
 /**
  * Displays metabox to for sidebar layout
  */
 function shapely_sidebar_layout() {
-	global $shapely_site_layout, $post;
+	$shapely_site_layout = array(
+		'pull-right' => esc_html__( 'Left Sidebar', 'shapely' ),
+		'side-right' => esc_html__( 'Right Sidebar', 'shapely' ),
+		'no-sidebar' => esc_html__( 'No Sidebar', 'shapely' ),
+		'full-width' => esc_html__( 'Full Width', 'shapely' )
+	);
+
+	global $post;
 	// Use nonce for verification
 	wp_nonce_field( basename( __FILE__ ), 'custom_meta_box_nonce' ); ?>
 
@@ -83,7 +84,7 @@ add_action( 'save_post', 'shapely_save_custom_meta' );
  * @hooked to save_post hook
  */
 function shapely_save_custom_meta( $post_id ) {
-	global $shapely_site_layout, $post;
+	global $post;
 
 	// Verify the nonce before proceeding.
 	if ( ! isset( $_POST['custom_meta_box_nonce'] ) || ! wp_verify_nonce( $_POST['custom_meta_box_nonce'], basename( __FILE__ ) ) ) {

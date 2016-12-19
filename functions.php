@@ -53,7 +53,8 @@ if ( ! function_exists( 'shapely_setup' ) ) :
 
 		// This theme uses wp_nav_menu() in one location.
 		register_nav_menus( array(
-			                    'primary' => esc_html__( 'Primary', 'shapely' ),
+			                    'primary'     => esc_html__( 'Primary', 'shapely' ),
+			                    'social-menu' => esc_html__( 'Social Menu', 'shapely' ),
 		                    ) );
 
 		/*
@@ -66,18 +67,6 @@ if ( ! function_exists( 'shapely_setup' ) ) :
 			'comment-list',
 			'gallery',
 			'caption',
-		) );
-
-		/*
-		 * Enable support for Post Formats.
-		 * See https://developer.wordpress.org/themes/functionality/post-formats/
-		 */
-		add_theme_support( 'post-formats', array(
-			'aside',
-			'image',
-			'video',
-			'quote',
-			'link',
 		) );
 
 		// Set up the WordPress core custom background feature.
@@ -101,7 +90,8 @@ if ( ! function_exists( 'shapely_setup' ) ) :
 			global $shapely_required_actions, $shapely_recommended_plugins;
 
 			$shapely_recommended_plugins = array(
-				'fancybox-for-wordpress' => array( 'recommended' => false )
+				'wordpress-seo'          => array( 'recommended' => true ),
+				'fancybox-for-wordpress' => array( 'recommended' => false ),
 			);
 
 			/*
@@ -112,6 +102,14 @@ if ( ! function_exists( 'shapely_setup' ) ) :
 			 * plugin_slug - the plugin's slug (used for installing the plugin)
 			 *
 			 */
+			$path = WPMU_PLUGIN_DIR . '/shapely-companion/inc/views/shapely-demo-content.php';
+			if ( ! file_exists( $path ) ) {
+				$path = WP_PLUGIN_DIR . '/shapely-companion/inc/views/shapely-demo-content.php';
+				if ( ! file_exists( $path ) ) {
+					$path = false;
+				}
+			}
+
 			$shapely_required_actions = array(
 				array(
 					"id"          => 'shapely-req-ac-install-companion-plugin',
@@ -128,17 +126,10 @@ if ( ! function_exists( 'shapely_setup' ) ) :
 					"plugin_slug" => 'jetpack'
 				),
 				array(
-					"id"          => 'shapely-req-ac-install-wp-yoast-plugin',
-					"title"       => Shapely_Notify_System::shapely_yoast_title(),
-					'description' => Shapely_Notify_System::shapely_yoast_description(),
-					"check"       => Shapely_Notify_System::shapely_has_plugin( 'wordpress-seo' ),
-					"plugin_slug" => 'wordpress-seo'
-				),
-				array(
-					"id"          => 'shapely-req-import-content',
-					"title"       => esc_html__( 'Import content', 'shapely' ),
-					"external"    => ABSPATH . 'wp-content/plugins/shapely-companion/inc/views/shapely-demo-content.php',
-					"check"       => Shapely_Notify_System::shapely_check_import_req(),
+					"id"       => 'shapely-req-import-content',
+					"title"    => esc_html__( 'Import content', 'shapely' ),
+					"external" => $path,
+					"check"    => Shapely_Notify_System::shapely_check_import_req(),
 				),
 
 			);
@@ -286,16 +277,6 @@ require get_template_directory() . '/inc/socialnav.php';
  * Load Metboxes
  */
 require get_template_directory() . '/inc/metaboxes.php';
-
-/* Globals */
-global $shapely_site_layout;
-$shapely_site_layout = array(
-	'pull-right' => esc_html__( 'Left Sidebar', 'shapely' ),
-	'side-right' => esc_html__( 'Right Sidebar', 'shapely' ),
-	'no-sidebar' => esc_html__( 'No Sidebar', 'shapely' ),
-	'full-width' => esc_html__( 'Full Width', 'shapely' )
-);
-
 
 /**
  * Load the system checks ( used for notifications )
