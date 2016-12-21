@@ -11,42 +11,44 @@
  *
  * @package Shapely
  */
-
 get_header(); ?>
 <?php $layout_class = ( function_exists( 'shapely_get_layout_class' ) ) ? shapely_get_layout_class() : ''; ?>
-	<div id="primary" class="col-md-9 mb-xs-24 <?php echo esc_attr( $layout_class ); ?>"><?php
-		if ( have_posts() ) :
+	<div class="row">
+		<?php
+		if ( $layout_class == 'sidebar-left' ):
+			get_sidebar();
+		endif;
+		?>
+		<div id="primary" class="col-md-8 mb-xs-24 <?php echo esc_attr( $layout_class ); ?>"><?php
+			if ( have_posts() ) :
 
-			if ( is_home() && ! is_front_page() ) : ?>
-				<header>
-					<h1 class="page-title screen-reader-text"><?php single_post_title(); ?></h1>
-				</header>
+				if ( is_home() && ! is_front_page() ) : ?>
+					<header>
+						<h1 class="page-title screen-reader-text"><?php esc_html( single_post_title() ); ?></h1>
+					</header>
 
-				<?php
-			endif;
+					<?php
+				endif;
 
-			/* Start the Loop */
-			while ( have_posts() ) : the_post();
+				$layout_type = get_theme_mod( 'blog_layout_view', 'grid' );
 
-				/*
-				 * Include the Post-Format-specific template for the content.
-				 * If you want to override this in a child theme, then include a file
-				 * called content-___.php (where ___ is the Post Format name) and that will be used instead.
-				 */
-				get_template_part( 'template-parts/content', get_post_format() );
+				get_template_part( 'template-parts/layouts/blog', $layout_type );
 
-			endwhile;
+				if ( function_exists( "shapely_pagination" ) ):
+					shapely_pagination();
+				endif;
 
-			if ( function_exists( "shapely_pagination" ) ):
-				shapely_pagination();
-			endif;
+			else :
 
-		else :
+				get_template_part( 'template-parts/content', 'none' );
 
-			get_template_part( 'template-parts/content', 'none' );
-
-		endif; ?>
-	</div><!-- #primary -->
+			endif; ?>
+		</div><!-- #primary -->
+		<?php
+		if ( $layout_class == 'sidebar-right' ):
+			get_sidebar();
+		endif;
+		?>
+	</div>
 <?php
-get_sidebar();
 get_footer();

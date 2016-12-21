@@ -64,7 +64,17 @@ if ( ! class_exists( 'Shapely_Notify_System' ) ) {
 			if ( $slug === 'wordpress-seo' ) {
 				$slug2 = 'wp-seo';
 			}
-			if ( file_exists( ABSPATH . 'wp-content/plugins/' . $slug . '/' . $slug2 . '.php' ) ) {
+
+			$path = WPMU_PLUGIN_DIR . '/' . $slug . '/' . $slug2 . '.php';
+			if ( ! file_exists( $path ) ) {
+				$path = WP_PLUGIN_DIR . '/' . $slug . '/' . $slug2 . '.php';
+
+				if ( ! file_exists( $path ) ) {
+					$path = false;
+				}
+			}
+
+			if ( file_exists( $path ) ) {
 				return true;
 			}
 
@@ -79,7 +89,16 @@ if ( ! class_exists( 'Shapely_Notify_System' ) ) {
 			if ( $slug === 'wordpress-seo' ) {
 				$slug2 = 'wp-seo';
 			}
-			if ( file_exists( ABSPATH . 'wp-content/plugins/' . $slug . '/' . $slug2 . '.php' ) ) {
+
+			$path = WPMU_PLUGIN_DIR . '/' . $slug . '/' . $slug2 . '.php';
+			if ( ! file_exists( $path ) ) {
+				$path = WP_PLUGIN_DIR . '/' . $slug . '/' . $slug2 . '.php';
+				if ( ! file_exists( $path ) ) {
+					$path = false;
+				}
+			}
+
+			if ( file_exists( $path ) ) {
 				include_once( ABSPATH . 'wp-admin/includes/plugin.php' );
 
 				return is_plugin_active( $slug . '/' . $slug2 . '.php' );

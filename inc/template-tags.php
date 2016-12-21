@@ -36,6 +36,33 @@ if ( ! function_exists( 'shapely_posted_on' ) ) :
 	}
 endif;
 
+if ( ! function_exists( 'shapely_posted_on_no_cat' ) ) :
+	/**
+	 * Prints HTML with meta information for the current post-date/time and author.
+	 */
+	function shapely_posted_on_no_cat() {
+		$time_string = '<time class="entry-date published updated" datetime="%1$s">%2$s</time>';
+		if ( get_the_time( 'U' ) !== get_the_modified_time( 'U' ) ) {
+			$time_string = '<time class="entry-date published" datetime="%1$s">%2$s</time><time class="updated" datetime="%3$s">%4$s</time>';
+		}
+
+		$time_string = sprintf( $time_string,
+		                        esc_attr( get_the_date( 'c' ) ),
+		                        esc_html( get_the_date() ),
+		                        esc_attr( get_the_modified_date( 'c' ) ),
+		                        esc_html( get_the_modified_date() )
+		); ?>
+
+		<ul class="post-meta">
+		<li><span class="posted-on"><?php echo $time_string; ?></span></li>
+		<li><span><?php echo esc_html__( 'by', 'shapely' ); ?> <a
+					href="<?php echo esc_url( get_author_posts_url( get_the_author_meta( 'ID' ) ) ); ?>"
+					title="<?php echo esc_attr( get_the_author() ); ?>"><?php esc_html( the_author() ); ?></a></span>
+		</li>
+		</ul><?php
+	}
+endif;
+
 if ( ! function_exists( 'shapely_entry_footer' ) ) :
 	/**
 	 * Prints HTML with meta information for the categories, tags and comments.
@@ -132,3 +159,28 @@ if ( ! function_exists( 'shapely_post_category' ) ) :
 		}
 	}
 endif;
+
+/**
+ * Filter the categories widget to add a <span> element before the count
+ *
+ * @param $links
+ *
+ * @return mixed
+ */
+function shapely_add_span_cat_count( $links ) {
+	$links = str_replace( '</a> (', '</a> <span class="shapely-cat-count">', $links );
+	$links = str_replace( ')', '</span>', $links );
+
+	return $links;
+}
+
+add_filter( 'wp_list_categories', 'shapely_add_span_cat_count' );
+
+function shapely_add_span_archive_count( $links ) {
+	$links = str_replace( '</a>&nbsp;(', '</a> <span class="shapely-cat-count">', $links );
+	$links = str_replace( ')', '</span>', $links );
+
+	return $links;
+}
+
+add_filter( 'get_archives_link', 'shapely_add_span_archive_count' );

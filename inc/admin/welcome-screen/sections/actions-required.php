@@ -67,8 +67,8 @@ wp_enqueue_script( 'updates' );
 					?>
 					<p class="plugin-card-<?php echo esc_attr( $shapely_required_action_value['plugin_slug'] ) ?> action_button <?php echo ( $active['needs'] !== 'install' && $active['status'] ) ? 'active' : '' ?>">
 						<a data-slug="<?php echo esc_attr( $shapely_required_action_value['plugin_slug'] ) ?>"
-						   class="<?php echo $class; ?>"
-						   href="<?php echo esc_url( $url ) ?>"> <?php echo $label ?> </a>
+						   class="<?php echo esc_attr( $class ); ?>"
+						   href="<?php echo esc_url( $url ) ?>"> <?php echo esc_html( $label ) ?> </a>
 					</p>
 					<?php
 				};
