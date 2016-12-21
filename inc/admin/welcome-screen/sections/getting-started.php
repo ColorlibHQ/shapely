@@ -3,7 +3,7 @@
  * Getting started template
  */
 $customizer_url = admin_url() . 'customize.php';
-$count = $this->count_actions();
+$count          = $this->count_actions();
 ?>
 
 <div class="feature-section three-col">
@@ -12,10 +12,11 @@ $count = $this->count_actions();
 		<p><?php esc_html_e( 'We\'ve compiled a list of steps for you, to take make sure the experience you\'ll have using one of our products is very easy to follow.', 'shapely' ); ?></p>
 		<?php if ( $count == 0 ) { ?>
 			<p><span class="dashicons dashicons-yes"></span>
-				<a href="<?php echo admin_url( 'themes.php?page=shapely-welcome&tab=recommended_actions' ); ?>"><?php esc_html_e( 'No recommended actions left to perform', 'shapely' ); ?></a>
+				<a href="<?php echo esc_url( admin_url( 'themes.php?page=shapely-welcome&tab=recommended_actions' ) ); ?>"><?php esc_html_e( 'No recommended actions left to perform', 'shapely' ); ?></a>
 			</p>
 		<?php } else { ?>
-			<p><span class="dashicons dashicons-no-alt"></span> <a href="<?php echo admin_url( 'themes.php?page=shapely-welcome&tab=recommended_actions' ); ?>"><?php esc_html_e( 'Check recommended actions', 'shapely' ); ?></a>
+			<p><span class="dashicons dashicons-no-alt"></span> <a
+					href="<?php echo esc_url( admin_url( 'themes.php?page=shapely-welcome&tab=recommended_actions' ) ); ?>"><?php esc_html_e( 'Check recommended actions', 'shapely' ); ?></a>
 			</p> <?php
 		}; ?>
 	</div><!--/.col-->

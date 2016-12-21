@@ -36,6 +36,14 @@ if ( ! function_exists( 'shapely_setup' ) ) :
 			'flex-width' => true,
 		) );
 
+		add_theme_support( 'custom-header', apply_filters( 'shapely_custom_header_args', array(
+			'default-image'          => '',
+			'default-text-color'     => '000000',
+			'width'                  => 1900,
+			'height'                 => 225,
+			'flex-width'             => true
+		) ) );
+
 		/*
 		 * Let WordPress manage the document title.
 		 * By adding theme support, we declare that this theme does not use a
@@ -53,7 +61,8 @@ if ( ! function_exists( 'shapely_setup' ) ) :
 
 		// This theme uses wp_nav_menu() in one location.
 		register_nav_menus( array(
-			                    'primary' => esc_html__( 'Primary', 'shapely' ),
+			                    'primary'     => esc_html__( 'Primary', 'shapely' ),
+			                    'social-menu' => esc_html__( 'Social Menu', 'shapely' ),
 		                    ) );
 
 		/*
@@ -68,18 +77,6 @@ if ( ! function_exists( 'shapely_setup' ) ) :
 			'caption',
 		) );
 
-		/*
-		 * Enable support for Post Formats.
-		 * See https://developer.wordpress.org/themes/functionality/post-formats/
-		 */
-		add_theme_support( 'post-formats', array(
-			'aside',
-			'image',
-			'video',
-			'quote',
-			'link',
-		) );
-
 		// Set up the WordPress core custom background feature.
 		add_theme_support( 'custom-background', apply_filters( 'shapely_custom_background_args', array(
 			'default-color' => 'ffffff',
@@ -92,8 +89,9 @@ if ( ! function_exists( 'shapely_setup' ) ) :
 		 * @link http://codex.wordpress.org/Function_Reference/add_theme_support#Post_Thumbnails
 		 */
 		add_theme_support( 'post-thumbnails' );
-
-		add_image_size( 'shapely-featured', 848, 566, true );
+		add_image_size( 'shapely-full', 1110, 530, true );
+		add_image_size( 'shapely-featured', 730, 350, true );
+		add_image_size( 'shapely-grid', 350, 300, true );
 
 		add_theme_support( 'customize-selective-refresh-widgets' );
 		// Welcome screen
@@ -101,7 +99,8 @@ if ( ! function_exists( 'shapely_setup' ) ) :
 			global $shapely_required_actions, $shapely_recommended_plugins;
 
 			$shapely_recommended_plugins = array(
-				'fancybox-for-wordpress' => array( 'recommended' => false )
+				'wordpress-seo'          => array( 'recommended' => true ),
+				'fancybox-for-wordpress' => array( 'recommended' => false ),
 			);
 
 			/*
@@ -112,6 +111,14 @@ if ( ! function_exists( 'shapely_setup' ) ) :
 			 * plugin_slug - the plugin's slug (used for installing the plugin)
 			 *
 			 */
+			$path = WPMU_PLUGIN_DIR . '/shapely-companion/inc/views/shapely-demo-content.php';
+			if ( ! file_exists( $path ) ) {
+				$path = WP_PLUGIN_DIR . '/shapely-companion/inc/views/shapely-demo-content.php';
+				if ( ! file_exists( $path ) ) {
+					$path = false;
+				}
+			}
+
 			$shapely_required_actions = array(
 				array(
 					"id"          => 'shapely-req-ac-install-companion-plugin',
@@ -128,17 +135,10 @@ if ( ! function_exists( 'shapely_setup' ) ) :
 					"plugin_slug" => 'jetpack'
 				),
 				array(
-					"id"          => 'shapely-req-ac-install-wp-yoast-plugin',
-					"title"       => Shapely_Notify_System::shapely_yoast_title(),
-					'description' => Shapely_Notify_System::shapely_yoast_description(),
-					"check"       => Shapely_Notify_System::shapely_has_plugin( 'wordpress-seo' ),
-					"plugin_slug" => 'wordpress-seo'
-				),
-				array(
-					"id"          => 'shapely-req-import-content',
-					"title"       => esc_html__( 'Import content', 'shapely' ),
-					"external"    => ABSPATH . 'wp-content/plugins/shapely-companion/inc/views/shapely-demo-content.php',
-					"check"       => Shapely_Notify_System::shapely_check_import_req(),
+					"id"       => 'shapely-req-import-content',
+					"title"    => esc_html__( 'Import content', 'shapely' ),
+					"external" => $path,
+					"check"    => Shapely_Notify_System::shapely_check_import_req(),
 				),
 
 			);
@@ -203,6 +203,27 @@ function shapely_widgets_init() {
 add_action( 'widgets_init', 'shapely_widgets_init' );
 
 /**
+ * Hides the custom post template for pages on WordPress 4.6 and older
+ *
+ * @param array $post_templates Array of page templates. Keys are filenames, values are translated names.
+ *
+ * @return array Filtered array of page templates.
+ */
+function shapely_exclude_page_templates( $post_templates ) {
+
+	if ( version_compare( $GLOBALS['wp_version'], '4.7', '<' ) ) {
+		unset( $post_templates['page-templates/full-width.php'] );
+		unset( $post_templates['page-templates/no-sidebar.php'] );
+		unset( $post_templates['page-templates/sidebar-left.php'] );
+		unset( $post_templates['page-templates/sidebar-right.php'] );
+	}
+
+	return $post_templates;
+}
+
+add_filter( 'theme_page_templates', 'shapely_exclude_page_templates' );
+
+/**
  * Enqueue scripts and styles.
  */
 function shapely_scripts() {
@@ -241,16 +262,19 @@ function shapely_scripts() {
 	if ( is_page_template( 'template-home.php' ) ) {
 		wp_enqueue_script( 'shapely-parallax', get_template_directory_uri() . '/js/parallax.min.js', array( 'jquery' ), '20160115', true );
 	}
+	/**
+	 * OwlCarousel Library
+	 */
+	wp_enqueue_script( 'owl.carousel', get_template_directory_uri() . '/js/owl-carousel/owl.carousel.min.js', array( 'jquery' ), '20160115', true );
+	wp_enqueue_style( 'owl.carousel', get_template_directory_uri() . '/js/owl-carousel/owl.carousel.min.css' );
+	wp_enqueue_style( 'owl.carousel', get_template_directory_uri() . '/js/owl-carousel/owl.theme.default.css' );
 
 	wp_enqueue_script( 'shapely-scripts', get_template_directory_uri() . '/js/shapely-scripts.js', array( 'jquery' ), '20160115', true );
+
+	wp_enqueue_style( 'shapely-scss', get_template_directory_uri() . '/assets/css/style.css' );
 }
 
 add_action( 'wp_enqueue_scripts', 'shapely_scripts' );
-
-/**
- * Implement the Custom Header feature.
- */
-require get_template_directory() . '/inc/custom-header.php';
 
 /**
  * Custom template tags for this theme.
@@ -283,19 +307,9 @@ require get_template_directory() . '/inc/navwalker.php';
 require get_template_directory() . '/inc/socialnav.php';
 
 /**
- * Load Metboxes
+ * Load related posts
  */
-require get_template_directory() . '/inc/metaboxes.php';
-
-/* Globals */
-global $shapely_site_layout;
-$shapely_site_layout = array(
-	'pull-right' => esc_html__( 'Left Sidebar', 'shapely' ),
-	'side-right' => esc_html__( 'Right Sidebar', 'shapely' ),
-	'no-sidebar' => esc_html__( 'No Sidebar', 'shapely' ),
-	'full-width' => esc_html__( 'Full Width', 'shapely' )
-);
-
+require get_template_directory() . '/inc/class-shapely-related-posts.php';
 
 /**
  * Load the system checks ( used for notifications )

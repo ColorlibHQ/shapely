@@ -11,13 +11,13 @@
 
 ?>
 
-</div><!-- row -->
 </div><!-- #main -->
 </section><!-- section -->
 
 <div class="footer-callout">
 	<?php shapely_footer_callout(); ?>
 </div>
+
 <footer id="colophon" class="site-footer footer bg-dark" role="contentinfo">
 	<div class="container footer-inner">
 		<div class="row">
@@ -26,9 +26,12 @@
 
 		<div class="row">
 			<div class="site-info col-sm-6">
-				<div
-					class="copyright-text"><?php echo wp_kses_post( get_theme_mod( 'shapely_footer_copyright' ) ); ?></div>
-				<div class="footer-credits"><?php shapely_footer_info(); ?></div>
+				<div class="copyright-text">
+					<?php echo wp_kses_post( get_theme_mod( 'shapely_footer_copyright' ) ); ?>
+				</div>
+				<div class="footer-credits">
+					<?php shapely_footer_info(); ?>
+				</div>
 			</div><!-- .site-info -->
 			<div class="col-sm-6 text-right">
 				<?php shapely_social_icons(); ?>

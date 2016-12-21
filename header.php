@@ -62,7 +62,7 @@
 				<?php shapely_top_callout(); ?>
 			</div>
 		<?php endif; ?>
+
 		<section class="content-area <?php echo ( get_theme_mod( 'top_callout', true ) ) ? '' : ' pt0 ' ?>">
 			<div id="main" class="<?php echo ( ! is_page_template( 'template-home.php' ) ) ? 'container' : ''; ?>"
 			     role="main">
-				<div class="row">

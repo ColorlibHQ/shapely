@@ -40,7 +40,7 @@ class shapely_Welcome {
 	 */
 	public function shapely_welcome_register_menu() {
 		$action_count = $this->count_actions();
-		$title        = $action_count > 0 ? 'About shapely <span class="badge-action-count">' . esc_html( $action_count ) . '</span>' : 'About shapely';
+		$title        = $action_count > 0 ? __( 'About Shapely', 'shapely' ) . '<span class="badge-action-count">' . esc_html( $action_count ) . '</span>' : __( 'About Shapely', 'shapely' );
 
 		add_theme_page( 'About shapely', $title, 'edit_theme_options', 'shapely-welcome', array(
 			$this,
@@ -87,9 +87,9 @@ class shapely_Welcome {
 		wp_enqueue_script( 'shapely-welcome-screen-js', get_template_directory_uri() . '/inc/admin/welcome-screen/js/welcome.js', array( 'jquery' ) );
 
 		wp_localize_script( 'shapely-welcome-screen-js', 'shapelyWelcomeScreenObject', array(
-			'nr_actions_required'      => $this->count_actions(),
-			'ajaxurl'                  => admin_url( 'admin-ajax.php' ),
-			'template_directory'       => get_template_directory_uri(),
+			'nr_actions_required'      => absint( $this->count_actions() ),
+			'ajaxurl'                  => esc_url( admin_url( 'admin-ajax.php' ) ),
+			'template_directory'       => esc_url( get_template_directory_uri() ),
 			'no_required_actions_text' => __( 'Hooray! There are no required actions for you right now.', 'shapely' )
 		) );
 
@@ -106,7 +106,7 @@ class shapely_Welcome {
 		wp_enqueue_script( 'shapely-welcome-screen-customizer-js', get_template_directory_uri() . '/inc/admin/welcome-screen/js/welcome_customizer.js', array( 'jquery' ), '20120206', true );
 
 		wp_localize_script( 'shapely-welcome-screen-customizer-js', 'shapelyWelcomeScreenCustomizerObject', array(
-			'nr_actions_required' => $this->count_actions(),
+			'nr_actions_required' => absint( $this->count_actions() ),
 			'aboutpage'           => esc_url( admin_url( 'themes.php?page=shapely-welcome&tab=recommended_actions' ) ),
 			'customizerpage'      => esc_url( admin_url( 'customize.php#recommended_actions' ) ),
 			'themeinfo'           => __( 'View Theme Info', 'shapely' ),
@@ -240,7 +240,16 @@ class shapely_Welcome {
 		if ( $slug === 'wordpress-seo' ) {
 			$slug2 = 'wp-seo';
 		}
-		if ( file_exists( ABSPATH . 'wp-content/plugins/' . $slug . '/' . $slug2 . '.php' ) ) {
+
+		$path = WPMU_PLUGIN_DIR . '/' . $slug . '/' . $slug2 . '.php';
+		if ( ! file_exists( $path ) ) {
+			$path = WP_PLUGIN_DIR . '/' . $slug . '/' . $slug2 . '.php';
+			if ( ! file_exists( $path ) ) {
+				$path = false;
+			}
+		}
+
+		if ( file_exists( $path ) ) {
 			include_once( ABSPATH . 'wp-admin/includes/plugin.php' );
 
 			$needs = is_plugin_active( $slug . '/' . $slug2 . '.php' ) ? 'deactivate' : 'activate';
@@ -331,16 +340,16 @@ class shapely_Welcome {
 
 
 			<h2 class="nav-tab-wrapper wp-clearfix">
-				<a href="<?php echo admin_url( 'themes.php?page=shapely-welcome&tab=getting_started' ); ?>"
+				<a href="<?php echo esc_url( admin_url( 'themes.php?page=shapely-welcome&tab=getting_started' ) ); ?>"
 				   class="nav-tab <?php echo $active_tab == 'getting_started' ? 'nav-tab-active' : ''; ?>"><?php echo esc_html__( 'Getting Started', 'shapely' ); ?></a>
-				<a href="<?php echo admin_url( 'themes.php?page=shapely-welcome&tab=recommended_actions' ); ?>"
+				<a href="<?php echo esc_url( admin_url( 'themes.php?page=shapely-welcome&tab=recommended_actions' ) ); ?>"
 				   class="nav-tab <?php echo $active_tab == 'recommended_actions' ? 'nav-tab-active' : ''; ?> "><?php echo esc_html__( 'Recommended Actions', 'shapely' ); ?>
 					<?php echo $action_count > 0 ? '<span class="badge-action-count">' . esc_html( $action_count ) . '</span>' : '' ?></a>
-				<a href="<?php echo admin_url( 'themes.php?page=shapely-welcome&tab=recommended_plugins' ); ?>"
+				<a href="<?php echo esc_url( admin_url( 'themes.php?page=shapely-welcome&tab=recommended_plugins' ) ); ?>"
 				   class="nav-tab <?php echo $active_tab == 'recommended_plugins' ? 'nav-tab-active' : ''; ?> "><?php echo esc_html__( 'Recommended Plugins', 'shapely' ); ?></a>
-				<a href="<?php echo admin_url( 'themes.php?page=shapely-welcome&tab=support' ); ?>"
+				<a href="<?php echo esc_url( admin_url( 'themes.php?page=shapely-welcome&tab=support' ) ); ?>"
 				   class="nav-tab <?php echo $active_tab == 'support' ? 'nav-tab-active' : ''; ?> "><?php echo esc_html__( 'Support', 'shapely' ); ?></a>
-				<a href="<?php echo admin_url( 'themes.php?page=shapely-welcome&tab=changelog' ); ?>"
+				<a href="<?php echo esc_url( admin_url( 'themes.php?page=shapely-welcome&tab=changelog' ) ); ?>"
 				   class="nav-tab <?php echo $active_tab == 'changelog' ? 'nav-tab-active' : ''; ?> "><?php echo esc_html__( 'Changelog', 'shapely' ); ?></a>
 			</h2>
 
