@@ -13,6 +13,6 @@ if ( ! is_active_sidebar( 'sidebar-1' ) || ( function_exists('shapely_show_sideb
 }
 ?>
 
-<aside id="secondary" class="widget-area col-md-3 hidden-sm" role="complementary">
+<aside id="secondary" class="widget-area col-md-4 hidden-sm" role="complementary">
 	<?php dynamic_sidebar( 'sidebar-1' ); ?>
 </aside><!-- #secondary -->

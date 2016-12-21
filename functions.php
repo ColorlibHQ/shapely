@@ -36,6 +36,14 @@ if ( ! function_exists( 'shapely_setup' ) ) :
 			'flex-width' => true,
 		) );
 
+		add_theme_support( 'custom-header', apply_filters( 'shapely_custom_header_args', array(
+			'default-image'          => '',
+			'default-text-color'     => '000000',
+			'width'                  => 1900,
+			'height'                 => 225,
+			'flex-width'             => true
+		) ) );
+
 		/*
 		 * Let WordPress manage the document title.
 		 * By adding theme support, we declare that this theme does not use a
@@ -81,8 +89,9 @@ if ( ! function_exists( 'shapely_setup' ) ) :
 		 * @link http://codex.wordpress.org/Function_Reference/add_theme_support#Post_Thumbnails
 		 */
 		add_theme_support( 'post-thumbnails' );
-
-		add_image_size( 'shapely-featured', 848, 566, true );
+		add_image_size( 'shapely-full', 1110, 530, true );
+		add_image_size( 'shapely-featured', 730, 350, true );
+		add_image_size( 'shapely-grid', 350, 300, true );
 
 		add_theme_support( 'customize-selective-refresh-widgets' );
 		// Welcome screen
@@ -194,6 +203,27 @@ function shapely_widgets_init() {
 add_action( 'widgets_init', 'shapely_widgets_init' );
 
 /**
+ * Hides the custom post template for pages on WordPress 4.6 and older
+ *
+ * @param array $post_templates Array of page templates. Keys are filenames, values are translated names.
+ *
+ * @return array Filtered array of page templates.
+ */
+function shapely_exclude_page_templates( $post_templates ) {
+
+	if ( version_compare( $GLOBALS['wp_version'], '4.7', '<' ) ) {
+		unset( $post_templates['page-templates/full-width.php'] );
+		unset( $post_templates['page-templates/no-sidebar.php'] );
+		unset( $post_templates['page-templates/sidebar-left.php'] );
+		unset( $post_templates['page-templates/sidebar-right.php'] );
+	}
+
+	return $post_templates;
+}
+
+add_filter( 'theme_page_templates', 'shapely_exclude_page_templates' );
+
+/**
  * Enqueue scripts and styles.
  */
 function shapely_scripts() {
@@ -232,16 +262,19 @@ function shapely_scripts() {
 	if ( is_page_template( 'template-home.php' ) ) {
 		wp_enqueue_script( 'shapely-parallax', get_template_directory_uri() . '/js/parallax.min.js', array( 'jquery' ), '20160115', true );
 	}
+	/**
+	 * OwlCarousel Library
+	 */
+	wp_enqueue_script( 'owl.carousel', get_template_directory_uri() . '/js/owl-carousel/owl.carousel.min.js', array( 'jquery' ), '20160115', true );
+	wp_enqueue_style( 'owl.carousel', get_template_directory_uri() . '/js/owl-carousel/owl.carousel.min.css' );
+	wp_enqueue_style( 'owl.carousel', get_template_directory_uri() . '/js/owl-carousel/owl.theme.default.css' );
 
 	wp_enqueue_script( 'shapely-scripts', get_template_directory_uri() . '/js/shapely-scripts.js', array( 'jquery' ), '20160115', true );
+
+	wp_enqueue_style( 'shapely-scss', get_template_directory_uri() . '/assets/css/style.css' );
 }
 
 add_action( 'wp_enqueue_scripts', 'shapely_scripts' );
-
-/**
- * Implement the Custom Header feature.
- */
-require get_template_directory() . '/inc/custom-header.php';
 
 /**
  * Custom template tags for this theme.
@@ -274,9 +307,9 @@ require get_template_directory() . '/inc/navwalker.php';
 require get_template_directory() . '/inc/socialnav.php';
 
 /**
- * Load Metboxes
+ * Load related posts
  */
-require get_template_directory() . '/inc/metaboxes.php';
+require get_template_directory() . '/inc/class-shapely-related-posts.php';
 
 /**
  * Load the system checks ( used for notifications )

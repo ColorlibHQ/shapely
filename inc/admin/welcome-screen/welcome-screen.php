@@ -250,7 +250,7 @@ class shapely_Welcome {
 		}
 
 		if ( file_exists( $path ) ) {
-			include_once( ABSPATH . WPINC . '/plugin.php' );
+			include_once( ABSPATH . 'wp-admin/includes/plugin.php' );
 
 			$needs = is_plugin_active( $slug . '/' . $slug2 . '.php' ) ? 'deactivate' : 'activate';
 

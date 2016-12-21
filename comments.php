@@ -21,7 +21,6 @@ if ( post_password_required() ) {
 ?>
 
 <div id="comments" class="comments-area comments  nolist">
-
 	<?php
 	// You can start editing here -- including this comment!
 	if ( have_comments() ) : ?>
@@ -45,11 +44,11 @@ if ( post_password_required() ) {
 			</div><!-- .nav-links -->
 		</nav><!-- #comment-nav-above -->
 		<?php endif; // Check for comment navigation. ?>
-        
+
         <?php add_filter('comment_reply_link', 'shapely_reply_link_class'); ?>
 		<ul class="comments-list">
 			<?php
-				wp_list_comments( array(                    
+				wp_list_comments( array(
 					'style'      => 'ol',
 					'short_ping' => true,
 					'avatar_size'=> 75,
@@ -82,7 +81,7 @@ if ( post_password_required() ) {
 		<p class="no-comments"><?php esc_html_e( 'Comments are closed.', 'shapely' ); ?></p>
 	<?php
 	endif;
-    
+
     /* comment form */
     $comments_args = ( function_exists( 'shapely_custom_comment_form' ) ) ? shapely_custom_comment_form() : '';
 	comment_form($comments_args);

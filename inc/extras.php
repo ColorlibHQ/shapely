@@ -290,11 +290,10 @@ if ( ! function_exists( 'shapely_author_bio' ) ) {
 			return;
 		}
 
-		$author_fields      = "'user_url','display_name', 'nickname', 'first_name','last_name','description', 'ID'";
 		$author_displayname = get_the_author_meta( 'display_name' );
 		$author_nickname    = get_the_author_meta( 'nickname' );
 		$author_fullname    = ( get_the_author_meta( 'first_name' ) != "" && get_the_author_meta( 'last_name' ) != "" ) ? get_the_author_meta( 'first_name' ) . " " . get_the_author_meta( 'last_name' ) : "";
-		$author_url         = get_the_author_meta( 'user_url' );
+		$author_email       = get_the_author_meta( 'email' );
 		$author_description = get_the_author_meta( 'description' );
 		$author_name = ( trim( $author_nickname ) != "" ) ? $author_nickname : ( trim( $author_displayname ) != "" ) ? $author_displayname : $author_fullname ?>
 
@@ -312,6 +311,8 @@ if ( ! function_exists( 'shapely_author_bio' ) ) {
 							echo esc_html( $author_description );
 						} ?>
 					</p>
+					<a class="author-email"
+					   href="mailto:<?php echo esc_attr( $author_email ); ?>"><?php echo esc_html( $author_email ); ?></a>
 					<ul class="list-inline social-list author-social">
 						<?php
 						$twitter_profile = get_the_author_meta( 'twitter' );
@@ -368,7 +369,93 @@ if ( ! function_exists( 'shapely_author_bio' ) ) {
 
 	}
 }
+if ( ! function_exists( 'shapely_author_bio' ) ) {
 
+	function shapely_author_bio() {
+
+		if ( ! get_the_ID() ) {
+			return;
+		}
+
+		$author_displayname = get_the_author_meta( 'display_name' );
+		$author_nickname    = get_the_author_meta( 'nickname' );
+		$author_fullname    = ( get_the_author_meta( 'first_name' ) != "" && get_the_author_meta( 'last_name' ) != "" ) ? get_the_author_meta( 'first_name' ) . " " . get_the_author_meta( 'last_name' ) : "";
+		$author_email       = get_the_author_meta( 'email' );
+		$author_description = get_the_author_meta( 'description' );
+		$author_name = ( trim( $author_nickname ) != "" ) ? $author_nickname : ( trim( $author_displayname ) != "" ) ? $author_displayname : $author_fullname ?>
+
+		<div class="author-bio">
+			<div class="row">
+				<div class="col-sm-2">
+					<div class="avatar">
+						<?php echo get_avatar( get_the_author_meta( 'ID' ), 100 ); ?>
+					</div>
+				</div>
+				<div class="col-sm-10">
+					<b class="fn"><?php echo esc_html( $author_name ); ?></b>
+					<p><?php
+						if ( trim( $author_description ) != "" ) {
+							echo esc_html( $author_description );
+						} ?>
+					</p>
+					<a class="author-email"
+					   href="mailto:<?php echo esc_attr( $author_email ); ?>"><?php echo esc_html( $author_email ); ?></a>
+					<ul class="list-inline social-list author-social">
+						<?php
+						$twitter_profile = get_the_author_meta( 'twitter' );
+						if ( $twitter_profile && $twitter_profile != '' ) { ?>
+							<li>
+							<a href="<?php echo esc_url( $twitter_profile ); ?>">
+								<i class="fa fa-twitter"></i>
+							</a>
+							</li><?php
+						}
+
+						$fb_profile = get_the_author_meta( 'facebook' );
+						if ( $fb_profile && $fb_profile != '' ) { ?>
+							<li>
+							<a href="<?php echo esc_url( $fb_profile ); ?>">
+								<i class="fa fa-facebook"></i>
+							</a>
+							</li><?php
+						}
+
+						$dribble_profile = get_the_author_meta( 'dribble' );
+						if ( $dribble_profile && $dribble_profile != '' ) { ?>
+							<li>
+								<a href="<?php echo esc_url( $dribble_profile ); ?>">
+									<i class="fa fa-dribbble"></i>
+								</a>
+							</li>
+							<?php
+						}
+
+						$github_profile = get_the_author_meta( 'github' );
+						if ( $github_profile && $github_profile != '' ) { ?>
+							<li>
+							<a href="<?php echo esc_url( $github_profile ); ?>">
+								<i class="fa fa-vimeo"></i>
+							</a>
+							</li><?php
+						}
+
+						$vimeo_profile = get_the_author_meta( 'vimeo' );
+						if ( $vimeo_profile && $vimeo_profile != '' ) { ?>
+							<li>
+							<a href="<?php echo esc_url( $vimeo_profile ); ?>">
+								<i class="fa fa-github"></i>
+							</a>
+							</li><?php
+						} ?>
+					</ul>
+				</div>
+			</div>
+		</div>
+		<!--end of author-bio-->
+		<?php
+
+	}
+}
 /**
  * Custom comment template
  */
@@ -464,6 +551,7 @@ function shapely_custom_comment_form() {
 		'fields'        => apply_filters( 'comment_form_default_fields', $fields )
 	);
 
+
 	return $comments_args;
 }
 
@@ -489,11 +577,28 @@ function shapely_get_header_logo() {
  * then from themeoptions
  */
 function shapely_get_layout_class() {
-	global $post;
-	if ( is_singular() && get_post_meta( $post->ID, 'site_layout', true ) ) {
-		$layout_class = get_post_meta( $post->ID, 'site_layout', true );
+	if ( is_singular() ) {
+		$template     = get_page_template_slug();
+		$layout_class = '';
+		switch ( $template ) {
+			case 'page-templates/full-width.php':
+				$layout_class = 'full-width';
+				break;
+			case 'page-templates/no-sidebar.php':
+				$layout_class = 'no-sidebar';
+				break;
+			case 'page-templates/sidebar-left.php':
+				$layout_class = 'sidebar-left';
+				break;
+			case 'page-templates/sidebar-right.php':
+				$layout_class = 'sidebar-right';
+				break;
+			default:
+				$layout_class = 'sidebar-right';
+				break;
+		}
 	} else {
-		$layout_class = get_theme_mod( 'shapely_sidebar_position', 'side-right' );
+		$layout_class = get_theme_mod( 'blog_layout_template', 'sidebar-right' );
 	}
 
 	return $layout_class;
@@ -523,13 +628,13 @@ function shapely_top_callout() {
 	if ( get_theme_mod( 'top_callout', true ) ) {
 		$header = get_header_image();
 		?>
-	<section class="page-title-section bg-secondary <?php echo $header ? 'header-image-bg' : '' ?>"
-		<?php echo $header ? 'style="background-image:url(' . $header . ')"' : '' ?>>
+	<section
+		class="page-title-section bg-secondary <?php echo $header ? 'header-image-bg' : '' ?>" <?php echo $header ? 'style="background-image:url(' . $header . ')"' : '' ?>>
 		<div class="container">
 			<div class="row">
 				<?php
 				$breadcrumbs_enabled = false;
-				$title_in_post       = false;
+				$title_in_post       = true;
 				if ( function_exists( 'yoast_breadcrumb' ) ) {
 					$options             = get_option( 'wpseo_internallinks' );
 					$breadcrumbs_enabled = ( $options['breadcrumbs-enable'] === true );
@@ -599,9 +704,7 @@ function shapely_footer_callout() {
 					</div>
 				</div>
 			</div>
-			<!--end of row-->
 		</div>
-		<!--end of container-->
 		</section><?php
 	}
 }
