@@ -331,7 +331,7 @@ class shapely_Welcome {
 
 		<div class="wrap about-wrap epsilon-wrap">
 
-			<h1><?php echo __( 'Welcome to Shapely! - Version ', 'shapely' ) . $shapely['Version']; ?></h1>
+			<h1><?php echo esc_html__( 'Welcome to Shapely! - Version ', 'shapely' ) . $shapely['Version']; ?></h1>
 
 			<div
 				class="about-text"><?php echo esc_html__( 'Shapely is now installed and ready to use! Get ready to build something beautiful. We hope you enjoy it! We want to make sure you have the best experience using shapely and that is why we gathered here all the necessary information for you. We hope you will enjoy using shapely, as much as we enjoy creating great products.', 'shapely' ); ?></div>
