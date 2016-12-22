@@ -124,7 +124,7 @@ class shapely_Welcome {
 
 		$action_id = ( isset( $_GET['id'] ) ) ? $_GET['id'] : 0;
 
-		echo $action_id; /* this is needed and it's the id of the dismissable required action */
+		echo esc_html( $action_id ); /* this is needed and it's the id of the dismissable required action */
 
 		if ( ! empty( $action_id ) ):
 
