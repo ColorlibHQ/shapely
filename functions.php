@@ -37,11 +37,11 @@ if ( ! function_exists( 'shapely_setup' ) ) :
 		) );
 
 		add_theme_support( 'custom-header', apply_filters( 'shapely_custom_header_args', array(
-			'default-image'          => '',
-			'default-text-color'     => '000000',
-			'width'                  => 1900,
-			'height'                 => 225,
-			'flex-width'             => true
+			'default-image'      => '',
+			'default-text-color' => '000000',
+			'width'              => 1900,
+			'height'             => 225,
+			'flex-width'         => true
 		) ) );
 
 		/*
@@ -270,8 +270,6 @@ function shapely_scripts() {
 	wp_enqueue_style( 'owl.carousel', get_template_directory_uri() . '/js/owl-carousel/owl.theme.default.css' );
 
 	wp_enqueue_script( 'shapely-scripts', get_template_directory_uri() . '/js/shapely-scripts.js', array( 'jquery' ), '20160115', true );
-
-	wp_enqueue_style( 'shapely-scss', get_template_directory_uri() . '/assets/css/style.css' );
 }
 
 add_action( 'wp_enqueue_scripts', 'shapely_scripts' );
@@ -285,6 +283,11 @@ require get_template_directory() . '/inc/template-tags.php';
  * Custom functions that act independently of the theme templates.
  */
 require get_template_directory() . '/inc/extras.php';
+
+/**
+ * Add custom section
+ */
+require get_template_directory() . '/inc/shapely-documentation/class-customize.php';
 
 /**
  * Customizer additions.

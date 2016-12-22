@@ -2055,11 +2055,6 @@ input[type="submit"]:focus {
     line-height: 32px;
 }
 
-.footer-widget .widget-title {
-    border-bottom: 1px solid #555;
-    color: #fff;
-}
-
 .widget hr {
     margin-bottom: 12px;
 }
@@ -3203,6 +3198,31 @@ footer.bg-dark a {
 }
 
 /*
+* Elements
+*/
+blockquote {
+    background: transparent;
+    border-top: 1px solid #ebebeb;
+    border-bottom: 1px solid #ebebeb;
+    border-left: none;
+    position: relative; }
+blockquote:after {
+    content: '';
+    height: 1px;
+    width: 150px;
+    display: block;
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    background: #001c28;
+    -webkit-transform: translateX(-50%);
+    -khtml-transform: translateX(-50%);
+    -moz-transform: translateX(-50%);
+    -ms-transform: translateX(-50%);
+    -o-transform: translateX(-50%);
+    transform: translateX(-50%); }
+
+/*
 * Widgets
 */
 .widget .widget-title {
@@ -3487,6 +3507,36 @@ footer.bg-dark a {
     position: absolute;
     color: transparent !important;
     right: 0; }
+
+#colophon .site-info {
+    margin-top: 15px; }
+#colophon .widget {
+    display: inline-block;
+    width: 100%; }
+#colophon .widget ul {
+    padding-left: 0;
+    margin-left: 0; }
+#colophon .widget ul li {
+    margin-right: 0; }
+#colophon .widget .widget-title {
+    color: #fff;
+    border-bottom: none; }
+#colophon .widget.widget_calendar #wp-calendar > caption {
+    color: #fff; }
+#colophon .widget.widget_calendar #wp-calendar td:not(.pad):not(#next):not(#prev)#today, #colophon .widget.widget_calendar #wp-calendar thead {
+    color: #fff; }
+#colophon .widget.widget_calendar #wp-calendar th, #colophon .widget.widget_calendar #wp-calendar td {
+    color: #fff; }
+#colophon .widget.widget_calendar #wp-calendar #prev:before, #colophon .widget.widget_calendar #wp-calendar #next:before {
+    color: #fff; }
+#colophon .widget.widget_rss ul li .rsswidget {
+    color: #fff; }
+#colophon .widget.widget_rss ul li .rsswidget:hover, #colophon .widget.widget_rss ul li .rsswidget:focus {
+    color: #5234f9; }
+#colophon .widget.widget_rss .widget-title a {
+    color: #fff; }
+#colophon .widget.widget_rss .widget-title a:hover, #colophon .widget.widget_rss .widget-title a:focus {
+    color: #5234f9; }
 
 /*
 * Content
