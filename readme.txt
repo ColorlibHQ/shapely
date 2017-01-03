@@ -2,17 +2,17 @@
 
 Theme Name: Shapely
 Theme URI: https://colorlib.com/wp/shapely/
-Version: 1.0.5
-Tested up to: WP 4.6
+Version: 1.1.0
+Tested up to: WP 4.7
 
 Author: Aigars Silkalns
 Author URI: https://colorlib.com/wp/
 License: GNU General Public License v3.0
 License URI: http://www.gnu.org/licenses/gpl.html
 -------------------------------------------------------
-Shapely theme, Copyright 2016 colorlib.com
+Shapely theme, Copyright 2017 colorlib.com
 Shapely WordPress theme is distributed under the terms of the GNU GPL
-Shapely is based on Underscores http://underscores.me/, (C) 2012-2016 Automattic, Inc.
+Shapely is based on Underscores http://underscores.me/, (C) 2012-2017 Automattic, Inc.
 -------------------------------------------------------
 
 == Description ==
@@ -40,8 +40,8 @@ Shapely includes support for Infinite Scroll, Portfolio, Testimonials, Tiled Gal
 
 == Credits ==
 
-* Based on Underscores http://underscores.me/, (C) 2012-2016 Automattic, Inc., [GPLv2 or later](https://www.gnu.org/licenses/gpl-2.0.html)
-* normalize.css http://necolas.github.io/normalize.css/, (C) 2012-2016 Nicolas Gallagher and Jonathan Neal, [MIT](http://opensource.org/licenses/MIT)
+* Based on Underscores http://underscores.me/, (C) 2012-2017 Automattic, Inc., [GPLv2 or later](https://www.gnu.org/licenses/gpl-2.0.html)
+* normalize.css http://necolas.github.io/normalize.css/, (C) 2012-2017 Nicolas Gallagher and Jonathan Neal, [MIT](http://opensource.org/licenses/MIT)
 * TGM Plugin Activation - http://tgmpluginactivation.com/, 2011, Thomas Griffin [GPLv2 or later](https://www.gnu.org/licenses/gpl-2.0.html)
 * Bootstrap v3.3.6 (http://getbootstrap.com), Copyright 2011-2014 Twitter, Inc. Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
 * Font Awesome: License: SIL OFL 1.1, http://scripts.sil.org/OFL
@@ -52,6 +52,10 @@ Shapely includes support for Infinite Scroll, Portfolio, Testimonials, Tiled Gal
 
 
 == Changelog ==
+
+= 1.1.0 - Jan 3 2017 =
+
+* Major upgrade to comply with WordPress.org guidelines and best practices.
 
 = 1.0.5 - Sept 3 2016 =
 
