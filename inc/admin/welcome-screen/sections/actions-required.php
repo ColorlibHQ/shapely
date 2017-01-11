@@ -52,15 +52,15 @@ wp_enqueue_script( 'updates' );
 					switch ( $active['needs'] ) {
 						case 'install':
 							$class = 'install-now button';
-							$label = __( 'Install', 'shapely' );
+							$label = esc_html__( 'Install', 'shapely' );
 							break;
 						case 'activate':
 							$class = 'activate-now button button-primary';
-							$label = __( 'Activate', 'shapely' );
+							$label = esc_html__( 'Activate', 'shapely' );
 							break;
 						case 'deactivate':
 							$class = 'deactivate-now button';
-							$label = __( 'Deactivate', 'shapely' );
+							$label = esc_html__( 'Deactivate', 'shapely' );
 							break;
 					}
 
@@ -81,7 +81,7 @@ wp_enqueue_script( 'updates' );
 
 
 	if ( $hooray ):
-		echo '<span class="hooray">' . __( 'Hooray! There are no required actions for you right now.', 'shapely' ) . '</span>';
+		echo '<span class="hooray">' . esc_html__( 'Hooray! There are no required actions for you right now.', 'shapely' ) . '</span>';
 	endif;
 	?>
 

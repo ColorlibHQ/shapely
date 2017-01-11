@@ -40,7 +40,7 @@ class shapely_Welcome {
 	 */
 	public function shapely_welcome_register_menu() {
 		$action_count = $this->count_actions();
-		$title        = $action_count > 0 ? __( 'About Shapely', 'shapely' ) . '<span class="badge-action-count">' . esc_html( $action_count ) . '</span>' : __( 'About Shapely', 'shapely' );
+		$title        = $action_count > 0 ? esc_html__( 'About Shapely', 'shapely' ) . '<span class="badge-action-count">' . esc_html( $action_count ) . '</span>' : esc_html__( 'About Shapely', 'shapely' );
 
 		add_theme_page( 'About shapely', $title, 'edit_theme_options', 'shapely-welcome', array(
 			$this,
@@ -71,7 +71,8 @@ class shapely_Welcome {
 		<div class="updated notice is-dismissible">
 			<p><?php echo sprintf( esc_html__( 'Welcome! Thank you for choosing shapely! To fully take advantage of the best our theme can offer please make sure you visit our %swelcome page%s.', 'shapely' ), '<a href="' . esc_url( admin_url( 'themes.php?page=shapely-welcome' ) ) . '">', '</a>' ); ?></p>
 			<p><a href="<?php echo esc_url( admin_url( 'themes.php?page=shapely-welcome' ) ); ?>" class="button"
-			      style="text-decoration: none;"><?php _e( 'Get started with shapely', 'shapely' ); ?></a></p>
+			      style="text-decoration: none;"><?php echo esc_html__( 'Get started with shapely', 'shapely' ); ?></a>
+			</p>
 		</div>
 		<?php
 	}
@@ -90,7 +91,7 @@ class shapely_Welcome {
 			'nr_actions_required'      => absint( $this->count_actions() ),
 			'ajaxurl'                  => esc_url( admin_url( 'admin-ajax.php' ) ),
 			'template_directory'       => esc_url( get_template_directory_uri() ),
-			'no_required_actions_text' => __( 'Hooray! There are no required actions for you right now.', 'shapely' )
+			'no_required_actions_text' => esc_html__( 'Hooray! There are no required actions for you right now.', 'shapely' )
 		) );
 
 	}
@@ -109,7 +110,7 @@ class shapely_Welcome {
 			'nr_actions_required' => absint( $this->count_actions() ),
 			'aboutpage'           => esc_url( admin_url( 'themes.php?page=shapely-welcome&tab=recommended_actions' ) ),
 			'customizerpage'      => esc_url( admin_url( 'customize.php#recommended_actions' ) ),
-			'themeinfo'           => __( 'View Theme Info', 'shapely' ),
+			'themeinfo'           => esc_html__( 'View Theme Info', 'shapely' ),
 		) );
 	}
 
@@ -124,7 +125,7 @@ class shapely_Welcome {
 
 		$action_id = ( isset( $_GET['id'] ) ) ? $_GET['id'] : 0;
 
-		echo esc_html( $action_id ); /* this is needed and it's the id of the dismissable required action */
+		echo esc_html( wp_unslash( $action_id ) ); /* this is needed and it's the id of the dismissable required action */
 
 		if ( ! empty( $action_id ) ):
 
@@ -133,12 +134,15 @@ class shapely_Welcome {
 
 				$shapely_show_required_actions = get_option( 'shapely_show_required_actions' );
 
-				switch ( $_GET['todo'] ) {
+				switch ( esc_html( $_GET['todo'] ) ) {
 					case 'add';
-						$shapely_show_required_actions[ $action_id ] = true;
+						$shapely_show_required_actions[ absint( $action_id ) ] = true;
 						break;
 					case 'dismiss';
-						$shapely_show_required_actions[ $action_id ] = false;
+						$shapely_show_required_actions[ absint( $action_id ) ] = false;
+						break;
+					default:
+						return new WP_Error( 'Action denied!', __( 'I\'ve fallen and can\'t get up', 'shapely' ) );
 						break;
 				}
 
@@ -324,14 +328,14 @@ class shapely_Welcome {
 		require_once( ABSPATH . 'wp-admin/admin-header.php' );
 
 		$shapely      = wp_get_theme();
-		$active_tab   = isset( $_GET['tab'] ) ? $_GET['tab'] : 'getting_started';
+		$active_tab   = isset( $_GET['tab'] ) ? wp_unslash( $_GET['tab'] ) : 'getting_started';
 		$action_count = $this->count_actions();
 
 		?>
 
 		<div class="wrap about-wrap epsilon-wrap">
 
-			<h1><?php echo esc_html__( 'Welcome to Shapely! - Version ', 'shapely' ) . $shapely['Version']; ?></h1>
+			<h1><?php echo esc_html__( 'Welcome to Shapely! - Version ', 'shapely' ) . esc_html( $shapely['Version'] ); ?></h1>
 
 			<div
 				class="about-text"><?php echo esc_html__( 'Shapely is now installed and ready to use! Get ready to build something beautiful. We hope you enjoy it! We want to make sure you have the best experience using shapely and that is why we gathered here all the necessary information for you. We hope you will enjoy using shapely, as much as we enjoy creating great products.', 'shapely' ); ?></div>

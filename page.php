@@ -13,7 +13,7 @@
  */
 
 get_header(); ?>
-<?php $layout_class = ( function_exists( 'shapely_get_layout_class' ) ) ? shapely_get_layout_class() : ''; ?>
+<?php $layout_class = shapely_get_layout_class(); ?>
 	<div class="row">
 		<?php
 		if ( $layout_class == 'sidebar-left' ):

@@ -37,6 +37,13 @@ For more detailed Shapely theme setup please read documentation: https://colorli
 
 Shapely includes support for Infinite Scroll, Portfolio, Testimonials, Tiled Galleries for Jetpack.
 
+= Long menus =
+
+Shapely theme does not support long menus.
+
+= Front page template not displaying content =
+
+This page template is used to create the Parallax homepage from our demo : https://colorlib.com/shapely/ . it does not output any content added in the backend editor and we recommend using only the [Shapely] tagged widgets. 
 
 == Credits ==
 

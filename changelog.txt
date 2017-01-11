@@ -1,3 +1,18 @@
+### 1.7.2
+<a href="https://github.com/puikinsh/shapely/issues">Issues</a>
+	#119 - changed prefixed
+	#120 - fixed
+	#121 - fixed
+	#122 - fixed
+	#123 - fixed
+	#124 - fixed
+	#125 - fixed
+	#126 - added a notice in readme file about this limitation
+	#128 - fixed
+	#129 - fixed
+	#130 - fixed
+	#131 - fixed
+	
 ### 1.7.1
 <a href="https://github.com/puikinsh/shapely/issues">Issues</a>
 	#112 - #1 - there's nothing wrong in using abspath, it's a WordPress core define, nothing added by the theme/plugin. Changed it to incorporate MU

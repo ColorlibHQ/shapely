@@ -7,7 +7,7 @@
  * @package Shapely
  */
 get_header();
-$layout_class = ( function_exists( 'shapely_get_layout_class' ) ) ? shapely_get_layout_class() : ''; ?>
+$layout_class = shapely_get_layout_class(); ?>
 	<div class="row">
 		<?php
 		if ( $layout_class == 'sidebar-left' ):
@@ -37,10 +37,7 @@ $layout_class = ( function_exists( 'shapely_get_layout_class' ) ) ? shapely_get_
 
 					endwhile;
 
-					if ( function_exists( "shapely_pagination" ) ):
-						shapely_pagination();
-					endif;
-
+					shapely_pagination();
 				else :
 
 					get_template_part( 'template-parts/content', 'none' );
