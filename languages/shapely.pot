@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Shapely 1.7.0\n"
 "Report-Msgid-Bugs-To: https://www.colorlib.com/\n"
-"POT-Creation-Date: 2017-01-03 08:27:43+00:00\n"
+"POT-Creation-Date: 2017-01-11 08:40:59+00:00\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -169,7 +169,7 @@ msgid "Deactivate"
 msgstr ""
 
 #: inc/admin/welcome-screen/sections/actions-required.php:84
-#: inc/admin/welcome-screen/welcome-screen.php:93
+#: inc/admin/welcome-screen/welcome-screen.php:94
 msgid "Hooray! There are no required actions for you right now."
 msgstr ""
 
@@ -251,7 +251,7 @@ msgid "See our full documentation"
 msgstr ""
 
 #: inc/admin/welcome-screen/sections/support.php:24
-#: inc/admin/welcome-screen/welcome-screen.php:353
+#: inc/admin/welcome-screen/welcome-screen.php:357
 msgid "Changelog"
 msgstr ""
 
@@ -279,15 +279,19 @@ msgstr ""
 msgid "Get started with shapely"
 msgstr ""
 
-#: inc/admin/welcome-screen/welcome-screen.php:112
+#: inc/admin/welcome-screen/welcome-screen.php:113
 msgid "View Theme Info"
 msgstr ""
 
-#: inc/admin/welcome-screen/welcome-screen.php:334
+#: inc/admin/welcome-screen/welcome-screen.php:145
+msgid "I've fallen and can't get up"
+msgstr ""
+
+#: inc/admin/welcome-screen/welcome-screen.php:338
 msgid "Welcome to Shapely! - Version "
 msgstr ""
 
-#: inc/admin/welcome-screen/welcome-screen.php:337
+#: inc/admin/welcome-screen/welcome-screen.php:341
 msgid ""
 "Shapely is now installed and ready to use! Get ready to build something "
 "beautiful. We hope you enjoy it! We want to make sure you have the best "
@@ -296,19 +300,19 @@ msgid ""
 "enjoy creating great products."
 msgstr ""
 
-#: inc/admin/welcome-screen/welcome-screen.php:344
+#: inc/admin/welcome-screen/welcome-screen.php:348
 msgid "Getting Started"
 msgstr ""
 
-#: inc/admin/welcome-screen/welcome-screen.php:346
+#: inc/admin/welcome-screen/welcome-screen.php:350
 msgid "Recommended Actions"
 msgstr ""
 
-#: inc/admin/welcome-screen/welcome-screen.php:349
+#: inc/admin/welcome-screen/welcome-screen.php:353
 msgid "Recommended Plugins"
 msgstr ""
 
-#: inc/admin/welcome-screen/welcome-screen.php:351
+#: inc/admin/welcome-screen/welcome-screen.php:355
 msgid "Support"
 msgstr ""
 
@@ -556,6 +560,10 @@ msgstr ""
 msgid "Portfolio"
 msgstr ""
 
+#: inc/navwalker.php:203
+msgid "Add a menu"
+msgstr ""
+
 #. Theme Name of the plugin/theme
 msgid "Shapely"
 msgstr ""
@@ -598,12 +606,12 @@ msgstr ""
 msgid "View all posts in %s"
 msgstr ""
 
-#: search.php:24
-msgid "Search Results for: %s"
+#: page-templates/template-home.php:14
+msgid "This is the \"Home Sidebar Section\", add some widgets to it to change it."
 msgstr ""
 
-#: template-home.php:14
-msgid "This is the \"Home Sidebar Section\", add some widgets to it to change it."
+#: search.php:24
+msgid "Search Results for: %s"
 msgstr ""
 
 #: template-parts/content-grid-small.php:59

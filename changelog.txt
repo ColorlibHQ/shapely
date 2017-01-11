@@ -1,4 +1,4 @@
-### 1.7.2
+### 1.1.2
 <a href="https://github.com/puikinsh/shapely/issues">Issues</a>
 	#119 - changed prefixed
 	#120 - fixed
@@ -13,7 +13,7 @@
 	#130 - fixed
 	#131 - fixed
 	
-### 1.7.1
+### 1.1.1
 <a href="https://github.com/puikinsh/shapely/issues">Issues</a>
 	#112 - #1 - there's nothing wrong in using abspath, it's a WordPress core define, nothing added by the theme/plugin. Changed it to incorporate MU
 			 - #2 - removed from global scope
@@ -28,7 +28,7 @@
 			 - #11 - translated
 			 - #12 - escaped where needed
 
-### 1.7.0
+### 1.1.0
 <a href="https://github.com/puikinsh/shapely/issues">Issues</a>
 	#79 - restyled <q> a little bit ( added a bg, set font style to italic )
 	#66 - woo-setup.php was not deleted from the theme files, fixed
