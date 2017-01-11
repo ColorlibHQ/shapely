@@ -153,7 +153,7 @@ if ( ! class_exists( 'Shapely_Related_Posts_Output' ) ) {
 			 * Heading
 			 */
 			echo '<div class="col-lg-11 col-sm-10 col-xs-12 shapely-related-posts-title">';
-			echo '<h3><span>' . esc_html__( 'Related articles ', 'shapely-pro' ) . '</span></h3>';
+			echo '<h3><span>' . esc_html__( 'Related articles ', 'shapely' ) . '</span></h3>';
 			echo '</div>';
 
 			echo '</div><!--/.row-->';
