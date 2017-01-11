@@ -10,12 +10,12 @@
 ?>
 
 <div class="row">
-	<article id="post-<?php the_ID(); ?>" class="post-content post-grid-wide col-md-12">
+	<article id="post-<?php the_ID(); ?>" class="<?php post_class('post-content post-grid-wide col-md-12'); ?>">
 		<header class="entry-header">
 			<?php
 			$image    = '<img class="wp-post-image" alt="" src="' . get_template_directory_uri() . '/assets/images/placeholder_wide.jpg" />';
 			if ( has_post_thumbnail() ) {
-				$layout = ( function_exists( 'shapely_get_layout_class' ) ) ? shapely_get_layout_class() : '';
+				$layout = shapely_get_layout_class();
 				$size   = 'shapely-featured';
 
 				if ( $layout == 'full-width' ) {

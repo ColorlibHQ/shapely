@@ -60,7 +60,7 @@ add_filter( 'the_title', 'shapely_title' );
 
 function shapely_title( $title ) {
 	if ( $title == '' ) {
-		return __( 'Untitled', 'shapely' );
+		return esc_html__( 'Untitled', 'shapely' );
 	} else {
 		return $title;
 	}
@@ -80,7 +80,7 @@ function shapely_custom_password_form() {
         <p>' . esc_html__( "This post is password protected. To view it please enter your password below:", 'shapely' ) . '</p>
         <label for="' . esc_attr( $label ) . '">' . esc_html__( "Password:", 'shapely' ) . ' </label>
       <div class="input-group">
-        <input class="form-control" value="' . get_search_query() . '" name="post_password" id="' . esc_attr( $label ) . '" type="password">
+        <input class="form-control" value="' . esc_attr( get_search_query() ) . '" name="post_password" id="' . esc_attr( $label ) . '" type="password">
         <span class="input-group-btn"><button type="submit" class="btn btn-default" name="submit" id="searchsubmit" value="' . esc_attr__( "Submit", 'shapely' ) . '">' . esc_html__( "Submit", 'shapely' ) . '</button>
         </span>
       </div>
@@ -124,11 +124,11 @@ function shapely_footer_info() {
 }
 
 
-if ( ! function_exists( 'get_shapely_theme_options' ) ) {
+if ( ! function_exists( 'shapely_get_theme_options' ) ) {
 	/**
 	 * Get information from Theme Options and add it into wp_head
 	 */
-	function get_shapely_theme_options() {
+	function shapely_get_theme_options() {
 
 		echo '<style type="text/css">';
 
@@ -163,7 +163,7 @@ if ( ! function_exists( 'get_shapely_theme_options' ) ) {
 		echo '</style>';
 	}
 }
-add_action( 'wp_head', 'get_shapely_theme_options', 10 );
+add_action( 'wp_head', 'shapely_get_theme_options', 10 );
 
 /**
  * Add Bootstrap thumbnail styling to images with captions
@@ -267,8 +267,8 @@ if ( ! function_exists( 'shapely_pagination' ) ) {
  */
 function shapely_search_form( $form ) {
 	$form = '<form role="search" method="get" id="searchform" class="search-form" action="' . esc_url( home_url( '/' ) ) . '" >
-    <label class="screen-reader-text" for="s">' . __( 'Search for:', 'shapely' ) . '</label>
-    <input type="text" placeholder="' . __( 'Type Here', 'shapely' ) . '" type="text" value="' . esc_attr( get_search_query() ) . '" name="s" id="s" />
+    <label class="screen-reader-text" for="s">' . esc_html__( 'Search for:', 'shapely' ) . '</label>
+    <input type="text" placeholder="' . esc_html__( 'Type Here', 'shapely' ) . '" type="text" value="' . esc_attr( get_search_query() ) . '" name="s" id="s" />
     <input type="submit" class="btn btn-fillded searchsubmit" id="searchsubmit" value="' . esc_attr__( 'Search', 'shapely' ) . '" />
 
     </form>';
@@ -312,7 +312,7 @@ if ( ! function_exists( 'shapely_author_bio' ) ) {
 						} ?>
 					</p>
 					<a class="author-email"
-					   href="mailto:<?php echo esc_attr( $author_email ); ?>"><?php echo esc_html( $author_email ); ?></a>
+					   href="mailto:<?php echo esc_attr( antispambot( $author_email ) ); ?>"><?php echo esc_html( antispambot( $author_email ) ); ?></a>
 					<ul class="list-inline social-list author-social">
 						<?php
 						$twitter_profile = get_the_author_meta( 'twitter' );
@@ -399,7 +399,7 @@ if ( ! function_exists( 'shapely_author_bio' ) ) {
 						} ?>
 					</p>
 					<a class="author-email"
-					   href="mailto:<?php echo esc_attr( $author_email ); ?>"><?php echo esc_html( $author_email ); ?></a>
+					   href="mailto:<?php echo esc_attr( antispambot( $author_email ) ); ?>"><?php echo esc_html( antispambot( $author_email ) ); ?></a>
 					<ul class="list-inline social-list author-social">
 						<?php
 						$twitter_profile = get_the_author_meta( 'twitter' );
@@ -486,7 +486,7 @@ function shapely_cb_comment( $comment, $args, $depth ) {
 					<time datetime="2016-01-28T12:43:17+00:00">
 						<?php
 						/* translators: 1: date, 2: time */
-						printf( __( '%1$s at %2$s', 'shapely' ), get_comment_date(), get_comment_time() ); ?></time><?php edit_comment_link( __( 'Edit', 'shapely' ), '  ', '' );
+						printf( __( '%1$s at %2$s', 'shapely' ), get_comment_date(), get_comment_time() ); ?></time><?php edit_comment_link( esc_html__( 'Edit', 'shapely' ), '  ', '' );
 					?>
 				</div>
 
@@ -498,7 +498,7 @@ function shapely_cb_comment( $comment, $args, $depth ) {
 
 				<?php if ( $comment->comment_approved == '0' ) : ?>
 					<p>
-						<em class="comment-awaiting-moderation"><?php _e( 'Your comment is awaiting moderation.', 'shapely' ); ?></em>
+						<em class="comment-awaiting-moderation"><?php esc_html_e( 'Your comment is awaiting moderation.', 'shapely' ); ?></em>
 						<br/>
 					</p>
 				<?php endif; ?>
@@ -532,20 +532,20 @@ function shapely_custom_comment_form() {
 	$aria_req  = ( $req ? " aria-required='true'" : '' );
 	$fields    = array(
 		'author' =>
-			'<input id="author" placeholder="' . __( 'Your Name', 'shapely' ) . ( $req ? '*' : '' ) . '" name="author" type="text" value="' . esc_attr( $commenter['comment_author'] ) .
+			'<input id="author" placeholder="' . esc_html__( 'Your Name', 'shapely' ) . ( $req ? '*' : '' ) . '" name="author" type="text" value="' . esc_attr( $commenter['comment_author'] ) .
 			'" size="30" ' . $aria_req . ' required="required" />',
 
 		'email' =>
-			'<input id="email" name="email" type="email" placeholder="' . __( 'Email Address', 'shapely' ) . ( $req ? '*' : '' ) . '" value="' . esc_attr( $commenter['comment_author_email'] ) .
+			'<input id="email" name="email" type="email" placeholder="' . esc_html__( 'Email Address', 'shapely' ) . ( $req ? '*' : '' ) . '" value="' . esc_attr( $commenter['comment_author_email'] ) .
 			'" size="30"' . $aria_req . ' required="required" />',
 
 		'url' =>
-			'<input placeholder="' . __( 'Your Website (optional)', 'shapely' ) . '" id="url" name="url" type="text" value="' . esc_attr( $commenter['comment_author_url'] ) .
+			'<input placeholder="' . esc_html__( 'Your Website (optional)', 'shapely' ) . '" id="url" name="url" type="text" value="' . esc_attr( $commenter['comment_author_url'] ) .
 			'" size="30" />',
 	);
 
 	$comments_args = array(
-		'label_submit'  => __( 'Leave Comment', 'shapely' ),
+		'label_submit'  => esc_html__( 'Leave Comment', 'shapely' ),
 		'comment_field' => '<textarea placeholder="' . _x( 'Comment', 'noun', 'shapely' ) . '" id="comment" name="comment" cols="45" rows="8" aria-required="true" required="required">' .
 		                   '</textarea>',
 		'fields'        => apply_filters( 'comment_form_default_fields', $fields )
@@ -652,9 +652,9 @@ function shapely_top_callout() {
 							} else if ( is_search() ) {
 								_e( 'Search', 'shapely' );
 							} else if ( is_archive() ) {
-								echo ( is_post_type_archive( 'jetpack-portfolio' ) ) ? __( 'Portfolio', 'shapely' ) : get_the_archive_title();
+								echo ( is_post_type_archive( 'jetpack-portfolio' ) ) ? esc_html__( 'Portfolio', 'shapely' ) : get_the_archive_title();
 							} else {
-								echo ( is_singular( 'jetpack-portfolio' ) ) ? __( 'Portfolio', 'shapely' ) : get_the_title();
+								echo ( is_singular( 'jetpack-portfolio' ) ) ? esc_html__( 'Portfolio', 'shapely' ) : get_the_title();
 							} ?>
 						</h3>
 					</div>

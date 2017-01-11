@@ -36,7 +36,7 @@ get_header(); ?>
 						id="post-<?php the_ID(); ?>" <?php post_class( 'post-snippet col-md-3 col-sm-6 masonry-item project' ); ?>>
 						<div class="image-tile inner-title hover-reveal text-center"><?php
 							if ( has_post_thumbnail() ) { ?>
-							<a href="<?php the_permalink(); ?>" title="<?php esc_attr( the_title_attribute() ); ?>">
+							<a href="<?php the_permalink(); ?>" title="<?php the_title_attribute(array( 'echo' => false )); ?>">
 								<?php the_post_thumbnail( 'medium' ); ?>
 								<div class="title"><?php
 									the_title( '<h5 class="mb0">', '</h5>' );

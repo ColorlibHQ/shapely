@@ -153,7 +153,7 @@ if ( ! class_exists( 'Shapely_Related_Posts_Output' ) ) {
 			 * Heading
 			 */
 			echo '<div class="col-lg-11 col-sm-10 col-xs-12 shapely-related-posts-title">';
-			echo '<h3><span>' . __( 'Related articles ', 'shapely-pro' ) . '</span></h3>';
+			echo '<h3><span>' . esc_html__( 'Related articles ', 'shapely-pro' ) . '</span></h3>';
 			echo '</div>';
 
 			echo '</div><!--/.row-->';
@@ -170,7 +170,7 @@ if ( ! class_exists( 'Shapely_Related_Posts_Output' ) ) {
 
 			echo sprintf( '<div class="owlCarousel owl-carousel owl-theme" data-slider-id="%s" id="owlCarousel-%s" 
 			data-slider-items="%s" 
-			data-slider-speed="400" data-slider-auto-play="%s" data-slider-navigation="false">', get_the_ID(), get_the_ID(), $limit, $auto_play );
+			data-slider-speed="400" data-slider-auto-play="%s" data-slider-navigation="false">', get_the_ID(), get_the_ID(), absint( $limit ), esc_html( $auto_play ) );
 
 			// Loop through related posts
 			while ( $related_posts->have_posts() ) {
@@ -180,7 +180,7 @@ if ( ! class_exists( 'Shapely_Related_Posts_Output' ) ) {
 				if ( has_post_thumbnail( $related_posts->post->ID ) ) {
 					echo '<a href="' . esc_url( get_the_permalink() ) . '">' . get_the_post_thumbnail( $related_posts->post->ID, 'shapely-grid' ) . '</a>';
 				} else {
-					echo '<a href="' . esc_url( get_the_permalink() ) . '"><img class="wp-post-image" alt="" src="' . esc_url( get_template_directory_uri() . '/assets/images/placeholder.jpg' ) . '" /></a>';
+					echo '<a href="' . esc_url( get_the_permalink() ) . '"><img class="wp-post-image" alt="" src="' . get_template_directory_uri() . '/assets/images/placeholder.jpg" /></a>';
 				}
 
 				if ( $show_title ) {

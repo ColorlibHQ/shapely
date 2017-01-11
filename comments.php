@@ -83,7 +83,7 @@ if ( post_password_required() ) {
 	endif;
 
     /* comment form */
-    $comments_args = ( function_exists( 'shapely_custom_comment_form' ) ) ? shapely_custom_comment_form() : '';
+    $comments_args = shapely_custom_comment_form();
 	comment_form($comments_args);
 	?>
 

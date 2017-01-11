@@ -13,12 +13,12 @@ $post_author = get_theme_mod( 'post_author_area', true );
 $left_side   = get_theme_mod( 'post_author_left_side', false );
 
 ?>
-<article id="post-<?php the_ID(); ?>" class="post-content post-grid-wide">
+<article id="post-<?php the_ID(); ?>" class="<?php post_class('post-content post-grid-wide'); ?>">
 	<header class="entry-header nolist">
 		<?php
 		$category = get_the_category();
 		if ( has_post_thumbnail() ) {
-			$layout = ( function_exists( 'shapely_get_layout_class' ) ) ? shapely_get_layout_class() : '';
+			$layout = shapely_get_layout_class();
 			$size   = 'shapely-featured';
 
 			if ( $layout == 'full-width' ) {
