@@ -155,7 +155,7 @@ if ( ! function_exists( 'shapely_post_category' ) ) :
 		$category = get_the_category();
 		if ( ! empty( $category ) ) {
 			$i = ( $category[0]->slug == "uncategorized" && array_key_exists( '1', $category ) ) ? 1 : 0;
-			echo '<li><i class="fa fa-folder-open-o"></i><span class="cat-links"><a href="' . esc_url( get_category_link( $category[ $i ]->term_id ) ) . '" title="' . sprintf( __( "View all posts in %s", 'shapely' ), esc_attr( $category[ $i ]->name ) ) . '" ' . '>' . esc_html( $category[ $i ]->name ) . '</a></span></li> ';
+			echo '<li><i class="fa fa-folder-open-o"></i><span class="cat-links"><a href="' . esc_url( get_category_link( $category[ $i ]->term_id ) ) . '" title="' . sprintf( esc_html__( "View all posts in %s", 'shapely' ), esc_attr( $category[ $i ]->name ) ) . '" ' . '>' . esc_html( $category[ $i ]->name ) . '</a></span></li> ';
 		}
 	}
 endif;

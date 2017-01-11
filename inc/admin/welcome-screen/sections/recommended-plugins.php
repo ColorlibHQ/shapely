@@ -21,15 +21,15 @@ wp_enqueue_script( 'updates' );
 		switch ( $active['needs'] ) {
 			case 'install':
 				$class = 'install-now button';
-				$label = __( 'Install', 'shapely' );
+				$label = esc_html__( 'Install', 'shapely' );
 				break;
 			case 'activate':
 				$class = 'activate-now button button-primary';
-				$label = __( 'Activate', 'shapely' );
+				$label = esc_html__( 'Activate', 'shapely' );
 				break;
 			case 'deactivate':
 				$class = 'deactivate-now button';
-				$label = __( 'Deactivate', 'shapely' );
+				$label = esc_html__( 'Deactivate', 'shapely' );
 				break;
 		}
 
@@ -37,7 +37,7 @@ wp_enqueue_script( 'updates' );
 		<div class="col plugin_box">
 			<img src="<?php echo esc_attr( $icon ) ?>" alt="plugin box image">
 			<span
-				class="version"><?php echo __( 'Version:', 'shapely' ); ?><?php echo esc_html( $info->version ) ?></span>
+				class="version"><?php echo esc_html__( 'Version:', 'shapely' ); ?><?php echo esc_html( $info->version ) ?></span>
 			<span
 				class="separator">|</span> <?php echo wp_kses_post( $info->author ) ?>
 			<div

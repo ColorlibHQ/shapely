@@ -43,7 +43,7 @@
 							<div class="module widget-handle search-widget-handle left hidden-xs hidden-sm">
 								<div class="search">
 									<i class="fa fa-search"></i>
-									<span class="title"><?php _e( "Site Search", 'shapely' ); ?></span>
+									<span class="title"><?php esc_html_e( "Site Search", 'shapely' ); ?></span>
 								</div>
 								<div class="function"><?php
 									get_search_form(); ?>
@@ -57,12 +57,12 @@
 		</div>
 	</header><!-- #masthead -->
 	<div id="content" class="main-container">
-		<?php if ( ! is_page_template( 'template-home.php' ) ): ?>
+		<?php if ( ! is_page_template( 'page-templates/template-home.php' ) ): ?>
 			<div class="header-callout">
 				<?php shapely_top_callout(); ?>
 			</div>
 		<?php endif; ?>
 
 		<section class="content-area <?php echo ( get_theme_mod( 'top_callout', true ) ) ? '' : ' pt0 ' ?>">
-			<div id="main" class="<?php echo ( ! is_page_template( 'template-home.php' ) ) ? 'container' : ''; ?>"
+			<div id="main" class="<?php echo ( ! is_page_template( 'page-templates/template-home.php' ) ) ? 'container' : ''; ?>"
 			     role="main">

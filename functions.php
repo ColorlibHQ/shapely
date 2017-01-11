@@ -170,7 +170,7 @@ add_action( 'after_setup_theme', 'shapely_content_width', 0 );
 function shapely_widgets_init() {
 	register_sidebar( array(
 		                  'id'            => 'sidebar-1',
-		                  'name'          => __( 'Sidebar', 'shapely' ),
+		                  'name'          => esc_html__( 'Sidebar', 'shapely' ),
 		                  'before_widget' => '<div id="%1$s" class="widget %2$s">',
 		                  'after_widget'  => '</div>',
 		                  'before_title'  => '<h2 class="widget-title">',
@@ -179,7 +179,7 @@ function shapely_widgets_init() {
 
 	register_sidebar( array(
 		                  'id'            => 'sidebar-home',
-		                  'name'          => __( 'Homepage', 'shapely' ),
+		                  'name'          => esc_html__( 'Homepage', 'shapely' ),
 		                  'before_widget' => '<div id="%1$s" class="widget %2$s">',
 		                  'after_widget'  => '</div>',
 		                  'before_title'  => '<h2 class="widget-title">',
@@ -189,8 +189,8 @@ function shapely_widgets_init() {
 	for ( $i = 1; $i < 5; $i ++ ) {
 		register_sidebar( array(
 			                  'id'            => 'footer-widget-' . $i,
-			                  'name'          => sprintf( __( 'Footer Widget %s', 'shapely' ), $i ),
-			                  'description'   => __( 'Used for footer widget area', 'shapely' ),
+			                  'name'          => sprintf( esc_html__( 'Footer Widget %s', 'shapely' ), $i ),
+			                  'description'   => esc_html__( 'Used for footer widget area', 'shapely' ),
 			                  'before_widget' => '<div id="%1$s" class="widget %2$s">',
 			                  'after_widget'  => '</div>',
 			                  'before_title'  => '<h2 class="widget-title">',
@@ -259,7 +259,7 @@ function shapely_scripts() {
 	// Add slider JS
 	wp_enqueue_script( 'flexslider', get_template_directory_uri() . '/js/flexslider.min.js', array( 'jquery' ), '20160222', true );
 
-	if ( is_page_template( 'template-home.php' ) ) {
+	if ( is_page_template( 'page-templates/template-home.php' ) ) {
 		wp_enqueue_script( 'shapely-parallax', get_template_directory_uri() . '/js/parallax.min.js', array( 'jquery' ), '20160115', true );
 	}
 	/**
@@ -267,9 +267,11 @@ function shapely_scripts() {
 	 */
 	wp_enqueue_script( 'owl.carousel', get_template_directory_uri() . '/js/owl-carousel/owl.carousel.min.js', array( 'jquery' ), '20160115', true );
 	wp_enqueue_style( 'owl.carousel', get_template_directory_uri() . '/js/owl-carousel/owl.carousel.min.css' );
-	wp_enqueue_style( 'owl.carousel', get_template_directory_uri() . '/js/owl-carousel/owl.theme.default.css' );
+	wp_enqueue_style( 'owl.carousel.theme', get_template_directory_uri() . '/js/owl-carousel/owl.theme.default.css' );
 
 	wp_enqueue_script( 'shapely-scripts', get_template_directory_uri() . '/js/shapely-scripts.js', array( 'jquery' ), '20160115', true );
+
+	wp_enqueue_style( 'shapely-scss', get_template_directory_uri() . '/assets/css/style.css' );
 }
 
 add_action( 'wp_enqueue_scripts', 'shapely_scripts' );
