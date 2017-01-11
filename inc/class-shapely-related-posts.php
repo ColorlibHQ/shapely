@@ -168,6 +168,7 @@ if ( ! class_exists( 'Shapely_Related_Posts_Output' ) ) {
 			echo '</ul>';
 			echo '</div>';
 
+
 			echo sprintf( '<div class="owlCarousel owl-carousel owl-theme" data-slider-id="%s" id="owlCarousel-%s" 
 			data-slider-items="%s" 
 			data-slider-speed="400" data-slider-auto-play="%s" data-slider-navigation="false">', get_the_ID(), get_the_ID(), absint( $limit ), esc_html( $auto_play ) );

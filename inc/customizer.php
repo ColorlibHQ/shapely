@@ -83,7 +83,7 @@ function shapely_customizer( $wp_customize ) {
 	) );
 
 	$wp_customize->add_section( 'shapely_blog_section', array(
-		'title'    => esc_html__( 'Blog Settings', 'newspaper-x' ),
+		'title'    => esc_html__( 'Blog Settings', 'shapely' ),
 		'panel'    => 'shapely_main_options',
 		'priority' => 33,
 	) );
