@@ -8,7 +8,7 @@
  */
 
 ?>
-	<article id="post-<?php the_ID(); ?>" class="<?php post_class('post-content post-grid-small col-md-6'); ?>">
+	<article id="post-<?php the_ID(); ?>" <?php post_class('post-content post-grid-small col-md-6'); ?> >
 		<header class="entry-header nolist">
 			<?php
 			$category = get_the_category();

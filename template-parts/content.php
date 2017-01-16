@@ -13,7 +13,7 @@ $post_author = get_theme_mod( 'post_author_area', true );
 $left_side   = get_theme_mod( 'post_author_left_side', false );
 
 ?>
-<article id="post-<?php the_ID(); ?>" class="<?php post_class('post-content post-grid-wide'); ?>">
+<article id="post-<?php the_ID(); ?>" <?php post_class('post-content post-grid-wide'); ?>>
 	<header class="entry-header nolist">
 		<?php
 		$category = get_the_category();

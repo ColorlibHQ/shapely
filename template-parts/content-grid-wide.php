@@ -9,7 +9,7 @@
 
 ?>
 	<div class="row">
-		<article id="post-<?php the_ID(); ?>" class="<?php post_class( 'post-content post-grid-wide col-md-12' ); ?>">
+		<article id="post-<?php the_ID(); ?>" <?php post_class( 'post-content post-grid-wide col-md-12' ); ?>>
 			<header class="entry-header nolist">
 				<?php
 				$category = get_the_category();
