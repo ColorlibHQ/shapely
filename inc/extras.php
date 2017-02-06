@@ -648,7 +648,7 @@ function shapely_top_callout() {
 						<h3 class="page-title" <?php echo $header_color ? 'style="color:#' . esc_attr( $header_color ) . '"' : '' ?>>
 							<?php
 							if ( is_home() ) {
-								_e( ( get_theme_mod( 'blog_name' ) ) ? get_theme_mod( 'blog_name' ) : 'Blog', 'shapely' );
+								echo esc_html( get_theme_mod( 'blog_name' ) ? get_theme_mod( 'blog_name' ) : __( 'Blog', 'shapely' ) );
 							} else if ( is_search() ) {
 								_e( 'Search', 'shapely' );
 							} else if ( is_archive() ) {

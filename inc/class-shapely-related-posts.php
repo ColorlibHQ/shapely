@@ -120,7 +120,6 @@ if ( ! class_exists( 'Shapely_Related_Posts_Output' ) ) {
 
 			// reset post query
 			wp_reset_postdata();
-			wp_reset_query();
 
 			return $related_postquery;
 		}
@@ -210,8 +209,7 @@ if ( ! class_exists( 'Shapely_Related_Posts_Output' ) ) {
 
 			echo '</div><!--/.owlCarousel-->';
 			echo '</div><!--/.mt-related-posts-->';
-
-			wp_reset_query();
+			
 			wp_reset_postdata();
 		}
 	}
