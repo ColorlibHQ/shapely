@@ -27,6 +27,5 @@ while ( have_posts() ) : the_post();
 
 endwhile;
 ?>
-	</div>
 <?php
 
