@@ -76,7 +76,7 @@ function shapely_customizer( $wp_customize ) {
 
 	// add "Sidebar" section
 	$wp_customize->add_section( 'shapely_layout_section', array(
-		'title'       => esc_html__( 'Layout options', 'shapely' ),
+		'title'       => esc_html__( 'Color options', 'shapely' ),
 		'description' => '',
 		'priority'    => 31,
 		'panel'       => 'shapely_main_options',
