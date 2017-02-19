@@ -43,7 +43,7 @@ get_header(); ?>
 
 									$project_types = wp_get_post_terms( $post->ID, 'jetpack-portfolio-type', array( "fields" => "names" ) );
 									if ( ! empty( $project_types ) ) {
-										echo '<span>' . implode( ' / ', esc_html( $project_types ) ) . '</span>';
+										echo '<span>' . implode( ' / ', $project_types ) . '</span>';
 									} ?>
 								</div>
 								</a><?php
