@@ -271,7 +271,6 @@ function shapely_scripts() {
 
 	wp_enqueue_script( 'shapely-scripts', get_template_directory_uri() . '/js/shapely-scripts.js', array( 'jquery' ), '20160115', true );
 
-	wp_enqueue_style( 'shapely-scss', get_template_directory_uri() . '/assets/css/style.css' );
 }
 
 add_action( 'wp_enqueue_scripts', 'shapely_scripts' );
