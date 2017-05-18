@@ -146,14 +146,16 @@ if ( ! function_exists( 'shapely_get_theme_options' ) ) {
           .woocommerce a.button.alt, .woocommerce button.button.alt,
           .woocommerce input.button.alt, .woocommerce #respond input#submit,
           .woocommerce a.button, .woocommerce button.button,
-          .woocommerce input.button { background:' . esc_attr( get_theme_mod( 'button_color' ) ) . ' !important; border: 2px solid' . esc_attr( get_theme_mod( 'button_color' ) ) . ' !important;}';
+          .woocommerce input.button,
+          .post-content .more-link { background:' . esc_attr( get_theme_mod( 'button_color' ) ) . ' !important; border: 2px solid' . esc_attr( get_theme_mod( 'button_color' ) ) . ' !important;}';
 		}
 		if ( get_theme_mod( 'button_hover_color' ) ) {
 			echo '.btn-filled:hover, .woocommerce #respond input#submit.alt:hover,
           .woocommerce a.button.alt:hover, .woocommerce button.button.alt:hover,
           .woocommerce input.button.alt:hover, .woocommerce #respond input#submit:hover,
           .woocommerce a.button:hover, .woocommerce button.button:hover,
-          .woocommerce input.button:hover  { background: ' . esc_attr( get_theme_mod( 'button_hover_color' ) ) . ' !important; border: 2px solid' . esc_attr( get_theme_mod( 'button_hover_color' ) ) . ' !important;}';
+          .woocommerce input.button:hover,
+          .post-content .more-link:hover  { background: ' . esc_attr( get_theme_mod( 'button_hover_color' ) ) . ' !important; border: 2px solid' . esc_attr( get_theme_mod( 'button_hover_color' ) ) . ' !important;}';
 		}
 
 		if ( get_theme_mod( 'social_color' ) ) {
@@ -192,7 +194,7 @@ function shapely_caption( $output, $attr, $content ) {
 
 	$output = '<figure id="' . esc_attr( $attr['id'] ) . '" class="thumbnail wp-caption ' . esc_attr( $attr['align'] ) . ' style="width: ' . ( esc_attr( $attr['width'] ) + 10 ) . 'px">';
 	$output .= do_shortcode( $content );
-	$output .= '<figcaption class="caption wp-caption-text">' . esc_html( $attr['caption'] ) . '</figcaption>';
+	$output .= '<figcaption class="caption wp-caption-text">' . wp_kses_post( $attr['caption'] ) . '</figcaption>';
 	$output .= '</figure>';
 
 	return $output;
@@ -295,7 +297,9 @@ if ( ! function_exists( 'shapely_author_bio' ) ) {
 		$author_fullname    = ( get_the_author_meta( 'first_name' ) != "" && get_the_author_meta( 'last_name' ) != "" ) ? get_the_author_meta( 'first_name' ) . " " . get_the_author_meta( 'last_name' ) : "";
 		$author_email       = get_the_author_meta( 'email' );
 		$author_description = get_the_author_meta( 'description' );
-		$author_name = ( trim( $author_nickname ) != "" ) ? $author_nickname : ( trim( $author_displayname ) != "" ) ? $author_displayname : $author_fullname ?>
+		$author_name = ( trim( $author_nickname ) != "" ) ? $author_nickname : ( trim( $author_displayname ) != "" ) ? $author_displayname : $author_fullname;
+		$show_author_email = get_theme_mod( 'post_author_email' ,false );
+		?>
 
 		<div class="author-bio">
 			<div class="row">
@@ -311,8 +315,10 @@ if ( ! function_exists( 'shapely_author_bio' ) ) {
 							echo esc_html( $author_description );
 						} ?>
 					</p>
-					<a class="author-email"
-					   href="mailto:<?php echo esc_attr( antispambot( $author_email ) ); ?>"><?php echo esc_html( antispambot( $author_email ) ); ?></a>
+					<?php if ( $show_author_email ): ?>
+						<a class="author-email" href="mailto:<?php echo esc_attr( antispambot( $author_email ) ); ?>"><?php echo esc_html( antispambot( $author_email ) ); ?></a>
+					<?php endif ?>
+					
 					<ul class="list-inline social-list author-social">
 						<?php
 						$twitter_profile = get_the_author_meta( 'twitter' );
@@ -594,7 +600,7 @@ function shapely_get_layout_class() {
 				$layout_class = 'sidebar-right';
 				break;
 			default:
-				$layout_class = 'sidebar-right';
+				$layout_class = get_theme_mod( 'blog_layout_template', 'sidebar-right' );
 				break;
 		}
 	} else {

@@ -275,6 +275,15 @@ function shapely_scripts() {
 
 add_action( 'wp_enqueue_scripts', 'shapely_scripts' );
 
+// Include Epsilon Framework
+require_once 'inc/libraries/epsilon-framework/class-epsilon-autoloader.php';
+$args = array(
+	'controls' => array( 'slider', 'toggle' ), // array of controls to load
+	'sections' => array( 'recommended-actions', 'pro' ), // array of sections to load
+);
+
+new Epsilon_Framework( $args );
+
 /**
  * Custom template tags for this theme.
  */
@@ -284,11 +293,6 @@ require get_template_directory() . '/inc/template-tags.php';
  * Custom functions that act independently of the theme templates.
  */
 require get_template_directory() . '/inc/extras.php';
-
-/**
- * Add custom section
- */
-require get_template_directory() . '/inc/shapely-documentation/class-customize.php';
 
 /**
  * Customizer additions.

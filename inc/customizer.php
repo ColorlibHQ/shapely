@@ -65,6 +65,54 @@ add_action( 'customize_register', 'shapely_customize_register' );
  * Options for WordPress Theme Customizer.
  */
 function shapely_customizer( $wp_customize ) {
+
+	// Recomended actions
+	global $shapely_required_actions, $shapely_recommended_plugins;
+
+	$customizer_recommended_plugins = array();
+	if ( is_array( $shapely_recommended_plugins ) ) {
+		foreach ( $shapely_recommended_plugins as $k => $s ) {
+			if( $s['recommended'] ) {
+				$customizer_recommended_plugins[$k] = $s;
+			}
+		}
+	}
+
+	$theme_slug = 'shapely';
+
+	$wp_customize->add_section(
+	  new Epsilon_Section_Recommended_Actions(
+	    $wp_customize,
+	    'epsilon_recomended_section',
+	    array(
+	      'title'                        => esc_html__( 'Recomended Actions', 'shapely' ),
+	      'social_text'                  => esc_html__( 'We are social', 'shapely' ),
+	      'plugin_text'                  => esc_html__( 'Recomended Plugins', 'shapely' ),
+	      'actions'                      => $shapely_required_actions,
+	      'plugins'                      => $customizer_recommended_plugins,
+	      'theme_specific_option'        => $theme_slug . '_show_required_actions',
+	      'theme_specific_plugin_option' => $theme_slug . '_show_recommended_plugins',
+	      'facebook'                     => 'https://www.facebook.com/cpothemes',
+	      'twitter'                      => 'https://twitter.com/cpothemes',
+	      'wp_review'                    => true,
+	      'priority'                     => 0
+	    )
+	  )
+	);
+
+	$wp_customize->add_section(
+		new Epsilon_Section_Pro(
+			$wp_customize,
+			'epsilon-section-pro',
+			array(
+				'title'       => esc_html__( 'Shapely', 'shapely' ),
+				'button_text' => esc_html__( 'Documentation', 'shapely' ),
+				'button_url'  => 'https://colorlib.com/wp/support/shapely/',
+				'priority'    => 0
+			)
+		)
+	);
+
 	/* Main option Settings Panel */
 	$wp_customize->add_panel( 'shapely_main_options', array(
 		'capability'     => 'edit_theme_options',
@@ -88,8 +136,14 @@ function shapely_customizer( $wp_customize ) {
 		'priority' => 33,
 	) );
 
+	$wp_customize->add_section( 'shapely_single_post_section', array(
+		'title'    => esc_html__( 'Single Post Settings', 'shapely' ),
+		'panel'    => 'shapely_main_options',
+		'priority' => 35,
+	) );
+
 	$wp_customize->add_setting( 'link_color', array(
-		'default'           => '',
+		'default'           => '#745cf9',
 		'sanitize_callback' => 'sanitize_hex_color',
 	) );
 	$wp_customize->add_control( new WP_Customize_Color_Control( $wp_customize, 'link_color', array(
@@ -98,7 +152,7 @@ function shapely_customizer( $wp_customize ) {
 		'section'     => 'shapely_layout_section',
 	) ) );
 	$wp_customize->add_setting( 'link_hover_color', array(
-		'default'           => '',
+		'default'           => '#5d47d7',
 		'sanitize_callback' => 'sanitize_hex_color',
 	) );
 	$wp_customize->add_control( new WP_Customize_Color_Control( $wp_customize, 'link_hover_color', array(
@@ -107,7 +161,7 @@ function shapely_customizer( $wp_customize ) {
 		'section'     => 'shapely_layout_section',
 	) ) );
 	$wp_customize->add_setting( 'button_color', array(
-		'default'           => '',
+		'default'           => '#745cf9',
 		'sanitize_callback' => 'sanitize_hex_color',
 	) );
 	$wp_customize->add_control( new WP_Customize_Color_Control( $wp_customize, 'button_color', array(
@@ -116,7 +170,7 @@ function shapely_customizer( $wp_customize ) {
 		'section'     => 'shapely_layout_section',
 	) ) );
 	$wp_customize->add_setting( 'button_hover_color', array(
-		'default'           => '',
+		'default'           => '#5234f9',
 		'sanitize_callback' => 'sanitize_hex_color',
 	) );
 	$wp_customize->add_control( new WP_Customize_Color_Control( $wp_customize, 'button_hover_color', array(
@@ -126,7 +180,7 @@ function shapely_customizer( $wp_customize ) {
 	) ) );
 
 	$wp_customize->add_setting( 'social_color', array(
-		'default'           => '',
+		'default'           => '#fff',
 		'sanitize_callback' => 'sanitize_hex_color',
 	) );
 	$wp_customize->add_control( new WP_Customize_Color_Control( $wp_customize, 'social_color', array(
@@ -175,14 +229,14 @@ function shapely_customizer( $wp_customize ) {
 
 	if ( class_exists( 'Epsilon_Control_Toggle' ) ) {
 		$wp_customize->add_control( new Epsilon_Control_Toggle(
-			                            $wp_customize,
-			                            'hide_post_title',
-			                            array(
-				                            'type'    => 'mte-toggle',
-				                            'label'   => esc_html__( 'Title in blog post', 'shapely' ),
-				                            'section' => 'wpseo_breadcrumbs_customizer_section',
-			                            )
-		                            )
+                $wp_customize,
+                'hide_post_title',
+                array(
+                    'type'    => 'mte-toggle',
+                    'label'   => esc_html__( 'Title in blog post', 'shapely' ),
+                    'section' => 'wpseo_breadcrumbs_customizer_section',
+                )
+            )
 		);
 	} else {
 		$wp_customize->add_control( 'hide_post_title', array(
@@ -354,8 +408,13 @@ function shapely_customizer( $wp_customize ) {
 		'default'           => 0,
 		'sanitize_callback' => 'shapely_sanitize_checkbox',
 	) );
+	$wp_customize->add_setting( 'post_author_email', array(
+		'default'           => 0,
+		'sanitize_callback' => 'shapely_sanitize_checkbox',
+	) );
 
 
+	// Single Post Settings
 	if ( class_exists( 'Epsilon_Control_Toggle' ) ) {
 		$wp_customize->add_control( new Epsilon_Control_Toggle(
 			                            $wp_customize,
@@ -363,7 +422,7 @@ function shapely_customizer( $wp_customize ) {
 			                            array(
 				                            'type'    => 'mte-toggle',
 				                            'label'   => esc_html__( 'First Letter Caps', 'shapely' ),
-				                            'section' => 'shapely_blog_section',
+				                            'section' => 'shapely_single_post_section',
 			                            )
 		                            ) );
 		$wp_customize->add_control( new Epsilon_Control_Toggle(
@@ -372,7 +431,7 @@ function shapely_customizer( $wp_customize ) {
 			                            array(
 				                            'type'    => 'mte-toggle',
 				                            'label'   => esc_html__( 'Tags Post Meta', 'shapely' ),
-				                            'section' => 'shapely_blog_section',
+				                            'section' => 'shapely_single_post_section',
 			                            )
 		                            ) );
 		$wp_customize->add_control( new Epsilon_Control_Toggle(
@@ -381,7 +440,7 @@ function shapely_customizer( $wp_customize ) {
 			                            array(
 				                            'type'    => 'mte-toggle',
 				                            'label'   => esc_html__( 'Related Posts Area', 'shapely' ),
-				                            'section' => 'shapely_blog_section',
+				                            'section' => 'shapely_single_post_section',
 			                            )
 		                            ) );
 		$wp_customize->add_control( new Epsilon_Control_Toggle(
@@ -390,7 +449,7 @@ function shapely_customizer( $wp_customize ) {
 			                            array(
 				                            'type'    => 'mte-toggle',
 				                            'label'   => esc_html__( 'Post Author Area', 'shapely' ),
-				                            'section' => 'shapely_blog_section',
+				                            'section' => 'shapely_single_post_section',
 			                            )
 		                            ) );
 		$wp_customize->add_control( new Epsilon_Control_Toggle(
@@ -399,33 +458,47 @@ function shapely_customizer( $wp_customize ) {
 			                            array(
 				                            'type'    => 'mte-toggle',
 				                            'label'   => esc_html__( 'Post Author Left Side', 'shapely' ),
-				                            'section' => 'shapely_blog_section',
+				                            'section' => 'shapely_single_post_section',
+			                            )
+		                            ) );
+		$wp_customize->add_control( new Epsilon_Control_Toggle(
+			                            $wp_customize,
+			                            'post_author_email',
+			                            array(
+				                            'type'    => 'mte-toggle',
+				                            'label'   => esc_html__( 'Show author email', 'shapely' ),
+				                            'section' => 'shapely_single_post_section',
 			                            )
 		                            ) );
 	} else {
 		$wp_customize->add_control( 'first_letter_caps', array(
 			'label'   => esc_html__( 'First Letter Caps', 'shapely' ),
-			'section' => 'shapely_blog_section',
+			'section' => 'shapely_single_post_section',
 			'type'    => 'checkbox',
 		) );
 		$wp_customize->add_control( 'tags_post_meta', array(
 			'label'   => esc_html__( 'Tags Post Meta', 'shapely' ),
-			'section' => 'shapely_blog_section',
+			'section' => 'shapely_single_post_section',
 			'type'    => 'checkbox',
 		) );
 		$wp_customize->add_control( 'related_posts_area', array(
 			'label'   => esc_html__( 'Related Posts Area', 'shapely' ),
-			'section' => 'shapely_blog_section',
+			'section' => 'shapely_single_post_section',
 			'type'    => 'checkbox',
 		) );
 		$wp_customize->add_control( 'post_author_area', array(
 			'label'   => esc_html__( 'Post Author Area', 'shapely' ),
-			'section' => 'shapely_blog_section',
+			'section' => 'shapely_single_post_section',
 			'type'    => 'checkbox',
 		) );
 		$wp_customize->add_control( 'post_author_left_side', array(
 			'label'   => esc_html__( 'Post Author Left Side', 'shapely' ),
-			'section' => 'shapely_blog_section',
+			'section' => 'shapely_single_post_section',
+			'type'    => 'checkbox',
+		) );
+		$wp_customize->add_control( 'post_author_email', array(
+			'label'   => esc_html__( 'Show author email', 'shapely' ),
+			'section' => 'shapely_single_post_section',
 			'type'    => 'checkbox',
 		) );
 	}

@@ -632,6 +632,12 @@ a:hover, a:active {
 .widget select {
     max-width: 100%;
 }
+.contact-section .wpcf7-form label {
+    width: 100%;
+}
+.contact-section.cover .container {
+    padding: 96px 15px;
+}
 
 /*--------------------------------------------------------------
 # Content
@@ -2230,6 +2236,27 @@ img {
     opacity: 1;
 }
 
+@media all and (max-width: 768px) {
+    .inner-title:before {
+        transform: scale(1.2);
+        -webkit-transform: scale(1.2);
+    }
+    .inner-title.hover-reveal .title {
+        opacity: 1;
+        transform: translate3d(0, -50%, 0);
+        -webkit-transform: translate3d(0, -50%, 0);
+        -moz-transform: translate3d(0, -50%, 0);
+        -webkit-transform: translate3d(0, -50%, 0);
+        top: 50%;
+    }
+    .inner-title.hover-reveal:before {
+        opacity: 1;
+    }
+    .inner-title {
+        opacity: .95;
+    }
+}
+
 /*!---------- 14. SLIDERS ----------*/
 
 .logo-carousel li {
@@ -3035,6 +3062,10 @@ footer.bg-dark a {
     background: transparent;
     float: right;
 }
+.contact-section #social {
+    float: none;
+    border-bottom: 0 none;
+}
 
 #social li {
     display: inline-block;
@@ -3046,6 +3077,16 @@ footer.bg-dark a {
     list-style: none;
     padding-left: 0;
     text-align: center;
+}
+.contact-section #social ul {
+    text-align: left;
+}
+
+.contact-section .social-icons li a {
+    color: #745cf9 !important;
+}
+.contact-section .social-icons li a:hover {
+    color: #5d47d7 !important;
 }
 
 #social .social_icon span {
@@ -3190,7 +3231,23 @@ footer.bg-dark a {
 
 .shapely_home_parallax {
     width: 100%;
-    display: inline-block;
+    display: block;
+}
+
+.shapely_home_parallax > section:not(.image-bg) .btn-white {
+    border-color: #745cf9;
+    color: #745cf9;
+}
+.shapely_home_parallax > section:not(.image-bg) .btn-white:hover,
+.shapely_home_parallax > section:not(.image-bg) .btn-white:focus {
+    color: #fff;
+    background-color: #5234f9;
+    border-color: #5234f9;
+}
+.shapely_home_parallax > section:not(.image-bg) .btn-white:active {
+    border-color: #5234f9;
+    background-color: #5234f9;
+    color: #fff;
 }
 
 .bg-secondary .text-right {
@@ -3753,14 +3810,10 @@ blockquote {
   .author-bio .avatar img {
     border-radius: 50%; }
   @media all and (min-width: 991px) {
-    .author-bio .col-sm-10:before {
-      width: 1px;
-      position: absolute;
-      top: 0;
-      bottom: 0;
-      left: -25px;
-      background: #ebebeb;
-      content: ''; } }
+    .author-bio .col-sm-10 {
+        border-left: 1px solid #ebebeb;
+    } 
+  }
   .author-bio .fn {
     font-weight: 400;
     font-size: 18px; }

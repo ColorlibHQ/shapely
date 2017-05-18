@@ -104,14 +104,7 @@ class shapely_Welcome {
 	public function shapely_welcome_scripts_for_customizer() {
 
 		wp_enqueue_style( 'shapely-welcome-screen-customizer-css', get_template_directory_uri() . '/inc/admin/welcome-screen/css/welcome_customizer.css' );
-		wp_enqueue_script( 'shapely-welcome-screen-customizer-js', get_template_directory_uri() . '/inc/admin/welcome-screen/js/welcome_customizer.js', array( 'jquery' ), '20120206', true );
 
-		wp_localize_script( 'shapely-welcome-screen-customizer-js', 'shapelyWelcomeScreenCustomizerObject', array(
-			'nr_actions_required' => absint( $this->count_actions() ),
-			'aboutpage'           => esc_url( admin_url( 'themes.php?page=shapely-welcome&tab=recommended_actions' ) ),
-			'customizerpage'      => esc_url( admin_url( 'customize.php#recommended_actions' ) ),
-			'themeinfo'           => esc_html__( 'View Theme Info', 'shapely' ),
-		) );
 	}
 
 	/**
