@@ -1,5 +1,7 @@
 # Shapely
 
+[![Build Status](https://travis-ci.org/MachoThemes/shapely.svg?branch=master)](https://travis-ci.org/MachoThemes/shapely)
+
 ## About Shapely
 
 Shapely is a powerful and versatile one page WordPress theme with pixel perfect design and outstanding functionality. It is by far the most advanced free WordPress theme available today with loads of unmatched customization options. This theme comes with several homepage widgets that can be used to add portfolio, testimonials, parallax sections, your product or service information, call for action and much more.
