@@ -3891,3 +3891,8 @@ blockquote {
 
 .pt0 {
   padding-top: 30px; }
+
+/* WooCommerce */
+.woocommerce-product-gallery figure {
+    padding: 0;
+}

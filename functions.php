@@ -94,6 +94,9 @@ if ( ! function_exists( 'shapely_setup' ) ) :
 		add_image_size( 'shapely-grid', 350, 300, true );
 
 		add_theme_support( 'woocommerce' );
+		add_theme_support( 'wc-product-gallery-zoom' );
+	    add_theme_support( 'wc-product-gallery-lightbox' );
+	    add_theme_support( 'wc-product-gallery-slider' );
 
 		add_theme_support( 'customize-selective-refresh-widgets' );
 		// Welcome screen
