@@ -13,6 +13,10 @@
 			<header class="entry-header nolist">
 				<?php
 				$category = get_the_category();
+				$show_category = true;
+				if ( is_category() ) {
+					$show_category = get_theme_mod( 'show_category_on_category_page', 1 );
+				}
 				$image    = '<img class="wp-post-image" alt="" src="' . get_template_directory_uri() . '/assets/images/placeholder_wide.jpg" />';
 				if ( has_post_thumbnail() ) {
 					$layout = shapely_get_layout_class();
@@ -42,7 +46,7 @@
 					<?php echo wp_kses( $image, $allowed_tags ); ?>
 				</a>
 
-				<?php if ( isset( $category[0] ) ): ?>
+				<?php if ( isset( $category[0] ) && $show_category ): ?>
 					<span class="shapely-category">
 					<a href="<?php echo esc_url( get_category_link( $category[0]->term_id ) ); ?>">
 						<?php echo esc_html( $category[0]->name ); ?>

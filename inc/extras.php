@@ -297,97 +297,6 @@ if ( ! function_exists( 'shapely_author_bio' ) ) {
 		$author_fullname    = ( get_the_author_meta( 'first_name' ) != "" && get_the_author_meta( 'last_name' ) != "" ) ? get_the_author_meta( 'first_name' ) . " " . get_the_author_meta( 'last_name' ) : "";
 		$author_email       = get_the_author_meta( 'email' );
 		$author_description = get_the_author_meta( 'description' );
-		$author_name = ( trim( $author_nickname ) != "" ) ? $author_nickname : ( trim( $author_displayname ) != "" ) ? $author_displayname : $author_fullname;
-		$show_author_email = get_theme_mod( 'post_author_email' ,false );
-		?>
-
-		<div class="author-bio">
-			<div class="row">
-				<div class="col-sm-2">
-					<div class="avatar">
-						<?php echo get_avatar( get_the_author_meta( 'ID' ), 100 ); ?>
-					</div>
-				</div>
-				<div class="col-sm-10">
-					<b class="fn"><?php echo esc_html( $author_name ); ?></b>
-					<p><?php
-						if ( trim( $author_description ) != "" ) {
-							echo esc_html( $author_description );
-						} ?>
-					</p>
-					<?php if ( $show_author_email ): ?>
-						<a class="author-email" href="mailto:<?php echo esc_attr( antispambot( $author_email ) ); ?>"><?php echo esc_html( antispambot( $author_email ) ); ?></a>
-					<?php endif ?>
-					
-					<ul class="list-inline social-list author-social">
-						<?php
-						$twitter_profile = get_the_author_meta( 'twitter' );
-						if ( $twitter_profile && $twitter_profile != '' ) { ?>
-							<li>
-							<a href="<?php echo esc_url( $twitter_profile ); ?>">
-								<i class="fa fa-twitter"></i>
-							</a>
-							</li><?php
-						}
-
-						$fb_profile = get_the_author_meta( 'facebook' );
-						if ( $fb_profile && $fb_profile != '' ) { ?>
-							<li>
-							<a href="<?php echo esc_url( $fb_profile ); ?>">
-								<i class="fa fa-facebook"></i>
-							</a>
-							</li><?php
-						}
-
-						$dribble_profile = get_the_author_meta( 'dribble' );
-						if ( $dribble_profile && $dribble_profile != '' ) { ?>
-							<li>
-								<a href="<?php echo esc_url( $dribble_profile ); ?>">
-									<i class="fa fa-dribbble"></i>
-								</a>
-							</li>
-							<?php
-						}
-
-						$github_profile = get_the_author_meta( 'github' );
-						if ( $github_profile && $github_profile != '' ) { ?>
-							<li>
-							<a href="<?php echo esc_url( $github_profile ); ?>">
-								<i class="fa fa-vimeo"></i>
-							</a>
-							</li><?php
-						}
-
-						$vimeo_profile = get_the_author_meta( 'vimeo' );
-						if ( $vimeo_profile && $vimeo_profile != '' ) { ?>
-							<li>
-							<a href="<?php echo esc_url( $vimeo_profile ); ?>">
-								<i class="fa fa-github"></i>
-							</a>
-							</li><?php
-						} ?>
-					</ul>
-				</div>
-			</div>
-		</div>
-		<!--end of author-bio-->
-		<?php
-
-	}
-}
-if ( ! function_exists( 'shapely_author_bio' ) ) {
-
-	function shapely_author_bio() {
-
-		if ( ! get_the_ID() ) {
-			return;
-		}
-
-		$author_displayname = get_the_author_meta( 'display_name' );
-		$author_nickname    = get_the_author_meta( 'nickname' );
-		$author_fullname    = ( get_the_author_meta( 'first_name' ) != "" && get_the_author_meta( 'last_name' ) != "" ) ? get_the_author_meta( 'first_name' ) . " " . get_the_author_meta( 'last_name' ) : "";
-		$author_email       = get_the_author_meta( 'email' );
-		$author_description = get_the_author_meta( 'description' );
 		$author_name = ( trim( $author_nickname ) != "" ) ? $author_nickname : ( trim( $author_displayname ) != "" ) ? $author_displayname : $author_fullname ?>
 
 		<div class="author-bio">
@@ -583,7 +492,27 @@ function shapely_get_header_logo() {
  * then from themeoptions
  */
 function shapely_get_layout_class() {
-	if ( is_singular() ) {
+	if ( is_single() ) {
+		$template     = get_page_template_slug();
+		$layout_class = '';
+		switch ( $template ) {
+			case 'page-templates/full-width.php':
+				$layout_class = 'full-width';
+				break;
+			case 'page-templates/no-sidebar.php':
+				$layout_class = 'no-sidebar';
+				break;
+			case 'page-templates/sidebar-left.php':
+				$layout_class = 'sidebar-left';
+				break;
+			case 'page-templates/sidebar-right.php':
+				$layout_class = 'sidebar-right';
+				break;
+			default:
+				$layout_class = get_theme_mod( 'single_post_layout_template', 'sidebar-right' );
+				break;
+		}
+	}else if ( is_singular() ) {
 		$template     = get_page_template_slug();
 		$layout_class = '';
 		switch ( $template ) {
@@ -712,5 +641,12 @@ function shapely_footer_callout() {
 			</div>
 		</div>
 		</section><?php
+	}
+}
+
+// Check WooCommerce
+if ( ! function_exists( 'shapely_is_woocommerce_activated' ) ) {
+	function shapely_is_woocommerce_activated() {
+		if ( class_exists( 'woocommerce' ) ) { return true; } else { return false; }
 	}
 }

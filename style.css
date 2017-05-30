@@ -1387,6 +1387,29 @@ nav {
     font-variant: normal;
     text-transform: none;
 }
+.shapely-dropdown {
+    display: none;
+}
+@media all and (max-width: 1024px) {
+    .dropdown:after {
+        display: none;
+    }
+    .shapely-dropdown {
+        font-size: 11px;
+        padding: 0 10px;
+        display: inline-block;
+    }
+}
+
+@media all and (max-width: 768px) {
+    .shapely-dropdown {
+        float: right;
+        border: 1px solid;
+    }
+    .menu li a {
+        padding: 10px 0;
+    }
+}
 
 .menu {
     width: 100%;
@@ -1810,7 +1833,7 @@ nav.fixed.scrolled {
     }
 
     .menu > li > ul li a {
-        padding: 4px 16px;
+        padding: 10px 16px;
     }
 
     .dropdown .dropdown li {

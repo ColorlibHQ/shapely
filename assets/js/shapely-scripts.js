@@ -98,6 +98,7 @@
 			}
 		});
 
+		
 		$('.module.widget-handle').click(function () {
 			$(this).toggleClass('toggle-search');
 		});
