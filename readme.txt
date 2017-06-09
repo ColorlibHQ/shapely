@@ -2,8 +2,8 @@
 
 Theme Name: Shapely
 Theme URI: https://colorlib.com/wp/shapely/
-Version: 1.1.0
-Tested up to: WP 4.7
+Version: 1.1.5
+Tested up to: WP 4.8
 
 Author: Aigars Silkalns
 Author URI: https://colorlib.com/wp/
@@ -43,7 +43,7 @@ Shapely theme does not support long menus.
 
 = Front page template not displaying content =
 
-This page template is used to create the Parallax homepage from our demo : https://colorlib.com/shapely/ . it does not output any content added in the backend editor and we recommend using only the [Shapely] tagged widgets. 
+This page template is used to create the Parallax homepage from our demo : https://colorlib.com/shapely/ . it does not output any content added in the backend editor and we recommend using only the [Shapely] tagged widgets.
 
 == Credits ==
 
@@ -60,6 +60,10 @@ This page template is used to create the Parallax homepage from our demo : https
 
 
 == Changelog ==
+
+= 1.1.5 - June 9 2017 =
+
+* Added French translation thanks to Michaël Crofte
 
 = 1.1.0 - Jan 3 2017 =
 
