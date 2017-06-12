@@ -3841,7 +3841,10 @@ blockquote {
   @media all and (min-width: 991px) {
     .author-bio .col-sm-10 {
         border-left: 1px solid #ebebeb;
-    } 
+    }
+    .author-bio-left-side .author-bio .col-sm-10 {
+        border-left: 0 none;
+    }
   }
   .author-bio .fn {
     font-weight: 400;

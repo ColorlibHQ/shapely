@@ -292,7 +292,9 @@ if ( ! function_exists( 'shapely_author_bio' ) ) {
 		$author_fullname    = ( '' != get_the_author_meta( 'first_name' ) && '' != get_the_author_meta( 'last_name' ) ) ? get_the_author_meta( 'first_name' ) . ' ' . get_the_author_meta( 'last_name' ) : '';
 		$author_email       = get_the_author_meta( 'email' );
 		$author_description = get_the_author_meta( 'description' );
-		$author_name = ( '' != trim( $author_nickname ) ) ? $author_nickname : ( trim( $author_displayname ) != '' ) ? $author_displayname : $author_fullname ?>
+		$author_name = ( '' != trim( $author_nickname ) ) ? $author_nickname : ( trim( $author_displayname ) != '' ) ? $author_displayname : $author_fullname;
+		$show_athor_email = get_theme_mod( 'post_author_email', false );
+		?>
 
 		<div class="author-bio">
 			<div class="row">
@@ -308,8 +310,9 @@ if ( ! function_exists( 'shapely_author_bio' ) ) {
 						echo esc_html( $author_description );
 					} ?>
 					</p>
-					<a class="author-email"
-					   href="mailto:<?php echo esc_attr( antispambot( $author_email ) ); ?>"><?php echo esc_html( antispambot( $author_email ) ); ?></a>
+					<?php if ( $show_athor_email ) : ?>
+						<a class="author-email" href="mailto:<?php echo esc_attr( antispambot( $author_email ) ); ?>"><?php echo esc_html( antispambot( $author_email ) ); ?></a>
+					<?php endif ?>
 					<ul class="list-inline social-list author-social">
 						<?php
 						$twitter_profile = get_the_author_meta( 'twitter' );
