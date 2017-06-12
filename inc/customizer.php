@@ -396,61 +396,73 @@ function shapely_customizer( $wp_customize ) {
 		$wp_customize->add_control( new Epsilon_Control_Toggle( $wp_customize, 'first_letter_caps', array(
 			'type'    => 'mte-toggle',
 			'label'   => esc_html__( 'First Letter Caps', 'shapely' ),
+			'description' => esc_html__( 'This will transform your first letter from a post into uppercase', 'shapely' ),
 			'section' => 'shapely_single_post_section',
 		) ) );
 		$wp_customize->add_control( new Epsilon_Control_Toggle( $wp_customize, 'tags_post_meta', array(
 			'type'    => 'mte-toggle',
 			'label'   => esc_html__( 'Tags Post Meta', 'shapely' ),
+			'description' => esc_html__( 'This will show/hide tags from the end of post', 'shapely' ),
 			'section' => 'shapely_single_post_section',
 		) ) );
 		$wp_customize->add_control( new Epsilon_Control_Toggle( $wp_customize, 'related_posts_area', array(
 			'type'    => 'mte-toggle',
 			'label'   => esc_html__( 'Related Posts Area', 'shapely' ),
+			'description' => esc_html__( 'This will enable/disable the related posts', 'shapely' ),
 			'section' => 'shapely_single_post_section',
 		) ) );
 		$wp_customize->add_control( new Epsilon_Control_Toggle( $wp_customize, 'post_author_area', array(
 			'type'    => 'mte-toggle',
 			'label'   => esc_html__( 'Post Author Area', 'shapely' ),
+			'description' => esc_html__( 'This will show/hide the author box', 'shapely' ),
 			'section' => 'shapely_single_post_section',
 		) ) );
 		$wp_customize->add_control( new Epsilon_Control_Toggle( $wp_customize, 'post_author_left_side', array(
 			'type'    => 'mte-toggle',
 			'label'   => esc_html__( 'Post Author Left Side', 'shapely' ),
+			'description' => esc_html__( 'This will move the author box from the bottom of the post on top on the left side', 'shapely' ),
 			'section' => 'shapely_single_post_section',
 		) ) );
 		$wp_customize->add_control( new Epsilon_Control_Toggle( $wp_customize, 'post_author_email', array(
 			'type'    => 'mte-toggle',
 			'label'   => esc_html__( 'Show author email', 'shapely' ),
+			'description' => esc_html__( 'This will show/hide the author\'s email from the author box', 'shapely' ),
 			'section' => 'shapely_single_post_section',
 		) ) );
 	} else {
 		$wp_customize->add_control( 'first_letter_caps', array(
 			'label'   => esc_html__( 'First Letter Caps', 'shapely' ),
+			'description' => esc_html__( 'This will transform your first letter from a post into uppercase', 'shapely' ),
 			'section' => 'shapely_single_post_section',
 			'type'    => 'checkbox',
 		) );
 		$wp_customize->add_control( 'tags_post_meta', array(
 			'label'   => esc_html__( 'Tags Post Meta', 'shapely' ),
+			'description' => esc_html__( 'This will show/hide tags from the end of post', 'shapely' ),
 			'section' => 'shapely_single_post_section',
 			'type'    => 'checkbox',
 		) );
 		$wp_customize->add_control( 'related_posts_area', array(
 			'label'   => esc_html__( 'Related Posts Area', 'shapely' ),
+			'description' => esc_html__( 'This will enable/disable the related posts', 'shapely' ),
 			'section' => 'shapely_single_post_section',
 			'type'    => 'checkbox',
 		) );
 		$wp_customize->add_control( 'post_author_area', array(
 			'label'   => esc_html__( 'Post Author Area', 'shapely' ),
+			'description' => esc_html__( 'This will show/hide the author box', 'shapely' ),
 			'section' => 'shapely_single_post_section',
 			'type'    => 'checkbox',
 		) );
 		$wp_customize->add_control( 'post_author_left_side', array(
 			'label'   => esc_html__( 'Post Author Left Side', 'shapely' ),
+			'description' => esc_html__( 'This will move the author box from the bottom of the post on top on the left side', 'shapely' ),
 			'section' => 'shapely_single_post_section',
 			'type'    => 'checkbox',
 		) );
 		$wp_customize->add_control( 'post_author_email', array(
 			'label'   => esc_html__( 'Show author email', 'shapely' ),
+			'description' => esc_html__( 'This will show/hide the author\'s email from the author box', 'shapely' ),
 			'section' => 'shapely_single_post_section',
 			'type'    => 'checkbox',
 		) );
