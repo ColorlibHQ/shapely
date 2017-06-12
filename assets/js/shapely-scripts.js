@@ -1,6 +1,6 @@
 (function( $ ) {// jscs:ignore validateLineBreaks
 
-	var clNav, clNavOuterHeight, windowW, menu, farRight, isOnScreen, difference, videos, recentEntries;
+	var clNav, clNavOuterHeight, windowW, menu, farRight, isOnScreen, difference, videos, recentEntries, searchInterval;
 
 	jQuery( document ).ready(function( $ ) {
 
@@ -307,6 +307,24 @@
 				});
 			});
 		} // End
+
+		jQuery( '#masthead .function #s' ).focus( function(){
+			jQuery( this ).parents( '.function' ).addClass( 'active' );
+		});
+
+		jQuery( '#masthead .function #s' ).focusout( function(){
+			searchInterval = setInterval(function(){ jQuery( '#masthead .function' ).removeClass( 'active' ); }, 500);
+		});
+
+		jQuery( '#masthead .function #searchsubmit' ).focus( function(){
+			clearInterval(searchInterval);
+			jQuery( this ).parents( '.function' ).addClass( 'active' );
+		});
+
+		jQuery( '#masthead .function #searchsubmit' ).focusout( function(){
+			jQuery( this ).parents( '.function' ).removeClass( 'active' );
+		});
+
 	});
 
 	jQuery( window ).load(function( $ ) {
