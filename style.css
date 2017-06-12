@@ -1623,15 +1623,16 @@ nav.fixed.scrolled {
     transition: all 0.3s ease;
     -webkit-transition: all 0.3s ease;
     -moz-transition: all 0.3s ease;
-    transform: translate3d(0, 10px, 0);
-    -webkit-transform: translate3d(0, 10px, 0);
+    transform: translate3d(0, -200%, 0);
+    -webkit-transform: translate3d(0, -200%, 0);
     -moz-transform: translate3d(0, 10px, 0);
-    visibility: hidden;
+    /*visibility: hidden;*/
     margin-top: -2px;
     right: 0;
 }
 
-.module.widget-handle:hover .function {
+.module.widget-handle:hover .function,
+.module.widget-handle .function.active {
     opacity: 1;
     transform: translate3d(0, 0px, 0);
     -webkit-transform: translate3d(0, 0px, 0);
