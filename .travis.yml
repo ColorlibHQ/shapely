@@ -27,8 +27,10 @@ before_script:
 script:
 - mkdir -p build/logs
 - find -L . -name '*.php' -print0 | xargs -0 -n 1 -P 4 php -l
-- jshint ./js/*.js
-- jscs ./js/*.js
+- jshint ./assets/js/*.js
+- jshint ./inc/admin/welcome-screen/js/*.js
+- jscs ./assets/js/*.js
+- jscs ./inc/admin/welcome-screen/js/*.js
 - grunt textdomain
 - "$PHPCS_DIR/scripts/phpcs -p -s -v -n ./*.php --standard=./phpcs.ruleset.xml --extensions=php"
 - "$PHPCS_DIR/scripts/phpcs -p -s -v -n ./**/*.php --standard=./phpcs.ruleset.xml --extensions=php"

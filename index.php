@@ -31,7 +31,7 @@ get_header(); ?>
 				endif;
 
 			$layout_type = get_theme_mod( 'blog_layout_view', 'grid' );
-			$layout_type = str_replace('_', '-', $layout_type);
+			$layout_type = str_replace( '_', '-', $layout_type );
 
 			get_template_part( 'template-parts/layouts/blog', $layout_type );
 
