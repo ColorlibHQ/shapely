@@ -23,7 +23,7 @@ if ( ! function_exists( 'shapely_social_icons' ) ) :
 					'depth'           => 1,
 					'fallback_cb'     => '',
 					'link_before'     => '<i class="social_icon fa"><span>',
-					'link_after'      => '</span></i>'
+					'link_after'      => '</span></i>',
 				)
 			);
 		}

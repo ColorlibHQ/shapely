@@ -199,3 +199,6 @@
 #demo_content .spinner.is-active {
     display: inline-block;
 }
+.about-wrap .feature-section.two-col .col {
+    margin-top: 40px;
+}

@@ -1042,9 +1042,8 @@ p.lead {
     }
 }
 
-a, a:visited, a:focus, a:active, a:hover {
+a, a:visited, a:active, a:hover {
     text-decoration: none;
-    outline: none;
 }
 
 a {
@@ -1983,10 +1982,6 @@ input[type="submit"] {
 .bg-primary input[type="submit"] {
     background: #fff;
     color: #745cf9;
-}
-
-input[type="submit"]:focus {
-    outline: none;
 }
 
 /*!---------- 9. BREADCRUMBS ----------*/
@@ -3230,13 +3225,13 @@ footer.bg-dark a {
     position: absolute;
     bottom: 20px;
     left: 20px;
+    z-index: 6;
 }
 
 .video-widget .video-controls button {
     background: #745cf9;
     color: #fff;
     border: none;
-    outline: none;
     padding: 5px 10px;
     text-align: center;
 }
@@ -3244,6 +3239,16 @@ footer.bg-dark a {
 .video-widget.youtube {
     position: relative;
     background: transparent;
+}
+.vimeo-holder iframe {
+    width: 100%;
+}
+.video-widget.vimeo:before {
+    content: "";
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    z-index: 5;
 }
 
 .ytplayer-container {

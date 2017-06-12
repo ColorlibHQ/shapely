@@ -10,7 +10,7 @@ get_header();
 $layout_class = shapely_get_layout_class(); ?>
 	<div class="row">
 		<?php
-		if ( $layout_class == 'sidebar-left' ):
+		if ( 'sidebar-left' == $layout_class ) :
 			get_sidebar();
 		endif;
 		?>
@@ -48,7 +48,7 @@ $layout_class = shapely_get_layout_class(); ?>
 		</section><!-- #primary -->
 
 		<?php
-		if ( $layout_class == 'sidebar-right' ):
+		if ( 'sidebar-right' == $layout_class ) :
 			get_sidebar();
 		endif;
 		?>

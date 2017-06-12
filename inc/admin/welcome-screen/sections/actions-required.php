@@ -12,13 +12,13 @@ wp_enqueue_script( 'updates' );
 
 	<?php
 	global $shapely_required_actions;
-	if ( ! empty( $shapely_required_actions ) ):
-		$shapely_show_required_actions = get_option( "shapely_show_required_actions" );
+	if ( ! empty( $shapely_required_actions ) ) :
+		$shapely_show_required_actions = get_option( 'shapely_show_required_actions' );
 		$hooray = true;
 
-		foreach ( $shapely_required_actions as $shapely_required_action_key => $shapely_required_action_value ):
+		foreach ( $shapely_required_actions as $shapely_required_action_key => $shapely_required_action_value ) :
 			$hidden = false;
-			if ( @$shapely_show_required_actions[ $shapely_required_action_value['id'] ] === false ) {
+			if ( false === @$shapely_show_required_actions[ $shapely_required_action_value['id'] ] ) {
 				$hidden = true;
 			}
 			if ( @$shapely_required_action_value['check'] ) {
@@ -26,17 +26,18 @@ wp_enqueue_script( 'updates' );
 			}
 			?>
 			<div class="shapely-action-required-box">
-				<?php if ( ! $hidden ): ?>
-					<span data-action="dismiss" class="dashicons dashicons-visibility shapely-required-action-button"
-					      id="<?php echo esc_attr( $shapely_required_action_value['id'] ); ?>"></span>
-				<?php else: ?>
-					<span data-action="add" class="dashicons dashicons-hidden shapely-required-action-button"
-					      id="<?php echo esc_attr( $shapely_required_action_value['id'] ); ?>"></span>
+				<?php if ( ! $hidden ) : ?>
+					<span data-action="dismiss" class="dashicons dashicons-visibility shapely-required-action-button" id="<?php echo esc_attr( $shapely_required_action_value['id'] ); ?>"></span>
+				<?php else : ?>
+					<span data-action="add" class="dashicons dashicons-hidden shapely-required-action-button" id="<?php echo esc_attr( $shapely_required_action_value['id'] ); ?>"></span>
 				<?php endif; ?>
-				<h3><?php if ( ! empty( $shapely_required_action_value['title'] ) ): echo esc_html( $shapely_required_action_value['title'] ); endif; ?></h3>
+				<h3><?php if ( ! empty( $shapely_required_action_value['title'] ) ) : echo esc_html( $shapely_required_action_value['title'] );
+endif; ?></h3>
 				<p>
-					<?php if ( ! empty( $shapely_required_action_value['description'] ) ): echo esc_html( $shapely_required_action_value['description'] ); endif; ?>
-					<?php if ( ! empty( $shapely_required_action_value['help'] ) ): echo '<br/>' . wp_kses_post( $shapely_required_action_value['help'] ); endif; ?>
+					<?php if ( ! empty( $shapely_required_action_value['description'] ) ) : echo esc_html( $shapely_required_action_value['description'] );
+endif; ?>
+					<?php if ( ! empty( $shapely_required_action_value['help'] ) ) : echo '<br/>' . wp_kses_post( $shapely_required_action_value['help'] );
+endif; ?>
 				</p>
 				<?php
 				if ( ! empty( $shapely_required_action_value['external'] ) && file_exists( $shapely_required_action_value['external'] ) ) {
@@ -65,10 +66,8 @@ wp_enqueue_script( 'updates' );
 					}
 
 					?>
-					<p class="plugin-card-<?php echo esc_attr( $shapely_required_action_value['plugin_slug'] ) ?> action_button <?php echo ( $active['needs'] !== 'install' && $active['status'] ) ? 'active' : '' ?>">
-						<a data-slug="<?php echo esc_attr( $shapely_required_action_value['plugin_slug'] ) ?>"
-						   class="<?php echo esc_attr( $class ); ?>"
-						   href="<?php echo esc_url( $url ) ?>"> <?php echo esc_html( $label ) ?> </a>
+					<p class="plugin-card-<?php echo esc_attr( $shapely_required_action_value['plugin_slug'] ) ?> action_button <?php echo ( 'install' !== $active['needs'] && $active['status'] ) ? 'active' : '' ?>">
+						<a data-slug="<?php echo esc_attr( $shapely_required_action_value['plugin_slug'] ) ?>" class="<?php echo esc_attr( $class ); ?>" href="<?php echo esc_url( $url ) ?>"> <?php echo esc_html( $label ) ?> </a>
 					</p>
 					<?php
 				};
@@ -80,7 +79,7 @@ wp_enqueue_script( 'updates' );
 	endif;
 
 
-	if ( $hooray ):
+	if ( $hooray ) :
 		echo '<span class="hooray">' . esc_html__( 'Hooray! There are no required actions for you right now.', 'shapely' ) . '</span>';
 	endif;
 	?>
