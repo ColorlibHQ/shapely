@@ -308,20 +308,22 @@
 			});
 		} // End
 
-		jQuery( '#masthead .function #s' ).focus( function(){
+		jQuery( '#masthead .function #s' ).focus( function() {
 			jQuery( this ).parents( '.function' ).addClass( 'active' );
 		});
 
-		jQuery( '#masthead .function #s' ).focusout( function(){
-			searchInterval = setInterval(function(){ jQuery( '#masthead .function' ).removeClass( 'active' ); }, 500);
+		jQuery( '#masthead .function #s' ).focusout( function() {
+			searchInterval = setInterval(function() {
+ jQuery( '#masthead .function' ).removeClass( 'active' );
+ }, 500 );
 		});
 
-		jQuery( '#masthead .function #searchsubmit' ).focus( function(){
-			clearInterval(searchInterval);
+		jQuery( '#masthead .function #searchsubmit' ).focus( function() {
+			clearInterval( searchInterval );
 			jQuery( this ).parents( '.function' ).addClass( 'active' );
 		});
 
-		jQuery( '#masthead .function #searchsubmit' ).focusout( function(){
+		jQuery( '#masthead .function #searchsubmit' ).focusout( function() {
 			jQuery( this ).parents( '.function' ).removeClass( 'active' );
 		});
 
