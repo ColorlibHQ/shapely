@@ -4,7 +4,7 @@ Theme URI: https://colorlib.com/wp/themes/shapely
 Author: colorlib
 Author URI: https://colorlib.com/
 Description: Shapely is a powerful and versatile one page WordPress theme with pixel perfect design and outstanding functionality. It is by far the most advanced free WordPress theme available today with loads of unmatched customization options. This theme comes with several homepage widgets that can be used to add portfolio, testimonials, parallax sections, your product or service information, call for action and much more. Shapely supports most free and premium WordPress plugins such as WooCommerce, Jetpack, Gravity Forms, Contact Form 7, Yoast SEO, Google Analytics by Yoast and much more. This theme is the best suited for business, landing page, portfolio, ecommerce, store, local business,  personal websites but can be tweaked to be used as blog, magazine or any other awesome website while highlighting its unique one page setup. This is going to be the last WordPress theme you will ever want to use because it is so much better than anything you have seen. Needless to say that this theme is SEO friendly thanks to its well optimized strucutre. Shapely theme is mobile friendly and fully responsive making it your best multipurpose partnert for any project and website.
-Version: 1.1.4
+Version: 1.1.6
 License: GNU General Public License v3
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 Text Domain: shapely
@@ -1042,9 +1042,8 @@ p.lead {
     }
 }
 
-a, a:visited, a:focus, a:active, a:hover {
+a, a:visited, a:active, a:hover {
     text-decoration: none;
-    outline: none;
 }
 
 a {
@@ -1304,7 +1303,6 @@ input[type="submit"]:hover {
 }
 
 .widget input[type="submit"]:hover {
-    color: #5d47d7;
     background-color: #fff;
 }
 
@@ -1411,13 +1409,13 @@ nav {
     }
 }
 
-.menu {
+.main-navigation .menu {
     width: 100%;
     height: 55px;
     font-family: "Raleway", "Helvetica Neue", Helvetica, Arial, sans-serif;
 }
 
-.menu li a {
+.main-navigation .menu li a {
     font-size: 11px;
     text-transform: uppercase;
     font-weight: 600;
@@ -1431,11 +1429,11 @@ nav {
     white-space: normal;
 }
 
-.menu li a:hover {
+.main-navigation .menu li a:hover {
     opacity: 1 !important;
 }
 
-.menu > li {
+.main-navigation .menu > li {
     margin-right: 32px;
     float: left;
     position: relative;
@@ -1445,11 +1443,11 @@ nav {
     opacity: 1;
 }
 
-.menu > li:last-child {
+.main-navigation .menu > li:last-child {
     margin-right: 0;
 }
 
-.menu > li ul {
+.main-navigation .menu > li ul {
     left: 0;
     width: 200px;
     padding: 0;
@@ -1468,32 +1466,32 @@ nav {
     margin-top: -1px;
 }
 
-.menu > li > ul > li {
+.main-navigation .menu > li > ul > li {
     position: relative;
     line-height: 24px;
     width: 100%;
     vertical-align: top;
 }
 
-.menu > li > ul > .dropdown:after {
+.main-navigation .menu > li > ul > .dropdown:after {
     color: #0e1015;
     top: 1px;
     right: 24px;
     content: "\f105";
 }
 
-.menu > li > ul li a {
+.main-navigation .menu > li > ul li a {
     color: #fff;
     height: auto;
     padding: 6px 24px;
 }
 
-.menu > li > ul > li > ul {
+.main-navigation .menu > li > ul > li > ul {
     left: 100%;
     top: 0;
 }
 
-.menu > li:hover > ul {
+.main-navigation .menu > li:hover > ul {
     opacity: 1;
     transform: translate3d(0, 0px, 0);
     -webkit-transform: translate3d(0, 0px, 0);
@@ -1501,7 +1499,7 @@ nav {
     visibility: visible;
 }
 
-.menu > li > ul > li:hover > ul {
+.main-navigation .menu > li > ul > li:hover > ul {
     opacity: 1;
     transform: translate3d(0, 0px, 0);
     -webkit-transform: translate3d(0, 0px, 0);
@@ -1624,15 +1622,15 @@ nav.fixed.scrolled {
     transition: all 0.3s ease;
     -webkit-transition: all 0.3s ease;
     -moz-transition: all 0.3s ease;
-    transform: translate3d(0, 10px, 0);
-    -webkit-transform: translate3d(0, 10px, 0);
-    -moz-transform: translate3d(0, 10px, 0);
-    visibility: hidden;
+    transform: translate3d(0, -200%, 0);
+    -webkit-transform: translate3d(0, -200%, 0);
+    -moz-transform: translate3d(0, -200%, 0);
     margin-top: -2px;
     right: 0;
 }
 
-.module.widget-handle:hover .function {
+.module.widget-handle:hover .function,
+.module.widget-handle .function.active {
     opacity: 1;
     transform: translate3d(0, 0px, 0);
     -webkit-transform: translate3d(0, 0px, 0);
@@ -1721,40 +1719,47 @@ nav.fixed.scrolled {
     margin: 0;
 }
 
-.menu > li ul {
+.main-navigation .menu > li ul {
     background: #fff;
 }
 
-.menu > li ul {
+.main-navigation .menu > li ul {
     background: #fff;
 }
 
-.menu > li > ul li a {
+.main-navigation .menu > li > ul li a {
     color: #292929;
     width: 100%;
 }
 
-.menu > li > ul li a:hover, .dropdown-menu > .active > a:hover {
+.main-navigation .menu > li > ul li a:hover, .main-navigation .dropdown-menu > .active > a:hover {
     background: #745cf9;
     color: #fff;
 }
 
-.dropdown-menu > .active > a, .dropdown-menu > .active > a:focus {
+.main-navigation .dropdown-menu > .active > a, .main-navigation .dropdown-menu > .active > a:focus {
     color: #0e1015;
     background-color: #fff;
 }
 
-.menu > li > ul li a {
+.main-navigation .menu > li > ul li a {
     color: #292929;
     width: 100%;
 }
 
-.menu > li > ul > .dropdown:hover:after {
+.main-navigation .menu > li > ul > .dropdown:hover:after {
     color: #fff;
 }
 
+/* Widget Menu */
+.widget_nav_menu .sub-menu {
+    border-top: 1px solid #ebebeb;
+    padding-top: 20px;
+    margin-top: 20px;
+}
+
 @media all and (max-width: 1120px) {
-    .menu > li {
+    .main-navigation .menu > li {
         margin-right: 24px;
     }
 }
@@ -1782,24 +1787,24 @@ nav.fixed.scrolled {
         width: 100%;
     }
 
-    .menu {
+    .main-navigation .menu {
         height: auto;
     }
 
-    .menu a {
+    .main-navigation .menu a {
         height: auto;
         line-height: 24px;
         padding: 4px 0;
     }
 
-    .menu li {
+    .main-navigation .menu li {
         line-height: 24px;
         display: block;
         width: 100%;
         max-width: 100%;
     }
 
-    .menu > li ul {
+    .main-navigation .menu > li ul {
         position: relative;
         width: 100%;
         opacity: 1;
@@ -1812,7 +1817,7 @@ nav.fixed.scrolled {
         box-shadow: none;
     }
 
-    .menu > li > ul {
+    .main-navigation .menu > li > ul {
         position: relative;
         opacity: 1;
         visibility: visible;
@@ -1822,25 +1827,25 @@ nav.fixed.scrolled {
         -moz-transform: translate3d(0, 0px, 0);
     }
 
-    .menu > li > ul > .dropdown:after {
+    .main-navigation .menu > li > ul > .dropdown:after {
         content: "\f107";
     }
 
-    .menu > li > ul > li > ul {
+    .main-navigation .menu > li > ul > li > ul {
         left: 0 !important;
         display: none;
         padding: 0;
     }
 
-    .menu > li > ul li a {
+    .main-navigation .menu > li > ul li a {
         padding: 10px 16px;
     }
 
-    .dropdown .dropdown li {
+    .main-navigation .dropdown .dropdown li {
         padding-left: 18px;
     }
 
-    .dropdown {
+    .main-navigation .dropdown {
         padding-right: 0;
     }
 
@@ -1983,10 +1988,6 @@ input[type="submit"] {
 .bg-primary input[type="submit"] {
     background: #fff;
     color: #745cf9;
-}
-
-input[type="submit"]:focus {
-    outline: none;
 }
 
 /*!---------- 9. BREADCRUMBS ----------*/
@@ -3106,10 +3107,10 @@ footer.bg-dark a {
 }
 
 .contact-section .social-icons li a {
-    color: #745cf9 !important;
+    color: #745cf9;
 }
 .contact-section .social-icons li a:hover {
-    color: #5d47d7 !important;
+    color: #5d47d7;
 }
 
 #social .social_icon span {
@@ -3230,13 +3231,13 @@ footer.bg-dark a {
     position: absolute;
     bottom: 20px;
     left: 20px;
+    z-index: 6;
 }
 
 .video-widget .video-controls button {
     background: #745cf9;
     color: #fff;
     border: none;
-    outline: none;
     padding: 5px 10px;
     text-align: center;
 }
@@ -3244,6 +3245,16 @@ footer.bg-dark a {
 .video-widget.youtube {
     position: relative;
     background: transparent;
+}
+.vimeo-holder iframe {
+    width: 100%;
+}
+.video-widget.vimeo:before {
+    content: "";
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    z-index: 5;
 }
 
 .ytplayer-container {
@@ -3449,7 +3460,7 @@ blockquote {
       border-color: #745cf9;
       box-shadow: none;
       outline: none; }
-  .widget.widget_search .search-form > .searchsubmit {
+  .widget.widget_search .search-form > input[type="submit"].searchsubmit {
     position: absolute;
     border: none;
     top: 7px;
@@ -3458,8 +3469,17 @@ blockquote {
     bottom: 7px;
     height: 35px;
     width: 40px;
-    border-left: 1px solid #ebebeb;
-    color: transparent; }
+    border-left: 1px solid #ebebeb !important;
+    border-right: 0 none !important;
+    border-top: 0 none !important;
+    border-bottom: 0 none !important;
+    color: transparent;
+    background-color: transparent !important;
+    }
+    .widget.widget_search .search-form > input[type="submit"].searchsubmit:hover {
+        color: transparent !important;
+        background-color: transparent !important;
+    }
     .widget.widget_search .search-form > .searchsubmit:hover, .widget.widget_search .search-form > .searchsubmit:focus, .widget.widget_search .search-form > .searchsubmit:active {
       color: transparent; }
   .widget.widget_search .search-form :-moz-placeholder {
@@ -3835,7 +3855,10 @@ blockquote {
   @media all and (min-width: 991px) {
     .author-bio .col-sm-10 {
         border-left: 1px solid #ebebeb;
-    } 
+    }
+    .author-bio-left-side .author-bio .col-sm-10 {
+        border-left: 0 none;
+    }
   }
   .author-bio .fn {
     font-weight: 400;

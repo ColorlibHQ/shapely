@@ -1,11 +1,5 @@
-/**
- * navigation.js
- *
- * Handles toggling the navigation menu for small screens and enables tab
- * support for dropdown menus.
- */
-( function() {
-	var container, button, menu, links, subMenus;
+( function() {// jscs:ignore validateLineBreaks
+	var container, button, menu, links, subMenus, i, len;
 
 	container = document.getElementById( 'site-navigation' );
 	if ( ! container ) {
@@ -47,7 +41,7 @@
 	subMenus = menu.getElementsByTagName( 'ul' );
 
 	// Set menu items with submenus to aria-haspopup="true".
-	for ( var i = 0, len = subMenus.length; i < len; i++ ) {
+	for ( i = 0, len = subMenus.length; i < len; i++ ) {
 		subMenus[i].parentNode.setAttribute( 'aria-haspopup', 'true' );
 	}
 

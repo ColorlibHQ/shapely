@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Class Shapely_Related_Posts_Output
+ * Class Shapely_Related_Posts
  *
  * This file does the social sharing handling for the Muscle Core Lite Framework
  *
@@ -11,7 +11,7 @@
  * @package          Shapely
  */
 
-if ( ! function_exists( 'Shapely_CallRelatedPostsClass' ) ) {
+if ( ! function_exists( 'shapely_call_related_posts_class' ) ) {
 	/**
 	 *
 	 * Gets called only if the "display related posts" option is checked
@@ -20,26 +20,26 @@ if ( ! function_exists( 'Shapely_CallRelatedPostsClass' ) ) {
 	 * @since   1.0.0
 	 *
 	 */
-	function Shapely_CallRelatedPostsClass() {
+	function shapely_call_related_posts_class() {
 		$display_related_blog_posts = get_theme_mod( 'related_posts_area', true );
 
 		if ( $display_related_blog_posts ) {
 
 			// instantiate the class & load everything else
-			Shapely_Related_Posts_Output::getInstance();
+			Shapely_Related_Posts::get_instance();
 		}
 	}
 
-	add_action( 'wp_loaded', 'Shapely_CallRelatedPostsClass' );
+	add_action( 'wp_loaded', 'shapely_call_related_posts_class' );
 }
 
 
-if ( ! class_exists( 'Shapely_Related_Posts_Output' ) ) {
+if ( ! class_exists( 'Shapely_Related_Posts' ) ) {
 
 	/**
-	 * Class Shapely_Related_Posts_Output
+	 * Class Shapely_Related_Posts
 	 */
-	class Shapely_Related_Posts_Output {
+	class Shapely_Related_Posts {
 
 		/**
 		 * @var Singleton The reference to *Singleton* instance of this class
@@ -56,7 +56,6 @@ if ( ! class_exists( 'Shapely_Related_Posts_Output' ) ) {
 				add_action( 'shapely_single_after_article', array( $this, 'output_related_posts' ), 2 );
 			}
 
-
 		}
 
 		/**
@@ -64,8 +63,8 @@ if ( ! class_exists( 'Shapely_Related_Posts_Output' ) ) {
 		 *
 		 * @return Singleton The *Singleton* instance.
 		 */
-		public static function getInstance() {
-			if ( NULL === static::$instance ) {
+		public static function get_instance() {
+			if ( null === static::$instance ) {
 				static::$instance = new static();
 			}
 
@@ -104,7 +103,7 @@ if ( ! class_exists( 'Shapely_Related_Posts_Output' ) ) {
 			$related_postquery = new WP_Query();
 			$args              = '';
 
-			if ( $number_posts == 0 ) {
+			if ( 0 == $number_posts ) {
 				return $related_postquery;
 			}
 
@@ -113,7 +112,7 @@ if ( ! class_exists( 'Shapely_Related_Posts_Output' ) ) {
 				'ignore_sticky_posts' => 0,
 				'posts_per_page'      => $number_posts,
 				'post__not_in'        => array( $post_id ),
-//				'meta_key'            => '_thumbnail_id',
+				//              'meta_key'            => '_thumbnail_id',
 			) );
 
 			$related_postquery = new WP_Query( $args );
@@ -133,7 +132,7 @@ if ( ! class_exists( 'Shapely_Related_Posts_Output' ) ) {
 			// Check if related posts should be shown
 			$related_posts = $this->get_related_posts( get_the_ID(), get_option( 'posts_per_page' ) );
 
-			if ( $related_posts->post_count == 0 ) {
+			if ( 0 == $related_posts->post_count ) {
 				return false;
 			}
 
@@ -144,7 +143,6 @@ if ( ! class_exists( 'Shapely_Related_Posts_Output' ) ) {
 			$show_title = get_theme_mod( 'shapely_enable_related_title_blog_posts', true );
 			$show_date  = get_theme_mod( 'shapely_enable_related_date_blog_posts', false );
 			$auto_play  = get_theme_mod( 'shapely_autoplay_blog_posts', true );
-
 
 			echo '<div class="row">';
 
@@ -167,7 +165,6 @@ if ( ! class_exists( 'Shapely_Related_Posts_Output' ) ) {
 			echo '</ul>';
 			echo '</div>';
 
-
 			echo sprintf( '<div class="owlCarousel owl-carousel owl-theme" data-slider-id="%s" id="owlCarousel-%s" 
 			data-slider-items="%s" 
 			data-slider-speed="400" data-slider-auto-play="%s" data-slider-navigation="false">', get_the_ID(), get_the_ID(), absint( $limit ), esc_html( $auto_play ) );
@@ -188,7 +185,7 @@ if ( ! class_exists( 'Shapely_Related_Posts_Output' ) ) {
 
 					# Post Title
 					echo '<a href="' . esc_url( get_the_permalink() ) . '">' . wp_trim_words( get_the_title(), 5 ) .
-					     '</a>';
+						 '</a>';
 
 					echo '</div>';
 
@@ -209,8 +206,8 @@ if ( ! class_exists( 'Shapely_Related_Posts_Output' ) ) {
 
 			echo '</div><!--/.owlCarousel-->';
 			echo '</div><!--/.mt-related-posts-->';
-			
+
 			wp_reset_postdata();
 		}
 	}
-}
+}// End if().

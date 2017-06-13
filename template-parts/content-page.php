@@ -1,39 +1,32 @@
-<?php
-/**
- * Template part for displaying page content in page.php.
- *
- * @link    https://codex.wordpress.org/Template_Hierarchy
- *
- * @package Shapely
- */
-
-?>
 
 <article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
 	<header class="entry-header">
 		<?php
 		if ( has_post_thumbnail() ) { ?>
-			<a class="text-center" href="<?php the_permalink(); ?>"
-			   title="<?php the_title_attribute(array( 'echo' => false )); ?>"><?php
-			the_post_thumbnail( 'shapely-featured', array( 'class' => 'mb24' ) ); ?>
-			</a><?php
-		}
-		?>
+			<a class="text-center" href="<?php the_permalink(); ?>" title="<?php the_title_attribute(); ?>">
+			<?php
+				$thumbnail_args = array(
+					'class' => 'mb24',
+				);
+				the_post_thumbnail( 'shapely-featured', $thumbnail_args );
+			?>
+			</a>
+		<?php } ?>
 		<?php the_title( '<h1 class="entry-title">', '</h1>' ); ?>
 	</header><!-- .entry-header -->
 
 	<div class="entry-content">
 		<?php
 		the_content();
-
-		wp_link_pages( array(
-			               'before' => '<div class="page-links">' . esc_html__( 'Pages:', 'shapely' ),
-			               'after'  => '</div>',
-		               ) );
+		$link_pages_args = array(
+			'before' => '<div class="page-links">' . esc_html__( 'Pages:', 'shapely' ),
+			'after'  => '</div>',
+		);
+		wp_link_pages( $link_pages_args );
 		?>
 	</div><!-- .entry-content -->
 	<?php
-	if ( is_single() ):
+	if ( is_single() ) :
 		$prev = get_previous_post_link();
 		$prev = str_replace( '&laquo;', '<div class="wrapper"><span class="fa fa-angle-left"></span>', $prev );
 		$prev = str_replace( '</a>', '</a></div>', $prev );
@@ -55,7 +48,7 @@
 		<?php
 		edit_post_link(
 			sprintf(
-			/* translators: %s: Name of current post */
+				/* translators: %s: Name of current post */
 				esc_html__( 'Edit %s', 'shapely' ),
 				the_title( '<span class="screen-reader-text">"', '"</span>', false )
 			),

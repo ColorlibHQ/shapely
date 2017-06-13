@@ -41,7 +41,7 @@ if ( ! function_exists( 'shapely_setup' ) ) :
 			'default-text-color' => '000000',
 			'width'              => 1900,
 			'height'             => 225,
-			'flex-width'         => true
+			'flex-width'         => true,
 		) ) );
 
 		/*
@@ -61,9 +61,9 @@ if ( ! function_exists( 'shapely_setup' ) ) :
 
 		// This theme uses wp_nav_menu() in one location.
 		register_nav_menus( array(
-			                    'primary'     => esc_html__( 'Primary', 'shapely' ),
-			                    'social-menu' => esc_html__( 'Social Menu', 'shapely' ),
-		                    ) );
+			'primary'     => esc_html__( 'Primary', 'shapely' ),
+			'social-menu' => esc_html__( 'Social Menu', 'shapely' ),
+		) );
 
 		/*
 		 * Switch default core markup for search form, comment form, and comments
@@ -95,8 +95,8 @@ if ( ! function_exists( 'shapely_setup' ) ) :
 
 		add_theme_support( 'woocommerce' );
 		add_theme_support( 'wc-product-gallery-zoom' );
-	    add_theme_support( 'wc-product-gallery-lightbox' );
-	    add_theme_support( 'wc-product-gallery-slider' );
+		add_theme_support( 'wc-product-gallery-lightbox' );
+		add_theme_support( 'wc-product-gallery-slider' );
 
 		add_theme_support( 'customize-selective-refresh-widgets' );
 		// Welcome screen
@@ -104,8 +104,12 @@ if ( ! function_exists( 'shapely_setup' ) ) :
 			global $shapely_required_actions, $shapely_recommended_plugins;
 
 			$shapely_recommended_plugins = array(
-				'wordpress-seo'          => array( 'recommended' => true ),
-				'fancybox-for-wordpress' => array( 'recommended' => false ),
+				'wordpress-seo'          => array(
+					'recommended' => true,
+				),
+				'fancybox-for-wordpress' => array(
+					'recommended' => false,
+				),
 			);
 
 			/*
@@ -126,30 +130,30 @@ if ( ! function_exists( 'shapely_setup' ) ) :
 
 			$shapely_required_actions = array(
 				array(
-					"id"          => 'shapely-req-ac-install-companion-plugin',
-					"title"       => Shapely_Notify_System::shapely_companion_title(),
-					"description" => Shapely_Notify_System::shapely_companion_description(),
-					"check"       => Shapely_Notify_System::shapely_has_plugin( 'shapely-companion' ),
-					"plugin_slug" => 'shapely-companion'
+					'id'          => 'shapely-req-ac-install-companion-plugin',
+					'title'       => Shapely_Notify_System::shapely_companion_title(),
+					'description' => Shapely_Notify_System::shapely_companion_description(),
+					'check'       => Shapely_Notify_System::shapely_has_plugin( 'shapely-companion' ),
+					'plugin_slug' => 'shapely-companion',
 				),
 				array(
-					"id"          => 'shapely-req-ac-install-wp-jetpack-plugin',
-					"title"       => Shapely_Notify_System::shapely_jetpack_title(),
-					"description" => Shapely_Notify_System::shapely_jetpack_description(),
-					"check"       => Shapely_Notify_System::shapely_has_plugin( 'jetpack' ),
-					"plugin_slug" => 'jetpack'
+					'id'          => 'shapely-req-ac-install-wp-jetpack-plugin',
+					'title'       => Shapely_Notify_System::shapely_jetpack_title(),
+					'description' => Shapely_Notify_System::shapely_jetpack_description(),
+					'check'       => Shapely_Notify_System::shapely_has_plugin( 'jetpack' ),
+					'plugin_slug' => 'jetpack',
 				),
 				array(
-					"id"       => 'shapely-req-import-content',
-					"title"    => esc_html__( 'Import content', 'shapely' ),
-					"external" => $path,
-					"check"    => Shapely_Notify_System::shapely_check_import_req(),
+					'id'       => 'shapely-req-import-content',
+					'title'    => esc_html__( 'Import content', 'shapely' ),
+					'external' => $path,
+					'check'    => Shapely_Notify_System::shapely_check_import_req(),
 				),
 
 			);
 
-			require get_template_directory() . '/inc/admin/welcome-screen/welcome-screen.php';
-		}
+			require get_template_directory() . '/inc/admin/welcome-screen/class-shapely-welcome.php';
+		}// End if().
 	}
 endif;
 add_action( 'after_setup_theme', 'shapely_setup' );
@@ -174,44 +178,44 @@ add_action( 'after_setup_theme', 'shapely_content_width', 0 );
  */
 function shapely_widgets_init() {
 	register_sidebar( array(
-		                  'id'            => 'sidebar-1',
-		                  'name'          => esc_html__( 'Sidebar', 'shapely' ),
-		                  'before_widget' => '<div id="%1$s" class="widget %2$s">',
-		                  'after_widget'  => '</div>',
-		                  'before_title'  => '<h2 class="widget-title">',
-		                  'after_title'   => '</h2>',
-	                  ) );
+		'id'            => 'sidebar-1',
+		'name'          => esc_html__( 'Sidebar', 'shapely' ),
+		'before_widget' => '<div id="%1$s" class="widget %2$s">',
+		'after_widget'  => '</div>',
+		'before_title'  => '<h2 class="widget-title">',
+		'after_title'   => '</h2>',
+	) );
 
 	register_sidebar( array(
-		                  'id'            => 'sidebar-home',
-		                  'name'          => esc_html__( 'Homepage', 'shapely' ),
-		                  'before_widget' => '<div id="%1$s" class="widget %2$s">',
-		                  'after_widget'  => '</div>',
-		                  'before_title'  => '<h2 class="widget-title">',
-		                  'after_title'   => '</h2>',
-	                  ) );
+		'id'            => 'sidebar-home',
+		'name'          => esc_html__( 'Homepage', 'shapely' ),
+		'before_widget' => '<div id="%1$s" class="widget %2$s">',
+		'after_widget'  => '</div>',
+		'before_title'  => '<h2 class="widget-title">',
+		'after_title'   => '</h2>',
+	) );
 
 	for ( $i = 1; $i < 5; $i ++ ) {
 		register_sidebar( array(
-			                  'id'            => 'footer-widget-' . $i,
-			                  'name'          => sprintf( esc_html__( 'Footer Widget %s', 'shapely' ), $i ),
-			                  'description'   => esc_html__( 'Used for footer widget area', 'shapely' ),
-			                  'before_widget' => '<div id="%1$s" class="widget %2$s">',
-			                  'after_widget'  => '</div>',
-			                  'before_title'  => '<h2 class="widget-title">',
-			                  'after_title'   => '</h2>',
-		                  ) );
+			'id'            => 'footer-widget-' . $i,
+			'name'          => sprintf( esc_html__( 'Footer Widget %s', 'shapely' ), $i ),
+			'description'   => esc_html__( 'Used for footer widget area', 'shapely' ),
+			'before_widget' => '<div id="%1$s" class="widget %2$s">',
+			'after_widget'  => '</div>',
+			'before_title'  => '<h2 class="widget-title">',
+			'after_title'   => '</h2>',
+		) );
 	}
 
 	if ( shapely_is_woocommerce_activated() ) {
 		register_sidebar( array(
-	          'id'            => 'shop-sidebar',
-	          'name'          => esc_html__( 'Shop Sidebar', 'shapely' ),
-	          'before_widget' => '<div id="%1$s" class="widget %2$s">',
-	          'after_widget'  => '</div>',
-	          'before_title'  => '<h2 class="widget-title">',
-	          'after_title'   => '</h2>',
-	      ) );
+			'id'            => 'shop-sidebar',
+			'name'          => esc_html__( 'Shop Sidebar', 'shapely' ),
+			'before_widget' => '<div id="%1$s" class="widget %2$s">',
+			'after_widget'  => '</div>',
+			'before_title'  => '<h2 class="widget-title">',
+			'after_title'   => '</h2>',
+		) );
 	}
 
 }
@@ -244,17 +248,16 @@ add_filter( 'theme_page_templates', 'shapely_exclude_page_templates' );
  */
 function shapely_scripts() {
 	// Add Bootstrap default CSS
-	wp_enqueue_style( 'bootstrap', get_template_directory_uri() . '/inc/css/bootstrap.min.css' );
+	wp_enqueue_style( 'bootstrap', get_template_directory_uri() . '/assets/css/bootstrap.min.css' );
 
 	// Add Font Awesome stylesheet
-	wp_enqueue_style( 'font-awesome', get_template_directory_uri() . '/inc/css/font-awesome.min.css' );
+	wp_enqueue_style( 'font-awesome', get_template_directory_uri() . '/assets/css/font-awesome.min.css' );
 
 	// Add Google Fonts
 	wp_enqueue_style( 'shapely-fonts', '//fonts.googleapis.com/css?family=Raleway:100,300,400,500,600,700%7COpen+Sans:400,500,600' );
 
-
 	// Add slider CSS
-	wp_enqueue_style( 'flexslider', get_template_directory_uri() . '/inc/css/flexslider.css' );
+	wp_enqueue_style( 'flexslider', get_template_directory_uri() . '/assets/css/flexslider.css' );
 
 	//Add custom theme css
 	wp_enqueue_style( 'shapely-style', get_stylesheet_uri() );
@@ -266,7 +269,6 @@ function shapely_scripts() {
 	if ( is_singular() && comments_open() && get_option( 'thread_comments' ) ) {
 		wp_enqueue_script( 'comment-reply' );
 	}
-
 
 	if ( post_type_exists( 'jetpack-portfolio' ) ) {
 		wp_enqueue_script( 'jquery-masonry' );
@@ -323,7 +325,7 @@ require get_template_directory() . '/inc/jetpack.php';
 /**
  * Load custom nav walker
  */
-require get_template_directory() . '/inc/navwalker.php';
+require get_template_directory() . '/inc/class-wp-bootstrap-navwalker.php';
 
 /**
  * Load Social Navition
@@ -338,4 +340,4 @@ require get_template_directory() . '/inc/class-shapely-related-posts.php';
 /**
  * Load the system checks ( used for notifications )
  */
-require get_template_directory() . '/inc/admin/welcome-screen/notify-system-checks.php';
+require get_template_directory() . '/inc/admin/welcome-screen/class-shapely-notify-system.php';

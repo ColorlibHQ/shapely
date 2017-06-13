@@ -28,7 +28,7 @@ if ( ! class_exists( 'Shapely_Notify_System' ) ) {
 		 * @return bool
 		 */
 		public static function shapely_has_content() {
-			$option = get_option( "shapely_imported_demo", false );
+			$option = get_option( 'shapely_imported_demo', false );
 			if ( $option ) {
 				return true;
 			};
@@ -42,7 +42,7 @@ if ( ! class_exists( 'Shapely_Notify_System' ) ) {
 		public static function shapely_check_import_req() {
 			$needs = array(
 				'has_content' => self::shapely_has_content(),
-				'has_plugin'  => self::shapely_has_plugin( 'shapely-companion' )
+				'has_plugin'  => self::shapely_has_plugin( 'shapely-companion' ),
 			);
 
 			if ( $needs['has_content'] ) {
@@ -61,7 +61,7 @@ if ( ! class_exists( 'Shapely_Notify_System' ) ) {
 		 */
 		public static function shapely_check_plugin_is_installed( $slug ) {
 			$slug2 = $slug;
-			if ( $slug === 'wordpress-seo' ) {
+			if ( 'wordpress-seo' === $slug ) {
 				$slug2 = 'wp-seo';
 			}
 
@@ -86,7 +86,7 @@ if ( ! class_exists( 'Shapely_Notify_System' ) ) {
 		 */
 		public static function shapely_check_plugin_is_active( $slug ) {
 			$slug2 = $slug;
-			if ( $slug === 'wordpress-seo' ) {
+			if ( 'wordpress-seo' === $slug ) {
 				$slug2 = 'wp-seo';
 			}
 
@@ -105,11 +105,11 @@ if ( ! class_exists( 'Shapely_Notify_System' ) ) {
 			}
 		}
 
-		public static function shapely_has_plugin( $slug = NULL ) {
+		public static function shapely_has_plugin( $slug = null ) {
 
 			$check = array(
 				'installed' => self::shapely_check_plugin_is_installed( $slug ),
-				'active'    => self::shapely_check_plugin_is_active( $slug )
+				'active'    => self::shapely_check_plugin_is_active( $slug ),
 			);
 
 			if ( ! $check['installed'] || ! $check['active'] ) {
@@ -221,4 +221,4 @@ if ( ! class_exists( 'Shapely_Notify_System' ) ) {
 			return get_page_template_slug( $page_id ) == 'page-templates/frontpage-template.php' ? true : false;
 		}
 	}
-}
+}// End if().

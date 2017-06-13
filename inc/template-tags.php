@@ -18,10 +18,10 @@ if ( ! function_exists( 'shapely_posted_on' ) ) :
 		}
 
 		$time_string = sprintf( $time_string,
-		                        esc_attr( get_the_date( 'c' ) ),
-		                        esc_html( get_the_date() ),
-		                        esc_attr( get_the_modified_date( 'c' ) ),
-		                        esc_html( get_the_modified_date() )
+			esc_attr( get_the_date( 'c' ) ),
+			esc_html( get_the_date() ),
+			esc_attr( get_the_modified_date( 'c' ) ),
+			esc_html( get_the_modified_date() )
 		); ?>
 
 		<ul class="post-meta">
@@ -47,10 +47,10 @@ if ( ! function_exists( 'shapely_posted_on_no_cat' ) ) :
 		}
 
 		$time_string = sprintf( $time_string,
-		                        esc_attr( get_the_date( 'c' ) ),
-		                        esc_html( get_the_date() ),
-		                        esc_attr( get_the_modified_date( 'c' ) ),
-		                        esc_html( get_the_modified_date() )
+			esc_attr( get_the_date( 'c' ) ),
+			esc_html( get_the_date() ),
+			esc_attr( get_the_modified_date( 'c' ) ),
+			esc_html( get_the_modified_date() )
 		); ?>
 
 		<ul class="post-meta">
@@ -92,7 +92,7 @@ if ( ! function_exists( 'shapely_entry_footer' ) ) :
 
 		edit_post_link(
 			sprintf(
-			/* translators: %s: Name of current post */
+				/* translators: %s: Name of current post */
 				esc_html__( 'Edit %s', 'shapely' ),
 				the_title( '<span class="screen-reader-text">"', '"</span>', false )
 			),
@@ -108,14 +108,14 @@ endif;
  * @return bool
  */
 function shapely_categorized_blog() {
-	if ( false === ( $all_the_cool_cats = get_transient( 'shapely_categories' ) ) ) {
+	$all_the_cool_cats = get_transient( 'shapely_categories' );
+	if ( false === $all_the_cool_cats ) {
 		// Create an array of all the categories that are attached to posts.
 		$all_the_cool_cats = get_categories( array(
-			                                     'fields'     => 'ids',
-			                                     'hide_empty' => 1,
-			                                     // We only need to know if there is more than one category.
-			                                     'number'     => 2,
-		                                     ) );
+			'fields'     => 'ids',
+			'hide_empty' => 1,
+			'number'     => 2,
+		) );
 
 		// Count the number of categories that are attached to the posts.
 		$all_the_cool_cats = count( $all_the_cool_cats );
@@ -154,8 +154,8 @@ if ( ! function_exists( 'shapely_post_category' ) ) :
 	function shapely_post_category() {
 		$category = get_the_category();
 		if ( ! empty( $category ) ) {
-			$i = ( $category[0]->slug == "uncategorized" && array_key_exists( '1', $category ) ) ? 1 : 0;
-			echo '<li><i class="fa fa-folder-open-o"></i><span class="cat-links"><a href="' . esc_url( get_category_link( $category[ $i ]->term_id ) ) . '" title="' . sprintf( esc_html__( "View all posts in %s", 'shapely' ), esc_attr( $category[ $i ]->name ) ) . '" ' . '>' . esc_html( $category[ $i ]->name ) . '</a></span></li> ';
+			$i = ( 'uncategorized' == $category[0]->slug && array_key_exists( '1', $category ) ) ? 1 : 0;
+			echo '<li><i class="fa fa-folder-open-o"></i><span class="cat-links"><a href="' . esc_url( get_category_link( $category[ $i ]->term_id ) ) . '" title="' . sprintf( esc_html__( 'View all posts in %s', 'shapely' ), esc_attr( $category[ $i ]->name ) ) . '" ' . '>' . esc_html( $category[ $i ]->name ) . '</a></span></li> ';
 		}
 	}
 endif;

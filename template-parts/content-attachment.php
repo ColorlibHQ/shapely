@@ -13,12 +13,15 @@
 	<header class="entry-header">
 		<?php
 		if ( has_post_thumbnail() ) { ?>
-			<a class="text-center" href="<?php the_permalink(); ?>"
-			   title="<?php the_title_attribute( array( 'echo' => false ) ); ?>"><?php
-			the_post_thumbnail( 'shapely-featured', array( 'class' => 'mb24' ) ); ?>
-			</a><?php
-		}
-		?>
+			<a class="text-center" href="<?php the_permalink(); ?>" title="<?php the_title_attribute(); ?>">
+			<?php
+				$thumbnail_args = array(
+					'class' => 'mb24',
+				);
+				the_post_thumbnail( 'shapely-featured', $thumbnail_args );
+			?>
+			</a>
+		<?php } ?>
 		<?php the_title( '<h1 class="entry-title">', '</h1>' ); ?>
 	</header><!-- .entry-header -->
 
@@ -27,14 +30,15 @@
 		$image = wp_get_attachment_image( get_the_ID(), 'full' );
 		echo wp_kses_post( $image );
 
-		wp_link_pages( array(
-			               'before' => '<div class="page-links">' . esc_html__( 'Pages:', 'shapely' ),
-			               'after'  => '</div>',
-		               ) );
+		$link_pages_args = array(
+			'before' => '<div class="page-links">' . esc_html__( 'Pages:', 'shapely' ),
+			'after'  => '</div>',
+		);
+		wp_link_pages( $link_pages_args );
 		?>
 	</div><!-- .entry-content -->
 	<?php
-	if ( is_single() ):
+	if ( is_single() ) :
 		$prev = get_previous_post_link();
 		$prev = str_replace( '&laquo;', '<div class="wrapper"><span class="fa fa-angle-left"></span>', $prev );
 		$prev = str_replace( '</a>', '</a></div>', $prev );
