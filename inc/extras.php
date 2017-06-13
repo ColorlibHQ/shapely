@@ -126,12 +126,13 @@ if ( ! function_exists( 'shapely_get_theme_options' ) ) {
 		echo '<style type="text/css">';
 
 		if ( get_theme_mod( 'link_color' ) ) {
-			echo 'a {color:' . esc_attr( get_theme_mod( 'link_color' ) ) . '}';
+			echo 'a, .image-bg a, .contact-section .social-icons li a, a:visited, .footer .footer-credits a, .post-content .post-meta li a, .post-content .shapely-category a {color:' . esc_attr( get_theme_mod( 'link_color' ) ) . ' }';
 		}
 		if ( get_theme_mod( 'link_hover_color' ) ) {
 			echo 'a:hover, a:active, .post-title a:hover,
         .woocommerce nav.woocommerce-pagination ul li a:focus, .woocommerce nav.woocommerce-pagination ul li a:hover,
-        .woocommerce nav.woocommerce-pagination ul li span.current  { color: ' . esc_attr( get_theme_mod( 'link_hover_color' ) ) . ';}';
+        .woocommerce nav.woocommerce-pagination ul li span.current, .image-bg a:hover, .contact-section .social-icons li a:hover, .footer .footer-credits a:hover, .post-content .post-meta li a:hover,
+        .post-content .shapely-category a:hover, .post-content .shapely-category a:focus  { color: ' . esc_attr( get_theme_mod( 'link_hover_color' ) ) . ';}';
 		}
 
 		if ( get_theme_mod( 'button_color' ) ) {
@@ -140,7 +141,10 @@ if ( ! function_exists( 'shapely_get_theme_options' ) ) {
           .woocommerce input.button.alt, .woocommerce #respond input#submit,
           .woocommerce a.button, .woocommerce button.button,
           .woocommerce input.button,
+          .video-widget .video-controls button,
+          input[type="submit"],
           .post-content .more-link { background:' . esc_attr( get_theme_mod( 'button_color' ) ) . ' !important; border: 2px solid' . esc_attr( get_theme_mod( 'button_color' ) ) . ' !important;}';
+			echo '.shapely_home_parallax > section:not(.image-bg) .btn-white { color: ' . esc_attr( get_theme_mod( 'button_color' ) ) . '; border-color: ' . esc_attr( get_theme_mod( 'button_color' ) ) . '; }';
 		}
 		if ( get_theme_mod( 'button_hover_color' ) ) {
 			echo '.btn-filled:hover, .woocommerce #respond input#submit.alt:hover,
@@ -148,11 +152,15 @@ if ( ! function_exists( 'shapely_get_theme_options' ) ) {
           .woocommerce input.button.alt:hover, .woocommerce #respond input#submit:hover,
           .woocommerce a.button:hover, .woocommerce button.button:hover,
           .woocommerce input.button:hover,
+          .video-widget .video-controls button:hover,
+          input[type="submit"]:hover,
+          .menu > li > ul li a:hover, .dropdown-menu > .active > a:hover,
           .post-content .more-link:hover  { background: ' . esc_attr( get_theme_mod( 'button_hover_color' ) ) . ' !important; border: 2px solid' . esc_attr( get_theme_mod( 'button_hover_color' ) ) . ' !important;}';
+			echo '.shapely_home_parallax > section:not(.image-bg) .btn-white:hover, .shapely_home_parallax > section:not(.image-bg) .btn-white:focus{ background-color: ' . esc_attr( get_theme_mod( 'button_hover_color' ) ) . '; border-color: ' . esc_attr( get_theme_mod( 'button_hover_color' ) ) . '; }';
 		}
 
 		if ( get_theme_mod( 'social_color' ) ) {
-			echo '.social-icons li a {color: ' . esc_attr( get_theme_mod( 'social_color' ) ) . ' !important ;}';
+			echo '.bg-dark .social-list a {color: ' . esc_attr( get_theme_mod( 'social_color' ) ) . ';}';
 		}
 
 		echo '</style>';
