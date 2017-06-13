@@ -159,11 +159,10 @@ if ( ! function_exists( 'shapely_get_theme_options' ) ) {
           .woocommerce input.button:hover,
           .video-widget .video-controls button:hover,
           input[type="submit"]:hover,
-          .main-navigation  .menu > li > ul li a:hover, .main-navigation  .dropdown-menu > .active > a:hover,
           .post-content .more-link:hover, .btn:hover, .button:hover  { background: ' . esc_attr( get_theme_mod( 'button_hover_color' ) ) . ' !important; border: 2px solid' . esc_attr( get_theme_mod( 'button_hover_color' ) ) . ' !important;}';
 			echo '.shapely_home_parallax > section:not(.image-bg) .btn-white:hover, .shapely_home_parallax > section:not(.image-bg) .btn-white:focus{ background-color: ' . esc_attr( get_theme_mod( 'button_hover_color' ) ) . '; border-color: ' . esc_attr( get_theme_mod( 'button_hover_color' ) ) . '; }';
 			echo '.widget.widget_search .search-form > input#s:hover, .widget.widget_search .search-form > input#s:focus, .widget.widget_calendar #wp-calendar td:not(.pad):not(#next):not(#prev)#today { border-color: ' . esc_attr( get_theme_mod( 'button_hover_color' ) ) . ' }';
-			echo '.widget.widget_calendar #wp-calendar > caption:after, .widget.widget_calendar #wp-calendar td:not(.pad):not(#next):not(#prev)#today:hover { background-color: ' . esc_attr( get_theme_mod( 'button_hover_color' ) ) . ' }';
+			echo '.main-navigation  .menu > li > ul li a:hover, .main-navigation  .dropdown-menu > .active > a:hover,.widget.widget_calendar #wp-calendar > caption:after, .widget.widget_calendar #wp-calendar td:not(.pad):not(#next):not(#prev)#today:hover { background-color: ' . esc_attr( get_theme_mod( 'button_hover_color' ) ) . ' }';
 		}
 
 		if ( get_theme_mod( 'social_color' ) ) {
