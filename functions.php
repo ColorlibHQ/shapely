@@ -154,6 +154,10 @@ if ( ! function_exists( 'shapely_setup' ) ) :
 
 			require get_template_directory() . '/inc/admin/welcome-screen/class-shapely-welcome.php';
 		}// End if().
+
+		// Enable Shortcodes in widgets
+		add_filter( 'widget_text','do_shortcode' );
+
 	}
 endif;
 add_action( 'after_setup_theme', 'shapely_setup' );
@@ -262,8 +266,6 @@ function shapely_scripts() {
 	//Add custom theme css
 	wp_enqueue_style( 'shapely-style', get_stylesheet_uri() );
 
-	// wp_enqueue_script( 'shapely-navigation', get_template_directory_uri() . '/assets/js/navigation.js', array(), '20120206', true );
-
 	wp_enqueue_script( 'shapely-skip-link-focus-fix', get_template_directory_uri() . '/assets/js/skip-link-focus-fix.js', array(), '20160115', true );
 
 	if ( is_singular() && comments_open() && get_option( 'thread_comments' ) ) {
@@ -287,7 +289,7 @@ function shapely_scripts() {
 	wp_enqueue_style( 'owl.carousel', get_template_directory_uri() . '/assets/js/owl-carousel/owl.carousel.min.css' );
 	wp_enqueue_style( 'owl.carousel.theme', get_template_directory_uri() . '/assets/js/owl-carousel/owl.theme.default.css' );
 
-	wp_enqueue_script( 'shapely-scripts', get_template_directory_uri() . '/assets/js/shapely-scripts.js', array( 'jquery' ), '20160115', true );
+	wp_enqueue_script( 'shapely-scripts', get_template_directory_uri() . '/assets/js/shapely-scripts.js', array( 'jquery', 'imagesloaded' ), '20160115', true );
 
 }
 

@@ -46,15 +46,15 @@ notifications:
 cache:
   directories:
   - node_modules
-after_success:
-- grunt build-archive
-- sh set_tags.sh
-deploy:
-  provider: releases
-  skip_cleanup: true
-  api_key:
-    secure: FbV7d4hcOzhBRs1M/iVlseSqeaeHtLhp+Et6iP7kRVEM5rVl9zmFUppfCweQfBm9Gd4SPJkiRPAtYwKIDZwS3AO9U4jkdYOJCAysVa/zEj+t8DSFsA7EwIstu4CbQVEAADCEAmI/Yth8qbe4jF5Xg29/ykF9WCHXUhYnewSDX/Vr+AbjiitmDqojK9Ea9c0iMlVrOZEgnhfGFxLU4dsh4F/Il2pQiermoAz7r4+apvJG5IDIXFRFgY6L1tIEAnFhDgaLHuTN1QtCgoyeFxHLzSBXEjnPatefjRd4VwCLIyG3NnTSdudI9ddAg+r42ghGtslRrIlZHerc9BWFX0zXkLxVCvem126ol+/x9Uvx6TdAfGb2L3tmkquv1QgeOy0ju7mlwdwO2LepcnMwETpkPF9r4iBpT+S0GF5MbUNO6LQdqQ7Lwk4AKpdWZUO0LHdLGw5JhS99GMZZxICnsHRxBBx0DcCMTAFJsUs6RNND/ugulTUHnTtEF97XkB+2Db4CYQLsDq/hg0pnscywh+VwR3w7P91rKCsw400SsfV7FqOoLlgoexOqHVkTm0DSkNi4HN+/n4xpgByoZeIq1UzWqjyHgUACBIkuNDkP9QwSuxzWACHfYPKbl/iw7FlX9ct5mBKf4Eyeb88WufEyU/wTFHrrCXDv2EoYspPEPNvYBvk=
-  file: shapely.zip
-  on:
-    branch: master
-    repo: giucu91/shapely
+#after_success:
+#- grunt build-archive
+#- sh set_tags.sh
+#deploy:
+#  provider: releases
+#  skip_cleanup: true
+#  api_key:
+#    secure: FbV7d4hcOzhBRs1M/iVlseSqeaeHtLhp+Et6iP7kRVEM5rVl9zmFUppfCweQfBm9Gd4SPJkiRPAtYwKIDZwS3AO9U4jkdYOJCAysVa/zEj+t8DSFsA7EwIstu4CbQVEAADCEAmI/Yth8qbe4jF5Xg29/ykF9WCHXUhYnewSDX/Vr+AbjiitmDqojK9Ea9c0iMlVrOZEgnhfGFxLU4dsh4F/Il2pQiermoAz7r4+apvJG5IDIXFRFgY6L1tIEAnFhDgaLHuTN1QtCgoyeFxHLzSBXEjnPatefjRd4VwCLIyG3NnTSdudI9ddAg+r42ghGtslRrIlZHerc9BWFX0zXkLxVCvem126ol+/x9Uvx6TdAfGb2L3tmkquv1QgeOy0ju7mlwdwO2LepcnMwETpkPF9r4iBpT+S0GF5MbUNO6LQdqQ7Lwk4AKpdWZUO0LHdLGw5JhS99GMZZxICnsHRxBBx0DcCMTAFJsUs6RNND/ugulTUHnTtEF97XkB+2Db4CYQLsDq/hg0pnscywh+VwR3w7P91rKCsw400SsfV7FqOoLlgoexOqHVkTm0DSkNi4HN+/n4xpgByoZeIq1UzWqjyHgUACBIkuNDkP9QwSuxzWACHfYPKbl/iw7FlX9ct5mBKf4Eyeb88WufEyU/wTFHrrCXDv2EoYspPEPNvYBvk=
+#  file: shapely.zip
+#  on:
+#    branch: master
+#    repo: giucu91/shapely

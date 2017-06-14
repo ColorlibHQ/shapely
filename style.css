@@ -1230,7 +1230,17 @@ footer {
     min-width: 0;
 }
 
-.btn-filled, .button, .woocommerce #respond input#submit.alt, .woocommerce a.button.alt, .woocommerce button.button.alt, .woocommerce input.button.alt, .woocommerce #respond input#submit, .woocommerce a.button, .woocommerce button.button, .woocommerce input.button {
+.btn-filled, a
+.btn-filled, 
+.button, 
+.woocommerce #respond input#submit.alt, 
+.woocommerce a.button.alt, 
+.woocommerce button.button.alt, 
+.woocommerce input.button.alt, 
+.woocommerce #respond input#submit, 
+.woocommerce a.button, 
+.woocommerce button.button, 
+.woocommerce input.button {
     background: #745cf9;
     color: #fff;
 }
@@ -1406,6 +1416,10 @@ nav {
     }
     .menu li a {
         padding: 10px 0;
+    }
+    #site-navigation.main-navigation .menu > li > ul li a {
+        width: auto;
+        display: inline-block;
     }
 }
 
@@ -1591,7 +1605,7 @@ nav.fixed.scrolled {
 }
 
 @media all and (max-width: 991px) {
-    .toggle-sub > ul {
+    ul.dropdown-menu.active {
         display: block !important;
     }
 }
@@ -1657,7 +1671,8 @@ nav.fixed.scrolled {
 
 /* Search bar */
 
-.search-form {
+.search-form,
+.woocommerce-product-search {
     padding: 8px;
     display: inline-block;
     width: 100%;
@@ -1680,7 +1695,8 @@ nav.fixed.scrolled {
     width: 300px;
 }
 
-.btn.searchsubmit {
+.btn.searchsubmit,
+.woocommerce-product-search > input[type="submit"] {
     min-width: 17%;
     padding: 0;
     width: 27%;
@@ -3332,18 +3348,19 @@ blockquote {
     .widget.widget_archive > div ul li:last-of-type, .widget.widget_archive ul li:last-of-type, .widget.widget_categories > div ul li:last-of-type, .widget.widget_categories ul li:last-of-type, .widget.widget_meta > div ul li:last-of-type, .widget.widget_meta ul li:last-of-type, .widget.widget_pages > div ul li:last-of-type, .widget.widget_pages ul li:last-of-type, .widget.widget_nav_menu > div ul li:last-of-type, .widget.widget_nav_menu ul li:last-of-type {
       border: none;
       padding-bottom: 0; }
-    .widget.widget_archive > div ul li span, .widget.widget_archive ul li span, .widget.widget_categories > div ul li span, .widget.widget_categories ul li span, .widget.widget_meta > div ul li span, .widget.widget_meta ul li span, .widget.widget_pages > div ul li span, .widget.widget_pages ul li span, .widget.widget_nav_menu > div ul li span, .widget.widget_nav_menu ul li span {
+    .woocommerce .widget_layered_nav ul li span, .widget.widget_archive > div ul li span, .widget.widget_archive ul li span, .widget.widget_categories > div ul li span, .widget.widget_categories ul li span, .widget.widget_meta > div ul li span, .widget.widget_meta ul li span, .widget.widget_pages > div ul li span, .widget.widget_pages ul li span, .widget.widget_nav_menu > div ul li span, .widget.widget_nav_menu ul li span {
       font-size: 12px;
       font-family: "Raleway", "Helvetica Neue", Helvetica, Arial, sans-serif;
       color: #8c979e;
       float: right; }
-    .widget.widget_archive > div ul li a, .widget.widget_archive ul li a, .widget.widget_categories > div ul li a, .widget.widget_categories ul li a, .widget.widget_meta > div ul li a, .widget.widget_meta ul li a, .widget.widget_pages > div ul li a, .widget.widget_pages ul li a, .widget.widget_nav_menu > div ul li a, .widget.widget_nav_menu ul li a {
+    .woocommerce .widget_layered_nav ul li a, .woocommerce .widget_layered_nav_filters ul li a, .woocommerce.widget ul.cart_list li a, .woocommerce.widget ul.product_list_widget li a, .widget_products .product_list_widget a, .widget_product_categories ul.product-categories li a, .widget_product_tag_cloud .tagcloud a, .widget.widget_archive > div ul li a, .widget.widget_archive ul li a, .widget.widget_categories > div ul li a, .widget.widget_categories ul li a, .widget.widget_meta > div ul li a, .widget.widget_meta ul li a, .widget.widget_pages > div ul li a, .widget.widget_pages ul li a, .widget.widget_nav_menu > div ul li a, .widget.widget_nav_menu ul li a {
       font-size: 14px;
       font-family: "Raleway", "Helvetica Neue", Helvetica, Arial, sans-serif;
       color: #8c979e;
       font-weight: 400; }
-      .widget.widget_archive > div ul li a:focus, .widget.widget_archive > div ul li a:hover, .widget.widget_archive ul li a:focus, .widget.widget_archive ul li a:hover, .widget.widget_categories > div ul li a:focus, .widget.widget_categories > div ul li a:hover, .widget.widget_categories ul li a:focus, .widget.widget_categories ul li a:hover, .widget.widget_meta > div ul li a:focus, .widget.widget_meta > div ul li a:hover, .widget.widget_meta ul li a:focus, .widget.widget_meta ul li a:hover, .widget.widget_pages > div ul li a:focus, .widget.widget_pages > div ul li a:hover, .widget.widget_pages ul li a:focus, .widget.widget_pages ul li a:hover, .widget.widget_nav_menu > div ul li a:focus, .widget.widget_nav_menu > div ul li a:hover, .widget.widget_nav_menu ul li a:focus, .widget.widget_nav_menu ul li a:hover {
+    .woocommerce .widget_layered_nav ul li a:hover, .woocommerce .widget_layered_nav_filters ul li a:hover, .woocommerce.widget ul.cart_list li a:hover, .woocommerce.widget ul.product_list_widget li a:hover, .widget_products .product_list_widget a:hover, .widget_product_categories ul.product-categories li a:hover, .widget_product_tag_cloud .tagcloud a:hover, .widget.widget_archive > div ul li a:focus, .widget.widget_archive > div ul li a:hover, .widget.widget_archive ul li a:focus, .widget.widget_archive ul li a:hover, .widget.widget_categories > div ul li a:focus, .widget.widget_categories > div ul li a:hover, .widget.widget_categories ul li a:focus, .widget.widget_categories ul li a:hover, .widget.widget_meta > div ul li a:focus, .widget.widget_meta > div ul li a:hover, .widget.widget_meta ul li a:focus, .widget.widget_meta ul li a:hover, .widget.widget_pages > div ul li a:focus, .widget.widget_pages > div ul li a:hover, .widget.widget_pages ul li a:focus, .widget.widget_pages ul li a:hover, .widget.widget_nav_menu > div ul li a:focus, .widget.widget_nav_menu > div ul li a:hover, .widget.widget_nav_menu ul li a:focus, .widget.widget_nav_menu ul li a:hover {
         color: #5234f9; }
+.woocommerce.widget ul.cart_list li a.remove { font-size: 1.5em; }
 .widget.widget_recent_comments ul {
   list-style-type: none;
   padding-left: 0;
@@ -3439,10 +3456,12 @@ blockquote {
     .widget.widget_rss ul li cite {
       color: #001c28;
       font-style: normal; }
-.widget.widget_search .search-form {
+.widget.widget_search .search-form,
+.widget_product_search .woocommerce-product-search {
   padding: 0;
   position: relative; }
-  .widget.widget_search .search-form:after {
+  .widget.widget_search .search-form:after,
+  .widget_product_search .woocommerce-product-search:after {
     content: '\f002';
     display: block;
     top: 0;
@@ -3451,16 +3470,23 @@ blockquote {
     font-family: 'FontAwesome';
     position: absolute;
     color: #ebebeb; }
-  .widget.widget_search .search-form > input {
+  .widget.widget_search .search-form > input,
+  .widget_product_search .woocommerce-product-search > input {
     background: transparent;
     border: 1px solid #ebebeb;
     text-transform: initial;
-    font-weight: 400; }
-    .widget.widget_search .search-form > input#s:hover, .widget.widget_search .search-form > input#s:focus {
+    font-weight: 400; 
+    box-sizing: border-box;
+    }
+    .widget.widget_search .search-form > input#s:hover, 
+    .widget.widget_search .search-form > input#s:focus,
+    .widget_product_search .woocommerce-product-search > input.search-field:hover,
+    .widget_product_search .woocommerce-product-search > input.search-field:focus {
       border-color: #745cf9;
       box-shadow: none;
       outline: none; }
-  .widget.widget_search .search-form > input[type="submit"].searchsubmit {
+  .widget.widget_search .search-form > input[type="submit"].searchsubmit,
+  .widget_product_search .woocommerce-product-search > input[type="submit"] {
     position: absolute;
     border: none;
     top: 7px;
@@ -3476,7 +3502,8 @@ blockquote {
     color: transparent;
     background-color: transparent !important;
     }
-    .widget.widget_search .search-form > input[type="submit"].searchsubmit:hover {
+    .widget.widget_search .search-form > input[type="submit"].searchsubmit:hover,
+    .widget_product_search .woocommerce-product-search > input[type="submit"]:hover {
         color: transparent !important;
         background-color: transparent !important;
     }
@@ -3503,6 +3530,18 @@ blockquote {
     color: #8c979e;
     font-size: 14px;
     font-family: 'Raleway'; }
+.widget_product_categories ul.product-categories {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+.widget_product_categories ul.product-categories ul {
+    list-style: none;
+    padding-top: 20px;
+}
+.widget_product_categories ul.product-categories li:not(.cat-parent) {
+    padding-bottom: 20px;
+}
 .widget.widget_calendar {
   position: relative; }
   .widget.widget_calendar .widget-title, .widget.widget_calendar h3 {

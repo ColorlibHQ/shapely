@@ -75,13 +75,26 @@ function shapely_customizer( $wp_customize ) {
 		}
 	}
 
+	$customizer_shapely_required_actions = array();
+	if ( ! empty( $shapely_required_actions ) ) {
+		foreach ( $shapely_required_actions as $required_action ) {
+			if ( 'shapely-req-import-content' == $required_action['id'] ) {
+				$required_action['description'] = sprintf(
+					esc_html__( 'In oder to import the demo content go %s', 'shapely' ),
+					'<a href="' . admin_url( 'themes.php?page=shapely-welcome&tab=recommended_actions' ) . '">' . esc_html__( 'here', 'shapely' ) . '</a>'
+				);
+			}
+			$customizer_shapely_required_actions[] = $required_action;
+		}
+	}
+
 	$theme_slug = 'shapely';
 
 	$wp_customize->add_section( new Epsilon_Section_Recommended_Actions( $wp_customize, 'epsilon_recomended_section', array(
 		'title'                        => esc_html__( 'Recomended Actions', 'shapely' ),
 		'social_text'                  => esc_html__( 'We are social', 'shapely' ),
 		'plugin_text'                  => esc_html__( 'Recomended Plugins', 'shapely' ),
-		'actions'                      => $shapely_required_actions,
+		'actions'                      => $customizer_shapely_required_actions,
 		'plugins'                      => $customizer_recommended_plugins,
 		'theme_specific_option'        => $theme_slug . '_show_required_actions',
 		'theme_specific_plugin_option' => $theme_slug . '_show_recommended_plugins',
@@ -130,12 +143,6 @@ function shapely_customizer( $wp_customize ) {
 		'panel'    => 'shapely_main_options',
 		'priority' => 35,
 	) );
-	$wp_customize->add_section( 'shapely_category_page_section', array(
-		'title'    => esc_html__( 'Category Page Settings', 'shapely' ),
-		'panel'    => 'shapely_main_options',
-		'priority' => 35,
-	) );
-
 	$wp_customize->add_setting( 'link_color', array(
 		'default'           => '#745cf9',
 		'sanitize_callback' => 'sanitize_hex_color',
@@ -198,13 +205,15 @@ function shapely_customizer( $wp_customize ) {
 	if ( class_exists( 'Epsilon_Control_Toggle' ) ) {
 		$wp_customize->add_control( new Epsilon_Control_Toggle( $wp_customize, 'top_callout', array(
 			'type'     => 'mte-toggle',
-			'label'    => esc_html__( 'Show title in top call out box', 'shapely' ),
+			'label'    => esc_html__( 'Show Bog title', 'shapely' ),
+			'description' => esc_html__( 'Show/hide the title from the Blog Page', 'shapely' ),
 			'section'  => 'shapely_blog_section',
 			'priority' => 20,
 		) ) );
 	} else {
 		$wp_customize->add_control( 'top_callout', array(
-			'label'    => esc_html__( 'check to show title in top call out box', 'shapely' ),
+			'label'    => esc_html__( 'Show Bog title', 'shapely' ),
+			'description' => esc_html__( 'Show/hide the title from the Blog Page', 'shapely' ),
 			'section'  => 'shapely_blog_section',
 			'priority' => 20,
 			'type'     => 'checkbox',
@@ -248,6 +257,7 @@ function shapely_customizer( $wp_customize ) {
 		) );
 		$wp_customize->add_control( 'portfolio_name', array(
 			'label'   => esc_html__( 'Portfolio Archive Title', 'shapely' ),
+			'description' => esc_html__( 'Add a title on the Portfolio Archive Page.', 'shapely' ),
 			'section' => 'shapely_main_section',
 		) );
 
@@ -258,6 +268,7 @@ function shapely_customizer( $wp_customize ) {
 		$wp_customize->add_control( 'portfolio_description', array(
 			'type'    => 'textarea',
 			'label'   => esc_html__( 'Portfolio Archive Description', 'shapely' ),
+			'description' => esc_html__( 'Add a description on the Portfolio Archive Page.', 'shapely' ),
 			'section' => 'shapely_main_section',
 		) );
 	}
@@ -269,7 +280,7 @@ function shapely_customizer( $wp_customize ) {
 	) );
 	$wp_customize->add_control( 'footer_callout_text', array(
 		'label'       => esc_html__( 'Text for footer callout', 'shapely' ),
-		'description' => esc_html__( 'Footer Callout', 'shapely' ),
+		'description' => esc_html__( 'The title of the call to action section from footer', 'shapely' ),
 		'section'     => 'shapely_main_section',
 	) );
 
@@ -280,6 +291,7 @@ function shapely_customizer( $wp_customize ) {
 	) );
 	$wp_customize->add_control( 'footer_callout_btntext', array(
 		'label'   => esc_html__( 'Text for footer callout button', 'shapely' ),
+		'description' => esc_html__( 'The label of the call to action section\'s button from the footer', 'shapely' ),
 		'section' => 'shapely_main_section',
 	) );
 	$wp_customize->add_setting( 'footer_callout_link', array(
@@ -290,7 +302,7 @@ function shapely_customizer( $wp_customize ) {
 	$wp_customize->add_control( 'footer_callout_link', array(
 		'label'       => esc_html__( 'CFA button link', 'shapely' ),
 		'section'     => 'shapely_main_section',
-		'description' => esc_html__( 'Enter the link for Call For Action button in footer', 'shapely' ),
+		'description' => esc_html__( 'The URL of the call to action section\'s button from footer', 'shapely' ),
 		'type'        => 'text',
 	) );
 
@@ -485,25 +497,6 @@ function shapely_customizer( $wp_customize ) {
 		),
 	) );
 
-	// shapely_category_page_section
-	$wp_customize->add_setting( 'show_category_on_category_page', array(
-		'default'           => 1,
-		'sanitize_callback' => 'shapely_sanitize_checkbox',
-	) );
-	if ( class_exists( 'Epsilon_Control_Toggle' ) ) {
-		$wp_customize->add_control( new Epsilon_Control_Toggle( $wp_customize, 'show_category_on_category_page', array(
-			'type'    => 'mte-toggle',
-			'label'   => esc_html__( 'Show Category on Posts', 'shapely' ),
-			'section' => 'shapely_category_page_section',
-		) ) );
-	} else {
-		$wp_customize->add_control( 'show_category_on_category_page', array(
-			'label'   => esc_html__( 'Show Category on Posts', 'shapely' ),
-			'section' => 'shapely_category_page_section',
-			'type'    => 'checkbox',
-		) );
-	}
-
 	$wp_customize->add_setting( 'blog_layout_view', array(
 		'default'           => 'grid',
 		'sanitize_callback' => 'wp_kses_stripslashes',
@@ -538,6 +531,27 @@ function shapely_customizer( $wp_customize ) {
 			'sidebar-right' => esc_html__( 'Sidebar Right', 'shapely' ),
 		),
 	) );
+
+	// shapely_category_page_section
+	$wp_customize->add_setting( 'show_category_on_category_page', array(
+		'default'           => 1,
+		'sanitize_callback' => 'shapely_sanitize_checkbox',
+	) );
+	if ( class_exists( 'Epsilon_Control_Toggle' ) ) {
+		$wp_customize->add_control( new Epsilon_Control_Toggle( $wp_customize, 'show_category_on_category_page', array(
+			'type'    => 'mte-toggle',
+			'label'   => esc_html__( 'Show Category on Posts', 'shapely' ),
+			'description' => esc_html__( 'Show/hide posts\' categories from the Category Page', 'shapely' ),
+			'section' => 'shapely_blog_section',
+		) ) );
+	} else {
+		$wp_customize->add_control( 'show_category_on_category_page', array(
+			'label'   => esc_html__( 'Show Category on Posts', 'shapely' ),
+			'description' => esc_html__( 'Show/hide posts\' categories from the Category Page', 'shapely' ),
+			'section' => 'shapely_blog_section',
+			'type'    => 'checkbox',
+		) );
+	}
 
 }
 
