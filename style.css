@@ -1407,6 +1407,11 @@ nav {
         padding: 0 10px;
         display: inline-block;
     }
+    .main-navigation  .menu > li > ul li:hover > a {
+        background-color: transparent !important;
+        color: #0e1015 !important;
+        opacity: 0.5 !important;
+    }
 }
 @media all and (min-width: 991px) and (max-width: 1024px) {
     .dropdown-menu .shapely-dropdown {

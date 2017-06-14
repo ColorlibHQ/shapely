@@ -86,24 +86,6 @@
 			$( '.search-widget-handle' ).toggleClass( 'hidden-xs hidden-sm' );
 		});
 
-		$( '.menu li' ).click(function( e ) {
-			if ( ! e ) {
-			    e = window.event;
-            }
-			e.stopPropagation();
-			if ( $( this ).find( 'ul' ).length ) {
-				$( this ).toggleClass( 'toggle-sub' );
-			} else {
-				$( this ).parents( '.toggle-sub' ).removeClass( 'toggle-sub' );
-			}
-		});
-
-		$( '.menu li a' ).click(function() {
-			if ( $( this ).hasClass( 'inner-link' ) ) {
-				$( this ).closest( '.nav-bar' ).removeClass( 'nav-open' );
-			}
-		});
-
 		$( '.module.widget-handle' ).click(function() {
 			$( this ).toggleClass( 'toggle-search' );
 		});
