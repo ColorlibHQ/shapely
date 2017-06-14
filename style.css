@@ -1408,8 +1408,17 @@ nav {
         display: inline-block;
     }
 }
-
-@media all and (max-width: 768px) {
+@media all and (min-width: 991px) and (max-width: 1024px) {
+    .dropdown-menu .shapely-dropdown {
+        position: absolute;
+        top: 0;
+        right: 0;
+    }
+    .dropdown-menu .shapely-dropdown > .fa-angle-down:before {
+        content: "\f105";
+    }
+}
+@media all and (max-width: 991px) {
     .shapely-dropdown {
         float: right;
         border: 1px solid;
@@ -1748,9 +1757,14 @@ nav.fixed.scrolled {
     width: 100%;
 }
 
-.main-navigation .menu > li > ul li a:hover, .main-navigation .dropdown-menu > .active > a:hover {
+.main-navigation .menu > li > ul li a:hover, 
+.main-navigation .dropdown-menu > .active > a:hover,
+.main-navigation  .menu > li > ul li:hover > a {
     background: #745cf9;
     color: #fff;
+}
+.main-navigation  .menu > li > ul li:hover > a {
+    opacity: 1;
 }
 
 .main-navigation .dropdown-menu > .active > a, .main-navigation .dropdown-menu > .active > a:focus {

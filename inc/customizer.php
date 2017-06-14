@@ -115,7 +115,7 @@ function shapely_customizer( $wp_customize ) {
 	$wp_customize->add_panel( 'shapely_main_options', array(
 		'capability'     => 'edit_theme_options',
 		'theme_supports' => '',
-		'title'          => esc_html__( 'Theme options', 'shapely' ),
+		'title'          => esc_html__( 'Theme Options', 'shapely' ),
 		'description'    => esc_html__( 'Panel to update shapely theme options', 'shapely' ), // Include html tags such as <p>.
 		'priority'       => 10, // Mixed with top-level-section hierarchy.
 	) );
@@ -192,7 +192,7 @@ function shapely_customizer( $wp_customize ) {
 
 	// add "Sidebar" section
 	$wp_customize->add_section( 'shapely_main_section', array(
-		'title'    => esc_html__( 'Main options', 'shapely' ),
+		'title'    => esc_html__( 'Main Options', 'shapely' ),
 		'priority' => 11,
 		'panel'    => 'shapely_main_options',
 	) );
@@ -205,14 +205,14 @@ function shapely_customizer( $wp_customize ) {
 	if ( class_exists( 'Epsilon_Control_Toggle' ) ) {
 		$wp_customize->add_control( new Epsilon_Control_Toggle( $wp_customize, 'top_callout', array(
 			'type'     => 'mte-toggle',
-			'label'    => esc_html__( 'Show Bog title', 'shapely' ),
+			'label'    => esc_html__( 'Show Blog Title', 'shapely' ),
 			'description' => esc_html__( 'Show/hide the title from the Blog Page', 'shapely' ),
 			'section'  => 'shapely_blog_section',
 			'priority' => 20,
 		) ) );
 	} else {
 		$wp_customize->add_control( 'top_callout', array(
-			'label'    => esc_html__( 'Show Bog title', 'shapely' ),
+			'label'    => esc_html__( 'Show Blog Title', 'shapely' ),
 			'description' => esc_html__( 'Show/hide the title from the Blog Page', 'shapely' ),
 			'section'  => 'shapely_blog_section',
 			'priority' => 20,
@@ -228,12 +228,12 @@ function shapely_customizer( $wp_customize ) {
 	if ( class_exists( 'Epsilon_Control_Toggle' ) ) {
 		$wp_customize->add_control( new Epsilon_Control_Toggle( $wp_customize, 'hide_post_title', array(
 			'type'    => 'mte-toggle',
-			'label'   => esc_html__( 'Title in blog post', 'shapely' ),
+			'label'   => esc_html__( 'Title in Blog Post', 'shapely' ),
 			'section' => 'wpseo_breadcrumbs_customizer_section',
 		) ) );
 	} else {
 		$wp_customize->add_control( 'hide_post_title', array(
-			'label'   => esc_html__( 'Title in blog post', 'shapely' ),
+			'label'   => esc_html__( 'Title in Blog Post', 'shapely' ),
 			'section' => 'wpseo_breadcrumbs_customizer_section',
 			'type'    => 'checkbox',
 		) );
@@ -245,7 +245,7 @@ function shapely_customizer( $wp_customize ) {
 		'transport'         => 'postMessage',
 	) );
 	$wp_customize->add_control( 'blog_name', array(
-		'label'       => esc_html__( 'Blog Name in top callout', 'shapely' ),
+		'label'       => esc_html__( 'Blog Name in Top Callout', 'shapely' ),
 		'description' => esc_html__( 'Heading for the Blog page', 'shapely' ),
 		'section'     => 'shapely_blog_section',
 	) );
@@ -279,7 +279,7 @@ function shapely_customizer( $wp_customize ) {
 		'transport'         => 'postMessage',
 	) );
 	$wp_customize->add_control( 'footer_callout_text', array(
-		'label'       => esc_html__( 'Text for footer callout', 'shapely' ),
+		'label'       => esc_html__( 'Text for Footer Callout', 'shapely' ),
 		'description' => esc_html__( 'The title of the call to action section from footer', 'shapely' ),
 		'section'     => 'shapely_main_section',
 	) );
@@ -290,7 +290,7 @@ function shapely_customizer( $wp_customize ) {
 		'transport'         => 'postMessage',
 	) );
 	$wp_customize->add_control( 'footer_callout_btntext', array(
-		'label'   => esc_html__( 'Text for footer callout button', 'shapely' ),
+		'label'   => esc_html__( 'Text for Footer Callout Button', 'shapely' ),
 		'description' => esc_html__( 'The label of the call to action section\'s button from the footer', 'shapely' ),
 		'section' => 'shapely_main_section',
 	) );
@@ -300,7 +300,7 @@ function shapely_customizer( $wp_customize ) {
 		'transport'         => 'postMessage',
 	) );
 	$wp_customize->add_control( 'footer_callout_link', array(
-		'label'       => esc_html__( 'CFA button link', 'shapely' ),
+		'label'       => esc_html__( 'CFA Button Link', 'shapely' ),
 		'section'     => 'shapely_main_section',
 		'description' => esc_html__( 'The URL of the call to action section\'s button from footer', 'shapely' ),
 		'type'        => 'text',
@@ -437,7 +437,7 @@ function shapely_customizer( $wp_customize ) {
 		) ) );
 		$wp_customize->add_control( new Epsilon_Control_Toggle( $wp_customize, 'post_author_email', array(
 			'type'    => 'mte-toggle',
-			'label'   => esc_html__( 'Show author email', 'shapely' ),
+			'label'   => esc_html__( 'Show Author Email', 'shapely' ),
 			'description' => esc_html__( 'This will show/hide the author\'s email from the author box', 'shapely' ),
 			'section' => 'shapely_single_post_section',
 		) ) );
@@ -473,7 +473,7 @@ function shapely_customizer( $wp_customize ) {
 			'type'    => 'checkbox',
 		) );
 		$wp_customize->add_control( 'post_author_email', array(
-			'label'   => esc_html__( 'Show author email', 'shapely' ),
+			'label'   => esc_html__( 'Show Author Email', 'shapely' ),
 			'description' => esc_html__( 'This will show/hide the author\'s email from the author box', 'shapely' ),
 			'section' => 'shapely_single_post_section',
 			'type'    => 'checkbox',
