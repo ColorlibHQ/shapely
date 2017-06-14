@@ -5,6 +5,12 @@
 	jQuery( document ).ready(function( $ ) {
 
 		//"use strict";
+
+		jQuery( '.shapely-dropdown' ).click( function( evt ) {
+			evt.preventDefault();
+			jQuery( this ).parent().find( '> ul' ).toggleClass( 'active' );
+		});
+
 		// Smooth scroll to inner links
 
 		jQuery( '.inner-link' ).each(function() {
@@ -403,6 +409,11 @@
 			time += 170;
 		});
 	}
+
+	jQuery( 'body' ).imagesLoaded( function() {
+		jQuery( window ).trigger( 'resize' ).trigger( 'scroll' );
+	});
+
 })( jQuery );
 
 /*

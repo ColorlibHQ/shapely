@@ -136,7 +136,8 @@ if ( ! function_exists( 'shapely_get_theme_options' ) ) {
         .widget.widget_recent_comments ul li .comment-author-link a:focus, .widget.widget_recent_comments ul li .comment-author-link a:hover,
         .widget.widget_archive > div ul li a:focus, .widget.widget_archive > div ul li a:hover, .widget.widget_archive ul li a:focus, .widget.widget_archive ul li a:hover, .widget.widget_categories > div ul li a:focus, .widget.widget_categories > div ul li a:hover, .widget.widget_categories ul li a:focus, .widget.widget_categories ul li a:hover, .widget.widget_meta > div ul li a:focus, .widget.widget_meta > div ul li a:hover, .widget.widget_meta ul li a:focus, .widget.widget_meta ul li a:hover, .widget.widget_pages > div ul li a:focus, .widget.widget_pages > div ul li a:hover, .widget.widget_pages ul li a:focus, .widget.widget_pages ul li a:hover, .widget.widget_nav_menu > div ul li a:focus, .widget.widget_nav_menu > div ul li a:hover, .widget.widget_nav_menu ul li a:focus, .widget.widget_nav_menu ul li a:hover,
         .widget.widget_nav_menu .menu > li a:focus, .widget.widget_nav_menu .menu > li a:hover,
-        .widget.widget_tag_cloud a:focus, .widget.widget_tag_cloud a:hover,
+        .widget.widget_tag_cloud a:focus, .widget.widget_tag_cloud a:hover, .widget_product_categories ul.product-categories li a:hover, .widget_product_tag_cloud .tagcloud a:hover, .widget_products .product_list_widget a:hover,
+        .woocommerce.widget ul.cart_list li a:hover, .woocommerce.widget ul.product_list_widget li a:hover, .woocommerce .widget_layered_nav_filters ul li a:hover, .woocommerce .widget_layered_nav ul li a:hover,
         .post-content .shapely-category a:hover, .post-content .shapely-category a:focus  { color: ' . esc_attr( get_theme_mod( 'link_hover_color' ) ) . ';}';
 		}
 
@@ -149,7 +150,7 @@ if ( ! function_exists( 'shapely_get_theme_options' ) ) {
           .video-widget .video-controls button,
           input[type="submit"],
           .post-content .more-link { background:' . esc_attr( get_theme_mod( 'button_color' ) ) . ' !important; border: 2px solid' . esc_attr( get_theme_mod( 'button_color' ) ) . ' !important;}';
-			echo '.shapely_home_parallax > section:not(.image-bg) .btn-white, .btn, .button { color: ' . esc_attr( get_theme_mod( 'button_color' ) ) . '; border-color: ' . esc_attr( get_theme_mod( 'button_color' ) ) . '; }';
+			echo '.shapely_home_parallax > section:not(.image-bg) .btn-white, .btn.btn-white { color: ' . esc_attr( get_theme_mod( 'button_color' ) ) . '; border-color: ' . esc_attr( get_theme_mod( 'button_color' ) ) . '; }';
 		}
 		if ( get_theme_mod( 'button_hover_color' ) ) {
 			echo '.btn-filled:hover, .woocommerce #respond input#submit.alt:hover,
@@ -161,7 +162,7 @@ if ( ! function_exists( 'shapely_get_theme_options' ) ) {
           input[type="submit"]:hover,
           .post-content .more-link:hover, .btn:hover, .button:hover  { background: ' . esc_attr( get_theme_mod( 'button_hover_color' ) ) . ' !important; border: 2px solid' . esc_attr( get_theme_mod( 'button_hover_color' ) ) . ' !important;}';
 			echo '.shapely_home_parallax > section:not(.image-bg) .btn-white:hover, .shapely_home_parallax > section:not(.image-bg) .btn-white:focus{ background-color: ' . esc_attr( get_theme_mod( 'button_hover_color' ) ) . '; border-color: ' . esc_attr( get_theme_mod( 'button_hover_color' ) ) . '; }';
-			echo '.widget.widget_search .search-form > input#s:hover, .widget.widget_search .search-form > input#s:focus, .widget.widget_calendar #wp-calendar td:not(.pad):not(#next):not(#prev)#today { border-color: ' . esc_attr( get_theme_mod( 'button_hover_color' ) ) . ' }';
+			echo '.widget.widget_search .search-form > input#s:hover, .widget.widget_search .search-form > input#s:focus, .widget.widget_calendar #wp-calendar td:not(.pad):not(#next):not(#prev)#today, .widget_product_search .woocommerce-product-search > input.search-field:hover, .widget_product_search .woocommerce-product-search > input.search-field:focus { border-color: ' . esc_attr( get_theme_mod( 'button_hover_color' ) ) . ' }';
 			echo '.main-navigation  .menu > li > ul li a:hover, .main-navigation  .dropdown-menu > .active > a:hover,.widget.widget_calendar #wp-calendar > caption:after, .widget.widget_calendar #wp-calendar td:not(.pad):not(#next):not(#prev)#today:hover { background-color: ' . esc_attr( get_theme_mod( 'button_hover_color' ) ) . ' }';
 		}
 
