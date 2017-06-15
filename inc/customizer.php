@@ -153,7 +153,7 @@ function shapely_customizer( $wp_customize ) {
 		'section'     => 'colors',
 	) ) );
 	$wp_customize->add_setting( 'link_hover_color', array(
-		'default'           => '#5d47d7',
+		'default'           => '#5234f9',
 		'sanitize_callback' => 'sanitize_hex_color',
 	) );
 	$wp_customize->add_control( new WP_Customize_Color_Control( $wp_customize, 'link_hover_color', array(
