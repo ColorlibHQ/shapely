@@ -99,7 +99,7 @@ if ( ! function_exists( 'shapely_header_menu' ) ) :
 		wp_nav_menu( array(
 			'menu_id'         => 'menu',
 			'theme_location'  => 'primary',
-			'depth'           => 3,
+			'depth'           => 0,
 			'container'       => 'div',
 			'container_class' => 'collapse navbar-collapse navbar-ex1-collapse',
 			'menu_class'      => 'menu',
@@ -126,7 +126,7 @@ if ( ! function_exists( 'shapely_get_theme_options' ) ) {
 		echo '<style type="text/css">';
 
 		if ( get_theme_mod( 'link_color' ) ) {
-			echo 'a, .image-bg a, .contact-section .social-icons li a, a:visited, .footer .footer-credits a, .post-content .post-meta li a, .post-content .shapely-category a {color:' . esc_attr( get_theme_mod( 'link_color' ) ) . ' }';
+			echo 'a, .image-bg a, .contact-section .social-icons li a, a:visited, .footer .footer-credits a, .post-content .post-meta li a, .post-content .shapely-category a, .module.widget-handle i {color:' . esc_attr( get_theme_mod( 'link_color' ) ) . ' }';
 		}
 		if ( get_theme_mod( 'link_hover_color' ) ) {
 			echo 'a:hover, a:active, .post-title a:hover,
@@ -138,7 +138,8 @@ if ( ! function_exists( 'shapely_get_theme_options' ) ) {
         .widget.widget_nav_menu .menu > li a:focus, .widget.widget_nav_menu .menu > li a:hover,
         .widget.widget_tag_cloud a:focus, .widget.widget_tag_cloud a:hover, .widget_product_categories ul.product-categories li a:hover, .widget_product_tag_cloud .tagcloud a:hover, .widget_products .product_list_widget a:hover,
         .woocommerce.widget ul.cart_list li a:hover, .woocommerce.widget ul.product_list_widget li a:hover, .woocommerce .widget_layered_nav_filters ul li a:hover, .woocommerce .widget_layered_nav ul li a:hover,
-        .post-content .shapely-category a:hover, .post-content .shapely-category a:focus  { color: ' . esc_attr( get_theme_mod( 'link_hover_color' ) ) . ';}';
+        .main-navigation .menu > li > ul li:hover > a, .main-navigation .menu > li > ul .dropdown:hover:after,
+        .post-content .shapely-category a:hover, .post-content .shapely-category a:focus, .main-navigation .menu li:hover > a, .main-navigation .menu > li:hover:after { color: ' . esc_attr( get_theme_mod( 'link_hover_color' ) ) . ';}';
 		}
 
 		if ( get_theme_mod( 'button_color' ) ) {
@@ -163,7 +164,7 @@ if ( ! function_exists( 'shapely_get_theme_options' ) ) {
           .post-content .more-link:hover, .btn:hover, .button:hover  { background: ' . esc_attr( get_theme_mod( 'button_hover_color' ) ) . ' !important; border: 2px solid' . esc_attr( get_theme_mod( 'button_hover_color' ) ) . ' !important;}';
 			echo '.shapely_home_parallax > section:not(.image-bg) .btn-white:hover, .shapely_home_parallax > section:not(.image-bg) .btn-white:focus{ background-color: ' . esc_attr( get_theme_mod( 'button_hover_color' ) ) . '; border-color: ' . esc_attr( get_theme_mod( 'button_hover_color' ) ) . '; }';
 			echo '.widget.widget_search .search-form > input#s:hover, .widget.widget_search .search-form > input#s:focus, .widget.widget_calendar #wp-calendar td:not(.pad):not(#next):not(#prev)#today, .widget_product_search .woocommerce-product-search > input.search-field:hover, .widget_product_search .woocommerce-product-search > input.search-field:focus { border-color: ' . esc_attr( get_theme_mod( 'button_hover_color' ) ) . ' }';
-			echo '.main-navigation  .menu > li > ul li:hover > a, .main-navigation  .menu > li > ul li a:hover, .main-navigation  .dropdown-menu > .active > a:hover,.widget.widget_calendar #wp-calendar > caption:after, .widget.widget_calendar #wp-calendar td:not(.pad):not(#next):not(#prev)#today:hover { background-color: ' . esc_attr( get_theme_mod( 'button_hover_color' ) ) . ' }';
+			echo '.widget.widget_calendar #wp-calendar > caption:after, .widget.widget_calendar #wp-calendar td:not(.pad):not(#next):not(#prev)#today:hover { background-color: ' . esc_attr( get_theme_mod( 'button_hover_color' ) ) . ' }';
 		}
 
 		if ( get_theme_mod( 'social_color' ) ) {
