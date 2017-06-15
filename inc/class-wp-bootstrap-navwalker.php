@@ -1,13 +1,6 @@
 <?php
 
-/**
- * Class Name: wp_bootstrap_navwalker
- * GitHub URI: https://github.com/twittem/wp-bootstrap-navwalker
- * Description: A custom WordPress nav walker class to implement the Bootstrap 3 navigation style in a custom theme
- * using the WordPress built in menu manager. Version: 2.0.4 Author: Edward McIntyre - @twittem License: GPL-2.0+
- * License URI: http://www.gnu.org/licenses/gpl-2.0.txt
- */
-class wp_bootstrap_navwalker extends Walker_Nav_Menu {
+class Wp_Bootstrap_Navwalker extends Walker_Nav_Menu {
 
 	/**
 	 * @see   Walker::start_lvl()
@@ -42,17 +35,18 @@ class wp_bootstrap_navwalker extends Walker_Nav_Menu {
 		 * comparison that is not case sensitive. The strcasecmp() function returns
 		 * a 0 if the strings are equal.
 		 */
-		if ( strcasecmp( $item->attr_title, 'divider' ) == 0 && $depth === 1 ) {
+		if ( strcasecmp( $item->attr_title, 'divider' ) == 0 && 1 === $depth ) {
 			$output .= $indent . '<li role="presentation" class="divider">';
-		} else if ( strcasecmp( $item->title, 'divider' ) == 0 && $depth === 1 ) {
+		} elseif ( strcasecmp( $item->title, 'divider' ) == 0 && 1 === $depth ) {
 			$output .= $indent . '<li role="presentation" class="divider">';
-		} else if ( strcasecmp( $item->attr_title, 'dropdown-header' ) == 0 && $depth === 1 ) {
+		} elseif ( strcasecmp( $item->attr_title, 'dropdown-header' ) == 0 && 1 === $depth ) {
 			$output .= $indent . '<li role="presentation" class="dropdown-header">' . esc_attr( $item->title );
-		} else if ( strcasecmp( $item->attr_title, 'disabled' ) == 0 ) {
+		} elseif ( strcasecmp( $item->attr_title, 'disabled' ) == 0 ) {
 			$output .= $indent . '<li role="presentation" class="disabled"><a href="#">' . esc_attr( $item->title ) . '</a>';
 		} else {
 
-			$class_names = $value = '';
+			$class_names = '';
+			$value = '';
 
 			$classes   = empty( $item->classes ) ? array() : (array) $item->classes;
 			$classes[] = 'menu-item-' . $item->ID;
@@ -80,7 +74,7 @@ class wp_bootstrap_navwalker extends Walker_Nav_Menu {
 			$atts['rel']    = ! empty( $item->xfn ) ? $item->xfn : '';
 
 			// If item has_children add atts to a.
-			if ( $args->has_children && $depth === 0 ) {
+			if ( $args->has_children && 0 === $depth ) {
 				$atts['href'] = ! empty( $item->url ) ? $item->url : '';
 				// $atts['data-toggle'] = 'dropdown';
 				// $atts['class']       = 'dropdown-toggle';
@@ -114,11 +108,11 @@ class wp_bootstrap_navwalker extends Walker_Nav_Menu {
 			}
 
 			$item_output .= $args->link_before . apply_filters( 'the_title', $item->title, $item->ID ) . $args->link_after;
-			$item_output .= ( $args->has_children && 0 === $depth ) ? ' </a><span class="dropdown-toggle shapely-dropdown" data-toggle="dropdown"><i class="fa fa-angle-down" aria-hidden="true"></i></span>' : '</a>';
+			$item_output .= ( $args->has_children ) ? ' </a><span class="dropdown-toggle shapely-dropdown" data-toggle="dropdown"><i class="fa fa-angle-down" aria-hidden="true"></i></span>' : '</a>';
 			$item_output .= $args->after;
 
 			$output .= apply_filters( 'walker_nav_menu_start_el', $item_output, $item, $depth, $args );
-		}
+		}// End if().
 	}
 
 	/**
@@ -171,19 +165,17 @@ class wp_bootstrap_navwalker extends Walker_Nav_Menu {
 	public static function fallback( $args ) {
 		if ( current_user_can( 'manage_options' ) ) {
 
-			extract( $args );
+			$fb_output = null;
 
-			$fb_output = NULL;
+			if ( isset( $args['container'] ) ) {
+				$fb_output = '<' . $args['container'];
 
-			if ( $container ) {
-				$fb_output = '<' . $container;
-
-				if ( $container_id ) {
-					$fb_output .= ' id="' . $container_id . '"';
+				if ( isset( $args['container_id'] ) ) {
+					$fb_output .= ' id="' . $args['container_id'] . '"';
 				}
 
-				if ( $container_class ) {
-					$fb_output .= ' class="' . $container_class . '"';
+				if ( isset( $args['container_class'] ) ) {
+					$fb_output .= ' class="' . $args['container_class'] . '"';
 				}
 
 				$fb_output .= '>';
@@ -191,23 +183,23 @@ class wp_bootstrap_navwalker extends Walker_Nav_Menu {
 
 			$fb_output .= '<ul';
 
-			if ( $menu_id ) {
-				$fb_output .= ' id="' . $menu_id . '"';
+			if ( isset( $args['menu_id'] ) ) {
+				$fb_output .= ' id="' . $args['menu_id'] . '"';
 			}
 
-			if ( $menu_class ) {
-				$fb_output .= ' class="' . $menu_class . '"';
+			if ( isset( $args['menu_class'] ) ) {
+				$fb_output .= ' class="' . $args['menu_class'] . '"';
 			}
 
 			$fb_output .= '>';
 			$fb_output .= '<li><a href="' . esc_url( admin_url( 'nav-menus.php' ) ) . '">' . esc_html__( 'Add a menu', 'shapely' ) . '</a></li>';
 			$fb_output .= '</ul>';
 
-			if ( $container ) {
-				$fb_output .= '</' . $container . '>';
+			if ( isset( $args['container'] ) ) {
+				$fb_output .= '</' . $args['container'] . '>';
 			}
 
 			echo $fb_output;
-		}
+		}// End if().
 	}
 }

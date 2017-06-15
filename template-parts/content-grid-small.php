@@ -8,7 +8,7 @@
  */
 
 ?>
-	<article id="post-<?php the_ID(); ?>" <?php post_class('post-content post-grid-small col-md-6'); ?> >
+	<article id="post-<?php the_ID(); ?>" <?php post_class( 'post-content post-grid-small col-md-6' ); ?> >
 		<header class="entry-header nolist">
 			<?php
 			$category = get_the_category();
@@ -30,16 +30,16 @@
 					'class'       => true,
 					'alt'         => true,
 					'width'       => true,
-					'height'      => true
+					'height'      => true,
 				),
-				'noscript' => array()
+				'noscript' => array(),
 			);
 			?>
 			<a href="<?php echo esc_url( get_the_permalink() ); ?>">
 				<?php echo wp_kses( $image, $allowed_tags ); ?>
 			</a>
 
-			<?php if ( isset( $category[0] ) && $show_category ): ?>
+			<?php if ( isset( $category[0] ) && $show_category ) : ?>
 				<span class="shapely-category">
 					<a href="<?php echo esc_url( get_category_link( $category[0]->term_id ) ); ?>">
 						<?php echo esc_html( $category[0]->name ); ?>
@@ -59,15 +59,19 @@
 
 			<?php
 			the_content( sprintf(
-			             /* translators: %s: Name of current post. */
-				             wp_kses( __( 'Read more %s <span class="meta-nav">&rarr;</span>', 'shapely' ), array( 'span' => array( 'class' => array() ) ) ),
-				             the_title( '<span class="screen-reader-text">"', '"</span>', false )
-			             ) );
+				/* translators: %s: Name of current post. */
+							 wp_kses( __( 'Read more %s <span class="meta-nav">&rarr;</span>', 'shapely' ), array(
+								 'span' => array(
+									 'class' => array(),
+								 ),
+							 ) ),
+				the_title( '<span class="screen-reader-text">"', '"</span>', false )
+			) );
 
 			wp_link_pages( array(
-				               'before' => '<div class="page-links">' . esc_html__( 'Pages:', 'shapely' ),
-				               'after'  => '</div>',
-			               ) );
+				'before' => '<div class="page-links">' . esc_html__( 'Pages:', 'shapely' ),
+				'after'  => '</div>',
+			) );
 			?>
 		</div><!-- .entry-content -->
 	</article><!-- #post-## -->
