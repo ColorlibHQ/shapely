@@ -60,6 +60,9 @@ This page template is used to create the Parallax homepage from our demo : https
 
 
 == Changelog ==
+= 1.1.6 - June 15 2017 =
+
+* Implemented milestone https://github.com/puikinsh/shapely/milestone/2
 
 = 1.1.5 - June 9 2017 =
 
