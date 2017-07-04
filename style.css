@@ -3936,3 +3936,21 @@ footer .widget_product_search .woocommerce-product-search:before {
 .woocommerce-product-gallery figure {
     padding: 0;
 }
+
+/* Contact Form 7 */
+.wpcf7-form div.wpcf7-validation-errors {
+    background: #f7e700;
+    color: #000;
+}
+.wpcf7-form div.wpcf7-mail-sent-ng {
+    background: #ff0000;
+    color: #fff;
+}
+.wpcf7-form div.wpcf7-mail-sent-ok {
+    background: #398f14;
+    color: #fff;
+}
+.wpcf7-form div.wpcf7-spam-blocked {
+    background: #ffa500;
+    color: #000;
+}
