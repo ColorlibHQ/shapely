@@ -1200,6 +1200,7 @@ footer {
     -moz-transition: all 0.3s ease;
     margin-right: 8px;
     margin-bottom: 24px;
+    white-space: normal;
 }
 
 .btn:last-child, .btn:last-of-type {
@@ -1212,13 +1213,13 @@ footer {
 }
 
 .btn-lg {
-    height: 50px;
+    min-height: 50px;
     line-height: 46px;
     min-width: 200px;
 }
 
 .btn-sm {
-    height: 30px;
+    min-height: 30px;
     font-size: 11px;
     line-height: 27px;
     min-width: 0;
