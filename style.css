@@ -3435,16 +3435,20 @@ footer.bg-dark a {
 .widget_product_search .woocommerce-product-search {
   padding: 0;
   position: relative; }
-  .widget.widget_search .search-form:after,
-  .widget_product_search .woocommerce-product-search:after {
+  .widget.widget_search .search-form:before,
+  .widget_product_search .woocommerce-product-search:before {
     content: '\f002';
     display: block;
     top: 0;
     right: 23px;
-    z-index: -1;
+    z-index: 1;
     font-family: 'FontAwesome';
     position: absolute;
     color: #ebebeb; }
+footer .widget.widget_search .search-form:before,
+footer .widget_product_search .woocommerce-product-search:before {
+    right: 17px;
+}
   .widget.widget_search .search-form > input,
   .widget_product_search .woocommerce-product-search > input {
     background: transparent;
@@ -3476,6 +3480,7 @@ footer.bg-dark a {
     border-bottom: 0 none !important;
     color: transparent;
     background-color: transparent !important;
+    z-index: 2;
     }
     .widget.widget_search .search-form > input[type="submit"].searchsubmit:hover,
     .widget_product_search .woocommerce-product-search > input[type="submit"]:hover {
