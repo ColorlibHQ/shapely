@@ -19,8 +19,8 @@ while ( have_posts() ) : the_post();
 
 		if ( 0 == fmod( $wp_query->current_post, 2 ) && $wp_query->current_post != (int) $wp_query->post_count ) {
 			echo '</div>';
-		} elseif ( $wp_query->current_post == (int) $wp_query->post_count ) {
-			continue;
+		} elseif ( ( $wp_query->current_post + 1 ) == (int) $wp_query->post_count ) {
+			echo '</div>';
 		}
 	}
 
