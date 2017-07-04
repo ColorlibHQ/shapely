@@ -375,6 +375,24 @@ select {
     border: 1px solid #ccc;
 }
 
+footer input[type="text"]:focus,
+footer input[type="email"]:focus,
+footer input[type="url"]:focus,
+footer input[type="password"]:focus,
+footer input[type="search"]:focus,
+footer input[type="number"]:focus,
+footer input[type="tel"]:focus,
+footer input[type="range"]:focus,
+footer input[type="date"]:focus
+footer input[type="month"]:focus,
+footer input[type="week"]:focus,
+footer input[type="time"]:focus,
+footer input[type="datetime"]:focus,
+footer input[type="datetime-local"]:focus,
+footer input[type="color"]:focus,
+footer textarea:focus {
+    color: #fff;
+}
 input[type="text"]:focus, input[type="email"]:focus, input[type="url"]:focus, input[type="password"]:focus, input[type="search"]:focus, input[type="number"]:focus, input[type="tel"]:focus, input[type="range"]:focus, input[type="date"]:focus, input[type="month"]:focus, input[type="week"]:focus, input[type="time"]:focus, input[type="datetime"]:focus, input[type="datetime-local"]:focus, input[type="color"]:focus, textarea:focus {
     color: #111;
 }
