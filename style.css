@@ -3936,6 +3936,12 @@ footer .widget_product_search .woocommerce-product-search:before {
 .woocommerce-product-gallery figure {
     padding: 0;
 }
+.woocommerce .cart .coupon input.button {
+    width: auto;
+}
+.woocommerce-page #content table.cart td.actions .coupon .input-text {
+    width: auto;
+}
 
 /* Contact Form 7 */
 .wpcf7-form div.wpcf7-validation-errors {
