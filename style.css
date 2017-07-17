@@ -4002,3 +4002,6 @@ footer .widget_product_search .woocommerce-product-search:before {
     background: #ffa500;
     color: #000;
 }
+span.wpcf7-not-valid-tip {
+    margin-top: -24px;
+}
