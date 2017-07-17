@@ -129,10 +129,10 @@ class Shapely_Welcome {
 
 				switch ( esc_html( $_GET['todo'] ) ) {
 					case 'add';
-						$shapely_show_required_actions[ absint( $action_id ) ] = true;
+						$shapely_show_required_actions[ $action_id ] = true;
 						break;
 					case 'dismiss';
-						$shapely_show_required_actions[ absint( $action_id ) ] = false;
+						$shapely_show_required_actions[ $action_id ] = false;
 						break;
 					default:
 						return new WP_Error( 'Action denied!', __( 'I\'ve fallen and can\'t get up', 'shapely' ) );

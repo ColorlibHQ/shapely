@@ -105,7 +105,7 @@ if ( ! function_exists( 'shapely_setup' ) ) :
 
 			$shapely_recommended_plugins = array(
 				'contact-form-7' => array(
-					'recommended' => true,
+					'recommended' => false,
 				),
 				'fancybox-for-wordpress' => array(
 					'recommended' => false,
@@ -145,6 +145,13 @@ if ( ! function_exists( 'shapely_setup' ) ) :
 					'description' => Shapely_Notify_System::shapely_jetpack_description(),
 					'check'       => Shapely_Notify_System::shapely_has_plugin( 'jetpack' ),
 					'plugin_slug' => 'jetpack',
+				),
+				array(
+					'id'          => 'shapely-req-ac-install-contact-form-7',
+					'title'       => Shapely_Notify_System::shapely_cf7_title(),
+					'description' => Shapely_Notify_System::shapely_cf7_description(),
+					'check'       => Shapely_Notify_System::shapely_has_plugin( 'contact-form-7' ),
+					'plugin_slug' => 'contact-form-7',
 				),
 				array(
 					'id'       => 'shapely-req-import-content',

@@ -161,6 +161,20 @@ if ( ! class_exists( 'Shapely_Notify_System' ) ) {
 			return esc_html__( 'Install: Jetpack by WordPress', 'shapely' );
 		}
 
+		public static function shapely_cf7_title() {
+			$installed = self::check_plugin_is_installed( 'contac-form-7' );
+			if ( ! $installed ) {
+				return esc_html__( 'Install: Contact Form 7', 'shapely' );
+			}
+
+			$active = self::check_plugin_is_active( 'contac-form-7' );
+			if ( $installed && ! $active ) {
+				return esc_html__( 'Activate: Contact Form 7', 'shapely' );
+			}
+
+			return esc_html__( 'Install: Contact Form 7', 'shapely' );
+		}
+
 		/**
 		 * @return string
 		 */
@@ -195,6 +209,21 @@ if ( ! class_exists( 'Shapely_Notify_System' ) ) {
 			}
 
 			return esc_html__( 'Please install Jetpack by WordPress. Note that you won\'t be able to use the Testimonials and Portfolio widgets without it.', 'shapely' );
+		}
+
+		public static function shapely_cf7_description() {
+			$installed = self::check_plugin_is_installed( 'contac-form-7' );
+
+			if ( ! $installed ) {
+				return esc_html__( 'Please install Contact Form 7. Note that you won\'t be able to use Contact widget without it.', 'shapely' );
+			}
+
+			$active = self::check_plugin_is_active( 'contac-form-7' );
+			if ( $installed && ! $active ) {
+				return esc_html__( 'Please activate Contact Form 7. Note that you won\'t be able to use Contact widget without it.', 'shapely' );
+			}
+
+			return esc_html__( 'Please install Contact Form 7. Note that you won\'t be able to use Contact widget without it.', 'shapely' );
 		}
 
 		public static function shapely_yoast_description() {

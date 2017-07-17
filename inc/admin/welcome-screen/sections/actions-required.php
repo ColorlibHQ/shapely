@@ -14,6 +14,7 @@ wp_enqueue_script( 'updates' );
 	global $shapely_required_actions;
 	if ( ! empty( $shapely_required_actions ) ) :
 		$shapely_show_required_actions = get_option( 'shapely_show_required_actions' );
+
 		$hooray = true;
 
 		foreach ( $shapely_required_actions as $shapely_required_action_key => $shapely_required_action_value ) :
