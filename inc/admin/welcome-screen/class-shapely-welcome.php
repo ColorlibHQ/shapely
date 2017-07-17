@@ -351,8 +351,6 @@ class Shapely_Welcome {
 				   class="nav-tab <?php echo 'recommended_plugins' == $active_tab ? 'nav-tab-active' : ''; ?> "><?php echo esc_html__( 'Recommended Plugins', 'shapely' ); ?></a>
 				<a href="<?php echo esc_url( admin_url( 'themes.php?page=shapely-welcome&tab=support' ) ); ?>"
 				   class="nav-tab <?php echo 'support' == $active_tab ? 'nav-tab-active' : ''; ?> "><?php echo esc_html__( 'Support', 'shapely' ); ?></a>
-				<a href="<?php echo esc_url( admin_url( 'themes.php?page=shapely-welcome&tab=changelog' ) ); ?>"
-				   class="nav-tab <?php echo 'changelog' == $active_tab ? 'nav-tab-active' : ''; ?> "><?php echo esc_html__( 'Changelog', 'shapely' ); ?></a>
 			</h2>
 
 			<?php
@@ -368,9 +366,6 @@ class Shapely_Welcome {
 					break;
 				case 'support':
 					require_once get_template_directory() . '/inc/admin/welcome-screen/sections/support.php';
-					break;
-				case 'changelog':
-					require_once get_template_directory() . '/inc/admin/welcome-screen/sections/changelog.php';
 					break;
 				default:
 					require_once get_template_directory() . '/inc/admin/welcome-screen/sections/getting-started.php';
