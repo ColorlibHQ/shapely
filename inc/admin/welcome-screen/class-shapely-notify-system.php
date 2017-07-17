@@ -4,7 +4,7 @@ if ( ! class_exists( 'Shapely_Notify_System' ) ) {
 	/**
 	 * Class Shapely_Notify_System
 	 */
-	class Shapely_Notify_System {
+	class Shapely_Notify_System extends Epsilon_Notify_System {
 		/**
 		 * @param $ver
 		 *
@@ -108,8 +108,8 @@ if ( ! class_exists( 'Shapely_Notify_System' ) ) {
 		public static function shapely_has_plugin( $slug = null ) {
 
 			$check = array(
-				'installed' => self::shapely_check_plugin_is_installed( $slug ),
-				'active'    => self::shapely_check_plugin_is_active( $slug ),
+				'installed' => self::check_plugin_is_installed( $slug ),
+				'active'    => self::check_plugin_is_active( $slug ),
 			);
 
 			if ( ! $check['installed'] || ! $check['active'] ) {
@@ -120,12 +120,12 @@ if ( ! class_exists( 'Shapely_Notify_System' ) ) {
 		}
 
 		public static function shapely_companion_title() {
-			$installed = self::shapely_check_plugin_is_installed( 'shapely-companion' );
+			$installed = self::check_plugin_is_installed( 'shapely-companion' );
 			if ( ! $installed ) {
 				return esc_html__( 'Install: Shapely Companion Plugin', 'shapely' );
 			}
 
-			$active = self::shapely_check_plugin_is_active( 'shapely-companion' );
+			$active = self::check_plugin_is_active( 'shapely-companion' );
 			if ( $installed && ! $active ) {
 				return esc_html__( 'Activate: Shapely Companion Plugin', 'shapely' );
 			}
@@ -134,12 +134,12 @@ if ( ! class_exists( 'Shapely_Notify_System' ) ) {
 		}
 
 		public static function shapely_yoast_title() {
-			$installed = self::shapely_check_plugin_is_installed( 'wordpress-seo' );
+			$installed = self::check_plugin_is_installed( 'wordpress-seo' );
 			if ( ! $installed ) {
 				return esc_html__( 'Install: Yoast SEO Plugin', 'shapely' );
 			}
 
-			$active = self::shapely_check_plugin_is_active( 'wordpress-seo' );
+			$active = self::check_plugin_is_active( 'wordpress-seo' );
 			if ( $installed && ! $active ) {
 				return esc_html__( 'Activate: Yoast SEO Plugin', 'shapely' );
 			}
@@ -148,12 +148,12 @@ if ( ! class_exists( 'Shapely_Notify_System' ) ) {
 		}
 
 		public static function shapely_jetpack_title() {
-			$installed = self::shapely_check_plugin_is_installed( 'jetpack' );
+			$installed = self::check_plugin_is_installed( 'jetpack' );
 			if ( ! $installed ) {
 				return esc_html__( 'Install: Jetpack by WordPress', 'shapely' );
 			}
 
-			$active = self::shapely_check_plugin_is_active( 'jetpack' );
+			$active = self::check_plugin_is_active( 'jetpack' );
 			if ( $installed && ! $active ) {
 				return esc_html__( 'Activate: Jetpack by WordPress', 'shapely' );
 			}
@@ -165,13 +165,13 @@ if ( ! class_exists( 'Shapely_Notify_System' ) ) {
 		 * @return string
 		 */
 		public static function shapely_companion_description() {
-			$installed = self::shapely_check_plugin_is_installed( 'shapely-companion' );
+			$installed = self::check_plugin_is_installed( 'shapely-companion' );
 
 			if ( ! $installed ) {
 				return esc_html__( 'Please install Shapely Companion plugin.', 'shapely' );
 			}
 
-			$active = self::shapely_check_plugin_is_active( 'shapely-companion' );
+			$active = self::check_plugin_is_active( 'shapely-companion' );
 			if ( $installed && ! $active ) {
 				return esc_html__( 'Please activate Shapely Companion plugin.', 'shapely' );
 			}
@@ -183,13 +183,13 @@ if ( ! class_exists( 'Shapely_Notify_System' ) ) {
 		 * @return string
 		 */
 		public static function shapely_jetpack_description() {
-			$installed = self::shapely_check_plugin_is_installed( 'jetpack' );
+			$installed = self::check_plugin_is_installed( 'jetpack' );
 
 			if ( ! $installed ) {
 				return esc_html__( 'Please install Jetpack by WordPress. Note that you won\'t be able to use the Testimonials and Portfolio widgets without it.', 'shapely' );
 			}
 
-			$active = self::shapely_check_plugin_is_active( 'jetpack' );
+			$active = self::check_plugin_is_active( 'jetpack' );
 			if ( $installed && ! $active ) {
 				return esc_html__( 'Please activate Jetpack by WordPress. Note that you won\'t be able to use the Testimonials and Portfolio widgets without it.', 'shapely' );
 			}
@@ -198,12 +198,12 @@ if ( ! class_exists( 'Shapely_Notify_System' ) ) {
 		}
 
 		public static function shapely_yoast_description() {
-			$installed = self::shapely_check_plugin_is_installed( 'wordpress-seo' );
+			$installed = self::check_plugin_is_installed( 'wordpress-seo' );
 			if ( ! $installed ) {
 				return esc_html__( 'Please install Yoast SEO plugin.', 'shapely' );
 			}
 
-			$active = self::shapely_check_plugin_is_active( 'wordpress-seo' );
+			$active = self::check_plugin_is_active( 'wordpress-seo' );
 			if ( $installed && ! $active ) {
 				return esc_html__( 'Please activate Yoast SEO plugin.', 'shapely' );
 			}

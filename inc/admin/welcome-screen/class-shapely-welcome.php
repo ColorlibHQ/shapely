@@ -232,26 +232,20 @@ class Shapely_Welcome {
 	}
 
 	public function check_active( $slug ) {
-		$slug2 = $slug;
-		if ( 'wordpress-seo' == $slug ) {
-			$slug2 = 'wp-seo';
-		}
+		$slug2 = Shapely_Notify_System::_get_plugin_basename_from_slug( $slug );
 
-		$path = WPMU_PLUGIN_DIR . '/' . $slug . '/' . $slug2 . '.php';
+		$path = WP_PLUGIN_DIR . '/' . $slug2;
 		if ( ! file_exists( $path ) ) {
-			$path = WP_PLUGIN_DIR . '/' . $slug . '/' . $slug2 . '.php';
-			if ( ! file_exists( $path ) ) {
-				$path = false;
-			}
+			$path = false;
 		}
 
 		if ( file_exists( $path ) ) {
 			include_once( ABSPATH . 'wp-admin/includes/plugin.php' );
 
-			$needs = is_plugin_active( $slug . '/' . $slug2 . '.php' ) ? 'deactivate' : 'activate';
+			$needs = is_plugin_active( $slug2 ) ? 'deactivate' : 'activate';
 
 			return array(
-				'status' => is_plugin_active( $slug . '/' . $slug2 . '.php' ),
+				'status' => is_plugin_active( $slug2 ),
 				'needs' => $needs,
 			);
 		}
@@ -277,10 +271,8 @@ class Shapely_Welcome {
 	}
 
 	public function create_action_link( $state, $slug ) {
-		$slug2 = $slug;
-		if ( 'wordpress-seo' == $slug ) {
-			$slug2 = 'wp-seo';
-		}
+		$slug2 = Shapely_Notify_System::_get_plugin_basename_from_slug( $slug );
+		
 		switch ( $state ) {
 			case 'install':
 				return wp_nonce_url(
@@ -297,19 +289,19 @@ class Shapely_Welcome {
 			case 'deactivate':
 				return add_query_arg( array(
 					'action'        => 'deactivate',
-					'plugin'        => rawurlencode( $slug . '/' . $slug2 . '.php' ),
+					'plugin'        => rawurlencode( $slug2 ),
 					'plugin_status' => 'all',
 					'paged'         => '1',
-					'_wpnonce'      => wp_create_nonce( 'deactivate-plugin_' . $slug . '/' . $slug2 . '.php' ),
+					'_wpnonce'      => wp_create_nonce( 'deactivate-plugin_' . $slug2 ),
 				), network_admin_url( 'plugins.php' ) );
 				break;
 			case 'activate':
 				return add_query_arg( array(
 					'action'        => 'activate',
-					'plugin'        => rawurlencode( $slug . '/' . $slug2 . '.php' ),
+					'plugin'        => rawurlencode( $slug2 ),
 					'plugin_status' => 'all',
 					'paged'         => '1',
-					'_wpnonce'      => wp_create_nonce( 'activate-plugin_' . $slug . '/' . $slug2 . '.php' ),
+					'_wpnonce'      => wp_create_nonce( 'activate-plugin_' . $slug2 ),
 				), network_admin_url( 'plugins.php' ) );
 				break;
 		}

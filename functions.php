@@ -104,6 +104,9 @@ if ( ! function_exists( 'shapely_setup' ) ) :
 			global $shapely_required_actions, $shapely_recommended_plugins;
 
 			$shapely_recommended_plugins = array(
+				'contact-form-7' => array(
+					'recommended' => true,
+				),
 				'fancybox-for-wordpress' => array(
 					'recommended' => false,
 				),
