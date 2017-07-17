@@ -151,7 +151,6 @@ if ( ! function_exists( 'shapely_get_theme_options' ) ) {
           .video-widget .video-controls button,
           input[type="submit"],
           .post-content .more-link { background:' . esc_attr( get_theme_mod( 'button_color' ) ) . ' !important; border: 2px solid' . esc_attr( get_theme_mod( 'button_color' ) ) . ' !important;}';
-			echo '.shapely_home_parallax > section:not(.image-bg) .btn-white, .btn.btn-white { color: ' . esc_attr( get_theme_mod( 'button_color' ) ) . '; border-color: ' . esc_attr( get_theme_mod( 'button_color' ) ) . '; }';
 		}
 		if ( get_theme_mod( 'button_hover_color' ) ) {
 			echo '.btn-filled:hover, .woocommerce #respond input#submit.alt:hover,
