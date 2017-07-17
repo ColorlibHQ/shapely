@@ -104,10 +104,10 @@ if ( ! function_exists( 'shapely_setup' ) ) :
 			global $shapely_required_actions, $shapely_recommended_plugins;
 
 			$shapely_recommended_plugins = array(
-				'wordpress-seo'          => array(
-					'recommended' => true,
-				),
 				'fancybox-for-wordpress' => array(
+					'recommended' => false,
+				),
+				'wordpress-seo'          => array(
 					'recommended' => false,
 				),
 			);
