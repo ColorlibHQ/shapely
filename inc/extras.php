@@ -162,8 +162,9 @@ if ( ! function_exists( 'shapely_get_theme_options' ) ) {
           input[type="submit"]:hover,
           .post-content .more-link:hover, .btn:hover, .button:hover  { background: ' . esc_attr( get_theme_mod( 'button_hover_color' ) ) . ' !important; border: 2px solid' . esc_attr( get_theme_mod( 'button_hover_color' ) ) . ' !important;}';
 			echo '.shapely_home_parallax > section:not(.image-bg) .btn-white:hover, .shapely_home_parallax > section:not(.image-bg) .btn-white:focus{ background-color: ' . esc_attr( get_theme_mod( 'button_hover_color' ) ) . '; border-color: ' . esc_attr( get_theme_mod( 'button_hover_color' ) ) . '; }';
-			echo '.widget.widget_search .search-form > input#s:hover, .widget.widget_search .search-form > input#s:focus, .widget.widget_calendar #wp-calendar td:not(.pad):not(#next):not(#prev)#today, .widget_product_search .woocommerce-product-search > input.search-field:hover, .widget_product_search .woocommerce-product-search > input.search-field:focus { border-color: ' . esc_attr( get_theme_mod( 'button_hover_color' ) ) . ' }';
+			echo '.widget.widget_search .search-form > input#s:hover, .widget.widget_search .search-form > input#s:focus, .widget.widget_calendar #wp-calendar td:not(.pad):not(#next):not(#prev)#today, .widget_product_search .woocommerce-product-search > input.search-field:hover, .widget_product_search .woocommerce-product-search > input.search-field:focus, .widget.widget_search input[type="text"]:focus + button[type="submit"].searchsubmit, .widget.widget_search input[type="text"]:hover + button[type="submit"].searchsubmit { border-color: ' . esc_attr( get_theme_mod( 'button_hover_color' ) ) . ' !important }';
 			echo '.widget.widget_calendar #wp-calendar > caption:after, .widget.widget_calendar #wp-calendar td:not(.pad):not(#next):not(#prev)#today:hover { background-color: ' . esc_attr( get_theme_mod( 'button_hover_color' ) ) . ' }';
+			echo '.widget.widget_search input[type="text"]:focus + button[type="submit"].searchsubmit, .widget.widget_search input[type="text"]:hover + button[type="submit"].searchsubmit { color: ' . esc_attr( get_theme_mod( 'button_hover_color' ) ) . ' }';
 		}
 
 		if ( get_theme_mod( 'social_color' ) ) {
@@ -281,8 +282,7 @@ function shapely_search_form( $form ) {
 	$form = '<form role="search" method="get" id="searchform" class="search-form" action="' . esc_url( home_url( '/' ) ) . '" >
     <label class="screen-reader-text" for="s">' . esc_html__( 'Search for:', 'shapely' ) . '</label>
     <input type="text" placeholder="' . esc_html__( 'Type Here', 'shapely' ) . '" type="text" value="' . esc_attr( get_search_query() ) . '" name="s" id="s" />
-    <input type="submit" class="btn btn-fillded searchsubmit" id="searchsubmit" value="' . esc_attr__( 'Search', 'shapely' ) . '" />
-
+    <button type="submit" class="searchsubmit"><i class="fa fa-search" aria-hidden="true"></i><span class="screen-reader-text">' . esc_attr__( 'Search', 'submit button', 'shapely' ) . '</span></button>
     </form>';
 
 	return $form;
