@@ -353,3 +353,4 @@ require get_template_directory() . '/inc/class-shapely-related-posts.php';
  * Load the system checks ( used for notifications )
  */
 require get_template_directory() . '/inc/admin/welcome-screen/class-shapely-notify-system.php';
+

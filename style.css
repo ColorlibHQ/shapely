@@ -1326,10 +1326,6 @@ input[type="submit"]:hover {
     margin-top: 5px;
 }
 
-.widget input[type="submit"]:hover {
-    background-color: #fff;
-}
-
 /*!---------- 7. NAVIGATION ----------*/
 
 .nav-container {
