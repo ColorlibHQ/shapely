@@ -1231,9 +1231,10 @@ footer {
 }
 
 .btn-lg {
-    min-height: 50px;
-    line-height: 46px;
+    line-height: 24px;
     min-width: 200px;
+    padding-bottom: 13px;
+    padding-top: 13px;
 }
 
 .btn-sm {
