@@ -119,6 +119,15 @@ function shapely_customizer( $wp_customize ) {
 		'description'    => esc_html__( 'Panel to update shapely theme options', 'shapely' ), // Include html tags such as <p>.
 		'priority'       => 10, // Mixed with top-level-section hierarchy.
 	) );
+
+	$wp_customize->add_panel( 'shapely_blog_options', array(
+		'capability'     => 'edit_theme_options',
+		'theme_supports' => '',
+		'title'          => esc_html__( 'Blog Settings', 'shapely' ),
+		'description'    => esc_html__( 'Panel to update Blog related options', 'shapely' ), // Include html tags such as <p>.
+		'priority'       => 10, // Mixed with top-level-section hierarchy.
+	) );
+
 	$title_tagline = $wp_customize->get_section( 'title_tagline' );
 	if ( $title_tagline ) {
 		$title_tagline->panel = 'shapely_main_options';
@@ -132,15 +141,22 @@ function shapely_customizer( $wp_customize ) {
 		$color_section->priority = 31;
 	}
 
+	$header_image = $wp_customize->get_section( 'header_image' );
+	if ( $header_image ) {
+		$header_image->panel = 'shapely_blog_options';
+		$header_image->title = esc_html__( 'Blog Index Header Image', 'shapely' );
+		$header_image->priority = 34;
+	}
+
 	$wp_customize->add_section( 'shapely_blog_section', array(
-		'title'    => esc_html__( 'Blog Settings', 'shapely' ),
-		'panel'    => 'shapely_main_options',
+		'title'    => esc_html__( 'Blog Index Settings', 'shapely' ),
+		'panel'    => 'shapely_blog_options',
 		'priority' => 33,
 	) );
 
 	$wp_customize->add_section( 'shapely_single_post_section', array(
-		'title'    => esc_html__( 'Single Post Settings', 'shapely' ),
-		'panel'    => 'shapely_main_options',
+		'title'    => esc_html__( 'Blog Single Settings', 'shapely' ),
+		'panel'    => 'shapely_blog_options',
 		'priority' => 35,
 	) );
 	$wp_customize->add_setting( 'link_color', array(
