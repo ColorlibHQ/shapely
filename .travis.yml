@@ -8,53 +8,68 @@ matrix:
   - php: '5.5'
   - php: '5.6'
   - php: '7.0'
+    env: SNIFF=1
   - php: '7.1'
+    env: DEPLOY=1
 before_script:
 - export PHPCS_DIR=/tmp/phpcs
 - export SNIFFS_DIR=/tmp/sniffs
-- git clone -b 2.9 --depth 1 https://github.com/squizlabs/PHP_CodeSniffer.git $PHPCS_DIR
-- git clone -b master --depth 1 https://github.com/WordPress-Coding-Standards/WordPress-Coding-Standards.git
-  $SNIFFS_DIR
-- git clone -b master --depth 1 https://github.com/wimg/PHPCompatibility.git $SNIFFS_DIR/PHPCompatibility
-- "$PHPCS_DIR/scripts/phpcs --config-set installed_paths $SNIFFS_DIR"
-- phpenv rehash
-- npm install -g jscs
-- npm install -g jshint
-- wget https://develop.svn.wordpress.org/trunk/.jshintrc
-- npm install -g grunt-cli
-- npm install
-- npm install -g grunt-checktextdomain
+- if [[ "$SNIFF" == "1" ]]; then git clone -b 2.9 --depth 1 https://github.com/squizlabs/PHP_CodeSniffer.git
+  $PHPCS_DIR; fi
+- if [[ "$SNIFF" == "1" ]]; then git clone -b master --depth 1 https://github.com/WordPress-Coding-Standards/WordPress-Coding-Standards.git
+  $SNIFFS_DIR; fi
+- if [[ "$SNIFF" == "1" ]]; then git clone -b master --depth 1 https://github.com/wimg/PHPCompatibility.git
+  $SNIFFS_DIR/PHPCompatibility; fi
+- if [[ "$SNIFF" == "1" ]]; then $PHPCS_DIR/scripts/phpcs --config-set installed_paths
+  $SNIFFS_DIR; fi
+- if [[ "$SNIFF" == "1" ]]; then phpenv rehash; fi
+- if [[ "$SNIFF" == "1" ]]; then npm install -g jscs; fi
+- if [[ "$SNIFF" == "1" ]]; then npm install -g jshint; fi
+- if [[ "$SNIFF" == "1" ]]; then wget https://develop.svn.wordpress.org/trunk/.jshintrc;
+  fi
+- if [[ "$SNIFF" == "1" ]] || [[ "$DEPLOY" == "1" ]]; then npm install -g grunt-cli;
+  fi
+- if [[ "$SNIFF" == "1" ]] || [[ "$DEPLOY" == "1" ]]; then npm install; fi
+- if [[ "$SNIFF" == "1" ]] || [[ "$DEPLOY" == "1" ]]; then npm install -g grunt-checktextdomain;
+  fi
 script:
 - mkdir -p build/logs
 - find -L . -name '*.php' -print0 | xargs -0 -n 1 -P 4 php -l
-- jshint ./assets/js/*.js
-- jshint ./inc/admin/welcome-screen/js/*.js
-- jscs ./assets/js/*.js
-- jscs ./inc/admin/welcome-screen/js/*.js
-- grunt textdomain
-- "$PHPCS_DIR/scripts/phpcs -p -s -v -n ./*.php --standard=./phpcs.ruleset.xml --extensions=php"
-- "$PHPCS_DIR/scripts/phpcs -p -s -v -n ./**/*.php --standard=./phpcs.ruleset.xml
-  --extensions=php"
-- "$PHPCS_DIR/scripts/phpcs -p -s -v -n ./**/**/*.php --standard=./phpcs.ruleset.xml
-  --extensions=php"
-- "$PHPCS_DIR/scripts/phpcs -p -s -v -n ./**/**/**/*.php --standard=./phpcs.ruleset.xml
-  --extensions=php"
-- "$PHPCS_DIR/scripts/phpcs -p -s -v -n ./**/**/**/**/*.php --standard=./phpcs.ruleset.xml
-  --extensions=php"
+- if [[ "$SNIFF" == "1" ]]; then jshint ./assets/js/*.js; fi
+- if [[ "$SNIFF" == "1" ]]; then jshint ./inc/admin/welcome-screen/js/*.js; fi
+- if [[ "$SNIFF" == "1" ]]; then jscs ./assets/js/*.js; fi
+- if [[ "$SNIFF" == "1" ]]; then jscs ./inc/admin/welcome-screen/js/*.js; fi
+- if [[ "$SNIFF" == "1" ]]; then grunt textdomain; fi
+- if [[ "$SNIFF" == "1" ]]; then $PHPCS_DIR/scripts/phpcs -p -s -v -n ./*.php --standard=./phpcs.ruleset.xml
+  --extensions=php; fi
+- if [[ "$SNIFF" == "1" ]]; then $PHPCS_DIR/scripts/phpcs -p -s -v -n ./**/*.php --standard=./phpcs.ruleset.xml
+  --extensions=php --ignore=./inc/plugin-activation.php,./node_modules/*.php; fi
+- if [[ "$SNIFF" == "1" ]]; then $PHPCS_DIR/scripts/phpcs -p -s -v -n ./**/**/*.php
+  --standard=./phpcs.ruleset.xml --extensions=php --ignore=./node_modules/**/*.php;
+  fi
+- if [[ "$SNIFF" == "1" ]]; then $PHPCS_DIR/scripts/phpcs -p -s -v -n ./**/**/**/*.php
+  --standard=./phpcs.ruleset.xml --extensions=php --ignore=./node_modules/**/**/*.php;
+  fi
+- if [[ "$SNIFF" == "1" ]]; then $PHPCS_DIR/scripts/phpcs -p -s -v -n ./**/**/**/**/*.php
+  --standard=./phpcs.ruleset.xml --extensions=php --ignore=./node_modules/**/**/**/*.php;
+  fi
+- if [[ "$SNIFF" == "1" ]]; then $PHPCS_DIR/scripts/phpcs -p -s -v -n ./**/**/**/**/**/*.php
+  --standard=./phpcs.ruleset.xml --extensions=php --ignore=./node_modules/**/**/**/**/*.php;
+  fi
 notifications:
   email: false
 cache:
   directories:
   - node_modules
-#after_success:
-#- grunt build-archive
-#- sh set_tags.sh
-#deploy:
-#  provider: releases
-#  skip_cleanup: true
-#  api_key:
-#    secure: FbV7d4hcOzhBRs1M/iVlseSqeaeHtLhp+Et6iP7kRVEM5rVl9zmFUppfCweQfBm9Gd4SPJkiRPAtYwKIDZwS3AO9U4jkdYOJCAysVa/zEj+t8DSFsA7EwIstu4CbQVEAADCEAmI/Yth8qbe4jF5Xg29/ykF9WCHXUhYnewSDX/Vr+AbjiitmDqojK9Ea9c0iMlVrOZEgnhfGFxLU4dsh4F/Il2pQiermoAz7r4+apvJG5IDIXFRFgY6L1tIEAnFhDgaLHuTN1QtCgoyeFxHLzSBXEjnPatefjRd4VwCLIyG3NnTSdudI9ddAg+r42ghGtslRrIlZHerc9BWFX0zXkLxVCvem126ol+/x9Uvx6TdAfGb2L3tmkquv1QgeOy0ju7mlwdwO2LepcnMwETpkPF9r4iBpT+S0GF5MbUNO6LQdqQ7Lwk4AKpdWZUO0LHdLGw5JhS99GMZZxICnsHRxBBx0DcCMTAFJsUs6RNND/ugulTUHnTtEF97XkB+2Db4CYQLsDq/hg0pnscywh+VwR3w7P91rKCsw400SsfV7FqOoLlgoexOqHVkTm0DSkNi4HN+/n4xpgByoZeIq1UzWqjyHgUACBIkuNDkP9QwSuxzWACHfYPKbl/iw7FlX9ct5mBKf4Eyeb88WufEyU/wTFHrrCXDv2EoYspPEPNvYBvk=
-#  file: shapely.zip
-#  on:
-#    branch: master
-#    repo: giucu91/shapely
+after_success:
+- grunt build-archive
+- sh set_tags.sh
+deploy:
+  provider: releases
+  skip_cleanup: true
+  api_key:
+    secure: c+5YqVJhwO0FNgkuXIQAFRwjR0TbJ1e2dcMrIwU33kCeoib5hH5YeI6Qd8eU3EygLkB4RSNyrgHxQWffXtHJmDsy6UQFo98TJ5wuaENUzxWJG4p+ZfGWLBV15t3C5UCL7X0vMFAuOXBqhcpd3sMvF5qPxFLU6vcizj+nxXrHUkPO1Axeu2L7sqbDeOOSr4TkNfV1HOD0B+j+0gLDA3cjI3cKmWDIxyik3dPmBCqr7XzM3I9bGQi1Mfhm75tl3UJgLqLENst8/08zM57hyO4paWTBIhJLy30MjQI2QxG9WAXAze2N5SNfNrKLo74RozEGymWBoQ34aFTsEoURGzg7B81sGvbaOHQwdnZSpoZbeclt9JanARAF8c8qf0/ipCzRcWtOV2/+BVdns+zFj67e2wGE/puIJJhvmZshssQMMci1eskRKqEP0s3CXC/ipiOANo52jT63i5muhKyNXUulLvBM7CaMY0+i1Rwa9jTVNQRu/HyeTOyRgshB2EUO3j7T2V9uYGB2ysvEFPQIDG86sY6n+D97H6hxqMgprgr5echOj0fygLORqY9Bxzy0EyONGkxPJpAYgT9Jo6KvFQ+mVNSorbSKQIAjtjjBQuw8li1JXfacNC+R0cPPsQ0BkWFIlSpW8nDCu0AFZ9ejfJmQ9aqtgfeCoc1s2NH3vQorsvI=
+  file: shapely.zip
+  on:
+    branch: master
+    repo: puikinsh/shapely

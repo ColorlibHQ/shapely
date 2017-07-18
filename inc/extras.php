@@ -282,7 +282,7 @@ function shapely_search_form( $form ) {
 	$form = '<form role="search" method="get" id="searchform" class="search-form" action="' . esc_url( home_url( '/' ) ) . '" >
     <label class="screen-reader-text" for="s">' . esc_html__( 'Search for:', 'shapely' ) . '</label>
     <input type="text" placeholder="' . esc_html__( 'Type Here', 'shapely' ) . '" type="text" value="' . esc_attr( get_search_query() ) . '" name="s" id="s" />
-    <button type="submit" class="searchsubmit"><i class="fa fa-search" aria-hidden="true"></i><span class="screen-reader-text">' . esc_attr__( 'Search', 'submit button', 'shapely' ) . '</span></button>
+    <button type="submit" class="searchsubmit"><i class="fa fa-search" aria-hidden="true"></i><span class="screen-reader-text">' . esc_attr__( 'Search', 'shapely' ) . '</span></button>
     </form>';
 
 	return $form;
