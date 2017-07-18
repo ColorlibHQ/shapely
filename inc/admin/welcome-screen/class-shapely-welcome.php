@@ -69,9 +69,9 @@ class Shapely_Welcome {
 	public function shapely_welcome_admin_notice() {
 		?>
 		<div class="updated notice is-dismissible">
-			<p><?php echo sprintf( esc_html__( 'Welcome! Thank you for choosing shapely! To fully take advantage of the best our theme can offer please make sure you visit our %1$swelcome page%2$s.', 'shapely' ), '<a href="' . esc_url( admin_url( 'themes.php?page=shapely-welcome' ) ) . '">', '</a>' ); ?></p>
+			<p><?php echo sprintf( esc_html__( 'Welcome! Thank you for choosing Shapely! To fully take advantage of the best our theme can offer please make sure you visit our %1$swelcome page%2$s.', 'shapely' ), '<a href="' . esc_url( admin_url( 'themes.php?page=shapely-welcome' ) ) . '">', '</a>' ); ?></p>
 			<p><a href="<?php echo esc_url( admin_url( 'themes.php?page=shapely-welcome' ) ); ?>" class="button"
-				  style="text-decoration: none;"><?php echo esc_html__( 'Get started with shapely', 'shapely' ); ?></a>
+				  style="text-decoration: none;"><?php echo esc_html__( 'Get started with Shapely', 'shapely' ); ?></a>
 			</p>
 		</div>
 		<?php
