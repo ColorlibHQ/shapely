@@ -3520,14 +3520,14 @@ footer .widget_product_search .woocommerce-product-search:before {
     line-height: 1.5;
     }
     .widget.widget_search .search-form > button[type="submit"].searchsubmit {
+        color: #ebebeb;
+    }
+    .footer-widget-area .widget.widget_search .search-form > button[type="submit"].searchsubmit {
         color: #fff;
     }
     .widget_product_search .woocommerce-product-search > input[type="submit"]:hover {
         color: transparent !important;
         background-color: transparent !important;
-    }
-    .widget.widget_search .search-form > button[type="submit"].searchsubmit:hover {
-        color: #fff;
     }
     .widget.widget_search .search-form > .searchsubmit:hover, .widget.widget_search .search-form > .searchsubmit:focus, .widget.widget_search .search-form > .searchsubmit:active {
       color: transparent; }
