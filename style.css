@@ -1808,7 +1808,8 @@ nav.fixed.scrolled {
 }
 
 /* Widget Menu */
-.widget_nav_menu .sub-menu {
+.widget_nav_menu .sub-menu,
+.widget.widget_pages ul.children {
     border-top: 1px solid #ebebeb;
     padding-top: 20px;
     margin-top: 20px;
@@ -3350,7 +3351,9 @@ footer.bg-dark a {
     margin-bottom: 20px; }
     .widget.widget_archive > div ul li:last-of-type, .widget.widget_archive ul li:last-of-type, .widget.widget_categories > div ul li:last-of-type, .widget.widget_categories ul li:last-of-type, .widget.widget_meta > div ul li:last-of-type, .widget.widget_meta ul li:last-of-type, .widget.widget_pages > div ul li:last-of-type, .widget.widget_pages ul li:last-of-type, .widget.widget_nav_menu > div ul li:last-of-type, .widget.widget_nav_menu ul li:last-of-type {
       border: none;
-      padding-bottom: 0; }
+      padding-bottom: 0;
+      margin-bottom: 0;
+  }
     .woocommerce .widget_layered_nav ul li span, .widget.widget_archive > div ul li span, .widget.widget_archive ul li span, .widget.widget_categories > div ul li span, .widget.widget_categories ul li span, .widget.widget_meta > div ul li span, .widget.widget_meta ul li span, .widget.widget_pages > div ul li span, .widget.widget_pages ul li span, .widget.widget_nav_menu > div ul li span, .widget.widget_nav_menu ul li span {
       font-size: 12px;
       font-family: "Raleway", "Helvetica Neue", Helvetica, Arial, sans-serif;
