@@ -1759,7 +1759,6 @@ nav.fixed.scrolled {
 }
 
 .no-results form.search-form {
-    max-width: 500px;
     padding: 0;
     width: 100%;
 }
@@ -1771,6 +1770,16 @@ nav.fixed.scrolled {
 
 .no-results form .searchsubmit {
     margin: 0;
+}
+.no-results form .searchsubmit i {
+    display: none;
+}
+
+.no-results form .searchsubmit span.screen-reader-text {
+    clip: auto;
+    position: relative !important;
+    height: auto;
+    width: auto;
 }
 
 .main-navigation .menu > li ul {
