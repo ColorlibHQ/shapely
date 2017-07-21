@@ -16,7 +16,7 @@
 			if ( is_category() ) {
 				$show_category = get_theme_mod( 'show_category_on_category_page', 1 );
 			}
-			$image    = '<img class="wp-post-image" alt="" src="' . get_template_directory_uri() . '/assets/images/placeholder.jpg" />';
+			$image    = '<img class="wp-post-image" alt="" src="' . get_template_directory_uri() . '/assets/images/placeholder-image.jpg" />';
 			if ( has_post_thumbnail() ) {
 				$image = get_the_post_thumbnail( get_the_ID(), 'shapely-grid' );
 			}
