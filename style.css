@@ -3679,7 +3679,9 @@ footer .widget_product_search .woocommerce-product-search:before {
       position: absolute;
       color: transparent !important;
       right: 0; }
-
+.widget {
+    margin-bottom: 24px;
+}
 #colophon .site-info {
   margin-top: 15px; }
 #colophon .widget {
@@ -3687,7 +3689,9 @@ footer .widget_product_search .woocommerce-product-search:before {
   width: 100%; }
   #colophon .widget ul {
     padding-left: 0;
-    margin-left: 0; }
+    margin-left: 0;
+    margin-bottom: 0;
+}
     #colophon .widget ul li {
       margin-right: 0; }
   #colophon .widget .widget-title {
