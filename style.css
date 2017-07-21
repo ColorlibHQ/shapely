@@ -3679,7 +3679,7 @@ footer .widget_product_search .woocommerce-product-search:before {
       position: absolute;
       color: transparent !important;
       right: 0; }
-.widget {
+#colophon .widget {
     margin-bottom: 24px;
 }
 #colophon .site-info {
