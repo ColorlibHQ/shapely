@@ -3475,18 +3475,6 @@ footer.bg-dark a {
 .widget_product_search .woocommerce-product-search {
   padding: 0;
   position: relative; }
-  .widget_product_search .woocommerce-product-search:before {
-    content: '\f002';
-    display: block;
-    top: 0;
-    right: 23px;
-    z-index: 1;
-    font-family: 'FontAwesome';
-    position: absolute;
-    color: #ebebeb; }
-footer .widget_product_search .woocommerce-product-search:before {
-    right: 17px;
-}
   .widget.widget_search .search-form > input,
   .widget_product_search .woocommerce-product-search > input {
     background: transparent;
@@ -3507,12 +3495,14 @@ footer .widget_product_search .woocommerce-product-search:before {
       box-shadow: none;
       outline: none; }
     .widget.widget_search input[type="text"]:focus + button[type="submit"].searchsubmit,
-    .widget.widget_search input[type="text"]:hover + button[type="submit"].searchsubmit {
+    .widget.widget_search input[type="text"]:hover + button[type="submit"].searchsubmit,
+    .widget.widget_product_search input[type="text"]:focus + button[type="submit"].searchsubmit,
+    .widget.widget_product_search input[type="text"]:hover + button[type="submit"].searchsubmit {
         color: #745cf9;
         border-color: #745cf9 !important;
     }
   .widget.widget_search .search-form > button[type="submit"].searchsubmit,
-  .widget_product_search .woocommerce-product-search > input[type="submit"] {
+  .widget_product_search .woocommerce-product-search > button[type="submit"].searchsubmit {
     position: absolute;
     border: none;
     top: 7px;
@@ -3531,13 +3521,15 @@ footer .widget_product_search .woocommerce-product-search:before {
     font-size: 14px;
     line-height: 1.5;
     }
-    .widget.widget_search .search-form > button[type="submit"].searchsubmit {
+    .widget.widget_search .search-form > button[type="submit"].searchsubmit,
+    .widget.widget_product_search button[type="submit"].searchsubmit {
         color: #ebebeb;
     }
-    .footer-widget-area .widget.widget_search .search-form > button[type="submit"].searchsubmit {
+    .footer-widget-area .widget.widget_search .search-form > button[type="submit"].searchsubmit,
+    .footer-widget-area .widget.widget_product_search button[type="submit"].searchsubmit {
         color: #fff;
     }
-    .widget_product_search .woocommerce-product-search > input[type="submit"]:hover {
+    .widget_product_search .woocommerce-product-search > button[type="submit"]:hover {
         color: transparent !important;
         background-color: transparent !important;
     }
