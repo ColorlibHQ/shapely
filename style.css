@@ -2104,7 +2104,7 @@ button[type="submit"] {
     line-height: 20px;
 }
 
-.pagination span {
+.pagination span:not( .dots ) {
     background: #745cf9;
     color: #fff;
     border-color: #745cf9;
