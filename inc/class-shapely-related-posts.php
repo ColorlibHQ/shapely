@@ -177,7 +177,7 @@ if ( ! class_exists( 'Shapely_Related_Posts' ) ) {
 				if ( has_post_thumbnail( $related_posts->post->ID ) ) {
 					echo '<a href="' . esc_url( get_the_permalink() ) . '">' . get_the_post_thumbnail( $related_posts->post->ID, 'shapely-grid' ) . '</a>';
 				} else {
-					echo '<a href="' . esc_url( get_the_permalink() ) . '"><img class="wp-post-image" alt="" src="' . get_template_directory_uri() . '/assets/images/placeholder.jpg" /></a>';
+					echo '<a href="' . esc_url( get_the_permalink() ) . '"><img class="wp-post-image" alt="" src="' . get_template_directory_uri() . '/assets/images/placeholder-image.jpg" /></a>';
 				}
 
 				if ( $show_title ) {
