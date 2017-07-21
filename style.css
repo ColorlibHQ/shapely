@@ -1763,7 +1763,7 @@ nav.fixed.scrolled {
     width: 100%;
 }
 
-.no-results form #s {
+.not-found form #s {
     max-width: 292px;
     width: 71%;
 }
@@ -1771,11 +1771,11 @@ nav.fixed.scrolled {
 .no-results form .searchsubmit {
     margin: 0;
 }
-.no-results form .searchsubmit i {
+.not-found form .searchsubmit i {
     display: none;
 }
 
-.no-results form .searchsubmit span.screen-reader-text {
+.not-found form .searchsubmit span.screen-reader-text {
     clip: auto;
     position: relative !important;
     height: auto;
