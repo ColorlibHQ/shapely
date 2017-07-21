@@ -2089,7 +2089,9 @@ button[type="submit"] {
     border-bottom-right-radius: 3px;
 }
 
-.pagination a, .pagination span {
+.pagination a,
+.pagination span,
+.woocommerce-pagination ul.page-numbers .page-numbers {
     width: 32px;
     height: 32px;
     padding: 0;
@@ -2103,14 +2105,24 @@ button[type="submit"] {
     border: 1px solid #ddd;
     line-height: 20px;
 }
+.woocommerce nav.woocommerce-pagination ul,
+.woocommerce nav.woocommerce-pagination ul li {
+    border: 0 none;
+}
 
-.pagination span:not( .dots ) {
+.pagination span:not( .dots ),
+.woocommerce-pagination ul.page-numbers span.page-numbers,
+.woocommerce nav.woocommerce-pagination ul li a:focus,
+.woocommerce nav.woocommerce-pagination ul li a:hover,
+.woocommerce nav.woocommerce-pagination ul li span.current {
     background: #745cf9;
     color: #fff;
     border-color: #745cf9;
 }
 
-.pagination a:hover, .pagination .active a, .pagination .active:hover a {
+.pagination a:hover, 
+.pagination .active a, 
+.pagination .active:hover a {
     background: #745cf9;
     color: #fff;
     border-color: #745cf9;
