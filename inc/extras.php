@@ -150,6 +150,7 @@ if ( ! function_exists( 'shapely_get_theme_options' ) ) {
           .woocommerce input.button,
           .video-widget .video-controls button,
           input[type="submit"],
+          button[type="submit"],
           .post-content .more-link { background:' . esc_attr( get_theme_mod( 'button_color' ) ) . ' !important; border: 2px solid' . esc_attr( get_theme_mod( 'button_color' ) ) . ' !important;}';
 		}
 		if ( get_theme_mod( 'button_hover_color' ) ) {
@@ -160,6 +161,7 @@ if ( ! function_exists( 'shapely_get_theme_options' ) ) {
           .woocommerce input.button:hover,
           .video-widget .video-controls button:hover,
           input[type="submit"]:hover,
+          button[type="submit"]:hover,
           .post-content .more-link:hover, .btn:hover, .button:hover  { background: ' . esc_attr( get_theme_mod( 'button_hover_color' ) ) . ' !important; border: 2px solid' . esc_attr( get_theme_mod( 'button_hover_color' ) ) . ' !important;}';
 			echo '.shapely_home_parallax > section:not(.image-bg) .btn-white:hover, .shapely_home_parallax > section:not(.image-bg) .btn-white:focus{ background-color: ' . esc_attr( get_theme_mod( 'button_hover_color' ) ) . '; border-color: ' . esc_attr( get_theme_mod( 'button_hover_color' ) ) . '; }';
 			echo '.widget.widget_search .search-form > input#s:hover, .widget.widget_search .search-form > input#s:focus, .widget.widget_calendar #wp-calendar td:not(.pad):not(#next):not(#prev)#today, .widget_product_search .woocommerce-product-search > input.search-field:hover, .widget_product_search .woocommerce-product-search > input.search-field:focus, .widget.widget_search input[type="text"]:focus + button[type="submit"].searchsubmit, .widget.widget_search input[type="text"]:hover + button[type="submit"].searchsubmit, textarea:hover, textarea:focus, input[type="text"]:hover, input[type="search"]:hover, input[type="email"]:hover, input[type="tel"]:hover, input[type="text"]:focus, input[type="search"]:focus, input[type="email"]:focus, input[type="tel"]:focus { border-color: ' . esc_attr( get_theme_mod( 'button_hover_color' ) ) . ' !important }';
