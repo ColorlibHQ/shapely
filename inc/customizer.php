@@ -141,11 +141,11 @@ function shapely_customizer( $wp_customize ) {
 		$color_section->priority = 31;
 	}
 
-	$header_image = $wp_customize->get_section( 'header_image' );
+	$header_image = $wp_customize->get_control( 'header_image' );
 	if ( $header_image ) {
-		$header_image->panel = 'shapely_blog_options';
-		$header_image->title = esc_html__( 'Blog Index Header Image', 'shapely' );
-		$header_image->priority = 34;
+		$header_image->section = 'shapely_blog_section';
+		$header_image->label = esc_html__( 'Blog Index Header Image', 'shapely' );
+		$header_image->priority = 31;
 	}
 
 	$wp_customize->add_section( 'shapely_blog_section', array(
