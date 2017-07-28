@@ -11,6 +11,8 @@ $dropcaps    = get_theme_mod( 'first_letter_caps', true );
 $enable_tags = get_theme_mod( 'tags_post_meta', true );
 $post_author = get_theme_mod( 'post_author_area', true );
 $left_side   = get_theme_mod( 'post_author_left_side', false );
+$post_title  = get_theme_mod( 'title_above_post', true );
+$post_category  = get_theme_mod( 'post_category', true );
 
 ?>
 <article id="post-<?php the_ID(); ?>" <?php post_class( 'post-content post-grid-wide' ); ?>>
@@ -45,7 +47,7 @@ $left_side   = get_theme_mod( 'post_author_left_side', false );
 			<?php echo wp_kses( $image, $allowed_tags ); ?>
 		</a>
 
-		<?php if ( isset( $category[0] ) ) : ?>
+		<?php if ( isset( $category[0] ) && $post_category ) : ?>
 			<span class="shapely-category">
 				<a href="<?php echo esc_url( get_category_link( $category[0]->term_id ) ); ?>">
 					<?php echo esc_html( $category[0]->name ); ?>
@@ -56,9 +58,12 @@ $left_side   = get_theme_mod( 'post_author_left_side', false );
 	?>
 	</header><!-- .entry-header -->
 	<div class="entry-content">
-		<h2 class="post-title">
-			<a href="<?php echo esc_url( get_the_permalink() ); ?>"><?php echo wp_trim_words( get_the_title(), 9 ); ?></a>
-		</h2>
+		<?php if ( $post_title ): ?>
+			<h2 class="post-title">
+				<a href="<?php echo esc_url( get_the_permalink() ); ?>"><?php echo wp_trim_words( get_the_title(), 9 ); ?></a>
+			</h2>
+		<?php endif ?>
+		
 
 		<div class="entry-meta">
 			<?php

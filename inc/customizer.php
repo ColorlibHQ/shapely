@@ -144,7 +144,7 @@ function shapely_customizer( $wp_customize ) {
 	$header_image = $wp_customize->get_control( 'header_image' );
 	if ( $header_image ) {
 		$header_image->section = 'shapely_blog_section';
-		$header_image->label = esc_html__( 'Blog Index Header Image', 'shapely' );
+		$header_image->description = esc_html__( 'Blog Index Header Image', 'shapely' );
 		$header_image->priority = 31;
 	}
 
@@ -394,6 +394,27 @@ function shapely_customizer( $wp_customize ) {
 		) ) );
 	} // End if().
 
+	$wp_customize->add_setting( 'title_in_header', array(
+		'default'           => 1,
+		'sanitize_callback' => 'shapely_sanitize_checkbox',
+	) );
+	$wp_customize->add_setting( 'title_above_post', array(
+		'default'           => 1,
+		'sanitize_callback' => 'shapely_sanitize_checkbox',
+	) );
+	$wp_customize->add_setting( 'post_date', array(
+		'default'           => 1,
+		'sanitize_callback' => 'shapely_sanitize_checkbox',
+	) );
+	$wp_customize->add_setting( 'post_category', array(
+		'default'           => 1,
+		'sanitize_callback' => 'shapely_sanitize_checkbox',
+	) );
+	$wp_customize->add_setting( 'post_author', array(
+		'default'           => 1,
+		'sanitize_callback' => 'shapely_sanitize_checkbox',
+	) );
+	
 	$wp_customize->add_setting( 'first_letter_caps', array(
 		'default'           => 1,
 		'sanitize_callback' => 'shapely_sanitize_checkbox',
@@ -421,6 +442,42 @@ function shapely_customizer( $wp_customize ) {
 
 	// Single Post Settings
 	if ( class_exists( 'Epsilon_Control_Toggle' ) ) {
+
+		$wp_customize->add_control( new Epsilon_Control_Toggle( $wp_customize, 'title_in_header', array(
+			'type'    => 'mte-toggle',
+			'label'   => esc_html__( 'Show title in header', 'shapely' ),
+			'description' => esc_html__( 'This will show/hide the post title from callout', 'shapely' ),
+			'section' => 'shapely_single_post_section',
+		) ) );
+
+		$wp_customize->add_control( new Epsilon_Control_Toggle( $wp_customize, 'title_above_post', array(
+			'type'    => 'mte-toggle',
+			'label'   => esc_html__( 'Show title above post', 'shapely' ),
+			'description' => esc_html__( 'This will show/hide the post title above post content', 'shapely' ),
+			'section' => 'shapely_single_post_section',
+		) ) );
+
+		$wp_customize->add_control( new Epsilon_Control_Toggle( $wp_customize, 'post_date', array(
+			'type'    => 'mte-toggle',
+			'label'   => esc_html__( 'Show the date', 'shapely' ),
+			'description' => esc_html__( 'This will show/hide the date when post was published', 'shapely' ),
+			'section' => 'shapely_single_post_section',
+		) ) );
+
+		$wp_customize->add_control( new Epsilon_Control_Toggle( $wp_customize, 'post_author', array(
+			'type'    => 'mte-toggle',
+			'label'   => esc_html__( 'Show the author', 'shapely' ),
+			'description' => esc_html__( 'This will show/hide the author who written the post under the post title', 'shapely' ),
+			'section' => 'shapely_single_post_section',
+		) ) );
+
+		$wp_customize->add_control( new Epsilon_Control_Toggle( $wp_customize, 'post_category', array(
+			'type'    => 'mte-toggle',
+			'label'   => esc_html__( 'Show the category', 'shapely' ),
+			'description' => esc_html__( 'This will show/hide the categories of post', 'shapely' ),
+			'section' => 'shapely_single_post_section',
+		) ) );
+
 		$wp_customize->add_control( new Epsilon_Control_Toggle( $wp_customize, 'first_letter_caps', array(
 			'type'    => 'mte-toggle',
 			'label'   => esc_html__( 'First Letter Caps', 'shapely' ),

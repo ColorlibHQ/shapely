@@ -568,7 +568,7 @@ function shapely_show_sidebar() {
  * Top Callout
  */
 function shapely_top_callout() {
-	if ( get_theme_mod( 'top_callout', true ) ) {
+	if ( ( get_theme_mod( 'top_callout', true ) && ! is_single() ) || ( is_single() && get_theme_mod( 'title_in_header', true ) ) ) {
 		$header = get_header_image();
 		?>
 	<section
