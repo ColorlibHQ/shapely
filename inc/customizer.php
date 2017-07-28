@@ -340,60 +340,6 @@ function shapely_customizer( $wp_customize ) {
 		'section' => 'shapely_footer_section',
 	) );
 
-	if ( class_exists( 'Epsilon_Control_Color_Scheme' ) ) {
-		$wp_customize->add_setting( 'shapely_color_scheme', array(
-			'sanitize_callback' => 'sanitize_text_field',
-			'default'           => 'default',
-			'transport'         => 'postMessage',
-		) );
-
-		$wp_customize->add_control( new Epsilon_Control_Color_Scheme( $wp_customize, 'shapely_color_scheme', array(
-			'label'       => esc_html__( 'Color scheme', 'shapely' ),
-			'description' => esc_html__( 'Select a color scheme', 'shapely' ),
-			'choices'     => array(
-				array(
-					'id'     => 'purple',
-					'name'   => 'Default',
-					'colors' => array(
-						'accent'               => '#745cf9',
-						'text'                 => '#666666',
-						'content-widget-title' => '#0e1015',
-						'footer-bg'            => '#0e1015',
-						'footer-widget-title'  => '#ffffff',
-						'footer-links'         => '#ffffff',
-					),
-				),
-				array(
-					'id'     => 'yellow',
-					'name'   => 'Yellow',
-					'colors' => array(
-						'accent'               => '#FFC107',
-						'text'                 => '#666666',
-						'content-widget-title' => '#0e1015',
-						'footer-bg'            => '#0e1015',
-						'footer-widget-title'  => '#ffffff',
-						'footer-links'         => '#ffffff',
-					),
-				),
-				array(
-					'id'     => 'green',
-					'name'   => 'Green',
-					'colors' => array(
-						'accent'               => '#2ecc71',
-						'text'                 => '#666666',
-						'content-widget-title' => '#0e1015',
-						'footer-bg'            => '#0e1015',
-						'footer-widget-title'  => '#ffffff',
-						'footer-links'         => '#ffffff',
-					),
-				),
-			),
-			'priority'    => 0,
-			'default'     => 'purple',
-			'section'     => 'colors',
-		) ) );
-	} // End if().
-
 	$wp_customize->add_setting( 'title_in_header', array(
 		'default'           => 1,
 		'sanitize_callback' => 'shapely_sanitize_checkbox',

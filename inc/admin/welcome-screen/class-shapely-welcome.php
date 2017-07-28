@@ -12,9 +12,6 @@ class Shapely_Welcome {
 		/* create dashbord page */
 		add_action( 'admin_menu', array( $this, 'shapely_welcome_register_menu' ) );
 
-		/* activation notice */
-		add_action( 'load-themes.php', array( $this, 'shapely_activation_admin_notice' ) );
-
 		/* enqueue script and style for welcome screen */
 		add_action( 'admin_enqueue_scripts', array( $this, 'shapely_welcome_style_and_scripts' ) );
 
@@ -30,6 +27,16 @@ class Shapely_Welcome {
 			$this,
 			'shapely_dismiss_required_action_callback',
 		) );
+
+		$theme = wp_get_theme();
+		$this->theme_name = $theme->get( 'Name' );
+		$this->theme_slug = $theme->get( 'TextDomain' );
+
+		/**
+		 * Add the notice in the admin backend
+		 */
+		$this->shapely_activation_admin_notice();
+
 	}
 
 	/**
@@ -54,11 +61,37 @@ class Shapely_Welcome {
 	 * @since 1.8.2.4
 	 */
 	public function shapely_activation_admin_notice() {
-		global $pagenow;
-
-		if ( is_admin() && ( 'themes.php' == $pagenow ) && isset( $_GET['activated'] ) ) {
-			add_action( 'admin_notices', array( $this, 'shapely_welcome_admin_notice' ), 99 );
+		if ( ! class_exists( 'Epsilon_Notifications' ) ) {
+			return;
 		}
+
+		if ( empty( $this->notice ) ) {
+			$this->notice = '<img src="' . get_template_directory_uri() . '/inc/admin/welcome-screen/img/colorlib-logo-white2.png" class="epsilon-author-logo" />';
+
+			/* Translators: %1$s - Theme Name */
+			$this->notice .= '<h1>' . sprintf( esc_html__( 'Welcome to %1$s', 'shapely' ), $this->theme_name ) . '</h1>';
+			$this->notice .= '<p>';
+			$this->notice .=
+				sprintf( /* Translators: Notice */
+					esc_html__( 'Welcome! Thank you for choosing %3$s! To fully take advantage of the best our theme can offer please make sure you visit our %1$swelcome page%2$s.', 'shapely' ),
+					'<a href="' . esc_url( admin_url( 'themes.php?page=' . $this->theme_slug . '-welcome' ) ) . '">',
+					'</a>',
+					$this->theme_name
+				);
+			$this->notice .= '</p>';
+			/* Translators: %1$s - Theme Name */
+			$this->notice .= '<p><a href="' . esc_url( admin_url( 'themes.php?page=' . $this->theme_slug . '-welcome' ) ) . '" class="button button-primary button-hero" style="text-decoration: none;"> ' . sprintf( esc_html__( 'Get started with %1$s', 'shapely' ), $this->theme_name ) . '</a></p>';
+
+		}
+
+		$notifications = Epsilon_Notifications::get_instance();
+		$notifications->add_notice(
+			array(
+				'id'      => 'shapely_install_notice',
+				'type'    => 'notice epsilon-big',
+				'message' => $this->notice,
+			)
+		);
 	}
 
 	/**
