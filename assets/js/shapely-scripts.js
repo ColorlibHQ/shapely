@@ -1,6 +1,6 @@
 (function( $ ) {// jscs:ignore validateLineBreaks
 
-	var clNav, clNavOuterHeight, windowW, menu, farRight, isOnScreen, difference, videos, recentEntries, searchInterval;
+	var clNav, clNavOuterHeight, windowW, menu, farRight, isOnScreen, difference, videos, recentEntries, searchInterval, shapelyCf;
 
 	jQuery( document ).ready(function( $ ) {
 
@@ -314,6 +314,16 @@
 		jQuery( '#masthead .function #searchsubmit' ).focusout( function() {
 			jQuery( this ).parents( '.function' ).removeClass( 'active' );
 		});
+
+		// Check if is a contact form 7 with parallax background
+		shapelyCf = jQuery( '.contact-section.image-bg .wpcf7' );
+		if ( shapelyCf.length > 0 ) {
+			shapelyCf.on( 'wpcf7submit', function() {
+				setTimeout(function() {
+ jQuery( window ).trigger( 'resize' ).trigger( 'scroll' );
+ }, 800 );
+			});
+		}
 
 	});
 

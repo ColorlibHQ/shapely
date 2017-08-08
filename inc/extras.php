@@ -130,8 +130,7 @@ if ( ! function_exists( 'shapely_get_theme_options' ) ) {
 		}
 		if ( get_theme_mod( 'link_hover_color' ) ) {
 			echo 'a:hover, a:active, .post-title a:hover,
-        .woocommerce nav.woocommerce-pagination ul li a:focus, .woocommerce nav.woocommerce-pagination ul li a:hover,
-        .woocommerce nav.woocommerce-pagination ul li span.current, .image-bg a:hover, .contact-section .social-icons li a:hover, .footer .footer-credits a:hover, .post-content .post-meta li a:hover,
+        .image-bg a:hover, .contact-section .social-icons li a:hover, .footer .footer-credits a:hover, .post-content .post-meta li a:hover,
         .widget.widget_recent_entries ul li a:focus, .widget.widget_recent_entries ul li a:hover,
         .widget.widget_recent_comments ul li .comment-author-link a:focus, .widget.widget_recent_comments ul li .comment-author-link a:hover,
         .widget.widget_archive > div ul li a:focus, .widget.widget_archive > div ul li a:hover, .widget.widget_archive ul li a:focus, .widget.widget_archive ul li a:hover, .widget.widget_categories > div ul li a:focus, .widget.widget_categories > div ul li a:hover, .widget.widget_categories ul li a:focus, .widget.widget_categories ul li a:hover, .widget.widget_meta > div ul li a:focus, .widget.widget_meta > div ul li a:hover, .widget.widget_meta ul li a:focus, .widget.widget_meta ul li a:hover, .widget.widget_pages > div ul li a:focus, .widget.widget_pages > div ul li a:hover, .widget.widget_pages ul li a:focus, .widget.widget_pages ul li a:hover, .widget.widget_nav_menu > div ul li a:focus, .widget.widget_nav_menu > div ul li a:hover, .widget.widget_nav_menu ul li a:focus, .widget.widget_nav_menu ul li a:hover,
@@ -150,8 +149,9 @@ if ( ! function_exists( 'shapely_get_theme_options' ) ) {
           .woocommerce input.button,
           .video-widget .video-controls button,
           input[type="submit"],
+          button[type="submit"],
           .post-content .more-link { background:' . esc_attr( get_theme_mod( 'button_color' ) ) . ' !important; border: 2px solid' . esc_attr( get_theme_mod( 'button_color' ) ) . ' !important;}';
-			echo '.shapely_home_parallax > section:not(.image-bg) .btn-white, .btn.btn-white { color: ' . esc_attr( get_theme_mod( 'button_color' ) ) . '; border-color: ' . esc_attr( get_theme_mod( 'button_color' ) ) . '; }';
+          echo '.shapely_home_parallax > section:not(.image-bg) .btn-white { color:' . esc_attr( get_theme_mod( 'button_color' ) ) . ' !important; border: 2px solid' . esc_attr( get_theme_mod( 'button_color' ) ) . ' !important; }';
 		}
 		if ( get_theme_mod( 'button_hover_color' ) ) {
 			echo '.btn-filled:hover, .woocommerce #respond input#submit.alt:hover,
@@ -161,10 +161,12 @@ if ( ! function_exists( 'shapely_get_theme_options' ) ) {
           .woocommerce input.button:hover,
           .video-widget .video-controls button:hover,
           input[type="submit"]:hover,
-          .post-content .more-link:hover, .btn:hover, .button:hover  { background: ' . esc_attr( get_theme_mod( 'button_hover_color' ) ) . ' !important; border: 2px solid' . esc_attr( get_theme_mod( 'button_hover_color' ) ) . ' !important;}';
-			echo '.shapely_home_parallax > section:not(.image-bg) .btn-white:hover, .shapely_home_parallax > section:not(.image-bg) .btn-white:focus{ background-color: ' . esc_attr( get_theme_mod( 'button_hover_color' ) ) . '; border-color: ' . esc_attr( get_theme_mod( 'button_hover_color' ) ) . '; }';
-			echo '.widget.widget_search .search-form > input#s:hover, .widget.widget_search .search-form > input#s:focus, .widget.widget_calendar #wp-calendar td:not(.pad):not(#next):not(#prev)#today, .widget_product_search .woocommerce-product-search > input.search-field:hover, .widget_product_search .woocommerce-product-search > input.search-field:focus { border-color: ' . esc_attr( get_theme_mod( 'button_hover_color' ) ) . ' }';
+          button[type="submit"]:hover,
+          .post-content .more-link:hover, .btn:not(.btn-white):hover, .button:not(.btn-white):hover  { background: ' . esc_attr( get_theme_mod( 'button_hover_color' ) ) . ' !important; border: 2px solid' . esc_attr( get_theme_mod( 'button_hover_color' ) ) . ' !important;}';
+			echo '.shapely_home_parallax > section:not(.image-bg) .btn-white:hover, .shapely_home_parallax > section:not(.image-bg) .btn-white:focus, .pagination span:not( .dots ), .pagination a:hover, .woocommerce-pagination ul.page-numbers span.page-numbers, .woocommerce nav.woocommerce-pagination ul li a:focus, .woocommerce nav.woocommerce-pagination ul li a:hover, .woocommerce nav.woocommerce-pagination ul li span.current { background-color: ' . esc_attr( get_theme_mod( 'button_hover_color' ) ) . ' !important; border-color: ' . esc_attr( get_theme_mod( 'button_hover_color' ) ) . ' !important;color: #fff !important; }';
+			echo '.widget.widget_search .search-form > input#s:hover, .widget.widget_search .search-form > input#s:focus, .widget.widget_calendar #wp-calendar td:not(.pad):not(#next):not(#prev)#today, .widget_product_search .woocommerce-product-search > input.search-field:hover, .widget_product_search .woocommerce-product-search > input.search-field:focus, .widget.widget_search input[type="text"]:focus + button[type="submit"].searchsubmit, .widget.widget_search input[type="text"]:hover + button[type="submit"].searchsubmit, textarea:hover, textarea:focus, input[type="text"]:hover, input[type="search"]:hover, input[type="email"]:hover, input[type="tel"]:hover, input[type="text"]:focus, input[type="search"]:focus, input[type="email"]:focus, input[type="tel"]:focus, .widget.widget_product_search input[type="text"]:focus + button[type="submit"].searchsubmit, .widget.widget_product_search input[type="text"]:hover + button[type="submit"].searchsubmit { border-color: ' . esc_attr( get_theme_mod( 'button_hover_color' ) ) . ' !important }';
 			echo '.widget.widget_calendar #wp-calendar > caption:after, .widget.widget_calendar #wp-calendar td:not(.pad):not(#next):not(#prev)#today:hover { background-color: ' . esc_attr( get_theme_mod( 'button_hover_color' ) ) . ' }';
+			echo '.widget.widget_search input[type="text"]:focus + button[type="submit"].searchsubmit, .widget.widget_search input[type="text"]:hover + button[type="submit"].searchsubmit, .widget.widget_product_search input[type="text"]:focus + button[type="submit"].searchsubmit, .widget.widget_product_search input[type="text"]:hover + button[type="submit"].searchsubmit { color: ' . esc_attr( get_theme_mod( 'button_hover_color' ) ) . ' }';
 		}
 
 		if ( get_theme_mod( 'social_color' ) ) {
@@ -282,8 +284,7 @@ function shapely_search_form( $form ) {
 	$form = '<form role="search" method="get" id="searchform" class="search-form" action="' . esc_url( home_url( '/' ) ) . '" >
     <label class="screen-reader-text" for="s">' . esc_html__( 'Search for:', 'shapely' ) . '</label>
     <input type="text" placeholder="' . esc_html__( 'Type Here', 'shapely' ) . '" type="text" value="' . esc_attr( get_search_query() ) . '" name="s" id="s" />
-    <input type="submit" class="btn btn-fillded searchsubmit" id="searchsubmit" value="' . esc_attr__( 'Search', 'shapely' ) . '" />
-
+    <button type="submit" class="searchsubmit"><i class="fa fa-search" aria-hidden="true"></i><span class="screen-reader-text">' . esc_attr__( 'Search', 'shapely' ) . '</span></button>
     </form>';
 
 	return $form;
@@ -567,7 +568,7 @@ function shapely_show_sidebar() {
  * Top Callout
  */
 function shapely_top_callout() {
-	if ( get_theme_mod( 'top_callout', true ) ) {
+	if ( ( get_theme_mod( 'top_callout', true ) && ! is_single() ) || ( is_single() && get_theme_mod( 'title_in_header', true ) ) ) {
 		$header = get_header_image();
 		?>
 	<section

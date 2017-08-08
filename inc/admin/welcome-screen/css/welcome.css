@@ -181,6 +181,11 @@
 
 .about-wrap .three-col .plugin_box.col {
     width: 29.81%;
+    margin-right: 3%;
+}
+
+.about-wrap .three-col .plugin_box.col:nth-child( 3n ) {
+    margin-right: 0;
 }
 
 .shapely-media-control img {

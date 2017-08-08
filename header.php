@@ -57,7 +57,7 @@
 		</div>
 	</header><!-- #masthead -->
 	<div id="content" class="main-container">
-		<?php if ( ! is_page_template( 'page-templates/template-home.php' ) ) : ?>
+		<?php if ( ! is_page_template( 'page-templates/template-home.php' ) && ! is_404() ) : ?>
 			<div class="header-callout">
 				<?php shapely_top_callout(); ?>
 			</div>

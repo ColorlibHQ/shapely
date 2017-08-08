@@ -104,10 +104,13 @@ if ( ! function_exists( 'shapely_setup' ) ) :
 			global $shapely_required_actions, $shapely_recommended_plugins;
 
 			$shapely_recommended_plugins = array(
-				'wordpress-seo'          => array(
-					'recommended' => true,
+				'contact-form-7' => array(
+					'recommended' => false,
 				),
 				'fancybox-for-wordpress' => array(
+					'recommended' => false,
+				),
+				'wordpress-seo'          => array(
 					'recommended' => false,
 				),
 			);
@@ -142,6 +145,13 @@ if ( ! function_exists( 'shapely_setup' ) ) :
 					'description' => Shapely_Notify_System::shapely_jetpack_description(),
 					'check'       => Shapely_Notify_System::shapely_has_plugin( 'jetpack' ),
 					'plugin_slug' => 'jetpack',
+				),
+				array(
+					'id'          => 'shapely-req-ac-install-contact-form-7',
+					'title'       => Shapely_Notify_System::shapely_cf7_title(),
+					'description' => Shapely_Notify_System::shapely_cf7_description(),
+					'check'       => Shapely_Notify_System::shapely_has_plugin( 'contact-form-7' ),
+					'plugin_slug' => 'contact-form-7',
 				),
 				array(
 					'id'       => 'shapely-req-import-content',
@@ -343,3 +353,4 @@ require get_template_directory() . '/inc/class-shapely-related-posts.php';
  * Load the system checks ( used for notifications )
  */
 require get_template_directory() . '/inc/admin/welcome-screen/class-shapely-notify-system.php';
+

@@ -41,6 +41,9 @@ if ( ! function_exists( 'shapely_posted_on_no_cat' ) ) :
 	 * Prints HTML with meta information for the current post-date/time and author.
 	 */
 	function shapely_posted_on_no_cat() {
+
+		$post_author  = get_theme_mod( 'post_author', true );
+		$post_date  = get_theme_mod( 'post_date', true );
 		$time_string = '<time class="entry-date published updated" datetime="%1$s">%2$s</time>';
 		if ( get_the_time( 'U' ) !== get_the_modified_time( 'U' ) ) {
 			$time_string = '<time class="entry-date published" datetime="%1$s">%2$s</time><time class="updated" datetime="%3$s">%4$s</time>';
@@ -51,15 +54,22 @@ if ( ! function_exists( 'shapely_posted_on_no_cat' ) ) :
 			esc_html( get_the_date() ),
 			esc_attr( get_the_modified_date( 'c' ) ),
 			esc_html( get_the_modified_date() )
-		); ?>
+		); 
+
+		if ( $post_date || $post_author ) :
+		?>
 
 		<ul class="post-meta">
-		<li><span class="posted-on"><?php echo $time_string; ?></span></li>
-		<li><span><?php echo esc_html__( 'by', 'shapely' ); ?> <a
-					href="<?php echo esc_url( get_author_posts_url( get_the_author_meta( 'ID' ) ) ); ?>"
-					title="<?php echo esc_attr( get_the_author() ); ?>"><?php esc_html( the_author() ); ?></a></span>
-		</li>
+		<?php if ( $post_date ): ?>
+			<li><span class="posted-on"><?php echo $time_string; ?></span></li>
+		<?php endif ?>
+		
+		<?php if ( $post_author ): ?>
+			<li><span><?php echo esc_html__( 'by', 'shapely' ); ?> <a href="<?php echo esc_url( get_author_posts_url( get_the_author_meta( 'ID' ) ) ); ?>" title="<?php echo esc_attr( get_the_author() ); ?>"><?php esc_html( the_author() ); ?></a></span></li>
+		<?php endif ?>
+		
 		</ul><?php
+		endif;
 	}
 endif;
 

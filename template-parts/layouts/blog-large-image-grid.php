@@ -11,16 +11,16 @@ while ( have_posts() ) : the_post();
 	if ( 0 == $wp_query->current_post ) {
 		get_template_part( 'template-parts/content', 'grid-wide' );
 	} else {
-		if ( 1 == $wp_query->current_post ) {
+		if ( 1 == fmod( $wp_query->current_post, 2 ) ) {
 			echo '<div class="row">';
 		}
 
 		get_template_part( 'template-parts/content', 'grid-small' );
 
 		if ( 0 == fmod( $wp_query->current_post, 2 ) && $wp_query->current_post != (int) $wp_query->post_count ) {
-			echo '</div><div class="row">';
-		} elseif ( $wp_query->current_post == (int) $wp_query->post_count ) {
-			continue;
+			echo '</div>';
+		} elseif ( ( $wp_query->current_post + 1 ) == (int) $wp_query->post_count ) {
+			echo '</div>';
 		}
 	}
 

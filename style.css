@@ -3,8 +3,8 @@ Theme Name: Shapely
 Theme URI: https://colorlib.com/wp/themes/shapely
 Author: colorlib
 Author URI: https://colorlib.com/
-Description: Shapely is a powerful and versatile one page WordPress theme with pixel perfect design and outstanding functionality. It is by far the most advanced free WordPress theme available today with loads of unmatched customization options. This theme comes with several homepage widgets that can be used to add portfolio, testimonials, parallax sections, your product or service information, call for action and much more. Shapely supports most free and premium WordPress plugins such as WooCommerce, Jetpack, Gravity Forms, Contact Form 7, Yoast SEO, Google Analytics by Yoast and much more. This theme is the best suited for business, landing page, portfolio, ecommerce, store, local business,  personal websites but can be tweaked to be used as blog, magazine or any other awesome website while highlighting its unique one page setup. This is going to be the last WordPress theme you will ever want to use because it is so much better than anything you have seen. Needless to say that this theme is SEO friendly thanks to its well optimized structure. Shapely theme is mobile friendly and fully responsive making it your best multipurpose partnered for any project and website.
-Version: 1.1.6
+Description: Shapely is a powerful and versatile one page WordPress theme with pixel perfect design and outstanding functionality. It is by far the most advanced free WordPress theme available today with loads of unmatched customization options. This theme comes with several homepage widgets that can be used to add portfolio, testimonials, parallax sections, your product or service information, call for action and much more. Shapely supports most free and premium WordPress plugins such as WooCommerce, Jetpack, Gravity Forms, Contact Form 7, Yoast SEO, Google Analytics by Yoast and much more. This theme is the best suited for business, landing page, portfolio, ecommerce, store, local business,  personal websites but can be tweaked to be used as blog, magazine or any other awesome website while highlighting its unique one page setup. This is going to be the last WordPress theme you will ever want to use because it is so much better than anything you have seen. Needless to say that this theme is SEO friendly thanks to its well optimized strucutre. Shapely theme is mobile friendly and fully responsive making it your best multipurpose partnert for any project and website.
+Version: 1.1.7
 License: GNU General Public License v3
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 Text Domain: shapely
@@ -375,6 +375,24 @@ select {
     border: 1px solid #ccc;
 }
 
+footer input[type="text"]:focus,
+footer input[type="email"]:focus,
+footer input[type="url"]:focus,
+footer input[type="password"]:focus,
+footer input[type="search"]:focus,
+footer input[type="number"]:focus,
+footer input[type="tel"]:focus,
+footer input[type="range"]:focus,
+footer input[type="date"]:focus
+footer input[type="month"]:focus,
+footer input[type="week"]:focus,
+footer input[type="time"]:focus,
+footer input[type="datetime"]:focus,
+footer input[type="datetime-local"]:focus,
+footer input[type="color"]:focus,
+footer textarea:focus {
+    color: #fff;
+}
 input[type="text"]:focus, input[type="email"]:focus, input[type="url"]:focus, input[type="password"]:focus, input[type="search"]:focus, input[type="number"]:focus, input[type="tel"]:focus, input[type="range"]:focus, input[type="date"]:focus, input[type="month"]:focus, input[type="week"]:focus, input[type="time"]:focus, input[type="datetime"]:focus, input[type="datetime-local"]:focus, input[type="color"]:focus, textarea:focus {
     color: #111;
 }
@@ -1200,6 +1218,7 @@ footer {
     -moz-transition: all 0.3s ease;
     margin-right: 8px;
     margin-bottom: 24px;
+    white-space: normal;
 }
 
 .btn:last-child, .btn:last-of-type {
@@ -1212,13 +1231,14 @@ footer {
 }
 
 .btn-lg {
-    height: 50px;
-    line-height: 46px;
+    line-height: 24px;
     min-width: 200px;
+    padding-bottom: 13px;
+    padding-top: 13px;
 }
 
 .btn-sm {
-    height: 30px;
+    min-height: 30px;
     font-size: 11px;
     line-height: 27px;
     min-width: 0;
@@ -1304,10 +1324,6 @@ input[type="submit"]:hover {
 .widget input[type="submit"] {
     border: none;
     margin-top: 5px;
-}
-
-.widget input[type="submit"]:hover {
-    background-color: #fff;
 }
 
 /*!---------- 7. NAVIGATION ----------*/
@@ -1711,6 +1727,7 @@ nav.fixed.scrolled {
 }
 
 .btn.searchsubmit,
+.search-widget-handle button.searchsubmit,
 .woocommerce-product-search > input[type="submit"] {
     min-width: 17%;
     padding: 0;
@@ -1718,6 +1735,12 @@ nav.fixed.scrolled {
     height: 50px;
     line-height: 48px;
     margin: -2px 0 0 8px;
+}
+.search-widget-handle button.searchsubmit .screen-reader-text {
+    position: relative !important;
+    width: auto;;
+    height: auto;
+    clip: initial;
 }
 
 .btn.searchsubmit:hover {
@@ -1736,18 +1759,27 @@ nav.fixed.scrolled {
 }
 
 .no-results form.search-form {
-    max-width: 500px;
     padding: 0;
     width: 100%;
 }
 
-.no-results form #s {
+.not-found form #s {
     max-width: 292px;
     width: 71%;
 }
 
 .no-results form .searchsubmit {
     margin: 0;
+}
+.not-found form .searchsubmit i {
+    display: none;
+}
+
+.not-found form .searchsubmit span.screen-reader-text {
+    clip: auto;
+    position: relative !important;
+    height: auto;
+    width: auto;
 }
 
 .main-navigation .menu > li ul {
@@ -1785,7 +1817,8 @@ nav.fixed.scrolled {
 }
 
 /* Widget Menu */
-.widget_nav_menu .sub-menu {
+.widget_nav_menu .sub-menu,
+.widget.widget_pages ul.children {
     border-top: 1px solid #ebebeb;
     padding-top: 20px;
     margin-top: 20px;
@@ -1940,7 +1973,7 @@ input[type="text"], textarea {
 
 input[type="text"], input[type="search"], input[type="email"], input[type="tel"] {
     background: #f5f5f5;
-    border: none;
+    border: 1px solid transparent;
     width: 100%;
     height: 50px;
     padding-left: 20px;
@@ -1955,7 +1988,7 @@ input[type="text"]:focus, input[type="search"]:focus {
 
 textarea {
     width: 100%;
-    border: none;
+    border: 1px solid transparent;
     background: #f5f5f5;
     margin-bottom: 24px;
     border-radius: 0;
@@ -2002,7 +2035,8 @@ input.transparent:-ms-input-placeholder, button.transparent:-ms-input-placeholde
     color: #fff;
 }
 
-input[type="submit"] {
+input[type="submit"],
+button[type="submit"] {
     background: #745cf9;
     border-radius: 0 !important;
     border: 2px solid #745cf9;
@@ -2016,6 +2050,10 @@ input[type="submit"] {
     padding: 0;
     text-transform: uppercase;
     width: 100%;
+}
+
+.search-widget-handle button[type="submit"] i {
+    display: none;
 }
 
 .bg-primary input[type="submit"] {
@@ -2051,7 +2089,9 @@ input[type="submit"] {
     border-bottom-right-radius: 3px;
 }
 
-.pagination a, .pagination span {
+.pagination a,
+.pagination span,
+.woocommerce-pagination ul.page-numbers .page-numbers {
     width: 32px;
     height: 32px;
     padding: 0;
@@ -2065,14 +2105,24 @@ input[type="submit"] {
     border: 1px solid #ddd;
     line-height: 20px;
 }
+.woocommerce nav.woocommerce-pagination ul,
+.woocommerce nav.woocommerce-pagination ul li {
+    border: 0 none;
+}
 
-.pagination span {
+.pagination span:not( .dots ),
+.woocommerce-pagination ul.page-numbers span.page-numbers,
+.woocommerce nav.woocommerce-pagination ul li a:focus,
+.woocommerce nav.woocommerce-pagination ul li a:hover,
+.woocommerce nav.woocommerce-pagination ul li span.current {
     background: #745cf9;
     color: #fff;
     border-color: #745cf9;
 }
 
-.pagination a:hover, .pagination .active a, .pagination .active:hover a {
+.pagination a:hover, 
+.pagination .active a, 
+.pagination .active:hover a {
     background: #745cf9;
     color: #fff;
     border-color: #745cf9;
@@ -3322,7 +3372,9 @@ footer.bg-dark a {
     margin-bottom: 20px; }
     .widget.widget_archive > div ul li:last-of-type, .widget.widget_archive ul li:last-of-type, .widget.widget_categories > div ul li:last-of-type, .widget.widget_categories ul li:last-of-type, .widget.widget_meta > div ul li:last-of-type, .widget.widget_meta ul li:last-of-type, .widget.widget_pages > div ul li:last-of-type, .widget.widget_pages ul li:last-of-type, .widget.widget_nav_menu > div ul li:last-of-type, .widget.widget_nav_menu ul li:last-of-type {
       border: none;
-      padding-bottom: 0; }
+      padding-bottom: 0;
+      margin-bottom: 0;
+  }
     .woocommerce .widget_layered_nav ul li span, .widget.widget_archive > div ul li span, .widget.widget_archive ul li span, .widget.widget_categories > div ul li span, .widget.widget_categories ul li span, .widget.widget_meta > div ul li span, .widget.widget_meta ul li span, .widget.widget_pages > div ul li span, .widget.widget_pages ul li span, .widget.widget_nav_menu > div ul li span, .widget.widget_nav_menu ul li span {
       font-size: 12px;
       font-family: "Raleway", "Helvetica Neue", Helvetica, Arial, sans-serif;
@@ -3435,16 +3487,6 @@ footer.bg-dark a {
 .widget_product_search .woocommerce-product-search {
   padding: 0;
   position: relative; }
-  .widget.widget_search .search-form:after,
-  .widget_product_search .woocommerce-product-search:after {
-    content: '\f002';
-    display: block;
-    top: 0;
-    right: 23px;
-    z-index: -1;
-    font-family: 'FontAwesome';
-    position: absolute;
-    color: #ebebeb; }
   .widget.widget_search .search-form > input,
   .widget_product_search .woocommerce-product-search > input {
     background: transparent;
@@ -3456,12 +3498,23 @@ footer.bg-dark a {
     .widget.widget_search .search-form > input#s:hover, 
     .widget.widget_search .search-form > input#s:focus,
     .widget_product_search .woocommerce-product-search > input.search-field:hover,
-    .widget_product_search .woocommerce-product-search > input.search-field:focus {
+    .widget_product_search .woocommerce-product-search > input.search-field:focus,
+    textarea:hover,
+    textarea:focus,
+    input[type="text"]:hover, input[type="search"]:hover, input[type="email"]:hover, input[type="tel"]:hover,
+    input[type="text"]:focus, input[type="search"]:focus, input[type="email"]:focus, input[type="tel"]:focus {
       border-color: #745cf9;
       box-shadow: none;
       outline: none; }
-  .widget.widget_search .search-form > input[type="submit"].searchsubmit,
-  .widget_product_search .woocommerce-product-search > input[type="submit"] {
+    .widget.widget_search input[type="text"]:focus + button[type="submit"].searchsubmit,
+    .widget.widget_search input[type="text"]:hover + button[type="submit"].searchsubmit,
+    .widget.widget_product_search input[type="text"]:focus + button[type="submit"].searchsubmit,
+    .widget.widget_product_search input[type="text"]:hover + button[type="submit"].searchsubmit {
+        color: #745cf9;
+        border-color: #745cf9 !important;
+    }
+  .widget.widget_search .search-form > button[type="submit"].searchsubmit,
+  .widget_product_search .woocommerce-product-search > button[type="submit"].searchsubmit {
     position: absolute;
     border: none;
     top: 7px;
@@ -3476,9 +3529,19 @@ footer.bg-dark a {
     border-bottom: 0 none !important;
     color: transparent;
     background-color: transparent !important;
+    z-index: 2;
+    font-size: 14px;
+    line-height: 1.5;
     }
-    .widget.widget_search .search-form > input[type="submit"].searchsubmit:hover,
-    .widget_product_search .woocommerce-product-search > input[type="submit"]:hover {
+    .widget.widget_search .search-form > button[type="submit"].searchsubmit,
+    .widget.widget_product_search button[type="submit"].searchsubmit {
+        color: #ebebeb;
+    }
+    .footer-widget-area .widget.widget_search .search-form > button[type="submit"].searchsubmit,
+    .footer-widget-area .widget.widget_product_search button[type="submit"].searchsubmit {
+        color: #fff;
+    }
+    .widget_product_search .woocommerce-product-search > button[type="submit"]:hover {
         color: transparent !important;
         background-color: transparent !important;
     }
@@ -3620,7 +3683,9 @@ footer.bg-dark a {
       position: absolute;
       color: transparent !important;
       right: 0; }
-
+#colophon .widget {
+    margin-bottom: 24px;
+}
 #colophon .site-info {
   margin-top: 15px; }
 #colophon .widget {
@@ -3628,7 +3693,9 @@ footer.bg-dark a {
   width: 100%; }
   #colophon .widget ul {
     padding-left: 0;
-    margin-left: 0; }
+    margin-left: 0;
+    margin-bottom: 0;
+}
     #colophon .widget ul li {
       margin-right: 0; }
   #colophon .widget .widget-title {
@@ -3930,4 +3997,31 @@ footer.bg-dark a {
 /* WooCommerce */
 .woocommerce-product-gallery figure {
     padding: 0;
+}
+.woocommerce .cart .coupon input.button {
+    width: auto;
+}
+.woocommerce-page #content table.cart td.actions .coupon .input-text {
+    width: auto;
+}
+
+/* Contact Form 7 */
+.wpcf7-form div.wpcf7-validation-errors {
+    background: #f7e700;
+    color: #000;
+}
+.wpcf7-form div.wpcf7-mail-sent-ng {
+    background: #ff0000;
+    color: #fff;
+}
+.wpcf7-form div.wpcf7-mail-sent-ok {
+    background: #398f14;
+    color: #fff;
+}
+.wpcf7-form div.wpcf7-spam-blocked {
+    background: #ffa500;
+    color: #000;
+}
+span.wpcf7-not-valid-tip {
+    margin-top: -24px;
 }
