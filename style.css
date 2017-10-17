@@ -447,8 +447,8 @@ a, a:visited, a:active, a:hover {
 .main-navigation {
     clear: both;
     display: block;
-    float: left;
     width: 100%;
+    padding: 10px 0;
 }
 
 .main-navigation ul {
@@ -559,6 +559,11 @@ a, a:visited, a:active, a:hover {
 
 #site-navigation .module.left {
     padding-left: 15px;
+}
+#site-navigation .container > .row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
 }
 
 /*--------------------------------------------------------------
@@ -1366,8 +1371,6 @@ nav .btn, .nav-bar .btn {
 }
 
 .nav-bar {
-    height: 55px;
-    max-height: 55px;
     line-height: 53px;
 }
 
@@ -1375,17 +1378,14 @@ nav {
     border-bottom: 1px solid rgba(0, 0, 0, 0.1);
 }
 
-.nav-bar .module, .nav-bar .module-group {
+.nav-bar .module:not( .site-title-container ),
+.nav-bar .module-group {
     height: 55px;
 }
 
-.nav-bar a {
+.nav-bar a:not( .custom-logo-link ) {
     display: inline-block;
     height: 55px;
-}
-
-.logo {
-    max-height: 60%;
 }
 
 .menu > li.dropdown {
@@ -1835,7 +1835,7 @@ nav.fixed.scrolled {
         width: 84%;
     }
 
-    .nav-bar, .nav-bar .module-group, .nav-bar .module {
+    .nav-bar, .nav-bar .module-group, .nav-bar .module, .nav-bar .module:not( .site-title-container ) {
         height: auto;
     }
 
@@ -1956,6 +1956,12 @@ nav.fixed.scrolled {
 
     .mobile-toggle i {
         line-height: 53px !important;
+    }
+    #site-navigation .container > .row {
+        flex-wrap: wrap;
+    }
+    .navbar-collapse {
+        margin-top: 20px;
     }
 }
 

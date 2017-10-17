@@ -483,16 +483,48 @@ function shapely_custom_comment_form() {
  * Header Logo
  */
 function shapely_get_header_logo() {
-	$logo_id = get_theme_mod( 'custom_logo', '' );
-	$logo    = wp_get_attachment_image_src( $logo_id, 'full' ); ?>
 
-	<a href="<?php echo esc_url( home_url( '/' ) ); ?>"><?php
-	if ( '' != $logo[0] ) { ?>
-		<img src="<?php echo esc_url( $logo[0] ); ?>" class="logo" alt="<?php echo esc_html( get_bloginfo( 'name' ) ); ?>"><?php
-	} else { ?>
-		<span class="site-title"><?php echo esc_html( get_bloginfo( 'name' ) ); ?></span><?php
-	} ?>
-	</a><?php
+	$logo_dimensions = get_theme_mod( 'shapely_logo_dimension', array() );
+	if ( ! empty( $logo_dimensions ) && isset( $logo_dimensions['width'] ) && isset( $logo_dimensions['height'] ) ) {
+		$dimension = array( $logo_dimensions['width'], $logo_dimensions['height'] );
+	}else{
+		$dimension = 'full';
+	}
+
+	$custom_logo_id = get_theme_mod( 'custom_logo' );
+	// We have a logo. Logo is go.
+	if ( $custom_logo_id ) {
+		$custom_logo_attr = array(
+			'class'    => 'custom-logo logo',
+			'itemprop' => 'logo',
+		);
+		/*
+		 * If the logo alt attribute is empty, get the site title and explicitly
+		 * pass it to the attributes used by wp_get_attachment_image().
+		 */
+		$image_alt = get_post_meta( $custom_logo_id, '_wp_attachment_image_alt', true );
+		if ( empty( $image_alt ) ) {
+			$custom_logo_attr['alt'] = get_bloginfo( 'name', 'display' );
+		}
+		/*
+		 * If the alt attribute is not empty, there's no need to explicitly pass
+		 * it because wp_get_attachment_image() already adds the alt attribute.
+		 */
+		$html = sprintf( '<a href="%1$s" class="custom-logo-link" rel="home" itemprop="url">%2$s</a>',
+			esc_url( home_url( '/' ) ),
+			wp_get_attachment_image( $custom_logo_id, $dimension, false, $custom_logo_attr )
+		);
+	}
+	// If no logo is set but we're in the Customizer, leave a placeholder (needed for the live preview).
+	elseif ( is_customize_preview() ) {
+		$html = sprintf( '<a href="%1$s" class="custom-logo-link" style="display:none;"><img class="custom-logo"/>%2$s</a>',
+			esc_url( home_url( '/' ) ),
+			esc_html( get_bloginfo( 'name' ) )
+		);
+	}
+
+	echo $html;
+
 }
 
 /*

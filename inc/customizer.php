@@ -66,6 +66,8 @@ function shapely_customizer( $wp_customize ) {
 	// Recomended actions
 	global $shapely_required_actions, $shapely_recommended_plugins;
 
+	require_once get_template_directory() . '/inc/custom-controls/class-shapely-logo-dimensions.php';
+
 	$customizer_recommended_plugins = array();
 	if ( is_array( $shapely_recommended_plugins ) ) {
 		foreach ( $shapely_recommended_plugins as $k => $s ) {
@@ -127,6 +129,15 @@ function shapely_customizer( $wp_customize ) {
 		'description'    => esc_html__( 'Panel to update Blog related options', 'shapely' ), // Include html tags such as <p>.
 		'priority'       => 10, // Mixed with top-level-section hierarchy.
 	) );
+
+	// Logo dimensions
+	$wp_customize->add_setting( 'shapely_logo_dimension', array(
+		'sanitize_callback' => 'shapely_sanitize_logo_dimension',
+	) );
+	$wp_customize->add_control( new Shapely_Logo_Dimensions( $wp_customize, 'shapely_logo_dimension', array(
+		'section'     => 'title_tagline',
+		'priority'	  => 9,
+	) ) );
 
 	$title_tagline = $wp_customize->get_section( 'title_tagline' );
 	if ( $title_tagline ) {
@@ -563,6 +574,28 @@ function shapely_customizer( $wp_customize ) {
 add_action( 'customize_register', 'shapely_customizer' );
 
 /**
+ * Sanitize logo dimension setting.
+ */
+function shapely_sanitize_logo_dimension( $dimensions ) {
+	$new_dimensions = array();
+
+	if ( isset( $dimensions['width'] ) ) {
+		$new_dimensions['width'] = abs( floatval( $dimensions['width'] ) );
+	}
+
+	if ( isset( $dimensions['height'] ) ) {
+		$new_dimensions['height'] = abs( floatval( $dimensions['height'] ) );
+	}
+
+	if ( isset( $dimensions['ratio'] ) ) {
+		$new_dimensions['ratio'] = absint( $dimensions['ratio'] );
+	}
+
+	return $new_dimensions;
+
+}
+
+/**
  * Sanitize checkbox for WordPress customizer.
  */
 function shapely_sanitize_checkbox( $input ) {
@@ -611,6 +644,16 @@ function shapely_customizer_custom_control_css() {
 		#customize-control-shapely-main_body_typography-size select, #customize-control-shapely-main_body_typography-face select, #customize-control-shapely-main_body_typography-style select {
 			width: 60%;
 		}
+		.shapely-logo-dimension .half {
+			width: 49%;
+			float: left;
+		}
+		.shapely-logo-dimension .half:nth-child(2) {
+			margin-left: 2%;
+		}
+		.shapely-logo-dimension .ratio {
+			clear: both;
+		}
 	</style>
 	<?php
 }
@@ -621,6 +664,11 @@ add_action( 'customize_controls_print_styles', 'shapely_customizer_custom_contro
  * Binds JS handlers to make Theme Customizer preview reload changes asynchronously.
  */
 function shapely_customize_preview_js() {
-	wp_enqueue_script( 'shapely_customizer', get_template_directory_uri() . '/assets/js/customizer.js', array( 'customize-preview' ), '20140317', true );
+	wp_enqueue_script( 'shapely_customizer', get_template_directory_uri() . '/assets/js/customizer-preview.js', array( 'customize-preview' ), '20140317', true );
 }
 add_action( 'customize_preview_init', 'shapely_customize_preview_js' );
+
+function shapely_customize_preview() {
+	wp_enqueue_script( 'shapely_customizer', get_template_directory_uri() . '/assets/js/customizer.js', array( 'customize-preview' ), '20140317', true );
+}
+add_action( 'customize_controls_enqueue_scripts', 'shapely_customize_preview' );

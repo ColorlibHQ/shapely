@@ -34,6 +34,7 @@ if ( ! function_exists( 'shapely_setup' ) ) :
 			'height'     => 55,
 			'width'      => 135,
 			'flex-width' => true,
+			'flex-height' => true,
 		) );
 
 		add_theme_support( 'custom-header', apply_filters( 'shapely_custom_header_args', array(
