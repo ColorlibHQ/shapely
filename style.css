@@ -2948,6 +2948,25 @@ iframe {
 .project .image-tile {
     margin: 0;
 }
+.project:not( .masonry-item ) .image-tile {
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+.project:not( .masonry-item ) .image-tile a {
+    display: block;
+    width: 100%;
+    height: 100%;
+}
+.project:not( .masonry-item ) {
+    padding-bottom: 25%;
+    position: relative;
+}
 
 /*!---------- 21. FOOTER ----------*/
 
