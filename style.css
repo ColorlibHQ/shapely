@@ -2966,6 +2966,7 @@ iframe {
 .project:not( .masonry-item ) {
     padding-bottom: 25%;
     position: relative;
+    margin-bottom: 0;
 }
 
 /*!---------- 21. FOOTER ----------*/
@@ -4009,7 +4010,8 @@ footer.bg-dark a {
     .author-bio-left-side .author-bio .author-social li a {
       color: #001c28; }
 
-.single-post .entry-content .dropcaps-content > p:first-child:first-letter {
+.single-post .entry-content .dropcaps-content > p:first-child:first-letter,
+.single-jetpack-portfolio .entry-content .dropcaps-content > p:first-child:first-letter {
   float: left;
   font-size: 57px;
   margin: 10px;
