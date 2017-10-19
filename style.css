@@ -560,7 +560,7 @@ a, a:visited, a:active, a:hover {
 #site-navigation .module.left {
     padding-left: 15px;
 }
-#site-navigation .container > .row {
+#site-navigation .container > .flex-row {
     display: flex;
     align-items: center;
     justify-content: space-between;

@@ -117,10 +117,44 @@
 		});
 		$( '.slider-paging-controls' ).flexslider({
 			animation: 'slide',
-			directionNav: false
+			directionNav: false,
+			after: function (slider){
+			   if (!slider.playing){
+			    slider.pause();
+			    slider.play();
+			    slider.off( "mouseenter mouseleave" );
+			    slider.off( "mouseover mouseout" );
+			    slider.mouseover( function() {
+			       if ( !slider.manualPlay && !slider.manualPause ){
+			         slider.pause();
+			       }
+			    }).mouseout( function() {
+			       if (!slider.manualPause && !slider.manualPlay && !slider.stopped){
+			         slider.play();
+			       }
+			    }); 
+			  }
+			}
 		});
 		$( '.slider-arrow-controls' ).flexslider({
-			controlNav: false
+			controlNav: false,
+			after: function (slider){
+			   if (!slider.playing){
+			    slider.pause();
+			    slider.play();
+			    slider.off( "mouseenter mouseleave" );
+			    slider.off( "mouseover mouseout" );
+			    slider.mouseover( function() {
+			       if ( !slider.manualPlay && !slider.manualPause ){
+			         slider.pause();
+			       }
+			    }).mouseout( function() {
+			       if (!slider.manualPause && !slider.manualPlay && !slider.stopped){
+			         slider.play();
+			       }
+			    }); 
+			  }
+			}
 		});
 		$( '.slider-thumb-controls .slides li' ).each(function() {
 			var imgSrc = $( this ).find( 'img' ).attr( 'src' );
@@ -129,7 +163,24 @@
 		$( '.slider-thumb-controls' ).flexslider({
 			animation: 'slide',
 			controlNav: 'thumbnails',
-			directionNav: true
+			directionNav: true,
+			after: function (slider){
+			   if (!slider.playing){
+			    slider.pause();
+			    slider.play();
+			    slider.off( "mouseenter mouseleave" );
+			    slider.off( "mouseover mouseout" );
+			    slider.mouseover( function() {
+			       if ( !slider.manualPlay && !slider.manualPause ){
+			         slider.pause();
+			       }
+			    }).mouseout( function() {
+			       if (!slider.manualPause && !slider.manualPlay && !slider.stopped){
+			         slider.play();
+			       }
+			    }); 
+			  }
+			}
 		});
 		$( '.logo-carousel' ).flexslider({
 			minItems: 1,
@@ -141,7 +192,24 @@
 			slideshow: true,
 			slideshowSpeed: 3000,
 			directionNav: false,
-			controlNav: false
+			controlNav: false,
+			after: function (slider){
+			   if (!slider.playing){
+			    slider.pause();
+			    slider.play();
+			    slider.off( "mouseenter mouseleave" );
+			    slider.off( "mouseover mouseout" );
+			    slider.mouseover( function() {
+			       if ( !slider.manualPlay && !slider.manualPause ){
+			         slider.pause();
+			       }
+			    }).mouseout( function() {
+			       if (!slider.manualPause && !slider.manualPlay && !slider.stopped){
+			         slider.play();
+			       }
+			    }); 
+			  }
+			}
 		});
 
 		// Lightbox gallery titles

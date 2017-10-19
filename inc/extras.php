@@ -518,7 +518,12 @@ function shapely_get_header_logo() {
 	}
 	// If no logo is set but we're in the Customizer, leave a placeholder (needed for the live preview).
 	elseif ( is_customize_preview() ) {
-		$html = sprintf( '<a href="%1$s" class="custom-logo-link" style="display:none;"><img class="custom-logo"/>%2$s</a>',
+		$html = sprintf( '<a href="%1$s" class="custom-logo-link"><img class="custom-logo"/ style="display:none;"><span class="site-title">%2$s</span></a>',
+			esc_url( home_url( '/' ) ),
+			esc_html( get_bloginfo( 'name' ) )
+		);
+	}else{
+		$html = sprintf( '<a href="%1$s" class="custom-logo-link"><span class="site-title">%2$s</span></a>',
 			esc_url( home_url( '/' ) ),
 			esc_html( get_bloginfo( 'name' ) )
 		);
