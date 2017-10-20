@@ -26,6 +26,8 @@ class Wp_Bootstrap_Navwalker extends Walker_Nav_Menu {
 	 */
 	public function start_el( &$output, $item, $depth = 0, $args = array(), $id = 0 ) {
 		$indent = ( $depth ) ? str_repeat( "\t", $depth ) : '';
+		$extra = get_post_meta( $item->ID, '_menu_item_extra', true );
+		$widget = get_post_meta( $item->ID, '_menu_item_widget', true );
 
 		/**
 		 * Dividers, Headers or Disabled
@@ -80,6 +82,16 @@ class Wp_Bootstrap_Navwalker extends Walker_Nav_Menu {
 				// $atts['class']       = 'dropdown-toggle';
 			} else {
 				$atts['href'] = ! empty( $item->url ) ? $item->url : '';
+			}
+
+			if ( 'shapely-section' == $extra ) {
+				if ( ! is_front_page() ) {
+					$atts['href'] = site_url() . esc_attr( $item->url );
+				}
+
+				if ( '' != $widget ) {
+					$atts['data-scroll'] = $widget;
+				}
 			}
 
 			$atts = apply_filters( 'nav_menu_link_attributes', $atts, $item, $args );
