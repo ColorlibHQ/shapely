@@ -19,14 +19,18 @@ class Shapely_Welcome {
 		add_action( 'customize_controls_enqueue_scripts', array( $this, 'shapely_welcome_scripts_for_customizer' ) );
 
 		/* ajax callback for dismissable required actions */
-		add_action( 'wp_ajax_shapely_dismiss_required_action', array(
-			$this,
-			'shapely_dismiss_required_action_callback',
-		) );
-		add_action( 'wp_ajax_nopriv_shapely_dismiss_required_action', array(
-			$this,
-			'shapely_dismiss_required_action_callback',
-		) );
+		add_action(
+			'wp_ajax_shapely_dismiss_required_action', array(
+				$this,
+				'shapely_dismiss_required_action_callback',
+			)
+		);
+		add_action(
+			'wp_ajax_nopriv_shapely_dismiss_required_action', array(
+				$this,
+				'shapely_dismiss_required_action_callback',
+			)
+		);
 
 		$theme = wp_get_theme();
 		$this->theme_name = $theme->get( 'Name' );
@@ -49,10 +53,12 @@ class Shapely_Welcome {
 		$action_count = $this->count_actions();
 		$title        = $action_count > 0 ? esc_html__( 'About Shapely', 'shapely' ) . '<span class="badge-action-count">' . esc_html( $action_count ) . '</span>' : esc_html__( 'About Shapely', 'shapely' );
 
-		add_theme_page( 'About shapely', $title, 'edit_theme_options', 'shapely-welcome', array(
-			$this,
-			'shapely_welcome_screen',
-		) );
+		add_theme_page(
+			'About shapely', $title, 'edit_theme_options', 'shapely-welcome', array(
+				$this,
+				'shapely_welcome_screen',
+			)
+		);
 	}
 
 	/**
@@ -120,12 +126,14 @@ class Shapely_Welcome {
 		wp_enqueue_style( 'shapely-welcome-screen-css', get_template_directory_uri() . '/inc/admin/welcome-screen/css/welcome.css' );
 		wp_enqueue_script( 'shapely-welcome-screen-js', get_template_directory_uri() . '/inc/admin/welcome-screen/js/welcome.js', array( 'jquery' ) );
 
-		wp_localize_script( 'shapely-welcome-screen-js', 'shapelyWelcomeScreenObject', array(
-			'nr_actions_required'      => absint( $this->count_actions() ),
-			'ajaxurl'                  => esc_url( admin_url( 'admin-ajax.php' ) ),
-			'template_directory'       => esc_url( get_template_directory_uri() ),
-			'no_required_actions_text' => esc_html__( 'Hooray! There are no required actions for you right now.', 'shapely' ),
-		) );
+		wp_localize_script(
+			'shapely-welcome-screen-js', 'shapelyWelcomeScreenObject', array(
+				'nr_actions_required'      => absint( $this->count_actions() ),
+				'ajaxurl'                  => esc_url( admin_url( 'admin-ajax.php' ) ),
+				'template_directory'       => esc_url( get_template_directory_uri() ),
+				'no_required_actions_text' => esc_html__( 'Hooray! There are no required actions for you right now.', 'shapely' ),
+			)
+		);
 
 	}
 
@@ -161,10 +169,10 @@ class Shapely_Welcome {
 				$shapely_show_required_actions = get_option( 'shapely_show_required_actions' );
 
 				switch ( esc_html( $_GET['todo'] ) ) {
-					case 'add';
+					case 'add':
 						$shapely_show_required_actions[ $action_id ] = true;
 						break;
-					case 'dismiss';
+					case 'dismiss':
 						$shapely_show_required_actions[ $action_id ] = false;
 						break;
 					default:
@@ -238,26 +246,28 @@ class Shapely_Welcome {
 		include_once( ABSPATH . 'wp-admin/includes/plugin-install.php' );
 		$call_api = get_transient( 'shapely_plugin_information_transient_' . $slug );
 		if ( false === $call_api ) {
-			$call_api = plugins_api( 'plugin_information', array(
-				'slug'   => $slug,
-				'fields' => array(
-					'downloaded'        => false,
-					'rating'            => false,
-					'description'       => false,
-					'short_description' => true,
-					'donate_link'       => false,
-					'tags'              => false,
-					'sections'          => true,
-					'homepage'          => true,
-					'added'             => false,
-					'last_updated'      => false,
-					'compatibility'     => false,
-					'tested'            => false,
-					'requires'          => false,
-					'downloadlink'      => false,
-					'icons'             => true,
-				),
-			) );
+			$call_api = plugins_api(
+				'plugin_information', array(
+					'slug'   => $slug,
+					'fields' => array(
+						'downloaded'        => false,
+						'rating'            => false,
+						'description'       => false,
+						'short_description' => true,
+						'donate_link'       => false,
+						'tags'              => false,
+						'sections'          => true,
+						'homepage'          => true,
+						'added'             => false,
+						'last_updated'      => false,
+						'compatibility'     => false,
+						'tested'            => false,
+						'requires'          => false,
+						'downloadlink'      => false,
+						'icons'             => true,
+					),
+				)
+			);
 			set_transient( 'shapely_plugin_information_transient_' . $slug, $call_api, 30 * MINUTE_IN_SECONDS );
 		}
 
@@ -305,7 +315,7 @@ class Shapely_Welcome {
 
 	public function create_action_link( $state, $slug ) {
 		$slug2 = Shapely_Notify_System::_get_plugin_basename_from_slug( $slug );
-		
+
 		switch ( $state ) {
 			case 'install':
 				return wp_nonce_url(
@@ -320,22 +330,26 @@ class Shapely_Welcome {
 				);
 				break;
 			case 'deactivate':
-				return add_query_arg( array(
-					'action'        => 'deactivate',
-					'plugin'        => rawurlencode( $slug2 ),
-					'plugin_status' => 'all',
-					'paged'         => '1',
-					'_wpnonce'      => wp_create_nonce( 'deactivate-plugin_' . $slug2 ),
-				), network_admin_url( 'plugins.php' ) );
+				return add_query_arg(
+					array(
+						'action'        => 'deactivate',
+						'plugin'        => rawurlencode( $slug2 ),
+						'plugin_status' => 'all',
+						'paged'         => '1',
+						'_wpnonce'      => wp_create_nonce( 'deactivate-plugin_' . $slug2 ),
+					), network_admin_url( 'plugins.php' )
+				);
 				break;
 			case 'activate':
-				return add_query_arg( array(
-					'action'        => 'activate',
-					'plugin'        => rawurlencode( $slug2 ),
-					'plugin_status' => 'all',
-					'paged'         => '1',
-					'_wpnonce'      => wp_create_nonce( 'activate-plugin_' . $slug2 ),
-				), network_admin_url( 'plugins.php' ) );
+				return add_query_arg(
+					array(
+						'action'        => 'activate',
+						'plugin'        => rawurlencode( $slug2 ),
+						'plugin_status' => 'all',
+						'paged'         => '1',
+						'_wpnonce'      => wp_create_nonce( 'activate-plugin_' . $slug2 ),
+					), network_admin_url( 'plugins.php' )
+				);
 				break;
 		}
 	}
@@ -371,7 +385,7 @@ class Shapely_Welcome {
 				   class="nav-tab <?php echo 'getting_started' == $active_tab ? 'nav-tab-active' : ''; ?>"><?php echo esc_html__( 'Getting Started', 'shapely' ); ?></a>
 				<a href="<?php echo esc_url( admin_url( 'themes.php?page=shapely-welcome&tab=recommended_actions' ) ); ?>"
 				   class="nav-tab <?php echo 'recommended_actions' == $active_tab ? 'nav-tab-active' : ''; ?> "><?php echo esc_html__( 'Recommended Actions', 'shapely' ); ?>
-					<?php echo $action_count > 0 ? '<span class="badge-action-count">' . esc_html( $action_count ) . '</span>' : '' ?></a>
+					<?php echo $action_count > 0 ? '<span class="badge-action-count">' . esc_html( $action_count ) . '</span>' : ''; ?></a>
 				<a href="<?php echo esc_url( admin_url( 'themes.php?page=shapely-welcome&tab=recommended_plugins' ) ); ?>"
 				   class="nav-tab <?php echo 'recommended_plugins' == $active_tab ? 'nav-tab-active' : ''; ?> "><?php echo esc_html__( 'Recommended Plugins', 'shapely' ); ?></a>
 				<a href="<?php echo esc_url( admin_url( 'themes.php?page=shapely-welcome&tab=support' ) ); ?>"

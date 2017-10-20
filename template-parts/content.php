@@ -54,11 +54,12 @@ $post_category  = get_theme_mod( 'post_category', true );
 				</a>
 			</span>
 		<?php endif; ?>
-		<?php }// End if().
+		<?php
+		}// End if().
 	?>
 	</header><!-- .entry-header -->
 	<div class="entry-content">
-		<?php if ( $post_title ): ?>
+		<?php if ( $post_title ) : ?>
 			<h2 class="post-title">
 				<a href="<?php echo esc_url( get_the_permalink() ); ?>"><?php echo wp_trim_words( get_the_title(), 9 ); ?></a>
 			</h2>
@@ -67,7 +68,9 @@ $post_category  = get_theme_mod( 'post_category', true );
 
 		<div class="entry-meta">
 			<?php
-			shapely_posted_on_no_cat(); ?><!-- post-meta -->
+			shapely_posted_on_no_cat();
+			?>
+			<!-- post-meta -->
 		</div>
 
 		<?php if ( $post_author && $left_side ) : ?>
@@ -81,10 +84,12 @@ $post_category  = get_theme_mod( 'post_category', true );
 					<?php
 					the_content();
 
-					wp_link_pages( array(
-						'before' => '<div class="page-links">' . esc_html__( 'Pages:', 'shapely' ),
-						'after'  => '</div>',
-					) );
+					wp_link_pages(
+						array(
+							'before' => '<div class="page-links">' . esc_html__( 'Pages:', 'shapely' ),
+							'after'  => '</div>',
+						)
+					);
 					?>
 				</div>
 			</div>
@@ -93,10 +98,12 @@ $post_category  = get_theme_mod( 'post_category', true );
 				<?php
 				the_content();
 
-				wp_link_pages( array(
-					'before' => '<div class="page-links">' . esc_html__( 'Pages:', 'shapely' ),
-					'after'  => '</div>',
-				) );
+				wp_link_pages(
+					array(
+						'before' => '<div class="page-links">' . esc_html__( 'Pages:', 'shapely' ),
+						'after'  => '</div>',
+					)
+				);
 				?>
 			</div>
 		<?php endif; ?>
@@ -113,10 +120,10 @@ $post_category  = get_theme_mod( 'post_category', true );
 		?>
 		<div class="shapely-next-prev row">
 			<div class="col-md-6 text-left">
-				<?php echo wp_kses_post( $prev ) ?>
+				<?php echo wp_kses_post( $prev ); ?>
 			</div>
 			<div class="col-md-6 text-right">
-				<?php echo wp_kses_post( $next ) ?>
+				<?php echo wp_kses_post( $next ); ?>
 			</div>
 		</div>
 

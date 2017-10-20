@@ -24,7 +24,7 @@
 <div id="page" class="site">
 	<a class="skip-link screen-reader-text" href="#content"><?php esc_html_e( 'Skip to content', 'shapely' ); ?></a>
 
-	<header id="masthead" class="site-header<?php echo get_theme_mod( 'mobile_menu_on_desktop', false ) ? ' mobile-menu' : '' ?>" role="banner">
+	<header id="masthead" class="site-header<?php echo get_theme_mod( 'mobile_menu_on_desktop', false ) ? ' mobile-menu' : ''; ?>" role="banner">
 		<div class="nav-container">
 			<nav id="site-navigation" class="main-navigation" role="navigation">
 				<div class="container nav-bar">
@@ -37,7 +37,7 @@
 						</div>
 						<div class="module-group right">
 							<div class="module left">
-								<?php shapely_header_menu(); // main navigation ?>
+								<?php shapely_header_menu(); ?>
 							</div>
 							<!--end of menu module-->
 							<div class="module widget-handle search-widget-handle left hidden-xs hidden-sm">
@@ -45,8 +45,10 @@
 									<i class="fa fa-search"></i>
 									<span class="title"><?php esc_html_e( 'Site Search', 'shapely' ); ?></span>
 								</div>
-								<div class="function"><?php
-									get_search_form(); ?>
+								<div class="function">
+								<?php
+									get_search_form();
+									?>
 								</div>
 							</div>
 						</div>
@@ -63,6 +65,6 @@
 			</div>
 		<?php endif; ?>
 
-		<section class="content-area <?php echo ( get_theme_mod( 'top_callout', true ) ) ? '' : ' pt0 ' ?>">
+		<section class="content-area <?php echo ( get_theme_mod( 'top_callout', true ) ) ? '' : ' pt0 '; ?>">
 			<div id="main" class="<?php echo ( ! is_page_template( 'page-templates/template-home.php' ) ) ? 'container' : ''; ?>"
 				 role="main">

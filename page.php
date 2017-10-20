@@ -20,17 +20,20 @@ get_header(); ?>
 			get_sidebar();
 		endif;
 		?>
-		<div id="primary" class="col-md-8 mb-xs-24 <?php echo esc_attr( $layout_class ); ?>"><?php
-		while ( have_posts() ) : the_post();
+		<div id="primary" class="col-md-8 mb-xs-24 <?php echo esc_attr( $layout_class ); ?>">
+																<?php
+																while ( have_posts() ) :
+																	the_post();
 
-			get_template_part( 'template-parts/content', 'page' );
+																	get_template_part( 'template-parts/content', 'page' );
 
-			// If comments are open or we have at least one comment, load up the comment template.
-			if ( comments_open() || get_comments_number() ) :
-				comments_template();
-				endif;
+																	// If comments are open or we have at least one comment, load up the comment template.
+																	if ( comments_open() || get_comments_number() ) :
+																		comments_template();
+																		endif;
 
-			endwhile; // End of the loop. ?>
+			endwhile; // End of the loop.
+			?>
 		</div><!-- #primary -->
 		<?php
 		if ( 'sidebar-right' == $layout_class ) :

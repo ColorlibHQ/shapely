@@ -19,9 +19,10 @@ if ( 'mansonry' == $layout ) {
 		<main id="main" class="site-main" role="main">
 
 			<?php
-			if ( have_posts() ) : ?>
+			if ( have_posts() ) :
+			?>
 
-			<?php if ( 'mansonry' == $layout ): ?>
+			<?php if ( 'mansonry' == $layout ) : ?>
 				<div class="masonry-loader fixed-center">
 					<div class="col-sm-12 text-center">
 						<div class="spinner"></div>
@@ -29,10 +30,11 @@ if ( 'mansonry' == $layout ) {
 				</div>
 			<?php endif ?>
 			
-			<div class="<?php echo 'mansonry' == $layout ? 'masonry masonryFlyIn' : '' ?>">
+			<div class="<?php echo 'mansonry' == $layout ? 'masonry masonryFlyIn' : ''; ?>">
 				<?php
 				/* Start the Loop */
-				while ( have_posts() ) : the_post();
+				while ( have_posts() ) :
+					the_post();
 					$projects_args = array(
 						'fields' => 'names',
 					);
@@ -46,24 +48,31 @@ if ( 'mansonry' == $layout ) {
 				?>
 
 					<article id="post-<?php the_ID(); ?>" <?php post_class( $item_classes ); ?>>
-						<div class="image-tile inner-title hover-reveal text-center"  style="<?php echo $item_style ?>"><?php
-						if ( has_post_thumbnail() ) { ?>
-							<a href="<?php the_permalink(); ?>" title="<?php the_title_attribute(); ?>">
+						<div class="image-tile inner-title hover-reveal text-center"  style="<?php echo $item_style; ?>">
+																										<?php
+																										if ( has_post_thumbnail() ) {
+																										?>
+																											<a href="<?php the_permalink(); ?>" title="<?php the_title_attribute(); ?>">
 								<?php
-								if ( 'mansonry' == $layout ){
+								if ( 'mansonry' == $layout ) {
 									the_post_thumbnail( 'medium' );
 								}
 								?>
-								<div class="title"><?php
+								<div class="title">
+								<?php
 								the_title( '<h5 class="mb0">', '</h5>' );
 								if ( ! empty( $project_types ) ) {
 									echo '<span>' . implode( ' / ', $project_types ) . '</span>';
-								} ?>
+								}
+								?>
 								</div>
-								</a><?php
-						} ?>
+								</a>
+								<?php
+																										}
+						?>
 						</div>
-					</article><!-- #post-## --><?php
+					</article><!-- #post-## -->
+					<?php
 
 				endwhile;
 
@@ -73,7 +82,8 @@ if ( 'mansonry' == $layout ) {
 
 					get_template_part( 'template-parts/content', 'none' );
 
-				endif; ?>
+				endif;
+				?>
 
 		</main><!-- #main -->
 	</div><!-- #primary -->

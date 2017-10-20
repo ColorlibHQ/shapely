@@ -9,7 +9,7 @@ class Shapely_Logo_Dimensions extends WP_Customize_Control {
 		$manager->register_control_type( 'Shapely_Logo_Dimensions' );
 	}
 
-	public function get_dimensions(){
+	public function get_dimensions() {
 
 		$current_value = $this->value();
 
@@ -24,13 +24,12 @@ class Shapely_Logo_Dimensions extends WP_Customize_Control {
 			if ( $custom_logo ) {
 				$logo = wp_get_attachment_image_src( $custom_logo , 'full' );
 				if ( is_array( $logo ) ) {
-					
+
 					$current_value['width'] = $logo[1];
 					$current_value['height'] = $logo[2];
 
 				}
 			}
-
 		}
 
 		return $current_value;

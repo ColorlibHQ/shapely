@@ -17,13 +17,15 @@ $count          = $this->count_actions();
 		<?php } else { ?>
 			<p><span class="dashicons dashicons-no-alt"></span> <a
 					href="<?php echo esc_url( admin_url( 'themes.php?page=shapely-welcome&tab=recommended_actions' ) ); ?>"><?php esc_html_e( 'Check recommended actions', 'shapely' ); ?></a>
-			</p> <?php
-}; ?>
+			</p> 
+			<?php
+};
+?>
 	</div><!--/.col-->
 
 	<div class="col">
 		<h3><?php esc_html_e( 'Step 2 - Check our documentation', 'shapely' ); ?></h3>
-		<p><?php esc_html_e( 'Even if you\'re a long-time WordPress user, we still believe you should give our documentation a very quick Read.', 'shapely' ) ?></p>
+		<p><?php esc_html_e( 'Even if you\'re a long-time WordPress user, we still believe you should give our documentation a very quick Read.', 'shapely' ); ?></p>
 		<p>
 			<a target="_blank" href="<?php echo esc_url( 'https://colorlib.com/wp/support/shapely/' ); ?>"><?php esc_html_e( 'Full documentation', 'shapely' ); ?></a>
 		</p>

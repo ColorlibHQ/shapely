@@ -30,20 +30,26 @@ if ( ! function_exists( 'shapely_setup' ) ) :
 		/**
 		 * Add support for the custom logo functionality
 		 */
-		add_theme_support( 'custom-logo', array(
-			'height'     => 55,
-			'width'      => 135,
-			'flex-width' => true,
-			'flex-height' => true,
-		) );
+		add_theme_support(
+			'custom-logo', array(
+				'height'     => 55,
+				'width'      => 135,
+				'flex-width' => true,
+				'flex-height' => true,
+			)
+		);
 
-		add_theme_support( 'custom-header', apply_filters( 'shapely_custom_header_args', array(
-			'default-image'      => '',
-			'default-text-color' => '000000',
-			'width'              => 1900,
-			'height'             => 225,
-			'flex-width'         => true,
-		) ) );
+		add_theme_support(
+			'custom-header', apply_filters(
+				'shapely_custom_header_args', array(
+					'default-image'      => '',
+					'default-text-color' => '000000',
+					'width'              => 1900,
+					'height'             => 225,
+					'flex-width'         => true,
+				)
+			)
+		);
 
 		/*
 		 * Let WordPress manage the document title.
@@ -61,28 +67,36 @@ if ( ! function_exists( 'shapely_setup' ) ) :
 		add_theme_support( 'post-thumbnails' );
 
 		// This theme uses wp_nav_menu() in one location.
-		register_nav_menus( array(
-			'primary'     => esc_html__( 'Primary', 'shapely' ),
-			'social-menu' => esc_html__( 'Social Menu', 'shapely' ),
-		) );
+		register_nav_menus(
+			array(
+				'primary'     => esc_html__( 'Primary', 'shapely' ),
+				'social-menu' => esc_html__( 'Social Menu', 'shapely' ),
+			)
+		);
 
 		/*
 		 * Switch default core markup for search form, comment form, and comments
 		 * to output valid HTML5.
 		 */
-		add_theme_support( 'html5', array(
-			'search-form',
-			'comment-form',
-			'comment-list',
-			'gallery',
-			'caption',
-		) );
+		add_theme_support(
+			'html5', array(
+				'search-form',
+				'comment-form',
+				'comment-list',
+				'gallery',
+				'caption',
+			)
+		);
 
 		// Set up the WordPress core custom background feature.
-		add_theme_support( 'custom-background', apply_filters( 'shapely_custom_background_args', array(
-			'default-color' => 'ffffff',
-			'default-image' => '',
-		) ) );
+		add_theme_support(
+			'custom-background', apply_filters(
+				'shapely_custom_background_args', array(
+					'default-color' => 'ffffff',
+					'default-image' => '',
+				)
+			)
+		);
 
 		/**
 		 * Enable support for Post Thumbnails on posts and pages.
@@ -192,45 +206,53 @@ add_action( 'after_setup_theme', 'shapely_content_width', 0 );
  * @link https://developer.wordpress.org/themes/functionality/sidebars/#registering-a-sidebar
  */
 function shapely_widgets_init() {
-	register_sidebar( array(
-		'id'            => 'sidebar-1',
-		'name'          => esc_html__( 'Sidebar', 'shapely' ),
-		'before_widget' => '<div id="%1$s" class="widget %2$s">',
-		'after_widget'  => '</div>',
-		'before_title'  => '<h2 class="widget-title">',
-		'after_title'   => '</h2>',
-	) );
-
-	register_sidebar( array(
-		'id'            => 'sidebar-home',
-		'name'          => esc_html__( 'Homepage', 'shapely' ),
-		'before_widget' => '<div id="%1$s" class="widget %2$s">',
-		'after_widget'  => '</div>',
-		'before_title'  => '<h2 class="widget-title">',
-		'after_title'   => '</h2>',
-	) );
-
-	for ( $i = 1; $i < 5; $i ++ ) {
-		register_sidebar( array(
-			'id'            => 'footer-widget-' . $i,
-			'name'          => sprintf( esc_html__( 'Footer Widget %s', 'shapely' ), $i ),
-			'description'   => esc_html__( 'Used for footer widget area', 'shapely' ),
+	register_sidebar(
+		array(
+			'id'            => 'sidebar-1',
+			'name'          => esc_html__( 'Sidebar', 'shapely' ),
 			'before_widget' => '<div id="%1$s" class="widget %2$s">',
 			'after_widget'  => '</div>',
 			'before_title'  => '<h2 class="widget-title">',
 			'after_title'   => '</h2>',
-		) );
+		)
+	);
+
+	register_sidebar(
+		array(
+			'id'            => 'sidebar-home',
+			'name'          => esc_html__( 'Homepage', 'shapely' ),
+			'before_widget' => '<div id="%1$s" class="widget %2$s">',
+			'after_widget'  => '</div>',
+			'before_title'  => '<h2 class="widget-title">',
+			'after_title'   => '</h2>',
+		)
+	);
+
+	for ( $i = 1; $i < 5; $i ++ ) {
+		register_sidebar(
+			array(
+				'id'            => 'footer-widget-' . $i,
+				'name'          => sprintf( esc_html__( 'Footer Widget %s', 'shapely' ), $i ),
+				'description'   => esc_html__( 'Used for footer widget area', 'shapely' ),
+				'before_widget' => '<div id="%1$s" class="widget %2$s">',
+				'after_widget'  => '</div>',
+				'before_title'  => '<h2 class="widget-title">',
+				'after_title'   => '</h2>',
+			)
+		);
 	}
 
 	if ( shapely_is_woocommerce_activated() ) {
-		register_sidebar( array(
-			'id'            => 'shop-sidebar',
-			'name'          => esc_html__( 'Shop Sidebar', 'shapely' ),
-			'before_widget' => '<div id="%1$s" class="widget %2$s">',
-			'after_widget'  => '</div>',
-			'before_title'  => '<h2 class="widget-title">',
-			'after_title'   => '</h2>',
-		) );
+		register_sidebar(
+			array(
+				'id'            => 'shop-sidebar',
+				'name'          => esc_html__( 'Shop Sidebar', 'shapely' ),
+				'before_widget' => '<div id="%1$s" class="widget %2$s">',
+				'after_widget'  => '</div>',
+				'before_title'  => '<h2 class="widget-title">',
+				'after_title'   => '</h2>',
+			)
+		);
 	}
 
 }
