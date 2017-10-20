@@ -275,8 +275,24 @@ function shapely_customizer( $wp_customize ) {
 		'section'     => 'shapely_blog_section',
 	) );
 
-	
-
+	$wp_customize->add_setting( 'mobile_menu_on_desktop', array(
+		'default'           => 0,
+		'sanitize_callback' => 'shapely_sanitize_checkbox',
+	) );
+	if ( class_exists( 'Epsilon_Control_Toggle' ) ) {
+		$wp_customize->add_control( new Epsilon_Control_Toggle( $wp_customize, 'mobile_menu_on_desktop', array(
+			'label'   => esc_html__( 'Mobile Menu on Desktop', 'shapely' ),
+			'description' => esc_html__( 'Always the menu will be like the mobile menu', 'shapely' ),
+			'section' => 'shapely_main_section',
+		) ) );
+	} else {
+		$wp_customize->add_control( 'mobile_menu_on_desktop', array(
+			'label'   => esc_html__( 'Mobile Menu on Desktop', 'shapely' ),
+			'description' => esc_html__( 'Always the menu will be like the mobile menu', 'shapely' ),
+			'section' => 'shapely_main_section',
+			'type'    => 'checkbox',
+		) );
+	}
 	$wp_customize->add_setting( 'footer_callout_text', array(
 		'default'           => '',
 		'sanitize_callback' => 'wp_kses_stripslashes',

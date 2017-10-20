@@ -9,6 +9,7 @@
 		jQuery( '.shapely-dropdown' ).click( function( evt ) {
 			evt.preventDefault();
 			jQuery( this ).parent().find( '> ul' ).toggleClass( 'active' );
+			jQuery( window ).trigger( 'resize' ).trigger( 'scroll' );
 		});
 
 		// Smooth scroll to inner links
@@ -108,10 +109,12 @@
 			$( '.nav-bar' ).toggleClass( 'nav-open' );
 			$( this ).toggleClass( 'active' );
 			$( '.search-widget-handle' ).toggleClass( 'hidden-xs hidden-sm' );
+			jQuery( window ).trigger( 'resize' ).trigger( 'scroll' );
 		});
 
 		$( '.module.widget-handle' ).click(function() {
 			$( this ).toggleClass( 'toggle-search' );
+			jQuery( window ).trigger( 'resize' ).trigger( 'scroll' );
 		});
 
 		$( '.search-widget-handle .search-form input' ).click(function( e ) {

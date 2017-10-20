@@ -1830,6 +1830,143 @@ nav.fixed.scrolled {
     }
 }
 
+/* Mobile Menu on Desktop */
+@media all and (min-width: 992px) {
+    .mobile-menu .module.widget-handle {
+        border-left: none;
+        line-height: 40px;
+        min-height: 40px;
+    }
+    .mobile-menu .nav-bar .module-group {
+        width: 100%;
+    }
+    .mobile-menu .visible-xs,
+    .mobile-menu .visible-sm,
+    .mobile-menu .nav-open .navbar-collapse.collapse {
+        display: block!important;
+    }
+
+    .mobile-menu .navbar-collapse.collapse,
+    .mobile-menu .nav-bar .module-group .module.hidden-xs,
+    .mobile-menu .nav-bar .module-group .module.hidden-sm {
+        display: none !important;
+    }
+    .mobile-menu #site-navigation .container > .flex-row {
+        flex-wrap: wrap;
+    }
+    .mobile-menu .nav-bar, .nav-bar .module-group,
+    .mobile-menu .nav-bar .module,
+    .mobile-menu .nav-bar .module:not( .site-title-container ) {
+        height: auto;
+    }
+    .mobile-menu .nav-bar .module {
+        padding: 0 16px;
+    }
+    .mobile-menu .navbar-collapse {
+        margin-top: 20px;
+        width: 100%;
+    }
+    .mobile-menu .main-navigation .menu li {
+        line-height: 24px;
+        display: block;
+        width: 100%;
+        max-width: 100%;
+    }
+    .mobile-menu .main-navigation .menu a {
+        height: auto;
+        line-height: 24px;
+        padding: 4px 0;
+    }
+    .mobile-menu .shapely-dropdown {
+        float: right;
+        border: 1px solid;
+        font-size: 11px;
+        padding: 0 10px;
+        display: inline-block;
+        cursor: pointer;
+    }
+    .mobile-menu .main-navigation .menu > li > ul {
+        position: relative;
+        opacity: 1;
+        visibility: visible;
+        display: none;
+        transform: translate3d(0, 0px, 0);
+        -webkit-transform: translate3d(0, 0px, 0);
+        -moz-transform: translate3d(0, 0px, 0);
+        width: 100%;
+        left: 0;
+        border: 0 !important;
+        box-shadow: none;
+    }
+    .mobile-menu .dropdown:after {
+        display: none;
+    }
+    .mobile-menu ul.dropdown-menu.active {
+        display: block !important;
+    }
+    .mobile-menu .module-group .module.left {
+        float: none;
+        display: block;
+    }
+    .mobile-menu .main-navigation .menu > li ul {
+        position: relative;
+        width: 100%;
+        opacity: 1;
+        visibility: visible;
+        transform: translate3d(0, 0px, 0);
+        -webkit-transform: translate3d(0, 0px, 0);
+        -moz-transform: translate3d(0, 0px, 0);
+        left: 0;
+        border: 0 !important;
+        box-shadow: none;
+    }
+    .mobile-menu .main-navigation .menu > li > ul > li ul {
+        left: 0 !important;
+        display: none;
+        padding: 0;
+    }
+    .mobile-menu #site-navigation.main-navigation .menu > li > ul li a {
+        width: auto;
+        display: inline-block;
+        padding: 10px 16px;
+    }
+    .mobile-menu .main-navigation .menu > li > ul li a {
+        padding: 10px 16px;
+    }
+    .mobile-menu .main-navigation .dropdown .dropdown li {
+        padding-left: 18px;
+    }
+    .mobile-menu .main-navigation .menu > li > ul li a:hover,
+    .mobile-menu .main-navigation  .menu > li > ul li:hover > a {
+        background-color: #fff;
+    }
+    .mobile-menu .search-widget-handle .search {
+        padding: 0 15px;
+    }
+    .mobile-menu .widget-handle .function {
+        width: 100%;
+        max-width: 300px;
+        position: relative;
+        opacity: 1;
+        transform: translate3d(0, 0px, 0);
+        -webkit-transform: translate3d(0, 0px, 0);
+        -moz-transform: translate3d(0, 0px, 0);
+        visibility: visible;
+        margin-top: 0;
+        display: none;
+        box-shadow: none !important;
+    }
+    .mobile-menu .module.widget-handle .title {
+        display: inline-block;
+        position: relative;
+        bottom: 3px;
+        margin-left: 8px;
+    }
+    .mobile-menu .toggle-search .function {
+        display: block;
+    }
+}
+
 @media all and (max-width: 991px) {
     .site-title-container {
         width: 84%;
@@ -1957,7 +2094,7 @@ nav.fixed.scrolled {
     .mobile-toggle i {
         line-height: 53px !important;
     }
-    #site-navigation .container > .row {
+    #site-navigation .container > .flex-row {
         flex-wrap: wrap;
     }
     .navbar-collapse {
