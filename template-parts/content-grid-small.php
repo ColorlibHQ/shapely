@@ -54,24 +54,32 @@
 
 			<div class="entry-meta">
 				<?php
-				shapely_posted_on_no_cat(); ?><!-- post-meta -->
+				shapely_posted_on_no_cat();
+				?>
+				<!-- post-meta -->
 			</div>
 
 			<?php
-			the_content( sprintf(
-				/* translators: %s: Name of current post. */
-							 wp_kses( __( 'Read more %s <span class="meta-nav">&rarr;</span>', 'shapely' ), array(
-								 'span' => array(
-									 'class' => array(),
-								 ),
-							 ) ),
-				the_title( '<span class="screen-reader-text">"', '"</span>', false )
-			) );
+			the_content(
+				sprintf(
+					/* translators: %s: Name of current post. */
+							 wp_kses(
+								 __( 'Read more %s <span class="meta-nav">&rarr;</span>', 'shapely' ), array(
+									 'span' => array(
+										 'class' => array(),
+									 ),
+								 )
+							 ),
+					the_title( '<span class="screen-reader-text">"', '"</span>', false )
+				)
+			);
 
-			wp_link_pages( array(
-				'before' => '<div class="page-links">' . esc_html__( 'Pages:', 'shapely' ),
-				'after'  => '</div>',
-			) );
+			wp_link_pages(
+				array(
+					'before' => '<div class="page-links">' . esc_html__( 'Pages:', 'shapely' ),
+					'after'  => '</div>',
+				)
+			);
 			?>
 		</div><!-- .entry-content -->
 	</article><!-- #post-## -->

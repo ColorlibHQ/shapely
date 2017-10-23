@@ -4,7 +4,8 @@
 	<div class="row">
 		<?php
 		global $wp_query;
-		while ( have_posts() ) : the_post();
+		while ( have_posts() ) :
+			the_post();
 			$i = $wp_query->current_post + 1;
 			/*
 			 * Include the Post-Format-specific template for the content.

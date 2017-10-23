@@ -4,7 +4,7 @@ Theme URI: https://colorlib.com/wp/themes/shapely
 Author: colorlib
 Author URI: https://colorlib.com/
 Description: Shapely is a powerful and versatile one page WordPress theme with pixel perfect design and outstanding functionality. It is by far the most advanced free WordPress theme available today with loads of unmatched customization options. This theme comes with several homepage widgets that can be used to add portfolio, testimonials, parallax sections, your product or service information, call for action and much more. Shapely supports most free and premium WordPress plugins such as WooCommerce, Jetpack, Gravity Forms, Contact Form 7, Yoast SEO, Google Analytics by Yoast and much more. This theme is the best suited for business, landing page, portfolio, ecommerce, store, local business,  personal websites but can be tweaked to be used as blog, magazine or any other awesome website while highlighting its unique one page setup. This is going to be the last WordPress theme you will ever want to use because it is so much better than anything you have seen. Needless to say that this theme is SEO friendly thanks to its well optimized strucutre. Shapely theme is mobile friendly and fully responsive making it your best multipurpose partnert for any project and website.
-Version: 1.1.7
+Version: 1.2
 License: GNU General Public License v3
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 Text Domain: shapely
@@ -447,8 +447,8 @@ a, a:visited, a:active, a:hover {
 .main-navigation {
     clear: both;
     display: block;
-    float: left;
     width: 100%;
+    padding: 10px 0;
 }
 
 .main-navigation ul {
@@ -559,6 +559,11 @@ a, a:visited, a:active, a:hover {
 
 #site-navigation .module.left {
     padding-left: 15px;
+}
+#site-navigation .container > .flex-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
 }
 
 /*--------------------------------------------------------------
@@ -1366,8 +1371,6 @@ nav .btn, .nav-bar .btn {
 }
 
 .nav-bar {
-    height: 55px;
-    max-height: 55px;
     line-height: 53px;
 }
 
@@ -1375,17 +1378,14 @@ nav {
     border-bottom: 1px solid rgba(0, 0, 0, 0.1);
 }
 
-.nav-bar .module, .nav-bar .module-group {
+.nav-bar .module:not( .site-title-container ),
+.nav-bar .module-group {
     height: 55px;
 }
 
-.nav-bar a {
+.nav-bar a:not( .custom-logo-link ) {
     display: inline-block;
     height: 55px;
-}
-
-.logo {
-    max-height: 60%;
 }
 
 .menu > li.dropdown {
@@ -1830,12 +1830,149 @@ nav.fixed.scrolled {
     }
 }
 
+/* Mobile Menu on Desktop */
+@media all and (min-width: 992px) {
+    .mobile-menu .module.widget-handle {
+        border-left: none;
+        line-height: 40px;
+        min-height: 40px;
+    }
+    .mobile-menu .nav-bar .module-group {
+        width: 100%;
+    }
+    .mobile-menu .visible-xs,
+    .mobile-menu .visible-sm,
+    .mobile-menu .nav-open .navbar-collapse.collapse {
+        display: block!important;
+    }
+
+    .mobile-menu .navbar-collapse.collapse,
+    .mobile-menu .nav-bar .module-group .module.hidden-xs,
+    .mobile-menu .nav-bar .module-group .module.hidden-sm {
+        display: none !important;
+    }
+    .mobile-menu #site-navigation .container > .flex-row {
+        flex-wrap: wrap;
+    }
+    .mobile-menu .nav-bar, .nav-bar .module-group,
+    .mobile-menu .nav-bar .module,
+    .mobile-menu .nav-bar .module:not( .site-title-container ) {
+        height: auto;
+    }
+    .mobile-menu .nav-bar .module {
+        padding: 0 16px;
+    }
+    .mobile-menu .navbar-collapse {
+        margin-top: 20px;
+        width: 100%;
+    }
+    .mobile-menu .main-navigation .menu li {
+        line-height: 24px;
+        display: block;
+        width: 100%;
+        max-width: 100%;
+    }
+    .mobile-menu .main-navigation .menu a {
+        height: auto;
+        line-height: 24px;
+        padding: 4px 0;
+    }
+    .mobile-menu .shapely-dropdown {
+        float: right;
+        border: 1px solid;
+        font-size: 11px;
+        padding: 0 10px;
+        display: inline-block;
+        cursor: pointer;
+    }
+    .mobile-menu .main-navigation .menu > li > ul {
+        position: relative;
+        opacity: 1;
+        visibility: visible;
+        display: none;
+        transform: translate3d(0, 0px, 0);
+        -webkit-transform: translate3d(0, 0px, 0);
+        -moz-transform: translate3d(0, 0px, 0);
+        width: 100%;
+        left: 0;
+        border: 0 !important;
+        box-shadow: none;
+    }
+    .mobile-menu .dropdown:after {
+        display: none;
+    }
+    .mobile-menu ul.dropdown-menu.active {
+        display: block !important;
+    }
+    .mobile-menu .module-group .module.left {
+        float: none;
+        display: block;
+    }
+    .mobile-menu .main-navigation .menu > li ul {
+        position: relative;
+        width: 100%;
+        opacity: 1;
+        visibility: visible;
+        transform: translate3d(0, 0px, 0);
+        -webkit-transform: translate3d(0, 0px, 0);
+        -moz-transform: translate3d(0, 0px, 0);
+        left: 0;
+        border: 0 !important;
+        box-shadow: none;
+    }
+    .mobile-menu .main-navigation .menu > li > ul > li ul {
+        left: 0 !important;
+        display: none;
+        padding: 0;
+    }
+    .mobile-menu #site-navigation.main-navigation .menu > li > ul li a {
+        width: auto;
+        display: inline-block;
+        padding: 10px 16px;
+    }
+    .mobile-menu .main-navigation .menu > li > ul li a {
+        padding: 10px 16px;
+    }
+    .mobile-menu .main-navigation .dropdown .dropdown li {
+        padding-left: 18px;
+    }
+    .mobile-menu .main-navigation .menu > li > ul li a:hover,
+    .mobile-menu .main-navigation  .menu > li > ul li:hover > a {
+        background-color: #fff;
+    }
+    .mobile-menu .search-widget-handle .search {
+        padding: 0 15px;
+    }
+    .mobile-menu .widget-handle .function {
+        width: 100%;
+        max-width: 300px;
+        position: relative;
+        opacity: 1;
+        transform: translate3d(0, 0px, 0);
+        -webkit-transform: translate3d(0, 0px, 0);
+        -moz-transform: translate3d(0, 0px, 0);
+        visibility: visible;
+        margin-top: 0;
+        display: none;
+        box-shadow: none !important;
+    }
+    .mobile-menu .module.widget-handle .title {
+        display: inline-block;
+        position: relative;
+        bottom: 3px;
+        margin-left: 8px;
+    }
+    .mobile-menu .toggle-search .function {
+        display: block;
+    }
+}
+
 @media all and (max-width: 991px) {
     .site-title-container {
         width: 84%;
     }
 
-    .nav-bar, .nav-bar .module-group, .nav-bar .module {
+    .nav-bar, .nav-bar .module-group, .nav-bar .module, .nav-bar .module:not( .site-title-container ) {
         height: auto;
     }
 
@@ -1956,6 +2093,12 @@ nav.fixed.scrolled {
 
     .mobile-toggle i {
         line-height: 53px !important;
+    }
+    #site-navigation .container > .flex-row {
+        flex-wrap: wrap;
+    }
+    .navbar-collapse {
+        margin-top: 20px;
     }
 }
 
@@ -2941,6 +3084,26 @@ iframe {
 
 .project .image-tile {
     margin: 0;
+}
+.project:not( .masonry-item ) .image-tile {
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+.project:not( .masonry-item ) .image-tile a {
+    display: block;
+    width: 100%;
+    height: 100%;
+}
+.project:not( .masonry-item ) {
+    padding-bottom: 25%;
+    position: relative;
+    margin-bottom: 0;
 }
 
 /*!---------- 21. FOOTER ----------*/
@@ -3984,7 +4147,8 @@ footer.bg-dark a {
     .author-bio-left-side .author-bio .author-social li a {
       color: #001c28; }
 
-.single-post .entry-content .dropcaps-content > p:first-child:first-letter {
+.single-post .entry-content .dropcaps-content > p:first-child:first-letter,
+.single-jetpack-portfolio .entry-content .dropcaps-content > p:first-child:first-letter {
   float: left;
   font-size: 57px;
   margin: 10px;

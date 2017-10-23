@@ -19,10 +19,10 @@ wp_enqueue_script( 'updates' );
 
 		foreach ( $shapely_required_actions as $shapely_required_action_key => $shapely_required_action_value ) :
 			$hidden = false;
-			if ( false === @$shapely_show_required_actions[ $shapely_required_action_value['id'] ] ) {
+			if ( isset( $shapely_show_required_actions[ $shapely_required_action_value['id'] ] ) && false === $shapely_show_required_actions[ $shapely_required_action_value['id'] ] ) {
 				$hidden = true;
 			}
-			if ( @$shapely_required_action_value['check'] ) {
+			if ( isset( $shapely_required_action_value['check'] ) && $shapely_required_action_value['check'] ) {
 				continue;
 			}
 			?>
@@ -32,13 +32,24 @@ wp_enqueue_script( 'updates' );
 				<?php else : ?>
 					<span data-action="add" class="dashicons dashicons-hidden shapely-required-action-button" id="<?php echo esc_attr( $shapely_required_action_value['id'] ); ?>"></span>
 				<?php endif; ?>
-				<h3><?php if ( ! empty( $shapely_required_action_value['title'] ) ) : echo esc_html( $shapely_required_action_value['title'] );
-endif; ?></h3>
+				<h3>
+				<?php
+				if ( ! empty( $shapely_required_action_value['title'] ) ) :
+					echo esc_html( $shapely_required_action_value['title'] );
+endif;
+?>
+</h3>
 				<p>
-					<?php if ( ! empty( $shapely_required_action_value['description'] ) ) : echo esc_html( $shapely_required_action_value['description'] );
-endif; ?>
-					<?php if ( ! empty( $shapely_required_action_value['help'] ) ) : echo '<br/>' . wp_kses_post( $shapely_required_action_value['help'] );
-endif; ?>
+					<?php
+					if ( ! empty( $shapely_required_action_value['description'] ) ) :
+						echo esc_html( $shapely_required_action_value['description'] );
+endif;
+?>
+					<?php
+					if ( ! empty( $shapely_required_action_value['help'] ) ) :
+						echo '<br/>' . wp_kses_post( $shapely_required_action_value['help'] );
+endif;
+?>
 				</p>
 				<?php
 				if ( ! empty( $shapely_required_action_value['external'] ) && file_exists( $shapely_required_action_value['external'] ) ) {
@@ -67,8 +78,8 @@ endif; ?>
 					}
 
 					?>
-					<p class="plugin-card-<?php echo esc_attr( $shapely_required_action_value['plugin_slug'] ) ?> action_button <?php echo ( 'install' !== $active['needs'] && $active['status'] ) ? 'active' : '' ?>">
-						<a data-slug="<?php echo esc_attr( $shapely_required_action_value['plugin_slug'] ) ?>" class="<?php echo esc_attr( $class ); ?>" href="<?php echo esc_url( $url ) ?>"> <?php echo esc_html( $label ) ?> </a>
+					<p class="plugin-card-<?php echo esc_attr( $shapely_required_action_value['plugin_slug'] ); ?> action_button <?php echo ( 'install' !== $active['needs'] && $active['status'] ) ? 'active' : ''; ?>">
+						<a data-slug="<?php echo esc_attr( $shapely_required_action_value['plugin_slug'] ); ?>" class="<?php echo esc_attr( $class ); ?>" href="<?php echo esc_url( $url ); ?>"> <?php echo esc_html( $label ); ?> </a>
 					</p>
 					<?php
 				};

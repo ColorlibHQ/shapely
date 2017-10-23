@@ -50,7 +50,9 @@
 
 			<div class="entry-meta">
 				<?php
-				shapely_posted_on_no_cat(); ?><!-- post-meta -->
+				shapely_posted_on_no_cat();
+				?>
+				<!-- post-meta -->
 			</div>
 
 			<?php the_excerpt(); ?>

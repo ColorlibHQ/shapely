@@ -107,13 +107,51 @@ if ( ! class_exists( 'Shapely_Related_Posts' ) ) {
 				return $related_postquery;
 			}
 
-			$args = wp_parse_args( $args, array(
-				'category__in'        => wp_get_post_categories( $post_id ),
-				'ignore_sticky_posts' => 0,
-				'posts_per_page'      => $number_posts,
-				'post__not_in'        => array( $post_id ),
-				//              'meta_key'            => '_thumbnail_id',
-			) );
+			$args = wp_parse_args(
+				$args, array(
+					'category__in'        => wp_get_post_categories( $post_id ),
+					'ignore_sticky_posts' => 0,
+					'posts_per_page'      => $number_posts,
+					'post__not_in'        => array( $post_id ),
+				)
+			);
+
+			if ( is_singular( 'jetpack-portfolio' ) ) {
+				unset( $args['category__in'] );
+				$args['post_type'] = 'jetpack-portfolio';
+
+				$terms_args = array(
+					'fields' => 'ids',
+				);
+				$types = wp_get_object_terms( get_the_ID(), 'jetpack-portfolio-type', $terms_args );
+				$tags = wp_get_object_terms( get_the_ID(), 'jetpack-portfolio-tag', $terms_args );
+
+				$tax_query = array();
+
+				if ( ! empty( $types ) ) {
+					array_push(
+						$tax_query, array(
+							'taxonomy' => 'jetpack-portfolio-type',
+							'field'    => 'term_id',
+							'terms'    => $types,
+						)
+					);
+				}
+
+				if ( ! empty( $tags ) ) {
+					array_push(
+						$tax_query, array(
+							'taxonomy' => 'jetpack-portfolio-tag',
+							'field'    => 'term_id',
+							'terms'    => $tags,
+						)
+					);
+				}
+
+				if ( ! empty( $tax_query ) ) {
+					$args['tax_query'] = $tax_query;
+				}
+			}
 
 			$related_postquery = new WP_Query( $args );
 
@@ -129,6 +167,13 @@ if ( ! class_exists( 'Shapely_Related_Posts' ) ) {
 		 * @return string                    HTML markup to display related posts
 		 **/
 		function output_related_posts() {
+
+			if ( is_singular( 'jetpack-portfolio' ) ) {
+				if ( ! get_theme_mod( 'related_projects_area', true ) ) {
+					return;
+				}
+			}
+
 			// Check if related posts should be shown
 			$related_posts = $this->get_related_posts( get_the_ID(), get_option( 'posts_per_page' ) );
 
@@ -150,7 +195,11 @@ if ( ! class_exists( 'Shapely_Related_Posts' ) ) {
 			 * Heading
 			 */
 			echo '<div class="col-lg-11 col-sm-10 col-xs-12 shapely-related-posts-title">';
-			echo '<h3><span>' . esc_html__( 'Related articles ', 'shapely' ) . '</span></h3>';
+			if ( is_singular( 'jetpack-portfolio' ) ) {
+				echo '<h3><span>' . esc_html__( 'Related projects', 'shapely' ) . '</span></h3>';
+			} else {
+				echo '<h3><span>' . esc_html__( 'Related articles ', 'shapely' ) . '</span></h3>';
+			}
 			echo '</div>';
 
 			echo '</div><!--/.row-->';
@@ -165,9 +214,11 @@ if ( ! class_exists( 'Shapely_Related_Posts' ) ) {
 			echo '</ul>';
 			echo '</div>';
 
-			echo sprintf( '<div class="owlCarousel owl-carousel owl-theme" data-slider-id="%s" id="owlCarousel-%s" 
+			echo sprintf(
+				'<div class="owlCarousel owl-carousel owl-theme" data-slider-id="%s" id="owlCarousel-%s" 
 			data-slider-items="%s" 
-			data-slider-speed="400" data-slider-auto-play="%s" data-slider-navigation="false">', get_the_ID(), get_the_ID(), absint( $limit ), esc_html( $auto_play ) );
+			data-slider-speed="400" data-slider-auto-play="%s" data-slider-navigation="false">', get_the_ID(), get_the_ID(), absint( $limit ), esc_html( $auto_play )
+			);
 
 			// Loop through related posts
 			while ( $related_posts->have_posts() ) {

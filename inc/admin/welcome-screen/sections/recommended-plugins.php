@@ -35,18 +35,19 @@ wp_enqueue_script( 'updates' );
 
 		?>
 		<div class="col plugin_box">
-			<img src="<?php echo esc_attr( $icon ) ?>" alt="plugin box image">
+			<img src="<?php echo esc_attr( $icon ); ?>" alt="plugin box image">
 			<span
-				class="version"><?php echo esc_html__( 'Version:', 'shapely' ); ?><?php echo esc_html( $info->version ) ?></span>
+				class="version"><?php echo esc_html__( 'Version:', 'shapely' ); ?><?php echo esc_html( $info->version ); ?></span>
 			<span
-				class="separator">|</span> <?php echo wp_kses_post( $info->author ) ?>
-			<div class="action_bar <?php echo ( 'install' !== $active['needs'] && $active['status'] ) ? 'active' : '' ?>">
-				<span class="plugin_name"><?php echo ( 'install' !== $active['needs'] && $active['status'] ) ? 'Active: ' : '' ?><?php echo esc_html( $info->name ); ?></span>
+				class="separator">|</span> <?php echo wp_kses_post( $info->author ); ?>
+			<div class="action_bar <?php echo ( 'install' !== $active['needs'] && $active['status'] ) ? 'active' : ''; ?>">
+				<span class="plugin_name"><?php echo ( 'install' !== $active['needs'] && $active['status'] ) ? 'Active: ' : ''; ?><?php echo esc_html( $info->name ); ?></span>
 			</div>
-			<span class="plugin-card-<?php echo esc_attr( $plugin ) ?> action_button <?php echo ( 'install' !== $active['needs'] && $active['status'] ) ? 'active' : '' ?>">
-				<a data-slug="<?php echo esc_attr( $plugin ) ?>" class="<?php echo esc_attr( $class ); ?>" href="<?php echo esc_url( $url ) ?>"> <?php echo esc_html( $label ) ?> </a>
+			<span class="plugin-card-<?php echo esc_attr( $plugin ); ?> action_button <?php echo ( 'install' !== $active['needs'] && $active['status'] ) ? 'active' : ''; ?>">
+				<a data-slug="<?php echo esc_attr( $plugin ); ?>" class="<?php echo esc_attr( $class ); ?>" href="<?php echo esc_url( $url ); ?>"> <?php echo esc_html( $label ); ?> </a>
 			</span>
 		</div>
-	<?php }// End foreach().
+	<?php
+}// End foreach().
 	?>
 </div>

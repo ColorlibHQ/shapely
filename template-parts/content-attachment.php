@@ -12,7 +12,8 @@
 <article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
 	<header class="entry-header">
 		<?php
-		if ( has_post_thumbnail() ) { ?>
+		if ( has_post_thumbnail() ) {
+		?>
 			<a class="text-center" href="<?php the_permalink(); ?>" title="<?php the_title_attribute(); ?>">
 			<?php
 				$thumbnail_args = array(
@@ -49,10 +50,10 @@
 		<hr/>
 		<div class="shapely-next-prev row">
 			<div class="col-md-6 text-left">
-				<?php echo wp_kses_post( $prev ) ?>
+				<?php echo wp_kses_post( $prev ); ?>
 			</div>
 			<div class="col-md-6 text-right">
-				<?php echo wp_kses_post( $next ) ?>
+				<?php echo wp_kses_post( $next ); ?>
 			</div>
 		</div>
 	<?php endif; ?>
