@@ -6,6 +6,10 @@
 
     //"use strict";
 
+    jQuery( 'body' ).imagesLoaded( function() {
+      jQuery( window ).trigger( 'resize' ).trigger( 'scroll' );
+    } );
+
     jQuery( '.shapely-dropdown' ).click( function( evt ) {
       evt.preventDefault();
       jQuery( this ).parent().find( '> ul' ).toggleClass( 'active' );
