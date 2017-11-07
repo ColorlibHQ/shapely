@@ -123,8 +123,8 @@ if ( ! class_exists( 'Shapely_Related_Posts' ) ) {
 				$terms_args = array(
 					'fields' => 'ids',
 				);
-				$types = wp_get_object_terms( get_the_ID(), 'jetpack-portfolio-type', $terms_args );
-				$tags = wp_get_object_terms( get_the_ID(), 'jetpack-portfolio-tag', $terms_args );
+				$types      = wp_get_object_terms( get_the_ID(), 'jetpack-portfolio-type', $terms_args );
+				$tags       = wp_get_object_terms( get_the_ID(), 'jetpack-portfolio-tag', $terms_args );
 
 				$tax_query = array();
 

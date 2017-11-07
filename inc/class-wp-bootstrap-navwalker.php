@@ -10,7 +10,7 @@ class Wp_Bootstrap_Navwalker extends Walker_Nav_Menu {
 	 * @param int    $depth  Depth of page. Used for padding.
 	 */
 	public function start_lvl( &$output, $depth = 0, $args = array() ) {
-		$indent = str_repeat( "\t", $depth );
+		$indent  = str_repeat( "\t", $depth );
 		$output .= "\n$indent<ul role=\"menu\" class=\" dropdown-menu\">\n";
 	}
 
@@ -26,7 +26,7 @@ class Wp_Bootstrap_Navwalker extends Walker_Nav_Menu {
 	 */
 	public function start_el( &$output, $item, $depth = 0, $args = array(), $id = 0 ) {
 		$indent = ( $depth ) ? str_repeat( "\t", $depth ) : '';
-		$extra = get_post_meta( $item->ID, '_menu_item_extra', true );
+		$extra  = get_post_meta( $item->ID, '_menu_item_extra', true );
 		$widget = get_post_meta( $item->ID, '_menu_item_widget', true );
 
 		/**
@@ -48,7 +48,7 @@ class Wp_Bootstrap_Navwalker extends Walker_Nav_Menu {
 		} else {
 
 			$class_names = '';
-			$value = '';
+			$value       = '';
 
 			$classes   = empty( $item->classes ) ? array() : (array) $item->classes;
 			$classes[] = 'menu-item-' . $item->ID;
@@ -99,7 +99,7 @@ class Wp_Bootstrap_Navwalker extends Walker_Nav_Menu {
 			$attributes = '';
 			foreach ( $atts as $attr => $value ) {
 				if ( ! empty( $value ) ) {
-					$value = ( 'href' === $attr ) ? esc_url( $value ) : esc_attr( $value );
+					$value       = ( 'href' === $attr ) ? esc_url( $value ) : esc_attr( $value );
 					$attributes .= ' ' . $attr . '="' . $value . '"';
 				}
 			}

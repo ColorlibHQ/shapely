@@ -205,7 +205,7 @@ function shapely_caption( $output, $attr, $content ) {
 		return $content;
 	}
 
-	$output = '<figure id="' . esc_attr( $attr['id'] ) . '" class="thumbnail wp-caption ' . esc_attr( $attr['align'] ) . ' style="width: ' . ( esc_attr( $attr['width'] ) + 10 ) . 'px">';
+	$output  = '<figure id="' . esc_attr( $attr['id'] ) . '" class="thumbnail wp-caption ' . esc_attr( $attr['align'] ) . ' style="width: ' . ( esc_attr( $attr['width'] ) + 10 ) . 'px">';
 	$output .= do_shortcode( $content );
 	$output .= '<figcaption class="caption wp-caption-text">' . wp_kses_post( $attr['caption'] ) . '</figcaption>';
 	$output .= '</figure>';
@@ -312,13 +312,13 @@ if ( ! function_exists( 'shapely_author_bio' ) ) {
 			return;
 		}
 
-		$author_displayname = get_the_author_meta( 'display_name' );
-		$author_nickname    = get_the_author_meta( 'nickname' );
-		$author_fullname    = ( '' != get_the_author_meta( 'first_name' ) && '' != get_the_author_meta( 'last_name' ) ) ? get_the_author_meta( 'first_name' ) . ' ' . get_the_author_meta( 'last_name' ) : '';
-		$author_email       = get_the_author_meta( 'email' );
-		$author_description = get_the_author_meta( 'description' );
-		$author_name = ( '' != trim( $author_nickname ) ) ? $author_nickname : ( trim( $author_displayname ) != '' ) ? $author_displayname : $author_fullname;
-		$show_athor_email = get_theme_mod( 'post_author_email', false );
+		$author_displayname       = get_the_author_meta( 'display_name' );
+		$author_nickname          = get_the_author_meta( 'nickname' );
+		$author_fullname          = ( '' != get_the_author_meta( 'first_name' ) && '' != get_the_author_meta( 'last_name' ) ) ? get_the_author_meta( 'first_name' ) . ' ' . get_the_author_meta( 'last_name' ) : '';
+		$author_email             = get_the_author_meta( 'email' );
+		$author_description       = get_the_author_meta( 'description' );
+		$author_name              = ( '' != trim( $author_nickname ) ) ? $author_nickname : ( trim( $author_displayname ) != '' ) ? $author_displayname : $author_fullname;
+		$show_athor_email         = get_theme_mod( 'post_author_email', false );
 		$show_project_athor_email = get_theme_mod( 'project_author_email', false );
 		?>
 
@@ -492,9 +492,9 @@ function shapely_custom_comment_form() {
 	$fields    = array(
 		'author' => '<input id="author" placeholder="' . esc_html__( 'Your Name', 'shapely' ) . ( $req ? '*' : '' ) . '" name="author" type="text" value="' . esc_attr( $commenter['comment_author'] ) . '" size="30" ' . $aria_req . ' required="required" />',
 
-		'email' => '<input id="email" name="email" type="email" placeholder="' . esc_html__( 'Email Address', 'shapely' ) . ( $req ? '*' : '' ) . '" value="' . esc_attr( $commenter['comment_author_email'] ) . '" size="30"' . $aria_req . ' required="required" />',
+		'email'  => '<input id="email" name="email" type="email" placeholder="' . esc_html__( 'Email Address', 'shapely' ) . ( $req ? '*' : '' ) . '" value="' . esc_attr( $commenter['comment_author_email'] ) . '" size="30"' . $aria_req . ' required="required" />',
 
-		'url' => '<input placeholder="' . esc_html__( 'Your Website (optional)', 'shapely' ) . '" id="url" name="url" type="text" value="' . esc_attr( $commenter['comment_author_url'] ) . '" size="30" />',
+		'url'    => '<input placeholder="' . esc_html__( 'Your Website (optional)', 'shapely' ) . '" id="url" name="url" type="text" value="' . esc_attr( $commenter['comment_author_url'] ) . '" size="30" />',
 	);
 
 	$comments_args = array(

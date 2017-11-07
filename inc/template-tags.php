@@ -45,11 +45,11 @@ if ( ! function_exists( 'shapely_posted_on_no_cat' ) ) :
 	function shapely_posted_on_no_cat() {
 
 		if ( is_singular( 'jetpack-portfolio' ) ) {
-			$post_author  = get_theme_mod( 'project_author', true );
-			$post_date  = get_theme_mod( 'project_date', true );
+			$post_author = get_theme_mod( 'project_author', true );
+			$post_date   = get_theme_mod( 'project_date', true );
 		} else {
-			$post_author  = get_theme_mod( 'post_author', true );
-			$post_date  = get_theme_mod( 'post_date', true );
+			$post_author = get_theme_mod( 'post_author', true );
+			$post_date   = get_theme_mod( 'post_date', true );
 		}
 
 		$time_string = '<time class="entry-date published updated" datetime="%1$s">%2$s</time>';

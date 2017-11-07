@@ -1,17 +1,17 @@
 <?php
 
 /**
-* 
+*
 */
 class Shapely_Builder {
 
 	private static $instance = null;
 
-	private $pages = array();
+	private $pages    = array();
 	private $sidebars = array();
-	
+
 	function __construct() {
-		
+
 		$this->get_all_pages();
 
 		// Hooks
@@ -28,14 +28,14 @@ class Shapely_Builder {
 	public function get_all_pages() {
 
 		$args = array(
-		    'post_type' => 'page',
-		    'posts_per_page' => -1,
-		    'meta_query' => array(
-		        array(
-		            'key' => '_wp_page_template',
-		            'value' => 'page-templates/template-widget.php'
-		        )
-		    )
+			'post_type'      => 'page',
+			'posts_per_page' => -1,
+			'meta_query'     => array(
+				array(
+					'key'   => '_wp_page_template',
+					'value' => 'page-templates/template-widget.php',
+				),
+			),
 		);
 
 		$the_pages = new WP_Query( $args );
@@ -43,10 +43,10 @@ class Shapely_Builder {
 		if ( $the_pages->have_posts() ) {
 			foreach ( $the_pages->posts as $post ) {
 				$this->pages[ $post->post_name ] = array(
-					'id' => $post->ID,
+					'id'    => $post->ID,
 					'title' => $post->post_title,
 				);
-				$this->sidebars[] = 'shapely-' . $post->post_name;
+				$this->sidebars[]                = 'shapely-' . $post->post_name;
 			}
 		}
 
@@ -62,15 +62,17 @@ class Shapely_Builder {
 	public function register_sidebars() {
 
 		foreach ( $this->pages as $slug => $page ) {
-			register_sidebar( array(
-		        'name' => sprintf( esc_html__( 'Page: %s', 'shapely' ), $page['title'] ),
-		        'id' => 'shapely-' . $slug,
-		        'description' => sprintf( esc_html__( 'This widgets will appear in %s page', 'shapely' ), $page['title'] ),
-		        'before_widget' => '<div id="%1$s" class="widget %2$s">',
-				'after_widget'  => '</div>',
-				'before_title'  => '<h2 class="widget-title">',
-				'after_title'   => '</h2>',
-		    ) );
+			register_sidebar(
+				array(
+					'name'          => sprintf( esc_html__( 'Page: %s', 'shapely' ), $page['title'] ),
+					'id'            => 'shapely-' . $slug,
+					'description'   => sprintf( esc_html__( 'This widgets will appear in %s page', 'shapely' ), $page['title'] ),
+					'before_widget' => '<div id="%1$s" class="widget %2$s">',
+					'after_widget'  => '</div>',
+					'before_title'  => '<h2 class="widget-title">',
+					'after_title'   => '</h2>',
+				)
+			);
 		}
 
 	}
@@ -78,7 +80,7 @@ class Shapely_Builder {
 	public function enqueue_builder_js() {
 		$builder_settings = array(
 			'siteURL' => site_url(),
-			'pages' => $this->pages,
+			'pages'   => $this->pages,
 		);
 		wp_enqueue_script( 'shapely_builder_customizer', get_template_directory_uri() . '/assets/js/customizer-builder.js', array(), '20140317', true );
 
@@ -91,7 +93,8 @@ class Shapely_Builder {
 			if ( ! in_array( $widget_area, $this->sidebars ) && 'sidebar-home' != $widget_area ) {
 				foreach ( $widget_list as $pos => $widget_id ) {
 					if ( strpos( $widget_id, 'shapely-page-content' ) !== false || strpos( $widget_id, 'shapely-page-title' ) !== false ) {
-						unset( $sidebars_widgets[ $widget_area ][ $pos ] );;
+						unset( $sidebars_widgets[ $widget_area ][ $pos ] );
+						;
 					}
 				}
 			}
