@@ -4196,3 +4196,6 @@ footer.bg-dark a {
 span.wpcf7-not-valid-tip {
     margin-top: -24px;
 }
+.page-template-template-widget section.content-area  {
+    padding-top: 0;
+}

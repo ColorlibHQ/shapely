@@ -337,7 +337,7 @@ class Shapely_Welcome {
 						'plugin_status' => 'all',
 						'paged'         => '1',
 						'_wpnonce'      => wp_create_nonce( 'deactivate-plugin_' . $slug2 ),
-					), network_admin_url( 'plugins.php' )
+					), admin_url( 'plugins.php' )
 				);
 				break;
 			case 'activate':
@@ -348,7 +348,7 @@ class Shapely_Welcome {
 						'plugin_status' => 'all',
 						'paged'         => '1',
 						'_wpnonce'      => wp_create_nonce( 'activate-plugin_' . $slug2 ),
-					), network_admin_url( 'plugins.php' )
+					), admin_url( 'plugins.php' )
 				);
 				break;
 		}

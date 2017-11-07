@@ -333,6 +333,7 @@ require_once 'inc/libraries/epsilon-framework/class-epsilon-autoloader.php';
 $args = array(
 	'controls' => array( 'slider', 'toggle' ), // array of controls to load
 	'sections' => array( 'recommended-actions', 'pro' ), // array of sections to load
+	'backup' => false,
 );
 
 new Epsilon_Framework( $args );
@@ -377,3 +378,8 @@ require get_template_directory() . '/inc/class-shapely-related-posts.php';
  */
 require get_template_directory() . '/inc/admin/welcome-screen/class-shapely-notify-system.php';
 
+/**
+ * Load the shapely page builder class
+ */
+require get_template_directory() . '/inc/class-shapely-builder.php';
+Shapely_Builder::get_instance();
