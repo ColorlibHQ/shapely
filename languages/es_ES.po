@@ -1,0 +1,744 @@
+# Copyright (C) 2017 colorlib
+# This file is distributed under the GNU General Public License v3.
+msgid ""
+msgstr ""
+"Project-Id-Version: Shapely 1.7.0\n"
+"Report-Msgid-Bugs-To: https://www.colorlib.com/\n"
+"POT-Creation-Date: 2017-01-11 08:40:59+00:00\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"PO-Revision-Date: 2017-11-03 12:03+0100\n"
+"Language-Team: Colorlib <office@colorlib.com>\n"
+"X-Generator: Poedit 2.0.4\n"
+"X-Poedit-KeywordsList: __;_e;_x:1,2c;_ex:1,2c;_n:1,2;_nx:1,2,4c;_n_noop:1,2;"
+"_nx_noop:1,2,3c;esc_attr__;esc_html__;esc_attr_e;esc_html_e;esc_attr_x:1,2c;"
+"esc_html_x:1,2c\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Poedit-SourceCharset: UTF-8\n"
+"X-Poedit-Basepath: ..\n"
+"X-Textdomain-Support: yes\n"
+"Last-Translator: \n"
+"Language: es_ES\n"
+"X-Poedit-SearchPath-0: .\n"
+
+#: 404.php:17
+msgid "Oops! That page can&rsquo;t be found."
+msgstr "¡Ups! Esa página no pudo ser encontrada."
+
+#: 404.php:21
+msgid ""
+"It looks like nothing was found at this location. Maybe try one of the links "
+"below or a search?"
+msgstr ""
+"Parece que no se ha encontrado nada en esta ubicación. ¿Tal vez inténtelo "
+"con uno de los siguientes enlaces o el cuadro de búsqueda?"
+
+#: 404.php:33
+msgid "Most Used Categories"
+msgstr "Categorías más usadas"
+
+#. translators: %1$s: smiley
+#: 404.php:51
+msgid "Try looking in the monthly archives. %1$s"
+msgstr "Trate de buscar en los archivos mensuales. %1$s"
+
+#: comments.php:38 comments.php:64
+msgid "Comment navigation"
+msgstr "Navegación por comentarios"
+
+#: comments.php:41 comments.php:67
+msgid "Older Comments"
+msgstr "Comentarios Antiguos"
+
+#: comments.php:42 comments.php:68
+msgid "Newer Comments"
+msgstr "Comentarios Recientes"
+
+#: comments.php:81
+msgid "Comments are closed."
+msgstr "Los comentarios están cerrados."
+
+#: functions.php:64
+msgid "Primary"
+msgstr "Principal"
+
+#: functions.php:65
+msgid "Social Menu"
+msgstr "Menú Social"
+
+#: functions.php:139
+msgid "Import content"
+msgstr "Importar contenido"
+
+#: functions.php:173
+msgid "Sidebar"
+msgstr "Barra lateral"
+
+#: functions.php:182
+msgid "Homepage"
+msgstr "Página de inicio"
+
+#: functions.php:192
+msgid "Footer Widget %s"
+msgstr "Wiget de pie de página"
+
+#: functions.php:193
+msgid "Used for footer widget area"
+msgstr "Usado para el widget de pie de página"
+
+#: header.php:25
+msgid "Skip to content"
+msgstr "Avanzar al contenido"
+
+#: header.php:46
+msgid "Site Search"
+msgstr "Búsqueda de sitio"
+
+#: inc/admin/welcome-screen/notify-system-checks.php:125
+#: inc/admin/welcome-screen/notify-system-checks.php:133
+msgid "Install: Shapely Companion Plugin"
+msgstr "Instalación: Shapely Companion Plugin"
+
+#: inc/admin/welcome-screen/notify-system-checks.php:130
+msgid "Activate: Shapely Companion Plugin"
+msgstr "Activación: Shapely Companion Plugin"
+
+#: inc/admin/welcome-screen/notify-system-checks.php:139
+#: inc/admin/welcome-screen/notify-system-checks.php:147
+msgid "Install: Yoast SEO Plugin"
+msgstr "Instalación: Yoast SEO plugin"
+
+#: inc/admin/welcome-screen/notify-system-checks.php:144
+msgid "Activate: Yoast SEO Plugin"
+msgstr "Activación: Yoast SEO plugin"
+
+#: inc/admin/welcome-screen/notify-system-checks.php:153
+#: inc/admin/welcome-screen/notify-system-checks.php:161
+msgid "Install: Jetpack by WordPress"
+msgstr "Instalación: Shapely Companion Plugin"
+
+#: inc/admin/welcome-screen/notify-system-checks.php:158
+msgid "Activate: Jetpack by WordPress"
+msgstr "Activación: Shapely Companion Plugin"
+
+#: inc/admin/welcome-screen/notify-system-checks.php:171
+#: inc/admin/welcome-screen/notify-system-checks.php:179
+msgid "Please install Shapely Companion plugin."
+msgstr "Por favor, instale Shapely Companion plugin."
+
+#: inc/admin/welcome-screen/notify-system-checks.php:176
+msgid "Please activate Shapely Companion plugin."
+msgstr "Por favor, active Shapely Companion plugin."
+
+#: inc/admin/welcome-screen/notify-system-checks.php:189
+#: inc/admin/welcome-screen/notify-system-checks.php:197
+msgid ""
+"Please install Jetpack by WordPress. Note that you won't be able to use the "
+"Testimonials and Portfolio widgets without it."
+msgstr ""
+"Por favor, instale Jetpack by WordPress. Tenga en cuenta que no podrá usar "
+"los widgets de Testimonials y Portfolio sin este plugin."
+
+#: inc/admin/welcome-screen/notify-system-checks.php:194
+msgid ""
+"Please activate Jetpack by WordPress. Note that you won't be able to use the "
+"Testimonials and Portfolio widgets without it."
+msgstr ""
+"Por favor, active Jetpack by WordPress. Tenga en cuenta que no podrá usar "
+"los widgets de Testimonials y Portfolio sin este plugin."
+
+#: inc/admin/welcome-screen/notify-system-checks.php:203
+#: inc/admin/welcome-screen/notify-system-checks.php:211
+msgid "Please install Yoast SEO plugin."
+msgstr "Por favor, instale Yoast SEO plugin."
+
+#: inc/admin/welcome-screen/notify-system-checks.php:208
+msgid "Please activate Yoast SEO plugin."
+msgstr "Por favor, active Yoast SEO plugin."
+
+#: inc/admin/welcome-screen/sections/actions-required.php:55
+#: inc/admin/welcome-screen/sections/recommended-plugins.php:24
+msgid "Install"
+msgstr "Instalar"
+
+#: inc/admin/welcome-screen/sections/actions-required.php:59
+#: inc/admin/welcome-screen/sections/recommended-plugins.php:28
+msgid "Activate"
+msgstr "Activar"
+
+#: inc/admin/welcome-screen/sections/actions-required.php:63
+#: inc/admin/welcome-screen/sections/recommended-plugins.php:32
+msgid "Deactivate"
+msgstr "Desactivar"
+
+#: inc/admin/welcome-screen/sections/actions-required.php:84
+#: inc/admin/welcome-screen/welcome-screen.php:94
+msgid "Hooray! There are no required actions for you right now."
+msgstr "¡Hurra! No hay acciones que requieran tu atención por ahora."
+
+#: inc/admin/welcome-screen/sections/getting-started.php:11
+msgid "Step 1 - Implement recommended actions"
+msgstr "Paso 1 - Implementar acciones recomendadas"
+
+#: inc/admin/welcome-screen/sections/getting-started.php:12
+msgid ""
+"We've compiled a list of steps for you, to take make sure the experience "
+"you'll have using one of our products is very easy to follow."
+msgstr ""
+"Hemos recopilado una lista de pasos para usted, para asegurarnos de que la "
+"experiencia que tendrá con uno de nuestros productos sea muy fácil de seguir."
+
+#: inc/admin/welcome-screen/sections/getting-started.php:15
+msgid "No recommended actions left to perform"
+msgstr "No hay acciones recomendadas para realizar"
+
+#: inc/admin/welcome-screen/sections/getting-started.php:19
+msgid "Check recommended actions"
+msgstr "Comprobar acciones recomendadas"
+
+#: inc/admin/welcome-screen/sections/getting-started.php:25
+msgid "Step 2 - Check our documentation"
+msgstr "Paso 2 - Consulte nuestra documentación"
+
+#: inc/admin/welcome-screen/sections/getting-started.php:26
+msgid ""
+"Even if you're a long-time WordPress user, we still believe you should give "
+"our documentation a very quick Read."
+msgstr ""
+"Aunque usted sea un usuario de WordPress desde hace mucho tiempo, creemos "
+"que debe consultar de manera rápida la documentación."
+
+#: inc/admin/welcome-screen/sections/getting-started.php:29
+msgid "Full documentation"
+msgstr "Documentación completa"
+
+#: inc/admin/welcome-screen/sections/getting-started.php:34
+msgid "Step 3 - Customize everything"
+msgstr "Paso 3 - Personalice todo"
+
+#: inc/admin/welcome-screen/sections/getting-started.php:35
+msgid ""
+"Using the WordPress Customizer you can easily customize every aspect of the "
+"theme."
+msgstr ""
+"Con el Personalizador de WordPress puede personalizar fácilmente cada "
+"aspecto del tema."
+
+#: inc/admin/welcome-screen/sections/getting-started.php:37
+msgid "Go to Customizer"
+msgstr "Ir al personalizador"
+
+#: inc/admin/welcome-screen/sections/recommended-plugins.php:40
+msgid "Version:"
+msgstr "Versión:"
+
+#: inc/admin/welcome-screen/sections/support.php:4
+#: inc/admin/welcome-screen/sections/support.php:9
+msgid "Contact Support"
+msgstr "Contacte con el soporte"
+
+#: inc/admin/welcome-screen/sections/support.php:6
+msgid ""
+"We offer excellent support through our advanced ticketing system. Make sure "
+"to register your purchase before contacting support!"
+msgstr ""
+"Ofrecemos un excelente soporte a través de nuestro avanzado sistema de "
+"tickets. ¡Asegúrese de registrar su compra antes de contactar al soporte!"
+
+#: inc/admin/welcome-screen/sections/support.php:14
+#: inc/shapely-documentation/class-customize.php:73
+msgid "Documentation"
+msgstr "Documentación"
+
+#: inc/admin/welcome-screen/sections/support.php:16
+msgid ""
+"This is the place to go to reference different aspects of the theme. Our "
+"online documentation is an incredible resource for learning the ins and outs "
+"of using shapely."
+msgstr ""
+"Este es el lugar para consultar diferentes aspectos del tema. Nuestra "
+"documentación en línea es un recurso increíble para aprender los pormenores "
+"del uso de Shapely."
+
+#: inc/admin/welcome-screen/sections/support.php:19
+msgid "See our full documentation"
+msgstr "Vea nuestra documentación completa"
+
+#: inc/admin/welcome-screen/sections/support.php:24
+#: inc/admin/welcome-screen/welcome-screen.php:357
+msgid "Changelog"
+msgstr "Cambios"
+
+#: inc/admin/welcome-screen/sections/support.php:26
+msgid ""
+"Want to get the gist on the latest theme changes? Just consult our changelog "
+"below to get a taste of the recent fixes and features implemented."
+msgstr ""
+"¿Quiere conocer los últimos cambios de tema? Simplemente consulte nuestro "
+"registro de cambios a continuación para conocer las correcciones recientes y "
+"las funciones implementadas."
+
+#: inc/admin/welcome-screen/sections/support.php:29
+msgid "See changelog"
+msgstr "Vea los cambios"
+
+#: inc/admin/welcome-screen/welcome-screen.php:43
+msgid "About Shapely"
+msgstr "Sobre Shapely"
+
+#: inc/admin/welcome-screen/welcome-screen.php:72
+msgid ""
+"Welcome! Thank you for choosing shapely! To fully take advantage of the best "
+"our theme can offer please make sure you visit our %swelcome page%s."
+msgstr ""
+"¡Bienvenido! ¡Gracias por elegir Shapely! Para aprovechar al máximo lo mejor "
+"que puede ofrecer nuestro tema, asegúrese de visitar nuestra %swelcome page"
+"%s."
+
+#: inc/admin/welcome-screen/welcome-screen.php:74
+msgid "Get started with shapely"
+msgstr "Primeros pasos con Shapely"
+
+#: inc/admin/welcome-screen/welcome-screen.php:113
+msgid "View Theme Info"
+msgstr "Ver información del tema"
+
+#: inc/admin/welcome-screen/welcome-screen.php:145
+#, fuzzy
+msgid "I've fallen and can't get up"
+msgstr "Me he caído y no puedo levantarme"
+
+#: inc/admin/welcome-screen/welcome-screen.php:338
+msgid "Welcome to Shapely! - Version "
+msgstr "¡Bienvenido a Shapley! - Versión "
+
+#: inc/admin/welcome-screen/welcome-screen.php:341
+msgid ""
+"Shapely is now installed and ready to use! Get ready to build something "
+"beautiful. We hope you enjoy it! We want to make sure you have the best "
+"experience using shapely and that is why we gathered here all the necessary "
+"information for you. We hope you will enjoy using shapely, as much as we "
+"enjoy creating great products."
+msgstr ""
+"¡Shapely ahora está instalado y listo para usar! Prepárese para construir "
+"algo hermoso. ¡Esperamos que lo disfrute! Queremos asegurarnos de que tenga "
+"la mejor experiencia en el uso de Shapely y es por eso que reunimos aquí "
+"toda la información necesaria para usted. Esperamos que disfrute con el uso "
+"de Shapely, tanto como disfrutamos creando excelentes productos."
+
+#: inc/admin/welcome-screen/welcome-screen.php:348
+msgid "Getting Started"
+msgstr "Primeros pasos"
+
+#: inc/admin/welcome-screen/welcome-screen.php:350
+msgid "Recommended Actions"
+msgstr "Acciones recomendadas"
+
+#: inc/admin/welcome-screen/welcome-screen.php:353
+msgid "Recommended Plugins"
+msgstr "Plugins recomendados"
+
+#: inc/admin/welcome-screen/welcome-screen.php:355
+msgid "Support"
+msgstr "Soporte"
+
+#: inc/class-shapely-related-posts.php:156
+msgid "Related articles "
+msgstr "Artcículos relacionados "
+
+#: inc/customizer.php:72
+msgid "Shapely Options"
+msgstr "Opciones de Shapely"
+
+#: inc/customizer.php:73
+msgid "Panel to update shapely theme options"
+msgstr "Panel para actualizar las opciones del tema Shapely"
+
+#: inc/customizer.php:79
+msgid "Layout options"
+msgstr "Opciones de diseño"
+
+#: inc/customizer.php:86
+msgid "Blog Settings"
+msgstr "Ajustes del Blog"
+
+#: inc/customizer.php:96
+msgid "Link Color"
+msgstr "Color del enlace"
+
+#: inc/customizer.php:97 inc/customizer.php:106 inc/customizer.php:115
+#: inc/customizer.php:124 inc/customizer.php:134
+msgid "Default used if no color is selected"
+msgstr "Por defecto si ningún color está seleccionado"
+
+#: inc/customizer.php:105
+msgid "Link Hover Color"
+msgstr "Color del enlace al pasar por encima"
+
+#: inc/customizer.php:114
+msgid "Button Color"
+msgstr "Color del botón"
+
+#: inc/customizer.php:123
+msgid "Button Hover Color"
+msgstr "Color del botón al pasar por encima"
+
+#: inc/customizer.php:133
+msgid "Social Icon Color"
+msgstr "Color de los iconos de redes sociales"
+
+#: inc/customizer.php:140
+msgid "Main options"
+msgstr "Opciones principales"
+
+#: inc/customizer.php:156
+#, fuzzy
+msgid "Show title in top call out box"
+msgstr "Mostrar título en el cuadro de llamada superior"
+
+#: inc/customizer.php:164
+#, fuzzy
+msgid "check to show title in top call out box"
+msgstr "marca para mostrar el título en la caja de llamada superior"
+
+#: inc/customizer.php:182 inc/customizer.php:189
+msgid "Title in blog post"
+msgstr "Título en el post del blog"
+
+#: inc/customizer.php:201
+#, fuzzy
+msgid "Blog Name in top callout"
+msgstr "Nombre del blog en la parte superior de la leyenda"
+
+#: inc/customizer.php:202
+msgid "Heading for the Blog page"
+msgstr "Cabecera para la página del Blog"
+
+#: inc/customizer.php:212
+msgid "Portfolio Archive Title"
+msgstr "Titulo del archivo de la sección Portfolio"
+
+#: inc/customizer.php:222
+msgid "Portfolio Archive Description"
+msgstr "Descripción activa del Portolio"
+
+#: inc/customizer.php:233
+msgid "Text for footer callout"
+msgstr "Texto de la sección pie de paágina"
+
+#: inc/customizer.php:234
+msgid "Footer Callout"
+msgstr "Sección pie de página"
+
+#: inc/customizer.php:244
+msgid "Text for footer callout button"
+msgstr "Texto para el botón de acción de la sección pie de página"
+
+#: inc/customizer.php:253
+msgid "CFA button link"
+msgstr "CFA enlace del botón"
+
+#: inc/customizer.php:255
+msgid "Enter the link for Call For Action button in footer"
+msgstr "Inserte el link para el botón de acción de la sección pie de página"
+
+#: inc/customizer.php:261
+msgid "Footer"
+msgstr "Pie de página"
+
+#: inc/customizer.php:273
+msgid "Copyright Text"
+msgstr "Texto de copyright"
+
+#: inc/customizer.php:289
+#, fuzzy
+msgid "Color scheme"
+msgstr "Color del esquema"
+
+#: inc/customizer.php:290
+#, fuzzy
+msgid "Select a color scheme"
+msgstr "Seleccione un color para el esquema"
+
+#: inc/customizer.php:365 inc/customizer.php:407
+msgid "First Letter Caps"
+msgstr "Primera letra en mayúscula"
+
+#: inc/customizer.php:374 inc/customizer.php:412
+#, fuzzy
+msgid "Tags Post Meta"
+msgstr "Etiquetas post meta"
+
+#: inc/customizer.php:383 inc/customizer.php:417
+msgid "Related Posts Area"
+msgstr "Área de post relacionados"
+
+#: inc/customizer.php:392 inc/customizer.php:422
+msgid "Post Author Area"
+msgstr "Área de post de autores relacionados"
+
+#: inc/customizer.php:401 inc/customizer.php:427
+msgid "Post Author Left Side"
+msgstr "Publicar el autor en el lado izquierdo"
+
+#: inc/customizer.php:439
+msgid "Blog Layout"
+msgstr "Diseño del Blog"
+
+#: inc/customizer.php:443
+msgid "Grid only"
+msgstr "Únicamente cuadrícula"
+
+#: inc/customizer.php:444
+msgid "Large Image and Grid"
+msgstr "Imagen grande y cuadrícula"
+
+#: inc/customizer.php:445
+msgid "Large Images"
+msgstr "Imágenes grandes"
+
+#: inc/customizer.php:455
+msgid "Blog Template"
+msgstr "Plantilla del Blog"
+
+#. Template Name of the plugin/theme
+msgid "Full Width"
+msgstr "Ancho completo"
+
+#. Template Name of the plugin/theme
+msgid "No Sidebar"
+msgstr "Sin barra lateral"
+
+#. Template Name of the plugin/theme
+msgid "Sidebar Left"
+msgstr "Barra lateral izquierda"
+
+#. Template Name of the plugin/theme
+msgid "Sidebar Right"
+msgstr "Barra lateral derecha"
+
+#: inc/customizer.php:485
+msgid "Left Sidebar"
+msgstr "Barra lateral izquierda"
+
+#: inc/customizer.php:486
+msgid "Right Sidebar"
+msgstr "Barra lateral derecha"
+
+#: inc/extras.php:63
+msgid "Untitled"
+msgstr "Sin título"
+
+#: inc/extras.php:80
+msgid ""
+"This post is password protected. To view it please enter your password below:"
+msgstr ""
+"Este post está protegido con contraseña. Para visualizarlo, por favor "
+"inserte la contraseña a continuación:"
+
+#: inc/extras.php:81
+msgid "Password:"
+msgstr "Contraseña:"
+
+#: inc/extras.php:84
+msgid "Submit"
+msgstr "Enviar"
+
+#: inc/extras.php:123
+#, fuzzy
+msgid "Theme by %1$s Powered by %2$s"
+msgstr "Tema de %1$s Con la tecnología de %2$s"
+
+#: inc/extras.php:270
+msgid "Search for:"
+msgstr "Buscar:"
+
+#: inc/extras.php:271
+msgid "Type Here"
+msgstr "Escriba aquí"
+
+#: inc/extras.php:272 inc/extras.php:653
+msgid "Search"
+msgstr "Buscar"
+
+#. translators: 1: date, 2: time
+#: inc/extras.php:489
+msgid "%1$s at %2$s"
+msgstr "%1$s en %2$s"
+
+#: inc/extras.php:489
+msgid "Edit"
+msgstr "Editar"
+
+#: inc/extras.php:501
+msgid "Your comment is awaiting moderation."
+msgstr "Tu comentario está pendiente de moderación."
+
+#: inc/extras.php:535
+msgid "Your Name"
+msgstr "Tu nombre"
+
+#: inc/extras.php:539
+msgid "Email Address"
+msgstr "Dirección de correo electrónico"
+
+#: inc/extras.php:543
+msgid "Your Website (optional)"
+msgstr "Tu página web (opcional)"
+
+#: inc/extras.php:548
+msgid "Leave Comment"
+msgstr "Dejar un comentario"
+
+#: inc/extras.php:655 inc/extras.php:657
+msgid "Portfolio"
+msgstr "Portfolio"
+
+#: inc/navwalker.php:203
+msgid "Add a menu"
+msgstr "Añadir un menú"
+
+#. Theme Name of the plugin/theme
+msgid "Shapely"
+msgstr "Shapely"
+
+#: inc/template-tags.php:58
+msgid "by"
+msgstr "por"
+
+#. translators: used between list items, there is a space after the comma
+#: inc/template-tags.php:74 inc/template-tags.php:80
+msgid ", "
+msgstr ", "
+
+#: inc/template-tags.php:76
+msgid "Posted in %1$s"
+msgstr "Publicado en %1$s"
+
+#: inc/template-tags.php:83
+msgid "Tagged %1$s"
+msgstr "Etiquetado %1$s"
+
+#: inc/template-tags.php:89
+msgid "Leave a comment"
+msgstr "Deja un comentario"
+
+#: inc/template-tags.php:89
+msgid "1 Comment"
+msgstr "1 Comentario"
+
+#: inc/template-tags.php:89
+msgid "% Comments"
+msgstr "% Comentarios"
+
+#. translators: %s: Name of current post
+#: inc/template-tags.php:96 template-parts/content-page.php:59
+msgid "Edit %s"
+msgstr "Editar %s"
+
+#: inc/template-tags.php:158
+msgid "View all posts in %s"
+msgstr "Ver todos los post %s"
+
+#: page-templates/template-home.php:14
+msgid ""
+"This is the \"Home Sidebar Section\", add some widgets to it to change it."
+msgstr ""
+"Esta es la \"Sección de la barra lateral de inicio\", añade algún widget "
+"para cambiarla."
+
+#: search.php:24
+msgid "Search Results for: %s"
+msgstr "Resultados de la búsqueda para: %s"
+
+#. translators: %s: Name of current post.
+#: template-parts/content-grid-small.php:59
+#: template-parts/content-grid-wide.php:66
+msgid "Read more %s <span class=\"meta-nav\">&rarr;</span>"
+msgstr "Continuar leyendo %s <span class=\"meta-nav\">&rarr;</span>"
+
+#: template-parts/content-grid-small.php:64
+#: template-parts/content-grid-wide.php:71 template-parts/content-page.php:30
+#: template-parts/content.php:79 template-parts/content.php:91
+msgid "Pages:"
+msgstr "Páginas:"
+
+#: template-parts/content-none.php:14
+msgid "Nothing Found"
+msgstr "Nada encontrado"
+
+#: template-parts/content-none.php:21
+msgid ""
+"Ready to publish your first post? <a href=\"%1$s\">Get started here</a>."
+msgstr ""
+"Preparado para publicar tu primer post? <a href=\"%1$s\">Comience aquí</a>."
+
+#: template-parts/content-none.php:25
+msgid ""
+"Sorry, but nothing matched your search terms. Please try again with some "
+"different keywords."
+msgstr ""
+"Lo sentimos, pero nada coincide con sus términos de búsqueda. Por favor, "
+"inténtelo de nuevo con algunas palabras clave diferentes."
+
+#: template-parts/content-none.php:31
+msgid ""
+"It seems we can&rsquo;t find what you&rsquo;re looking for. Perhaps "
+"searching can help."
+msgstr ""
+"Parece ser que no se encuentra lo que está buscando. Quizás la búsqueda "
+"pueda ayudar."
+
+#. Theme URI of the plugin/theme
+msgid "https://colorlib.com/wp/themes/shapely"
+msgstr "https://colorlib.com/wp/themes/shapely"
+
+#. Description of the plugin/theme
+msgid ""
+"Shapely is a powerful and versatile one page WordPress theme with pixel "
+"perfect design and outstanding functionality. It is by far the most advanced "
+"free WordPress theme available today with loads of unmatched customization "
+"options. This theme comes with several homepage widgets that can be used to "
+"add portfolio, testimonials, parallax sections, your product or service "
+"information, call for action and much more. Shapely supports most free and "
+"premium WordPress plugins such as WooCommerce, Jetpack, Gravity Forms, "
+"Contact Form 7, Yoast SEO, Google Analytics by Yoast and much more. This "
+"theme is the best suited for business, landing page, portfolio, ecommerce, "
+"store, local business,  personal websites but can be tweaked to be used as "
+"blog, magazine or any other awesome website while highlighting its unique "
+"one page setup. This is going to be the last WordPress theme you will ever "
+"want to use because it is so much better than anything you have seen. "
+"Needless to say that this theme is SEO friendly thanks to its well optimized "
+"strucutre. Shapely theme is mobile friendly and fully responsive making it "
+"your best multipurpose partnert for any project and website."
+msgstr ""
+
+#. Author of the plugin/theme
+msgid "colorlib"
+msgstr "colorlib"
+
+#. Author URI of the plugin/theme
+msgid "https://colorlib.com/"
+msgstr "https://colorlib.com/"
+
+#. Template Name of the plugin/theme
+msgid "Home Page"
+msgstr "Página de inicio"
+
+#: comments.php:30
+msgctxt "comments title"
+msgid "1 COMMENT"
+msgid_plural "%1$s COMMENTS"
+msgstr[0] "1 COMENTARIO"
+msgstr[1] "%1$s COMENTARIOS"
+
+#: inc/extras.php:239
+msgctxt "Read More"
+msgid "Read More"
+msgstr "Continuar leyendo"
+
+#: inc/extras.php:549
+msgctxt "noun"
+msgid "Comment"
+msgstr "Comentatio"
