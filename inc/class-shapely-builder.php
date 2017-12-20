@@ -43,10 +43,10 @@ class Shapely_Builder {
 		if ( $the_pages->have_posts() ) {
 			foreach ( $the_pages->posts as $post ) {
 				$this->pages[ $post->post_name ] = array(
-					'id'    => $post->ID,
-					'title' => $post->post_title,
+					'id'    => absint( $post->ID ),
+					'title' => esc_html( $post->post_title ),
 				);
-				$this->sidebars[]                = 'shapely-' . $post->post_name;
+				$this->sidebars[] = 'shapely-' . $post->post_name;
 			}
 		}
 
@@ -79,7 +79,7 @@ class Shapely_Builder {
 
 	public function enqueue_builder_js() {
 		$builder_settings = array(
-			'siteURL' => site_url(),
+			'siteURL' => esc_url( site_url() ),
 			'pages'   => $this->pages,
 		);
 		wp_enqueue_script( 'shapely_builder_customizer', get_template_directory_uri() . '/assets/js/customizer-builder.js', array(), '20140317', true );
