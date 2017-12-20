@@ -331,13 +331,13 @@ if ( ! function_exists( 'shapely_author_bio' ) ) {
 				</div>
 				<div class="col-sm-10">
 					<b class="fn"><?php echo esc_html( $author_name ); ?></b>
-					<p>
+					<div>
 					<?php
 					if ( '' != trim( $author_description ) ) {
-						echo esc_html( $author_description );
+						echo wp_kses_post( $author_description );
 					}
 					?>
-					</p>
+					</div>
 					<?php if ( ( $show_athor_email && ! is_singular( 'jetpack-portfolio' ) ) || ( is_singular( 'jetpack-portfolio' ) && $show_project_athor_email ) ) : ?>
 						<a class="author-email" href="mailto:<?php echo esc_attr( antispambot( $author_email ) ); ?>"><?php echo esc_html( antispambot( $author_email ) ); ?></a>
 					<?php endif ?>
@@ -381,7 +381,7 @@ if ( ! function_exists( 'shapely_author_bio' ) ) {
 						?>
 							<li>
 							<a href="<?php echo esc_url( $github_profile ); ?>">
-								<i class="fa fa-vimeo"></i>
+								<i class="fa fa-github"></i>
 							</a>
 							</li>
 							<?php
@@ -392,7 +392,7 @@ if ( ! function_exists( 'shapely_author_bio' ) ) {
 						?>
 							<li>
 							<a href="<?php echo esc_url( $vimeo_profile ); ?>">
-								<i class="fa fa-github"></i>
+								<i class="fa fa-vimeo"></i>
 							</a>
 							</li>
 							<?php
