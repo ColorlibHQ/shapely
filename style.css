@@ -4199,3 +4199,7 @@ span.wpcf7-not-valid-tip {
 .page-template-template-widget section.content-area  {
     padding-top: 0;
 }
+.widget .text-center .img-responsive {
+    margin-left: auto;
+    margin-right: auto;
+}
