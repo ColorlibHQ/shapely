@@ -34,8 +34,7 @@ $count          = $this->count_actions();
 	<div class="col">
 		<h3><?php esc_html_e( 'Step 3 - Customize everything', 'shapely' ); ?></h3>
 		<p><?php esc_html_e( 'Using the WordPress Customizer you can easily customize every aspect of the theme.', 'shapely' ); ?></p>
-		<p><a target="_blank" href="<?php echo esc_url( $customizer_url ); ?>"
-			  class="button button-primary"><?php esc_html_e( 'Go to Customizer', 'shapely' ); ?></a>
+		<p><a target="_blank" href="<?php echo esc_url( $customizer_url ); ?>" class="button button-primary"><?php esc_html_e( 'Go to Customizer', 'shapely' ); ?></a>
 		</p>
 	</div><!--/.col-->
 </div><!--/.feature-section-->

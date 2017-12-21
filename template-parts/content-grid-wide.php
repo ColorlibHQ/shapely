@@ -12,12 +12,12 @@
 		<article id="post-<?php the_ID(); ?>" <?php post_class( 'post-content post-grid-wide col-md-12' ); ?>>
 			<header class="entry-header nolist">
 				<?php
-				$category = get_the_category();
+				$category      = get_the_category();
 				$show_category = true;
 				if ( is_category() ) {
 					$show_category = get_theme_mod( 'show_category_on_category_page', 1 );
 				}
-				$image    = '<img class="wp-post-image" alt="" src="' . get_template_directory_uri() . '/assets/images/placeholder_wide.jpg" />';
+				$image = '<img class="wp-post-image" alt="" src="' . get_template_directory_uri() . '/assets/images/placeholder_wide.jpg" />';
 				if ( has_post_thumbnail() ) {
 					$layout = shapely_get_layout_class();
 					$size   = 'shapely-featured';
@@ -70,13 +70,13 @@
 				the_content(
 					sprintf(
 						/* translators: %s: Name of current post. */
-								 wp_kses(
-									 __( 'Read more %s <span class="meta-nav">&rarr;</span>', 'shapely' ), array(
-										 'span' => array(
-											 'class' => array(),
-										 ),
-									 )
-								 ),
+								wp_kses(
+									__( 'Read more %s <span class="meta-nav">&rarr;</span>', 'shapely' ), array(
+										'span' => array(
+											'class' => array(),
+										),
+									)
+								),
 						the_title( '<span class="screen-reader-text">"', '"</span>', false )
 					)
 				);

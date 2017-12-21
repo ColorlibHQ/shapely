@@ -32,7 +32,7 @@ class Shapely_Welcome {
 			)
 		);
 
-		$theme = wp_get_theme();
+		$theme            = wp_get_theme();
 		$this->theme_name = $theme->get( 'Name' );
 		$this->theme_slug = $theme->get( 'TextDomain' );
 
@@ -109,8 +109,7 @@ class Shapely_Welcome {
 		?>
 		<div class="updated notice is-dismissible">
 			<p><?php echo sprintf( esc_html__( 'Welcome! Thank you for choosing Shapely! To fully take advantage of the best our theme can offer please make sure you visit our %1$swelcome page%2$s.', 'shapely' ), '<a href="' . esc_url( admin_url( 'themes.php?page=shapely-welcome' ) ) . '">', '</a>' ); ?></p>
-			<p><a href="<?php echo esc_url( admin_url( 'themes.php?page=shapely-welcome' ) ); ?>" class="button"
-				  style="text-decoration: none;"><?php echo esc_html__( 'Get started with Shapely', 'shapely' ); ?></a>
+			<p><a href="<?php echo esc_url( admin_url( 'themes.php?page=shapely-welcome' ) ); ?>" class="button" style="text-decoration: none;"><?php echo esc_html__( 'Get started with Shapely', 'shapely' ); ?></a>
 			</p>
 		</div>
 		<?php
@@ -289,13 +288,13 @@ class Shapely_Welcome {
 
 			return array(
 				'status' => is_plugin_active( $slug2 ),
-				'needs' => $needs,
+				'needs'  => $needs,
 			);
 		}
 
 		return array(
 			'status' => false,
-			'needs' => 'install',
+			'needs'  => 'install',
 		);
 	}
 
@@ -381,15 +380,11 @@ class Shapely_Welcome {
 
 
 			<h2 class="nav-tab-wrapper wp-clearfix">
-				<a href="<?php echo esc_url( admin_url( 'themes.php?page=shapely-welcome&tab=getting_started' ) ); ?>"
-				   class="nav-tab <?php echo 'getting_started' == $active_tab ? 'nav-tab-active' : ''; ?>"><?php echo esc_html__( 'Getting Started', 'shapely' ); ?></a>
-				<a href="<?php echo esc_url( admin_url( 'themes.php?page=shapely-welcome&tab=recommended_actions' ) ); ?>"
-				   class="nav-tab <?php echo 'recommended_actions' == $active_tab ? 'nav-tab-active' : ''; ?> "><?php echo esc_html__( 'Recommended Actions', 'shapely' ); ?>
+				<a href="<?php echo esc_url( admin_url( 'themes.php?page=shapely-welcome&tab=getting_started' ) ); ?>" class="nav-tab <?php echo 'getting_started' == $active_tab ? 'nav-tab-active' : ''; ?>"><?php echo esc_html__( 'Getting Started', 'shapely' ); ?></a>
+				<a href="<?php echo esc_url( admin_url( 'themes.php?page=shapely-welcome&tab=recommended_actions' ) ); ?>" class="nav-tab <?php echo 'recommended_actions' == $active_tab ? 'nav-tab-active' : ''; ?> "><?php echo esc_html__( 'Recommended Actions', 'shapely' ); ?>
 					<?php echo $action_count > 0 ? '<span class="badge-action-count">' . esc_html( $action_count ) . '</span>' : ''; ?></a>
-				<a href="<?php echo esc_url( admin_url( 'themes.php?page=shapely-welcome&tab=recommended_plugins' ) ); ?>"
-				   class="nav-tab <?php echo 'recommended_plugins' == $active_tab ? 'nav-tab-active' : ''; ?> "><?php echo esc_html__( 'Recommended Plugins', 'shapely' ); ?></a>
-				<a href="<?php echo esc_url( admin_url( 'themes.php?page=shapely-welcome&tab=support' ) ); ?>"
-				   class="nav-tab <?php echo 'support' == $active_tab ? 'nav-tab-active' : ''; ?> "><?php echo esc_html__( 'Support', 'shapely' ); ?></a>
+				<a href="<?php echo esc_url( admin_url( 'themes.php?page=shapely-welcome&tab=recommended_plugins' ) ); ?>" class="nav-tab <?php echo 'recommended_plugins' == $active_tab ? 'nav-tab-active' : ''; ?> "><?php echo esc_html__( 'Recommended Plugins', 'shapely' ); ?></a>
+				<a href="<?php echo esc_url( admin_url( 'themes.php?page=shapely-welcome&tab=support' ) ); ?>" class="nav-tab <?php echo 'support' == $active_tab ? 'nav-tab-active' : ''; ?> "><?php echo esc_html__( 'Support', 'shapely' ); ?></a>
 			</h2>
 
 			<?php
