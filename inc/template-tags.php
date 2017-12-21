@@ -72,11 +72,9 @@ if ( ! function_exists( 'shapely_posted_on_no_cat' ) ) :
 		<?php if ( $post_date ) : ?>
 			<li><span class="posted-on"><?php echo $time_string; ?></span></li>
 		<?php endif ?>
-		
 		<?php if ( $post_author ) : ?>
 			<li><span><?php echo esc_html__( 'by', 'shapely' ); ?> <a href="<?php echo esc_url( get_author_posts_url( get_the_author_meta( 'ID' ) ) ); ?>" title="<?php echo esc_attr( get_the_author() ); ?>"><?php esc_html( the_author() ); ?></a></span></li>
 		<?php endif ?>
-		
 		</ul>
 		<?php
 		endif;

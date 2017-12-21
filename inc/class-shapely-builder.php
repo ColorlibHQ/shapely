@@ -46,7 +46,7 @@ class Shapely_Builder {
 					'id'    => absint( $post->ID ),
 					'title' => esc_html( $post->post_title ),
 				);
-				$this->sidebars[] = 'shapely-' . $post->post_name;
+				$this->sidebars[]                = 'shapely-' . $post->post_name;
 			}
 		}
 

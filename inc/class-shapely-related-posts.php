@@ -235,9 +235,7 @@ if ( ! class_exists( 'Shapely_Related_Posts' ) ) {
 					echo '<div class="shapely-related-post-title">';
 
 					# Post Title
-					echo '<a href="' . esc_url( get_the_permalink() ) . '">' . wp_trim_words( get_the_title(), 5 ) .
-						 '</a>';
-
+					echo '<a href="' . esc_url( get_the_permalink() ) . '">' . wp_trim_words( get_the_title(), 5 ) . '</a>';
 					echo '</div>';
 
 				}

@@ -7,12 +7,12 @@
  * @package Shapely
  */
 
-$dropcaps    = get_theme_mod( 'project_first_letter_caps', true );
-$enable_tags = get_theme_mod( 'project_tags_post_meta', true );
-$post_author = get_theme_mod( 'project_author_area', true );
-$left_side   = get_theme_mod( 'project_author_left_side', false );
-$post_title  = get_theme_mod( 'title_above_project', true );
-$post_category  = get_theme_mod( 'project_category', true );
+$dropcaps      = get_theme_mod( 'project_first_letter_caps', true );
+$enable_tags   = get_theme_mod( 'project_tags_post_meta', true );
+$post_author   = get_theme_mod( 'project_author_area', true );
+$left_side     = get_theme_mod( 'project_author_left_side', false );
+$post_title    = get_theme_mod( 'title_above_project', true );
+$post_category = get_theme_mod( 'project_category', true );
 
 ?>
 <article id="post-<?php the_ID(); ?>" <?php post_class( 'post-content post-grid-wide' ); ?>>
@@ -64,7 +64,6 @@ $post_category  = get_theme_mod( 'project_category', true );
 				<a href="<?php echo esc_url( get_the_permalink() ); ?>"><?php echo wp_trim_words( get_the_title(), 9 ); ?></a>
 			</h2>
 		<?php endif ?>
-		
 
 		<div class="entry-meta">
 			<?php

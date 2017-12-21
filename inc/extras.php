@@ -731,8 +731,7 @@ function shapely_footer_callout() {
 							<h3 class="cfa-text"><?php echo wp_kses_post( get_theme_mod( 'footer_callout_text' ) ); ?></h3>
 						</div>
 						<div class="col-sm-3">
-							<a href='<?php echo esc_url( get_theme_mod( 'footer_callout_link' ) ); ?>'
-							   class="mb0 btn btn-lg btn-filled cfa-button">
+							<a href='<?php echo esc_url( get_theme_mod( 'footer_callout_link' ) ); ?>' class="mb0 btn btn-lg btn-filled cfa-button">
 								<?php echo wp_kses_post( get_theme_mod( 'footer_callout_btntext' ) ); ?>
 							</a>
 						</div>
