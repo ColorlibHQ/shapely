@@ -22,6 +22,7 @@
     "Vimeo" : false,
     "shapelyWelcomeScreenObject" : false,
     "console": false,
-    "shapelyWelcomeScreenCustomizerObject" : false
+    "shapelyWelcomeScreenCustomizerObject" : false,
+    "ShapelyBuilder" : false
   }
 }

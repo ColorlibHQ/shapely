@@ -4,8 +4,7 @@
 		<p>
 			<i><?php esc_html_e( 'We offer excellent support through our advanced ticketing system. Make sure to register your purchase before contacting support!', 'shapely' ); ?></i>
 		</p>
-		<p><a target="_blank"  class="button button-primary"
-			  href="<?php echo esc_url( 'https://colorlib.com/wp/forums/' ); ?>"><?php esc_html_e( 'Contact Support', 'shapely' ); ?></a>
+		<p><a target="_blank"  class="button button-primary" href="<?php echo esc_url( 'https://colorlib.com/wp/forums/' ); ?>"><?php esc_html_e( 'Contact Support', 'shapely' ); ?></a>
 		</p>
 	</div><!--/.col-->
 

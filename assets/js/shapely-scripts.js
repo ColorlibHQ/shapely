@@ -6,6 +6,10 @@
 
     //"use strict";
 
+    jQuery( 'body' ).imagesLoaded( function() {
+      jQuery( window ).trigger( 'resize' ).trigger( 'scroll' );
+    } );
+
     jQuery( '.shapely-dropdown' ).click( function( evt ) {
       evt.preventDefault();
       jQuery( this ).parent().find( '> ul' ).toggleClass( 'active' );
@@ -25,6 +29,15 @@
       element = $( '#site-navigation #menu a[href=' + window.location.hash + ']' );
       if ( element ) {
         scrollToID = '#' + element.data( 'scroll' );
+
+        if ( jQuery( scrollToID ).length < 1 ) {
+          scrollToID = window.location.hash;
+        }
+
+        if ( jQuery( scrollToID ).length < 1 ) {
+          return;
+        }
+
         $( 'html,body' ).animate( {
           scrollTop: $( scrollToID ).offset().top
         }, 2000 );
@@ -37,6 +50,15 @@
 
     $( '#site-navigation #menu a[href^=#]:not([href=#])' ).click( function( evt ) {
       var scrollToID = '#' + $( this ).data( 'scroll' );
+
+      if ( jQuery( scrollToID ).length < 1 ) {
+        scrollToID = $( this ).attr( 'href' );
+      }
+
+      if ( jQuery( scrollToID ).length < 1 ) {
+        return;
+      }
+
       evt.preventDefault();
       $( 'html,body' ).animate( {
         scrollTop: $( scrollToID ).offset().top
