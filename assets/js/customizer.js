@@ -93,9 +93,10 @@
 
         control.setting( {} );
         control.setting( values );
-
+        control.hasLogo = true;
         control.toggle( true );
       } else {
+        control.hasLogo = false;
         control.toggle( false );
       }
     },

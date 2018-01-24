@@ -123,8 +123,8 @@ if ( ! class_exists( 'Shapely_Related_Posts' ) ) {
 				$terms_args = array(
 					'fields' => 'ids',
 				);
-				$types = wp_get_object_terms( get_the_ID(), 'jetpack-portfolio-type', $terms_args );
-				$tags = wp_get_object_terms( get_the_ID(), 'jetpack-portfolio-tag', $terms_args );
+				$types      = wp_get_object_terms( get_the_ID(), 'jetpack-portfolio-type', $terms_args );
+				$tags       = wp_get_object_terms( get_the_ID(), 'jetpack-portfolio-tag', $terms_args );
 
 				$tax_query = array();
 
@@ -235,9 +235,7 @@ if ( ! class_exists( 'Shapely_Related_Posts' ) ) {
 					echo '<div class="shapely-related-post-title">';
 
 					# Post Title
-					echo '<a href="' . esc_url( get_the_permalink() ) . '">' . wp_trim_words( get_the_title(), 5 ) .
-						 '</a>';
-
+					echo '<a href="' . esc_url( get_the_permalink() ) . '">' . wp_trim_words( get_the_title(), 5 ) . '</a>';
 					echo '</div>';
 
 				}

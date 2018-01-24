@@ -32,9 +32,9 @@ if ( ! function_exists( 'shapely_setup' ) ) :
 		 */
 		add_theme_support(
 			'custom-logo', array(
-				'height'     => 55,
-				'width'      => 135,
-				'flex-width' => true,
+				'height'      => 55,
+				'width'       => 135,
+				'flex-width'  => true,
 				'flex-height' => true,
 			)
 		);
@@ -119,7 +119,7 @@ if ( ! function_exists( 'shapely_setup' ) ) :
 			global $shapely_required_actions, $shapely_recommended_plugins;
 
 			$shapely_recommended_plugins = array(
-				'contact-form-7' => array(
+				'contact-form-7'         => array(
 					'recommended' => false,
 				),
 				'fancybox-for-wordpress' => array(
@@ -181,7 +181,7 @@ if ( ! function_exists( 'shapely_setup' ) ) :
 		}// End if().
 
 		// Enable Shortcodes in widgets
-		add_filter( 'widget_text','do_shortcode' );
+		add_filter( 'widget_text', 'do_shortcode' );
 
 	}
 endif;
@@ -333,6 +333,7 @@ require_once 'inc/libraries/epsilon-framework/class-epsilon-autoloader.php';
 $args = array(
 	'controls' => array( 'slider', 'toggle' ), // array of controls to load
 	'sections' => array( 'recommended-actions', 'pro' ), // array of sections to load
+	'backup'   => false,
 );
 
 new Epsilon_Framework( $args );
@@ -377,3 +378,8 @@ require get_template_directory() . '/inc/class-shapely-related-posts.php';
  */
 require get_template_directory() . '/inc/admin/welcome-screen/class-shapely-notify-system.php';
 
+/**
+ * Load the shapely page builder class
+ */
+require get_template_directory() . '/inc/class-shapely-builder.php';
+Shapely_Builder::get_instance();

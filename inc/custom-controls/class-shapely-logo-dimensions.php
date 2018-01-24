@@ -15,17 +15,17 @@ class Shapely_Logo_Dimensions extends WP_Customize_Control {
 
 		if ( ! $current_value ) {
 			$current_value = array(
-				'width' => '',
+				'width'  => '',
 				'height' => '',
-				'ratio' => 1,
+				'ratio'  => 1,
 			);
 
 			$custom_logo = get_theme_mod( 'custom_logo' );
 			if ( $custom_logo ) {
-				$logo = wp_get_attachment_image_src( $custom_logo , 'full' );
+				$logo = wp_get_attachment_image_src( $custom_logo, 'full' );
 				if ( is_array( $logo ) ) {
 
-					$current_value['width'] = $logo[1];
+					$current_value['width']  = $logo[1];
 					$current_value['height'] = $logo[2];
 
 				}
@@ -37,12 +37,12 @@ class Shapely_Logo_Dimensions extends WP_Customize_Control {
 	}
 
 	public function json() {
-		$json = parent::json();
-		$json['id']      = $this->id;
-		$json['link']    = $this->get_link();
-		$json['value']   = $this->get_dimensions();
-		$json['widthLabel'] = esc_attr__( 'Logo Width:', 'shapely' );
-		$json['heightLabel'] = esc_attr__( 'Logo Height:', 'shapely' );
+		$json                   = parent::json();
+		$json['id']             = $this->id;
+		$json['link']           = $this->get_link();
+		$json['value']          = $this->get_dimensions();
+		$json['widthLabel']     = esc_attr__( 'Logo Width:', 'shapely' );
+		$json['heightLabel']    = esc_attr__( 'Logo Height:', 'shapely' );
 		$json['checkboxtLabel'] = esc_attr__( 'Keep logo ratio.', 'shapely' );
 
 		return $json;

@@ -4168,6 +4168,13 @@ footer.bg-dark a {
 .woocommerce-page #content table.cart td.actions .coupon .input-text {
     width: auto;
 }
+.create-account label.woocommerce-form__label {
+    width: 100% !important;
+    display: block !important;
+}
+.woocommerce form .form-row.create-account .input-checkbox {
+    position: relative;
+}
 
 /* Contact Form 7 */
 .wpcf7-form div.wpcf7-validation-errors {
@@ -4188,4 +4195,11 @@ footer.bg-dark a {
 }
 span.wpcf7-not-valid-tip {
     margin-top: -24px;
+}
+.page-template-template-widget section.content-area  {
+    padding-top: 0;
+}
+.widget .text-center .img-responsive {
+    margin-left: auto;
+    margin-right: auto;
 }
