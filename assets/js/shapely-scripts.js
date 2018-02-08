@@ -341,6 +341,7 @@
           } );
 
         } else {
+
           $( play ).on( 'click', function( e ) {
             var parent = $( this ).parents( '.video-widget' ),
                 instance = $( parent ).data( 'vide' ),
