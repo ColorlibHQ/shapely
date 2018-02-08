@@ -4203,3 +4203,14 @@ span.wpcf7-not-valid-tip {
     margin-left: auto;
     margin-right: auto;
 }
+section .widget-post-thumbnail {
+    display: block;
+    margin-bottom: 24px;
+}
+section .widget-post-title {
+    margin: 0;
+}
+section .widget-post-excerpt {
+    margin-top: 24px;
+    padding: 0 15px;
+}
