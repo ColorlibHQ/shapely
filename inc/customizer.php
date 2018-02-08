@@ -1234,6 +1234,13 @@ function shapely_customizer_custom_control_css() {
 		.shapely-logo-dimension .ratio {
 			clear: both;
 		}
+		.widget-content .iris-picker .iris-strip .ui-slider-handle {
+		    top: auto;
+		    transform: translateX(0);
+		}
+		.widget-content .iris-picker .iris-slider-offset {
+		    margin: 0;
+		}
 	</style>
 	<?php
 }
