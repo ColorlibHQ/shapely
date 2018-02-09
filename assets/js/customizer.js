@@ -35,15 +35,19 @@
       } );
 
       control.widthElement.keyup( function() {
-        if ( control.respectRatio && control.hasLogo ) {
-          control.calculateRatio( 'width' );
+        if ( control.hasLogo ) {
+          if ( control.respectRatio ) {
+            control.calculateRatio( 'width' );
+          }
           control.shapelyInterval = setInterval( control.updateControl, 1000, control );
         }
       } );
 
       control.heightElement.keyup( function() {
-        if ( control.respectRatio && control.hasLogo ) {
-          control.calculateRatio( 'height' );
+        if ( control.hasLogo ) {
+          if ( control.respectRatio ) {
+            control.calculateRatio( 'height' );
+          }
           control.shapelyInterval = setInterval( control.updateControl, 1000, control );
         }
       } );
