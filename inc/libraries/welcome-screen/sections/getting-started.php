@@ -12,11 +12,11 @@ $count          = $this->count_actions();
 		<p><?php esc_html_e( 'We\'ve compiled a list of steps for you, to take make sure the experience you\'ll have using one of our products is very easy to follow.', 'shapely' ); ?></p>
 		<?php if ( 0 == $count ) { ?>
 			<p><span class="dashicons dashicons-yes"></span>
-				<a href="<?php echo esc_url( admin_url( 'themes.php?page=shapely-welcome&tab=recommended_actions' ) ); ?>"><?php esc_html_e( 'No recommended actions left to perform', 'shapely' ); ?></a>
+				<a href="<?php echo esc_url( admin_url( 'themes.php?page=shapely-welcome&tab=recommended-actions' ) ); ?>"><?php esc_html_e( 'No recommended actions left to perform', 'shapely' ); ?></a>
 			</p>
 		<?php } else { ?>
 			<p><span class="dashicons dashicons-no-alt"></span> <a
-					href="<?php echo esc_url( admin_url( 'themes.php?page=shapely-welcome&tab=recommended_actions' ) ); ?>"><?php esc_html_e( 'Check recommended actions', 'shapely' ); ?></a>
+					href="<?php echo esc_url( admin_url( 'themes.php?page=shapely-welcome&tab=recommended-actions' ) ); ?>"><?php esc_html_e( 'Check recommended actions', 'shapely' ); ?></a>
 			</p> 
 			<?php
 };

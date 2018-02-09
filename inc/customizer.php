@@ -75,52 +75,7 @@ add_action( 'customize_register', 'shapely_customize_register' );
  */
 function shapely_customizer( $wp_customize ) {
 
-	// Recomended actions
-	global $shapely_required_actions, $shapely_recommended_plugins;
-
 	require_once get_template_directory() . '/inc/custom-controls/class-shapely-logo-dimensions.php';
-
-	$customizer_recommended_plugins = array();
-	if ( is_array( $shapely_recommended_plugins ) ) {
-		foreach ( $shapely_recommended_plugins as $k => $s ) {
-			if ( $s['recommended'] ) {
-				$customizer_recommended_plugins[ $k ] = $s;
-			}
-		}
-	}
-
-	$customizer_shapely_required_actions = array();
-	if ( ! empty( $shapely_required_actions ) ) {
-		foreach ( $shapely_required_actions as $required_action ) {
-			if ( 'shapely-req-import-content' == $required_action['id'] ) {
-				$required_action['description'] = sprintf(
-					esc_html__( 'In oder to import the demo content go %s', 'shapely' ),
-					'<a href="' . admin_url( 'themes.php?page=shapely-welcome&tab=recommended_actions' ) . '">' . esc_html__( 'here', 'shapely' ) . '</a>'
-				);
-			}
-			$customizer_shapely_required_actions[] = $required_action;
-		}
-	}
-
-	$theme_slug = 'shapely';
-
-	$wp_customize->add_section(
-		new Epsilon_Section_Recommended_Actions(
-			$wp_customize, 'epsilon_recomended_section', array(
-				'title'                        => esc_html__( 'Recomended Actions', 'shapely' ),
-				'social_text'                  => esc_html__( 'We are social', 'shapely' ),
-				'plugin_text'                  => esc_html__( 'Recomended Plugins', 'shapely' ),
-				'actions'                      => $customizer_shapely_required_actions,
-				'plugins'                      => $customizer_recommended_plugins,
-				'theme_specific_option'        => $theme_slug . '_show_required_actions',
-				'theme_specific_plugin_option' => $theme_slug . '_show_recommended_plugins',
-				'facebook'                     => 'https://www.facebook.com/colorlib',
-				'twitter'                      => 'https://twitter.com/colorlib',
-				'wp_review'                    => true,
-				'priority'                     => 0,
-			)
-		)
-	);
 
 	$wp_customize->add_section(
 		new Epsilon_Section_Pro(
@@ -128,7 +83,7 @@ function shapely_customizer( $wp_customize ) {
 				'title'       => esc_html__( 'Theme documentation', 'shapely' ),
 				'button_text' => esc_html__( 'Learn more', 'shapely' ),
 				'button_url'  => 'https://colorlib.com/wp/support/shapely/',
-				'priority'    => 0,
+				'priority'    => 1,
 			)
 		)
 	);

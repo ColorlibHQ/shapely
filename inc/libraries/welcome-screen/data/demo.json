@@ -1,0 +1,368 @@
+{
+  "standard": {
+    "widgets": {
+      "footer-sidebar-1": {
+        "text-66": {
+          "title": "About MedZone",
+          "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed tempus est elit, et facilisis odio tempus in. Nam lobortis, est a scelerisque rhoncus.\r\n\r\nCurabitur facilisis convallis malesuada. Duis eget massa tristique, mattis lorem sit amet, molestie massa. Ut a ligula tristique, bibendum lacus ut, tempor tellus.",
+          "filter": true,
+          "visual": true
+        }
+      },
+      "footer-sidebar-2": {
+        "medzone_featured_doctor-55": {
+          "title": "Featured Doctor",
+          "custom_url": "#",
+          "doctor_id": "Dr.-House-Greg"
+        }
+      }
+    },
+    "options": {
+      "logo": {
+        "id": "logo",
+        "label": "Logo",
+        "setting": "custom_logo",
+        "content": "/assets/images/logo.png"
+      },
+      "frontpage": {
+        "id": "frontpage",
+        "label": "Set frontpage to static",
+        "setting": "default",
+        "content": "default"
+      },
+      "medzone_footer_columns": {
+        "id": "medzone_footer_columns",
+        "label": "Footer Columns",
+        "setting": "medzone_footer_columns",
+        "content": "{\"columnsCount\":2,\"columns\":{\"1\":{\"index\":1,\"span\":\"6\"},\"2\":{\"index\":2,\"span\":\"6\"}}}"
+      }
+    },
+    "plugins": {
+      "contact-form-7": "Contact Form 7"
+    },
+    "content": {
+      "doctors": {
+        "id": "doctors",
+        "setting": "medzone_doctors",
+        "label": "Doctors",
+        "content": {
+          "0": {
+            "doctor_name": "Dr. House Greg",
+            "doctor_group": "Godlike",
+            "doctor_description": "<p>Pellentesque dapibus tristique ornare. Quisque vitanimate viverra lorem. animatenean luctus lorem mi, et lobortis turpis porttitor ut. Donec dictum dolor varius metus pellentesque, quis elementum massa varius.</p>",
+            "doctor_image": "/assets/images/05_doctors_02.jpg",
+            "doctor_social_facebook": "https://facebook.com",
+            "doctor_social_twitter": "https://twitter.com",
+            "doctor_social_google": "https://google.com",
+            "doctor_social_linkedin": "https://linkedin.com"
+          },
+          "1": {
+            "doctor_name": "Dr. Jonathan Doe",
+            "doctor_group": "Surgeon",
+            "doctor_description": "<p>Pellentesque dapibus tristique ornare. Quisque vitanimate viverra lorem. animatenean luctus lorem mi, et lobortis turpis porttitor ut. Donec dictum dolor varius metus pellentesque, quis elementum massa varius.</p>",
+            "doctor_image": "/assets/images/05_doctors_01.jpg",
+            "doctor_social_facebook": "https://facebook.com",
+            "doctor_social_twitter": "https://twitter.com",
+            "doctor_social_google": "https://google.com",
+            "doctor_social_linkedin": "https://linkedin.com"
+          },
+          "2": {
+            "doctor_name": "Dr. Jean Doe",
+            "doctor_group": "Surgeon",
+            "doctor_description": "<p>Pellentesque dapibus tristique ornare. Quisque vitanimate viverra lorem. animatenean luctus lorem mi, et lobortis turpis porttitor ut. Donec dictum dolor varius metus pellentesque, quis elementum massa varius.</p>",
+            "doctor_image": "/assets/images/05_doctors_03.jpg",
+            "doctor_social_facebook": "https://facebook.com",
+            "doctor_social_twitter": "https://twitter.com",
+            "doctor_social_google": "https://google.com",
+            "doctor_social_linkedin": "https://linkedin.com"
+          },
+          "3": {
+            "doctor_name": "Dr. Lisa Cuddy",
+            "doctor_group": "General",
+            "doctor_description": "<p>Pellentesque dapibus tristique ornare. Quisque vitanimate viverra lorem. animatenean luctus lorem mi, et lobortis turpis porttitor ut. Donec dictum dolor varius metus pellentesque, quis elementum massa varius.</p>",
+            "doctor_image": "/assets/images/05_doctors_04.jpg",
+            "doctor_social_facebook": "https://facebook.com",
+            "doctor_social_twitter": "https://twitter.com",
+            "doctor_social_google": "https://google.com",
+            "doctor_social_linkedin": "https://linkedin.com"
+          }
+        }
+      },
+      "hero_cta": {
+        "id": "hero_cta",
+        "setting": "medzone_cta_services",
+        "label": "Hero CTA Services",
+        "content": {
+          "0": {
+            "service_title": "Ambulance",
+            "service_icon": "fa fa-ambulance",
+            "service_description": "Wrroom Wroom!"
+          },
+          "1": {
+            "service_title": "Cardiology Department",
+            "service_icon": "fa fa-heartbeat",
+            "service_description": "Tristique senectus et netus et malesuada fames ac turpis egestas."
+          },
+          "2": {
+            "service_title": "Doctors Appointments",
+            "service_icon": "fa fa-stethoscope",
+            "service_description": "Get Free help Now!"
+          },
+          "3": {
+            "service_title": "Extra services",
+            "service_icon": "fa fa-hospital-o",
+            "service_description": "Get Free help Now!"
+          },
+          "4": {
+            "service_title": "No minuses",
+            "service_icon": "fa fa-wheelchair",
+            "service_description": "Wrroom Wroom!"
+          }
+        }
+      },
+      "specialties": {
+        "id": "specialties",
+        "setting": "medzone_specialties",
+        "label": "Specialties",
+        "content": {
+          "0": {
+            "specialties_title": "Neurology",
+            "specialties_icon": "fa fa-stethoscope",
+            "specialties_description": "Outside of a medical emergency, your primary care physician is the \"first responder\" to your healthcare needs"
+          },
+          "1": {
+            "specialties_title": "Surgery",
+            "specialties_icon": "fa fa-cut",
+            "specialties_description": "State-of-the-art surgical facilities where expert surgeons perform a full complement of procedures."
+          },
+          "2": {
+            "specialties_title": "Cardio",
+            "specialties_icon": "fa fa-heartbeat",
+            "specialties_description": "Few of us like to even think about having a heart attack or being with someone when they have one."
+          },
+          "3": {
+            "specialties_title": "Oncology",
+            "specialties_icon": "fa fa-hand-stop-o",
+            "specialties_description": "Rehabilitation services for conditions ranging from stroke and brain injury to neurological disorders."
+          }
+        }
+      },
+      "about": {
+        "id": "about",
+        "setting": "medzone_about_info",
+        "label": "About",
+        "content": {
+          "0": {
+            "info_title": "Mission",
+            "info_description": "<p>Our mission is to raise the long-term health status of our community by providing personalized, quality care with compassion, dignity, and respect.</p>"
+          },
+          "1": {
+            "info_title": "Vision",
+            "info_description": "<p>We are a community of caring health professionals, recognized for promoting wellness through early detection and prevention.</p>"
+          },
+          "2": {
+            "info_title": "Admission",
+            "info_description": "<p>When you arrive, unless you’re told otherwise, please go directly to the Admitting Department, located in the main hospital lobby.</p>"
+          }
+        }
+      },
+      "information": {
+        "id": "information",
+        "setting": "medzone_hospital_information",
+        "label": "General Information",
+        "content": {
+          "0": {
+            "info_title": "24 Hours Support",
+            "info_text": "Pellentesque dapibus tristique ornare. Quisque vitanimate viverra lorem. animatenean luctus lorem mi, et lobortis turpis porttitor ut. Donec dictum dolor varius metus pellentesque, quis elementum massa varius."
+          },
+          "1": {
+            "info_title": "Emergency Services",
+            "info_text": "Pellentesque dapibus tristique ornare. Quisque vitanimate viverra lorem. animatenean luctus lorem mi, et lobortis turpis porttitor ut. Donec dictum dolor varius metus pellentesque, quis elementum massa varius."
+          },
+          "2": {
+            "info_title": "Online Appointment",
+            "info_text": "Pellentesque dapibus tristique ornare. Quisque vitanimate viverra lorem. animatenean luctus lorem mi, et lobortis turpis porttitor ut. Donec dictum dolor varius metus pellentesque, quis elementum massa varius."
+          },
+          "3": {
+            "info_title": "Best Specialists",
+            "info_text": "Pellentesque dapibus tristique ornare. Quisque vitanimate viverra lorem. animatenean luctus lorem mi, et lobortis turpis porttitor ut. Donec dictum dolor varius metus pellentesque, quis elementum massa varius."
+          },
+          "4": {
+            "info_title": "Latest Medical Equipments On The Market",
+            "info_text": "Pellentesque dapibus tristique ornare. Quisque vitanimate viverra lorem. animatenean luctus lorem mi, et lobortis turpis porttitor ut. Donec dictum dolor varius metus pellentesque, quis elementum massa varius."
+          },
+          "5": {
+            "info_title": "Amazing Pacient Care",
+            "info_text": "Pellentesque dapibus tristique ornare. Quisque vitanimate viverra lorem. animatenean luctus lorem mi, et lobortis turpis porttitor ut. Donec dictum dolor varius metus pellentesque, quis elementum massa varius."
+          }
+        }
+      },
+      "schedule": {
+        "id": "schedule",
+        "setting": "medzone_hospital_schedule",
+        "label": "Schedule",
+        "content": {
+          "0": {
+            "schedule_days": "Monday - Thursday",
+            "schedule_hours": "9:30 am - 8:30 pm"
+          },
+          "1": {
+            "schedule_days": "Friday",
+            "schedule_hours": "9:30 am - 8:30 pm"
+          },
+          "2": {
+            "schedule_days": "Weekend",
+            "schedule_hours": "10:30 am - 5:30 pm"
+          },
+          "3": {
+            "schedule_days": "Holiday",
+            "schedule_hours": "<a href='#'>Check Dates <i class='fa fa-angle-down'></i></a>"
+          }
+        }
+      },
+      "testimonials": {
+        "id": "testimonials",
+        "setting": "medzone_testimonials",
+        "label": "Testimonials",
+        "content": {
+          "0": {
+            "testimonial_title": "Doe Jane",
+            "testimonial_subtitle": "Attending Staff",
+            "testimonial_text": "\"One of the cleanest and professional plaes I had the chance to be in. The staff was friendly, The rooms very bright and the pacient care excellent. I went home after 3 days spent very well at Regina hospital.\"",
+            "testimonial_image": "/assets/images/08_testimonial.jpg"
+          },
+          "1": {
+            "testimonial_title": "Jane Doe",
+            "testimonial_subtitle": "Attending Staff",
+            "testimonial_text": "\"One of the cleanest and professional place I had the chance to be in. The staff was friendly, The rooms very bright and the pacient care excellent. I went home after 3 days spent very well at Regina hospital.\"",
+            "testimonial_image": "/assets/images/08_testimonial.jpg"
+          }
+        }
+      }
+    },
+    "sections": {
+      "hero": {
+        "id": "hero",
+        "label": "Hero",
+        "setting": "medzone_frontpage_sections",
+        "content": {
+          "hero_background_color": "#f9f9fa",
+          "hero_background": "/assets/images/01_header_01.png",
+          "hero_cta": "Best Medical Care you can get for you and your family.",
+          "hero_small": "More than 3000 specialists are here for you",
+          "hero_navigation": "",
+          "hero_repeater_field": "medzone_cta_services",
+          "type": "hero"
+        }
+      },
+      "about": {
+        "id": "about",
+        "label": "About",
+        "setting": "medzone_frontpage_sections",
+        "content": {
+          "about_title": "Watch our impact in the <br>patient's life",
+          "about_description": "<p>We are a a full-service, non-profit community hospital, offering comprehensive medical, surgical and therapeutic services. With 281 beds, more than 1900 employees and a world-class medical staff, we provide innovative, technologically advanced care on a patient-friendly, just north of Seattle.</p><p><a class=\"btn\" href=\"#\">More</a></p>",
+          "about_image": "/assets/images/01_our_impact.jpg",
+          "about_grouping": [
+            "all"
+          ],
+          "about_navigation": "",
+          "about_repeater_field": "medzone_about_info",
+          "type": "about"
+        }
+      },
+      "specialties": {
+        "id": "specialties",
+        "label": "Specialties",
+        "setting": "medzone_frontpage_sections",
+        "content": {
+          "main_specialty_title": "Main Specialties",
+          "main_specialty": "We value our patients",
+          "main_specialty_description": "<p>MedZone provides complete medical and surgical services in both inpatient and outpatient settings, at in several convenient locations.</p><p><a href=\"#\">See all Specialities <i class=\"fa fa-angle-down\"></i></a></p>",
+          "specialties_grouping": [
+            "all"
+          ],
+          "specialties_navigation": "",
+          "specialties_repeater_field": "medzone_specialties",
+          "type": "specialties"
+        }
+      },
+      "openhours": {
+        "id": "openhours",
+        "label": "Open Hours",
+        "setting": "medzone_frontpage_sections",
+        "content": {
+          "openhours_background": "/assets/images/03_top_experience.png",
+          "openhours_title": "Top notch <br> experience",
+          "openhours_text": "<p class=\"text-center\">Our specialist make sure you get the best care there is.</p><p class=\"text-center\"><a class=\"btn btn-small\" href=\"#\">Make an appointment</a></p>",
+          "openhours_navigation": "",
+          "openhours_repeater_field": "medzone_hospital_schedule",
+          "type": "openhours"
+        }
+      },
+      "accordion": {
+        "id": "openhours",
+        "label": "General Information",
+        "setting": "medzone_frontpage_sections",
+        "content": {
+          "accordion_title": "Why Choose Us?",
+          "accordion_text": "<p>We are a full-service, non-profit community hospital, offering comprehensive medical, surgical and therapeutic services.</p>",
+          "accordion_image": "/assets/images/04_why_choose_us.jpg",
+          "accordion_navigation": "",
+          "accordion_repeater_field": "medzone_hospital_information",
+          "type": "accordion"
+        }
+      },
+      "doctors": {
+        "id": "doctors",
+        "label": "Doctors",
+        "setting": "medzone_frontpage_sections",
+        "content": {
+          "doctors_title": "Meet our Doctors",
+          "doctors_subtitle": "<p class=\"text-center\">Our experts are here for you every single day! We care about our patients and we<br>do our best to make them happy.</p>",
+          "doctors_group": [
+            "all"
+          ],
+          "doctors_nabigation": "",
+          "doctors_repeater_field": "medzone_doctors",
+          "type": "doctors"
+        }
+      },
+      "hospital": {
+        "id": "hospital",
+        "label": "Hospital",
+        "setting": "medzone_frontpage_sections",
+        "content": {
+          "hospital_title": "Explore our Hospital",
+          "hospital_info": "<p>MedZone Hospital is dedicated to improving the quality of care for the patients who suffer a heart attack and related illnesses.</p> <a class=\"btn\" href=\"#\">VIew our rooms</a>",
+          "hospital_image_1": "/assets/images/06_explore_hospital.jpg",
+          "hospital_image_2": "/assets/images/06_explore_hospital.jpg",
+          "hospital_image_3": "/assets/images/06_explore_hospital.jpg",
+          "type": "hospital"
+        }
+      },
+      "involvement": {
+        "id": "involvement",
+        "label": "Involvement",
+        "setting": "medzone_frontpage_sections",
+        "content": {
+          "involvement_image": "/assets/images/07_involvment.jpg",
+          "involvement_title": "True Involvement in Pacient Care",
+          "involvement_text": "<p>MedZone earned the award by meeting specific criteria and standards of performance for the quick and appropriate treatment of STEMI patients by providing emergency procedures to re-establish blood flow to blocked arteries when needed.</p><p>Eligible hospitals must adhere to these measures at a set level for a designated period to receive the awards.</p>",
+          "type": "involvement"
+        }
+      },
+      "testimonials": {
+        "id": "testimonials",
+        "label": "Testimonials",
+        "setting": "medzone_frontpage_sections",
+        "content": {
+          "testimonials_title": "Why Choose Us?",
+          "testimonials_navigation": "",
+          "testimonials_repeater_field": "medzone_testimonials",
+          "type": "testimonials"
+        }
+      }
+    }
+  }
+}
