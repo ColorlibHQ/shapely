@@ -1,3 +1,6 @@
+### 1.2.1
+	Implemented milestone https://github.com/puikinsh/shapely/milestone/5
+	
 ### 1.1.6
 	Implemented milestone https://github.com/puikinsh/shapely/milestone/2
 
