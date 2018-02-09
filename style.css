@@ -4155,6 +4155,17 @@ footer.bg-dark a {
   margin-right: 20px;
   color: #001c28; }
 
+.shapely-related-posts .owl-carousel .owl-item .related-item-thumbnail img {
+    display: none;
+}
+.shapely-related-posts .related-item-thumbnail {
+    display: block;
+    padding-bottom: 85%;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+}
+
 .pt0 {
   padding-top: 30px; }
 
