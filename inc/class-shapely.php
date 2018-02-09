@@ -14,7 +14,7 @@ class Shapely {
 	public $recommended_actions;
 
 	public $theme_slug = 'shapely';
-	
+
 	function __construct() {
 
 		if ( ! is_admin() && ! is_customize_preview() ) {
@@ -22,7 +22,7 @@ class Shapely {
 		}
 
 		$this->load_class();
-		
+
 		$this->recommended_actions = apply_filters(
 			'shapely_required_actions', array(
 				array(
@@ -123,17 +123,17 @@ class Shapely {
 
 	}
 
-	private function generate_action_html(){
+	private function generate_action_html() {
 
 		$import_actions = array(
-			'set-frontpage'       => esc_html__( 'Set Static FrontPage', 'shapely' ),
-			'import-widgets'       => esc_html__( 'Import HomePage Widgets', 'shapely' ),
+			'set-frontpage'  => esc_html__( 'Set Static FrontPage', 'shapely' ),
+			'import-widgets' => esc_html__( 'Import HomePage Widgets', 'shapely' ),
 		);
 
 		$import_plugins = array(
 			'shapely-companion' => esc_html__( 'Shapely Companion', 'shapely' ),
-			'jetpack' => esc_html__( 'Jetpack', 'shapely' ),
-			'contact-form-7' => esc_html__( 'Contact Form 7', 'shapely' ),
+			'jetpack'           => esc_html__( 'Jetpack', 'shapely' ),
+			'contact-form-7'    => esc_html__( 'Contact Form 7', 'shapely' ),
 		);
 
 		$plugins_html = '';
@@ -145,7 +145,7 @@ class Shapely {
 			$html  = '<p><a class="button button-primary cpo-import-button epsilon-ajax-button" data-action="import_demo" id="add_default_sections" href="#">' . __( 'Import Demo Content', 'shapely' ) . '</a>';
 			$html .= '<a class="button epsilon-hidden-content-toggler" href="#welcome-hidden-content">' . __( 'Advanced', 'shapely' ) . '</a></p>';
 			$html .= '<div class="import-content-container" id="welcome-hidden-content">';
-			
+
 			foreach ( $import_plugins as $id => $label ) {
 				if ( ! Shapely_Notify_System::shapely_has_plugin( $id ) ) {
 					$plugins_html .= $this->generate_checkbox( $id, $label, 'plugins' );
@@ -160,7 +160,7 @@ class Shapely {
 				$html .= '</div>';
 				$html .= '</div>';
 			}
-			
+
 			$html .= '<div class="demo-content-container">';
 			$html .= '<h4>' . __( 'Demo Content', 'shapely' ) . '</h4>';
 			$html .= '<div class="checkbox-group">';
