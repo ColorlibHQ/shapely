@@ -41,7 +41,6 @@
           }
           control.shapelyInterval = setInterval( control.updateControl, 1000, control );
         }
-        
       } );
 
       control.heightElement.keyup( function() {
