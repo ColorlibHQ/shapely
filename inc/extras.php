@@ -672,6 +672,8 @@ function shapely_top_callout() {
 								} else {
 									echo get_the_archive_title();
 								}
+							} elseif ( is_singular() ) {
+								echo single_post_title();								
 							} else {
 								echo get_the_title();
 							}
