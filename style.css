@@ -1339,7 +1339,6 @@ input[type="submit"]:hover {
 }
 
 nav {
-    background: #fff;
     -webkit-backface-visibility: hidden;
     max-width: 100%;
 }
