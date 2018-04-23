@@ -61,7 +61,7 @@ if ( $shapely_transparent_header == 1 && $shapely_transparent_header_opacity ) {
 								<?php shapely_header_menu(); ?>
 							</div>
 							<!--end of menu module-->
-							<div class="module widget-handle search-widget-handle left hidden-xs hidden-sm">
+							<div class="module widget-handle search-widget-handle hidden-xs hidden-sm">
 								<div class="search">
 									<i class="fa fa-search"></i>
 									<span class="title"><?php esc_html_e( 'Site Search', 'shapely' ); ?></span>

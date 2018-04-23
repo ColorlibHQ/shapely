@@ -1615,7 +1615,7 @@ nav.fixed.scrolled {
 }
 
 .module.widget-handle {
-    padding: 0 24px;
+    padding: 0;
     cursor: pointer;
     position: relative;
     -webkit-touch-callout: none;
