@@ -97,15 +97,15 @@ if ( ! function_exists( 'shapely_header_menu' ) ) :
 	function shapely_header_menu() {
 		// display the WordPress Custom Menu if available
 		wp_nav_menu( array(
-				'menu_id'         => 'menu',
-				'theme_location'  => 'primary',
-				'depth'           => 0,
-				'container'       => 'div',
-				'container_class' => 'collapse navbar-collapse navbar-ex1-collapse',
-				'menu_class'      => 'menu',
-				'fallback_cb'     => 'Wp_Bootstrap_Navwalker::fallback',
-				'walker'          => new Wp_Bootstrap_Navwalker(),
-			) );
+			'menu_id'         => 'menu',
+			'theme_location'  => 'primary',
+			'depth'           => 0,
+			'container'       => 'div',
+			'container_class' => 'collapse navbar-collapse navbar-ex1-collapse',
+			'menu_class'      => 'menu',
+			'fallback_cb'     => 'Wp_Bootstrap_Navwalker::fallback',
+			'walker'          => new Wp_Bootstrap_Navwalker(),
+		) );
 	} /* end header menu */
 endif;
 
@@ -251,8 +251,8 @@ add_action( 'wp_footer', 'shapely_make_top_level_menu_clickable', 1 );
  */
 function shapely_excerpt_more( $more ) {
 	return '<div><a class="btn-filled btn" href="' . esc_url( get_the_permalink() ) . '" title="' . the_title_attribute( array(
-				'echo' => false,
-			) ) . '">' . esc_html_x( 'Read More', 'Read More', 'shapely' ) . '</a></div>';
+			'echo' => false,
+		) ) . '">' . esc_html_x( 'Read More', 'Read More', 'shapely' ) . '</a></div>';
 }
 
 add_filter( 'excerpt_more', 'shapely_excerpt_more' );
@@ -268,10 +268,10 @@ if ( ! function_exists( 'shapely_pagination' ) ) {
 			<nav class="pagination">
 				<?php
 				the_posts_pagination( array(
-						'mid_size'  => 2,
-						'prev_text' => '<icon class="fa fa-angle-left"></icon>',
-						'next_text' => '<icon class="fa fa-angle-right"></icon>',
-					) );
+					'mid_size'  => 2,
+					'prev_text' => '<icon class="fa fa-angle-left"></icon>',
+					'next_text' => '<icon class="fa fa-angle-right"></icon>',
+				) );
 				?>
 			</nav>
 		</div>
@@ -324,7 +324,7 @@ if ( ! function_exists( 'shapely_author_bio' ) ) {
 					</div>
 				</div>
 				<div class="col-sm-10">
-					<b class="fn"><?php echo esc_html( $author_name ); ?></b>
+					<span class="vcard author"><b class="fn"><?php echo esc_html( $author_name ); ?></b></span>
 					<div>
 						<?php
 						if ( '' != trim( $author_description ) ) {
@@ -471,7 +471,7 @@ function shapely_cb_comment( $comment, $args, $depth ) {
  * Reply button class
  */
 function shapely_reply_link_class( $class ) {
-	$class = str_replace( "class='comment-reply-link", "class='btn btn-sm comment-reply", $class );
+	$class = str_replace( "class='comment-reply-link", "class='btn btn-xs comment-reply", $class );
 
 	return $class;
 }

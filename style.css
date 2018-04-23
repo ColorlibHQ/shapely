@@ -3064,7 +3064,7 @@ iframe {
 	line-height: 16px;
 	padding: 0 12px;
 	font-size: 10px;
-	min-width: auto;
+	min-width: auto !important;
 }
 
 .page-title-section {
