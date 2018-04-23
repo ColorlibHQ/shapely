@@ -219,6 +219,8 @@ add_filter( 'theme_page_templates', 'shapely_exclude_page_templates' );
  * Enqueue scripts and styles.
  */
 function shapely_scripts() {
+
+
 	// Add Bootstrap default CSS
 	wp_enqueue_style( 'bootstrap', get_template_directory_uri() . '/assets/css/bootstrap.min.css' );
 
@@ -247,7 +249,7 @@ function shapely_scripts() {
 	// Add slider JS
 	wp_enqueue_script( 'flexslider', get_template_directory_uri() . '/assets/js/flexslider.min.js', array( 'jquery' ), '20160222', true );
 
-	if ( is_page_template( 'page-templates/template-home.php' ) ) {
+	if ( is_page_template( 'page-templates/template-home.php' ) || is_page_template('page-templates/template-widget.php') ) {
 		wp_enqueue_script( 'shapely-parallax', get_template_directory_uri() . '/assets/js/parallax.min.js', array( 'jquery' ), '20160115', true );
 	}
 	/**
