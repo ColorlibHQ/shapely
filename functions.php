@@ -227,7 +227,7 @@ function shapely_scripts() {
 	// Add slider JS
 	wp_enqueue_script( 'flexslider', get_template_directory_uri() . '/assets/js/flexslider.min.js', array( 'jquery' ), '20160222', true );
 
-	if ( is_page_template( 'page-templates/template-home.php' ) || is_page_template( 'page-templates/template-widget.php' ) ) {
+	if ( is_page_template( 'page-templates/template-home.php' )  || is_page_template( 'page-templates/template-widget.php' ) )  {
 		wp_enqueue_script( 'shapely-parallax', get_template_directory_uri() . '/assets/js/parallax.min.js', array( 'jquery' ), '20160115', true );
 	}
 	/**
