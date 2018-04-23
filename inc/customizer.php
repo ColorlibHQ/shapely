@@ -295,7 +295,7 @@ function shapely_customizer( $wp_customize ) {
 
 	/**
 	 *
-	 * @since 2.0.2
+	 * @since 1.2.2
 	 *
 	 */
 
@@ -382,7 +382,7 @@ function shapely_customizer( $wp_customize ) {
 	 *
 	 * END
 	 *
-	 * @since 2.0.2
+	 * @since 1.2.2
 	 *
 	 */
 

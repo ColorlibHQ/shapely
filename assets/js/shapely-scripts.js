@@ -92,25 +92,28 @@
 			} );
 		}, 200 );
 
-		// Fix nav to top while scrolling
 
-		clNav = $( 'body .nav-container nav:first' );
-		clNavOuterHeight = $( 'body .nav-container nav:first' ).outerHeight();
-		windowW = jQuery( window ).width();
-		if ( windowW > 991 ) {
-			window.addEventListener( 'scroll', updateNav, false );
-			updateNav();
-		}
+		if ( ShapelyAdminObject.sticky_header == 1 ) {
 
-		$( window ).resize( function() {
-			windowW = $( window ).width();
-			if ( windowW < 992 ) {
-				clNav.removeClass( 'fixed scrolled outOfSight' );
-			} else {
+			// Fix nav to top while scrolling
+			clNav = $( 'body .nav-container nav:first' );
+			clNavOuterHeight = $( 'body .nav-container nav:first' ).outerHeight();
+			windowW = jQuery( window ).width();
+			if ( windowW > 991 ) {
 				window.addEventListener( 'scroll', updateNav, false );
 				updateNav();
 			}
-		} );
+
+			$( window ).resize( function() {
+				windowW = $( window ).width();
+				if ( windowW < 992 ) {
+					clNav.removeClass( 'fixed scrolled outOfSight' );
+				} else {
+					window.addEventListener( 'scroll', updateNav, false );
+					updateNav();
+				}
+			} );
+		}
 
 		// Menu dropdown positioning
 
