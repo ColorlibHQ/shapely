@@ -14,7 +14,6 @@
 
 $shapely_transparent_header         = get_theme_mod( 'shapely_transparent_header', 0 );
 $shapely_transparent_header_opacity = get_theme_mod( 'shapely_sticky_header_transparency', 100 );
-$shapely_sticky_header              = get_theme_mod( 'shapely_sticky_header', 1 );
 
 if ( $shapely_transparent_header == 1 && $shapely_transparent_header_opacity ) {
 	if($shapely_transparent_header_opacity < 100 ) {

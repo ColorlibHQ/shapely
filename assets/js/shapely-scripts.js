@@ -31,7 +31,7 @@
 			if ( element ) {
 				scrollToID = '#' + element.data( 'scroll' );
 
-				if ( jQuery( scrollToID ).length < 1 ) {
+				if ( jQuery( scrollToID ).length > 1 ) {
 					scrollToID = window.location.hash;
 				}
 
@@ -45,8 +45,7 @@
 
 				newURL = window.location.href.replace( window.location.hash, '' );
 				window.history.replaceState( {}, document.title, newURL );
-
-			} else { // just return if the element with #ID isn't found
+			} else {
 				return;
 			}
 		}
@@ -54,7 +53,7 @@
 		$( '#site-navigation #menu a[href^=#]:not([href=#])' ).click( function( evt ) {
 			var scrollToID = '#' + $( this ).data( 'scroll' );
 
-			if ( jQuery( scrollToID ).length < 1 ) {
+			if ( jQuery( scrollToID ).length > 1 ) {
 				scrollToID = $( this ).attr( 'href' );
 			}
 
@@ -71,7 +70,7 @@
 		jQuery( '.inner-link' ).click( function() {
 			jQuery( 'html, body' ).animate( {
 				scrollTop: 0
-			}, 1000 );
+			}, 500 );
 			return false;
 		} );
 
@@ -91,7 +90,6 @@
 				jQuery( this ).addClass( 'fadeIn' );
 			} );
 		}, 200 );
-
 
 		if ( ShapelyAdminObject.sticky_header == 1 ) {
 
