@@ -6,7 +6,7 @@
  * @param array $classes Classes for the body element.
  *
  * @return array
-*/
+ */
 function shapely_body_classes( $classes ) {
 	// Adds a class of group-blog to blogs with more than 1 published author.
 	if ( is_multi_author() ) {
@@ -96,8 +96,7 @@ if ( ! function_exists( 'shapely_header_menu' ) ) :
 	 */
 	function shapely_header_menu() {
 		// display the WordPress Custom Menu if available
-		wp_nav_menu(
-			array(
+		wp_nav_menu( array(
 				'menu_id'         => 'menu',
 				'theme_location'  => 'primary',
 				'depth'           => 0,
@@ -106,8 +105,7 @@ if ( ! function_exists( 'shapely_header_menu' ) ) :
 				'menu_class'      => 'menu',
 				'fallback_cb'     => 'Wp_Bootstrap_Navwalker::fallback',
 				'walker'          => new Wp_Bootstrap_Navwalker(),
-			)
-		);
+			) );
 	} /* end header menu */
 endif;
 
@@ -205,7 +203,7 @@ function shapely_caption( $output, $attr, $content ) {
 		return $content;
 	}
 
-	$output  = '<figure id="' . esc_attr( $attr['id'] ) . '" class="thumbnail wp-caption ' . esc_attr( $attr['align'] ) . ' style="width: ' . ( esc_attr( $attr['width'] ) + 10 ) . 'px">';
+	$output = '<figure id="' . esc_attr( $attr['id'] ) . '" class="thumbnail wp-caption ' . esc_attr( $attr['align'] ) . ' style="width: ' . ( esc_attr( $attr['width'] ) + 10 ) . 'px">';
 	$output .= do_shortcode( $content );
 	$output .= '<figcaption class="caption wp-caption-text">' . wp_kses_post( $attr['caption'] ) . '</figcaption>';
 	$output .= '</figure>';
@@ -234,15 +232,15 @@ add_filter( 'nav_menu_link_attributes', 'shapely_add_top_level_menu_url', 99, 3 
 function shapely_make_top_level_menu_clickable() {
 	if ( ! wp_is_mobile() ) { ?>
 		<script type="text/javascript">
-			jQuery(document).ready(function ($) {
-				if ( $(window).width() >= 767 ) {
-					$('.navbar-nav > li.menu-item > a').click(function () {
-						window.location = $(this).attr('href');
-					});
+			jQuery( document ).ready( function( $ ) {
+				if ( $( window ).width() >= 767 ) {
+					$( '.navbar-nav > li.menu-item > a' ).click( function() {
+						window.location = $( this ).attr( 'href' );
+					} );
 				}
-			});
+			} );
 		</script>
-	<?php
+		<?php
 	}
 }
 
@@ -252,11 +250,9 @@ add_action( 'wp_footer', 'shapely_make_top_level_menu_clickable', 1 );
  * Add Read More button to post archive
  */
 function shapely_excerpt_more( $more ) {
-	return '<div><a class="btn-filled btn" href="' . esc_url( get_the_permalink() ) . '" title="' . the_title_attribute(
-		array(
-			'echo' => false,
-		)
-	) . '">' . esc_html_x( 'Read More', 'Read More', 'shapely' ) . '</a></div>';
+	return '<div><a class="btn-filled btn" href="' . esc_url( get_the_permalink() ) . '" title="' . the_title_attribute( array(
+				'echo' => false,
+			) ) . '">' . esc_html_x( 'Read More', 'Read More', 'shapely' ) . '</a></div>';
 }
 
 add_filter( 'excerpt_more', 'shapely_excerpt_more' );
@@ -271,14 +267,12 @@ if ( ! function_exists( 'shapely_pagination' ) ) {
 		<div class="text-center">
 			<nav class="pagination">
 				<?php
-				the_posts_pagination(
-					array(
+				the_posts_pagination( array(
 						'mid_size'  => 2,
 						'prev_text' => '<icon class="fa fa-angle-left"></icon>',
 						'next_text' => '<icon class="fa fa-angle-right"></icon>',
-					)
-				);
-					?>
+					) );
+				?>
 			</nav>
 		</div>
 		<?php
@@ -332,11 +326,11 @@ if ( ! function_exists( 'shapely_author_bio' ) ) {
 				<div class="col-sm-10">
 					<b class="fn"><?php echo esc_html( $author_name ); ?></b>
 					<div>
-					<?php
-					if ( '' != trim( $author_description ) ) {
-						echo wp_kses_post( $author_description );
-					}
-					?>
+						<?php
+						if ( '' != trim( $author_description ) ) {
+							echo wp_kses_post( $author_description );
+						}
+						?>
 					</div>
 					<?php if ( ( $show_athor_email && ! is_singular( 'jetpack-portfolio' ) ) || ( is_singular( 'jetpack-portfolio' ) && $show_project_athor_email ) ) : ?>
 						<a class="author-email" href="mailto:<?php echo esc_attr( antispambot( $author_email ) ); ?>"><?php echo esc_html( antispambot( $author_email ) ); ?></a>
@@ -345,29 +339,29 @@ if ( ! function_exists( 'shapely_author_bio' ) ) {
 						<?php
 						$twitter_profile = get_the_author_meta( 'twitter' );
 						if ( $twitter_profile && '' != $twitter_profile ) {
-						?>
+							?>
 							<li>
-							<a href="<?php echo esc_url( $twitter_profile ); ?>">
-								<i class="fa fa-twitter"></i>
-							</a>
+								<a href="<?php echo esc_url( $twitter_profile ); ?>">
+									<i class="fa fa-twitter"></i>
+								</a>
 							</li>
 							<?php
 						}
 
 						$fb_profile = get_the_author_meta( 'facebook' );
 						if ( $fb_profile && '' != $fb_profile ) {
-						?>
+							?>
 							<li>
-							<a href="<?php echo esc_url( $fb_profile ); ?>">
-								<i class="fa fa-facebook"></i>
-							</a>
+								<a href="<?php echo esc_url( $fb_profile ); ?>">
+									<i class="fa fa-facebook"></i>
+								</a>
 							</li>
 							<?php
 						}
 
 						$dribble_profile = get_the_author_meta( 'dribble' );
 						if ( $dribble_profile && '' != $dribble_profile ) {
-						?>
+							?>
 							<li>
 								<a href="<?php echo esc_url( $dribble_profile ); ?>">
 									<i class="fa fa-dribbble"></i>
@@ -378,22 +372,22 @@ if ( ! function_exists( 'shapely_author_bio' ) ) {
 
 						$github_profile = get_the_author_meta( 'github' );
 						if ( $github_profile && '' != $github_profile ) {
-						?>
+							?>
 							<li>
-							<a href="<?php echo esc_url( $github_profile ); ?>">
-								<i class="fa fa-github"></i>
-							</a>
+								<a href="<?php echo esc_url( $github_profile ); ?>">
+									<i class="fa fa-github"></i>
+								</a>
 							</li>
 							<?php
 						}
 
 						$vimeo_profile = get_the_author_meta( 'vimeo' );
 						if ( $vimeo_profile && '' != $vimeo_profile ) {
-						?>
+							?>
 							<li>
-							<a href="<?php echo esc_url( $vimeo_profile ); ?>">
-								<i class="fa fa-vimeo"></i>
-							</a>
+								<a href="<?php echo esc_url( $vimeo_profile ); ?>">
+									<i class="fa fa-vimeo"></i>
+								</a>
 							</li>
 							<?php
 						}
@@ -440,9 +434,9 @@ function shapely_cb_comment( $comment, $args, $depth ) {
 						/* translators: 1: date, 2: time */
 						printf( __( '%1$s at %2$s', 'shapely' ), get_comment_date(), get_comment_time() );
 						?>
-						</time>
-						<?php
-						edit_comment_link( esc_html__( 'Edit', 'shapely' ), '  ', '' );
+					</time>
+					<?php
+					edit_comment_link( esc_html__( 'Edit', 'shapely' ), '  ', '' );
 					?>
 				</div>
 				<?php
@@ -458,7 +452,7 @@ function shapely_cb_comment( $comment, $args, $depth ) {
 				<?php if ( '0' == $comment->comment_approved ) : ?>
 					<p>
 						<em class="comment-awaiting-moderation"><?php esc_html_e( 'Your comment is awaiting moderation.', 'shapely' ); ?></em>
-						<br/>
+						<br />
 					</p>
 				<?php endif; ?>
 
@@ -492,9 +486,9 @@ function shapely_custom_comment_form() {
 	$fields    = array(
 		'author' => '<input id="author" placeholder="' . esc_html__( 'Your Name', 'shapely' ) . ( $req ? '*' : '' ) . '" name="author" type="text" value="' . esc_attr( $commenter['comment_author'] ) . '" size="30" ' . $aria_req . ' required="required" />',
 
-		'email'  => '<input id="email" name="email" type="email" placeholder="' . esc_html__( 'Email Address', 'shapely' ) . ( $req ? '*' : '' ) . '" value="' . esc_attr( $commenter['comment_author_email'] ) . '" size="30"' . $aria_req . ' required="required" />',
+		'email' => '<input id="email" name="email" type="email" placeholder="' . esc_html__( 'Email Address', 'shapely' ) . ( $req ? '*' : '' ) . '" value="' . esc_attr( $commenter['comment_author_email'] ) . '" size="30"' . $aria_req . ' required="required" />',
 
-		'url'    => '<input placeholder="' . esc_html__( 'Your Website (optional)', 'shapely' ) . '" id="url" name="url" type="text" value="' . esc_attr( $commenter['comment_author_url'] ) . '" size="30" />',
+		'url' => '<input placeholder="' . esc_html__( 'Your Website (optional)', 'shapely' ) . '" id="url" name="url" type="text" value="' . esc_attr( $commenter['comment_author_url'] ) . '" size="30" />',
 	);
 
 	$comments_args = array(
@@ -502,6 +496,7 @@ function shapely_custom_comment_form() {
 		'comment_field' => '<textarea placeholder="' . _x( 'Comment', 'noun', 'shapely' ) . '" id="comment" name="comment" cols="45" rows="8" aria-required="true" required="required"></textarea>',
 		'fields'        => apply_filters( 'comment_form_default_fields', $fields ),
 	);
+
 	return $comments_args;
 }
 
@@ -536,24 +531,12 @@ function shapely_get_header_logo() {
 		 * If the alt attribute is not empty, there's no need to explicitly pass
 		 * it because wp_get_attachment_image() already adds the alt attribute.
 		 */
-		$html = sprintf(
-			'<a href="%1$s" class="custom-logo-link" rel="home" itemprop="url">%2$s</a>',
-			esc_url( home_url( '/' ) ),
-			wp_get_attachment_image( $custom_logo_id, $dimension, false, $custom_logo_attr )
-		);
+		$html = sprintf( '<a href="%1$s" class="custom-logo-link" rel="home" itemprop="url">%2$s</a>', esc_url( home_url( '/' ) ), wp_get_attachment_image( $custom_logo_id, $dimension, false, $custom_logo_attr ) );
 	} // If no logo is set but we're in the Customizer, leave a placeholder (needed for the live preview).
 	elseif ( is_customize_preview() ) {
-		$html = sprintf(
-			'<a href="%1$s" class="custom-logo-link"><img class="custom-logo"/ style="display:none;"><span class="site-title">%2$s</span></a>',
-			esc_url( home_url( '/' ) ),
-			esc_html( get_bloginfo( 'name' ) )
-		);
+		$html = sprintf( '<a href="%1$s" class="custom-logo-link"><img class="custom-logo"/ style="display:none;"><span class="site-title">%2$s</span></a>', esc_url( home_url( '/' ) ), esc_html( get_bloginfo( 'name' ) ) );
 	} else {
-		$html = sprintf(
-			'<a href="%1$s" class="custom-logo-link"><span class="site-title">%2$s</span></a>',
-			esc_url( home_url( '/' ) ),
-			esc_html( get_bloginfo( 'name' ) )
-		);
+		$html = sprintf( '<a href="%1$s" class="custom-logo-link"><span class="site-title">%2$s</span></a>', esc_url( home_url( '/' ) ), esc_html( get_bloginfo( 'name' ) ) );
 	}
 
 	echo $html;
@@ -637,82 +620,81 @@ function shapely_show_sidebar() {
  * Top Callout
  */
 function shapely_top_callout() {
-	if ( ( get_theme_mod( 'portfolio_archive_title', true ) && is_post_type_archive( 'jetpack-portfolio' ) ) ||
-		( get_theme_mod( 'top_callout', true ) && ! is_single() && ! is_post_type_archive( 'jetpack-portfolio' ) ) ||
-		( is_single() && get_theme_mod( 'title_in_header', true ) && ! is_singular( 'jetpack-portfolio' ) ) ||
-		( get_theme_mod( 'project_title_in_header', true ) && is_singular( 'jetpack-portfolio' ) ) ) {
+	if ( ( get_theme_mod( 'portfolio_archive_title', true ) && is_post_type_archive( 'jetpack-portfolio' ) ) || ( get_theme_mod( 'top_callout', true ) && ! is_single() && ! is_post_type_archive( 'jetpack-portfolio' ) ) || ( is_single() && get_theme_mod( 'title_in_header', true ) && ! is_singular( 'jetpack-portfolio' ) ) || ( get_theme_mod( 'project_title_in_header', true ) && is_singular( 'jetpack-portfolio' ) ) ) {
 		$header = get_header_image();
 		?>
-	<section
-		class="page-title-section bg-secondary <?php echo $header ? 'header-image-bg' : ''; ?>" <?php echo $header ? 'style="background-image:url(' . $header . ')"' : ''; ?>>
-		<div class="container">
-			<div class="row">
-				<?php
-				$breadcrumbs_enabled = false;
-				$title_in_post       = true;
-				if ( function_exists( 'yoast_breadcrumb' ) ) {
-					$options             = get_option( 'wpseo_internallinks' );
-					$breadcrumbs_enabled = ( true === $options['breadcrumbs-enable'] );
-					$title_in_post       = get_theme_mod( 'hide_post_title', true );
-				}
-				$header_color = get_theme_mod( 'header_textcolor', false );
-				?>
-				<?php if ( $title_in_post ) : ?>
-					<div class="<?php echo $breadcrumbs_enabled ? 'col-md-6 col-sm-6 col-xs-12' : 'col-xs-12'; ?>">
-						<h3 class="page-title" <?php echo $header_color ? 'style="color:#' . esc_attr( $header_color ) . '"' : ''; ?>>
-							<?php
-							if ( is_home() ) {
-								echo esc_html( get_theme_mod( 'blog_name' ) ? get_theme_mod( 'blog_name' ) : __( 'Blog', 'shapely' ) );
-							} elseif ( is_search() ) {
-								_e( 'Search', 'shapely' );
-							} elseif ( is_archive() ) {
-								if ( is_post_type_archive( 'jetpack-portfolio' ) ) {
-									$portfolio_title = get_theme_mod( 'portfolio_name', esc_html__( 'Portfolio', 'shapely' ) );
-									echo $portfolio_title;
-								} else {
-									echo get_the_archive_title();
-								}
-							} else {
-								echo get_the_title();
-							}
-							?>
-						</h3>
-						<?php
-
-						if ( is_archive() && is_post_type_archive( 'jetpack-portfolio' ) ) {
-							$portfolio_description = get_theme_mod( 'portfolio_description' );
-							if ( $portfolio_description ) {
-								echo '<p>' . wp_kses_post( $portfolio_description ) . '</p>';
-							}
-						}
-
-						?>
-					</div>
-				<?php endif; ?>
-				<?php if ( function_exists( 'yoast_breadcrumb' ) ) { ?>
+		<section
+			class="page-title-section bg-secondary <?php echo $header ? 'header-image-bg' : ''; ?>" <?php echo $header ? 'style="background-image:url(' . $header . ')"' : ''; ?>>
+			<div class="container">
+				<div class="row">
 					<?php
-					if ( $breadcrumbs_enabled ) {
+					$breadcrumbs_enabled = false;
+					$title_in_post       = true;
+					if ( function_exists( 'yoast_breadcrumb' ) ) {
+						$options             = get_option( 'wpseo_internallinks' );
+						$breadcrumbs_enabled = ( true === $options['breadcrumbs-enable'] );
+						$title_in_post       = get_theme_mod( 'hide_post_title', true );
+					}
+					$header_color = get_theme_mod( 'header_textcolor', false );
 					?>
-						<div class="<?php echo $title_in_post ? 'col-md-6 col-sm-6' : ''; ?> col-xs-12 text-right">
-							<?php yoast_breadcrumb( '<p id="breadcrumbs">', '</p>' ); ?>
-						</div>
-					<?php } ?>
-				<?php } ?>
+					<?php if ( $title_in_post ) : ?>
+						<div class="<?php echo $breadcrumbs_enabled ? 'col-md-6 col-sm-6 col-xs-12' : 'col-xs-12'; ?>">
+							<h3 class="page-title" <?php echo $header_color ? 'style="color:#' . esc_attr( $header_color ) . '"' : ''; ?>>
+								<?php
+								if ( is_home() ) {
+									echo esc_html( get_theme_mod( 'blog_name' ) ? get_theme_mod( 'blog_name' ) : __( 'Blog', 'shapely' ) );
+								} elseif ( is_search() ) {
+									_e( 'Search', 'shapely' );
+								} elseif ( is_archive() ) {
+									if ( is_post_type_archive( 'jetpack-portfolio' ) ) {
+										$portfolio_title = get_theme_mod( 'portfolio_name', esc_html__( 'Portfolio', 'shapely' ) );
+										echo $portfolio_title;
+									} else {
+										echo get_the_archive_title();
+									}
+								} elseif ( is_singular() ) {
+									echo single_post_title();
+								} else {
+									echo get_the_title();
+								}
+								?>
+							</h3>
+							<?php
 
+							if ( is_archive() && is_post_type_archive( 'jetpack-portfolio' ) ) {
+								$portfolio_description = get_theme_mod( 'portfolio_description' );
+								if ( $portfolio_description ) {
+									echo '<p>' . wp_kses_post( $portfolio_description ) . '</p>';
+								}
+							}
+
+							?>
+						</div>
+					<?php endif; ?>
+					<?php if ( function_exists( 'yoast_breadcrumb' ) ) { ?>
+						<?php
+						if ( $breadcrumbs_enabled ) {
+							?>
+							<div class="<?php echo $title_in_post ? 'col-md-6 col-sm-6' : ''; ?> col-xs-12 text-right">
+								<?php yoast_breadcrumb( '<p id="breadcrumbs">', '</p>' ); ?>
+							</div>
+						<?php } ?>
+					<?php } ?>
+
+				</div>
+				<!--end of row-->
 			</div>
-			<!--end of row-->
-		</div>
-		<!--end of container-->
+			<!--end of container-->
 		</section>
 		<?php
 	} else {
-	?>
+		?>
 		<?php if ( function_exists( 'yoast_breadcrumb' ) ) { ?>
 			<div class="container mt20">
 				<?php yoast_breadcrumb( '<p id="breadcrumbs">', '</p>' ); ?>
 			</div>
-		<?php
-}
+			<?php
+		}
 	} // End if().
 }
 
@@ -721,24 +703,24 @@ function shapely_top_callout() {
  */
 function shapely_footer_callout() {
 	if ( get_theme_mod( 'footer_callout_text' ) != '' ) {
-	?>
+		?>
 		<section class="cfa-section bg-secondary">
-		<div class="container">
-			<div class="row">
-				<div class="col-sm-12 text-center p0">
-					<div class="overflow-hidden">
-						<div class="col-sm-9">
-							<h3 class="cfa-text"><?php echo wp_kses_post( get_theme_mod( 'footer_callout_text' ) ); ?></h3>
-						</div>
-						<div class="col-sm-3">
-							<a href='<?php echo esc_url( get_theme_mod( 'footer_callout_link' ) ); ?>' class="mb0 btn btn-lg btn-filled cfa-button">
-								<?php echo wp_kses_post( get_theme_mod( 'footer_callout_btntext' ) ); ?>
-							</a>
+			<div class="container">
+				<div class="row">
+					<div class="col-sm-12 text-center p0">
+						<div class="overflow-hidden">
+							<div class="col-sm-9">
+								<h3 class="cfa-text"><?php echo wp_kses_post( get_theme_mod( 'footer_callout_text' ) ); ?></h3>
+							</div>
+							<div class="col-sm-3">
+								<a href='<?php echo esc_url( get_theme_mod( 'footer_callout_link' ) ); ?>' class="mb0 btn btn-lg btn-filled cfa-button">
+									<?php echo wp_kses_post( get_theme_mod( 'footer_callout_btntext' ) ); ?>
+								</a>
+							</div>
 						</div>
 					</div>
 				</div>
 			</div>
-		</div>
 		</section>
 		<?php
 	}
