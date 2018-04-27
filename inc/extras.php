@@ -485,10 +485,8 @@ function shapely_custom_comment_form() {
 	$aria_req  = ( $req ? " aria-required='true'" : '' );
 	$fields    = array(
 		'author' => '<input id="author" placeholder="' . esc_html__( 'Your Name', 'shapely' ) . ( $req ? '*' : '' ) . '" name="author" type="text" value="' . esc_attr( $commenter['comment_author'] ) . '" size="30" ' . $aria_req . ' required="required" />',
-
-		'email' => '<input id="email" name="email" type="email" placeholder="' . esc_html__( 'Email Address', 'shapely' ) . ( $req ? '*' : '' ) . '" value="' . esc_attr( $commenter['comment_author_email'] ) . '" size="30"' . $aria_req . ' required="required" />',
-
-		'url' => '<input placeholder="' . esc_html__( 'Your Website (optional)', 'shapely' ) . '" id="url" name="url" type="text" value="' . esc_attr( $commenter['comment_author_url'] ) . '" size="30" />',
+		'email'  => '<input id="email" name="email" type="email" placeholder="' . esc_html__( 'Email Address', 'shapely' ) . ( $req ? '*' : '' ) . '" value="' . esc_attr( $commenter['comment_author_email'] ) . '" size="30"' . $aria_req . ' required="required" />',
+		'url'    => '<input placeholder="' . esc_html__( 'Your Website (optional)', 'shapely' ) . '" id="url" name="url" type="text" value="' . esc_attr( $commenter['comment_author_url'] ) . '" size="30" />',
 	);
 
 	$comments_args = array(
@@ -623,8 +621,7 @@ function shapely_top_callout() {
 	if ( ( get_theme_mod( 'portfolio_archive_title', true ) && is_post_type_archive( 'jetpack-portfolio' ) ) || ( get_theme_mod( 'top_callout', true ) && ! is_single() && ! is_post_type_archive( 'jetpack-portfolio' ) ) || ( is_single() && get_theme_mod( 'title_in_header', true ) && ! is_singular( 'jetpack-portfolio' ) ) || ( get_theme_mod( 'project_title_in_header', true ) && is_singular( 'jetpack-portfolio' ) ) ) {
 		$header = get_header_image();
 		?>
-		<section
-			class="page-title-section bg-secondary <?php echo $header ? 'header-image-bg' : ''; ?>" <?php echo $header ? 'style="background-image:url(' . $header . ')"' : ''; ?>>
+		<section class="page-title-section bg-secondary <?php echo $header ? 'header-image-bg' : ''; ?>" <?php echo $header ? 'style="background-image:url(' . esc_url( $header ) . ')"' : ''; ?>>
 			<div class="container">
 				<div class="row">
 					<?php
@@ -644,7 +641,7 @@ function shapely_top_callout() {
 								if ( is_home() ) {
 									echo esc_html( get_theme_mod( 'blog_name' ) ? get_theme_mod( 'blog_name' ) : __( 'Blog', 'shapely' ) );
 								} elseif ( is_search() ) {
-									_e( 'Search', 'shapely' );
+									echo esc_html__( 'Search', 'shapely' );
 								} elseif ( is_archive() ) {
 									if ( is_post_type_archive( 'jetpack-portfolio' ) ) {
 										$portfolio_title = get_theme_mod( 'portfolio_name', esc_html__( 'Portfolio', 'shapely' ) );
@@ -664,7 +661,7 @@ function shapely_top_callout() {
 							if ( is_archive() && is_post_type_archive( 'jetpack-portfolio' ) ) {
 								$portfolio_description = get_theme_mod( 'portfolio_description' );
 								if ( $portfolio_description ) {
-									echo '<p>' . wp_kses_post( $portfolio_description ) . '</p>';
+									echo '<p>' . wp_kses_post( nl2br( $portfolio_description ) ) . '</p>';
 								}
 							}
 
@@ -710,10 +707,10 @@ function shapely_footer_callout() {
 					<div class="col-sm-12 text-center p0">
 						<div class="overflow-hidden">
 							<div class="col-sm-9">
-								<h3 class="cfa-text"><?php echo wp_kses_post( get_theme_mod( 'footer_callout_text' ) ); ?></h3>
+								<h3 class="cfa-text"><?php echo wp_kses_post( nl2br( get_theme_mod( 'footer_callout_text' ) ) ); ?></h3>
 							</div>
 							<div class="col-sm-3">
-								<a href='<?php echo esc_url( get_theme_mod( 'footer_callout_link' ) ); ?>' class="mb0 btn btn-lg btn-filled cfa-button">
+								<a href="<?php echo esc_url( get_theme_mod( 'footer_callout_link' ) ); ?>" class="mb0 btn btn-lg btn-filled cfa-button">
 									<?php echo wp_kses_post( get_theme_mod( 'footer_callout_btntext' ) ); ?>
 								</a>
 							</div>

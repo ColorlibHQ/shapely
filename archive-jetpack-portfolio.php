@@ -52,14 +52,14 @@ endif;
 							<?php
 							if ( has_post_thumbnail() ) {
 
-								$portfolio_custom_URL = get_post_meta( get_the_ID(), 'shapely_companion_portfolio_link', true );
+								$portfolio_custom_url = get_post_meta( get_the_ID(), 'shapely_companion_portfolio_link', true );
 
-								if ( ! $portfolio_custom_URL ) {
-									$portfolio_custom_URL = get_the_permalink();
+								if ( ! $portfolio_custom_url ) {
+									$portfolio_custom_url = get_the_permalink();
 								}
 
 								?>
-								<a href="<?php echo $portfolio_custom_URL; ?>" title="<?php the_title_attribute(); ?>">
+								<a href="<?php echo esc_url( $portfolio_custom_url ); ?>" title="<?php the_title_attribute(); ?>">
 									<?php
 									if ( 'mansonry' == $layout ) {
 										the_post_thumbnail( 'medium' );
