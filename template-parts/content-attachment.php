@@ -31,7 +31,7 @@
 		$image = wp_get_attachment_image( get_the_ID(), 'full' );
 
 		echo wp_kses_post( $image );
-		echo the_content();
+		echo get_the_content();
 
 		$link_pages_args = array(
 			'before' => '<div class="page-links">' . esc_html__( 'Pages:', 'shapely' ),
