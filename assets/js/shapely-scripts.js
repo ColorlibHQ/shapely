@@ -1,4 +1,4 @@
-/*jshint esversion: 6 */
+/* jshint es3:false, esversion:6 */
 (function( $ ) {// jscs:ignore validateLineBreaks
 
   let clNav, clNavOuterHeight, windowW, menu, farRight, isOnScreen, difference, videos, recentEntries, searchInterval,
