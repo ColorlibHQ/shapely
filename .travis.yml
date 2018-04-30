@@ -72,3 +72,4 @@ deploy:
   on:
     branch: master
     repo: puikinsh/shapely
+    
