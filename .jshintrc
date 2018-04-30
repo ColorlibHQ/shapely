@@ -19,10 +19,11 @@
     "wp": false,
     "WPUrls": false,
     "Masonry": false,
-    "Vimeo" : false,
-    "shapelyWelcomeScreenObject" : false,
+    "Vimeo": false,
     "console": false,
-    "shapelyWelcomeScreenCustomizerObject" : false,
-    "ShapelyBuilder" : false
+    "shapelyWelcomeScreenCustomizerObject": false,
+    "shapelyWelcomeScreenObject": false,
+    "ShapelyAdminObject": false,
+    "ShapelyBuilder": false
   }
 }

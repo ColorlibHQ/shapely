@@ -1,3 +1,4 @@
+/*jshint esversion: 6 */
 (function( $ ) {// jscs:ignore validateLineBreaks
 
   let clNav, clNavOuterHeight, windowW, menu, farRight, isOnScreen, difference, videos, recentEntries, searchInterval,
@@ -91,7 +92,7 @@
       } );
     }, 200 );
 
-    if ( 1 == ShapelyAdminObject.sticky_header ) {
+    if ( 1 === ShapelyAdminObject.sticky_header ) {
 
       // Fix nav to top while scrolling
       clNav = $( 'body .nav-container nav:first' );

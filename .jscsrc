@@ -5,7 +5,7 @@
     "assets/js/**.min.js",
     "assets/js/owl-carousel/*",
     "assets/js/dev/*",
-    "assets/js/*"
+    "assets/js/**"
   ],
   "maxErrors": Infinity
 }
