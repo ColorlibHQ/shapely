@@ -96,16 +96,18 @@ if ( ! function_exists( 'shapely_header_menu' ) ) :
 	 */
 	function shapely_header_menu() {
 		// display the WordPress Custom Menu if available
-		wp_nav_menu( array(
-			'menu_id'         => 'menu',
-			'theme_location'  => 'primary',
-			'depth'           => 0,
-			'container'       => 'div',
-			'container_class' => 'collapse navbar-collapse navbar-ex1-collapse',
-			'menu_class'      => 'menu',
-			'fallback_cb'     => 'Wp_Bootstrap_Navwalker::fallback',
-			'walker'          => new Wp_Bootstrap_Navwalker(),
-		) );
+		wp_nav_menu(
+			array(
+				'menu_id'         => 'menu',
+				'theme_location'  => 'primary',
+				'depth'           => 0,
+				'container'       => 'div',
+				'container_class' => 'collapse navbar-collapse navbar-ex1-collapse',
+				'menu_class'      => 'menu',
+				'fallback_cb'     => 'Wp_Bootstrap_Navwalker::fallback',
+				'walker'          => new Wp_Bootstrap_Navwalker(),
+			)
+		);
 	} /* end header menu */
 endif;
 
@@ -203,7 +205,7 @@ function shapely_caption( $output, $attr, $content ) {
 		return $content;
 	}
 
-	$output = '<figure id="' . esc_attr( $attr['id'] ) . '" class="thumbnail wp-caption ' . esc_attr( $attr['align'] ) . ' style="width: ' . ( esc_attr( $attr['width'] ) + 10 ) . 'px">';
+	$output  = '<figure id="' . esc_attr( $attr['id'] ) . '" class="thumbnail wp-caption ' . esc_attr( $attr['align'] ) . ' style="width: ' . ( esc_attr( $attr['width'] ) + 10 ) . 'px">';
 	$output .= do_shortcode( $content );
 	$output .= '<figcaption class="caption wp-caption-text">' . wp_kses_post( $attr['caption'] ) . '</figcaption>';
 	$output .= '</figure>';
@@ -250,9 +252,11 @@ add_action( 'wp_footer', 'shapely_make_top_level_menu_clickable', 1 );
  * Add Read More button to post archive
  */
 function shapely_excerpt_more( $more ) {
-	return '<div><a class="btn-filled btn" href="' . esc_url( get_the_permalink() ) . '" title="' . the_title_attribute( array(
+	return '<div><a class="btn-filled btn" href="' . esc_url( get_the_permalink() ) . '" title="' . the_title_attribute(
+		array(
 			'echo' => false,
-		) ) . '">' . esc_html_x( 'Read More', 'Read More', 'shapely' ) . '</a></div>';
+		)
+	) . '">' . esc_html_x( 'Read More', 'Read More', 'shapely' ) . '</a></div>';
 }
 
 add_filter( 'excerpt_more', 'shapely_excerpt_more' );
@@ -267,11 +271,13 @@ if ( ! function_exists( 'shapely_pagination' ) ) {
 		<div class="text-center">
 			<nav class="pagination">
 				<?php
-				the_posts_pagination( array(
-					'mid_size'  => 2,
-					'prev_text' => '<icon class="fa fa-angle-left"></icon>',
-					'next_text' => '<icon class="fa fa-angle-right"></icon>',
-				) );
+				the_posts_pagination(
+					array(
+						'mid_size'  => 2,
+						'prev_text' => '<icon class="fa fa-angle-left"></icon>',
+						'next_text' => '<icon class="fa fa-angle-right"></icon>',
+					)
+				);
 				?>
 			</nav>
 		</div>
@@ -691,7 +697,7 @@ function shapely_top_callout() {
 				<?php yoast_breadcrumb( '<p id="breadcrumbs">', '</p>' ); ?>
 			</div>
 			<?php
-		}
+}
 	} // End if().
 }
 
