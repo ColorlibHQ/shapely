@@ -4,7 +4,8 @@
   "excludeFiles": [
     "assets/js/**.min.js",
     "assets/js/owl-carousel/*",
-    "assets/js/dev/*"
+    "assets/js/dev/*",
+    "assets/js/*"
   ],
   "maxErrors": Infinity
 }
