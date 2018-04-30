@@ -15,7 +15,7 @@
 $shapely_transparent_header         = get_theme_mod( 'shapely_transparent_header', 0 );
 $shapely_transparent_header_opacity = get_theme_mod( 'shapely_sticky_header_transparency', 100 );
 
-if ( $shapely_transparent_header == 1 && $shapely_transparent_header_opacity ) {
+if ( 1 == $shapely_transparent_header && $shapely_transparent_header_opacity ) {
 	if ( $shapely_transparent_header_opacity < 100 ) {
 		$style = 'style="background: rgba(255, 255, 255, 0.' . esc_attr( $shapely_transparent_header_opacity ) . ');"';
 	} else {
