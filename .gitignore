@@ -7,3 +7,5 @@ node_modules/*
 Gruntfile.js
 phpcs.ruleset.xml
 .standard.json
+shapely.zip
+package-lock.json

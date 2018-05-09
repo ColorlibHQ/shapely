@@ -95,9 +95,7 @@ function shapely_customizer( $wp_customize ) {
 			'theme_supports' => '',
 			'title'          => esc_html__( 'Theme Options', 'shapely' ),
 			'description'    => esc_html__( 'Panel to update shapely theme options', 'shapely' ),
-			// Include html tags such as <p>.
 			'priority'       => 10,
-		// Mixed with top-level-section hierarchy.
 		)
 	);
 
@@ -107,9 +105,7 @@ function shapely_customizer( $wp_customize ) {
 			'theme_supports' => '',
 			'title'          => esc_html__( 'Blog Settings', 'shapely' ),
 			'description'    => esc_html__( 'Panel to update Blog related options', 'shapely' ),
-			// Include html tags such as <p>.
 			'priority'       => 10,
-		// Mixed with top-level-section hierarchy.
 		)
 	);
 
