@@ -3,10 +3,13 @@
 class Shapely {
 
 	public $recommended_plugins = array(
-		'simple-custom-post-order' => array(
+		'simple-custom-post-order'  => array(
 			'recommended' => false,
 		),
-		'fancybox-for-wordpress'   => array(
+		'fancybox-for-wordpress'    => array(
+			'recommended' => false,
+		),
+		'colorlib-login-customizer' => array(
 			'recommended' => false,
 		),
 	);
@@ -178,8 +181,10 @@ class Shapely {
 
 	private function generate_checkbox( $id, $label, $name = 'options', $block = false ) {
 		$string = '<label><input checked type="checkbox" name="%1$s" class="demo-checkboxes"' . ( $block ? ' disabled ' : ' ' ) . 'value="%2$s">%3$s</label>';
+
 		return sprintf( $string, $name, $id, $label );
 	}
 
 }
+
 new Shapely();

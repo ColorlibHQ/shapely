@@ -9,7 +9,24 @@
  * @package Shapely
  */
 
-?><!DOCTYPE html>
+?>
+<?php
+
+$shapely_transparent_header         = get_theme_mod( 'shapely_transparent_header', 0 );
+$shapely_transparent_header_opacity = get_theme_mod( 'shapely_sticky_header_transparency', 100 );
+
+if ( 1 == $shapely_transparent_header && $shapely_transparent_header_opacity ) {
+	if ( $shapely_transparent_header_opacity < 100 ) {
+		$style = 'style="background: rgba(255, 255, 255, 0.' . esc_attr( $shapely_transparent_header_opacity ) . ');"';
+	} else {
+		$style = 'style="background: rgba(255, 255, 255, ' . esc_attr( $shapely_transparent_header_opacity ) . ');"';
+	}
+} else {
+	$style = '';
+}
+?>
+
+<!DOCTYPE html>
 <html <?php language_attributes(); ?>>
 <head>
 	<meta charset="<?php bloginfo( 'charset' ); ?>">
@@ -26,7 +43,7 @@
 
 	<header id="masthead" class="site-header<?php echo get_theme_mod( 'mobile_menu_on_desktop', false ) ? ' mobile-menu' : ''; ?>" role="banner">
 		<div class="nav-container">
-			<nav id="site-navigation" class="main-navigation" role="navigation">
+			<nav <?php echo $style; ?> id="site-navigation" class="main-navigation" role="navigation">
 				<div class="container nav-bar">
 					<div class="flex-row">
 						<div class="module left site-title-container">
@@ -40,13 +57,13 @@
 								<?php shapely_header_menu(); ?>
 							</div>
 							<!--end of menu module-->
-							<div class="module widget-handle search-widget-handle left hidden-xs hidden-sm">
+							<div class="module widget-handle search-widget-handle hidden-xs hidden-sm">
 								<div class="search">
 									<i class="fa fa-search"></i>
 									<span class="title"><?php esc_html_e( 'Site Search', 'shapely' ); ?></span>
 								</div>
 								<div class="function">
-								<?php
+									<?php
 									get_search_form();
 									?>
 								</div>

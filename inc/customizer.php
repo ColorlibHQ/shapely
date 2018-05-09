@@ -94,8 +94,8 @@ function shapely_customizer( $wp_customize ) {
 			'capability'     => 'edit_theme_options',
 			'theme_supports' => '',
 			'title'          => esc_html__( 'Theme Options', 'shapely' ),
-			'description'    => esc_html__( 'Panel to update shapely theme options', 'shapely' ), // Include html tags such as <p>.
-			'priority'       => 10, // Mixed with top-level-section hierarchy.
+			'description'    => esc_html__( 'Panel to update shapely theme options', 'shapely' ),
+			'priority'       => 10,
 		)
 	);
 
@@ -104,8 +104,8 @@ function shapely_customizer( $wp_customize ) {
 			'capability'     => 'edit_theme_options',
 			'theme_supports' => '',
 			'title'          => esc_html__( 'Blog Settings', 'shapely' ),
-			'description'    => esc_html__( 'Panel to update Blog related options', 'shapely' ), // Include html tags such as <p>.
-			'priority'       => 10, // Mixed with top-level-section hierarchy.
+			'description'    => esc_html__( 'Panel to update Blog related options', 'shapely' ),
+			'priority'       => 10,
 		)
 	);
 
@@ -322,6 +322,7 @@ function shapely_customizer( $wp_customize ) {
 			'sanitize_callback' => 'shapely_sanitize_checkbox',
 		)
 	);
+
 	if ( class_exists( 'Epsilon_Control_Toggle' ) ) {
 		$wp_customize->add_control(
 			new Epsilon_Control_Toggle(
@@ -342,6 +343,7 @@ function shapely_customizer( $wp_customize ) {
 			)
 		);
 	}
+
 	$wp_customize->add_setting(
 		'footer_callout_text', array(
 			'default'           => '',
@@ -386,6 +388,118 @@ function shapely_customizer( $wp_customize ) {
 			'type'        => 'text',
 		)
 	);
+
+	/**
+	 *
+	 * @since 1.2.2
+	 *
+	 */
+
+	// transparent header
+	$wp_customize->add_setting(
+		'shapely_transparent_header', array(
+			'default'           => 0,
+			'sanitize_callback' => 'shapely_sanitize_checkbox',
+		)
+	);
+
+	if ( class_exists( 'Epsilon_Control_Toggle' ) ) {
+		$wp_customize->add_control(
+			new Epsilon_Control_Toggle(
+				$wp_customize, 'shapely_transparent_header', array(
+					'label'       => esc_html__( 'Transparent header', 'shapely' ),
+					'description' => esc_html__( 'Toggling this to ON will make the header have a transparent background', 'shapely' ),
+					'section'     => 'shapely_main_section',
+				)
+			)
+		);
+	} else {
+		$wp_customize->add_control(
+			'shapely_transparent_header', array(
+				'label'       => esc_html__( 'Transparent header', 'shapely' ),
+				'description' => esc_html__( 'Toggling this to ON will make the header have a transparent background', 'shapely' ),
+				'section'     => 'shapely_main_section',
+				'type'        => 'checkbox',
+			)
+		);
+	}
+
+	// transparent header: opacity range slider
+	$wp_customize->add_setting(
+		'shapely_sticky_header_transparency', array(
+			'default'           => 100,
+			'sanitize_callback' => 'absint',
+		)
+	);
+
+	if ( class_exists( 'Epsilon_Control_Slider' ) ) {
+		$wp_customize->add_control(
+			new Epsilon_Control_Slider(
+				$wp_customize, 'shapely_sticky_header_transparency', array(
+					'label'           => esc_html__( 'Sticky header background opacity', 'shapely' ),
+					'description'     => esc_html__( 'Increase the header background opacity', 'shapely' ),
+					'section'         => 'shapely_main_section',
+					'type'            => 'epsilon-slider',
+					'choices'         => array(
+						'min'  => 10,
+						'max'  => 100,
+						'step' => 5,
+					),
+					'active_callback' => 'active_callback_toggle_choice',
+
+				)
+			)
+		);
+	} else {
+		$wp_customize->add_control(
+			'shapely_sticky_header_transparency', array(
+				'label'           => esc_html__( 'Sticky header background opacity', 'shapely' ),
+				'description'     => esc_html__( 'Increase the header background opacity', 'shapely' ),
+				'section'         => 'shapely_main_section',
+				'type'            => 'number',
+				'active_callback' => 'active_callback_toggle_choice',
+			)
+		);
+	}
+
+	// sticky header
+	$wp_customize->add_setting(
+		'shapely_sticky_header', array(
+			'default'           => 1,
+			'sanitize_callback' => 'shapely_sanitize_checkbox',
+		)
+	);
+
+	if ( class_exists( 'Epsilon_Control_Toggle' ) ) {
+		$wp_customize->add_control(
+			new Epsilon_Control_Toggle(
+				$wp_customize, 'shapely_sticky_header', array(
+					'label'       => esc_html__( 'Sticky header', 'shapely' ),
+					'description' => esc_html__( 'Toggling this to ON will make your header stick to the top of the browser bar', 'shapely' ),
+					'section'     => 'shapely_main_section',
+
+				)
+			)
+		);
+	} else {
+		$wp_customize->add_control(
+			'shapely_sticky_header', array(
+				'label'       => esc_html__( 'Sticky header', 'shapely' ),
+				'description' => esc_html__( 'Toggling this to ON will make your header stick to the top of the browser bar', 'shapely' ),
+				'section'     => 'shapely_main_section',
+				'type'        => 'checkbox',
+
+			)
+		);
+	}
+
+	/**
+	 *
+	 * END
+	 *
+	 * @since 1.2.2
+	 *
+	 */
 
 	// add "Footer" section
 	$wp_customize->add_section(
@@ -1131,6 +1245,18 @@ function shapely_sanitize_logo_dimension( $dimensions ) {
 }
 
 /**
+ *
+ */
+function active_callback_toggle_choice( $control ) {
+
+	if ( $control->manager->get_setting( 'shapely_transparent_header' )->value() == 1 ) {
+		return true;
+	} else {
+		return false;
+	}
+}
+
+/**
  * Sanitize checkbox for WordPress customizer.
  */
 function shapely_sanitize_checkbox( $input ) {
@@ -1179,20 +1305,25 @@ function shapely_customizer_custom_control_css() {
 		#customize-control-shapely-main_body_typography-size select, #customize-control-shapely-main_body_typography-face select, #customize-control-shapely-main_body_typography-style select {
 			width: 60%;
 		}
+
 		.shapely-logo-dimension .half {
 			width: 49%;
 			float: left;
 		}
+
 		.shapely-logo-dimension .half:nth-child(2) {
 			margin-left: 2%;
 		}
+
 		.shapely-logo-dimension .ratio {
 			clear: both;
 		}
+
 		.widget-content .iris-picker .iris-strip .ui-slider-handle {
 			top: auto;
 			transform: translateX(0);
 		}
+
 		.widget-content .iris-picker .iris-slider-offset {
 			margin: 0;
 		}
@@ -1208,9 +1339,11 @@ add_action( 'customize_controls_print_styles', 'shapely_customizer_custom_contro
 function shapely_customize_preview_js() {
 	wp_enqueue_script( 'shapely_customizer', get_template_directory_uri() . '/assets/js/customizer-preview.js', array( 'customize-preview' ), '20140317', true );
 }
+
 add_action( 'customize_preview_init', 'shapely_customize_preview_js' );
 
 function shapely_customize_preview() {
 	wp_enqueue_script( 'shapely_customizer', get_template_directory_uri() . '/assets/js/customizer.js', array( 'customize-preview' ), '20140317', true );
 }
+
 add_action( 'customize_controls_enqueue_scripts', 'shapely_customize_preview' );

@@ -60,7 +60,7 @@ $post_category = get_theme_mod( 'post_category', true );
 	</header><!-- .entry-header -->
 	<div class="entry-content">
 		<?php if ( $post_title ) : ?>
-			<h2 class="post-title">
+			<h2 class="post-title entry-title">
 				<a href="<?php echo esc_url( get_the_permalink() ); ?>"><?php echo wp_trim_words( get_the_title(), 9 ); ?></a>
 			</h2>
 		<?php endif ?>
