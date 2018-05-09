@@ -461,3 +461,7 @@
 .import-content-container {
     display: none;
 }
+
+.epsilon-framework-notice .epsilon-author-logo {
+    max-width: 100px;
+}
