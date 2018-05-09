@@ -12,6 +12,8 @@ if ( 'mansonry' == $layout ) {
 if ( 'sidebar-left' == $layout_class ) :
 	get_sidebar();
 endif;
+
+
 ?>
 	<div id="primary" class="content-area col-md-8 mb-xs-24 <?php echo esc_attr( $layout_class ); ?>">
 		<main id="main" class="site-main" role="main">
@@ -49,8 +51,15 @@ endif;
 						<div class="image-tile inner-title hover-reveal text-center" style="<?php echo $item_style; ?>">
 							<?php
 							if ( has_post_thumbnail() ) {
+
+								$portfolio_custom_url = get_post_meta( get_the_ID(), 'shapely_companion_portfolio_link', true );
+
+								if ( ! $portfolio_custom_url ) {
+									$portfolio_custom_url = get_the_permalink();
+								}
+
 								?>
-								<a href="<?php the_permalink(); ?>" title="<?php the_title_attribute(); ?>">
+								<a href="<?php echo esc_url( $portfolio_custom_url ); ?>" title="<?php the_title_attribute(); ?>">
 									<?php
 									if ( 'mansonry' == $layout ) {
 										the_post_thumbnail( 'medium' );
@@ -70,7 +79,7 @@ endif;
 							?>
 						</div>
 					</article><!-- #post-## -->
-					<?php
+				<?php
 
 				endwhile;
 

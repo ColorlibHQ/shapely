@@ -1,6 +1,8 @@
+/* jshint es3:false, esversion:6 */
 (function( $ ) {// jscs:ignore validateLineBreaks
 
-  var clNav, clNavOuterHeight, windowW, menu, farRight, isOnScreen, difference, videos, recentEntries, searchInterval, shapelyCf, element, newURL, scrollToID;
+  let clNav, clNavOuterHeight, windowW, menu, farRight, isOnScreen, difference, videos, recentEntries, searchInterval,
+      shapelyCf, element, newURL, scrollToID;
 
   jQuery( document ).ready( function( $ ) {
 
@@ -18,7 +20,7 @@
 
     // Smooth scroll to inner links
     jQuery( '.inner-link' ).each( function() {
-      var href = jQuery( this ).attr( 'href' );
+      let href = jQuery( this ).attr( 'href' );
       if ( '#' !== href.charAt( 0 ) ) {
         jQuery( this ).removeClass( 'inner-link' );
       }
@@ -30,7 +32,7 @@
       if ( element ) {
         scrollToID = '#' + element.data( 'scroll' );
 
-        if ( jQuery( scrollToID ).length < 1 ) {
+        if ( jQuery( scrollToID ).length > 1 ) {
           scrollToID = window.location.hash;
         }
 
@@ -44,14 +46,15 @@
 
         newURL = window.location.href.replace( window.location.hash, '' );
         window.history.replaceState( {}, document.title, newURL );
-
+      } else {
+        return;
       }
     }
 
     $( '#site-navigation #menu a[href^=#]:not([href=#])' ).click( function( evt ) {
-      var scrollToID = '#' + $( this ).data( 'scroll' );
+      let scrollToID = '#' + $( this ).data( 'scroll' );
 
-      if ( jQuery( scrollToID ).length < 1 ) {
+      if ( jQuery( scrollToID ).length > 1 ) {
         scrollToID = $( this ).attr( 'href' );
       }
 
@@ -68,14 +71,14 @@
     jQuery( '.inner-link' ).click( function() {
       jQuery( 'html, body' ).animate( {
         scrollTop: 0
-      }, 1000 );
+      }, 500 );
       return false;
     } );
 
     // Append .background-image-holder <img>'s as CSS backgrounds
 
     jQuery( '.background-image-holder' ).each( function() {
-      var imgSrc = jQuery( this ).children( 'img' ).attr( 'src' );
+      let imgSrc = jQuery( this ).children( 'img' ).attr( 'src' );
       jQuery( this ).css( 'background', 'url("' + imgSrc + '")' );
       jQuery( this ).children( 'img' ).hide();
       jQuery( this ).css( 'background-position', 'initial' );
@@ -89,25 +92,27 @@
       } );
     }, 200 );
 
-    // Fix nav to top while scrolling
+    if ( 1 === ShapelyAdminObject.sticky_header ) {
 
-    clNav = $( 'body .nav-container nav:first' );
-    clNavOuterHeight = $( 'body .nav-container nav:first' ).outerHeight();
-    windowW = jQuery( window ).width();
-    if ( windowW > 991 ) {
-      window.addEventListener( 'scroll', updateNav, false );
-      updateNav();
-    }
-
-    $( window ).resize( function() {
-      windowW = $( window ).width();
-      if ( windowW < 992 ) {
-        clNav.removeClass( 'fixed scrolled outOfSight' );
-      } else {
+      // Fix nav to top while scrolling
+      clNav = $( 'body .nav-container nav:first' );
+      clNavOuterHeight = $( 'body .nav-container nav:first' ).outerHeight();
+      windowW = jQuery( window ).width();
+      if ( windowW > 991 ) {
         window.addEventListener( 'scroll', updateNav, false );
         updateNav();
       }
-    } );
+
+      $( window ).resize( function() {
+        windowW = $( window ).width();
+        if ( windowW < 992 ) {
+          clNav.removeClass( 'fixed scrolled outOfSight' );
+        } else {
+          window.addEventListener( 'scroll', updateNav, false );
+          updateNav();
+        }
+      } );
+    }
 
     // Menu dropdown positioning
 
@@ -204,7 +209,7 @@
       }
     } );
     $( '.slider-thumb-controls .slides li' ).each( function() {
-      var imgSrc = $( this ).find( 'img' ).attr( 'src' );
+      let imgSrc = $( this ).find( 'img' ).attr( 'src' );
       $( this ).attr( 'data-thumb', imgSrc );
     } );
     $( '.slider-thumb-controls' ).flexslider( {
@@ -261,14 +266,14 @@
 
     // Lightbox gallery titles
     $( '.lightbox-grid li a' ).each( function() {
-      var galleryTitle = $( this ).closest( '.lightbox-grid' ).attr( 'data-gallery-title' );
+      let galleryTitle = $( this ).closest( '.lightbox-grid' ).attr( 'data-gallery-title' );
       $( this ).attr( 'data-lightbox', galleryTitle );
     } );
 
     videos = $( '.video-widget' );
     if ( videos.length ) {
       $.each( videos, function() {
-        var play = $( this ).find( '.play-button' ),
+        let play = $( this ).find( '.play-button' ),
             pause = $( this ).find( '.pause-button' ),
             isYoutube = $( this ).hasClass( 'youtube' ),
             isVimeo = $( this ).hasClass( 'vimeo' ),
@@ -282,7 +287,7 @@
             fitToBackground: true,
             videoId: videoId,
             mute: mute,
-            playerVars: {
+            playerlets: {
               modestbranding: 0,
               autoplay: autoplay,
               controls: 0,
@@ -295,19 +300,19 @@
           self = $( this );
 
           $( document ).on( 'YTBGREADY', function() {
-            var iframe = self.find( 'iframe' ),
+            let iframe = self.find( 'iframe' ),
                 height = iframe.height();
           } );
 
           $( play ).on( 'click', function( e ) {
-            var parent = $( this ).parents( '.video-widget' ),
+            let parent = $( this ).parents( '.video-widget' ),
                 instance = $( parent ).data( 'ytPlayer' ).player;
             e.preventDefault();
             instance.playVideo();
           } );
 
           $( pause ).on( 'click', function( e ) {
-            var parent = $( this ).parents( '.video-widget' ),
+            let parent = $( this ).parents( '.video-widget' ),
                 instance = $( parent ).data( 'ytPlayer' ).player;
             e.preventDefault();
             instance.pauseVideo();
@@ -343,7 +348,7 @@
         } else {
 
           $( play ).on( 'click', function( e ) {
-            var parent = $( this ).parents( '.video-widget' ),
+            let parent = $( this ).parents( '.video-widget' ),
                 instance = $( parent ).data( 'vide' ),
                 video = instance.getVideoObject();
             e.preventDefault();
@@ -351,7 +356,7 @@
           } );
 
           $( pause ).on( 'click', function( e ) {
-            var parent = $( this ).parents( '.video-widget' ),
+            let parent = $( this ).parents( '.video-widget' ),
                 instance = $( parent ).data( 'vide' ),
                 video = instance.getVideoObject();
             e.preventDefault();
@@ -372,11 +377,11 @@
 
       $( '.owlCarousel' ).each( function( index ) {
 
-        var sliderSelector = '#owlCarousel-' + $( this ).data( 'slider-id' ); // This is the slider selector
-        var sliderItems = $( this ).data( 'slider-items' );
-        var sliderSpeed = $( this ).data( 'slider-speed' );
-        var sliderAutoPlay = $( this ).data( 'slider-auto-play' );
-        var sliderSingleItem = $( this ).data( 'slider-single-item' );
+        let sliderSelector = '#owlCarousel-' + $( this ).data( 'slider-id' ); // This is the slider selector
+        let sliderItems = $( this ).data( 'slider-items' );
+        let sliderSpeed = $( this ).data( 'slider-speed' );
+        let sliderAutoPlay = $( this ).data( 'slider-auto-play' );
+        let sliderSingleItem = $( this ).data( 'slider-single-item' );
 
         //Conversion of 1 to true & 0 to false
         // auto play
@@ -447,7 +452,7 @@
 
     // "use strict";
     // Resetting testimonial parallax height
-    var msnry, container, clFirstSectionHeight;
+    let msnry, container, clFirstSectionHeight;
     if ( 0 !== jQuery( '.testimonial-section' ).length ) {
       testimonialHeight();
       setTimeout( function() {
@@ -485,8 +490,8 @@
    * keep menu fixed
    **/
   function updateNav() {
-    var scroll = $( window ).scrollTop();
-    var windowW = jQuery( window ).width();
+    let scroll = $( window ).scrollTop();
+    let windowW = jQuery( window ).width();
 
     if ( windowW < 992 ) {
       return;
@@ -506,11 +511,11 @@
   }
 
   function masonryFlyIn() {
-    var $items = jQuery( '.masonryFlyIn .masonry-item' );
-    var time = 0;
+    let $items = jQuery( '.masonryFlyIn .masonry-item' );
+    let time = 0;
 
     $items.each( function() {
-      var item = jQuery( this );
+      let item = jQuery( this );
       setTimeout( function() {
         item.addClass( 'fadeIn' );
       }, time );
