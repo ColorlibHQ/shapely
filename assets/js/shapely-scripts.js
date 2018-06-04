@@ -92,7 +92,7 @@
       });
     }, 200);
 
-    if (1 == ShapelyAdminObject.sticky_header) {
+    if ('1' === ShapelyAdminObject.sticky_header) {
 
       // Fix nav to top while scrolling
       clNav = $('body .nav-container nav:first');
