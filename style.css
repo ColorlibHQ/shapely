@@ -4,7 +4,7 @@ Theme URI: https://colorlib.com/wp/themes/shapely
 Author: colorlib
 Author URI: https://colorlib.com/
 Description: Shapely is a powerful and versatile one page WordPress theme with pixel perfect design and outstanding functionality. It is by far the most advanced free WordPress theme available today with loads of unmatched customization options. This theme comes with several homepage widgets that can be used to add portfolio, testimonials, parallax sections, your product or service information, call for action and much more. Shapely supports most free and premium WordPress plugins such as WooCommerce, Jetpack, Gravity Forms, Contact Form 7, Yoast SEO, Google Analytics by Yoast and much more. This theme is the best suited for business, landing page, portfolio, ecommerce, store, local business,  personal websites but can be tweaked to be used as blog, magazine or any other awesome website while highlighting its unique one page setup. This is going to be the last WordPress theme you will ever want to use because it is so much better than anything you have seen. Needless to say that this theme is SEO friendly thanks to its well optimized strucutre. Shapely theme is mobile friendly and fully responsive making it your best multipurpose partnert for any project and website.
-Version: 1.2.2
+Version: 1.2.3
 License: GNU General Public License v3
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 Text Domain: shapely
@@ -1342,6 +1342,7 @@ input[type="submit"]:hover {
 nav {
 	-webkit-backface-visibility: hidden;
 	max-width: 100%;
+
 }
 
 nav ul {
@@ -1376,6 +1377,7 @@ nav .btn, .nav-bar .btn {
 
 nav {
 	border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+	background-color: rgba(255,255,255,1);
 }
 
 .nav-bar .module:not( .site-title-container ),
