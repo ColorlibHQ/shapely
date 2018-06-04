@@ -271,7 +271,7 @@ function shapely_scripts() {
 	wp_localize_script(
 		'shapely-scripts', 'ShapelyAdminObject',
 		array(
-			'sticky_header' => get_theme_mod( 'shapely_sticky_header' ),
+			'sticky_header' => get_theme_mod( 'shapely_sticky_header', 1 ),
 		)
 	);
 }
