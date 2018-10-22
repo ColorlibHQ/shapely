@@ -1,11 +1,11 @@
 'use strict';
 
-module.exports = function( grunt ) {
+module.exports = function (grunt) {
   // load all tasks
-  require( 'load-grunt-tasks' )( grunt, { scope: 'devDependencies' } );
+  require('load-grunt-tasks')(grunt, { scope: 'devDependencies' });
 
-  grunt.config.init( {
-    pkg: grunt.file.readJSON( 'package.json' ),
+  grunt.config.init({
+    pkg: grunt.file.readJSON('package.json'),
 
     dirs: {
       css: 'assets/css',
@@ -21,11 +21,11 @@ module.exports = function( grunt ) {
             poedit: true,
             'x-poedit-keywordslist': true
           },
-          processPot: function( pot, options ) {
-            pot.headers[ 'report-msgid-bugs-to' ] = 'https://www.colorlib.com/';
-            pot.headers[ 'language-team' ] = 'Colorlib <office@colorlib.com>';
-            pot.headers[ 'last-translator' ] = 'Colorlib <office@colorlib.com>';
-            pot.headers[ 'language-team' ] = 'Colorlib <office@colorlib.com>';
+          processPot: function (pot, options) {
+            pot.headers['report-msgid-bugs-to'] = 'https://www.colorlib.com/';
+            pot.headers['language-team'] = 'Colorlib <office@colorlib.com>';
+            pot.headers['last-translator'] = 'Colorlib <office@colorlib.com>';
+            pot.headers['language-team'] = 'Colorlib <office@colorlib.com>';
             return pot;
           },
           updateTimestamp: true,
@@ -53,7 +53,7 @@ module.exports = function( grunt ) {
     checktextdomain: {
       standard: {
         options: {
-          text_domain: [ 'shapely', 'epsilon-framework' ], //Specify allowed domain(s)
+          text_domain: ['shapely', 'epsilon-framework'], //Specify allowed domain(s)
           create_report_file: 'true',
           keywords: [ //List keyword specifications
             '__:1,2d',
@@ -79,13 +79,13 @@ module.exports = function( grunt ) {
               '!**/node_modules/**',
             ], //all php
             expand: true
-          } ]
+          }]
       }
     },
 
     clean: {
       init: {
-        src: [ 'build/' ]
+        src: ['build/']
       },
       build: {
         src: [
@@ -109,7 +109,13 @@ module.exports = function( grunt ) {
           '!package.json',
           '!set_tags.sh',
           '!shapely.zip',
-          '!nbproject/**' ],
+          '!.gitignore',
+          '!.jshintrc',
+          '!.gitmodules',
+          '!.travis.yml',
+          '!jscsrc',
+          '!.standard.json',
+          '!nbproject/**'],
         dest: 'build/'
       }
     },
@@ -122,7 +128,7 @@ module.exports = function( grunt ) {
         },
         expand: true,
         cwd: 'build/',
-        src: [ '**/*' ],
+        src: ['**/*'],
         dest: '<%= pkg.name %>/'
       }
     },
@@ -143,29 +149,29 @@ module.exports = function( grunt ) {
           {
             expand: true,
             cwd: 'assets/img/',
-            src: [ '**/*.{png,jpg,gif}' ],
+            src: ['**/*.{png,jpg,gif}'],
             dest: 'assets/img/'
-          } ]
+          }]
       }
     },
 
-  } );
+  });
 
   // Check Missing Text Domain Strings
-  grunt.registerTask( 'textdomain', [
+  grunt.registerTask('textdomain', [
     'checktextdomain'
-  ] );
+  ]);
 
   // Minify Images
-  grunt.registerTask( 'minimg', [
+  grunt.registerTask('minimg', [
     'imagemin:dynamic'
-  ] );
+  ]);
 
   // Build task
-  grunt.registerTask( 'build-archive', [
+  grunt.registerTask('build-archive', [
     'clean:init',
     'copy',
     'compress:build',
     'clean:init'
-  ] );
+  ]);
 };
