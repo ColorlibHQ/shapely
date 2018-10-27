@@ -551,7 +551,7 @@ a, a:visited, a:active, a:hover {
 	-webkit-transition: all 0.3s ease;
 	-moz-transition: all 0.3s ease;
 	font-weight: 300;
-	font-family: 'Raleway';
+	font-family: "Raleway", "Helvetica Neue", Helvetica, Arial, sans-serif;
 }
 
 .site-title:hover {
@@ -1101,7 +1101,7 @@ blockquote p:last-child:after {
 }
 
 .number {
-	font-family: "Lato", "Helvetica Neue", Helvetica, Arial, sans-serif;
+	font-family: "Raleway", "Helvetica Neue", Helvetica, Arial, sans-serif;
 }
 
 @media all and (max-width: 767px) {
@@ -2282,7 +2282,7 @@ button[type="submit"] {
 	margin: 0 4px;
 	color: #0e1015;
 	font-weight: 400;
-	font-family: "Lato", "Helvetica Neue", Helvetica, Arial, sans-serif;
+	font-family: "Raleway", "Helvetica Neue", Helvetica, Arial, sans-serif;
 	display: inline-block;
 	border: 1px solid #ddd;
 	line-height: 20px;
@@ -2959,7 +2959,7 @@ iframe {
 .content blockquote cite {
 	display: block;
 	margin-top: 1.1em;
-	font-family: 'Lato', Helvetica, sans-serif;
+	font-family: "Raleway", "Helvetica Neue", Helvetica, Arial, sans-serif;
 	font-size: 0.75em;
 	line-height: 120%;
 	font-weight: 900;
@@ -3805,7 +3805,8 @@ input[type="text"]:focus, input[type="search"]:focus, input[type="email"]:focus,
 }
 
 .widget.widget_search .search-form > .searchsubmit:hover, .widget.widget_search .search-form > .searchsubmit:focus, .widget.widget_search .search-form > .searchsubmit:active {
-	color: transparent; }
+	color: transparent;
+}
 
 .widget.widget_search .search-form :-moz-placeholder {
 	text-transform: initial;
@@ -3813,7 +3814,8 @@ input[type="text"]:focus, input[type="search"]:focus, input[type="email"]:focus,
 	letter-spacing: initial;
 	color: #8c979e;
 	font-size: 14px;
-	font-family: 'Raleway'; }
+	font-family: "Raleway", "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
 
 .widget.widget_search .search-form ::-moz-placeholder {
 	text-transform: initial;
@@ -3821,7 +3823,8 @@ input[type="text"]:focus, input[type="search"]:focus, input[type="email"]:focus,
 	letter-spacing: initial;
 	color: #8c979e;
 	font-size: 14px;
-	font-family: 'Raleway'; }
+	font-family: "Raleway", "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
 
 .widget.widget_search .search-form :-ms-input-placeholder {
 	text-transform: initial;
@@ -3829,7 +3832,8 @@ input[type="text"]:focus, input[type="search"]:focus, input[type="email"]:focus,
 	letter-spacing: initial;
 	color: #8c979e;
 	font-size: 14px;
-	font-family: 'Raleway'; }
+	font-family: "Raleway", "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
 
 .widget_product_categories ul.product-categories {
 	list-style: none;
@@ -4078,7 +4082,7 @@ input[type="text"]:focus, input[type="search"]:focus, input[type="email"]:focus,
 	left: 0; }
 
 .post-content .shapely-category a {
-	font-family: 'Raleway', 'Helvetica Neue', 'Helvetica', 'sans-serif';
+	font-family: "Raleway", "Helvetica Neue", Helvetica, Arial, sans-serif;
 	font-size: 12px;
 	font-weight: 900;
 	text-transform: uppercase;
@@ -4209,7 +4213,8 @@ input[type="text"]:focus, input[type="search"]:focus, input[type="email"]:focus,
 	letter-spacing: initial;
 	color: #8c979e;
 	font-size: 14px;
-	font-family: 'Raleway'; }
+	font-family: "Raleway", "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
 
 .comment-form ::-moz-placeholder {
 	text-transform: initial;
@@ -4217,7 +4222,8 @@ input[type="text"]:focus, input[type="search"]:focus, input[type="email"]:focus,
 	letter-spacing: initial;
 	color: #8c979e;
 	font-size: 14px;
-	font-family: 'Raleway'; }
+	font-family: "Raleway", "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
 
 .comment-form :-ms-input-placeholder {
 	text-transform: initial;
@@ -4225,7 +4231,8 @@ input[type="text"]:focus, input[type="search"]:focus, input[type="email"]:focus,
 	letter-spacing: initial;
 	color: #8c979e;
 	font-size: 14px;
-	font-family: 'Raleway'; }
+	font-family: "Raleway", "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
 
 
 .comment-form textarea:focus, .comment-form textarea:active {
