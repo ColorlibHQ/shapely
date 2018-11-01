@@ -220,22 +220,6 @@ function shapely_customizer( $wp_customize ) {
 		)
 	);
 
-	$wp_customize->add_setting(
-		'social_color', array(
-			'default'           => '#fff',
-			'sanitize_callback' => 'sanitize_hex_color',
-		)
-	);
-	$wp_customize->add_control(
-		new WP_Customize_Color_Control(
-			$wp_customize, 'social_color', array(
-				'label'       => esc_html__( 'Social Icon Color', 'shapely' ),
-				'description' => esc_html__( 'Default used if no color is selected', 'shapely' ),
-				'section'     => 'colors',
-			)
-		)
-	);
-
 	// add "Sidebar" section
 	$wp_customize->add_section(
 		'shapely_main_section', array(
