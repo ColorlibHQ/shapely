@@ -227,7 +227,7 @@ function shapely_scripts() {
 	wp_enqueue_style( 'font-awesome', get_template_directory_uri() . '/assets/css/font-awesome.min.css' );
 
 	// Add Google Fonts
-	wp_enqueue_style( 'shapely-fonts', '//fonts.googleapis.com/css?family=Raleway:100,300,400,500,600,700%7COpen+Sans:400,500,600' );
+	wp_enqueue_style( 'shapely-fonts', '//fonts.googleapis.com/css?family=Raleway:100,300,400,500,600,700' );
 
 	// Add slider CSS
 	wp_enqueue_style( 'flexslider', get_template_directory_uri() . '/assets/css/flexslider.css' );
