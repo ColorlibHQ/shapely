@@ -461,7 +461,7 @@
 				itemSelector: '.masonry-item'
 			});
 
-			msnry.on('layoutComplete', function ($) {
+			msnry.on('layoutComplete', function () {
 
 				clFirstSectionHeight = $('.main-container section:nth-of-type(1)').outerHeight(true);
 				$('.masonry').addClass('fadeIn');

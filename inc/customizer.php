@@ -1220,10 +1220,6 @@ function shapely_sanitize_logo_dimension( $dimensions ) {
 		$new_dimensions['height'] = abs( floatval( $dimensions['height'] ) );
 	}
 
-	if ( isset( $dimensions['ratio'] ) ) {
-		$new_dimensions['ratio'] = absint( $dimensions['ratio'] );
-	}
-
 	return $new_dimensions;
 
 }
