@@ -12,6 +12,12 @@ class Shapely {
 		'colorlib-login-customizer' => array(
 			'recommended' => false,
 		),
+        'colorlib-404-customizer' => array(
+            'recommended' => false,
+        ),
+        'colorlib-coming-soon-maintenance' => array(
+            'recommended' => false,
+        ),
 	);
 
 	public $recommended_actions;
