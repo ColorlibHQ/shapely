@@ -1748,6 +1748,8 @@ nav.fixed.scrolled {
 	width: auto;;
 	height: auto;
 	clip: initial;
+	clip-path: none;
+	-webkit-clip-path: none;
 }
 
 .btn.searchsubmit:hover {
