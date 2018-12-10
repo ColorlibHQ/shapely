@@ -162,12 +162,12 @@ if ( ! class_exists( 'Shapely_Notify_System' ) ) {
 		}
 
 		public static function shapely_cf7_title() {
-			$installed = self::check_plugin_is_installed( 'contac-form-7' );
+			$installed = self::check_plugin_is_installed( 'contact-form-7' );
 			if ( ! $installed ) {
 				return esc_html__( 'Install: Contact Form 7', 'shapely' );
 			}
 
-			$active = self::check_plugin_is_active( 'contac-form-7' );
+			$active = self::check_plugin_is_active( 'contact-form-7' );
 			if ( $installed && ! $active ) {
 				return esc_html__( 'Activate: Contact Form 7', 'shapely' );
 			}
@@ -212,13 +212,13 @@ if ( ! class_exists( 'Shapely_Notify_System' ) ) {
 		}
 
 		public static function shapely_cf7_description() {
-			$installed = self::check_plugin_is_installed( 'contac-form-7' );
+			$installed = self::check_plugin_is_installed( 'contact-form-7' );
 
 			if ( ! $installed ) {
 				return esc_html__( 'Please install Contact Form 7. Note that you won\'t be able to use Contact widget without it.', 'shapely' );
 			}
 
-			$active = self::check_plugin_is_active( 'contac-form-7' );
+			$active = self::check_plugin_is_active( 'contact-form-7' );
 			if ( $installed && ! $active ) {
 				return esc_html__( 'Please activate Contact Form 7. Note that you won\'t be able to use Contact widget without it.', 'shapely' );
 			}
