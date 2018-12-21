@@ -115,6 +115,7 @@ module.exports = function (grunt) {
           '!.travis.yml',
           '!jscsrc',
           '!.standard.json',
+          '!package-lock.json',
           '!nbproject/**'],
         dest: 'build/'
       }

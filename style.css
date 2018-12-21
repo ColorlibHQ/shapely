@@ -4,7 +4,7 @@ Theme URI: https://colorlib.com/wp/themes/shapely
 Author: colorlib
 Author URI: https://colorlib.com/
 Description: Shapely is a powerful and versatile one page WordPress theme with pixel perfect design and outstanding functionality. It is by far the most advanced free WordPress theme available today with loads of unmatched customization options. This theme comes with several homepage widgets that can be used to add portfolio, testimonials, parallax sections, your product or service information, call for action and much more. Shapely supports most free and premium WordPress plugins such as WooCommerce, Jetpack, Gravity Forms, Contact Form 7, Yoast SEO, Google Analytics by Yoast and much more. This theme is the best suited for business, landing page, portfolio, ecommerce, store, local business,  personal websites but can be tweaked to be used as blog, magazine or any other awesome website while highlighting its unique one page setup. This is going to be the last WordPress theme you will ever want to use because it is so much better than anything you have seen. Needless to say that this theme is SEO friendly thanks to its well optimized strucutre. Shapely theme is mobile friendly and fully responsive making it your best multipurpose partnert for any project and website.
-Version: 1.2.3
+Version: 1.2.4
 License: GNU General Public License v3
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 Text Domain: shapely
@@ -551,7 +551,6 @@ a, a:visited, a:active, a:hover {
 	-webkit-transition: all 0.3s ease;
 	-moz-transition: all 0.3s ease;
 	font-weight: 300;
-	font-family: 'Raleway';
 }
 
 .site-title:hover {
@@ -965,7 +964,7 @@ h1, h2, h3, h4, h5, h6, p, ul, ol, table, blockquote, input {
 }
 
 h1, h2, h3, h4, h5, h6 {
-	font-family: "Raleway", "Helvetica Neue", Helvetica, Arial, sans-serif;
+	font-family: inherit;
 }
 
 h1, h2, h3, h4, h5, h6 {
@@ -1078,7 +1077,6 @@ p.lead {
 
 blockquote {
 	overflow: hidden;
-	font-family: "Raleway", "Helvetica Neue", Helvetica, Arial, sans-serif;
 	font-size: 18px;
 	line-height: 24px;
 	padding: 32px 0;
@@ -1089,7 +1087,6 @@ blockquote {
 }
 
 blockquote p {
-	font-family: "Raleway", "Helvetica Neue", Helvetica, Arial, sans-serif;
 	font-size: 18px;
 	line-height: 24px;
 	color: #001c28;
@@ -1100,9 +1097,6 @@ blockquote p:last-child:after {
 	content: "\0022";
 }
 
-.number {
-	font-family: "Lato", "Helvetica Neue", Helvetica, Arial, sans-serif;
-}
 
 @media all and (max-width: 767px) {
 	br {
@@ -1207,7 +1201,7 @@ footer {
 /*!---------- 6. BUTTONS ----------*/
 
 .btn, .button {
-	font-family: "Raleway", "Helvetica Neue", Helvetica, Arial, sans-serif;
+	font-family: inherit;
 	border: 2px solid #745cf9;
 	padding: 0 26px;
 	min-width: 150px;
@@ -1415,7 +1409,6 @@ nav {
 .main-navigation .menu {
 	width: 100%;
 	height: 55px;
-	font-family: "Raleway", "Helvetica Neue", Helvetica, Arial, sans-serif;
 }
 
 .main-navigation .menu li a {
@@ -1697,7 +1690,7 @@ nav.fixed.scrolled {
 }
 
 .module.widget-handle .title {
-	font-family: "Raleway", "Helvetica Neue", Helvetica, Arial, sans-serif;
+	font-family: inherit;
 	letter-spacing: 1px;
 	text-transform: uppercase;
 	font-size: 11px;
@@ -1755,6 +1748,8 @@ nav.fixed.scrolled {
 	width: auto;;
 	height: auto;
 	clip: initial;
+	clip-path: none;
+	-webkit-clip-path: none;
 }
 
 .btn.searchsubmit:hover {
@@ -2146,7 +2141,7 @@ nav.fixed.scrolled {
 /*!---------- 8. FORMS ----------*/
 
 input, textarea {
-	font-family: "Raleway", "Helvetica Neue", Helvetica, Arial, sans-serif;
+	font-family: inherit;
 }
 
 input[type="text"], textarea {
@@ -2282,7 +2277,7 @@ button[type="submit"] {
 	margin: 0 4px;
 	color: #0e1015;
 	font-weight: 400;
-	font-family: "Lato", "Helvetica Neue", Helvetica, Arial, sans-serif;
+	font-family: inherit;
 	display: inline-block;
 	border: 1px solid #ddd;
 	line-height: 20px;
@@ -2959,7 +2954,6 @@ iframe {
 .content blockquote cite {
 	display: block;
 	margin-top: 1.1em;
-	font-family: 'Lato', Helvetica, sans-serif;
 	font-size: 0.75em;
 	line-height: 120%;
 	font-weight: 900;
@@ -3165,11 +3159,12 @@ footer.bg-dark a {
 
 .bg-dark .social-list a {
 	color: #fff;
-	opacity: .5;
+	-webkit-transition: all 300ms cubic-bezier(0.215, 0.61, 0.355, 1);
+	transition:         all 300ms cubic-bezier(0.215, 0.61, 0.355, 1);
 }
 
 .bg-dark .social-list a:hover {
-	opacity: 1;
+	color: #5234f9;
 }
 
 .back-to-top {
@@ -3317,7 +3312,7 @@ footer.bg-dark a {
 }
 
 .social-list {
-	font-size: 22px;
+	font-size: 18px;
 }
 
 .testimonial-img {
@@ -3361,6 +3356,23 @@ footer.bg-dark a {
 	background: transparent;
 	float: right;
 }
+.shapely-social-links #social {
+	display: inline-block;
+	float: none;
+	margin-top: 20px;
+	border: 0 none;
+}
+.shapely-social-links #social ul {
+	padding-left: 0;
+}
+.shapely-social-links #social ul.list-inline > li:last-child {
+	padding-right: 10px;
+}
+#secondary .shapely-social-links h3.cfa-text {
+	font-size: 22px;
+    line-height: 24px;
+    color: #001c28;
+}
 
 .contact-section #social {
 	float: none;
@@ -3375,7 +3387,7 @@ footer.bg-dark a {
 #social ul {
 	border: 0 !important;
 	list-style: none;
-	padding-left: 0;
+	padding-left: 10px;
 	text-align: center;
 }
 
@@ -3574,7 +3586,6 @@ footer.bg-dark a {
 * Widgets
 */
 .widget .widget-title {
-	font-family: "Raleway", "Helvetica Neue", Helvetica, Arial, sans-serif;
 	font-size: 22px;
 	line-height: 24px;
 	color: #001c28;
@@ -3598,13 +3609,11 @@ footer.bg-dark a {
 
 .woocommerce .widget_layered_nav ul li span, .widget.widget_archive > div ul li span, .widget.widget_archive ul li span, .widget.widget_categories > div ul li span, .widget.widget_categories ul li span, .widget.widget_meta > div ul li span, .widget.widget_meta ul li span, .widget.widget_pages > div ul li span, .widget.widget_pages ul li span, .widget.widget_nav_menu > div ul li span, .widget.widget_nav_menu ul li span {
 	font-size: 12px;
-	font-family: "Raleway", "Helvetica Neue", Helvetica, Arial, sans-serif;
 	color: #8c979e;
 	float: right; }
 
 .woocommerce .widget_layered_nav ul li a, .woocommerce .widget_layered_nav_filters ul li a, .woocommerce.widget ul.cart_list li a, .woocommerce.widget ul.product_list_widget li a, .widget_products .product_list_widget a, .widget_product_categories ul.product-categories li a, .widget_product_tag_cloud .tagcloud a, .widget.widget_archive > div ul li a, .widget.widget_archive ul li a, .widget.widget_categories > div ul li a, .widget.widget_categories ul li a, .widget.widget_meta > div ul li a, .widget.widget_meta ul li a, .widget.widget_pages > div ul li a, .widget.widget_pages ul li a, .widget.widget_nav_menu > div ul li a, .widget.widget_nav_menu ul li a {
 	font-size: 14px;
-	font-family: "Raleway", "Helvetica Neue", Helvetica, Arial, sans-serif;
 	color: #8c979e;
 	font-weight: 400; }
 
@@ -3622,7 +3631,6 @@ footer.bg-dark a {
 	color: #8c979e; }
 
 .widget.widget_recent_comments ul li a {
-	font-family: "Raleway", "Helvetica Neue", Helvetica, Arial, sans-serif;
 	font-weight: 400; }
 
 .widget.widget_recent_comments ul li .comment-author-link {
@@ -3640,7 +3648,6 @@ footer.bg-dark a {
 .widget.widget_nav_menu .menu > li a {
 	text-transform: initial;
 	font-size: 14px;
-	font-family: "Raleway", "Helvetica Neue", Helvetica, Arial, sans-serif;
 	color: #8c979e;
 	font-weight: 400;
 	opacity: 1; }
@@ -3651,7 +3658,6 @@ footer.bg-dark a {
 .widget.widget_tag_cloud a {
 	text-transform: initial;
 	font-size: 14px;
-	font-family: "Raleway", "Helvetica Neue", Helvetica, Arial, sans-serif;
 	color: #8c979e;
 	font-weight: 400; }
 
@@ -3681,7 +3687,6 @@ footer.bg-dark a {
 .widget.widget_recent_entries ul li a {
 	text-transform: initial;
 	font-size: 14px;
-	font-family: "Raleway", "Helvetica Neue", Helvetica, Arial, sans-serif;
 	color: #8c979e;
 	font-weight: 400;
 	display: inline-block;
@@ -3694,7 +3699,6 @@ footer.bg-dark a {
 	display: none; }
 
 .widget.widget_rss .widget-title a {
-	font-family: "Raleway", "Helvetica Neue", Helvetica, Arial, sans-serif;
 	font-size: 22px;
 	line-height: 24px;
 	color: #001c28;
@@ -3711,7 +3715,6 @@ footer.bg-dark a {
 
 .widget.widget_rss ul li .rsswidget {
 	font-size: 22px;
-	font-family: "Raleway", "Helvetica Neue", Helvetica, Arial, sans-serif;
 	line-height: 24px;
 	font-weight: 400;
 	color: #001c28;
@@ -3813,7 +3816,8 @@ input[type="text"]:focus, input[type="search"]:focus, input[type="email"]:focus,
 	letter-spacing: initial;
 	color: #8c979e;
 	font-size: 14px;
-	font-family: 'Raleway'; }
+	font-family: inherit;
+}
 
 .widget.widget_search .search-form ::-moz-placeholder {
 	text-transform: initial;
@@ -3821,7 +3825,8 @@ input[type="text"]:focus, input[type="search"]:focus, input[type="email"]:focus,
 	letter-spacing: initial;
 	color: #8c979e;
 	font-size: 14px;
-	font-family: 'Raleway'; }
+	font-family: inherit;
+}
 
 .widget.widget_search .search-form :-ms-input-placeholder {
 	text-transform: initial;
@@ -3829,7 +3834,8 @@ input[type="text"]:focus, input[type="search"]:focus, input[type="email"]:focus,
 	letter-spacing: initial;
 	color: #8c979e;
 	font-size: 14px;
-	font-family: 'Raleway'; }
+	font-family: inherit;
+}
 
 .widget_product_categories ul.product-categories {
 	list-style: none;
@@ -3862,7 +3868,7 @@ input[type="text"]:focus, input[type="search"]:focus, input[type="email"]:focus,
 
 .widget.widget_calendar #wp-calendar > caption {
 	color: #001c28;
-	font-family: "Raleway", "Helvetica Neue", Helvetica, Arial, sans-serif;
+	font-family: inherit;
 	text-align: center;
 	font-size: 18px;
 	font-weight: 400;
@@ -3969,9 +3975,113 @@ input[type="text"]:focus, input[type="search"]:focus, input[type="email"]:focus,
 	color: transparent !important;
 	right: 0; }
 
-#colophon .widget {
-	margin-bottom: 24px;
+.shapely-social {
+	margin-right:-20px;
 }
+
+.shapely-social-link {
+	display:block;
+	float:left;
+	margin:0 20px 20px 0;
+}
+
+.shapely-social .shapely-social-icon {
+	font-family: 'fontawesome';
+	display:block;
+	width:20px;
+	height:20px;
+	line-height:20px;
+	color: #fff;
+	font-size:18px;
+	position: relative;
+	text-align:center;
+	-webkit-transition: all 300ms cubic-bezier(0.215, 0.61, 0.355, 1);
+	transition:         all 300ms cubic-bezier(0.215, 0.61, 0.355, 1);
+}
+
+aside .shapely-social .shapely-social-icon {
+	color: #001c28;
+}
+
+.shapely-social .shapely-social-icon:hover {
+	color:#5234f9;
+}
+
+.shapely-social-link--behance .shapely-social-icon:before {
+	content:'\f1b4';
+}
+.shapely-social-link--codepen .shapely-social-icon:before {
+	content:'\f1cb';
+}
+.shapely-social-link--dropbox .shapely-social-icon:before {
+	content:'\f16b';
+}
+.shapely-social-link--delicious .shapely-social-icon:before {
+	content:'\f1a5';
+}
+.shapely-social-link--deviantart .shapely-social-icon:before {
+	content:'\f1bd';
+}
+.shapely-social-link--digg .shapely-social-icon:before {
+	content:'\f1a6';
+}
+.shapely-social-link--dribbble .shapely-social-icon:before {
+	content:'\f17d';
+}
+.shapely-social-link--facebook .shapely-social-icon:before {
+	content:'\f09a';
+}
+.shapely-social-link--flickr .shapely-social-icon:before {
+	content:'\f16e';
+}
+.shapely-social-link--github .shapely-social-icon:before {
+	content:'\f09b';
+}
+.shapely-social-link--instagram .shapely-social-icon:before {
+	content:'\f16d';
+}
+.shapely-social-link--linkedin .shapely-social-icon:before {
+	content:'\f0e1';
+}
+.shapely-social-link--medium .shapely-social-icon:before {
+	content:'\f23a';
+}
+.shapely-social-link--pinterest .shapely-social-icon:before {
+	content:'\f0d2';
+}
+.shapely-social-link--reddit .shapely-social-icon:before {
+	content:'\f281';
+}
+.shapely-social-link--skype .shapely-social-icon:before {
+	content:'\f17e';
+}
+.shapely-social-link--slack .shapely-social-icon:before {
+	content:'\f198';
+}
+.shapely-social-link--soundcloud .shapely-social-icon:before {
+	content:'\f1be';
+}
+.shapely-social-link--tumblr .shapely-social-icon:before {
+	content:'\f173';
+}
+.shapely-social-link--tripadvisor .shapely-social-icon:before {
+	content:'\f262';
+}
+.shapely-social-link--twitch .shapely-social-icon:before {
+	content:'\f1e8';
+}
+.shapely-social-link--twitter .shapely-social-icon:before {
+	content:'\f099';
+}
+.shapely-social-link--vimeo .shapely-social-icon:before {
+	content:'\f27d';
+}
+.shapely-social-link--youtube .shapely-social-icon:before {
+	content:'\f16a';
+}
+
+#colophon .widget {
+	margin-bottom: 24px;}
 
 #colophon .site-info {
 	margin-top: 15px; }
@@ -4078,7 +4188,6 @@ input[type="text"]:focus, input[type="search"]:focus, input[type="email"]:focus,
 	left: 0; }
 
 .post-content .shapely-category a {
-	font-family: 'Raleway', 'Helvetica Neue', 'Helvetica', 'sans-serif';
 	font-size: 12px;
 	font-weight: 900;
 	text-transform: uppercase;
@@ -4209,7 +4318,8 @@ input[type="text"]:focus, input[type="search"]:focus, input[type="email"]:focus,
 	letter-spacing: initial;
 	color: #8c979e;
 	font-size: 14px;
-	font-family: 'Raleway'; }
+	font-family: inherit;
+}
 
 .comment-form ::-moz-placeholder {
 	text-transform: initial;
@@ -4217,7 +4327,8 @@ input[type="text"]:focus, input[type="search"]:focus, input[type="email"]:focus,
 	letter-spacing: initial;
 	color: #8c979e;
 	font-size: 14px;
-	font-family: 'Raleway'; }
+	font-family: inherit;
+}
 
 .comment-form :-ms-input-placeholder {
 	text-transform: initial;
@@ -4225,7 +4336,8 @@ input[type="text"]:focus, input[type="search"]:focus, input[type="email"]:focus,
 	letter-spacing: initial;
 	color: #8c979e;
 	font-size: 14px;
-	font-family: 'Raleway'; }
+	font-family: inherit;
+}
 
 
 .comment-form textarea:focus, .comment-form textarea:active {
