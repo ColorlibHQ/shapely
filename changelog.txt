@@ -1,3 +1,6 @@
+### 1.2.4
+	Implemented milestone https://github.com/ColorlibHQ/shapely/milestone/8?closed=1
+
 ### 1.2.2
 	Implemented milestone https://github.com/puikinsh/shapely/milestone/6?closed=1
 	
