@@ -3,12 +3,6 @@
 class Shapely {
 
 	public $recommended_plugins = array(
-		'simple-custom-post-order'  => array(
-			'recommended' => false,
-		),
-		'fancybox-for-wordpress'    => array(
-			'recommended' => false,
-		),
 		'colorlib-login-customizer' => array(
 			'recommended' => false,
 		),
@@ -18,6 +12,12 @@ class Shapely {
         'colorlib-coming-soon-maintenance' => array(
             'recommended' => false,
         ),
+		'simple-custom-post-order'  => array(
+			'recommended' => false,
+		),
+		'fancybox-for-wordpress'    => array(
+			'recommended' => false,
+		),
 	);
 
 	public $recommended_actions;
