@@ -3356,6 +3356,23 @@ footer.bg-dark a {
 	background: transparent;
 	float: right;
 }
+.shapely-social-links #social {
+	display: inline-block;
+	float: none;
+	margin-top: 20px;
+	border: 0 none;
+}
+.shapely-social-links #social ul {
+	padding-left: 0;
+}
+.shapely-social-links #social ul.list-inline > li:last-child {
+	padding-right: 10px;
+}
+#secondary .shapely-social-links h3.cfa-text {
+	font-size: 22px;
+    line-height: 24px;
+    color: #001c28;
+}
 
 .contact-section #social {
 	float: none;
