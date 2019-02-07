@@ -8,7 +8,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"PO-Revision-Date: 2019-02-07 14:11+0100\n"
+"PO-Revision-Date: 2019-02-07 14:22+0100\n"
 "Language-Team: Colorlib <office@colorlib.com>\n"
 "X-Generator: Poedit 2.2.1\n"
 "X-Poedit-KeywordsList: __;_e;_x:1,2c;_ex:1,2c;_n:1,2;_nx:1,2,4c;_n_noop:1,2;"
@@ -98,20 +98,20 @@ msgstr "Keresés a weboldalon"
 #: inc/admin/welcome-screen/notify-system-checks.php:125
 #: inc/admin/welcome-screen/notify-system-checks.php:133
 msgid "Install: Shapely Companion Plugin"
-msgstr "Telepítés: Shapely kísérő plugin"
+msgstr "Telepítés: Shapely kísérő bővítmény"
 
 #: inc/admin/welcome-screen/notify-system-checks.php:130
 msgid "Activate: Shapely Companion Plugin"
-msgstr "Aktiválás: Shapely kísérő plugin"
+msgstr "Aktiválás: Shapely kísérő bővítmény"
 
 #: inc/admin/welcome-screen/notify-system-checks.php:139
 #: inc/admin/welcome-screen/notify-system-checks.php:147
 msgid "Install: Yoast SEO Plugin"
-msgstr "Telepítés: Yoast SEO plugin"
+msgstr "Telepítés: Yoast SEO bővítmény"
 
 #: inc/admin/welcome-screen/notify-system-checks.php:144
 msgid "Activate: Yoast SEO Plugin"
-msgstr "Aktiválás: Yoast SEO plugin"
+msgstr "Aktiválás: Yoast SEO bővítmény"
 
 #: inc/admin/welcome-screen/notify-system-checks.php:153
 #: inc/admin/welcome-screen/notify-system-checks.php:161
@@ -125,11 +125,11 @@ msgstr "Aktiválás: Jetpack a WordPress-től"
 #: inc/admin/welcome-screen/notify-system-checks.php:171
 #: inc/admin/welcome-screen/notify-system-checks.php:179
 msgid "Please install Shapely Companion plugin."
-msgstr "Kérem telepítse a Shapely kísérő plugin-t!"
+msgstr "Kérem telepítse a Shapely kísérő bővítményt!"
 
 #: inc/admin/welcome-screen/notify-system-checks.php:176
 msgid "Please activate Shapely Companion plugin."
-msgstr "Kérem aktiválja a Shapely kísérő plugin-t!"
+msgstr "Kérem aktiválja a Shapely kísérő bővítményt!"
 
 #: inc/admin/welcome-screen/notify-system-checks.php:189
 #: inc/admin/welcome-screen/notify-system-checks.php:197
@@ -137,7 +137,7 @@ msgid ""
 "Please install Jetpack by WordPress. Note that you won't be able to use the "
 "Testimonials and Portfolio widgets without it."
 msgstr ""
-"Kérem telepítse a WordPress-féle Jetpack plugin-t! Enélkül nem tudja "
+"Kérem telepítse a WordPress-féle Jetpack bővítményt! Enélkül nem tudja "
 "használni a Vélemények és Portfolió widgeteket."
 
 #: inc/admin/welcome-screen/notify-system-checks.php:194
@@ -145,17 +145,17 @@ msgid ""
 "Please activate Jetpack by WordPress. Note that you won't be able to use the "
 "Testimonials and Portfolio widgets without it."
 msgstr ""
-"Kérem aktiválja  a WordPress-féle Jetpack plugin-t! Enélkül nem tudja "
+"Kérem aktiválja  a WordPress-féle Jetpack bővítményt! Enélkül nem tudja "
 "használni a Vélemények és Portfolió widgeteket."
 
 #: inc/admin/welcome-screen/notify-system-checks.php:203
 #: inc/admin/welcome-screen/notify-system-checks.php:211
 msgid "Please install Yoast SEO plugin."
-msgstr "Kérem telepítse a Yoast SEO plugin-t!"
+msgstr "Kérem telepítse a Yoast SEO bővítményt!"
 
 #: inc/admin/welcome-screen/notify-system-checks.php:208
 msgid "Please activate Yoast SEO plugin."
-msgstr "Kérem aktiválja a Yoast SEO plugin-t!"
+msgstr "Kérem aktiválja a Yoast SEO bővítményt!"
 
 #: inc/admin/welcome-screen/sections/actions-required.php:55
 #: inc/admin/welcome-screen/sections/recommended-plugins.php:24
@@ -336,7 +336,7 @@ msgstr "Ajánlott tevékenységek"
 
 #: inc/admin/welcome-screen/welcome-screen.php:353
 msgid "Recommended Plugins"
-msgstr "Ajánlott plugin-ek"
+msgstr "Ajánlott bővítmények"
 
 #: inc/admin/welcome-screen/welcome-screen.php:355
 msgid "Support"
