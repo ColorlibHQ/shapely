@@ -31,6 +31,9 @@ This theme is the best suited for business, landing page, portfolio, ecommerce, 
 
 For more detailed Shapely theme setup please read documentation: https://colorlib.com/wp/support/shapely/
 
+== Translation ==
+Theme can be translated directly on https://translate.wordpress.org/projects/wp-themes/shapely without relying on the .po file. All the translatable strings are pulled automatically. For more info please check this link https://make.wordpress.org/polyglots/handbook/tools/glotpress-translate-wordpress-org/
+
 == Frequently Asked Questions ==
 
 = Does this theme support any plugins? =
