@@ -3,9 +3,6 @@
 class Shapely {
 
 	public $recommended_plugins = array(
-		'kali-forms'    => array(
-			'recommended' => true,
-		),
 		'colorlib-login-customizer' => array(
 			'recommended' => false,
 		),
@@ -59,11 +56,11 @@ class Shapely {
 					'plugin_slug' => 'jetpack',
 				),
 				array(
-					'id'          => 'shapely-req-ac-install-kali-forms',
-					'title'       => Shapely_Notify_System::shapely_kaliforms_title(),
-					'description' => Shapely_Notify_System::shapely_kaliforms_description(),
-					'check'       => Shapely_Notify_System::shapely_has_plugin( 'kali-forms' ),
-					'plugin_slug' => 'kali-forms',
+					'id'          => 'shapely-req-ac-install-contact-form-7',
+					'title'       => Shapely_Notify_System::shapely_cf7_title(),
+					'description' => Shapely_Notify_System::shapely_cf7_description(),
+					'check'       => Shapely_Notify_System::shapely_has_plugin( 'contact-form-7' ),
+					'plugin_slug' => 'contact-form-7',
 				),
 			)
 		);
@@ -145,7 +142,7 @@ class Shapely {
 		$import_plugins = array(
 			'shapely-companion' => esc_html__( 'Shapely Companion', 'shapely' ),
 			'jetpack'           => esc_html__( 'Jetpack', 'shapely' ),
-			'kali-forms'    => esc_html__( 'Kaliforms', 'shapely' ),
+			'contact-form-7'    => esc_html__( 'Contact Form 7', 'shapely' ),
 		);
 
 		$plugins_html = '';
