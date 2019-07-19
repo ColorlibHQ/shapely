@@ -1,5 +1,10 @@
 ### 1.2.6
-	Minor backend tweaks
+	Replace notification design with core design.
+	Removed demo.json
+	Fixed "About Shapely" page.
+
+### 1.2.5
+	Added Modula to recommended plugins
 
 ### 1.2.4
 	Implemented milestone https://github.com/ColorlibHQ/shapely/milestone/8?closed=1

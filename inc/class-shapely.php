@@ -18,6 +18,9 @@ class Shapely {
 		'fancybox-for-wordpress'    => array(
 			'recommended' => false,
 		),
+		'modula-best-grid-gallery' => array(
+			'recommended' => true,
+		),
 	);
 
 	public $recommended_actions;
