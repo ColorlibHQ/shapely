@@ -4,19 +4,19 @@ class Shapely {
 
 	public $recommended_plugins = array(
 		'colorlib-login-customizer' => array(
-			'recommended' => false,
+			'recommended' => true,
 		),
         'colorlib-404-customizer' => array(
-            'recommended' => false,
+            'recommended' => true,
         ),
         'colorlib-coming-soon-maintenance' => array(
-            'recommended' => false,
+            'recommended' => true,
         ),
 		'simple-custom-post-order'  => array(
-			'recommended' => false,
+			'recommended' => true,
 		),
 		'fancybox-for-wordpress'    => array(
-			'recommended' => false,
+			'recommended' => true,
 		),
 		'modula-best-grid-gallery' => array(
 			'recommended' => true,
