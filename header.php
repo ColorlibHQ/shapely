@@ -49,19 +49,19 @@ if ( 1 == $shapely_transparent_header && $shapely_transparent_header_opacity ) {
 						<div class="module left site-title-container">
 							<?php shapely_get_header_logo(); ?>
 						</div>
-						<div class="module widget-handle mobile-toggle right visible-sm visible-xs">
+						<button class="module widget-handle mobile-toggle right visible-sm visible-xs">
 							<i class="fa fa-bars"></i>
-						</div>
+						</button>
 						<div class="module-group right">
 							<div class="module left">
 								<?php shapely_header_menu(); ?>
 							</div>
 							<!--end of menu module-->
 							<div class="module widget-handle search-widget-handle hidden-xs hidden-sm">
-								<div class="search">
+								<button class="search">
 									<i class="fa fa-search"></i>
 									<span class="title"><?php esc_html_e( 'Site Search', 'shapely' ); ?></span>
-								</div>
+								</button>
 								<div class="function">
 									<?php
 									get_search_form();
