@@ -3,6 +3,7 @@
 	Removed demo.json
 	Fixed "About Shapely" page.
 	Improved accesibility with keyboard navigation.
+	Improved compatibility with Kali Forms plugin.
 
 ### 1.2.5
 	Added Modula to recommended plugins
