@@ -1,9 +1,11 @@
+## 1.2.7
+	Improved accesibility with keyboard navigation.
+	Improved compatibility with Kali Forms plugin.
+	
 ### 1.2.6
 	Replace notification design with core design.
 	Removed demo.json
 	Fixed "About Shapely" page.
-	Improved accesibility with keyboard navigation.
-	Improved compatibility with Kali Forms plugin.
 
 ### 1.2.5
 	Added Modula to recommended plugins
