@@ -1,0 +1,30 @@
+.mte-tooltip {
+  width: 150px;
+  position: absolute;
+  background: #55AAD3;
+  color: #EEE;
+  font-size: 12px;
+  min-height: 50px;
+  border-radius: 5px;
+  left: -75px; /* half of its width */
+  bottom: 25px;
+  z-index: 9999;
+  display: none;
+  padding: 12px;
+  line-height: 1.5;
+  font-family: 'Arial', sans-serif;
+}
+
+.accordion-section-content > li:nth-of-type(2) .mte-tooltip {
+  bottom: initial;
+  top: 25px;
+}
+
+.dashicons.dashicons-editor-help {
+  cursor: pointer;
+  color: #55AAD3;
+}
+
+.dashicons.dashicons-editor-help:hover > .mte-tooltip {
+  display: block;
+}

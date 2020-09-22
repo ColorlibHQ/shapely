@@ -1,0 +1,31 @@
+v1.2.1
+	- AJAX controller would throw a warning/notice on php 7
+
+v1.2.0
+	- Added support for integrations tab
+	- Reskinned section repeater preview
+	- Implemented polylang / wpml functionality
+	- Added quick actions in Page table ( "Customize" link )
+	- Fixed an issue with page saving
+
+v1.1.7
+	- Issue with range slider in section repeater ( was not initiated properly )
+	- Fixed typos
+
+v1.1.6
+	- Epsilon Content Backup fix. Was saving customizer "settings" where it wasn't needed
+
+v1.1.5
+	- Function to return a css string for the styling functionality of a section
+
+v1.1.4
+	- Epsilon was not handling drafts/schedule functionality of WP 4.9
+
+v1.1.3
+	- fixed various bugs
+
+v1.1.0
+	- https://github.com/MachoThemes/epsilon-framework/milestone/1?closed=1
+
+v1.0.0
+	- Start changelog

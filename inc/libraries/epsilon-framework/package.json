@@ -1,0 +1,37 @@
+{
+  "name": "epsilon-framework",
+  "title": "Epsilon Framework",
+  "author": "Macho Themes",
+  "version": "1.2.2",
+  "main": "gruntfile.js",
+  "license": "GPL v3",
+  "repository": "https://github.com/MachoThemes/epsilon-framework",
+  "homepage": "https://machothemes.com/epsilon-framework",
+  "devDependencies": {
+    "@types/jquery": "^3.2.13",
+    "@types/jqueryui": "^1.11.37",
+    "css-loader": "^0.28.1",
+    "grunt": "~0.4.5",
+    "grunt-cli": "~0.1.13",
+    "grunt-contrib-concat": "^1.0.1",
+    "grunt-contrib-sass": "^1.0.0",
+    "grunt-contrib-uglify": "^0.10.1",
+    "grunt-contrib-watch": "^0.6.1",
+    "load-grunt-tasks": "^3.3.0",
+    "ts-loader": "^2.0.3",
+    "typescript": "^2.3.2",
+    "vue-loader": "^12.0.3",
+    "vue-template-compiler": "2.2.1",
+    "webpack": "^2.5.0"
+  },
+  "scripts": {
+    "build": "webpack",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "dependencies": {
+    "@types/jquery": "^3.2.13",
+    "@types/jqueryui": "^1.11.37",
+    "vue": "https://github.com/DanielRosenwasser/vue#540a38fb21adb7a7bc394c65e23e6cffb36cd867",
+    "vue-router": "https://github.com/DanielRosenwasser/vue-router#01b8593cf69c2a5077df45e37e2b24d95bf35ce3"
+  }
+}

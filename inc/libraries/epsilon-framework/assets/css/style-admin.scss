@@ -1,0 +1,18 @@
+.epsilon-framework-notice {
+  &.epsilon-big {
+    background: #e9eff3;
+    border: 10px solid #fff;
+    color: #608299;
+    padding: 30px 10px;
+    text-align: center;
+    box-shadow: none;
+    &:after,
+    &:before {
+      content: "";
+      display: table
+    }
+    &:after {
+      clear: both
+    }
+  }
+}
