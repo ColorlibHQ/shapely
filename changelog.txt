@@ -1,3 +1,6 @@
+## 1.2.8
+	Security Fix
+
 ## 1.2.7
 	Improved accesibility with keyboard navigation.
 	Improved compatibility with Kali Forms plugin.
