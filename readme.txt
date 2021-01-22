@@ -2,7 +2,7 @@
 
 Theme Name: Shapely
 Theme URI: https://colorlib.com/wp/shapely/
-Version: 1.2.10
+Version: 1.2.11
 Tested up to: WP 5.6
 
 Author: Aigars Silkalns

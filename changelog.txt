@@ -1,3 +1,6 @@
+## 1.2.11
+	Compatibility with jQuery 3.0
+
 ## 1.2.10
 	Updated dependacies
 	Tested with WP 5.6
