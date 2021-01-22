@@ -115,7 +115,7 @@ endif;
  * function to show the footer info, copyright information
  */
 function shapely_footer_info() {
-	printf( esc_html__( 'Theme by %1$s Powered by %2$s', 'shapely' ), '<a href="https://colorlib.com/" target="_blank" title="Colorlib">Colorlib</a>', '<a href="http://wordpress.org/" target="_blank" title="WordPress.org">WordPress</a>' );
+	printf( esc_html__( 'Theme by %1$s Powered by %2$s', 'shapely' ), '<a href="https://colorlib.com/" target="_blank" rel="nofollow noopener" title="Colorlib">Colorlib</a>', '<a href="http://wordpress.org/" target="_blank" title="WordPress.org">WordPress</a>' );
 }
 
 

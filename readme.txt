@@ -2,15 +2,15 @@
 
 Theme Name: Shapely
 Theme URI: https://colorlib.com/wp/shapely/
-Version: 1.2.4
-Tested up to: WP 4.9
+Version: 1.2.10
+Tested up to: WP 5.6
 
 Author: Aigars Silkalns
 Author URI: https://colorlib.com/wp/
 License: GNU General Public License v3.0
 License URI: http://www.gnu.org/licenses/gpl.html
 -------------------------------------------------------
-Shapely theme, Copyright 2018 colorlib.com
+Shapely theme, Copyright 2016-2021 colorlib.com
 Shapely WordPress theme is distributed under the terms of the GNU GPL
 Shapely is based on Underscores http://underscores.me/, (C) 2012-2018 Automattic, Inc.
 -------------------------------------------------------

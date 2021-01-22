@@ -1,7 +1,7 @@
 /*!
- * jQuery Smooth Scroll - v1.7.2 - 2016-01-23
+ * jQuery Smooth Scroll - v2.2.0 - 2017-05-05
  * https://github.com/kswedberg/jquery-smooth-scroll
- * Copyright (c) 2016 Karl Swedberg
+ * Copyright (c) 2017 Karl Swedberg
  * Licensed MIT
  */
 
@@ -18,7 +18,7 @@
   }
 }(function($) {
 
-  var version = '1.7.2';
+  var version = '2.2.0';
   var optionOverrides = {};
   var defaults = {
     exclude: [],
@@ -39,6 +39,9 @@
     // only use if you want to override default behavior
     scrollTarget: null,
 
+    // automatically focus the target element after scrolling to it
+    autoFocus: false,
+
     // fn(opts) function to be called before scrolling occurs.
     // `this` is the element(s) being scrolled
     beforeScroll: function() {},
@@ -46,7 +49,14 @@
     // fn(opts) function to be called after scrolling occurs.
     // `this` is the triggering element
     afterScroll: function() {},
+
+    // easing name. jQuery comes with "swing" and "linear." For others, you'll need an easing plugin
+    // from jQuery UI or elsewhere
     easing: 'swing',
+
+    // speed can be a number or 'auto'
+    // if 'auto', the speed will be calculated based on the formula:
+    // (current scroll position - target scroll position) / autoCoeffic
     speed: 400,
 
     // coefficient for "auto" speed
@@ -116,6 +126,8 @@
 
     return scrollable;
   };
+
+  var rRelative = /^([\-\+]=)(\d+)/;
 
   $.fn.extend({
     scrollable: function(dir) {
@@ -203,32 +215,62 @@
 
       if (options.delegateSelector !== null) {
         this
-        .undelegate(options.delegateSelector, 'click.smoothscroll')
-        .delegate(options.delegateSelector, 'click.smoothscroll', clickHandler);
+        .off('click.smoothscroll', options.delegateSelector)
+        .on('click.smoothscroll', options.delegateSelector, clickHandler);
       } else {
         this
-        .unbind('click.smoothscroll')
-        .bind('click.smoothscroll', clickHandler);
+        .off('click.smoothscroll')
+        .on('click.smoothscroll', clickHandler);
       }
 
       return this;
     }
   });
 
+  var getExplicitOffset = function(val) {
+    var explicit = {relative: ''};
+    var parts = typeof val === 'string' && rRelative.exec(val);
+
+    if (typeof val === 'number') {
+      explicit.px = val;
+    } else if (parts) {
+      explicit.relative = parts[1];
+      explicit.px = parseFloat(parts[2]) || 0;
+    }
+
+    return explicit;
+  };
+
+  var onAfterScroll = function(opts) {
+    var $tgt = $(opts.scrollTarget);
+
+    if (opts.autoFocus && $tgt.length) {
+      $tgt[0].focus();
+
+      if (!$tgt.is(document.activeElement)) {
+        $tgt.prop({tabIndex: -1});
+        $tgt[0].focus();
+      }
+    }
+
+    opts.afterScroll.call(opts.link, opts);
+  };
+
   $.smoothScroll = function(options, px) {
     if (options === 'options' && typeof px === 'object') {
       return $.extend(optionOverrides, px);
     }
-    var opts, $scroller, scrollTargetOffset, speed, delta;
+    var opts, $scroller, speed, delta;
+    var explicitOffset = getExplicitOffset(options);
+    var scrollTargetOffset = {};
     var scrollerOffset = 0;
     var offPos = 'offset';
     var scrollDir = 'scrollTop';
     var aniProps = {};
     var aniOpts = {};
 
-    if (typeof options === 'number') {
+    if (explicitOffset.px) {
       opts = $.extend({link: null}, $.fn.smoothScroll.defaults, optionOverrides);
-      scrollTargetOffset = options;
     } else {
       opts = $.extend({link: null}, $.fn.smoothScroll.defaults, options || {}, optionOverrides);
 
@@ -239,6 +281,10 @@
           opts.scrollElement.css('position', 'relative');
         }
       }
+
+      if (px) {
+        explicitOffset = getExplicitOffset(px);
+      }
     }
 
     scrollDir = opts.direction === 'left' ? 'scrollLeft' : scrollDir;
@@ -246,7 +292,7 @@
     if (opts.scrollElement) {
       $scroller = opts.scrollElement;
 
-      if (!(/^(?:HTML|BODY)$/).test($scroller[0].nodeName)) {
+      if (!explicitOffset.px && !(/^(?:HTML|BODY)$/).test($scroller[0].nodeName)) {
         scrollerOffset = $scroller[scrollDir]();
       }
     } else {
@@ -256,13 +302,13 @@
     // beforeScroll callback function must fire before calculating offset
     opts.beforeScroll.call($scroller, opts);
 
-    scrollTargetOffset = (typeof options === 'number') ? options :
-                          px ||
-                          ($(opts.scrollTarget)[offPos]() &&
-                          $(opts.scrollTarget)[offPos]()[opts.direction]) ||
-                          0;
+    scrollTargetOffset = explicitOffset.px ? explicitOffset : {
+      relative: '',
+      px: ($(opts.scrollTarget)[offPos]() && $(opts.scrollTarget)[offPos]()[opts.direction]) || 0
+    };
 
-    aniProps[scrollDir] = scrollTargetOffset + scrollerOffset + opts.offset;
+    aniProps[scrollDir] = scrollTargetOffset.relative + (scrollTargetOffset.px + scrollerOffset + opts.offset);
+
     speed = opts.speed;
 
     // automatically calculate the speed of the scroll based on distance / coefficient
@@ -280,7 +326,7 @@
       duration: speed,
       easing: opts.easing,
       complete: function() {
-        opts.afterScroll.call(opts.link, opts);
+        onAfterScroll(opts);
       }
     };
 
@@ -291,7 +337,7 @@
     if ($scroller.length) {
       $scroller.stop().animate(aniProps, aniOpts);
     } else {
-      opts.afterScroll.call(opts.link, opts);
+      onAfterScroll(opts);
     }
   };
 
