@@ -28,7 +28,7 @@ class Shapely {
 			'recommended' => true,
 		),
 		'rsvp'                     => array(
-			'recommended' => true,
+			'recommended' => true
 		),
 	);
 
