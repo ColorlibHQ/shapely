@@ -1,3 +1,6 @@
+## 1.2.12 
+	Improves : Escaping
+
 ## 1.2.11
 	Compatibility with jQuery 3.0
 
