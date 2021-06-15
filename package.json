@@ -7,14 +7,14 @@
   "license": "GPL v3",
   "repository": "https://github.com/puikinsh/shapely",
   "devDependencies": {
-    "grunt": "^1.0.3",
+    "grunt": "^1.4.1",
     "grunt-checktextdomain": "^1.0.1",
-    "grunt-cli": "^1.2.0",
+    "grunt-cli": "^1.4.3",
     "grunt-contrib-clean": "^2.0.0",
-    "grunt-contrib-compress": "^1.4.3",
+    "grunt-contrib-compress": "^2.0.0",
     "grunt-contrib-copy": "^1.0.0",
-    "grunt-contrib-imagemin": "^3.1.0",
-    "grunt-wp-i18n": "^1.0.2",
-    "load-grunt-tasks": "^4.0.0"
+    "grunt-contrib-imagemin": "^4.0.0",
+    "grunt-wp-i18n": "^1.0.3",
+    "load-grunt-tasks": "^5.1.0"
   }
 }
