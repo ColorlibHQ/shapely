@@ -439,7 +439,7 @@ if ( ! function_exists( 'shapely_author_bio' ) ) {
 		$author_fullname          = ( '' != get_the_author_meta( 'first_name' ) && '' != get_the_author_meta( 'last_name' ) ) ? get_the_author_meta( 'first_name' ) . ' ' . get_the_author_meta( 'last_name' ) : '';
 		$author_email             = get_the_author_meta( 'email' );
 		$author_description       = get_the_author_meta( 'description' );
-		$author_name              = ( '' != trim( $author_nickname ) ) ? $author_nickname : ( trim( $author_displayname ) != '' ) ? $author_displayname : $author_fullname;
+		$author_name              = (( '' != trim( $author_nickname ) ) ? $author_nickname : ( trim( $author_displayname ) != '' )) ? $author_displayname : $author_fullname;
 		$show_athor_email         = get_theme_mod( 'post_author_email', false );
 		$show_project_athor_email = get_theme_mod( 'project_author_email', false );
 		?>
@@ -757,7 +757,7 @@ function shapely_top_callout() {
 					$title_in_post       = true;
 					if ( function_exists( 'yoast_breadcrumb' ) ) {
 						$options             = get_option( 'wpseo_internallinks' );
-						$breadcrumbs_enabled = ( true === $options['breadcrumbs-enable'] );
+						$breadcrumbs_enabled = ( true === is_array($options)? $options['breadcrumbs-enable'] : false);
 						$title_in_post       = get_theme_mod( 'hide_post_title', true );
 					}
 					$header_color = get_theme_mod( 'header_textcolor', false );

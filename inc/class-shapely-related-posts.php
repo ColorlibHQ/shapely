@@ -86,7 +86,7 @@ if ( ! class_exists( 'Shapely_Related_Posts' ) ) {
 		 *
 		 * @return void
 		 */
-		private function __wakeup() {
+		public function __wakeup() {
 		}
 
 
