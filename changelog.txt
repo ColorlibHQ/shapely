@@ -1,12 +1,37 @@
+## 1.2.12 
+	Improves : Escaping
+
+## 1.2.11
+	Compatibility with jQuery 3.0
+
+## 1.2.10
+	Updated dependacies
+	Tested with WP 5.6
+
+## 1.2.8
+	Security Fix
+
+## 1.2.7
+	Improved accesibility with keyboard navigation.
+	Improved compatibility with Kali Forms plugin.
+
+### 1.2.6
+	Replace notification design with core design.
+	Removed demo.json
+	Fixed "About Shapely" page.
+
+### 1.2.5
+	Added Modula to recommended plugins
+
 ### 1.2.4
 	Implemented milestone https://github.com/ColorlibHQ/shapely/milestone/8?closed=1
 
 ### 1.2.2
 	Implemented milestone https://github.com/puikinsh/shapely/milestone/6?closed=1
-	
+
 ### 1.2.1
 	Implemented milestone https://github.com/puikinsh/shapely/milestone/5
-	
+
 ### 1.1.6
 	Implemented milestone https://github.com/puikinsh/shapely/milestone/2
 

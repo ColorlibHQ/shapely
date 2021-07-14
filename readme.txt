@@ -2,15 +2,15 @@
 
 Theme Name: Shapely
 Theme URI: https://colorlib.com/wp/shapely/
-Version: 1.2.4
-Tested up to: WP 4.9
+Version: 1.2.11
+Tested up to: WP 5.6
 
 Author: Aigars Silkalns
 Author URI: https://colorlib.com/wp/
 License: GNU General Public License v3.0
 License URI: http://www.gnu.org/licenses/gpl.html
 -------------------------------------------------------
-Shapely theme, Copyright 2018 colorlib.com
+Shapely theme, Copyright 2016-2021 colorlib.com
 Shapely WordPress theme is distributed under the terms of the GNU GPL
 Shapely is based on Underscores http://underscores.me/, (C) 2012-2018 Automattic, Inc.
 -------------------------------------------------------
@@ -19,7 +19,7 @@ Shapely is based on Underscores http://underscores.me/, (C) 2012-2018 Automattic
 
 Shapely is a powerful and versatile one page WordPress theme with pixel perfect design and outstanding functionality. It is by far the most advanced free WordPress theme available today with loads of unmatched customization options. This theme comes with several homepage widgets that can be used to add portfolio, testimonials, parallax sections, your product or service information, call for action and much more.
 
-Shapely supports most free and premium WordPress plugins such as WooCommerce, Jetpack, Gravity Forms, Contact Form 7, Yoast SEO, Google Analytics by Yoast and much more.
+Shapely supports most free and premium WordPress plugins such as WooCommerce, Jetpack, Kali Forms, Gravity Forms, Contact Form 7, Yoast SEO, Google Analytics by Yoast and much more.
 
 This theme is the best suited for business, landing page, portfolio, ecommerce, store, local business,  personal websites but can be tweaked to be used as blog, magazine or any other awesome website while highlighting its unique one page setup. This is going to be the last WordPress theme you will ever want to use because it is so much better than anything you have seen. We promise.
 

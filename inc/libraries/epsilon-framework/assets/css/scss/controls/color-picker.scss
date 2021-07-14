@@ -1,0 +1,76 @@
+
+.repeater-field-epsilon-color-picker {
+	display:block;
+
+	> label {
+		display:block;
+		vertical-align:top;
+	}
+}
+
+.epsilon-color-picker-title {
+	margin-left: 42px;
+	margin-bottom:0 !important;
+	line-height:24px !important;
+	height:24px !important;
+
+	.epsilon-color-picker-description {
+		font-size: 13px;
+		line-height: 16px;
+		font-weight: initial;
+		color: #959696;
+		display: block;
+	}
+
+
+  .epsilon-color-picker-default {
+    font-style: italic;
+    font-weight: 300;
+    color: #959696;
+    cursor: pointer;
+
+    &:hover,
+    &:focus {
+      color: #55AAD3;
+    }
+  }
+}
+
+
+.minicolors-theme-default {
+  display:block !important;
+  .epsilon-color-picker {
+    z-index: 100;
+    position: absolute;
+    top: -20px;
+    left: 50px;
+    opacity: 0;
+    visibility: hidden;
+    width: 153px !important;
+    padding: 5px;
+    transition: all .1s ease-in;
+  }
+  &.minicolors-focus {
+    .epsilon-color-picker {
+      opacity: 1;
+      visibility: visible;
+    }
+  }
+  .minicolors-input-swatch {
+    width: 30px;
+    height: 22px;
+    -webkit-box-shadow: 0 0 5px rgba(0, 0, 0, .15);
+    -moz-box-shadow: 0 0 5px rgba(0, 0, 0, .15);
+    box-shadow: 0 0 5px rgba(0, 0, 0, .15);
+    cursor: pointer;
+  }
+}
+
+.lite {
+  opacity: 0;
+  visibility: hidden;
+}
+
+.minicolors-position-left .minicolors-panel {
+  left: 50px;
+}

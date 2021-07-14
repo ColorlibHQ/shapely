@@ -4,7 +4,7 @@ var welcomeScreenFunctions = {
    */
   importDemoContent: function() {
     var self = this;
-    jQuery( '.epsilon-ajax-button' ).click( function( e ) {
+    jQuery( '.epsilon-ajax-button' ).on('click', function( e ) {
       var action = jQuery( this ).attr( 'data-action' ) ? jQuery( this ).attr( 'data-action' ) : jQuery( this ).attr( 'id' ),
           container = jQuery( this ).parents( '.action-required-box' ),
           checkboxes = container.find( ':checkbox' ),
@@ -97,7 +97,7 @@ var welcomeScreenFunctions = {
   _importPlugins: function( $plugins ) {
     var count = 0,
         max = $plugins.length;
-    jQuery( 'a[data-slug="' + $plugins[ count ] + '"]' ).click();
+    jQuery( 'a[data-slug="' + $plugins[ count ] + '"]' ).trigger('click');
 
     jQuery( document ).on( 'epsilon-plugin-activated', function() {
       count ++;
@@ -106,7 +106,7 @@ var welcomeScreenFunctions = {
       }
 
       if ( 'undefined' !== typeof($plugins[ count ]) ) {
-        jQuery( 'a[data-slug="' + $plugins[ count ] + '"]' ).click();
+        jQuery( 'a[data-slug="' + $plugins[ count ] + '"]' ).trigger('click');
       }
     } );
   },
@@ -117,7 +117,7 @@ var welcomeScreenFunctions = {
   dismissAction: function() {
     var args;
 
-    jQuery( '.required-action-button' ).click( function() {
+    jQuery( '.required-action-button' ).on('click', function() {
       args = {
         action: [ 'Epsilon_Welcome_Screen', 'handle_required_action' ],
         nonce: welcomeScreen.ajax_nonce,
@@ -194,7 +194,7 @@ var welcomeScreenFunctions = {
       } );
 
       jQuery( input ).on( 'focus', function() {
-        jQuery( this ).blur();
+        jQuery( this ).trigger('blur');
       } );
 
       instance.attr( 'value', ( instance.slider( 'value' ) ) );
@@ -283,7 +283,7 @@ jQuery( document ).ready( function() {
   welcomeScreenFunctions.importDemoContent();
   welcomeScreenFunctions.activatePlugin();
 
-  jQuery( '.epsilon-hidden-content-toggler' ).click( function( e ){
+  jQuery( '.epsilon-hidden-content-toggler' ).on('click', function( e ){
     var id = jQuery( this ).attr( 'href' );
     e.preventDefault();
     jQuery( id ).slideToggle();
