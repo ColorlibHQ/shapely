@@ -4,7 +4,7 @@
 
   var api = wp.customize;
 
-  api.bind( 'ready', function() {
+  api(function() {
     var currentURL = api.settings.url.preview,
         urlBase,
         urlParts,
@@ -25,7 +25,7 @@
         pageSidebarSection = api.section( pageSidebarID, function( instance ) {
           instance.deferred.embedded.done( function() {
             api.previewer.deferred.active.done( function() {
-              instance.focus();
+              instance.trigger('focus');
             } );
           } );
         } );

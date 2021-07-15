@@ -1,0 +1,131 @@
+/**
+* Recommended section
+ */
+.epsilon-close-recommended-section {
+  text-decoration: none;
+  float: right;
+  color: #a0a5aa;
+  &:hover, &:focus {
+    outline: none;
+    text-decoration: none;
+    color: #0073aa;
+    -webkit-box-shadow: none;
+    box-shadow: none;
+  }
+}
+
+.recommended-actions_container {
+  padding: 0 10px;
+  margin-bottom: 2em;
+
+  .hide {
+    display: none;
+  }
+
+  .epsilon-recommended-actions-container {
+    -webkit-transition: opacity 2s; /* Safari */
+    transition: opacity 2s;
+
+  }
+
+  .epsilon-recommended-actions-container:not(:first-child) {
+    opacity: 0;
+    height: 0;
+    overflow: hidden;
+  }
+
+  .epsilon-recommended-actions-container:first-child {
+    height: auto;
+    opacity: 1;
+  }
+}
+
+.epsilon-recommended-actions {
+  position: relative;
+  .epsilon-dismiss-required-action {
+    position: absolute;
+    bottom: 5px;
+    left: 5px;
+    cursor: pointer;
+  }
+  p.title {
+    margin-bottom: 0;
+    font-size: 14px;
+    color: #555d66;
+    font-weight: 600;
+    padding-right: 20px;
+  }
+  div.description {
+    font-size: 12px;
+  }
+  .custom-action {
+    border-top: 1px solid #fafafa;
+    margin-top: 1em;
+    padding-top: 1em;
+    text-align: right;
+    p {
+      margin-top: 0;
+    }
+  }
+}
+
+.epsilon-recommended-plugins {
+  position: relative;
+  .epsilon-recommended-plugin-button {
+    position: absolute;
+    bottom: 5px;
+    right: 5px;
+    cursor: pointer;
+  }
+  p.title {
+    margin-bottom: 0;
+    font-size: 14px;
+    color: #555d66;
+    font-weight: 600;
+    padding-right: 20px;
+  }
+  div.description {
+    font-size: 12px;
+  }
+  .custom-plugin {
+    border-top: 1px solid #fafafa;
+    margin-top: 1em;
+    padding-top: 1em;
+    p {
+      margin-top: 0;
+    }
+  }
+}
+
+.epsilon-actions-count.complete {
+  background-color: #79ba49;
+}
+
+.recommended-actions_container #demo_content .button {
+  display: block;
+  margin-bottom: 1em;
+  text-align: center;
+}
+
+.recommended-actions_container .succes a {
+  width: 100%;
+  text-align: center;
+  display: inline-block;
+}
+
+.recommended-actions_container .succes a.social {
+  width: 49%;
+  margin-bottom: 1em;
+  line-height: 20px;
+  padding-top: 4px;
+}
+
+.recommended-actions_container .succes a.social span,
+.recommended-actions_container .succes a.epsilon-wordpress span {
+  margin-right: 5px;
+}
+
+.recommended-actions_container .succes a.epsilon-wordpress {
+  line-height: 20px;
+  padding-top: 4px;
+}

@@ -157,12 +157,6 @@ class Epsilon_Welcome_Screen {
 				'welcome_screen_ajax_callback',
 			)
 		);
-		add_action(
-			'wp_ajax_nopriv_welcome_screen_ajax_callback', array(
-				$this,
-				'welcome_screen_ajax_callback',
-			)
-		);
 
 		if ( $this->edd ) {
 			/**
@@ -187,12 +181,23 @@ class Epsilon_Welcome_Screen {
 	 * AJAX Handler
 	 */
 	public function welcome_screen_ajax_callback() {
-		if ( isset( $_POST['args'], $_POST['args']['nonce'] ) && ! wp_verify_nonce( sanitize_key( $_POST['args']['nonce'] ), 'welcome_nonce' ) ) {
+		if ( !isset( $_POST['args'], $_POST['args']['nonce'] ) || ! wp_verify_nonce( sanitize_key( $_POST['args']['nonce'] ), 'welcome_nonce' ) ) {
 			wp_die(
 				wp_json_encode(
 					array(
 						'status' => false,
 						'error'  => esc_html__( 'Not allowed', 'epsilon-framework' ),
+					)
+				)
+			);
+		}
+
+		if ( ! current_user_can( 'manage_options' ) ) {
+		    wp_die(
+				json_encode(
+					array(
+						'status' => false,
+						'error'  => 'Not allowed',
 					)
 				)
 			);
@@ -206,6 +211,17 @@ class Epsilon_Welcome_Screen {
 					array(
 						'status' => false,
 						'error'  => esc_html__( 'Not allowed', 'epsilon-framework' ),
+					)
+				)
+			);
+		}
+
+		if ( ! in_array( $args_action[0], array( 'Epsilon_Welcome_Screen' ) ) ) {
+			wp_die(
+				wp_json_encode(
+					array(
+						'status' => false,
+						'error'  => esc_html__( 'Class Not allowed', 'epsilon-framework' ),
 					)
 				)
 			);
@@ -356,11 +372,8 @@ class Epsilon_Welcome_Screen {
 		}
 
 		if ( empty( $this->notice ) ) {
-			if ( ! empty( $this->author_logo ) ) {
-				$this->notice .= '<img src="' . esc_url( $this->author_logo ) . '" class="epsilon-author-logo" />';
-			}
 			/* Translators: Notice Title */
-			$this->notice .= '<h1>' . sprintf( esc_html__( 'Welcome to %1$s', 'epsilon-framework' ), $this->theme_name ) . '</h1>';
+			$this->notice .= '<h3>' . sprintf( esc_html__( 'Welcome to %1$s', 'epsilon-framework' ), $this->theme_name ) . '</h3>';
 			$this->notice .= '<p>';
 			$this->notice .=
 				sprintf( /* Translators: Notice */
@@ -371,7 +384,7 @@ class Epsilon_Welcome_Screen {
 				);
 			$this->notice .= '</p>';
 			/* Translators: Notice URL */
-			$this->notice .= '<p><a href="' . esc_url( admin_url( 'themes.php?page=' . $this->theme_slug . '-welcome&tab=recommended-actions' ) ) . '" class="button button-primary button-hero" style="text-decoration: none;"> ' . sprintf( esc_html__( 'Get started with %1$s', 'epsilon-framework' ), $this->theme_name ) . '</a></p>';
+			$this->notice .= '<p><a href="' . esc_url( admin_url( 'themes.php?page=' . $this->theme_slug . '-welcome&tab=recommended-actions' ) ) . '" class="button button-primary" style="text-decoration: none;"> ' . sprintf( esc_html__( 'Get started with %1$s', 'epsilon-framework' ), $this->theme_name ) . '</a></p>';
 
 		}
 
@@ -379,7 +392,7 @@ class Epsilon_Welcome_Screen {
 		$notifications->add_notice(
 			array(
 				'id'      => 'shapely_welcome_notification',
-				'type'    => 'notice epsilon-big',
+				'type'    => 'notice notice-success',
 				'message' => $this->notice,
 			)
 		);

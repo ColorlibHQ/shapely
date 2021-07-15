@@ -10,7 +10,7 @@
 			$(window).trigger('resize').trigger('scroll');
 		});
 
-		$('.shapely-dropdown').click(function (evt) {
+		$('.shapely-dropdown').on('click', function (evt) {
 			evt.preventDefault();
 			$(this).parent().find('> ul').toggleClass('active');
 			$(window).trigger('resize').trigger('scroll');
@@ -47,7 +47,7 @@
 			window.history.replaceState({}, document.title, newURL);
 		})();
 
-		$('#site-navigation #menu a[href^="#"]:not([href="#"])').click(function (evt) {
+		$('#site-navigation #menu a[href^="#"]:not([href="#"])').on('click', function (evt) {
 			let scrollToID = '#' + $(this).data('scroll');
 
 			if ($(scrollToID).length > 1) {
@@ -64,7 +64,7 @@
 			}, 2000);
 		});
 
-		$('.inner-link').click(function () {
+		$('.inner-link').on('click', function () {
 			$('html, body').animate({
 				scrollTop: 0
 			}, 500);
@@ -124,19 +124,19 @@
 
 		// Mobile Menu
 
-		$('.mobile-toggle').click(function () {
+		$('.mobile-toggle').on('click', function () {
 			$('.nav-bar').toggleClass('nav-open');
 			$(this).toggleClass('active');
 			$('.search-widget-handle').toggleClass('hidden-xs hidden-sm');
 			$(window).trigger('resize').trigger('scroll');
 		});
 
-		$('.module.widget-handle').click(function () {
+		$('.module.widget-handle').on('click',function () {
 			$(this).toggleClass('toggle-search');
 			$(window).trigger('resize').trigger('scroll');
 		});
 
-		$('.search-widget-handle .search-form input').click(function (e) {
+		$('.search-widget-handle .search-form input').on('click', function (e) {
 			if (!e) {
 				e = window.event;
 			}
@@ -332,10 +332,10 @@
 						player.setVolume(0);
 					}
 
-					$(play).click(function () {
+					$(play).on('click', function () {
 						player.play();
 					});
-					$(pause).click(function () {
+					$(pause).on('click', function () {
 						player.pause();
 					});
 
@@ -411,7 +411,7 @@
 			});
 		} // End
 
-		$('#masthead .function #s').focus(function () {
+		$('#masthead .function #s').on('focus', function () {
 			$(this).parents('.function').addClass('active');
 		});
 
@@ -421,7 +421,7 @@
 			}, 500);
 		});
 
-		$('#masthead .function #searchsubmit').focus(function () {
+		$('#masthead .function #searchsubmit').on('focus', function () {
 			clearInterval(searchInterval);
 			$(this).parents('.function').addClass('active');
 		});

@@ -115,7 +115,7 @@ endif;
  * function to show the footer info, copyright information
  */
 function shapely_footer_info() {
-	printf( esc_html__( 'Theme by %1$s Powered by %2$s', 'shapely' ), '<a href="https://colorlib.com/" target="_blank" title="Colorlib">Colorlib</a>', '<a href="http://wordpress.org/" target="_blank" title="WordPress.org">WordPress</a>' );
+	printf( esc_html__( 'Theme by %1$s Powered by %2$s', 'shapely' ), '<a href="https://colorlib.com/" target="_blank" rel="nofollow noopener" title="Colorlib">Colorlib</a>', '<a href="http://wordpress.org/" target="_blank" title="WordPress.org">WordPress</a>' );
 }
 
 
@@ -131,16 +131,78 @@ if ( ! function_exists( 'shapely_get_theme_options' ) ) {
 			echo 'a, .image-bg a, .contact-section .social-icons li a, a:visited, .footer .footer-credits a, .post-content .post-meta li a, .post-content .shapely-category a, .module.widget-handle i {color:' . esc_attr( get_theme_mod( 'link_color' ) ) . ' }';
 		}
 		if ( get_theme_mod( 'link_hover_color' ) ) {
-			echo 'a:hover, a:active, .post-title a:hover,
-        .image-bg a:hover, .contact-section .social-icons li a:hover, .footer .footer-credits a:hover, .post-content .post-meta li a:hover,
-        .widget.widget_recent_entries ul li a:focus, .widget.widget_recent_entries ul li a:hover,
-        .widget.widget_recent_comments ul li .comment-author-link a:focus, .widget.widget_recent_comments ul li .comment-author-link a:hover,
-        .widget.widget_archive > div ul li a:focus, .widget.widget_archive > div ul li a:hover, .widget.widget_archive ul li a:focus, .widget.widget_archive ul li a:hover, .widget.widget_categories > div ul li a:focus, .widget.widget_categories > div ul li a:hover, .widget.widget_categories ul li a:focus, .widget.widget_categories ul li a:hover, .widget.widget_meta > div ul li a:focus, .widget.widget_meta > div ul li a:hover, .widget.widget_meta ul li a:focus, .widget.widget_meta ul li a:hover, .widget.widget_pages > div ul li a:focus, .widget.widget_pages > div ul li a:hover, .widget.widget_pages ul li a:focus, .widget.widget_pages ul li a:hover, .widget.widget_nav_menu > div ul li a:focus, .widget.widget_nav_menu > div ul li a:hover, .widget.widget_nav_menu ul li a:focus, .widget.widget_nav_menu ul li a:hover,
-        .widget.widget_nav_menu .menu > li a:focus, .widget.widget_nav_menu .menu > li a:hover,
-        .widget.widget_tag_cloud a:focus, .widget.widget_tag_cloud a:hover, .widget_product_categories ul.product-categories li a:hover, .widget_product_tag_cloud .tagcloud a:hover, .widget_products .product_list_widget a:hover,
-        .woocommerce.widget ul.cart_list li a:hover, .woocommerce.widget ul.product_list_widget li a:hover, .woocommerce .widget_layered_nav_filters ul li a:hover, .woocommerce .widget_layered_nav ul li a:hover,
-        .main-navigation .menu > li > ul li:hover > a, .main-navigation .menu > li > ul .dropdown:hover:after,
-        .post-content .shapely-category a:hover, .post-content .shapely-category a:focus, .main-navigation .menu li:hover > a, .main-navigation .menu > li:hover:after, .bg-dark .social-list a:hover, .shapely-social .shapely-social-icon:hover { color: ' . esc_attr( get_theme_mod( 'link_hover_color' ) ) . ';}';
+			echo 'a:hover,
+				a:active,
+				a:focus,
+				.post-title a:hover,
+				.post-title a:focus,
+				.image-bg a:hover,
+				.image-bg a:focus,
+				.contact-section .social-icons li a:hover,
+				.contact-section .social-icons li a:focus,
+				.footer .footer-credits a:hover,
+				.footer .footer-credits a:focus,
+				.post-content .post-meta li a:hover,
+				.post-content .post-meta li a:focus,
+				.widget.widget_recent_entries ul li a:focus,
+				.widget.widget_recent_entries ul li a:hover,
+				.widget.widget_recent_comments ul li .comment-author-link a:focus,
+				.widget.widget_recent_comments ul li .comment-author-link a:hover,
+				.widget.widget_archive > div ul li a:focus,
+				.widget.widget_archive > div ul li a:hover,
+				.widget.widget_archive ul li a:focus,
+				.widget.widget_archive ul li a:hover,
+				.widget.widget_categories > div ul li a:focus,
+				.widget.widget_categories > div ul li a:hover,
+				.widget.widget_categories ul li a:focus,
+				.widget.widget_categories ul li a:hover,
+				.widget.widget_meta > div ul li a:focus,
+				.widget.widget_meta > div ul li a:hover,
+				.widget.widget_meta ul li a:focus,
+				.widget.widget_meta ul li a:hover,
+				.widget.widget_pages > div ul li a:focus,
+				.widget.widget_pages > div ul li a:hover,
+				.widget.widget_pages ul li a:focus,
+				.widget.widget_pages ul li a:hover,
+				.widget.widget_nav_menu > div ul li a:focus,
+				.widget.widget_nav_menu > div ul li a:hover,
+				.widget.widget_nav_menu ul li a:focus,
+				.widget.widget_nav_menu ul li a:hover,
+				.widget.widget_nav_menu .menu > li a:focus,
+				.widget.widget_nav_menu .menu > li a:hover,
+				.widget.widget_tag_cloud a:focus,
+				.widget.widget_tag_cloud a:hover,
+				.widget_product_categories ul.product-categories li a:hover,
+				.widget_product_categories ul.product-categories li a:focus,
+				.widget_product_tag_cloud .tagcloud a:hover,
+				.widget_product_tag_cloud .tagcloud a:focus,
+				.widget_products .product_list_widget a:hover,
+				.widget_products .product_list_widget a:focus,
+				.woocommerce.widget ul.cart_list li a:hover,
+				.woocommerce.widget ul.cart_list li a:focus,
+				.woocommerce.widget ul.product_list_widget li a:hover,
+				.woocommerce.widget ul.product_list_widget li a:focus,
+				.woocommerce .widget_layered_nav_filters ul li a:hover,
+				.woocommerce .widget_layered_nav_filters ul li a:focus,
+				.woocommerce .widget_layered_nav ul li a:hover,
+				.woocommerce .widget_layered_nav ul li a:focus,
+				.main-navigation .menu > li > ul li:hover > a,
+				.main-navigation .menu > li > ul li:focus > a,
+				.main-navigation .menu > li > ul .dropdown:hover:after,
+				.main-navigation .menu > li > ul .dropdown:focus:after,
+				.main-navigation .menu li a:focus,
+				.main-navigation .menu li:focus > a,
+				.main-navigation .menu > li > ul li a:focus,
+				.post-content .shapely-category a:hover,
+				.post-content .shapely-category a:focus,
+				.main-navigation .menu li:hover > a,
+				.main-navigation .menu li:focus > a,
+				.main-navigation .menu > li:hover:after,
+				.main-navigation .menu > li:focus-within:after,
+				.bg-dark .social-list a:hover,
+				.bg-dark .social-list a:focus,
+				.shapely-social .shapely-social-icon:hover,
+				.shapely-social .shapely-social-icon:focus { color: ' . esc_attr( get_theme_mod( 'link_hover_color' ) ) . ';}';
 		}
 
 		if ( get_theme_mod( 'button_color' ) ) {
@@ -152,23 +214,87 @@ if ( ! function_exists( 'shapely_get_theme_options' ) ) {
           .video-widget .video-controls button,
           input[type="submit"],
           button[type="submit"],
-          .post-content .more-link { background:' . esc_attr( get_theme_mod( 'button_color' ) ) . ' !important; border: 2px solid' . esc_attr( get_theme_mod( 'button_color' ) ) . ' !important;}';
+          .post-content .more-link { background:' . esc_attr( get_theme_mod( 'button_color' ) ) . ' !important; border: 2px solid ' . esc_attr( get_theme_mod( 'button_color' ) ) . ' !important;}';
 			echo '.shapely_home_parallax > section:not(.image-bg) .btn-white { color:' . esc_attr( get_theme_mod( 'button_color' ) ) . ' !important; border: 2px solid' . esc_attr( get_theme_mod( 'button_color' ) ) . ' !important; }';
 		}
+
 		if ( get_theme_mod( 'button_hover_color' ) ) {
-			echo '.btn-filled:hover, .woocommerce #respond input#submit.alt:hover,
-          .woocommerce a.button.alt:hover, .woocommerce button.button.alt:hover,
-          .woocommerce input.button.alt:hover, .woocommerce #respond input#submit:hover,
-          .woocommerce a.button:hover, .woocommerce button.button:hover,
-          .woocommerce input.button:hover,
-          .video-widget .video-controls button:hover,
-          input[type="submit"]:hover,
-          button[type="submit"]:hover,
-          .post-content .more-link:hover, .btn:not(.btn-white):hover, .button:not(.btn-white):hover  { background: ' . esc_attr( get_theme_mod( 'button_hover_color' ) ) . ' !important; border: 2px solid' . esc_attr( get_theme_mod( 'button_hover_color' ) ) . ' !important;}';
-			echo '.shapely_home_parallax > section:not(.image-bg) .btn-white:hover, .shapely_home_parallax > section:not(.image-bg) .btn-white:focus, .pagination span:not( .dots ), .pagination a:hover, .woocommerce-pagination ul.page-numbers span.page-numbers, .woocommerce nav.woocommerce-pagination ul li a:focus, .woocommerce nav.woocommerce-pagination ul li a:hover, .woocommerce nav.woocommerce-pagination ul li span.current { background-color: ' . esc_attr( get_theme_mod( 'button_hover_color' ) ) . ' !important; border-color: ' . esc_attr( get_theme_mod( 'button_hover_color' ) ) . ' !important;color: #fff !important; }';
-			echo '.widget.widget_search .search-form > input#s:hover, .widget.widget_search .search-form > input#s:focus, .widget.widget_calendar #wp-calendar td:not(.pad):not(#next):not(#prev)#today, .widget_product_search .woocommerce-product-search > input.search-field:hover, .widget_product_search .woocommerce-product-search > input.search-field:focus, .widget.widget_search input[type="text"]:focus + button[type="submit"].searchsubmit, .widget.widget_search input[type="text"]:hover + button[type="submit"].searchsubmit, textarea:hover, textarea:focus, input[type="text"]:hover, input[type="search"]:hover, input[type="email"]:hover, input[type="tel"]:hover, input[type="text"]:focus, input[type="search"]:focus, input[type="email"]:focus, input[type="tel"]:focus, .widget.widget_product_search input[type="text"]:focus + button[type="submit"].searchsubmit, .widget.widget_product_search input[type="text"]:hover + button[type="submit"].searchsubmit { border-color: ' . esc_attr( get_theme_mod( 'button_hover_color' ) ) . ' !important }';
-			echo '.widget.widget_calendar #wp-calendar > caption:after, .widget.widget_calendar #wp-calendar td:not(.pad):not(#next):not(#prev)#today:hover { background-color: ' . esc_attr( get_theme_mod( 'button_hover_color' ) ) . ' }';
-			echo '.widget.widget_search input[type="text"]:focus + button[type="submit"].searchsubmit, .widget.widget_search input[type="text"]:hover + button[type="submit"].searchsubmit, .widget.widget_product_search input[type="text"]:focus + button[type="submit"].searchsubmit, .widget.widget_product_search input[type="text"]:hover + button[type="submit"].searchsubmit { color: ' . esc_attr( get_theme_mod( 'button_hover_color' ) ) . ' }';
+			echo '.btn-filled:hover,
+				.btn-filled:focus,
+				.woocommerce #respond input#submit.alt:hover,
+				.woocommerce #respond input#submit.alt:focus,
+				.woocommerce a.button.alt:hover,
+				.woocommerce a.button.alt:focus,
+				.woocommerce button.button.alt:hover,
+				.woocommerce button.button.alt:focus,
+				.woocommerce input.button.alt:hover,
+				.woocommerce input.button.alt:focus,
+				.woocommerce #respond input#submit:hover,
+				.woocommerce #respond input#submit:focus,
+				.woocommerce a.button:hover,
+				.woocommerce a.button:focus,
+				.woocommerce button.button:hover,
+				.woocommerce button.button:focus,
+				.woocommerce input.button:hover,
+				.woocommerce input.button:focus,
+				.video-widget .video-controls button:hover,
+				.video-widget .video-controls button:focus,
+				input[type="submit"]:hover,
+				input[type="submit"]:focus,
+				button[type="submit"]:hover,
+				button[type="submit"]:focus,
+				.post-content .more-link:hover,
+				.post-content .more-link:focus,
+				.btn:not(.btn-white):hover,
+				.btn:not(.btn-white):focus,
+				.button:not(.btn-white):hover,
+				.button:not(.btn-white):focus
+				{ background: ' . esc_attr( get_theme_mod( 'button_hover_color' ) ) . ' !important; border: 2px solid' . esc_attr( get_theme_mod( 'button_hover_color' ) ) . ' !important;}';
+
+			echo '.shapely_home_parallax > section:not(.image-bg) .btn-white:hover,
+				.shapely_home_parallax > section:not(.image-bg) .btn-white:focus,
+				.pagination span:not( .dots ),
+				.pagination a:hover,
+				.pagination a:focus,
+				.woocommerce-pagination ul.page-numbers span.page-numbers,
+				.woocommerce nav.woocommerce-pagination ul li a:focus,
+				.woocommerce nav.woocommerce-pagination ul li a:hover,
+				.woocommerce nav.woocommerce-pagination ul li span.current { background-color: ' . esc_attr( get_theme_mod( 'button_hover_color' ) ) . ' !important; border-color: ' . esc_attr( get_theme_mod( 'button_hover_color' ) ) . ' !important;color: #fff !important; }';
+
+			echo '.widget.widget_search .search-form > input#s:hover,
+				.widget.widget_search .search-form > input#s:focus,
+				.widget.widget_calendar #wp-calendar td:not(.pad):not(#next):not(#prev)#today,
+				.widget_product_search .woocommerce-product-search > input.search-field:hover,
+				.widget_product_search .woocommerce-product-search > input.search-field:focus,
+				.widget.widget_search input[type="text"]:focus + button[type="submit"].searchsubmit,
+				.widget.widget_search input[type="text"]:hover + button[type="submit"].searchsubmit,
+				textarea:hover,
+				textarea:focus,
+				input[type="text"]:hover,
+				input[type="search"]:hover,
+				input[type="email"]:hover,
+				input[type="tel"]:hover,
+				input[type="text"]:focus,
+				input[type="search"]:focus,
+				input[type="email"]:focus,
+				input[type="tel"]:focus,
+				.widget.widget_product_search input[type="text"]:focus + button[type="submit"].searchsubmit,
+				.widget.widget_product_search input[type="text"]:hover + button[type="submit"].searchsubmit
+				{ border-color: ' . esc_attr( get_theme_mod( 'button_hover_color' ) ) . ' !important }';
+
+			echo '.widget.widget_calendar #wp-calendar > caption:after,
+				.widget.widget_calendar #wp-calendar td:not(.pad):not(#next):not(#prev)#today:hover,
+				.widget.widget_calendar #wp-calendar td:not(.pad):not(#next):not(#prev)#today:focus
+				{ background-color: ' . esc_attr( get_theme_mod( 'button_hover_color' ) ) . ' }';
+
+			echo '.widget.widget_search input[type="text"]:focus + button[type="submit"].searchsubmit,
+				.widget.widget_search input[type="text"]:hover + button[type="submit"].searchsubmit,
+				.widget.widget_product_search input[type="text"]:focus + button[type="submit"].searchsubmit,
+				.widget.widget_product_search input[type="text"]:hover + button[type="submit"].searchsubmit,
+				.image-bg .text-slider .flex-direction-nav li a:focus:before
+				{ color: ' . esc_attr( get_theme_mod( 'button_hover_color' ) ) . ' }';
+
+
 		}
 
 		echo '</style>';
@@ -313,7 +439,7 @@ if ( ! function_exists( 'shapely_author_bio' ) ) {
 		$author_fullname          = ( '' != get_the_author_meta( 'first_name' ) && '' != get_the_author_meta( 'last_name' ) ) ? get_the_author_meta( 'first_name' ) . ' ' . get_the_author_meta( 'last_name' ) : '';
 		$author_email             = get_the_author_meta( 'email' );
 		$author_description       = get_the_author_meta( 'description' );
-		$author_name              = ( '' != trim( $author_nickname ) ) ? $author_nickname : ( trim( $author_displayname ) != '' ) ? $author_displayname : $author_fullname;
+		$author_name              = (( '' != trim( $author_nickname ) ) ? $author_nickname : ( trim( $author_displayname ) != '' )) ? $author_displayname : $author_fullname;
 		$show_athor_email         = get_theme_mod( 'post_author_email', false );
 		$show_project_athor_email = get_theme_mod( 'project_author_email', false );
 		?>
@@ -631,7 +757,7 @@ function shapely_top_callout() {
 					$title_in_post       = true;
 					if ( function_exists( 'yoast_breadcrumb' ) ) {
 						$options             = get_option( 'wpseo_internallinks' );
-						$breadcrumbs_enabled = ( true === $options['breadcrumbs-enable'] );
+						$breadcrumbs_enabled = ( true === is_array($options)? $options['breadcrumbs-enable'] : false);
 						$title_in_post       = get_theme_mod( 'hide_post_title', true );
 					}
 					$header_color = get_theme_mod( 'header_textcolor', false );

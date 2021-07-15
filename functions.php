@@ -278,6 +278,12 @@ function shapely_scripts() {
 
 add_action( 'wp_enqueue_scripts', 'shapely_scripts' );
 
+if ( ! function_exists( 'wp_body_open' ) ) {
+    function wp_body_open() {
+        do_action( 'wp_body_open' );
+    }
+}
+
 /**
  * Custom template tags for this theme.
  */
