@@ -1,3 +1,7 @@
+## 1.2.13 
+	Bug fixed issue #271
+	Merged with wpChill
+
 ## 1.2.12 
 	Improves : Escaping
 
