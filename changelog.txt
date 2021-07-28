@@ -1,5 +1,6 @@
 ## 1.2.13 
 	Bug fixed issue #271
+	updated font awesome to 5
 	Merged with wpChill
 
 ## 1.2.12 
