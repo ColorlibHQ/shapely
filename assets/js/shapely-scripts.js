@@ -276,19 +276,22 @@
 				if (isYoutube) {
 					videoId = $(this).attr('data-video-id');
 					autoplay = parseInt($(this).attr('data-autoplay'), 10);
+					console.log(autoplay,":autoplt");
 					mute = parseInt($(this).attr('data-mute'), 10);
 					instance = $(this).YTPlayer({
 						fitToBackground: true,
 						videoId: videoId,
 						mute: mute,
-						playerlets: {
-							modestbranding: 0,
+						playerVars:{
 							autoplay: autoplay,
+							autohide: 0,
+							branding: 0,
 							controls: 0,
 							showinfo: 0,
-							branding: 0,
+							modestbranding: 0,
+						},
+						playerlets: {
 							rel: 0,
-							autohide: 0
 						}
 					});
 					self = $(this);
