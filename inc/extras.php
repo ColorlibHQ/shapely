@@ -757,6 +757,12 @@ function shapely_top_callout() {
 					$title_in_post       = true;
 					if ( function_exists( 'yoast_breadcrumb' ) ) {
 						$options             = get_option( 'wpseo_internallinks' );
+						$breadcrumbs_enabled = ( true === $options['breadcrumbs-enable'] );
+						$title_in_post       = get_theme_mod( 'hide_post_title', true );
+					}
+
+					if ( function_exists( 'rank_math_the_breadcrumbs' ) ) {
+						$breadcrumbs_enabled = true;
 						$breadcrumbs_enabled = ( true === is_array($options)? $options['breadcrumbs-enable'] : false);
 						$title_in_post       = get_theme_mod( 'hide_post_title', true );
 					}
@@ -796,12 +802,16 @@ function shapely_top_callout() {
 							?>
 						</div>
 					<?php endif; ?>
-					<?php if ( function_exists( 'yoast_breadcrumb' ) ) { ?>
-						<?php
-						if ( $breadcrumbs_enabled ) {
-							?>
+					<?php if ( $breadcrumbs_enabled ) { ?>
+						<?php if ( function_exists( 'yoast_breadcrumb' ) ) { ?>
 							<div class="<?php echo $title_in_post ? 'col-md-6 col-sm-6' : ''; ?> col-xs-12 text-right">
 								<?php yoast_breadcrumb( '<p id="breadcrumbs">', '</p>' ); ?>
+							</div>
+						<?php } ?>
+						<!-- Rank Math SEO's Breadcrumb Function -->
+						<?php if ( function_exists( 'rank_math_the_breadcrumbs' ) ) { ?>
+							<div class="<?php echo $title_in_post ? 'col-md-6 col-sm-6' : ''; ?> col-xs-12 text-right">
+								<?php rank_math_the_breadcrumbs(); ?>
 							</div>
 						<?php } ?>
 					<?php } ?>
@@ -818,8 +828,15 @@ function shapely_top_callout() {
 			<div class="container mt20">
 				<?php yoast_breadcrumb( '<p id="breadcrumbs">', '</p>' ); ?>
 			</div>
-			<?php
-}
+		<?php } ?>
+
+		<!-- Rank Math SEO's Breadcrumb Function -->
+		<?php if ( function_exists( 'rank_math_the_breadcrumbs' ) ) { ?>
+			<div class="container mt20">
+				<?php rank_math_the_breadcrumbs(); ?>
+			</div>
+		<?php } ?>
+		<?php
 	} // End if().
 }
 
@@ -861,3 +878,12 @@ if ( ! function_exists( 'shapely_is_woocommerce_activated' ) ) {
 		}
 	}
 }
+
+/**
+ * Add container to Rank Math breadcrumbs.
+ */
+add_action( 'rank_math/frontend/breadcrumb/args', function( $args ) {
+	$args['wrap_before'] = '<p id="breadcrumbs">';
+	$args['wrap_after']  = '</p>';
+	return $args;
+});
