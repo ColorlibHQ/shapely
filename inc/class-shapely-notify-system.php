@@ -161,18 +161,18 @@ if ( ! class_exists( 'Shapely_Notify_System' ) ) {
 			return esc_html__( 'Install: Jetpack by WordPress', 'shapely' );
 		}
 
-		public static function shapely_cf7_title() {
-			$installed = self::check_plugin_is_installed( 'contact-form-7' );
+		public static function shapely_kaliforms_title() {
+			$installed = self::check_plugin_is_installed( 'kali-forms' );
 			if ( ! $installed ) {
-				return esc_html__( 'Install: Contact Form 7', 'shapely' );
+				return esc_html__( 'Install: Kali Forms', 'shapely' );
 			}
 
-			$active = self::check_plugin_is_active( 'contact-form-7' );
+			$active = self::check_plugin_is_active( 'kali-forms' );
 			if ( $installed && ! $active ) {
-				return esc_html__( 'Activate: Contact Form 7', 'shapely' );
+				return esc_html__( 'Activate: Kali Forms', 'shapely' );
 			}
 
-			return esc_html__( 'Install: Contact Form 7', 'shapely' );
+			return esc_html__( 'Install: Kali Forms', 'shapely' );
 		}
 
 		/**
@@ -211,19 +211,19 @@ if ( ! class_exists( 'Shapely_Notify_System' ) ) {
 			return esc_html__( 'Please install Jetpack by WordPress. Note that you won\'t be able to use the Testimonials and Portfolio widgets without it.', 'shapely' );
 		}
 
-		public static function shapely_cf7_description() {
-			$installed = self::check_plugin_is_installed( 'contact-form-7' );
+		public static function shapely_kaliforms_description() {
+			$installed = self::check_plugin_is_installed( 'kali-forms' );
 
 			if ( ! $installed ) {
-				return esc_html__( 'Please install Contact Form 7. Note that you won\'t be able to use Contact widget without it.', 'shapely' );
+				return esc_html__( 'Please install Kali Forms. Note that you won\'t be able to use Contact widget without it.', 'shapely' );
 			}
 
-			$active = self::check_plugin_is_active( 'contact-form-7' );
+			$active = self::check_plugin_is_active( 'kali-forms' );
 			if ( $installed && ! $active ) {
-				return esc_html__( 'Please activate Contact Form 7. Note that you won\'t be able to use Contact widget without it.', 'shapely' );
+				return esc_html__( 'Please activate Kali Forms. Note that you won\'t be able to use Contact widget without it.', 'shapely' );
 			}
 
-			return esc_html__( 'Please install Contact Form 7. Note that you won\'t be able to use Contact widget without it.', 'shapely' );
+			return esc_html__( 'Please install Kali Forms. Note that you won\'t be able to use Contact widget without it.', 'shapely' );
 		}
 
 		public static function shapely_yoast_description() {

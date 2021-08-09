@@ -1,0 +1,45 @@
+.epsilon-controller-image-container {
+
+  .placeholder {
+    width: 100%;
+    position: relative;
+    text-align: center;
+    cursor: default;
+    border: 1px dashed #b4b9be;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    padding: 9px 0;
+    line-height: 20px;
+	
+    .recommended-size {
+      display: block;
+      font-style: italic;
+    }
+  }
+  .epsilon-image {
+    
+     border: 1px dashed #EEE;
+     padding: 6px;
+	 margin-bottom:6px;
+    
+    img {
+      width: 100%;
+	  display:block;
+    }
+  }
+  .actions {
+    display: block;
+    text-align: center;
+	padding-bottom:1px;
+	
+	.image-upload-remove-button,
+    .image-upload-button,
+    .image-default-button {
+		margin: 0;
+		display:inline-block;
+		min-width:30%;
+    }
+
+  }
+}

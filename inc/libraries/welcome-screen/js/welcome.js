@@ -2,38 +2,35 @@ var welcomeScreenFunctions = {
   /**
    * Import demo content
    */
-  importDemoContent: function() {
+  importDemoContent: function () {
     var self = this;
-    jQuery( '.epsilon-ajax-button' ).click( function( e ) {
-      var action = jQuery( this ).attr( 'data-action' ) ? jQuery( this ).attr( 'data-action' ) : jQuery( this ).attr( 'id' ),
-          container = jQuery( this ).parents( '.action-required-box' ),
-          checkboxes = container.find( ':checkbox' ),
-          importThis = {
-            'plugins': [],
-            'options': []
-          };
+    jQuery('.epsilon-ajax-button').on('click', function (e) {
+      var action = jQuery(this).attr('data-action') ? jQuery(this).attr('data-action') : jQuery(this).attr('id'),
+        container = jQuery(this).parents('.action-required-box'),
+        checkboxes = container.find(':checkbox'),
+        importThis = {
+          plugins: [],
+          options: [],
+        };
 
       e.preventDefault();
 
-      jQuery.each( checkboxes, function( k, item ) {
-
-        if ( jQuery( item ).prop( 'checked' ) ) {
-          importThis[ jQuery( item ).attr( 'name' ) ].push( jQuery( item ).val() );
+      jQuery.each(checkboxes, function (k, item) {
+        if (jQuery(item).prop('checked')) {
+          importThis[jQuery(item).attr('name')].push(jQuery(item).val());
         }
+      });
 
-      } );
+      self._importPlugins(importThis['plugins']);
 
-      self._importPlugins( importThis[ 'plugins' ] );
-
-      if ( importThis[ 'plugins' ].length ) {
-        jQuery( document ).on( 'epsilon-all-plugins-imported', function() {
-          self._importContent( importThis, container );
-        } );
+      if (importThis['plugins'].length) {
+        jQuery(document).on('epsilon-all-plugins-imported', function () {
+          self._importContent(importThis, container);
+        });
       } else {
-        self._importContent( importThis, container );
+        self._importContent(importThis, container);
       }
-
-    } );
+    });
   },
   /**
    * Import the actual content
@@ -45,34 +42,33 @@ var welcomeScreenFunctions = {
    *
    * @todo send "argument" with demo slug
    */
-  _importContent: function( $import, container ) {
-
+  _importContent: function ($import, container) {
     var needImported = 'import-all';
 
-    if ( $import.options.length < 1 ) {
+    if ($import.options.length < 1) {
       location.reload();
       return;
     }
 
-    if ( $import.options.length < 2 ) {
+    if ($import.options.length < 2) {
       needImported = $import.options[0];
     }
 
-    jQuery.ajax( {
+    jQuery.ajax({
       type: 'POST',
-      data: { action: 'shapely_companion_import_content', 'import' : needImported },
+      data: { action: 'shapely_companion_import_content', import: needImported },
       dataType: 'json',
       url: ajaxurl,
-      success: function( json ) {
-        if ( container.length ) {
-          container.html( '<h3>Demo content was imported successfully! </h3>' );
+      success: function (json) {
+        if (container.length) {
+          container.html('<h3>Demo content was imported successfully! </h3>');
 
-          window.setTimeout( function() {
-            container.slideUp( 300, function() {
+          window.setTimeout(function () {
+            container.slideUp(300, function () {
               container.remove();
               location.reload();
-            } );
-          }, 3000 );
+            });
+          }, 3000);
         }
       },
       /**
@@ -82,11 +78,10 @@ var welcomeScreenFunctions = {
        * @param textStatus
        * @param errorThrown
        */
-      error: function( jqXHR, textStatus, errorThrown ) {
-        console.log( jqXHR + ' :: ' + textStatus + ' :: ' + errorThrown );
-      }
-
-    } );
+      error: function (jqXHR, textStatus, errorThrown) {
+        console.log(jqXHR + ' :: ' + textStatus + ' :: ' + errorThrown);
+      },
+    });
   },
   /**
    * Start the installation/activation of the plugin
@@ -94,45 +89,45 @@ var welcomeScreenFunctions = {
    * @param $plugins
    * @private
    */
-  _importPlugins: function( $plugins ) {
+  _importPlugins: function ($plugins) {
     var count = 0,
-        max = $plugins.length;
-    jQuery( 'a[data-slug="' + $plugins[ count ] + '"]' ).click();
+      max = $plugins.length;
+    jQuery('a[data-slug="' + $plugins[count] + '"]').trigger('click');
 
-    jQuery( document ).on( 'epsilon-plugin-activated', function() {
-      count ++;
-      if ( count === max ) {
-        jQuery( document ).trigger( 'epsilon-all-plugins-imported' );
+    jQuery(document).on('epsilon-plugin-activated', function () {
+      count++;
+      if (count === max) {
+        jQuery(document).trigger('epsilon-all-plugins-imported');
       }
 
-      if ( 'undefined' !== typeof($plugins[ count ]) ) {
-        jQuery( 'a[data-slug="' + $plugins[ count ] + '"]' ).click();
+      if ('undefined' !== typeof $plugins[count]) {
+        jQuery('a[data-slug="' + $plugins[count] + '"]').trigger('click');
       }
-    } );
+    });
   },
 
   /**
    * Dismiss action through AJAX
    */
-  dismissAction: function() {
+  dismissAction: function () {
     var args;
 
-    jQuery( '.required-action-button' ).click( function() {
+    jQuery('.required-action-button').on('click', function () {
       args = {
-        action: [ 'Epsilon_Welcome_Screen', 'handle_required_action' ],
+        action: ['Epsilon_Welcome_Screen', 'handle_required_action'],
         nonce: welcomeScreen.ajax_nonce,
         args: {
-          'do': jQuery( this ).attr( 'data-action' ),
-          'id': jQuery( this ).attr( 'id' )
-        }
+          do: jQuery(this).attr('data-action'),
+          id: jQuery(this).attr('id'),
+        },
       };
 
-      jQuery.ajax( {
+      jQuery.ajax({
         type: 'POST',
         data: { action: 'welcome_screen_ajax_callback', args: args },
         dataType: 'json',
         url: ajaxurl,
-        success: function() {
+        success: function () {
           location.reload();
         },
         /**
@@ -142,12 +137,11 @@ var welcomeScreenFunctions = {
          * @param textStatus
          * @param errorThrown
          */
-        error: function( jqXHR, textStatus, errorThrown ) {
-          console.log( jqXHR + ' :: ' + textStatus + ' :: ' + errorThrown );
-        }
-
-      } );
-    } );
+        error: function (jqXHR, textStatus, errorThrown) {
+          console.log(jqXHR + ' :: ' + textStatus + ' :: ' + errorThrown);
+        },
+      });
+    });
   },
 
   /**
@@ -155,24 +149,24 @@ var welcomeScreenFunctions = {
    *
    * @param context
    */
-  rangeSliders: function( context ) {
-    var sliders = context.find( '.slider-container' );
+  rangeSliders: function (context) {
+    var sliders = context.find('.slider-container');
 
-    jQuery.each( sliders, function() {
+    jQuery.each(sliders, function () {
       var slider, input, inputId, id, instance, self;
-      self = jQuery( this );
-      slider = jQuery( this ).find( '.ss-slider' );
-      input = jQuery( this ).find( 'input' );
-      inputId = input.attr( 'id' );
-      id = slider.attr( 'id' );
-      instance = jQuery( '#' + id );
+      self = jQuery(this);
+      slider = jQuery(this).find('.ss-slider');
+      input = jQuery(this).find('input');
+      inputId = input.attr('id');
+      id = slider.attr('id');
+      instance = jQuery('#' + id);
 
-      instance.slider( {
-        value: self.find( 'input' ).attr( 'value' ),
+      instance.slider({
+        value: self.find('input').attr('value'),
         range: 'min',
-        min: parseFloat( instance.attr( 'data-attr-min' ) ),
-        max: parseFloat( instance.attr( 'data-attr-max' ) ),
-        step: parseFloat( instance.attr( 'data-attr-step' ) ),
+        min: parseFloat(instance.attr('data-attr-min')),
+        max: parseFloat(instance.attr('data-attr-max')),
+        step: parseFloat(instance.attr('data-attr-step')),
         /**
          * Removed Change event because server was flooded with requests from
          * javascript, sending changesets on each increment.
@@ -180,113 +174,113 @@ var welcomeScreenFunctions = {
          * @param event
          * @param ui
          */
-        slide: function( event, ui ) {
-          self.find( 'input' ).attr( 'value', ui.value );
+        slide: function (event, ui) {
+          self.find('input').attr('value', ui.value);
         },
         /**
          * Bind the change event to the "actual" stop
          * @param event
          * @param ui
          */
-        stop: function( event, ui ) {
-          jQuery( '#' + inputId ).trigger( 'change' );
-        }
-      } );
+        stop: function (event, ui) {
+          jQuery('#' + inputId).trigger('change');
+        },
+      });
 
-      jQuery( input ).on( 'focus', function() {
-        jQuery( this ).blur();
-      } );
+      jQuery(input).on('focus', function () {
+        jQuery(this).trigger('blur');
+      });
 
-      instance.attr( 'value', ( instance.slider( 'value' ) ) );
-      instance.on( 'change', function() {
-        jQuery( '#' + id ).slider( {
-          value: jQuery( this ).val()
-        } );
-      } );
-    } );
+      instance.attr('value', instance.slider('value'));
+      instance.on('change', function () {
+        jQuery('#' + id).slider({
+          value: jQuery(this).val(),
+        });
+      });
+    });
   },
 
   /**
    * Activate the plugin when the plugin has been installed
    */
-  activatePlugin: function() {
-    var activateButtonSlug = jQuery( 'a[data-slug]' );
-    jQuery( activateButtonSlug ).on( 'click', function( e ) {
-      var self = jQuery( this ),
-          dataToSend = { plugin: self.attr( 'data-slug' ) };
-      if ( self.hasClass( 'install-now' ) || self.hasClass( 'deactivate-now' ) ) {
+  activatePlugin: function () {
+    var activateButtonSlug = jQuery('a[data-slug]');
+    jQuery(activateButtonSlug).on('click', function (e) {
+      var self = jQuery(this),
+        dataToSend = { plugin: self.attr('data-slug') };
+      if (self.hasClass('install-now') || self.hasClass('deactivate-now')) {
         return;
       }
       e.preventDefault();
 
-      jQuery.ajax( {
-        beforeSend: function() {
-          self.replaceWith( '<a class="button updating-message">' + welcomeScreen.activating_string + '...</a>' );
+      jQuery.ajax({
+        beforeSend: function () {
+          self.replaceWith('<a class="button updating-message">' + welcomeScreen.activating_string + '...</a>');
         },
         async: true,
         type: 'GET',
         dataType: 'html',
-        url: self.attr( 'href' ),
-        success: function( response ) {
-          var actions = jQuery( '#plugin-filter' ).find( '.action-required-box' );
+        url: self.attr('href'),
+        success: function (response) {
+          var actions = jQuery('#plugin-filter').find('.action-required-box');
 
-          if ( ! actions.length ) {
+          if (!actions.length) {
             location.reload();
           }
 
-          jQuery( '.updating-message' ).removeClass( 'updating-message' ).parents( '.action-required-box' ).slideUp( 200 ).remove();
-          actions = jQuery( '#plugin-filter' ).find( '.action-required-box' );
+          jQuery('.updating-message').removeClass('updating-message').parents('.action-required-box').slideUp(200).remove();
+          actions = jQuery('#plugin-filter').find('.action-required-box');
 
-          jQuery( '.import-content-container' ).find( 'input[data-slug="' + self.attr( 'data-slug' ) + '"]' ).parent().remove();
+          jQuery('.import-content-container')
+            .find('input[data-slug="' + self.attr('data-slug') + '"]')
+            .parent()
+            .remove();
 
-          if ( ! actions.length ) {
-            jQuery( '#plugin-filter' ).append( '<span class"hooray">' + welcomeScreen.no_actions + '</span>' );
+          if (!actions.length) {
+            jQuery('#plugin-filter').append('<span class"hooray">' + welcomeScreen.no_actions + '</span>');
           }
 
-          jQuery( document ).trigger( 'epsilon-plugin-activated', dataToSend );
-        }
-      } );
-    } );
+          jQuery(document).trigger('epsilon-plugin-activated', dataToSend);
+        },
+      });
+    });
 
-    jQuery( document ).on( 'wp-plugin-install-success', function( response, data ) {
-      var activateButton = jQuery( 'a[data-slug="' + data.slug + '"]' ),
-          dataToSend = { plugin: data.slug };
-      if ( activateButton.length && ( jQuery( 'body' ).hasClass( welcomeScreen.body_class ) || jQuery( 'body' ).hasClass( 'wp-customizer' ) ) ) {
-
-        jQuery.ajax( {
-          beforeSend: function() {
-            activateButton.replaceWith( '<a class="button updating-message">' + welcomeScreen.activating_string + '...</a>' );
+    jQuery(document).on('wp-plugin-install-success', function (response, data) {
+      var activateButton = jQuery('a[data-slug="' + data.slug + '"]'),
+        dataToSend = { plugin: data.slug };
+      if (activateButton.length && (jQuery('body').hasClass(welcomeScreen.body_class) || jQuery('body').hasClass('wp-customizer'))) {
+        jQuery.ajax({
+          beforeSend: function () {
+            activateButton.replaceWith('<a class="button updating-message">' + welcomeScreen.activating_string + '...</a>');
           },
           async: true,
           type: 'GET',
           dataType: 'html',
           url: data.activateUrl,
-          success: function( response ) {
-            var actions = jQuery( '#plugin-filter' ).find( '.action-required-box' );
+          success: function (response) {
+            var actions = jQuery('#plugin-filter').find('.action-required-box');
 
-            if ( ! actions.length ) {
+            if (!actions.length) {
               location.reload();
             }
 
-            jQuery( '.updating-message' ).removeClass( 'updating-message' ).parents( '.action-required-box' ).slideUp( 200 ).remove();
-            jQuery( document ).trigger( 'epsilon-plugin-activated', dataToSend );
-          }
-        } );
+            jQuery('.updating-message').removeClass('updating-message').parents('.action-required-box').slideUp(200).remove();
+            jQuery(document).trigger('epsilon-plugin-activated', dataToSend);
+          },
+        });
       }
-    } );
-  }
+    });
+  },
 };
 
-jQuery( document ).ready( function() {
-
+jQuery(document).ready(function () {
   welcomeScreenFunctions.dismissAction();
   welcomeScreenFunctions.importDemoContent();
   welcomeScreenFunctions.activatePlugin();
 
-  jQuery( '.epsilon-hidden-content-toggler' ).click( function( e ){
-    var id = jQuery( this ).attr( 'href' );
+  jQuery('.epsilon-hidden-content-toggler').on('click', function (e) {
+    var id = jQuery(this).attr('href');
     e.preventDefault();
-    jQuery( id ).slideToggle();
+    jQuery(id).slideToggle();
   });
-
-} );
+});
