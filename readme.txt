@@ -2,7 +2,7 @@
 
 Theme Name: Shapely
 Theme URI: https://colorlib.com/wp/shapely/
-Version: 1.2.13
+Version: 1.2.14
 
 Requires PHP at least: 5.0
 Tested PHP up to: 8.0.7
