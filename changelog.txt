@@ -1,3 +1,7 @@
+## 1.2.14
+	Breadcrumbs Support For Rank Math Plugin
+	Fix php 8.0 deprecation issue and more
+
 ## 1.2.13 
 	Bug fixed issue #271
 	updated font awesome to 5
