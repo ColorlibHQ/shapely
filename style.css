@@ -1624,10 +1624,10 @@ nav {
   right: 0;
   font-size: 11px;
   content: '\f107';
-  font-family: 'fontawesome';
+  font-family: 'Font Awesome\ 5 Free';
   speak: none;
   font-style: normal;
-  font-weight: normal;
+  font-weight: 900;
   font-variant: normal;
   text-transform: none;
 }
@@ -3163,10 +3163,10 @@ iframe {
 .flex-direction-nav a.flex-next:before,
 .flex-direction-nav a.flex-prev:before {
   content: '\f105';
-  font-family: 'fontawesome';
+  font-family: 'Font Awesome\ 5 Free';
   speak: none;
   font-style: normal;
-  font-weight: normal;
+  font-weight: 900;
   font-variant: normal;
   text-transform: none;
   line-height: 1;
@@ -4418,7 +4418,7 @@ input[type='tel']:focus {
   line-height: 46px;
   text-align: center;
   position: relative;
-  font-family: 'FontAwesome';
+  font-family: 'Font Awesome\ 5 Free';
   color: #001c28;
 }
 
@@ -4446,7 +4446,7 @@ input[type='tel']:focus {
   line-height: 46px;
   text-align: center;
   position: relative;
-  font-family: 'FontAwesome';
+  font-family: 'Font Awesome\ 5 Free';
   color: #001c28;
 }
 
@@ -4468,7 +4468,7 @@ input[type='tel']:focus {
 }
 
 .shapely-social .shapely-social-icon {
-  font-family: 'fontawesome';
+  font-family: 'Font Awesome\ 5 Free';
   display: block;
   width: 20px;
   height: 20px;
