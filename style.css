@@ -4446,6 +4446,7 @@ input[type='tel']:focus {
   line-height: 46px;
   text-align: center;
   position: relative;
+  font-weight: 900;
   font-family: 'Font Awesome\ 5 Free';
   color: #001c28;
 }
