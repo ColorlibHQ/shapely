@@ -124,14 +124,7 @@ class Wp_Bootstrap_Navwalker extends Walker_Nav_Menu {
 			$item_output .= $args->after;
 
 			$output .= apply_filters( 'walker_nav_menu_start_el', $item_output, $item, $depth, $args );
-			
-			ob_start();
 
-			do_action( 'wp_nav_menu_item_custom_fields', $item->ID, $item, $depth, $args, $id );
-
-			$item_output .= ob_get_clean();
-
-			$output .= apply_filters( 'walker_nav_menu_start_el', $item_output, $item, $depth, $args );
 		}// End if().
 	}
 
