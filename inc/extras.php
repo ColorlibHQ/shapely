@@ -274,10 +274,12 @@ if ( ! function_exists( 'shapely_get_theme_options' ) ) {
 				input[type="search"]:hover,
 				input[type="email"]:hover,
 				input[type="tel"]:hover,
+				input[type="password"]:hover,
 				input[type="text"]:focus,
 				input[type="search"]:focus,
 				input[type="email"]:focus,
 				input[type="tel"]:focus,
+				input[type="password"]:focus,
 				.widget.widget_product_search input[type="text"]:focus + button[type="submit"].searchsubmit,
 				.widget.widget_product_search input[type="text"]:hover + button[type="submit"].searchsubmit
 				{ border-color: ' . esc_attr( get_theme_mod( 'button_hover_color' ) ) . ' !important }';
