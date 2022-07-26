@@ -2422,7 +2422,8 @@ textarea {
 input[type='text'],
 input[type='search'],
 input[type='email'],
-input[type='tel'] {
+input[type='tel'],
+input[type='password'] {
   background: #f5f5f5;
   border: 1px solid #eee;
   width: 100%;
@@ -2434,7 +2435,8 @@ input[type='tel'] {
 }
 
 input[type='text']:focus,
-input[type='search']:focus {
+input[type='search']:focus
+input[type='password'] {
   outline: 1px solid #ccc;
 }
 
