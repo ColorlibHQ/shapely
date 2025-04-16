@@ -1,27 +1,28 @@
 /*
 Theme Name: Shapely
-Theme URI: https://colorlib.com/wp/themes/shapely
-Author: colorlib
-Author URI: https://colorlib.com/
-Description: Shapely is a powerful and versatile one page WordPress theme with pixel perfect design and outstanding functionality. It is by far the most advanced free WordPress theme available today with loads of unmatched customization options. This theme comes with several homepage widgets that can be used to add portfolio, testimonials, parallax sections, your product or service information, call for action and much more. Shapely supports most free and premium WordPress plugins such as WooCommerce, Jetpack, Kali Forms, Gravity Forms, Contact Form 7, Yoast SEO, Google Analytics by Yoast and much more. This theme is the best suited for business, landing page, portfolio, ecommerce, store, local business,  personal websites but can be tweaked to be used as blog, magazine or any other awesome website while highlighting its unique one page setup. This is going to be the last WordPress theme you will ever want to use because it is so much better than anything you have seen. Needless to say that this theme is SEO friendly thanks to its well optimized strucutre. Shapely theme is mobile friendly and fully responsive making it your best multipurpose partnert for any project and website.
-Version: 1.2.14
-Requires PHP: 5.6
-Tested PHP up to: 8.0.7
-Requires at least: 4.0
-Tested up to: 5.8
-License: GNU General Public License v3
-License URI: http://www.gnu.org/licenses/gpl-2.0.html
+Theme URI: https://colorlib.com/wp/themes/shapely/
+Author: Colorlib
+Author URI: https://colorlib.com
+Description: Shapely is a clean and modern WordPress theme with pixel perfect design and outstanding support. It is a perfect theme for your next project. It is fully responsive and retina ready. It is translation ready and has a clean and commented code. It is SEO friendly and has a great performance. It is compatible with WooCommerce, bbPress, BuddyPress and many other popular plugins.
+Version: 1.2.16
+License: GNU General Public License v2 or later
+License URI: https://www.gnu.org/licenses/gpl-2.0.html
 Text Domain: shapely
-Tags: left-sidebar, right-sidebar, featured-images, post-formats, threaded-comments, theme-options, photography, portfolio, full-width-template, grid-layout
+Tags: blog, custom-logo, portfolio, e-commerce, rtl-language-support, post-formats, grid-layout, one-column, two-columns, custom-background, custom-colors, custom-header, custom-menu, featured-image-header, featured-images, flexible-header, full-width-template, sticky-post, theme-options, translation-ready, accessibility-ready, threaded-comments, footer-widgets, left-sidebar, right-sidebar, three-columns, four-columns
 
 This theme, like WordPress, is licensed under the GPL.
 Use it to make something cool, have fun, and share what you've learned with others.
 
-Shapely is based on Underscores http://underscores.me/, (C) 2012-2020 Automattic, Inc.
+Shapely is based on Underscores https://underscores.me/, (C) 2012-2025 Automattic, Inc.
 Underscores is distributed under the terms of the GNU GPL v2 or later.
 
 Normalizing styles have been helped along thanks to the fine work of
-Nicolas Gallagher and Jonathan Neal http://necolas.github.com/normalize.css/
+Nicolas Gallagher and Jonathan Neal https://necolas.github.com/normalize.css/
+
+Tested up to: WordPress 6.8
+Requires at least: WordPress 6.4
+Requires PHP: 7.4
+Tested up to PHP: 8.4
 */
 
 /*--------------------------------------------------------------
@@ -1616,17 +1617,49 @@ nav {
 }
 
 .dropdown:after {
+  display: none; /* Hide by default */
   position: absolute;
   top: 0;
-  right: 0;
-  font-size: 11px;
-  content: '\f107';
-  font-family: 'Font Awesome\ 5 Free';
-  speak: none;
-  font-style: normal;
+  right: 7px;
+  font-family: "Font Awesome 6 Free";
   font-weight: 900;
-  font-variant: normal;
-  text-transform: none;
+  content: "\f107"; /* fa-angle-down */
+  font-size: 12px;
+  line-height: 53px;
+  color: #3a52bf;
+  transition: transform 0.3s ease;
+}
+
+/* Only show arrows for top-level menu items with children */
+.main-navigation .menu > li.menu-item-has-children > .dropdown:after,
+.main-navigation .menu > li.menu-item-has-children.dropdown:after {
+  display: inline-block;
+}
+
+/* Hide arrows for submenu items that don't have children */
+.main-navigation .menu > li > ul li:not(.menu-item-has-children):after,
+.main-navigation .menu > li > ul li:not(.menu-item-has-children).dropdown:after,
+.main-navigation .menu > li > ul li:not(.menu-item-has-children) > .dropdown:after {
+  display: none;
+}
+
+/* Make space for the arrow on top-level menu items with children */
+.main-navigation .menu > li.menu-item-has-children {
+  position: relative;
+  padding-right: 20px;  /* Make space for the arrow */
+}
+
+/* Position arrows on the right */
+.main-navigation .menu > li.menu-item-has-children:after {
+  right: 0;
+}
+
+/* Ensure submenu items with children have a right arrow */
+.main-navigation .menu > li > ul li.menu-item-has-children:after,
+.main-navigation .menu > li > ul li.menu-item-has-children > .dropdown:after {
+  content: "\f105"; /* fa-angle-right */
+  right: 10px;
+  display: inline-block;
 }
 
 .shapely-dropdown {
@@ -1862,16 +1895,11 @@ nav.fixed.scrolled {
 }
 
 .module.widget-handle {
-  padding: 0 5px;
-  cursor: pointer;
+  display: inline-block;
   position: relative;
-  -webkit-touch-callout: none;
-  -webkit-user-select: none;
-  -khtml-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
-  user-select: none;
-  margin: 0;
+  cursor: pointer;
+  padding: 0 24px;
+  margin-right: -1px;
 }
 
 @media all and (max-width: 1100px) {
@@ -1900,6 +1928,34 @@ nav.fixed.scrolled {
 .module.widget-handle:hover i,
 .module.widget-handle:focus i {
   opacity: 1;
+}
+
+/* Fix for search form only showing on search icon hover */
+.module.widget-handle .function {
+  background: #fff;
+  width: 300px;
+  position: absolute;
+  right: 0;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  display: none;
+  z-index: 99;
+}
+
+.module.widget-handle:hover .function {
+  display: block;
+}
+
+/* Ensure only the search module shows its function on hover */
+.dropdown:hover ~ .module.widget-handle .function,
+.dropdown:hover + .module.widget-handle .function,
+.module.widget-handle:not(:hover) .function {
+  display: none;
+}
+
+/* Specific styling for the search widget handle */
+.search-widget-handle .search {
+  background: transparent;
+  border: none;
 }
 
 .widget-handle .function {
@@ -3162,7 +3218,7 @@ iframe {
 .flex-direction-nav a.flex-next:before,
 .flex-direction-nav a.flex-prev:before {
   content: '\f105';
-  font-family: 'Font Awesome\ 5 Free';
+  font-family: "Font Awesome 6 Free";
   speak: none;
   font-style: normal;
   font-weight: 900;
@@ -3724,92 +3780,6 @@ footer.bg-dark a {
   display: none;
 }
 
-#social li a[href*='twitter.com'] .fa:before,
-.fa-twitter:before {
-  content: '\f099';
-}
-
-#social li a[href*='facebook.com'] .fa:before,
-.fa-facebook-f:before,
-.fa-facebook:before {
-  content: '\f09a';
-}
-
-#social li a[href*='github.com'] .fa:before,
-.fa-github:before {
-  content: '\f09b';
-}
-
-#social li a[href*='/feed'] .fa:before,
-.fa-rss:before {
-  content: '\f09e';
-}
-
-#social li a[href*='pinterest.com'] .fa:before,
-.fa-pinterest:before {
-  content: '\f0d2';
-}
-
-#social li a[href*='plus.google.com'] .fa:before,
-.fa-google-plus:before {
-  content: '\f0d5';
-}
-
-#social li a[href*='linkedin.com'] .fa:before,
-.fa-linkedin:before {
-  content: '\f0e1';
-}
-
-#social li a[href*='youtube.com'] .fa:before,
-.fa-youtube:before {
-  content: '\f167';
-}
-
-#social li a[href*='instagram.com'] .fa:before,
-.fa-instagram:before {
-  content: '\f16d';
-}
-
-#social li a[href*='flickr.com'] .fa:before,
-.fa-flickr:before {
-  content: '\f16e';
-}
-
-#social li a[href*='tumblr.com'] .fa:before,
-.fa-tumblr:before {
-  content: '\f173';
-}
-
-#social li a[href*='dribbble.com'] .fa:before,
-.fa-dribbble:before {
-  content: '\f17d';
-}
-
-#social li a[href*='skype.com'] .fa:before,
-.fa-skype:before {
-  content: '\f17e';
-}
-
-#social li a[href*='foursquare.com'] .fa:before,
-.fa-foursquare:before {
-  content: '\f180';
-}
-
-#social li a[href*='vimeo.com'] .fa:before,
-.fa-vimeo-square:before {
-  content: '\f194';
-}
-
-#social li a[href*='spotify.com'] .fa:before,
-.fa-spotify:before {
-  content: '\f1bc';
-}
-
-#social li a[href*='soundcloud.com'] .fa:before,
-.fa-soundcloud:before {
-  content: '\f1be';
-}
-
 .header-image-bg {
   background-size: cover;
   position: relative;
@@ -4221,7 +4191,7 @@ input[type='tel']:focus {
 }
 
 .widget.widget_search .search-form > button[type='submit'].searchsubmit,
-.widget_product_search .woocommerce-product-search > button[type='submit'].searchsubmit {
+.widget.widget_product_search .woocommerce-product-search > button[type='submit'].searchsubmit {
   position: absolute;
   border: none;
   top: 7px;
@@ -4417,7 +4387,7 @@ input[type='tel']:focus {
   line-height: 46px;
   text-align: center;
   position: relative;
-  font-family: 'Font Awesome\ 5 Free';
+  font-family: "Font Awesome 6 Free";
   color: #001c28;
 }
 
@@ -4446,7 +4416,7 @@ input[type='tel']:focus {
   text-align: center;
   position: relative;
   font-weight: 900;
-  font-family: 'Font Awesome\ 5 Free';
+  font-family: "Font Awesome 6 Free";
   color: #001c28;
 }
 
@@ -4468,7 +4438,7 @@ input[type='tel']:focus {
 }
 
 .shapely-social .shapely-social-icon {
-  font-family: 'Font Awesome\ 5 Free';
+  font-family: "Font Awesome 6 Free";
   display: block;
   width: 20px;
   height: 20px;
@@ -4490,75 +4460,6 @@ aside .shapely-social .shapely-social-icon {
   color: #5234f9;
 }
 
-.shapely-social-link--behance .shapely-social-icon:before {
-  content: '\f1b4';
-}
-.shapely-social-link--codepen .shapely-social-icon:before {
-  content: '\f1cb';
-}
-.shapely-social-link--dropbox .shapely-social-icon:before {
-  content: '\f16b';
-}
-.shapely-social-link--delicious .shapely-social-icon:before {
-  content: '\f1a5';
-}
-.shapely-social-link--deviantart .shapely-social-icon:before {
-  content: '\f1bd';
-}
-.shapely-social-link--digg .shapely-social-icon:before {
-  content: '\f1a6';
-}
-.shapely-social-link--dribbble .shapely-social-icon:before {
-  content: '\f17d';
-}
-.shapely-social-link--facebook .shapely-social-icon:before {
-  content: '\f09a';
-}
-.shapely-social-link--flickr .shapely-social-icon:before {
-  content: '\f16e';
-}
-.shapely-social-link--github .shapely-social-icon:before {
-  content: '\f09b';
-}
-.shapely-social-link--instagram .shapely-social-icon:before {
-  content: '\f16d';
-}
-.shapely-social-link--linkedin .shapely-social-icon:before {
-  content: '\f0e1';
-}
-.shapely-social-link--medium .shapely-social-icon:before {
-  content: '\f23a';
-}
-.shapely-social-link--pinterest .shapely-social-icon:before {
-  content: '\f0d2';
-}
-.shapely-social-link--reddit .shapely-social-icon:before {
-  content: '\f281';
-}
-.shapely-social-link--skype .shapely-social-icon:before {
-  content: '\f17e';
-}
-.shapely-social-link--slack .shapely-social-icon:before {
-  content: '\f198';
-}
-.shapely-social-link--soundcloud .shapely-social-icon:before {
-  content: '\f1be';
-}
-.shapely-social-link--tumblr .shapely-social-icon:before {
-  content: '\f173';
-}
-.shapely-social-link--tripadvisor .shapely-social-icon:before {
-  content: '\f262';
-}
-.shapely-social-link--twitch .shapely-social-icon:before {
-  content: '\f1e8';
-}
-.shapely-social-link--twitter .shapely-social-icon:before {
-  content: '\f099';
-}
-.shapely-social-link--vimeo .shapely-social-icon:before {
-  content: '\f27d';
-}
 .shapely-social-link--youtube .shapely-social-icon:before {
   content: '\f16a';
 }
@@ -5084,4 +4985,215 @@ section .widget-post-title {
 section .widget-post-excerpt {
   margin-top: 24px;
   padding: 0 15px;
+}
+
+/* Overwrite search form styles */
+.search-form {
+    display: flex;
+    align-items: stretch;
+    width: 300px;
+    max-width: 100%;
+    margin: 0;
+    padding: 0;
+    border-radius: 4px;
+    overflow: hidden;
+    border: 1px solid #ddd;
+}
+
+.search-form-wrapper {
+    position: relative;
+    display: flex;
+    width: 100%;
+}
+
+.search-form input[type='search'] {
+    flex: 1;
+    height: 45px;
+    padding: 0 15px;
+    border: none;
+    border-radius: 0;
+    font-size: 14px;
+    margin: 0;
+    box-sizing: border-box;
+    width: 100%;
+}
+
+.search-form button[type='submit'] {
+    width: 45px;
+    height: 45px;
+    padding: 0;
+    margin: 0;
+    background-color: #745cf9;
+    border: none;
+    border-radius: 0;
+    cursor: pointer;
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    transition: all 0.3s ease;
+}
+
+.search-form button[type='submit']:hover {
+    background-color: #5d47d7;
+    border-color: #5d47d7;
+}
+
+.search-form button[type='submit'] i {
+    display: block;
+    font-size: 16px;
+    color: #fff;
+}
+
+/* Remove old social icon CSS code since we're using Font Awesome 6 properly now */
+/* Add new CSS for screen-reader-text used by social icons */
+.fa-brands .screen-reader-text {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border-width: 0;
+}
+
+/* Basic styling for social icons */
+#social li a {
+  display: inline-block;
+  margin: 0 5px;
+  color: inherit;
+}
+
+#social li a:hover {
+  color: #5d47d7;
+}
+
+/* Remove all old selectors and content rules for individual social platforms */
+
+.header-image-bg {
+  background-size: cover;
+  position: relative;
+}
+
+.header-image-bg .page-title {
+  position: relative;
+  z-index: 2;
+}
+
+#social .social_icon span {
+}
+
+.header-image-bg {
+  background-size: cover;
+  position: relative;
+}
+
+.nav-bar .search-form button[type='submit'] {
+    color: #fff;
+}
+
+.nav-bar .search-form button[type='submit'] i {
+    color: #fff;
+}
+
+.dropdown-menu .shapely-dropdown > .fa-angle-down:before {
+  content: "\f105"; /* fa-angle-right */
+  font: var(--fa-font-solid);
+}
+
+.panel-icon:before {
+  content: "\f107"; /* fa-angle-down */
+  font: var(--fa-font-solid);
+  font-family: 'Font Awesome 6 Free';
+}
+
+.arrow_right:after {
+  content: '\f105';
+  font: var(--fa-font-solid);
+  font-family: 'Font Awesome 6 Free';
+}
+
+.arrow_left:before {
+  content: '\f104';
+  font: var(--fa-font-solid);
+  font-family: 'Font Awesome 6 Free';
+}
+
+.prev.page-numbers:before {
+  content: '\f104';
+  font: var(--fa-font-solid);
+  font-family: 'Font Awesome 6 Free';
+}
+
+.next.page-numbers:after {
+  content: '\f105';
+  font: var(--fa-font-solid);
+  font-family: 'Font Awesome 6 Free';
+}
+
+/* Clean up any old social icon code that's no longer needed with Font Awesome 6 */
+.shapely_home_parallax section,
+.small-screen-overlay .widget {
+  /* Remove the font-family declaration */
+}
+
+/* Add specific selectors for Font Awesome icons */
+.shapely_home_parallax .fa,
+.shapely_home_parallax .fas,
+.shapely_home_parallax .far,
+.shapely_home_parallax .fab,
+.small-screen-overlay .widget .fa,
+.small-screen-overlay .widget .fas,
+.small-screen-overlay .widget .far,
+.small-screen-overlay .widget .fab {
+  font-family: 'Font Awesome 6 Free';
+}
+
+
+
+/* Inline Search Form */
+.search-form-wrapper {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    box-sizing: border-box;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    overflow: hidden;
+}
+
+.search-form input[type="search"] {
+    flex: 1;
+    height: 40px;
+    padding: 6px 12px;
+    border: none;
+    border-radius: 0;
+    box-sizing: border-box;
+}
+
+.search-form button[type="submit"] {
+    height: 40px;
+    padding: 6px 12px;
+    background-color: #745cf9;
+    border: none;
+    border-radius: 0;
+    cursor: pointer;
+    color: #fff;
+}
+
+.search-form button[type="submit"]:hover {
+    background-color: #5d47d7;
+}
+
+/* Fix for search form in nav */
+.nav-bar .function .search-form {
+    width: 100%;
+    max-width: 300px;
+}
+
+.nav-bar .function .search-form-wrapper {
+    border: none;
 }

@@ -259,26 +259,24 @@ class Epsilon_Framework {
 			'row'        => esc_html__( 'Row', 'epsilon-framework' ),
 		) );
 
-		wp_enqueue_style( 'font-awesome', EPSILON_URI . '../../assets/css/fontawesome/all.css' );
+		wp_enqueue_style( 'font-awesome', EPSILON_URI . '../../assets/css/fontawesome6/all.min.css' );
 		wp_enqueue_style( 'epsilon-styles', EPSILON_URI . '/assets/css/style.css' );
 	}
 
 	/**
-	 * Define epsilon loading paths
+	 * Define paths
 	 */
-	public function define_paths() {
-		$dir_uri = get_template_directory_uri();
-		$dir     = get_template_directory();
-
-		if ( $this->plugin ) {
-			$dir_uri = $this->plugin_uri;
-			$dir     = $this->plugin_path;
+	private function define_paths() {
+		if ( ! defined( 'EPSILON_URI' ) ) {
+			define( 'EPSILON_URI', trailingslashit( get_template_directory_uri() . '/inc/libraries/epsilon-framework' ) );
 		}
-		/**
-		 * Define URI and PATH for the framework
-		 */
-		define( 'EPSILON_URI', $dir_uri . $this->path . '/epsilon-framework' );
-		define( 'EPSILON_PATH', $dir . $this->path . '/epsilon-framework' );
-		define( 'EPSILON_BACKUP', $this->backup );
+		
+		if ( ! defined( 'EPSILON_PATH' ) ) {
+			define( 'EPSILON_PATH', trailingslashit( get_template_directory() . '/inc/libraries/epsilon-framework' ) );
+		}
+		
+		if ( ! defined( 'EPSILON_BACKUP' ) ) {
+			define( 'EPSILON_BACKUP', $this->backup );
+		}
 	}
 }

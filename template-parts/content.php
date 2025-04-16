@@ -7,6 +7,16 @@
  * @package Shapely
  */
 
+// Exit if accessed directly
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
+
+// Ensure WordPress is loaded
+if ( ! function_exists( 'get_theme_mod' ) ) {
+	die( 'WordPress is not loaded properly.' );
+}
+
 $dropcaps      = get_theme_mod( 'first_letter_caps', true );
 $enable_tags   = get_theme_mod( 'tags_post_meta', true );
 $post_author   = get_theme_mod( 'post_author_area', true );
@@ -19,31 +29,36 @@ $post_category = get_theme_mod( 'post_category', true );
 	<header class="entry-header nolist">
 		<?php
 		$category = get_the_category();
+		
+		// Define allowed tags outside of conditional to prevent undefined variable
+		$allowed_tags = array(
+			'img'      => array(
+				'data-srcset' => true,
+				'data-src'    => true,
+				'srcset'      => true,
+				'sizes'       => true,
+				'src'         => true,
+				'class'       => true,
+				'alt'         => true,
+				'width'       => true,
+				'height'      => true,
+			),
+			'noscript' => array(),
+		);
+
 		if ( has_post_thumbnail() ) {
 			$layout = shapely_get_layout_class();
 			$size   = 'shapely-featured';
 
-			if ( 'full-width' == $layout ) {
+			if ( 'full-width' === $layout ) {
 				$size = 'shapely-full';
 			}
 			$image = get_the_post_thumbnail( get_the_ID(), $size );
-
-			$allowed_tags = array(
-				'img'      => array(
-					'data-srcset' => true,
-					'data-src'    => true,
-					'srcset'      => true,
-					'sizes'       => true,
-					'src'         => true,
-					'class'       => true,
-					'alt'         => true,
-					'width'       => true,
-					'height'      => true,
-				),
-				'noscript' => array(),
-			);
+		} else {
+			$image = '<img class="wp-post-image" alt="" src="' . esc_url( get_template_directory_uri() ) . '/assets/images/placeholder.jpg" />';
+		}
 		?>
-		<a href="<?php echo esc_url( get_the_permalink() ); ?>">
+		<a href="<?php echo esc_url( get_permalink() ); ?>">
 			<?php echo wp_kses( $image, $allowed_tags ); ?>
 		</a>
 
@@ -54,22 +69,18 @@ $post_category = get_theme_mod( 'post_category', true );
 				</a>
 			</span>
 		<?php endif; ?>
-		<?php
-		}// End if().
-	?>
 	</header><!-- .entry-header -->
 	<div class="entry-content">
 		<?php if ( $post_title ) : ?>
 			<h2 class="post-title entry-title">
-				<a href="<?php echo esc_url( get_the_permalink() ); ?>"><?php echo wp_trim_words( get_the_title(), 9 ); ?></a>
+				<a href="<?php echo esc_url( get_permalink() ); ?>"><?php echo wp_trim_words( get_the_title(), 9 ); ?></a>
 			</h2>
-		<?php endif ?>
+		<?php endif; ?>
 
 		<div class="entry-meta">
 			<?php
 			shapely_posted_on_no_cat();
 			?>
-			<!-- post-meta -->
 		</div>
 
 		<?php if ( $post_author && $left_side ) : ?>

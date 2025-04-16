@@ -120,6 +120,7 @@ if ( ! function_exists( 'shapely_entry_footer' ) ) :
 	}
 endif;
 
+if ( ! function_exists( 'shapely_categorized_blog' ) ) :
 /**
  * Returns true if a blog has more than 1 category.
  *
@@ -151,7 +152,9 @@ function shapely_categorized_blog() {
 		return false;
 	}
 }
+endif;
 
+if ( ! function_exists( 'shapely_category_transient_flusher' ) ) :
 /**
  * Flush out the transients used in shapely_categorized_blog.
  */
@@ -162,6 +165,7 @@ function shapely_category_transient_flusher() {
 	// Like, beat it. Dig?
 	delete_transient( 'shapely_categories' );
 }
+endif;
 
 add_action( 'edit_category', 'shapely_category_transient_flusher' );
 add_action( 'save_post', 'shapely_category_transient_flusher' );
@@ -180,6 +184,7 @@ if ( ! function_exists( 'shapely_post_category' ) ) :
 	}
 endif;
 
+if ( ! function_exists( 'shapely_add_span_cat_count' ) ) :
 /**
  * Filter the categories widget to add a <span> element before the count
  *
@@ -193,14 +198,17 @@ function shapely_add_span_cat_count( $links ) {
 
 	return $links;
 }
+endif;
 
 add_filter( 'wp_list_categories', 'shapely_add_span_cat_count' );
 
+if ( ! function_exists( 'shapely_add_span_archive_count' ) ) :
 function shapely_add_span_archive_count( $links ) {
 	$links = str_replace( '</a>&nbsp;(', '</a> <span class="shapely-cat-count">', $links );
 	$links = str_replace( ')', '</span>', $links );
 
 	return $links;
 }
+endif;
 
 add_filter( 'get_archives_link', 'shapely_add_span_archive_count' );

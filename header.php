@@ -9,20 +9,28 @@
  * @package Shapely
  */
 
-?>
-<?php
+// Exit if accessed directly
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
 
+// Ensure WordPress is loaded
+if ( ! function_exists( 'get_theme_mod' ) ) {
+	die( 'WordPress is not loaded properly.' );
+}
+
+// Get theme mods
 $shapely_transparent_header         = get_theme_mod( 'shapely_transparent_header', 0 );
 $shapely_transparent_header_opacity = get_theme_mod( 'shapely_sticky_header_transparency', 100 );
 
+// Set header style
+$style = '';
 if ( 1 == $shapely_transparent_header && $shapely_transparent_header_opacity ) {
 	if ( $shapely_transparent_header_opacity < 100 ) {
 		$style = 'style="background: rgba(255, 255, 255, 0.' . esc_attr( $shapely_transparent_header_opacity ) . ');"';
 	} else {
 		$style = 'style="background: rgba(255, 255, 255, ' . esc_attr( $shapely_transparent_header_opacity ) . ');"';
 	}
-} else {
-	$style = '';
 }
 ?>
 
@@ -31,7 +39,7 @@ if ( 1 == $shapely_transparent_header && $shapely_transparent_header_opacity ) {
 <head>
 	<meta charset="<?php bloginfo( 'charset' ); ?>">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<link rel="profile" href="http://gmpg.org/xfn/11">
+	<link rel="profile" href="https://gmpg.org/xfn/11">
 	<link rel="pingback" href="<?php bloginfo( 'pingback_url' ); ?>">
 
 	<?php wp_head(); ?>
@@ -42,7 +50,7 @@ if ( 1 == $shapely_transparent_header && $shapely_transparent_header_opacity ) {
 <div id="page" class="site">
 	<a class="skip-link screen-reader-text" href="#content"><?php esc_html_e( 'Skip to content', 'shapely' ); ?></a>
 
-	<header id="masthead" class="site-header<?php echo get_theme_mod( 'mobile_menu_on_desktop', false ) ? ' mobile-menu' : ''; ?>" role="banner">
+	<header id="masthead" class="site-header<?php echo esc_attr( get_theme_mod( 'mobile_menu_on_desktop', false ) ? ' mobile-menu' : '' ); ?>" role="banner">
 		<div class="nav-container">
 			<nav <?php echo $style; ?> id="site-navigation" class="main-navigation" role="navigation">
 				<div class="container nav-bar">

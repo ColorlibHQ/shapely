@@ -5,6 +5,7 @@
  *
  * @param WP_Customize_Manager $wp_customize Theme Customizer object.
  */
+if ( ! function_exists( 'shapely_customize_register' ) ) :
 function shapely_customize_register( $wp_customize ) {
 	$wp_customize->get_setting( 'blogname' )->transport         = 'postMessage';
 	$wp_customize->get_setting( 'blogdescription' )->transport  = 'postMessage';
@@ -67,9 +68,11 @@ function shapely_customize_register( $wp_customize ) {
 	);
 
 }
+endif;
 
 add_action( 'customize_register', 'shapely_customize_register' );
 
+if ( ! function_exists( 'shapely_customizer' ) ) :
 /**
  * Options for WordPress Theme Customizer.
  */
@@ -1203,9 +1206,11 @@ function shapely_customizer( $wp_customize ) {
 	);
 
 }
+endif;
 
 add_action( 'customize_register', 'shapely_customizer' );
 
+if ( ! function_exists( 'shapely_sanitize_logo_dimension' ) ) :
 /**
  * Sanitize logo dimension setting.
  */
@@ -1221,21 +1226,23 @@ function shapely_sanitize_logo_dimension( $dimensions ) {
 	}
 
 	return $new_dimensions;
-
 }
+endif;
 
+if ( ! function_exists( 'active_callback_toggle_choice' ) ) :
 /**
- *
+ * Callback function for transparent header toggle choice.
  */
 function active_callback_toggle_choice( $control ) {
-
 	if ( $control->manager->get_setting( 'shapely_transparent_header' )->value() == 1 ) {
 		return true;
 	} else {
 		return false;
 	}
 }
+endif;
 
+if ( ! function_exists( 'shapely_sanitize_checkbox' ) ) :
 /**
  * Sanitize checkbox for WordPress customizer.
  */
@@ -1246,7 +1253,9 @@ function shapely_sanitize_checkbox( $input ) {
 		return false;
 	}
 }
+endif;
 
+if ( ! function_exists( 'shapely_sanitize_blog_layout' ) ) :
 /**
  * Sanitize layout control.
  */
@@ -1257,7 +1266,9 @@ function shapely_sanitize_blog_layout( $input ) {
 		return 'sidebar-right';
 	}
 }
+endif;
 
+if ( ! function_exists( 'shapely_sanitize_layout' ) ) :
 /**
  * Adds sanitization callback function: Sidebar Layout.
  */
@@ -1275,7 +1286,9 @@ function shapely_sanitize_layout( $input ) {
 		return '';
 	}
 }
+endif;
 
+if ( ! function_exists( 'shapely_customizer_custom_control_css' ) ) :
 /**
  * Add CSS for custom controls.
  */
@@ -1310,20 +1323,25 @@ function shapely_customizer_custom_control_css() {
 	</style>
 	<?php
 }
+endif;
 
 add_action( 'customize_controls_print_styles', 'shapely_customizer_custom_control_css' );
 
+if ( ! function_exists( 'shapely_customize_preview_js' ) ) :
 /**
  * Binds JS handlers to make Theme Customizer preview reload changes asynchronously.
  */
 function shapely_customize_preview_js() {
 	wp_enqueue_script( 'shapely_customizer', get_template_directory_uri() . '/assets/js/customizer-preview.js', array( 'customize-preview' ), '20140317', true );
 }
+endif;
 
 add_action( 'customize_preview_init', 'shapely_customize_preview_js' );
 
+if ( ! function_exists( 'shapely_customize_preview' ) ) :
 function shapely_customize_preview() {
 	wp_enqueue_script( 'shapely_customizer', get_template_directory_uri() . '/assets/js/customizer.js', array( 'customize-preview' ), '20140317', true );
 }
+endif;
 
 add_action( 'customize_controls_enqueue_scripts', 'shapely_customize_preview' );

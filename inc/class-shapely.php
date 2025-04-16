@@ -1,5 +1,9 @@
 <?php
 
+if ( ! class_exists( 'Shapely' ) ) :
+/**
+ * Shapely Theme Class
+ */
 class Shapely {
 
 	public $recommended_plugins = array(
@@ -42,43 +46,17 @@ class Shapely {
 			return;
 		}
 
+		// Set up KaliForms callback
+		add_action('init', array($this, 'init_kaliforms'), 1);
+
 		$this->load_class();
 
-		$this->recommended_actions = apply_filters(
-			'shapely_required_actions', array(
-				array(
-					'id'          => 'shapely-req-import-content',
-					'title'       => esc_html__( 'Import Demo Content', 'shapely' ),
-					'description' => esc_html__( 'Clicking the button below will install and activate plugins, add widgets and set static front page to your WordPress installation. Click advanced to customize the import process.', 'shapely' ),
-					'help'        => $this->generate_action_html(),
-					'check'       => Shapely_Notify_System::shapely_has_content(),
-				),
-				array(
-					'id'          => 'shapely-req-ac-install-companion-plugin',
-					'title'       => Shapely_Notify_System::shapely_companion_title(),
-					'description' => Shapely_Notify_System::shapely_companion_description(),
-					'check'       => Shapely_Notify_System::shapely_has_plugin( 'shapely-companion' ),
-					'plugin_slug' => 'shapely-companion',
-				),
-				array(
-					'id'          => 'shapely-req-ac-install-wp-jetpack-plugin',
-					'title'       => Shapely_Notify_System::shapely_jetpack_title(),
-					'description' => Shapely_Notify_System::shapely_jetpack_description(),
-					'check'       => Shapely_Notify_System::shapely_has_plugin( 'jetpack' ),
-					'plugin_slug' => 'jetpack',
-				),
-				array(
-					'id'          => 'shapely-req-ac-install-kali-forms',
-					'title'       => Shapely_Notify_System::shapely_kaliforms_title(),
-					'description' => Shapely_Notify_System::shapely_kaliforms_description(),
-					'check'       => Shapely_Notify_System::shapely_has_plugin( 'kali-forms' ),
-					'plugin_slug' => 'kali-forms',
-				),
-			)
-		);
-
+		// Initialize epsilon framework first
 		$this->init_epsilon();
-		$this->init_welcome_screen();
+
+		// Set up recommended actions and welcome screen on init
+		add_action('init', array($this, 'setup_recommended_actions'), 0);
+		add_action('init', array($this, 'init_welcome_screen'), 1);
 
 		// Hooks
 		add_action( 'customize_register', array( $this, 'init_customizer' ) );
@@ -111,6 +89,10 @@ class Shapely {
 
 	public function init_welcome_screen() {
 
+		if (empty($this->recommended_actions)) {
+			$this->setup_recommended_actions();
+		}
+
 		Epsilon_Welcome_Screen::get_instance(
 			$config = array(
 				'theme-name' => 'Shapely',
@@ -142,6 +124,41 @@ class Shapely {
 			)
 		);
 
+	}
+
+	public function setup_recommended_actions() {
+		$this->recommended_actions = apply_filters(
+			'shapely_required_actions', array(
+				array(
+					'id'          => 'shapely-req-import-content',
+					'title'       => esc_html__( 'Import Demo Content', 'shapely' ),
+					'description' => esc_html__( 'Clicking the button below will install and activate plugins, add widgets and set static front page to your WordPress installation. Click advanced to customize the import process.', 'shapely' ),
+					'help'        => $this->generate_action_html(),
+					'check'       => Shapely_Notify_System::shapely_has_content(),
+				),
+				array(
+					'id'          => 'shapely-req-ac-install-companion-plugin',
+					'title'       => Shapely_Notify_System::shapely_companion_title(),
+					'description' => Shapely_Notify_System::shapely_companion_description(),
+					'check'       => Shapely_Notify_System::shapely_has_plugin( 'shapely-companion' ),
+					'plugin_slug' => 'shapely-companion',
+				),
+				array(
+					'id'          => 'shapely-req-ac-install-wp-jetpack-plugin',
+					'title'       => Shapely_Notify_System::shapely_jetpack_title(),
+					'description' => Shapely_Notify_System::shapely_jetpack_description(),
+					'check'       => Shapely_Notify_System::shapely_has_plugin( 'jetpack' ),
+					'plugin_slug' => 'jetpack',
+				),
+				array(
+					'id'          => 'shapely-req-ac-install-kali-forms',
+					'title'       => Shapely_Notify_System::shapely_kaliforms_title(),
+					'description' => Shapely_Notify_System::shapely_kaliforms_description(),
+					'check'       => Shapely_Notify_System::shapely_has_plugin( 'kali-forms' ),
+					'plugin_slug' => 'kali-forms',
+				),
+			)
+		);
 	}
 
 	private function generate_action_html() {
@@ -203,6 +220,22 @@ class Shapely {
 		return sprintf( $string, $name, $id, $label );
 	}
 
+	public function init_kaliforms() {
+		if (class_exists('KaliForms\Inc\KaliForms')) {
+			// Wait until after init to interact with KaliForms
+			add_action('init', function() {
+				// Only proceed if translations are loaded
+				if (did_action('init') && !doing_action('init')) {
+					$kaliforms = KaliForms\Inc\KaliForms::get_instance();
+					if (method_exists($kaliforms, 'init_kaliforms')) {
+						$kaliforms->init_kaliforms();
+					}
+				}
+			}, 20); // Higher priority to ensure translations are loaded
+		}
+	}
+
 }
+endif;
 
 new Shapely();

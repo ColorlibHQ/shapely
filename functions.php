@@ -1,12 +1,44 @@
 <?php
-
 /**
  * Shapely functions and definitions.
  *
  * @link    https://developer.wordpress.org/themes/basics/theme-functions/
  *
  * @package Shapely
+ * @version 1.0.0
+ * 
+ * Tested up to: WordPress 6.8
+ * Requires at least: WordPress 6.4
+ * Requires PHP: 7.4
+ * Tested up to PHP: 8.4
  */
+
+// Exit if accessed directly
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
+
+// Ensure WordPress is loaded
+if ( ! function_exists( 'add_action' ) ) {
+	die( 'WordPress is not loaded properly.' );
+}
+
+// Load required files first
+require_once get_template_directory() . '/inc/template-tags.php';
+require_once get_template_directory() . '/inc/extras.php';
+require_once get_template_directory() . '/inc/customizer.php';
+require_once get_template_directory() . '/inc/jetpack.php';
+require_once get_template_directory() . '/inc/class-wp-bootstrap-navwalker.php';
+require_once get_template_directory() . '/inc/socialnav.php';
+require_once get_template_directory() . '/inc/class-shapely-related-posts.php';
+require_once get_template_directory() . '/inc/class-shapely.php';
+require_once get_template_directory() . '/inc/class-shapely-builder.php';
+
+if ( ! defined( 'SHAPELY_SETUP_LOADED' ) ) {
+	define( 'SHAPELY_SETUP_LOADED', true );
+}
+
+// Initialize theme setup
 if ( ! function_exists( 'shapely_setup' ) ) :
 	/**
 	 * Sets up theme defaults and registers support for various WordPress features.
@@ -19,8 +51,6 @@ if ( ! function_exists( 'shapely_setup' ) ) :
 		/*
 		 * Make theme available for translation.
 		 * Translations can be filed in the /languages/ directory.
-		 * If you're building a theme based on Shapely, use a find and replace
-		 * to change 'shapely' to the name of your theme in all the template files.
 		 */
 		load_theme_textdomain( 'shapely', get_template_directory() . '/languages' );
 
@@ -31,7 +61,8 @@ if ( ! function_exists( 'shapely_setup' ) ) :
 		 * Add support for the custom logo functionality
 		 */
 		add_theme_support(
-			'custom-logo', array(
+			'custom-logo',
+			array(
 				'height'      => 55,
 				'width'       => 135,
 				'flex-width'  => true,
@@ -40,8 +71,10 @@ if ( ! function_exists( 'shapely_setup' ) ) :
 		);
 
 		add_theme_support(
-			'custom-header', apply_filters(
-				'shapely_custom_header_args', array(
+			'custom-header',
+			apply_filters(
+				'shapely_custom_header_args',
+				array(
 					'default-image'      => '',
 					'default-text-color' => '000000',
 					'width'              => 1900,
@@ -79,7 +112,8 @@ if ( ! function_exists( 'shapely_setup' ) ) :
 		 * to output valid HTML5.
 		 */
 		add_theme_support(
-			'html5', array(
+			'html5',
+			array(
 				'search-form',
 				'comment-form',
 				'comment-list',
@@ -90,8 +124,10 @@ if ( ! function_exists( 'shapely_setup' ) ) :
 
 		// Set up the WordPress core custom background feature.
 		add_theme_support(
-			'custom-background', apply_filters(
-				'shapely_custom_background_args', array(
+			'custom-background',
+			apply_filters(
+				'shapely_custom_background_args',
+				array(
 					'default-color' => 'ffffff',
 					'default-image' => '',
 				)
@@ -117,7 +153,6 @@ if ( ! function_exists( 'shapely_setup' ) ) :
 
 		// Enable Shortcodes in widgets
 		add_filter( 'widget_text', 'do_shortcode' );
-
 	}
 endif;
 add_action( 'after_setup_theme', 'shapely_setup' );
@@ -223,8 +258,8 @@ function shapely_scripts() {
 	// Add Bootstrap default CSS
 	wp_enqueue_style( 'bootstrap', get_template_directory_uri() . '/assets/css/bootstrap.min.css' );
 
-	// Add Font Awesome stylesheet
-	wp_enqueue_style( 'font-awesome', get_template_directory_uri() . '/assets/css/fontawesome/all.min.css' );
+	// Replace old Font Awesome with Font Awesome 6
+	wp_enqueue_style( 'font-awesome', get_template_directory_uri() . '/assets/css/fontawesome6/all.min.css' );
 
 	// Add Google Fonts
 	wp_enqueue_style( 'shapely-fonts', '//fonts.googleapis.com/css?family=Raleway:100,300,400,500,600,700&display=swap');
@@ -328,4 +363,26 @@ require get_template_directory() . '/inc/class-shapely.php';
  * Load the shapely page builder class
  */
 require get_template_directory() . '/inc/class-shapely-builder.php';
-Shapely_Builder::get_instance();
+
+// Init the Shapely class
+if ( class_exists( 'Shapely' ) ) {
+	add_action( 'init', function() {
+		global $shapely;
+		if ( ! isset( $shapely ) ) {
+			$shapely = new Shapely();
+		}
+	}, 0 );
+}
+
+// Initialize plugins after init
+function shapely_init_plugins() {
+	if (class_exists('Shapely')) {
+		$shapely = new Shapely();
+		foreach ($shapely->recommended_plugins as $plugin => $data) {
+			if (isset($data['callback']) && is_callable($data['callback'])) {
+				call_user_func($data['callback']);
+			}
+		}
+	}
+}
+add_action('init', 'shapely_init_plugins', 2);

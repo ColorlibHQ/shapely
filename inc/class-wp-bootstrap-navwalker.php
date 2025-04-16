@@ -1,5 +1,15 @@
 <?php
 
+if ( ! class_exists( 'Wp_Bootstrap_Navwalker' ) ) :
+/**
+ * WP Bootstrap Navwalker
+ *
+ * @package WP-Bootstrap-Navwalker
+ */
+
+// Exit if accessed directly.
+defined( 'ABSPATH' ) || exit;
+
 class Wp_Bootstrap_Navwalker extends Walker_Nav_Menu {
 
 	/**
@@ -216,3 +226,4 @@ class Wp_Bootstrap_Navwalker extends Walker_Nav_Menu {
 		}// End if().
 	}
 }
+endif;

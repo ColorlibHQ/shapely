@@ -1,8 +1,9 @@
 <?php
 
+if ( ! class_exists( 'Shapely_Builder' ) ) :
 /**
-*
-*/
+ * Shapely Builder Class
+ */
 class Shapely_Builder {
 
 	private static $instance = null;
@@ -105,3 +106,4 @@ class Shapely_Builder {
 	}
 
 }
+endif;

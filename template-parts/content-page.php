@@ -1,14 +1,14 @@
-
 <article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
 	<header class="entry-header">
 		<?php
 		if ( has_post_thumbnail() ) {
 		?>
-			<a class="text-center" href="<?php the_permalink(); ?>" title="<?php the_title_attribute(); ?>">
+			<a class="text-center" href="<?php echo esc_url( get_permalink() ); ?>" title="<?php echo esc_attr( get_the_title() ); ?>">
 			<?php
 				$thumbnail_args = array(
 					'class' => 'mb24',
 				);
+				$image = '<img class="wp-post-image" alt="" src="' . esc_url( get_template_directory_uri() ) . '/assets/images/placeholder.jpg" />';
 				the_post_thumbnail( 'shapely-featured', $thumbnail_args );
 			?>
 			</a>

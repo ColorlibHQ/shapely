@@ -684,9 +684,13 @@ class Epsilon_Welcome_Screen {
 			'info' => $this->call_plugin_api( $slug ),
 		);
 
-		$arr['icon'] = $this->check_for_icon( $arr['info']->icons );
-		$merge       = $this->check_plugin( $slug );
-
+		if ( is_wp_error( $arr['info'] ) ) {
+			$arr['icon'] = '';
+		} else {
+			$arr['icon'] = $this->check_for_icon( $arr['info']->icons );
+		}
+		
+		$merge = $this->check_plugin( $slug );
 		$arr = array_merge( $arr, $merge );
 
 		return $arr;
@@ -740,14 +744,20 @@ class Epsilon_Welcome_Screen {
 	 * @return string;
 	 */
 	private function check_for_icon( $object ) {
+		if ( ! is_array( $object ) ) {
+			return '';
+		}
+
 		if ( ! empty( $object['svg'] ) ) {
 			$plugin_icon_url = $object['svg'];
 		} elseif ( ! empty( $object['2x'] ) ) {
 			$plugin_icon_url = $object['2x'];
 		} elseif ( ! empty( $object['1x'] ) ) {
 			$plugin_icon_url = $object['1x'];
-		} else {
+		} elseif ( ! empty( $object['default'] ) ) {
 			$plugin_icon_url = $object['default'];
+		} else {
+			$plugin_icon_url = '';
 		}
 
 		return $plugin_icon_url;

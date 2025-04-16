@@ -1,3 +1,20 @@
+= 1.2.16 =
+* Added accessibility improvements for dropdown menu arrows
+* Fixed dropdown menu arrow display for submenu items
+* Improved menu item spacing for items with children
+* Updated Font Awesome to version 6
+* Enhanced CSS for better dropdown menu visibility
+* Fixed navigation menu styling for mobile devices
+* Improved theme documentation in README.md
+* Added Git submodule information and setup instructions
+* Added support for Kali Forms plugin
+* Fixed custom excerpt function to properly handle content
+* Enhanced thumbnail handling with fallback placeholder images
+* Improved theme customizer with selective refresh support
+* Updated styling for buttons and form elements
+* Fixed header text color customization
+* Added responsive design improvements
+
 ## 1.2.14
 	Breadcrumbs Support For Rank Math Plugin
 	Fix php 8.0 deprecation issue and more

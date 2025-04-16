@@ -2,13 +2,13 @@
 
 Theme Name: Shapely
 Theme URI: https://colorlib.com/wp/shapely/
-Version: 1.2.14
+Version: 1.2.16
 
-Requires PHP at least: 5.0
-Tested PHP up to: 8.0.7
+Requires PHP at least: 7.4
+Tested PHP up to: 8.4
 
-Requires WP at least: 4.0
-Tested WP up to: 5.7.2
+Requires WP at least: 6.4
+Tested WP up to: 6.8
 
 Author: Aigars Silkalns
 Author URI: https://colorlib.com/wp/
@@ -17,7 +17,7 @@ License URI: http://www.gnu.org/licenses/gpl.html
 -------------------------------------------------------
 Shapely theme, Copyright 2016-2021 colorlib.com
 Shapely WordPress theme is distributed under the terms of the GNU GPL
-Shapely is based on Underscores http://underscores.me/, (C) 2012-2018 Automattic, Inc.
+Shapely is based on Underscores http://underscores.me/, (C) 2012-2025 Automattic, Inc.
 -------------------------------------------------------
 
 == Description ==
@@ -55,19 +55,36 @@ This page template is used to create the Parallax homepage from our demo : https
 
 == Credits ==
 
-* Based on Underscores http://underscores.me/, (C) 2012-2017 Automattic, Inc., [GPLv2 or later](https://www.gnu.org/licenses/gpl-2.0.html)
-* normalize.css http://necolas.github.io/normalize.css/, (C) 2012-2017 Nicolas Gallagher and Jonathan Neal, [MIT](http://opensource.org/licenses/MIT)
-* TGM Plugin Activation - http://tgmpluginactivation.com/, 2011, Thomas Griffin [GPLv2 or later](https://www.gnu.org/licenses/gpl-2.0.html)
-* Bootstrap v3.3.6 (http://getbootstrap.com), Copyright 2011-2014 Twitter, Inc. Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
-* Font Awesome 4.5.0 by @davegandy - http://fontawesome.io - @fontawesome
-	License - http://fontawesome.io/license (Font: SIL OFL 1.1, CSS: MIT License)
-* WP-Bootstrap-NavWalker licensed under the GPLv2 license (http://www.gnu.org/licenses/gpl-2.0.html)
-* FlexSlider by WooThemes licensed under the GPLv2 license (http://www.gnu.org/licenses/gpl-2.0.html)
-* jQuery Smooth Scroll, https://github.com/kswedberg/jquery-smooth-scroll. Copyright (c) 2015 Karl Swedberg. Licensed MIT(https://github.com/kswedberg/jquery-smooth-scroll/blob/master/LICENSE-MIT)
-* jQuery Cloneya, Lisensed under [MIT](http://opensource.org/licenses/MIT)
+* Based on Underscores https://underscores.me/, (C) 2012-2017 Automattic, Inc., [GPLv2 or later](https://www.gnu.org/licenses/gpl-2.0.html)
+* normalize.css https://necolas.github.io/normalize.css/, (C) 2012-2017 Nicolas Gallagher and Jonathan Neal, [MIT](http://opensource.org/licenses/MIT)
+* TGM Plugin Activation - https://tgmpluginactivation.com/, 2011, Thomas Griffin [GPLv2 or later](https://www.gnu.org/licenses/gpl-2.0.html)
+* Bootstrap v3.3.6 (https://getbootstrap.com), Copyright 2011-2014 Twitter, Inc. Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
+* Font Awesome 6 by @davegandy - https://fontawesome.io - @fontawesome
+	License - https://fontawesome.io/license (Font: SIL OFL 1.1, CSS: MIT License)
+* WP-Bootstrap-NavWalker licensed under the GPLv2 license (https://www.gnu.org/licenses/gpl-2.0.html)
+* FlexSlider by WooThemes licensed under the GPLv2 license (https://www.gnu.org/licenses/gpl-2.0.html)
+* jQuery Smooth Scroll, httpss://github.com/kswedberg/jquery-smooth-scroll. Copyright (c) 2015 Karl Swedberg. Licensed MIT(https://github.com/kswedberg/jquery-smooth-scroll/blob/master/LICENSE-MIT)
+* jQuery Cloneya, Lisensed under [MIT](https://opensource.org/licenses/MIT)
 
 
 == Changelog ==
+
+= 1.2.16 =
+* Added accessibility improvements for dropdown menu arrows
+* Fixed dropdown menu arrow display for submenu items
+* Improved menu item spacing for items with children
+* Updated Font Awesome to version 6
+* Enhanced CSS for better dropdown menu visibility
+* Fixed navigation menu styling for mobile devices
+* Improved theme documentation in README.md
+* Added Git submodule information and setup instructions
+* Added support for Kali Forms plugin
+* Fixed custom excerpt function to properly handle content
+* Enhanced thumbnail handling with fallback placeholder images
+* Improved theme customizer with selective refresh support
+* Updated styling for buttons and form elements
+* Fixed header text color customization
+* Added responsive design improvements
 
 = 1.2.4 =
 * Implemented milestone: https://github.com/puikinsh/shapely/milestone/8?closed=1
