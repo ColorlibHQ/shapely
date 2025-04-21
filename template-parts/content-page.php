@@ -8,7 +8,6 @@
 				$thumbnail_args = array(
 					'class' => 'mb24',
 				);
-				$image = '<img class="wp-post-image" alt="" src="' . esc_url( get_template_directory_uri() ) . '/assets/images/placeholder.jpg" />';
 				the_post_thumbnail( 'shapely-featured', $thumbnail_args );
 			?>
 			</a>

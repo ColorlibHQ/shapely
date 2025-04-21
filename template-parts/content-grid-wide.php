@@ -17,6 +17,11 @@
 				if ( is_category() ) {
 					$show_category = get_theme_mod( 'show_category_on_category_page', 1 );
 				}
+				
+				// Check the global category display setting
+				$show_categories_globally = get_theme_mod( 'show_categories_globally', true );
+				$show_category = $show_category && $show_categories_globally;
+				
 				$image = '<img class="wp-post-image" alt="" src="' . esc_url( get_template_directory_uri() ) . '/assets/images/placeholder_wide.jpg" />';
 				if ( has_post_thumbnail() ) {
 					$layout = shapely_get_layout_class();

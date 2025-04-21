@@ -16,10 +16,18 @@
 			if ( is_category() ) {
 				$show_category = get_theme_mod( 'show_category_on_category_page', 1 );
 			}
-			$image = '<img class="wp-post-image" alt="" src="' . esc_url( get_template_directory_uri() ) . '/assets/images/placeholder.jpg" />';
+			
+			// Check the global category display setting
+			$show_categories_globally = get_theme_mod( 'show_categories_globally', true );
+			$show_category = $show_category && $show_categories_globally;
+			
+			// Use shapely_get_thumbnail that respects the placeholder settings
 			if ( has_post_thumbnail() ) {
 				$image = get_the_post_thumbnail( get_the_ID(), 'shapely-grid' );
+			} else {
+				$image = shapely_get_thumbnail( 'shapely-grid' );
 			}
+			
 			$allowed_tags = array(
 				'img'      => array(
 					'data-srcset' => true,
@@ -35,9 +43,11 @@
 				'noscript' => array(),
 			);
 			?>
+			<?php if ( ! empty( $image ) ) : ?>
 			<a href="<?php echo esc_url( get_the_permalink() ); ?>">
 				<?php echo wp_kses( $image, $allowed_tags ); ?>
 			</a>
+			<?php endif; ?>
 
 			<?php if ( isset( $category[0] ) && $show_category ) : ?>
 				<span class="shapely-category">

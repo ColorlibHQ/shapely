@@ -2,7 +2,7 @@
 
 Theme Name: Shapely
 Theme URI: https://colorlib.com/wp/shapely/
-Version: 1.2.16
+Version: 1.2.17
 
 Requires PHP at least: 7.4
 Tested PHP up to: 8.4
@@ -15,7 +15,7 @@ Author URI: https://colorlib.com/wp/
 License: GNU General Public License v3.0
 License URI: http://www.gnu.org/licenses/gpl.html
 -------------------------------------------------------
-Shapely theme, Copyright 2016-2021 colorlib.com
+Shapely theme, Copyright 2016-2024 colorlib.com
 Shapely WordPress theme is distributed under the terms of the GNU GPL
 Shapely is based on Underscores http://underscores.me/, (C) 2012-2025 Automattic, Inc.
 -------------------------------------------------------
@@ -68,6 +68,15 @@ This page template is used to create the Parallax homepage from our demo : https
 
 
 == Changelog ==
+
+= 1.2.17 =
+* Added a new customizer setting to control placeholder images for posts without featured images
+* Added an option to upload custom placeholder images
+* Added a global setting to show/hide categories across all blog layouts
+* Improved customizer UI with clearer section headings for blog hero image
+* Fixed issue with WP_Customize_Control class loading
+* Added custom CSS for better visual separation in customizer settings
+* Fixed compatibility issues with WordPress 6.8
 
 = 1.2.16 =
 * Added accessibility improvements for dropdown menu arrows

@@ -1,5 +1,8 @@
 <?php
 
+// Only define this class if WP_Customize_Control exists
+if ( class_exists( 'WP_Customize_Control' ) ) :
+
 class Shapely_Logo_Dimensions extends WP_Customize_Control {
 
 	public $type = 'shapely-logo-dimension';
@@ -49,3 +52,5 @@ class Shapely_Logo_Dimensions extends WP_Customize_Control {
 	}
 
 }
+
+endif; // End if class_exists check

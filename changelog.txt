@@ -1,3 +1,12 @@
+= 1.2.17 =
+* Added a new customizer setting to control placeholder images for posts without featured images
+* Added an option to upload custom placeholder images
+* Added a global setting to show/hide categories across all blog layouts
+* Improved customizer UI with clearer section headings for blog hero image
+* Fixed issue with WP_Customize_Control class loading
+* Added custom CSS for better visual separation in customizer settings
+* Fixed compatibility issues with WordPress 6.8
+
 = 1.2.16 =
 * Added accessibility improvements for dropdown menu arrows
 * Fixed dropdown menu arrow display for submenu items

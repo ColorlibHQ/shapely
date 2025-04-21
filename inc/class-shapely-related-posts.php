@@ -228,7 +228,21 @@ if ( ! class_exists( 'Shapely_Related_Posts' ) ) {
 				if ( has_post_thumbnail( $related_posts->post->ID ) ) {
 					echo '<a href="' . esc_url( get_the_permalink() ) . '" class="related-item-thumbnail" style="background-image: url( ' . get_the_post_thumbnail_url( $related_posts->post->ID, 'shapely-grid' ) . ' )">' . get_the_post_thumbnail( $related_posts->post->ID, 'shapely-grid' ) . '</a>';
 				} else {
-					echo '<a href="' . esc_url( get_the_permalink() ) . '" class="related-item-thumbnail" style="background-image: url( ' . get_template_directory_uri() . '/assets/images/placeholder.jpg )"><img class="wp-post-image" alt="" src="' . get_template_directory_uri() . '/assets/images/placeholder.jpg" /></a>';
+					// Check if placeholder images are enabled
+					$placeholder_enabled = get_theme_mod( 'shapely_placeholder_image_enabled', 1 );
+					
+					if ( $placeholder_enabled ) {
+						// Check if a custom placeholder image has been set
+						$custom_placeholder = get_theme_mod( 'shapely_placeholder_image', '' );
+						if ( $custom_placeholder && '' !== $custom_placeholder ) {
+							echo '<a href="' . esc_url( get_the_permalink() ) . '" class="related-item-thumbnail" style="background-image: url( ' . esc_url( $custom_placeholder ) . ' )"><img class="wp-post-image" alt="" src="' . esc_url( $custom_placeholder ) . '" /></a>';
+						} else {
+							echo '<a href="' . esc_url( get_the_permalink() ) . '" class="related-item-thumbnail" style="background-image: url( ' . get_template_directory_uri() . '/assets/images/placeholder.jpg )"><img class="wp-post-image" alt="" src="' . get_template_directory_uri() . '/assets/images/placeholder.jpg" /></a>';
+						}
+					} else {
+						// Just show title and date without image
+						echo '<a href="' . esc_url( get_the_permalink() ) . '" class="related-item-thumbnail-empty"></a>';
+					}
 				}
 
 				if ( $show_title ) {

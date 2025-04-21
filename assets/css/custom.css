@@ -1,0 +1,8 @@
+/* Custom Styles for Shapely Theme */
+
+/* Empty related thumbnail when placeholder is disabled */
+.related-item-thumbnail-empty {
+    display: block;
+    height: 20px;
+    margin-bottom: 15px;
+} 

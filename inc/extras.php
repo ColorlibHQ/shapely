@@ -1016,7 +1016,20 @@ function shapely_get_thumbnail_url( $size = 'full' ) {
 		$image = wp_get_attachment_image_src( get_post_thumbnail_id( $post->ID ), $size );
 		$image = $image[0];
 	} else {
-		$image = get_template_directory_uri() . '/assets/images/placeholder.jpg';
+		// Check if placeholder images are enabled
+		$placeholder_enabled = get_theme_mod( 'shapely_placeholder_image_enabled', 1 );
+		
+		if ( $placeholder_enabled ) {
+			// Check if a custom placeholder image has been set
+			$custom_placeholder = get_theme_mod( 'shapely_placeholder_image', '' );
+			if ( $custom_placeholder && '' !== $custom_placeholder ) {
+				$image = $custom_placeholder;
+			} else {
+				$image = get_template_directory_uri() . '/assets/images/placeholder.jpg';
+			}
+		} else {
+			$image = '';
+		}
 	}
 
 	return $image;
@@ -1036,7 +1049,20 @@ function shapely_get_thumbnail( $size = 'full' ) {
 	if ( has_post_thumbnail( $post->ID ) ) {
 		$image = get_the_post_thumbnail( $post->ID, $size );
 	} else {
-		$image = '<img src="' . get_template_directory_uri() . '/assets/images/placeholder.jpg" alt="' . esc_attr( get_the_title() ) . '" />';
+		// Check if placeholder images are enabled
+		$placeholder_enabled = get_theme_mod( 'shapely_placeholder_image_enabled', 1 );
+		
+		if ( $placeholder_enabled ) {
+			// Check if a custom placeholder image has been set
+			$custom_placeholder = get_theme_mod( 'shapely_placeholder_image', '' );
+			if ( $custom_placeholder && '' !== $custom_placeholder ) {
+				$image = '<img src="' . esc_url( $custom_placeholder ) . '" alt="' . esc_attr( get_the_title() ) . '" />';
+			} else {
+				$image = '<img src="' . get_template_directory_uri() . '/assets/images/placeholder.jpg" alt="' . esc_attr( get_the_title() ) . '" />';
+			}
+		} else {
+			$image = ''; // No image if placeholders are disabled
+		}
 	}
 
 	return $image;

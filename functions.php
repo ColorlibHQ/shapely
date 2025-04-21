@@ -33,6 +33,7 @@ require_once get_template_directory() . '/inc/socialnav.php';
 require_once get_template_directory() . '/inc/class-shapely-related-posts.php';
 require_once get_template_directory() . '/inc/class-shapely.php';
 require_once get_template_directory() . '/inc/class-shapely-builder.php';
+// Custom controls are now loaded in the customizer.php file
 
 if ( ! defined( 'SHAPELY_SETUP_LOADED' ) ) {
 	define( 'SHAPELY_SETUP_LOADED', true );
@@ -269,6 +270,9 @@ function shapely_scripts() {
 
 	//Add custom theme css
 	wp_enqueue_style( 'shapely-style', get_stylesheet_uri() );
+	
+	//Add custom placeholder image css
+	wp_enqueue_style( 'shapely-custom', get_template_directory_uri() . '/assets/css/custom.css' );
 
 	wp_enqueue_script( 'shapely-skip-link-focus-fix', get_template_directory_uri() . '/assets/js/skip-link-focus-fix.js', array(), '20160115', true );
 

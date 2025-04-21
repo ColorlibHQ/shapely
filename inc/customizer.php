@@ -78,7 +78,9 @@ if ( ! function_exists( 'shapely_customizer' ) ) :
  */
 function shapely_customizer( $wp_customize ) {
 
+	// Load custom controls
 	require_once get_template_directory() . '/inc/custom-controls/class-shapely-logo-dimensions.php';
+	require_once get_template_directory() . '/inc/custom-controls/class-shapely-custom-label.php';
 
 	$wp_customize->add_section(
 		new Epsilon_Section_Pro(
@@ -147,11 +149,85 @@ function shapely_customizer( $wp_customize ) {
 		$header_image->priority    = 31;
 	}
 
+	// Add a heading for Blog Hero Image
+	$wp_customize->add_setting(
+		'blog_hero_image_title',
+		array(
+			'default'           => '',
+			'sanitize_callback' => 'wp_kses_post',
+		)
+	);
+
+	$wp_customize->add_control(
+		new Shapely_Custom_Label(
+			$wp_customize,
+			'blog_hero_image_title',
+			array(
+				'label'       => esc_html__( 'Blog Hero Image', 'shapely' ),
+				'description' => esc_html__( 'The image displayed as a banner on blog pages', 'shapely' ),
+				'section'     => 'shapely_blog_section',
+				'priority'    => 30,
+			)
+		)
+	);
+
 	$wp_customize->add_section(
 		'shapely_blog_section', array(
 			'title'    => esc_html__( 'Blog Index Settings', 'shapely' ),
 			'panel'    => 'shapely_blog_options',
 			'priority' => 33,
+		)
+	);
+
+	// Add placeholder image settings
+	$wp_customize->add_setting(
+		'shapely_placeholder_image_enabled', array(
+			'default'           => 1,
+			'sanitize_callback' => 'shapely_sanitize_checkbox',
+		)
+	);
+
+	if ( class_exists( 'Epsilon_Control_Toggle' ) ) {
+		$wp_customize->add_control(
+			new Epsilon_Control_Toggle(
+				$wp_customize, 'shapely_placeholder_image_enabled', array(
+					'label'       => esc_html__( 'Show Placeholder Images', 'shapely' ),
+					'description' => esc_html__( 'Show/hide placeholder images for posts without a featured image', 'shapely' ),
+					'section'     => 'shapely_blog_section',
+					'priority'    => 25,
+				)
+			)
+		);
+	} else {
+		$wp_customize->add_control(
+			'shapely_placeholder_image_enabled', array(
+				'label'       => esc_html__( 'Show Placeholder Images', 'shapely' ),
+				'description' => esc_html__( 'Show/hide placeholder images for posts without a featured image', 'shapely' ),
+				'section'     => 'shapely_blog_section',
+				'priority'    => 25,
+				'type'        => 'checkbox',
+			)
+		);
+	}
+
+	$wp_customize->add_setting(
+		'shapely_placeholder_image', array(
+			'default'           => get_template_directory_uri() . '/assets/images/placeholder.jpg',
+			'sanitize_callback' => 'esc_url_raw',
+		)
+	);
+
+	$wp_customize->add_control(
+		new WP_Customize_Image_Control(
+			$wp_customize, 'shapely_placeholder_image', array(
+				'label'       => esc_html__( 'Custom Placeholder Image', 'shapely' ),
+				'description' => esc_html__( 'Upload a custom placeholder image to use instead of the default', 'shapely' ),
+				'section'     => 'shapely_blog_section',
+				'priority'    => 26,
+				'active_callback' => function() {
+					return get_theme_mod( 'shapely_placeholder_image_enabled', 1 );
+				},
+			)
 		)
 	);
 
@@ -162,6 +238,7 @@ function shapely_customizer( $wp_customize ) {
 			'priority' => 35,
 		)
 	);
+
 	$wp_customize->add_setting(
 		'link_color', array(
 			'default'           => '#745cf9',
@@ -830,6 +907,34 @@ function shapely_customizer( $wp_customize ) {
 		);
 	}
 
+	// Global category display setting
+	$wp_customize->add_setting(
+		'show_categories_globally', array(
+			'default'           => 1,
+			'sanitize_callback' => 'shapely_sanitize_checkbox',
+		)
+	);
+	if ( class_exists( 'Epsilon_Control_Toggle' ) ) {
+		$wp_customize->add_control(
+			new Epsilon_Control_Toggle(
+				$wp_customize, 'show_categories_globally', array(
+					'label'       => esc_html__( 'Show Categories Globally', 'shapely' ),
+					'description' => esc_html__( 'Show/hide categories on all blog pages and single posts', 'shapely' ),
+					'section'     => 'shapely_blog_section',
+				)
+			)
+		);
+	} else {
+		$wp_customize->add_control(
+			'show_categories_globally', array(
+				'label'       => esc_html__( 'Show Categories Globally', 'shapely' ),
+				'description' => esc_html__( 'Show/hide categories on all blog pages and single posts', 'shapely' ),
+				'section'     => 'shapely_blog_section',
+				'type'        => 'checkbox',
+			)
+		);
+	}
+
 	if ( post_type_exists( 'jetpack-portfolio' ) ) {
 
 		// Add Projects Settings
@@ -1326,6 +1431,34 @@ function shapely_customizer_custom_control_css() {
 endif;
 
 add_action( 'customize_controls_print_styles', 'shapely_customizer_custom_control_css' );
+
+if ( ! function_exists( 'shapely_customizer_custom_label_css' ) ) :
+/**
+ * Add CSS styles for the custom label control
+ */
+function shapely_customizer_custom_label_css() {
+	?>
+	<style>
+		.shapely-customizer-heading {
+			margin-top: 15px;
+			margin-bottom: 5px;
+			padding: 10px 0;
+			border-bottom: 1px solid #ddd;
+			color: #333;
+			font-size: 14px;
+			font-weight: 600;
+		}
+		.shapely-customizer-description {
+			margin-top: 5px;
+			color: #555;
+			font-style: italic;
+		}
+	</style>
+	<?php
+}
+endif;
+
+add_action( 'customize_controls_print_styles', 'shapely_customizer_custom_label_css' );
 
 if ( ! function_exists( 'shapely_customize_preview_js' ) ) :
 /**
