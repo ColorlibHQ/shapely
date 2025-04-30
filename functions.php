@@ -368,14 +368,21 @@ require get_template_directory() . '/inc/class-shapely.php';
  */
 require get_template_directory() . '/inc/class-shapely-builder.php';
 
+// Initialize the builder class
+if ( class_exists( 'Shapely_Builder' ) ) {
+    add_action( 'after_setup_theme', function() {
+        Shapely_Builder::get_instance();
+    }, 5 );
+}
+
 // Init the Shapely class
 if ( class_exists( 'Shapely' ) ) {
-	add_action( 'init', function() {
-		global $shapely;
-		if ( ! isset( $shapely ) ) {
-			$shapely = new Shapely();
-		}
-	}, 0 );
+        add_action( 'init', function() {
+                global $shapely;
+                if ( ! isset( $shapely ) ) {
+                        $shapely = new Shapely();
+                }
+        }, 0 );
 }
 
 // Initialize plugins after init

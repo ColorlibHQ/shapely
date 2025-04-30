@@ -360,8 +360,19 @@ class Epsilon_Section_Recommended_Actions extends WP_Customize_Section {
 
 			$info = $this->_call_plugin_api( $k );
 
-			$t['description'] = isset( $info->short_description ) ? $info->short_description : '';
-			$t['title']       = $t['button_label'] . ': ' . isset( $info->name ) ? $info->name : '';
+			// Check if the plugin API call returned an error
+			if ( is_wp_error( $info ) ) {
+				// Handle the error case, maybe log it or set default values
+				// For now, set empty title and description
+				// Optionally: error_log( 'WP_Error getting plugin info for slug ' . $k . ': ' . $info->get_error_message() );
+				$t['description'] = '';
+				$t['title']       = $t['button_label'] . ': ' . sprintf( esc_html__( 'Error fetching info for %s', 'epsilon-framework' ), $k );
+			} else {
+				// Proceed if $info is a valid object
+				$t['description'] = isset( $info->short_description ) ? $info->short_description : '';
+				$plugin_name      = isset( $info->name ) ? $info->name : $k; // Use slug as fallback name
+				$t['title']       = $t['button_label'] . ': ' . $plugin_name;
+			}
 
 			$arr[] = $t;
 		}// End foreach().

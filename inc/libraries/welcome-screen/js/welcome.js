@@ -56,19 +56,29 @@ var welcomeScreenFunctions = {
 
     jQuery.ajax({
       type: 'POST',
-      data: { action: 'shapely_companion_import_content', import: needImported },
+      data: { 
+        action: 'shapely_companion_import_content', 
+        import: needImported,
+        nonce: welcomeScreen.ajax_nonce 
+      },
       dataType: 'json',
       url: ajaxurl,
       success: function (json) {
-        if (container.length) {
-          container.html('<h3>Demo content was imported successfully! </h3>');
+        if (json && (json.success === true || (json.data && json.data.status === true))) {
+          if (container.length) {
+            container.html('<h3>Demo content was imported successfully! </h3>');
 
-          window.setTimeout(function () {
-            container.slideUp(300, function () {
-              container.remove();
-              location.reload();
-            });
-          }, 3000);
+            window.setTimeout(function () {
+              container.slideUp(300, function () {
+                container.remove();
+                location.reload();
+              });
+            }, 3000);
+          }
+        } else {
+          if (container.length) {
+            container.html('<h3>There was an error importing the demo content.</h3>');
+          }
         }
       },
       /**

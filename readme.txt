@@ -2,7 +2,7 @@
 
 Theme Name: Shapely
 Theme URI: https://colorlib.com/wp/shapely/
-Version: 1.2.17
+Version: 1.2.18
 
 Requires PHP at least: 7.4
 Tested PHP up to: 8.4
@@ -144,3 +144,5 @@ This page template is used to create the Parallax homepage from our demo : https
 
 = 1.0.0 - March 26 2016 =
 * Initial release
+
+Stable tag: 1.2.19
