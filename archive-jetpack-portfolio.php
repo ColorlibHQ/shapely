@@ -9,14 +9,15 @@ if ( 'mansonry' == $layout ) {
 	$item_classes .= ' masonry-item';
 }
 
-if ( 'sidebar-left' == $layout_class ) :
-	get_sidebar();
-endif;
-
-
 ?>
+	<div class="row">
+	<?php
+	if ( 'sidebar-left' == $layout_class ) :
+		get_sidebar();
+	endif;
+	?>
 	<div id="primary" class="content-area col-md-8 mb-xs-24 <?php echo esc_attr( $layout_class ); ?>">
-		<main id="main" class="site-main" role="main">
+		<div class="site-main">
 
 			<?php
 			if ( have_posts() ) :
@@ -38,17 +39,22 @@ endif;
 					$projects_args = array(
 						'fields' => 'names',
 					);
-					$project_types = wp_get_post_terms( $post->ID, 'jetpack-portfolio-type', $projects_args );
+					$project_types = wp_get_post_terms( get_the_ID(), 'jetpack-portfolio-type', $projects_args );
+					// wp_get_post_terms() returns WP_Error for an unregistered taxonomy,
+					// which would fatal in the implode() below.
+					if ( is_wp_error( $project_types ) ) {
+						$project_types = array();
+					}
 
 					$thumbnail_url = get_the_post_thumbnail_url( get_the_ID(), 'full' );
 					$item_style    = '';
-					if ( 'mansonry' != $layout ) {
-						$item_style = 'background-image: url(' . $thumbnail_url . ')';
+					if ( 'mansonry' != $layout && $thumbnail_url ) {
+						$item_style = 'background-image: url(' . esc_url( $thumbnail_url ) . ')';
 					}
 					?>
 
 					<article id="post-<?php the_ID(); ?>" <?php post_class( $item_classes ); ?>>
-						<div class="image-tile inner-title hover-reveal text-center" style="<?php echo $item_style; ?>">
+						<div class="image-tile inner-title hover-reveal text-center" style="<?php echo esc_attr( $item_style ); ?>">
 							<?php
 							if ( has_post_thumbnail() ) {
 
@@ -69,7 +75,8 @@ endif;
 										<?php
 										the_title( '<h5 class="mb0">', '</h5>' );
 										if ( ! empty( $project_types ) ) {
-											echo '<span>' . implode( ' / ', $project_types ) . '</span>';
+											// Term names are author-editable; escape each before joining.
+											echo '<span>' . esc_html( implode( ' / ', $project_types ) ) . '</span>';
 										}
 										?>
 									</div>
@@ -92,11 +99,13 @@ endif;
 				endif;
 				?>
 
-		</main><!-- #main -->
+		</div><!-- .site-main -->
 	</div><!-- #primary -->
+	<?php
+	if ( 'sidebar-right' == $layout_class ) :
+		get_sidebar();
+	endif;
+	?>
+	</div><!-- .row -->
 <?php
-if ( 'sidebar-right' == $layout_class ) :
-	get_sidebar();
-endif;
-
 get_footer();

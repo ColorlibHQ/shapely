@@ -107,23 +107,23 @@ class Epsilon_Control_Image extends WP_Customize_Control {
 			</div>
 			<# } else { #>
 			<div class="placeholder">
-				<?php echo esc_html__( 'Upload image', 'epsilon-framework' ); ?>
+				<?php echo esc_html__( 'Upload image', 'shapely' ); ?>
 				<# if ( ! _.isUndefined( data.sizeArray[data.size] ) ) { #>
-					<span class="recommended-size"><?php echo esc_html__('Recommended resolution:', 'epsilon-framework'); ?> {{{ data.sizeArray[data.size].width }}} x {{{ data.sizeArray[data.size].height }}}</span>
+					<span class="recommended-size"><?php echo esc_html__('Recommended resolution:', 'shapely'); ?> {{{ data.sizeArray[data.size].width }}} x {{{ data.sizeArray[data.size].height }}}</span>
 				<# } #>
 			</div>
 			<# } #>
 			<div class="actions">
 				<button class="button image-upload-remove-button" <# if( '' === data.stringifiedVal ) { #> style="display:none;" <# } #>>
-					<?php esc_attr_e( 'Remove', 'epsilon-framework' ); ?>
+					<?php esc_attr_e( 'Remove', 'shapely' ); ?>
 				</button>
 
 				<button type="button" class="button-secondary image-default-button" <# if ( _.isEmpty( data.default ) ) { #> style="display:none;" <# } #>>
-					<?php echo esc_html__( 'Default', 'epsilon-framework' ); ?>
+					<?php echo esc_html__( 'Default', 'shapely' ); ?>
 				</button>
 
 				<button type="button" class="button-primary image-upload-button">
-					<?php echo esc_html__( 'Select File', 'epsilon-framework' ); ?>
+					<?php echo esc_html__( 'Select File', 'shapely' ); ?>
 				</button>
 			</div>
 		</div>

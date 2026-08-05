@@ -53,8 +53,8 @@ class Epsilon_Repeater_Templates {
 						</div>
 					<# } ); #>
 					<div class="repeater-row-footer">
-						<button type="button" class="button-link repeater-row-remove"><?php esc_html_e( 'Remove', 'epsilon-framework' ); ?></button> |
-						<button type="button" class="button-link repeater-row-minimize"><?php esc_html_e( 'Close', 'epsilon-framework' ); ?></button>
+						<button type="button" class="button-link repeater-row-remove"><?php esc_html_e( 'Remove', 'shapely' ); ?></button> |
+						<button type="button" class="button-link repeater-row-minimize"><?php esc_html_e( 'Close', 'shapely' ); ?></button>
 					</div>
 				</div>
 			</li>
@@ -78,13 +78,13 @@ class Epsilon_Repeater_Templates {
 					<# if( data.customization.enabled ) { #>
 					<nav>
 						<# if( data.customization.enabled ) { #>
-							<a href="#" class="active" data-item="regular"><span class="dashicons dashicons-welcome-write-blog"></span> <?php echo __('Fields' ,'epsilon-framework'); ?></a>
+							<a href="#" class="active" data-item="regular"><span class="dashicons dashicons-welcome-write-blog"></span> <?php echo __('Fields' ,'shapely'); ?></a>
 						<# } #>
 						<# if( ! _.isEmpty(data.customization.styling) ) { #>
-							<a href="#" data-item="styling"><span class="dashicons dashicons-admin-customizer"></span> <?php echo __('Styles' ,'epsilon-framework'); ?></a>
+							<a href="#" data-item="styling"><span class="dashicons dashicons-admin-customizer"></span> <?php echo __('Styles' ,'shapely'); ?></a>
 						<# } #>
 							<# if( ! _.isEmpty(data.customization.layout) ) { #>
-							<a href="#" data-item="layout"><span class="dashicons dashicons-layout"></span> <?php echo __('Layout' ,'epsilon-framework'); ?></a>
+							<a href="#" data-item="layout"><span class="dashicons dashicons-layout"></span> <?php echo __('Layout' ,'shapely'); ?></a>
 						<# } #>
 					<# } #>
 					</nav>
@@ -125,8 +125,8 @@ class Epsilon_Repeater_Templates {
 					<# } ); #>
 
 					<div class="repeater-row-footer">
-						<button type="button" class="button-link repeater-row-remove"><?php esc_html_e( 'Remove', 'epsilon-framework' ); ?></button> |
-						<button type="button" class="button-link repeater-row-minimize"><?php esc_html_e( 'Close', 'epsilon-framework' ); ?></button>
+						<button type="button" class="button-link repeater-row-remove"><?php esc_html_e( 'Remove', 'shapely' ); ?></button> |
+						<button type="button" class="button-link repeater-row-minimize"><?php esc_html_e( 'Close', 'shapely' ); ?></button>
 					</div>
 				</div>
 			</li>
@@ -273,19 +273,19 @@ class Epsilon_Repeater_Templates {
 			</div>
 			<# } else { #>
 			<div class="placeholder">
-				<?php echo esc_html__( 'Upload image', 'epsilon-framework' ); ?>
+				<?php echo esc_html__( 'Upload image', 'shapely' ); ?>
 				<# if ( ! _.isUndefined( field.sizeArray[field.size] ) ) { #>
-					<span class="recommended-size"><?php echo esc_html__('Recommended resolution:', 'epsilon-framework'); ?> {{{ field.sizeArray[field.size].width }}} x {{{ field.sizeArray[field.size].height }}}</span>
+					<span class="recommended-size"><?php echo esc_html__('Recommended resolution:', 'shapely'); ?> {{{ field.sizeArray[field.size].width }}} x {{{ field.sizeArray[field.size].height }}}</span>
 				<# } #>
 			</div>
 			<# } #>
 			<div class="actions">
 				<button class="button image-upload-remove-button" <# if( '' === field.default ) { #> style="display:none;" <# } #>>
-					<?php esc_html_e( 'Remove', 'epsilon-framework' ); ?>
+					<?php esc_html_e( 'Remove', 'shapely' ); ?>
 				</button>
 
 				<button type="button" class="button-primary image-upload-button">
-					<?php echo esc_html__( 'Select File', 'epsilon-framework' ); ?>
+					<?php echo esc_html__( 'Select File', 'shapely' ); ?>
 				</button>
 			</div>
 		</div>
@@ -374,7 +374,7 @@ class Epsilon_Repeater_Templates {
 			<input class="epsilon-color-picker" data-attr-mode={{ field.mode }} data-field={{ field.id }} type="text" maxlength="7" placeholder="{{ field.default }}"  value="{{ field.default }}" />
 			<span class="customize-control-title epsilon-color-picker-title">
 				{{{ field.label }}}
-				<a href="#" data-default="{{ field.defaultVal }}" class="epsilon-color-picker-default"><?php echo esc_html__( '(clear)', 'epsilon-framework' ); ?></a>
+				<a href="#" data-default="{{ field.defaultVal }}" class="epsilon-color-picker-default"><?php echo esc_html__( '(clear)', 'shapely' ); ?></a>
 				<# if( field.description ){ #>
 					<span class="epsilon-color-picker-description">{{{ field.description }}}</span>
 				<# } #>

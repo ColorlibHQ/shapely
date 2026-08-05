@@ -198,7 +198,7 @@ class Epsilon_Control_Layouts extends WP_Customize_Control {
 			</div>
 
 			<div class="epsilon-layouts-container-advanced" id="{{{ data.id }}}">
-				<span class="epsilon-layouts-container-label"><?php echo esc_html__( 'Edit column size', 'epsilon-framework' ) ?></span>
+				<span class="epsilon-layouts-container-label"><?php echo esc_html__( 'Edit column size', 'shapely' ) ?></span>
 				<div class="epsilon-layouts-setup">
 					<# for (column in data.columns.columns) { #>
 					<div class="epsilon-column col{{{ data.columns.columns[column].span }}}" data-columns="{{{ data.columns.columns[column].span }}}">

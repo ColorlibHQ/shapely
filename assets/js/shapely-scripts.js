@@ -2,12 +2,14 @@
 (function ($) {
   // jscs:ignore validateLineBreaks
 
-  let clNav, clNavOuterHeight, windowW, menu, farRight, isOnScreen, difference, videos, recentEntries, searchInterval, shapelyCf, element, newURL, scrollToID;
+  let clNav, clNavOuterHeight, windowW, menu, farRight, isOnScreen, difference, videos, recentEntries, searchInterval, shapelyCf, newURL;
 
   $(function () {
-    $('body').imagesLoaded(function () {
-      $(window).trigger('resize').trigger('scroll');
-    });
+    if ('function' === typeof $.fn.imagesLoaded) {
+      $('body').imagesLoaded(function () {
+        $(window).trigger('resize').trigger('scroll');
+      });
+    }
 
     $('.shapely-dropdown').on('click', function (evt) {
       evt.preventDefault();
@@ -17,7 +19,7 @@
 
     // Smooth scroll to inner links
     $('.inner-link').each(function () {
-      let href = $(this).attr('href');
+      let href = $(this).attr('href') || '';
       if ('#' !== href.charAt(0)) {
         $(this).removeClass('inner-link');
       }
@@ -29,12 +31,18 @@
         return;
       }
 
-      // Try to extract the target ID from the related menu item, else use the hash as ID
-      let scrollToID = $('#site-navigation #menu a[href="' + window.location.hash + '"]').data('scroll');
-      scrollToID = scrollToID ? '#' + scrollToID : window.location.hash;
+      // Try to extract the target ID from the related menu item, else use the hash as ID.
+      // The hash is user-controlled, so an invalid selector must not abort document-ready.
+      let scrollTarget;
+      try {
+        let scrollToID = $('#site-navigation #menu a[href="' + window.location.hash + '"]').data('scroll');
+        scrollToID = scrollToID ? '#' + scrollToID : window.location.hash;
+        scrollTarget = $(scrollToID);
+      } catch (e) {
+        return;
+      }
 
-      let scrollTarget = $(scrollToID);
-      if (scrollTarget.length < 1) {
+      if (!scrollTarget || scrollTarget.length < 1) {
         return;
       }
 
@@ -50,20 +58,27 @@
     })();
 
     $('#site-navigation #menu a[href^="#"]:not([href="#"])').on('click', function (evt) {
-      let scrollToID = '#' + $(this).data('scroll');
+      let target;
+      try {
+        let scrollToID = '#' + $(this).data('scroll');
 
-      if ($(scrollToID).length > 1) {
-        scrollToID = $(this).attr('href');
+        if ($(scrollToID).length > 1) {
+          scrollToID = $(this).attr('href');
+        }
+
+        target = $(scrollToID);
+      } catch (e) {
+        return;
       }
 
-      if ($(scrollToID).length < 1) {
+      if (!target || target.length < 1) {
         return;
       }
 
       evt.preventDefault();
       $('html,body').animate(
         {
-          scrollTop: $(scrollToID).offset().top,
+          scrollTop: target.offset().top,
         },
         2000
       );
@@ -94,7 +109,7 @@
       });
     }, 200);
 
-    if ('1' === ShapelyAdminObject.sticky_header) {
+    if (window.ShapelyAdminObject && '1' === String(ShapelyAdminObject.sticky_header)) {
       // Fix nav to top while scrolling
       clNav = $('body .nav-container nav:first');
       clNavOuterHeight = $('body .nav-container nav:first').outerHeight();
@@ -104,7 +119,7 @@
         updateNav();
       }
 
-      $(window).resize(function () {
+      $(window).on('resize', function () {
         windowW = $(window).width();
         if (windowW < 992) {
           clNav.removeClass('fixed scrolled outOfSight');
@@ -134,6 +149,8 @@
     $('.mobile-toggle').on('click', function () {
       $('.nav-bar').toggleClass('nav-open');
       $(this).toggleClass('active');
+      // Keep the button's accessible state in sync with the visual state.
+      $(this).attr('aria-expanded', $(this).hasClass('active') ? 'true' : 'false');
       $('.search-widget-handle').toggleClass('hidden-xs hidden-sm');
       $(window).trigger('resize').trigger('scroll');
     });
@@ -150,128 +167,131 @@
       e.stopPropagation();
     });
 
-    // Image Sliders
-    $('.slider-all-controls').flexslider({
-      start: function (slider) {
-        if (slider.find('.slides li:first-child').find('.fs-vid-background video').length) {
-          slider.find('.slides li:first-child').find('.fs-vid-background video').get(0).play();
-        }
-      },
-      after: function (slider) {
-        if (slider.find('.fs-vid-background video').length) {
-          if (slider.find('li:not(.flex-active-slide)').find('.fs-vid-background video').length) {
-            slider.find('li:not(.flex-active-slide)').find('.fs-vid-background video').get(0).pause();
+    // Image Sliders. FlexSlider is optional -- a blocked or failed script
+    // must not take the rest of document-ready down with it.
+    if ('function' === typeof $.fn.flexslider) {
+      $('.slider-all-controls').flexslider({
+        start: function (slider) {
+          if (slider.find('.slides li:first-child').find('.fs-vid-background video').length) {
+            slider.find('.slides li:first-child').find('.fs-vid-background video').get(0).play();
           }
-          if (slider.find('.flex-active-slide').find('.fs-vid-background video').length) {
-            slider.find('.flex-active-slide').find('.fs-vid-background video').get(0).play();
+        },
+        after: function (slider) {
+          if (slider.find('.fs-vid-background video').length) {
+            if (slider.find('li:not(.flex-active-slide)').find('.fs-vid-background video').length) {
+              slider.find('li:not(.flex-active-slide)').find('.fs-vid-background video').get(0).pause();
+            }
+            if (slider.find('.flex-active-slide').find('.fs-vid-background video').length) {
+              slider.find('.flex-active-slide').find('.fs-vid-background video').get(0).play();
+            }
           }
-        }
-      },
-    });
-    $('.slider-paging-controls').flexslider({
-      animation: 'slide',
-      directionNav: false,
-      after: function (slider) {
-        if (!slider.playing) {
-          slider.pause();
-          slider.play();
-          slider.off('mouseenter mouseleave');
-          slider.off('mouseover mouseout');
-          slider
-            .mouseover(function () {
-              if (!slider.manualPlay && !slider.manualPause) {
-                slider.pause();
-              }
-            })
-            .mouseout(function () {
-              if (!slider.manualPause && !slider.manualPlay && !slider.stopped) {
-                slider.play();
-              }
-            });
-        }
-      },
-    });
-    $('.slider-arrow-controls').flexslider({
-      controlNav: false,
-      after: function (slider) {
-        if (!slider.playing) {
-          slider.pause();
-          slider.play();
-          slider.off('mouseenter mouseleave');
-          slider.off('mouseover mouseout');
-          slider
-            .mouseover(function () {
-              if (!slider.manualPlay && !slider.manualPause) {
-                slider.pause();
-              }
-            })
-            .mouseout(function () {
-              if (!slider.manualPause && !slider.manualPlay && !slider.stopped) {
-                slider.play();
-              }
-            });
-        }
-      },
-    });
-    $('.slider-thumb-controls .slides li').each(function () {
-      let imgSrc = $(this).find('img').attr('src');
-      $(this).attr('data-thumb', imgSrc);
-    });
-    $('.slider-thumb-controls').flexslider({
-      animation: 'slide',
-      controlNav: 'thumbnails',
-      directionNav: true,
-      after: function (slider) {
-        if (!slider.playing) {
-          slider.pause();
-          slider.play();
-          slider.off('mouseenter mouseleave');
-          slider.off('mouseover mouseout');
-          slider
-            .mouseover(function () {
-              if (!slider.manualPlay && !slider.manualPause) {
-                slider.pause();
-              }
-            })
-            .mouseout(function () {
-              if (!slider.manualPause && !slider.manualPlay && !slider.stopped) {
-                slider.play();
-              }
-            });
-        }
-      },
-    });
-    $('.logo-carousel').flexslider({
-      minItems: 1,
-      maxItems: 4,
-      move: 1,
-      itemWidth: 200,
-      itemMargin: 0,
-      animation: 'slide',
-      slideshow: true,
-      slideshowSpeed: 3000,
-      directionNav: false,
-      controlNav: false,
-      after: function (slider) {
-        if (!slider.playing) {
-          slider.pause();
-          slider.play();
-          slider.off('mouseenter mouseleave');
-          slider.off('mouseover mouseout');
-          slider
-            .mouseover(function () {
-              if (!slider.manualPlay && !slider.manualPause) {
-                slider.pause();
-              }
-            })
-            .mouseout(function () {
-              if (!slider.manualPause && !slider.manualPlay && !slider.stopped) {
-                slider.play();
-              }
-            });
-        }
-      },
-    });
+        },
+      });
+      $('.slider-paging-controls').flexslider({
+        animation: 'slide',
+        directionNav: false,
+        after: function (slider) {
+          if (!slider.playing) {
+            slider.pause();
+            slider.play();
+            slider.off('mouseenter mouseleave');
+            slider.off('mouseover mouseout');
+            slider
+              .on('mouseover', function () {
+                if (!slider.manualPlay && !slider.manualPause) {
+                  slider.pause();
+                }
+              })
+              .on('mouseout', function () {
+                if (!slider.manualPause && !slider.manualPlay && !slider.stopped) {
+                  slider.play();
+                }
+              });
+          }
+        },
+      });
+      $('.slider-arrow-controls').flexslider({
+        controlNav: false,
+        after: function (slider) {
+          if (!slider.playing) {
+            slider.pause();
+            slider.play();
+            slider.off('mouseenter mouseleave');
+            slider.off('mouseover mouseout');
+            slider
+              .on('mouseover', function () {
+                if (!slider.manualPlay && !slider.manualPause) {
+                  slider.pause();
+                }
+              })
+              .on('mouseout', function () {
+                if (!slider.manualPause && !slider.manualPlay && !slider.stopped) {
+                  slider.play();
+                }
+              });
+          }
+        },
+      });
+      $('.slider-thumb-controls .slides li').each(function () {
+        let imgSrc = $(this).find('img').attr('src');
+        $(this).attr('data-thumb', imgSrc);
+      });
+      $('.slider-thumb-controls').flexslider({
+        animation: 'slide',
+        controlNav: 'thumbnails',
+        directionNav: true,
+        after: function (slider) {
+          if (!slider.playing) {
+            slider.pause();
+            slider.play();
+            slider.off('mouseenter mouseleave');
+            slider.off('mouseover mouseout');
+            slider
+              .on('mouseover', function () {
+                if (!slider.manualPlay && !slider.manualPause) {
+                  slider.pause();
+                }
+              })
+              .on('mouseout', function () {
+                if (!slider.manualPause && !slider.manualPlay && !slider.stopped) {
+                  slider.play();
+                }
+              });
+          }
+        },
+      });
+      $('.logo-carousel').flexslider({
+        minItems: 1,
+        maxItems: 4,
+        move: 1,
+        itemWidth: 200,
+        itemMargin: 0,
+        animation: 'slide',
+        slideshow: true,
+        slideshowSpeed: 3000,
+        directionNav: false,
+        controlNav: false,
+        after: function (slider) {
+          if (!slider.playing) {
+            slider.pause();
+            slider.play();
+            slider.off('mouseenter mouseleave');
+            slider.off('mouseover mouseout');
+            slider
+              .on('mouseover', function () {
+                if (!slider.manualPlay && !slider.manualPause) {
+                  slider.pause();
+                }
+              })
+              .on('mouseout', function () {
+                if (!slider.manualPause && !slider.manualPlay && !slider.stopped) {
+                  slider.play();
+                }
+              });
+          }
+        },
+      });
+    }
 
     // Lightbox gallery titles
     $('.lightbox-grid li a').each(function () {
@@ -296,7 +316,7 @@
           containerId,
           player;
 
-        if (isYoutube) {
+        if (isYoutube && 'function' === typeof $.fn.YTPlayer) {
           videoId = $(this).attr('data-video-id');
           autoplay = parseInt($(this).attr('data-autoplay'), 10);
           mute = parseInt($(this).attr('data-mute'), 10);
@@ -324,19 +344,21 @@
           });
 
           $(play).on('click', function (e) {
-            let parent = $(this).parents('.video-widget'),
-              instance = $(parent).data('ytPlayer').player;
+            let ytPlayer = $(this).parents('.video-widget').data('ytPlayer');
             e.preventDefault();
-            instance.playVideo();
+            if (ytPlayer && ytPlayer.player) {
+              ytPlayer.player.playVideo();
+            }
           });
 
           $(pause).on('click', function (e) {
-            let parent = $(this).parents('.video-widget'),
-              instance = $(parent).data('ytPlayer').player;
+            let ytPlayer = $(this).parents('.video-widget').data('ytPlayer');
             e.preventDefault();
-            instance.pauseVideo();
+            if (ytPlayer && ytPlayer.player) {
+              ytPlayer.player.pauseVideo();
+            }
           });
-        } else if (isVimeo) {
+        } else if (isVimeo && 'undefined' !== typeof Vimeo && Vimeo.Player) {
           data = $(this).data();
           options = {
             id: data.videoId,
@@ -363,19 +385,19 @@
           });
         } else {
           $(play).on('click', function (e) {
-            let parent = $(this).parents('.video-widget'),
-              instance = $(parent).data('vide'),
-              video = instance.getVideoObject();
+            let instance = $(this).parents('.video-widget').data('vide');
             e.preventDefault();
-            video.play();
+            if (instance && instance.getVideoObject()) {
+              instance.getVideoObject().play();
+            }
           });
 
           $(pause).on('click', function (e) {
-            let parent = $(this).parents('.video-widget'),
-              instance = $(parent).data('vide'),
-              video = instance.getVideoObject();
+            let instance = $(this).parents('.video-widget').data('vide');
             e.preventDefault();
-            video.pause();
+            if (instance && instance.getVideoObject()) {
+              instance.getVideoObject().pause();
+            }
           });
         }
       });
@@ -430,23 +452,26 @@
       });
     } // End
 
-    $('#masthead .function #s').on('focus', function () {
-      $(this).parents('.function').addClass('active');
+    // Keep the header search panel open while any control inside it has focus.
+    // These handlers used to target #s / #searchsubmit, ids the search form has
+    // never rendered, so the panel closed the moment the field was focused.
+    // The timer is a one-shot setTimeout: the old setInterval was never cleared
+    // unless the submit button happened to receive focus.
+    $('#masthead .function').on('focusin', function () {
+      clearTimeout(searchInterval);
+      $(this).addClass('active');
     });
 
-    $('#masthead .function #s').focusout(function () {
-      searchInterval = setInterval(function () {
-        $('#masthead .function').removeClass('active');
-      }, 500);
-    });
-
-    $('#masthead .function #searchsubmit').on('focus', function () {
-      clearInterval(searchInterval);
-      $(this).parents('.function').addClass('active');
-    });
-
-    $('#masthead .function #searchsubmit').focusout(function () {
-      $(this).parents('.function').removeClass('active');
+    $('#masthead .function').on('focusout', function () {
+      let $panel = $(this);
+      clearTimeout(searchInterval);
+      searchInterval = setTimeout(function () {
+        // Only close once focus has genuinely left the panel, not while it is
+        // moving from the input to the submit button.
+        if (!$panel.find(':focus').length) {
+          $panel.removeClass('active');
+        }
+      }, 150);
     });
 
     // Check if is a contact form 7 with parallax background
@@ -532,9 +557,6 @@
     });
   }
 
-  $('body').imagesLoaded(function () {
-    $(window).trigger('resize').trigger('scroll');
-  });
 })(jQuery);
 
 /*

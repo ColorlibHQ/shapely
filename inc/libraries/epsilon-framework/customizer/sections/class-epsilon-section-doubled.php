@@ -48,12 +48,12 @@ class Epsilon_Section_Doubled extends WP_Customize_Section {
 		<li id="accordion-section-{{ data.id }}" class="accordion-section control-section control-section-{{ data.type }}">
 			<h3 class="accordion-section-title" tabindex="0">
 				{{ data.title }}
-				<span class="screen-reader-text"><?php _e( 'Press return or enter to open this section', 'epsilon-framework' ); ?></span>
+				<span class="screen-reader-text"><?php _e( 'Press return or enter to open this section', 'shapely' ); ?></span>
 			</h3>
 			<ul class="accordion-section-content">
 				<li class="customize-section-description-container section-meta <# if ( data.description_hidden ) { #>customize-info<# } #>" >
 					<button type="button" class="button epsilon-close-doubled-section" aria-expanded="false" aria-controls="available-sections">
-						<span class="screen-reader-text"><?php esc_html_e( 'Close', 'epsilon-framework' ); ?></span>
+						<span class="screen-reader-text"><?php esc_html_e( 'Close', 'shapely' ); ?></span>
 					</button>
 					<div class="customize-section-title">
 						<h3>
@@ -61,7 +61,7 @@ class Epsilon_Section_Doubled extends WP_Customize_Section {
 							{{ data.title }}
 						</h3>
 						<# if ( data.description && data.description_hidden ) { #>
-							<button type="button" class="customize-help-toggle dashicons dashicons-editor-help" aria-expanded="false"><span class="screen-reader-text"><?php _e( 'Help', 'epsilon-framework' ); ?></span></button>
+							<button type="button" class="customize-help-toggle dashicons dashicons-editor-help" aria-expanded="false"><span class="screen-reader-text"><?php _e( 'Help', 'shapely' ); ?></span></button>
 							<div class="description customize-section-description">
 								{{{ data.description }}}
 							</div>

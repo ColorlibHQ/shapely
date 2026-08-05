@@ -1,20 +1,42 @@
 {
   "name": "shapely",
-  "main": "Gruntfile.js",
-  "version": "1.2.3",
+  "version": "1.2.20",
+  "description": "Build and lint tooling for the Shapely WordPress theme.",
   "homepage": "https://www.colorlib.com",
   "author": "Colorlib",
-  "license": "GPL v3",
-  "repository": "https://github.com/puikinsh/shapely",
+  "license": "GPL-3.0-or-later",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/puikinsh/shapely.git"
+  },
+  "private": true,
+  "type": "module",
+  "engines": {
+    "node": ">=20"
+  },
+  "scripts": {
+    "lint": "npm-run-all --continue-on-error --parallel lint:js lint:css lint:php",
+    "lint:js": "eslint assets/js",
+    "lint:css": "stylelint style.css assets/css/custom.css",
+    "lint:php": "node tools/lint-php.mjs",
+    "lint:fix": "npm-run-all lint:js:fix lint:css:fix",
+    "lint:js:fix": "eslint assets/js --fix",
+    "lint:css:fix": "stylelint style.css assets/css/custom.css --fix",
+    "i18n": "node tools/make-pot.mjs",
+    "i18n:check": "node tools/check-textdomain.mjs",
+    "images": "node tools/optimize-images.mjs",
+    "prebuild": "npm run i18n:check",
+    "build": "node tools/build-zip.mjs",
+    "verify": "npm-run-all lint i18n:check"
+  },
   "devDependencies": {
-    "grunt": "^1.4.1",
-    "grunt-checktextdomain": "^1.0.1",
-    "grunt-cli": "^1.4.3",
-    "grunt-contrib-clean": "^2.0.0",
-    "grunt-contrib-compress": "^2.0.0",
-    "grunt-contrib-copy": "^1.0.0",
-    "grunt-contrib-imagemin": "^4.0.0",
-    "grunt-wp-i18n": "^1.0.3",
-    "load-grunt-tasks": "^5.1.0"
+    "@eslint/js": "^10.0.1",
+    "archiver": "^8.0.0",
+    "eslint": "^10.8.0",
+    "globals": "^17.9.0",
+    "npm-run-all2": "^9.0.3",
+    "sharp": "^0.35.3",
+    "stylelint": "^17.14.1",
+    "stylelint-config-standard": "^40.0.0"
   }
 }

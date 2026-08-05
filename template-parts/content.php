@@ -30,23 +30,6 @@ $show_categories_globally = get_theme_mod( 'show_categories_globally', true );
 	<header class="entry-header nolist">
 		<?php
 		$category = get_the_category();
-		
-		// Define allowed tags outside of conditional to prevent undefined variable
-		$allowed_tags = array(
-			'img'      => array(
-				'data-srcset' => true,
-				'data-src'    => true,
-				'srcset'      => true,
-				'sizes'       => true,
-				'src'         => true,
-				'class'       => true,
-				'alt'         => true,
-				'width'       => true,
-				'height'      => true,
-			),
-			'noscript' => array(),
-		);
-
 		if ( has_post_thumbnail() ) {
 			$layout = shapely_get_layout_class();
 			$size   = 'shapely-featured';
@@ -61,8 +44,8 @@ $show_categories_globally = get_theme_mod( 'show_categories_globally', true );
 		}
 		?>
 		<?php if ( ! empty( $image ) ) : ?>
-		<a href="<?php echo esc_url( get_permalink() ); ?>">
-			<?php echo wp_kses( $image, $allowed_tags ); ?>
+		<a href="<?php echo esc_url( get_permalink() ); ?>" aria-label="<?php echo esc_attr( get_the_title() ); ?>">
+			<?php echo wp_kses( $image, shapely_image_allowed_html() ); ?>
 		</a>
 		<?php endif; ?>
 
@@ -77,7 +60,7 @@ $show_categories_globally = get_theme_mod( 'show_categories_globally', true );
 	<div class="entry-content">
 		<?php if ( $post_title ) : ?>
 			<h2 class="post-title entry-title">
-				<a href="<?php echo esc_url( get_permalink() ); ?>"><?php echo wp_trim_words( get_the_title(), 9 ); ?></a>
+				<a href="<?php echo esc_url( get_permalink() ); ?>"><?php echo esc_html( wp_trim_words( get_the_title(), 9 ) ); ?></a>
 			</h2>
 		<?php endif; ?>
 

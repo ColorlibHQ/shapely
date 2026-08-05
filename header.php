@@ -23,14 +23,20 @@ if ( ! function_exists( 'get_theme_mod' ) ) {
 $shapely_transparent_header         = get_theme_mod( 'shapely_transparent_header', 0 );
 $shapely_transparent_header_opacity = get_theme_mod( 'shapely_sticky_header_transparency', 100 );
 
-// Set header style
-$style = '';
+// Set header style.
+$shapely_nav_style = '';
 if ( 1 == $shapely_transparent_header && $shapely_transparent_header_opacity ) {
-	if ( $shapely_transparent_header_opacity < 100 ) {
-		$style = 'style="background: rgba(255, 255, 255, 0.' . esc_attr( $shapely_transparent_header_opacity ) . ');"';
-	} else {
-		$style = 'style="background: rgba(255, 255, 255, ' . esc_attr( $shapely_transparent_header_opacity ) . ');"';
-	}
+	/*
+	 * The customizer stores 0-100; rgba() needs a 0-1 alpha. The old string
+	 * concatenation ("0." . $value) only worked because the slider emits
+	 * two-digit values, and produced an invalid "rgba(255,255,255,100)" at the
+	 * top of the range that browsers merely happened to clamp.
+	 */
+	$shapely_alpha     = max( 0, min( 100, (int) $shapely_transparent_header_opacity ) ) / 100;
+	$shapely_nav_style = sprintf(
+		'background: rgba(255, 255, 255, %s);',
+		rtrim( rtrim( number_format( $shapely_alpha, 2, '.', '' ), '0' ), '.' )
+	);
 }
 ?>
 
@@ -40,7 +46,9 @@ if ( 1 == $shapely_transparent_header && $shapely_transparent_header_opacity ) {
 	<meta charset="<?php bloginfo( 'charset' ); ?>">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="profile" href="https://gmpg.org/xfn/11">
-	<link rel="pingback" href="<?php bloginfo( 'pingback_url' ); ?>">
+	<?php if ( 'open' === get_option( 'default_ping_status' ) ) : ?>
+	<link rel="pingback" href="<?php echo esc_url( get_bloginfo( 'pingback_url' ) ); ?>">
+	<?php endif; ?>
 
 	<?php wp_head(); ?>
 </head>
@@ -52,14 +60,18 @@ if ( 1 == $shapely_transparent_header && $shapely_transparent_header_opacity ) {
 
 	<header id="masthead" class="site-header<?php echo esc_attr( get_theme_mod( 'mobile_menu_on_desktop', false ) ? ' mobile-menu' : '' ); ?>" role="banner">
 		<div class="nav-container">
-			<nav <?php echo $style; ?> id="site-navigation" class="main-navigation" role="navigation">
+			<nav <?php echo $shapely_nav_style ? 'style="' . esc_attr( $shapely_nav_style ) . '"' : ''; ?> id="site-navigation" class="main-navigation" role="navigation">
 				<div class="container nav-bar">
 					<div class="flex-row">
 						<div class="module left site-title-container">
 							<?php shapely_get_header_logo(); ?>
 						</div>
-						<button class="module widget-handle mobile-toggle right visible-sm visible-xs">
-							<i class="fa fa-bars"></i>
+						<button class="module widget-handle mobile-toggle right visible-sm visible-xs"
+							type="button"
+							aria-expanded="false"
+							aria-controls="menu"
+							aria-label="<?php esc_attr_e( 'Toggle navigation menu', 'shapely' ); ?>">
+							<i class="fa fa-bars" aria-hidden="true"></i>
 						</button>
 						<div class="module-group right">
 							<div class="module left">

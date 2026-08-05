@@ -73,7 +73,7 @@ if ( ! function_exists( 'shapely_custom_password_form' ) ) :
 function shapely_custom_password_form() {
 	global $post;
 	$label = 'pwbox-' . ( empty( $post->ID ) ? rand() : $post->ID );
-	$o     = '<form class="protected-post-form" action="' . get_option( 'siteurl' ) . '/wp-login.php?action=postpass" method="post">
+	$o     = '<form class="protected-post-form" action="' . esc_url( site_url( 'wp-login.php?action=postpass', 'login_post' ) ) . '" method="post">
   <div class="row">
     <div class="col-lg-10">
         <p>' . esc_html__( 'This post is password protected. To view it please enter your password below:', 'shapely' ) . '</p>
@@ -135,7 +135,7 @@ if ( ! function_exists( 'shapely_get_theme_options' ) ) :
 	 * Get information from Theme Options and add it into wp_head
 	 */
 	function shapely_get_theme_options() {
-		echo '<style type="text/css">';
+		echo '<style>';
 
 		if ( get_theme_mod( 'link_color' ) ) {
 			echo 'a, .image-bg a, .contact-section .social-icons li a, a:visited, .footer .footer-credits a, .post-content .post-meta li a, .post-content .shapely-category a, .module.widget-handle i {color:' . esc_attr( get_theme_mod( 'link_color' ) ) . ' }';
@@ -275,6 +275,8 @@ if ( ! function_exists( 'shapely_get_theme_options' ) ) :
 
 			echo '.widget.widget_search .search-form > input#s:hover,
 				.widget.widget_search .search-form > input#s:focus,
+				.search-form .search-field:hover,
+				.search-form .search-field:focus,
 				.widget.widget_calendar #wp-calendar td:not(.pad):not(#next):not(#prev)#today,
 				.widget_product_search .woocommerce-product-search > input.search-field:hover,
 				.widget_product_search .woocommerce-product-search > input.search-field:focus,
@@ -301,10 +303,18 @@ if ( ! function_exists( 'shapely_get_theme_options' ) ) :
 				.widget.widget_calendar #wp-calendar td:not(.pad):not(#next):not(#prev)#today:focus
 				{ background-color: ' . esc_attr( get_theme_mod( 'button_hover_color' ) ) . ' }';
 
+			/*
+			 * The input[type="text"] + .searchsubmit selectors below never matched
+			 * the theme's own form, which renders type="search" and .search-submit.
+			 * They are kept for plugin-supplied forms; the .search-form rules are
+			 * the ones that apply to Shapely's markup.
+			 */
 			echo '.widget.widget_search input[type="text"]:focus + button[type="submit"].searchsubmit,
 				.widget.widget_search input[type="text"]:hover + button[type="submit"].searchsubmit,
 				.widget.widget_product_search input[type="text"]:focus + button[type="submit"].searchsubmit,
 				.widget.widget_product_search input[type="text"]:hover + button[type="submit"].searchsubmit,
+				.search-form .search-field:focus + .search-submit,
+				.search-form .search-field:hover + .search-submit,
 				.image-bg .text-slider .flex-direction-nav li a:focus:before
 				{ color: ' . esc_attr( get_theme_mod( 'button_hover_color' ) ) . ' }';
 		}
@@ -318,8 +328,30 @@ if ( ! function_exists( 'shapely_get_theme_options' ) ) :
 	}
 endif;
 
-// Hook shapely_get_theme_options to wp_head to apply the theme option styles
-add_action('wp_head', 'shapely_get_theme_options');
+if ( ! function_exists( 'shapely_enqueue_theme_options_css' ) ) :
+	/**
+	 * Attach the customizer-driven CSS to the theme stylesheet.
+	 *
+	 * Previously this was echoed straight into wp_head as its own <style> block,
+	 * which bypassed the dependency graph and any CSS concatenation. Buffering
+	 * shapely_get_theme_options() keeps that function overridable by child themes
+	 * while routing its output through wp_add_inline_style().
+	 */
+	function shapely_enqueue_theme_options_css() {
+		ob_start();
+		shapely_get_theme_options();
+		$css = (string) ob_get_clean();
+
+		// Drop the wrapping <style> tags the function emits.
+		$css = trim( preg_replace( '#</?style[^>]*>#i', '', $css ) );
+
+		if ( '' !== $css ) {
+			wp_add_inline_style( 'shapely-style', $css );
+		}
+	}
+endif;
+
+add_action( 'wp_enqueue_scripts', 'shapely_enqueue_theme_options_css', 20 );
 
 if ( ! function_exists( 'shapely_caption' ) ) :
 /**
@@ -431,17 +463,23 @@ if ( ! function_exists( 'shapely_pagination' ) ) {
 	function shapely_pagination() {
 		?>
 		<div class="text-center">
-			<nav class="pagination">
+			<?php // the_posts_pagination() emits its own <nav>; a second one here would nest navigation landmarks. ?>
+			<div class="pagination">
 				<?php
+				/*
+				 * <icon> is not an HTML element -- browsers parse it as an unknown
+				 * inline element, so the arrows rendered but the links had no
+				 * accessible name at all. Use <i> plus screen-reader text.
+				 */
 				the_posts_pagination(
 					array(
 						'mid_size'  => 2,
-						'prev_text' => '<icon class="fa fa-angle-left"></icon>',
-						'next_text' => '<icon class="fa fa-angle-right"></icon>',
+						'prev_text' => '<i class="fa fa-angle-left" aria-hidden="true"></i><span class="screen-reader-text">' . esc_html__( 'Previous page', 'shapely' ) . '</span>',
+						'next_text' => '<i class="fa fa-angle-right" aria-hidden="true"></i><span class="screen-reader-text">' . esc_html__( 'Next page', 'shapely' ) . '</span>',
 					)
 				);
 				?>
-			</nav>
+			</div>
 		</div>
 		<?php
 	}
@@ -456,32 +494,35 @@ if ( ! function_exists( 'shapely_search_form' ) ) :
  * @return string
  */
 function shapely_search_form( $form ) {
-	// This is a hybrid approach:
-	// 1. We use a properly formatted search form with role="search" to satisfy WordPress standards
-	// 2. But we hardcode it ourselves for complete control over styling 
-	// 3. While still making it filterable since we use the filter's form parameter
-	
-	// Extract potential form ID, class, or other attributes using regex
-	$form_attributes = '';
-	if (preg_match('/<form\s+([^>]*)>/', $form, $matches)) {
-		// Keep any existing attributes except role which we'll explicitly set
-		if (isset($matches[1])) {
-			$form_attributes = preg_replace('/\brole=["\'][^"\']*["\']/', '', $matches[1]);
-		}
-	}
-	
-	// Build a custom search form with precise styling but including required role attribute
-	$new_form = '<form role="search" ' . $form_attributes . ' method="get" class="search-form" action="' . esc_url( home_url( '/' ) ) . '">
+	/*
+	 * The form is rebuilt from scratch rather than rewritten with a regex: the old
+	 * approach spliced the incoming <form> attributes back in verbatim, which both
+	 * emitted duplicate method/class/action attributes and reflected whatever any
+	 * other plugin had put there straight into the markup.
+	 *
+	 * A unique id per instance keeps the label association valid when more than one
+	 * search form is rendered on a page (header widget + sidebar widget).
+	 */
+	$field_id = wp_unique_id( 'shapely-search-field-' );
+
+	return sprintf(
+		'<form role="search" method="get" class="search-form" action="%1$s">
 		<div class="search-form-wrapper">
-			<input type="search" class="search-field" placeholder="' . esc_attr_x( 'Search &hellip;', 'placeholder', 'shapely' ) . '" value="' . esc_attr( get_search_query() ) . '" name="s" />
+			<label class="screen-reader-text" for="%2$s">%3$s</label>
+			<input type="search" id="%2$s" class="search-field" placeholder="%4$s" value="%5$s" name="s" />
 			<button type="submit" class="search-submit">
-				<span class="screen-reader-text">' . _x( 'Search', 'submit button', 'shapely' ) . '</span>
+				<span class="screen-reader-text">%6$s</span>
 				<i class="fas fa-search" aria-hidden="true"></i>
 			</button>
 		</div>
-	</form>';
-	
-	return $new_form;
+	</form>',
+		esc_url( home_url( '/' ) ),
+		esc_attr( $field_id ),
+		esc_html_x( 'Search for:', 'label', 'shapely' ),
+		esc_attr_x( 'Search &hellip;', 'placeholder', 'shapely' ),
+		esc_attr( get_search_query() ),
+		esc_html_x( 'Search', 'submit button', 'shapely' )
+	);
 }
 endif;
 
@@ -534,7 +575,7 @@ if ( ! function_exists( 'shapely_author_bio' ) ) {
 							?>
 							<li>
 								<a href="<?php echo esc_url( $twitter_profile ); ?>">
-									<i class="fa fa-twitter"></i>
+									<i class="fa-brands fa-x-twitter" aria-hidden="true"></i>
 								</a>
 							</li>
 							<?php
@@ -545,7 +586,7 @@ if ( ! function_exists( 'shapely_author_bio' ) ) {
 							?>
 							<li>
 								<a href="<?php echo esc_url( $fb_profile ); ?>">
-									<i class="fa fa-facebook"></i>
+									<i class="fa-brands fa-facebook-f" aria-hidden="true"></i>
 								</a>
 							</li>
 							<?php
@@ -556,7 +597,7 @@ if ( ! function_exists( 'shapely_author_bio' ) ) {
 							?>
 							<li>
 								<a href="<?php echo esc_url( $dribble_profile ); ?>">
-									<i class="fa fa-dribbble"></i>
+									<i class="fa-brands fa-dribbble" aria-hidden="true"></i>
 								</a>
 							</li>
 							<?php
@@ -567,7 +608,7 @@ if ( ! function_exists( 'shapely_author_bio' ) ) {
 							?>
 							<li>
 								<a href="<?php echo esc_url( $github_profile ); ?>">
-									<i class="fa fa-github"></i>
+									<i class="fa-brands fa-github" aria-hidden="true"></i>
 								</a>
 							</li>
 							<?php
@@ -578,7 +619,7 @@ if ( ! function_exists( 'shapely_author_bio' ) ) {
 							?>
 							<li>
 								<a href="<?php echo esc_url( $vimeo_profile ); ?>">
-									<i class="fa fa-vimeo"></i>
+									<i class="fa-brands fa-vimeo-v" aria-hidden="true"></i>
 								</a>
 							</li>
 							<?php
@@ -730,12 +771,13 @@ function shapely_get_header_logo() {
 		$html = sprintf( '<a href="%1$s" class="custom-logo-link" rel="home" itemprop="url">%2$s</a>', esc_url( home_url( '/' ) ), wp_get_attachment_image( $custom_logo_id, $dimension, false, $custom_logo_attr ) );
 	} // If no logo is set but we're in the Customizer, leave a placeholder (needed for the live preview).
 	elseif ( is_customize_preview() ) {
-		$html = sprintf( '<a href="%1$s" class="custom-logo-link"><img class="custom-logo"/ style="display:none;"><span class="site-title">%2$s</span></a>', esc_url( home_url( '/' ) ), esc_html( get_bloginfo( 'name' ) ) );
+		$html = sprintf( '<a href="%1$s" class="custom-logo-link"><img class="custom-logo" style="display:none;" alt="" /><span class="site-title">%2$s</span></a>', esc_url( home_url( '/' ) ), esc_html( get_bloginfo( 'name' ) ) );
 	} else {
 		$html = sprintf( '<a href="%1$s" class="custom-logo-link"><span class="site-title">%2$s</span></a>', esc_url( home_url( '/' ) ), esc_html( get_bloginfo( 'name' ) ) );
 	}
 
-	echo $html;
+	// Every branch above is built from escaped parts; kses guards against filtered attachment markup.
+	echo wp_kses_post( $html );
 }
 endif;
 
@@ -830,15 +872,26 @@ function shapely_top_callout() {
 					<?php
 					$breadcrumbs_enabled = false;
 					$title_in_post       = true;
+
 					if ( function_exists( 'yoast_breadcrumb' ) ) {
-						$options             = get_option( 'wpseo_internallinks' );
-						$breadcrumbs_enabled = ( true === $options['breadcrumbs-enable'] );
+						/*
+						 * Yoast SEO moved `breadcrumbs-enable` from the `wpseo_internallinks`
+						 * option into `wpseo_titles` in version 7.0. Read the modern location
+						 * first and fall back to the legacy one, guarding both against the
+						 * `false` that get_option() returns when the option does not exist.
+						 */
+						$options = get_option( 'wpseo_titles' );
+						if ( ! is_array( $options ) || ! array_key_exists( 'breadcrumbs-enable', $options ) ) {
+							$options = get_option( 'wpseo_internallinks' );
+						}
+
+						$breadcrumbs_enabled = is_array( $options ) && ! empty( $options['breadcrumbs-enable'] );
 						$title_in_post       = get_theme_mod( 'hide_post_title', true );
 					}
 
 					if ( function_exists( 'rank_math_the_breadcrumbs' ) ) {
+						// Rank Math only defines this helper when breadcrumbs are switched on.
 						$breadcrumbs_enabled = true;
-						$breadcrumbs_enabled = ( true === is_array($options)? $options['breadcrumbs-enable'] : false);
 						$title_in_post       = get_theme_mod( 'hide_post_title', true );
 					}
 					$header_color = get_theme_mod( 'header_textcolor', false );
@@ -854,14 +907,16 @@ function shapely_top_callout() {
 								} elseif ( is_archive() ) {
 									if ( is_post_type_archive( 'jetpack-portfolio' ) ) {
 										$portfolio_title = get_theme_mod( 'portfolio_name', esc_html__( 'Portfolio', 'shapely' ) );
-										echo $portfolio_title;
+										echo esc_html( $portfolio_title );
 									} else {
-										echo get_the_archive_title();
+										// Core wraps the archive title in a <span> since WP 6.7.
+										echo wp_kses_post( get_the_archive_title() );
 									}
 								} elseif ( is_singular() ) {
-									echo single_post_title();
+									// single_post_title() echoes on its own; echoing its void return is a no-op.
+									single_post_title();
 								} else {
-									echo get_the_title();
+									echo esc_html( get_the_title() );
 								}
 								?>
 							</h3>
@@ -990,15 +1045,31 @@ if ( ! function_exists( 'shapely_excerpt' ) ) :
  * @return string
  */
 function shapely_excerpt( $length ) {
-	global $post;
-	$content = $post->post_content;
-	$content = strip_tags( $content );
-	$content = strip_shortcodes( $content );
-	$content = substr( $content, 0, $length );
-	$content = substr( $content, 0, strripos( $content, ' ' ) );
-	$content = $content . '...';
+	$post = get_post();
+	if ( ! $post instanceof WP_Post ) {
+		return '';
+	}
 
-	return $content;
+	// Strip shortcodes before tags, otherwise shortcode attributes survive as text.
+	$content = strip_shortcodes( $post->post_content );
+	$content = wp_strip_all_tags( $content );
+	$content = trim( $content );
+
+	$length = absint( $length );
+	if ( '' === $content || $length < 1 || mb_strlen( $content ) <= $length ) {
+		return $content;
+	}
+
+	// mb_substr keeps multibyte characters intact where the old substr() split them.
+	$content = mb_substr( $content, 0, $length );
+
+	// Trim back to the last whole word.
+	$trimmed = preg_replace( '/\s+\S*$/u', '', $content );
+	if ( null !== $trimmed && '' !== $trimmed ) {
+		$content = $trimmed;
+	}
+
+	return $content . '...';
 }
 endif;
 
@@ -1011,28 +1082,88 @@ if ( ! function_exists( 'shapely_get_thumbnail_url' ) ) :
  * @return string
  */
 function shapely_get_thumbnail_url( $size = 'full' ) {
-	global $post;
-	if ( has_post_thumbnail( $post->ID ) ) {
-		$image = wp_get_attachment_image_src( get_post_thumbnail_id( $post->ID ), $size );
-		$image = $image[0];
-	} else {
-		// Check if placeholder images are enabled
-		$placeholder_enabled = get_theme_mod( 'shapely_placeholder_image_enabled', 1 );
-		
-		if ( $placeholder_enabled ) {
-			// Check if a custom placeholder image has been set
-			$custom_placeholder = get_theme_mod( 'shapely_placeholder_image', '' );
-			if ( $custom_placeholder && '' !== $custom_placeholder ) {
-				$image = $custom_placeholder;
-			} else {
-				$image = get_template_directory_uri() . '/assets/images/placeholder.jpg';
-			}
-		} else {
-			$image = '';
+	$post_id = get_the_ID();
+
+	if ( $post_id && has_post_thumbnail( $post_id ) ) {
+		$image = wp_get_attachment_image_src( get_post_thumbnail_id( $post_id ), $size );
+		// wp_get_attachment_image_src() returns false when the attachment is gone.
+		if ( is_array( $image ) && ! empty( $image[0] ) ) {
+			return $image[0];
 		}
 	}
 
-	return $image;
+	return shapely_get_placeholder_image_url();
+}
+endif;
+
+if ( ! function_exists( 'shapely_image_allowed_html' ) ) :
+/**
+ * kses allowlist for thumbnail markup.
+ *
+ * The per-template allowlists this replaces omitted `loading` and `decoding`,
+ * so kses stripped them back off every listing image and silently disabled
+ * WordPress' native lazy loading. `<picture>`/`<source>` are permitted so
+ * WebP/AVIF plugins survive, and the data-* attributes keep lazy-load plugins
+ * working.
+ *
+ * @return array
+ */
+function shapely_image_allowed_html() {
+	return apply_filters(
+		'shapely_image_allowed_html',
+		array(
+			'img'      => array(
+				'src'           => true,
+				'srcset'        => true,
+				'sizes'         => true,
+				'alt'           => true,
+				'class'         => true,
+				'id'            => true,
+				'style'         => true,
+				'title'         => true,
+				'width'         => true,
+				'height'        => true,
+				'loading'       => true,
+				'decoding'      => true,
+				'fetchpriority' => true,
+				'data-src'      => true,
+				'data-srcset'   => true,
+				'data-sizes'    => true,
+			),
+			'picture'  => array( 'class' => true ),
+			'source'   => array(
+				'srcset' => true,
+				'sizes'  => true,
+				'type'   => true,
+				'media'  => true,
+			),
+			'noscript' => array(),
+		)
+	);
+}
+endif;
+
+if ( ! function_exists( 'shapely_get_placeholder_image_url' ) ) :
+/**
+ * Resolve the placeholder image URL honouring the customizer settings.
+ *
+ * Single source of truth for every "post has no featured image" fallback.
+ *
+ * @param string $default_file Bundled image to fall back to.
+ *
+ * @return string Placeholder URL, or an empty string when placeholders are disabled.
+ */
+function shapely_get_placeholder_image_url( $default_file = 'placeholder.jpg' ) {
+	if ( ! get_theme_mod( 'shapely_placeholder_image_enabled', 1 ) ) {
+		return '';
+	}
+
+	$custom_placeholder = get_theme_mod( 'shapely_placeholder_image', '' );
+	if ( is_string( $custom_placeholder ) && '' !== $custom_placeholder ) {
+		return $custom_placeholder;
+	}
+
+	return get_template_directory_uri() . '/assets/images/' . ltrim( $default_file, '/' );
 }
 endif;
 
@@ -1044,27 +1175,22 @@ if ( ! function_exists( 'shapely_get_thumbnail' ) ) :
  *
  * @return string
  */
-function shapely_get_thumbnail( $size = 'full' ) {
-	global $post;
-	if ( has_post_thumbnail( $post->ID ) ) {
-		$image = get_the_post_thumbnail( $post->ID, $size );
-	} else {
-		// Check if placeholder images are enabled
-		$placeholder_enabled = get_theme_mod( 'shapely_placeholder_image_enabled', 1 );
-		
-		if ( $placeholder_enabled ) {
-			// Check if a custom placeholder image has been set
-			$custom_placeholder = get_theme_mod( 'shapely_placeholder_image', '' );
-			if ( $custom_placeholder && '' !== $custom_placeholder ) {
-				$image = '<img src="' . esc_url( $custom_placeholder ) . '" alt="' . esc_attr( get_the_title() ) . '" />';
-			} else {
-				$image = '<img src="' . get_template_directory_uri() . '/assets/images/placeholder.jpg" alt="' . esc_attr( get_the_title() ) . '" />';
-			}
-		} else {
-			$image = ''; // No image if placeholders are disabled
-		}
+function shapely_get_thumbnail( $size = 'full', $default_file = 'placeholder.jpg' ) {
+	$post_id = get_the_ID();
+
+	if ( $post_id && has_post_thumbnail( $post_id ) ) {
+		return get_the_post_thumbnail( $post_id, $size );
 	}
 
-	return $image;
+	$placeholder = shapely_get_placeholder_image_url( $default_file );
+	if ( '' === $placeholder ) {
+		return '';
+	}
+
+	return sprintf(
+		'<img class="wp-post-image" src="%1$s" alt="%2$s" loading="lazy" decoding="async" />',
+		esc_url( $placeholder ),
+		esc_attr( get_the_title() )
+	);
 }
 endif;

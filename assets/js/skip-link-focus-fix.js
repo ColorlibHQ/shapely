@@ -9,7 +9,8 @@
 			var id = location.hash.substring( 1 ),
 				element;
 
-			if ( ! ( /^[A-z0-9_-]+$/.test( id ) ) ) {
+			// [A-z] is not [A-Za-z]: it also spans [ \ ] ^ _ ` between Z and a.
+			if ( ! ( /^[A-Za-z0-9_-]+$/.test( id ) ) ) {
 				return;
 			}
 
@@ -20,7 +21,10 @@
 					element.tabIndex = -1;
 				}
 
-				element.trigger('focus')
+				// This is a DOM node, not a jQuery object: .trigger() does not exist
+				// on it, so this threw a TypeError and the skip link never actually
+				// moved keyboard focus.
+				element.focus();
 			}
 		}, false );
 	}

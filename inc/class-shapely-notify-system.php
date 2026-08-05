@@ -57,52 +57,84 @@ if ( ! class_exists( 'Shapely_Notify_System' ) ) {
 		}
 
 		/**
-		 * @return bool
+		 * Resolve a plugin slug to its "dir/file.php" basename.
+		 *
+		 * @param string $slug Plugin directory slug.
+		 *
+		 * @return string Plugin basename, or an empty string when not installed.
 		 */
-		public static function shapely_check_plugin_is_installed( $slug ) {
-			$slug2 = $slug;
-			if ( 'wordpress-seo' === $slug ) {
-				$slug2 = 'wp-seo';
+		protected static function shapely_locate_plugin( $slug ) {
+			$slug = trim( (string) $slug, '/' );
+			if ( '' === $slug || false !== strpos( $slug, '.' ) ) {
+				return '';
 			}
 
-			$path = WPMU_PLUGIN_DIR . '/' . $slug . '/' . $slug2 . '.php';
-			if ( ! file_exists( $path ) ) {
-				$path = WP_PLUGIN_DIR . '/' . $slug . '/' . $slug2 . '.php';
+			$candidates = array( $slug . '/' . $slug . '.php' );
+			if ( 'wordpress-seo' === $slug ) {
+				$candidates[] = $slug . '/wp-seo.php';
+			}
 
-				if ( ! file_exists( $path ) ) {
-					$path = false;
+			foreach ( $candidates as $candidate ) {
+				if ( file_exists( WP_PLUGIN_DIR . '/' . $candidate ) ) {
+					return $candidate;
 				}
 			}
 
-			if ( file_exists( $path ) ) {
-				return true;
+			// Plugins whose main file does not match the directory name.
+			$dir = WP_PLUGIN_DIR . '/' . $slug;
+			if ( is_dir( $dir ) ) {
+				foreach ( (array) glob( $dir . '/*.php' ) as $file ) {
+					$data = get_file_data( $file, array( 'Name' => 'Plugin Name' ) );
+					if ( ! empty( $data['Name'] ) ) {
+						return $slug . '/' . basename( $file );
+					}
+				}
 			}
 
-			return false;
+			return '';
 		}
 
 		/**
+		 * Whether the plugin is present on disk.
+		 *
+		 * Overrides the parent, which hardcodes ABSPATH . 'wp-content/plugins/' and
+		 * therefore never finds anything on installs with a relocated content
+		 * directory. WP_PLUGIN_DIR respects those installs.
+		 *
+		 * @param string $slug Plugin directory slug.
+		 *
 		 * @return bool
 		 */
-		public static function shapely_check_plugin_is_active( $slug ) {
-			$slug2 = $slug;
-			if ( 'wordpress-seo' === $slug ) {
-				$slug2 = 'wp-seo';
+		public static function check_plugin_is_installed( $slug ) {
+			if ( '' !== self::shapely_locate_plugin( $slug ) ) {
+				return true;
 			}
 
-			$path = WPMU_PLUGIN_DIR . '/' . $slug . '/' . $slug2 . '.php';
-			if ( ! file_exists( $path ) ) {
-				$path = WP_PLUGIN_DIR . '/' . $slug . '/' . $slug2 . '.php';
-				if ( ! file_exists( $path ) ) {
-					$path = false;
-				}
+			// Must-use plugins are installed and permanently active.
+			return defined( 'WPMU_PLUGIN_DIR' ) && is_dir( WPMU_PLUGIN_DIR . '/' . trim( (string) $slug, '/' ) );
+		}
+
+		/**
+		 * Whether the plugin is active for this site or across the network.
+		 *
+		 * @param string $slug Plugin directory slug.
+		 *
+		 * @return bool Always a bool; the parent fell through to null when the
+		 *              plugin file was missing.
+		 */
+		public static function check_plugin_is_active( $slug ) {
+			$basename = self::shapely_locate_plugin( $slug );
+
+			if ( '' === $basename ) {
+				// mu-plugins cannot be deactivated, so presence implies active.
+				return defined( 'WPMU_PLUGIN_DIR' ) && is_dir( WPMU_PLUGIN_DIR . '/' . trim( (string) $slug, '/' ) );
 			}
 
-			if ( file_exists( $path ) ) {
-				include_once( ABSPATH . 'wp-admin/includes/plugin.php' );
-
-				return is_plugin_active( $slug . '/' . $slug2 . '.php' );
+			if ( ! function_exists( 'is_plugin_active' ) ) {
+				require_once ABSPATH . 'wp-admin/includes/plugin.php';
 			}
+
+			return is_plugin_active( $basename ) || is_plugin_active_for_network( $basename );
 		}
 
 		public static function shapely_has_plugin( $slug = null ) {

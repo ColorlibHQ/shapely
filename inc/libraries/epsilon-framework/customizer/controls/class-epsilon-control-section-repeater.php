@@ -247,7 +247,7 @@ class Epsilon_Control_Section_Repeater extends WP_Customize_Control {
 				 * Epsilon Upsell
 				 */
 				if ( 'epsilon-upsell' === $v['type'] ) {
-					$this->repeatable_sections[ $key ]['fields'][ $k ]['label']              = ! empty( $this->repeatable_sections[ $key ]['fields'][ $k ]['label'] ) ? $this->repeatable_sections[ $key ]['fields'][ $k ]['label'] : __( 'See what\'s in the PRO version', 'epsilon-framework' );
+					$this->repeatable_sections[ $key ]['fields'][ $k ]['label']              = ! empty( $this->repeatable_sections[ $key ]['fields'][ $k ]['label'] ) ? $this->repeatable_sections[ $key ]['fields'][ $k ]['label'] : __( 'See what\'s in the PRO version', 'shapely' );
 					$this->repeatable_sections[ $key ]['fields'][ $k ]['separator']          = ! empty( $this->repeatable_sections[ $key ]['fields'][ $k ]['separator'] ) ? $this->repeatable_sections[ $key ]['fields'][ $k ]['separator'] : '';
 					$this->repeatable_sections[ $key ]['fields'][ $k ]['button_text']        = ! empty( $this->repeatable_sections[ $key ]['fields'][ $k ]['button_text'] ) ? $this->repeatable_sections[ $key ]['fields'][ $k ]['button_text'] : '';
 					$this->repeatable_sections[ $key ]['fields'][ $k ]['button_url']         = ! empty( $this->repeatable_sections[ $key ]['fields'][ $k ]['button_url'] ) ? $this->repeatable_sections[ $key ]['fields'][ $k ]['button_url'] : '';
@@ -304,7 +304,7 @@ class Epsilon_Control_Section_Repeater extends WP_Customize_Control {
 	 *
 	 * @param array $styling
 	 */
-	public function create_styling_fields( $styling = array(), $key ) {
+	public function create_styling_fields( $styling, $key ) {
 		$sizes = Epsilon_Helper::get_image_sizes();
 		$arr   = array();
 		foreach ( $styling as $prop ) {
@@ -312,7 +312,7 @@ class Epsilon_Control_Section_Repeater extends WP_Customize_Control {
 				case 'background-color':
 					$temp = array(
 						'id'          => $key . '_background_color',
-						'label'       => __( 'Background Color', 'epsilon-framework' ),
+						'label'       => __( 'Background Color', 'shapely' ),
 						'description' => '',
 						'default'     => '',
 						'type'        => 'epsilon-color-picker',
@@ -326,7 +326,7 @@ class Epsilon_Control_Section_Repeater extends WP_Customize_Control {
 				case 'background-image':
 					$temp = array(
 						'id'          => $key . '_background_image',
-						'label'       => __( 'Background Image', 'epsilon-framework' ),
+						'label'       => __( 'Background Image', 'shapely' ),
 						'description' => '',
 						'type'        => 'epsilon-image',
 						'default'     => '',
@@ -341,21 +341,21 @@ class Epsilon_Control_Section_Repeater extends WP_Customize_Control {
 				case 'background-position':
 					$temp = array(
 						'id'          => $key . '_background_position',
-						'label'       => __( 'Background Position', 'epsilon-framework' ),
+						'label'       => __( 'Background Position', 'shapely' ),
 						'description' => '',
 						'default'     => 'center',
 						'type'        => 'select',
 						'group'       => 'styling',
 						'choices'     => array(
-							'topleft'     => __( 'Top Left', 'epsilon-framework' ),
-							'top'         => __( 'Top', 'epsilon-framework' ),
-							'topright'    => __( 'Top Right', 'epsilon-framework' ),
-							'left'        => __( 'Left', 'epsilon-framework' ),
-							'center'      => __( 'Center', 'epsilon-framework' ),
-							'right'       => __( 'Right', 'epsilon-framework' ),
-							'bottomleft'  => __( 'Bottom Left', 'epsilon-framework' ),
-							'bottom'      => __( 'Bottom', 'epsilon-framework' ),
-							'bottomright' => __( 'Bottom Right', 'epsilon-framework' ),
+							'topleft'     => __( 'Top Left', 'shapely' ),
+							'top'         => __( 'Top', 'shapely' ),
+							'topright'    => __( 'Top Right', 'shapely' ),
+							'left'        => __( 'Left', 'shapely' ),
+							'center'      => __( 'Center', 'shapely' ),
+							'right'       => __( 'Right', 'shapely' ),
+							'bottomleft'  => __( 'Bottom Left', 'shapely' ),
+							'bottom'      => __( 'Bottom', 'shapely' ),
+							'bottomright' => __( 'Bottom Right', 'shapely' ),
 						),
 					);
 
@@ -364,15 +364,15 @@ class Epsilon_Control_Section_Repeater extends WP_Customize_Control {
 				case 'background-size':
 					$temp = array(
 						'id'          => $key . '_background_size',
-						'label'       => __( 'Background Size', 'epsilon-framework' ),
+						'label'       => __( 'Background Size', 'shapely' ),
 						'description' => '',
 						'default'     => 'cover',
 						'type'        => 'select',
 						'group'       => 'styling',
 						'choices'     => array(
-							'cover'   => __( 'Cover', 'epsilon-framework' ),
-							'contain' => __( 'Contain', 'epsilon-framework' ),
-							'initial' => __( 'Initial', 'epsilon-framework' ),
+							'cover'   => __( 'Cover', 'shapely' ),
+							'contain' => __( 'Contain', 'shapely' ),
+							'initial' => __( 'Initial', 'shapely' ),
 						),
 					);
 
@@ -392,7 +392,7 @@ class Epsilon_Control_Section_Repeater extends WP_Customize_Control {
 	 *
 	 * @param array $styling
 	 */
-	public function create_layout_fields( $layout = array(), $key ) {
+	public function create_layout_fields( $layout, $key ) {
 		$arr = array();
 		foreach ( $layout as $prop ) {
 			switch ( $prop ) {
@@ -400,7 +400,7 @@ class Epsilon_Control_Section_Repeater extends WP_Customize_Control {
 					$temp = array(
 						'id'        => $key . '_column_alignment',
 						'type'      => 'epsilon-button-group',
-						'label'     => __( 'Alignment', 'epsilon-framework' ),
+						'label'     => __( 'Alignment', 'shapely' ),
 						'group'     => 'layout',
 						'groupType' => 'three',
 						'choices'   => array(
@@ -427,7 +427,7 @@ class Epsilon_Control_Section_Repeater extends WP_Customize_Control {
 					$temp = array(
 						'id'        => $key . '_column_vertical_alignment',
 						'type'      => 'epsilon-button-group',
-						'label'     => __( 'Vertical Alignment', 'epsilon-framework' ),
+						'label'     => __( 'Vertical Alignment', 'shapely' ),
 						'group'     => 'layout',
 						'groupType' => 'three',
 						'choices'   => array(
@@ -454,7 +454,7 @@ class Epsilon_Control_Section_Repeater extends WP_Customize_Control {
 					$temp = array(
 						'id'        => $key . '_column_stretch',
 						'type'      => 'epsilon-button-group',
-						'label'     => __( 'Column Stretch', 'epsilon-framework' ),
+						'label'     => __( 'Column Stretch', 'shapely' ),
 						'group'     => 'layout',
 						'groupType' => 'three',
 						'choices'   => array(
@@ -481,7 +481,7 @@ class Epsilon_Control_Section_Repeater extends WP_Customize_Control {
 					$temp = array(
 						'id'        => $key . '_column_spacing',
 						'type'      => 'epsilon-button-group',
-						'label'     => __( 'Column Spacing', 'epsilon-framework' ),
+						'label'     => __( 'Column Spacing', 'shapely' ),
 						'group'     => 'layout',
 						'groupType' => 'two',
 						'choices'   => array(
@@ -504,7 +504,7 @@ class Epsilon_Control_Section_Repeater extends WP_Customize_Control {
 					$temp = array(
 						'id'        => $key . '_column_group',
 						'type'      => 'epsilon-button-group',
-						'label'     => __( 'Column Group', 'epsilon-framework' ),
+						'label'     => __( 'Column Group', 'shapely' ),
 						'group'     => 'layout',
 						'groupType' => 'four',
 						'choices'   => array(
@@ -587,31 +587,31 @@ class Epsilon_Control_Section_Repeater extends WP_Customize_Control {
 		<ul class="repeater-sections"></ul>
 		<# if(!_.isUndefined(data.choices.limit)){ #>
 		<?php /* Translators: Section limit */ ?>
-		<p class="limit"><?php echo esc_html__( 'Limit: ', 'epsilon-framework' ); ?>
-			{{{ data.choices.limit }}} <?php echo esc_html__( 'sections', 'epsilon-framework' ); ?></p>
+		<p class="limit"><?php echo esc_html__( 'Limit: ', 'shapely' ); ?>
+			{{{ data.choices.limit }}} <?php echo esc_html__( 'sections', 'shapely' ); ?></p>
 		<# } #>
 		<div class="epsilon-add-section-buttons">
 			<input type="hidden" value="" {{{ data.link }}}/>
 			<button type="button" class="button epsilon-add-new-section" aria-expanded="false" aria-controls="available-sections">
-				<?php esc_html_e( 'Add a Section', 'epsilon-framework' ); ?>
+				<?php esc_html_e( 'Add a Section', 'shapely' ); ?>
 			</button>
 		</div>
 		<div id="sections-left-{{ data.id }}">
 			<div class="available-sections">
 				<div class="available-sections-filter">
-					<label class="screen-reader-text" for="sections-search-{{ data.id }}"><?php esc_html_e( 'Search sections', 'epsilon-framework' ); ?></label>
-					<input type="text" class="sections-search-input" id="sections-search-{{ data.id }}" placeholder="<?php esc_attr_e( 'Search sections &hellip;', 'epsilon-framework' ) ?>" aria-describedby="sections-search-desc"/>
+					<label class="screen-reader-text" for="sections-search-{{ data.id }}"><?php esc_html_e( 'Search sections', 'shapely' ); ?></label>
+					<input type="text" class="sections-search-input" id="sections-search-{{ data.id }}" placeholder="<?php esc_attr_e( 'Search sections &hellip;', 'shapely' ) ?>" aria-describedby="sections-search-desc"/>
 					<div class="search-icon" aria-hidden="true"></div>
 					<button type="button" class="clear-results">
-						<span class="screen-reader-text"><?php esc_html_e( 'Clear Results', 'epsilon-framework' ); ?></span>
+						<span class="screen-reader-text"><?php esc_html_e( 'Clear Results', 'shapely' ); ?></span>
 					</button>
-					<p class="screen-reader-text" id="sections-search-desc-{{ data.id }}"><?php esc_html_e( 'The search results will be updated as you type.', 'epsilon-framework' ); ?></p>
+					<p class="screen-reader-text" id="sections-search-desc-{{ data.id }}"><?php esc_html_e( 'The search results will be updated as you type.', 'shapely' ); ?></p>
 				</div>
 				<div class="available-sections-list">
 					<# if ( data.integrations ) { #>
 						<nav class="available-sections-tab-nav">
-							<a href="#" data-tab="normal" class="available-sections-tab-toggler active"><span class="dashicons dashicons-menu"></span> <?php esc_html_e( 'Sections', 'epsilon-framework' ); ?></a>
-							<a href="#" data-tab="integrations" class="available-sections-tab-toggler"><span class="dashicons dashicons-admin-plugins"></span> <?php esc_html_e( 'Integrations', 'epsilon-framework' ); ?> <span class="badge">{{ data.integrations_count }}</span></a>
+							<a href="#" data-tab="normal" class="available-sections-tab-toggler active"><span class="dashicons dashicons-menu"></span> <?php esc_html_e( 'Sections', 'shapely' ); ?></a>
+							<a href="#" data-tab="integrations" class="available-sections-tab-toggler"><span class="dashicons dashicons-admin-plugins"></span> <?php esc_html_e( 'Integrations', 'shapely' ); ?> <span class="badge">{{ data.integrations_count }}</span></a>
 						</nav>
 					<# } #>
 

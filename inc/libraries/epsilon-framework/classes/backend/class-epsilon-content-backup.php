@@ -218,7 +218,7 @@ class Epsilon_Content_Backup {
 			array(
 				'id'      => $this->slug . '_content_backup',
 				'type'    => 'notice notice-info',
-				'message' => '<p>' . esc_html__( 'This page contains the content created by the customizer.', 'epsilon-framework' ) . '</p>',
+				'message' => '<p>' . esc_html__( 'This page contains the content created by the customizer.', 'shapely' ) . '</p>',
 			)
 		);
 	}

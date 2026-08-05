@@ -28,23 +28,9 @@ $post_category = get_theme_mod( 'project_category', true );
 			}
 			$image = get_the_post_thumbnail( get_the_ID(), $size );
 
-			$allowed_tags = array(
-				'img'      => array(
-					'data-srcset' => true,
-					'data-src'    => true,
-					'srcset'      => true,
-					'sizes'       => true,
-					'src'         => true,
-					'class'       => true,
-					'alt'         => true,
-					'width'       => true,
-					'height'      => true,
-				),
-				'noscript' => array(),
-			);
 		?>
-		<a href="<?php echo esc_url( get_the_permalink() ); ?>">
-			<?php echo wp_kses( $image, $allowed_tags ); ?>
+		<a href="<?php echo esc_url( get_the_permalink() ); ?>" aria-label="<?php echo esc_attr( get_the_title() ); ?>">
+			<?php echo wp_kses( $image, shapely_image_allowed_html() ); ?>
 		</a>
 
 		<?php if ( isset( $category[0] ) && $post_category ) : ?>
@@ -61,7 +47,7 @@ $post_category = get_theme_mod( 'project_category', true );
 	<div class="entry-content">
 		<?php if ( $post_title ) : ?>
 			<h2 class="post-title">
-				<a href="<?php echo esc_url( get_the_permalink() ); ?>"><?php echo wp_trim_words( get_the_title(), 9 ); ?></a>
+				<a href="<?php echo esc_url( get_the_permalink() ); ?>"><?php echo esc_html( wp_trim_words( get_the_title(), 9 ) ); ?></a>
 			</h2>
 		<?php endif ?>
 

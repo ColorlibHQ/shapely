@@ -27,25 +27,10 @@
 			} else {
 				$image = shapely_get_thumbnail( 'shapely-grid' );
 			}
-			
-			$allowed_tags = array(
-				'img'      => array(
-					'data-srcset' => true,
-					'data-src'    => true,
-					'srcset'      => true,
-					'sizes'       => true,
-					'src'         => true,
-					'class'       => true,
-					'alt'         => true,
-					'width'       => true,
-					'height'      => true,
-				),
-				'noscript' => array(),
-			);
 			?>
 			<?php if ( ! empty( $image ) ) : ?>
-			<a href="<?php echo esc_url( get_the_permalink() ); ?>">
-				<?php echo wp_kses( $image, $allowed_tags ); ?>
+			<a href="<?php echo esc_url( get_the_permalink() ); ?>" aria-label="<?php echo esc_attr( get_the_title() ); ?>">
+				<?php echo wp_kses( $image, shapely_image_allowed_html() ); ?>
 			</a>
 			<?php endif; ?>
 
@@ -59,7 +44,7 @@
 		</header><!-- .entry-header -->
 		<div class="entry-content">
 			<h2 class="post-title">
-				<a href="<?php echo esc_url( get_the_permalink() ); ?>"><?php echo wp_trim_words( get_the_title(), 9 ); ?></a>
+				<a href="<?php echo esc_url( get_the_permalink() ); ?>"><?php echo esc_html( wp_trim_words( get_the_title(), 9 ) ); ?></a>
 			</h2>
 
 			<div class="entry-meta">

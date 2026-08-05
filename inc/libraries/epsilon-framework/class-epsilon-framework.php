@@ -253,10 +253,10 @@ class Epsilon_Framework {
 		) );
 
 		wp_localize_script( 'epsilon-object', 'EpsilonTranslations', array(
-			'remove'     => esc_html__( 'Remove', 'epsilon-framework' ),
-			'add'        => esc_html__( 'Add', 'epsilon-framework' ),
-			'selectFile' => esc_html__( 'Upload image', 'epsilon-framework' ),
-			'row'        => esc_html__( 'Row', 'epsilon-framework' ),
+			'remove'     => esc_html__( 'Remove', 'shapely' ),
+			'add'        => esc_html__( 'Add', 'shapely' ),
+			'selectFile' => esc_html__( 'Upload image', 'shapely' ),
+			'row'        => esc_html__( 'Row', 'shapely' ),
 		) );
 
 		wp_enqueue_style( 'font-awesome', EPSILON_URI . '../../assets/css/fontawesome6/all.min.css' );

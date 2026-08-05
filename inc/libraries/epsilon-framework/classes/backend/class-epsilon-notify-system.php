@@ -118,15 +118,15 @@ class Epsilon_Notify_System {
 		}
 
 		// Translators: %s is the plugin name.
-		$arr['title'] = sprintf( __( 'Install: %s', 'epsilon-framework' ), $plugin_name );
+		$arr['title'] = sprintf( __( 'Install: %s', 'shapely' ), $plugin_name );
 		// Translators: %s is the plugin name.
-		$arr['description'] = sprintf( __( 'Please install %s in order to create the demo content.', 'epsilon-framework' ), $plugin_name );
+		$arr['description'] = sprintf( __( 'Please install %s in order to create the demo content.', 'shapely' ), $plugin_name );
 
 		if ( $arr['installed'] ) {
 			// Translators: %s is the plugin name
-			$arr['title'] = sprintf( __( 'Activate: %s', 'epsilon-framework' ), $plugin_name );
+			$arr['title'] = sprintf( __( 'Activate: %s', 'shapely' ), $plugin_name );
 			// Translators: %s is the plugin name
-			$arr['description'] = sprintf( __( 'Please activate %s in order to create the demo content.', 'epsilon-framework' ), $plugin_name );
+			$arr['description'] = sprintf( __( 'Please activate %s in order to create the demo content.', 'shapely' ), $plugin_name );
 		}
 
 		return $arr[ $get ];

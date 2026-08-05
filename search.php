@@ -15,7 +15,7 @@ $layout_class = shapely_get_layout_class(); ?>
 		endif;
 		?>
 		<section id="primary" class="content-area col-md-8 mb-xs-24 <?php echo esc_attr( $layout_class ); ?>">
-			<main id="main" class="site-main" role="main">
+			<div class="site-main">
 
 				<?php
 				if ( have_posts() ) :
@@ -47,7 +47,7 @@ $layout_class = shapely_get_layout_class(); ?>
 				endif;
 				?>
 
-			</main><!-- #main -->
+			</div><!-- .site-main -->
 		</section><!-- #primary -->
 
 		<?php

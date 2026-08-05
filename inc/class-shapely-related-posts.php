@@ -81,12 +81,15 @@ if ( ! class_exists( 'Shapely_Related_Posts' ) ) {
 		}
 
 		/**
-		 * Private unserialize method to prevent unserializing of the *Singleton*
-		 * instance.
+		 * Block unserializing of the *Singleton* instance.
+		 *
+		 * An empty body silently permitted object injection to rebuild this class;
+		 * throwing is the documented way to keep a singleton un-unserializable.
 		 *
 		 * @return void
 		 */
 		public function __wakeup() {
+			throw new \LogicException( 'Shapely_Related_Posts cannot be unserialized.' );
 		}
 
 
@@ -107,14 +110,28 @@ if ( ! class_exists( 'Shapely_Related_Posts' ) ) {
 				return $related_postquery;
 			}
 
+			$categories = wp_get_post_categories( $post_id );
+
 			$args = wp_parse_args(
 				$args, array(
-					'category__in'        => wp_get_post_categories( $post_id ),
-					'ignore_sticky_posts' => 0,
-					'posts_per_page'      => $number_posts,
-					'post__not_in'        => array( $post_id ),
+					'category__in'           => $categories,
+					'ignore_sticky_posts'    => 0,
+					'posts_per_page'         => $number_posts,
+					'post__not_in'           => array( $post_id ),
+					// Related posts only need IDs/titles/thumbs; skip the term and
+					// meta cache priming WP_Query does by default.
+					'update_post_term_cache' => false,
+					'no_found_rows'          => true,
 				)
 			);
+
+			/*
+			 * An empty category__in is dropped by WP_Query, which would turn "related
+			 * posts" into "every post". Bail instead for uncategorised posts.
+			 */
+			if ( empty( $categories ) && ! is_singular( 'jetpack-portfolio' ) ) {
+				return new WP_Query( array( 'post__in' => array( 0 ) ) );
+			}
 
 			if ( is_singular( 'jetpack-portfolio' ) ) {
 				unset( $args['category__in'] );
@@ -207,41 +224,53 @@ if ( ! class_exists( 'Shapely_Related_Posts' ) ) {
 			/*
 			 * Arrows
 			 */
+			// Icon-only controls need a text alternative; these had none at all.
 			echo '<div class="shapely-carousel-navigation hidden-xs">';
 			echo '<ul class="shapely-carousel-arrows clearfix">';
-			echo '<li><a href="#" class="shapely-owl-prev fa fa-angle-left"></a></li>';
-			echo '<li><a href="#" class="shapely-owl-next fa fa-angle-right"></a></li>';
+			echo '<li><a href="#" class="shapely-owl-prev fa fa-angle-left"><span class="screen-reader-text">' . esc_html__( 'Previous', 'shapely' ) . '</span></a></li>';
+			echo '<li><a href="#" class="shapely-owl-next fa fa-angle-right"><span class="screen-reader-text">' . esc_html__( 'Next', 'shapely' ) . '</span></a></li>';
 			echo '</ul>';
 			echo '</div>';
 
-			echo sprintf(
-				'<div class="owlCarousel owl-carousel owl-theme" data-slider-id="%s" id="owlCarousel-%s" 
-			data-slider-items="%s" 
-			data-slider-speed="400" data-slider-auto-play="%s" data-slider-navigation="false">', get_the_ID(), get_the_ID(), absint( $limit ), esc_html( $auto_play )
+			printf(
+				'<div class="owlCarousel owl-carousel owl-theme" data-slider-id="%1$s" id="owlCarousel-%1$s" data-slider-items="%2$s" data-slider-speed="400" data-slider-auto-play="%3$s" data-slider-navigation="false">',
+				absint( get_the_ID() ),
+				absint( $limit ),
+				esc_attr( $auto_play )
 			);
 
 			// Loop through related posts
 			while ( $related_posts->have_posts() ) {
 				$related_posts->the_post();
 
+				$related_id = get_the_ID();
+
 				echo '<div class="item">';
-				if ( has_post_thumbnail( $related_posts->post->ID ) ) {
-					echo '<a href="' . esc_url( get_the_permalink() ) . '" class="related-item-thumbnail" style="background-image: url( ' . get_the_post_thumbnail_url( $related_posts->post->ID, 'shapely-grid' ) . ' )">' . get_the_post_thumbnail( $related_posts->post->ID, 'shapely-grid' ) . '</a>';
+				if ( has_post_thumbnail( $related_id ) ) {
+					printf(
+						'<a href="%1$s" class="related-item-thumbnail" aria-label="%4$s" style="background-image: url( %2$s )">%3$s</a>',
+						esc_url( get_the_permalink() ),
+						esc_url( (string) get_the_post_thumbnail_url( $related_id, 'shapely-grid' ) ),
+						wp_kses_post( get_the_post_thumbnail( $related_id, 'shapely-grid' ) ),
+						esc_attr( get_the_title() )
+					);
 				} else {
-					// Check if placeholder images are enabled
-					$placeholder_enabled = get_theme_mod( 'shapely_placeholder_image_enabled', 1 );
-					
-					if ( $placeholder_enabled ) {
-						// Check if a custom placeholder image has been set
-						$custom_placeholder = get_theme_mod( 'shapely_placeholder_image', '' );
-						if ( $custom_placeholder && '' !== $custom_placeholder ) {
-							echo '<a href="' . esc_url( get_the_permalink() ) . '" class="related-item-thumbnail" style="background-image: url( ' . esc_url( $custom_placeholder ) . ' )"><img class="wp-post-image" alt="" src="' . esc_url( $custom_placeholder ) . '" /></a>';
-						} else {
-							echo '<a href="' . esc_url( get_the_permalink() ) . '" class="related-item-thumbnail" style="background-image: url( ' . get_template_directory_uri() . '/assets/images/placeholder.jpg )"><img class="wp-post-image" alt="" src="' . get_template_directory_uri() . '/assets/images/placeholder.jpg" /></a>';
-						}
+					$placeholder = shapely_get_placeholder_image_url();
+
+					if ( '' !== $placeholder ) {
+						printf(
+							'<a href="%1$s" class="related-item-thumbnail" aria-label="%3$s" style="background-image: url( %2$s )"><img class="wp-post-image" alt="" src="%2$s" loading="lazy" decoding="async" /></a>',
+							esc_url( get_the_permalink() ),
+							esc_url( $placeholder ),
+							esc_attr( get_the_title() )
+						);
 					} else {
 						// Just show title and date without image
-						echo '<a href="' . esc_url( get_the_permalink() ) . '" class="related-item-thumbnail-empty"></a>';
+						printf(
+							'<a href="%1$s" class="related-item-thumbnail-empty" aria-label="%2$s"></a>',
+							esc_url( get_the_permalink() ),
+							esc_attr( get_the_title() )
+						);
 					}
 				}
 
@@ -249,7 +278,7 @@ if ( ! class_exists( 'Shapely_Related_Posts' ) ) {
 					echo '<div class="shapely-related-post-title">';
 
 					# Post Title
-					echo '<a href="' . esc_url( get_the_permalink() ) . '">' . wp_trim_words( get_the_title(), 5 ) . '</a>';
+					echo '<a href="' . esc_url( get_the_permalink() ) . '">' . esc_html( wp_trim_words( get_the_title(), 5 ) ) . '</a>';
 					echo '</div>';
 
 				}
