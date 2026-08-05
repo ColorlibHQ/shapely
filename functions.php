@@ -5,12 +5,11 @@
  * @link    https://developer.wordpress.org/themes/basics/theme-functions/
  *
  * @package Shapely
- * @version 1.0.0
- * 
- * Tested up to: WordPress 6.8
- * Requires at least: WordPress 6.4
- * Requires PHP: 7.4
- * Tested up to PHP: 8.4
+ *
+ * Theme metadata (version, Requires at least, Tested up to, Requires PHP) lives
+ * in style.css, which is the only file WordPress reads it from. It was also
+ * duplicated here, and the two copies had already drifted apart -- do not
+ * reintroduce it.
  */
 
 // Exit if accessed directly
@@ -23,7 +22,26 @@ if ( ! function_exists( 'add_action' ) ) {
 	die( 'WordPress is not loaded properly.' );
 }
 
-// Load required files first
+if ( ! defined( 'SHAPELY_VERSION' ) ) {
+	$shapely_theme = wp_get_theme( get_template() );
+	/**
+	 * Theme version, used to bust asset caches on update.
+	 *
+	 * Every enqueue previously omitted a version, so WordPress fell back to its
+	 * own release number and browsers kept serving stale CSS/JS after a theme
+	 * update.
+	 */
+	define( 'SHAPELY_VERSION', $shapely_theme->get( 'Version' ) ? $shapely_theme->get( 'Version' ) : '1.0.0' );
+	unset( $shapely_theme );
+}
+
+/*
+ * Load required files. Each of these was previously required twice (here and
+ * again at the bottom of this file); require_once made the second pass a no-op,
+ * so the duplicate block has been removed.
+ *
+ * Custom customizer controls are loaded from within inc/customizer.php.
+ */
 require_once get_template_directory() . '/inc/template-tags.php';
 require_once get_template_directory() . '/inc/extras.php';
 require_once get_template_directory() . '/inc/customizer.php';
@@ -33,7 +51,6 @@ require_once get_template_directory() . '/inc/socialnav.php';
 require_once get_template_directory() . '/inc/class-shapely-related-posts.php';
 require_once get_template_directory() . '/inc/class-shapely.php';
 require_once get_template_directory() . '/inc/class-shapely-builder.php';
-// Custom controls are now loaded in the customizer.php file
 
 if ( ! defined( 'SHAPELY_SETUP_LOADED' ) ) {
 	define( 'SHAPELY_SETUP_LOADED', true );
@@ -120,8 +137,19 @@ if ( ! function_exists( 'shapely_setup' ) ) :
 				'comment-list',
 				'gallery',
 				'caption',
+				// Drop the legacy type="text/css" / type="text/javascript" attributes.
+				'style',
+				'script',
+				'navigation-widgets',
 			)
 		);
+
+		/*
+		 * Block editor support. Without responsive-embeds, embedded iframes
+		 * overflow their column on narrow viewports.
+		 */
+		add_theme_support( 'responsive-embeds' );
+		add_theme_support( 'align-wide' );
 
 		// Set up the WordPress core custom background feature.
 		add_theme_support(
@@ -255,26 +283,29 @@ add_filter( 'theme_page_templates', 'shapely_exclude_page_templates' );
  * Enqueue scripts and styles.
  */
 function shapely_scripts() {
+	$uri = get_template_directory_uri();
 
 	// Add Bootstrap default CSS
-	wp_enqueue_style( 'bootstrap', get_template_directory_uri() . '/assets/css/bootstrap.min.css' );
+	wp_enqueue_style( 'bootstrap', $uri . '/assets/css/bootstrap.min.css', array(), '3.3.7' );
 
 	// Replace old Font Awesome with Font Awesome 6
-	wp_enqueue_style( 'font-awesome', get_template_directory_uri() . '/assets/css/fontawesome6/all.min.css' );
+	wp_enqueue_style( 'font-awesome', $uri . '/assets/css/fontawesome6/all.min.css', array(), '6.4.2' );
 
 	// Add Google Fonts
-	wp_enqueue_style( 'shapely-fonts', '//fonts.googleapis.com/css?family=Raleway:100,300,400,500,600,700&display=swap');
+	wp_enqueue_style( 'shapely-fonts', 'https://fonts.googleapis.com/css?family=Raleway:100,300,400,500,600,700&display=swap', array(), null );
 
 	// Add slider CSS
-	wp_enqueue_style( 'flexslider', get_template_directory_uri() . '/assets/css/flexslider.css' );
+	wp_enqueue_style( 'flexslider', $uri . '/assets/css/flexslider.css', array(), SHAPELY_VERSION );
 
 	//Add custom theme css
-	wp_enqueue_style( 'shapely-style', get_stylesheet_uri() );
-	
-	//Add custom placeholder image css
-	wp_enqueue_style( 'shapely-custom', get_template_directory_uri() . '/assets/css/custom.css' );
+	wp_enqueue_style( 'shapely-style', get_stylesheet_uri(), array(), SHAPELY_VERSION );
 
-	wp_enqueue_script( 'shapely-skip-link-focus-fix', get_template_directory_uri() . '/assets/js/skip-link-focus-fix.js', array(), '20160115', true );
+	//Add custom placeholder image css
+	wp_enqueue_style( 'shapely-custom', $uri . '/assets/css/custom.css', array(), SHAPELY_VERSION );
+
+	// rtl.css is emitted automatically by core's locale_stylesheet() on wp_head.
+
+	wp_enqueue_script( 'shapely-skip-link-focus-fix', $uri . '/assets/js/skip-link-focus-fix.js', array(), SHAPELY_VERSION, true );
 
 	if ( is_singular() && comments_open() && get_option( 'thread_comments' ) ) {
 		wp_enqueue_script( 'comment-reply' );
@@ -284,24 +315,30 @@ function shapely_scripts() {
 		wp_enqueue_script( 'jquery-masonry' );
 	}
 
+	/*
+	 * Restores the .bind()/.unbind()/.delegate()/.undelegate() aliases that
+	 * jQuery 4 removes and FlexSlider 2.x still calls. No-op on jQuery 3.x.
+	 */
+	wp_enqueue_script( 'shapely-jquery-compat', $uri . '/assets/js/jquery-compat.js', array( 'jquery' ), SHAPELY_VERSION, true );
+
 	// Add slider JS
-	wp_enqueue_script( 'flexslider', get_template_directory_uri() . '/assets/js/flexslider.min.js', array( 'jquery' ), '20160222', true );
+	wp_enqueue_script( 'flexslider', $uri . '/assets/js/flexslider.min.js', array( 'jquery', 'shapely-jquery-compat' ), '2.7.2', true );
 
 	if ( is_page_template( 'page-templates/template-home.php' ) || is_page_template( 'page-templates/template-widget.php' ) ) {
-		wp_enqueue_script( 'shapely-parallax', get_template_directory_uri() . '/assets/js/parallax.min.js', array( 'jquery' ), '20160115', true );
+		wp_enqueue_script( 'shapely-parallax', $uri . '/assets/js/parallax.min.js', array( 'jquery' ), SHAPELY_VERSION, true );
 	}
 	/**
 	 * OwlCarousel Library
 	 */
-	wp_enqueue_script( 'owl.carousel', get_template_directory_uri() . '/assets/js/owl-carousel/owl.carousel.min.js', array( 'jquery' ), '20160115', true );
-	wp_enqueue_style( 'owl.carousel', get_template_directory_uri() . '/assets/js/owl-carousel/owl.carousel.min.css' );
-	wp_enqueue_style( 'owl.carousel.theme', get_template_directory_uri() . '/assets/js/owl-carousel/owl.theme.default.css' );
+	wp_enqueue_script( 'owl.carousel', $uri . '/assets/js/owl-carousel/owl.carousel.min.js', array( 'jquery' ), '2.3.4', true );
+	wp_enqueue_style( 'owl.carousel', $uri . '/assets/js/owl-carousel/owl.carousel.min.css', array(), '2.3.4' );
+	wp_enqueue_style( 'owl.carousel.theme', $uri . '/assets/js/owl-carousel/owl.theme.default.css', array(), '2.3.4' );
 
 	wp_enqueue_script(
-		'shapely-scripts', get_template_directory_uri() . '/assets/js/shapely-scripts.js', array(
+		'shapely-scripts', $uri . '/assets/js/shapely-scripts.js', array(
 			'jquery',
 			'imagesloaded',
-		), '20180423', true
+		), SHAPELY_VERSION, true
 	);
 
 	/**
@@ -317,83 +354,56 @@ function shapely_scripts() {
 
 add_action( 'wp_enqueue_scripts', 'shapely_scripts' );
 
-if ( ! function_exists( 'wp_body_open' ) ) {
-    function wp_body_open() {
-        do_action( 'wp_body_open' );
-    }
+/**
+ * Warm up the Google Fonts connection before the stylesheet is requested.
+ *
+ * Saves a DNS + TLS round trip on the render-blocking font request.
+ */
+function shapely_resource_hints( $hints, $relation_type ) {
+	if ( 'preconnect' === $relation_type && wp_style_is( 'shapely-fonts', 'enqueued' ) ) {
+		$hints[] = array(
+			'href'        => 'https://fonts.gstatic.com',
+			'crossorigin' => 'anonymous',
+		);
+	}
+
+	return $hints;
 }
 
-/**
- * Custom template tags for this theme.
- */
-require get_template_directory() . '/inc/template-tags.php';
+add_filter( 'wp_resource_hints', 'shapely_resource_hints', 10, 2 );
 
-/**
- * Custom functions that act independently of the theme templates.
+/*
+ * Bootstrap the theme classes.
+ *
+ * The block that previously sat here re-required all nine inc/ files (already
+ * loaded with require_once at the top of this file) and then instantiated
+ * Shapely a second and third time -- once on `init` and once inside
+ * shapely_init_plugins(). Each extra instance re-registered every admin hook
+ * and spun up another Epsilon_Framework, so the customizer assets were
+ * enqueued three times over.
+ *
+ * shapely_init_plugins() itself was dead: it looped $recommended_plugins
+ * looking for a 'callback' key that no entry has ever defined.
  */
-require get_template_directory() . '/inc/extras.php';
-
-/**
- * Customizer additions.
- */
-require get_template_directory() . '/inc/customizer.php';
-
-/**
- * Load Jetpack compatibility file.
- */
-require get_template_directory() . '/inc/jetpack.php';
-
-/**
- * Load custom nav walker
- */
-require get_template_directory() . '/inc/class-wp-bootstrap-navwalker.php';
-
-/**
- * Load Social Navition
- */
-require get_template_directory() . '/inc/socialnav.php';
-
-/**
- * Load related posts
- */
-require get_template_directory() . '/inc/class-shapely-related-posts.php';
-
-/**
- * Load the shapely class
- */
-require get_template_directory() . '/inc/class-shapely.php';
-
-/**
- * Load the shapely page builder class
- */
-require get_template_directory() . '/inc/class-shapely-builder.php';
 
 // Initialize the builder class
 if ( class_exists( 'Shapely_Builder' ) ) {
-    add_action( 'after_setup_theme', function() {
-        Shapely_Builder::get_instance();
-    }, 5 );
+	add_action(
+		'after_setup_theme',
+		function () {
+			Shapely_Builder::get_instance();
+		},
+		5
+	);
 }
 
-// Init the Shapely class
+// Init the Shapely class (admin / customizer only -- see Shapely::__construct).
 if ( class_exists( 'Shapely' ) ) {
-        add_action( 'init', function() {
-                global $shapely;
-                if ( ! isset( $shapely ) ) {
-                        $shapely = new Shapely();
-                }
-        }, 0 );
+	add_action(
+		'init',
+		function () {
+			$GLOBALS['shapely'] = Shapely::get_instance();
+		},
+		0
+	);
 }
-
-// Initialize plugins after init
-function shapely_init_plugins() {
-	if (class_exists('Shapely')) {
-		$shapely = new Shapely();
-		foreach ($shapely->recommended_plugins as $plugin => $data) {
-			if (isset($data['callback']) && is_callable($data['callback'])) {
-				call_user_func($data['callback']);
-			}
-		}
-	}
-}
-add_action('init', 'shapely_init_plugins', 2);

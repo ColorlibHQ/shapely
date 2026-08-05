@@ -304,7 +304,7 @@ class Epsilon_Control_Section_Repeater extends WP_Customize_Control {
 	 *
 	 * @param array $styling
 	 */
-	public function create_styling_fields( $styling = array(), $key ) {
+	public function create_styling_fields( $styling, $key ) {
 		$sizes = Epsilon_Helper::get_image_sizes();
 		$arr   = array();
 		foreach ( $styling as $prop ) {
@@ -392,7 +392,7 @@ class Epsilon_Control_Section_Repeater extends WP_Customize_Control {
 	 *
 	 * @param array $styling
 	 */
-	public function create_layout_fields( $layout = array(), $key ) {
+	public function create_layout_fields( $layout, $key ) {
 		$arr = array();
 		foreach ( $layout as $prop ) {
 			switch ( $prop ) {

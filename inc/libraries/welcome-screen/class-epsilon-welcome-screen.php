@@ -788,9 +788,37 @@ class Epsilon_Welcome_Screen {
 	 *
 	 * @return string;
 	 */
+	/**
+	 * Find a published page by its exact title.
+	 *
+	 * Replaces get_page_by_title(), deprecated in WordPress 6.2 and scheduled for
+	 * removal; calling it on a future release would fatal the demo importer.
+	 *
+	 * @param string $title Page title to match.
+	 *
+	 * @return WP_Post|null
+	 */
+	public static function epsilon_get_page_by_title( $title ) {
+		$query = new WP_Query(
+			array(
+				'post_type'              => 'page',
+				'title'                  => $title,
+				'post_status'            => 'all',
+				'posts_per_page'         => 1,
+				'no_found_rows'          => true,
+				'update_post_term_cache' => false,
+				'update_post_meta_cache' => false,
+				'orderby'                => 'post_date ID',
+				'order'                  => 'ASC',
+			)
+		);
+
+		return ! empty( $query->posts ) ? $query->posts[0] : null;
+	}
+
 	public static function set_frontpage_to_static( $args = array() ) {
-		$home = get_page_by_title( 'Homepage' );
-		$blog = get_page_by_title( 'Blog' );
+		$home = self::epsilon_get_page_by_title( 'Homepage' );
+		$blog = self::epsilon_get_page_by_title( 'Blog' );
 
 		if ( null === $home ) {
 			$id = wp_insert_post(

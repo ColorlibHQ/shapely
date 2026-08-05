@@ -20,8 +20,10 @@ class Wp_Bootstrap_Navwalker extends Walker_Nav_Menu {
 	 * @param int    $depth  Depth of page. Used for padding.
 	 */
 	public function start_lvl( &$output, $depth = 0, $args = array() ) {
-		$indent  = str_repeat( "\t", $depth );
-		$output .= "\n$indent<ul role=\"menu\" class=\" dropdown-menu\">\n";
+		$indent = str_repeat( "\t", $depth );
+		// No role="menu" here: that ARIA pattern promises arrow-key menu semantics
+		// this navigation does not implement, which is worse than no role at all.
+		$output .= "\n$indent<ul class=\"dropdown-menu\">\n";
 	}
 
 	/**
@@ -39,6 +41,18 @@ class Wp_Bootstrap_Navwalker extends Walker_Nav_Menu {
 		$extra  = get_post_meta( $item->ID, '_menu_item_extra', true );
 		$widget = get_post_meta( $item->ID, '_menu_item_widget', true );
 
+		/*
+		 * Nav menu items routinely carry a null attr_title/title. Casting to string
+		 * keeps strcasecmp() from raising the PHP 8.1 "passing null to non-nullable
+		 * parameter" deprecation once per menu item on every page load.
+		 */
+		$attr_title = (string) $item->attr_title;
+		$item_title = (string) $item->title;
+
+		// Core passes $args as an object; normalise so property reads never fatal.
+		$args         = is_array( $args ) ? (object) $args : $args;
+		$has_children = ! empty( $args->has_children );
+
 		/**
 		 * Dividers, Headers or Disabled
 		 * =============================
@@ -47,14 +61,14 @@ class Wp_Bootstrap_Navwalker extends Walker_Nav_Menu {
 		 * comparison that is not case sensitive. The strcasecmp() function returns
 		 * a 0 if the strings are equal.
 		 */
-		if ( strcasecmp( $item->attr_title, 'divider' ) == 0 && 1 === $depth ) {
+		if ( 0 === strcasecmp( $attr_title, 'divider' ) && 1 === $depth ) {
 			$output .= $indent . '<li role="presentation" class="divider">';
-		} elseif ( strcasecmp( $item->title, 'divider' ) == 0 && 1 === $depth ) {
+		} elseif ( 0 === strcasecmp( $item_title, 'divider' ) && 1 === $depth ) {
 			$output .= $indent . '<li role="presentation" class="divider">';
-		} elseif ( strcasecmp( $item->attr_title, 'dropdown-header' ) == 0 && 1 === $depth ) {
-			$output .= $indent . '<li role="presentation" class="dropdown-header">' . esc_attr( $item->title );
-		} elseif ( strcasecmp( $item->attr_title, 'disabled' ) == 0 ) {
-			$output .= $indent . '<li role="presentation" class="disabled"><a href="#">' . esc_attr( $item->title ) . '</a>';
+		} elseif ( 0 === strcasecmp( $attr_title, 'dropdown-header' ) && 1 === $depth ) {
+			$output .= $indent . '<li role="presentation" class="dropdown-header">' . esc_html( $item_title );
+		} elseif ( 0 === strcasecmp( $attr_title, 'disabled' ) ) {
+			$output .= $indent . '<li role="presentation" class="disabled"><a href="#">' . esc_html( $item_title ) . '</a>';
 		} else {
 
 			$class_names = '';
@@ -65,7 +79,7 @@ class Wp_Bootstrap_Navwalker extends Walker_Nav_Menu {
 
 			$class_names = join( ' ', apply_filters( 'nav_menu_css_class', array_filter( $classes ), $item, $args ) );
 
-			if ( $args->has_children ) {
+			if ( $has_children ) {
 				$class_names .= ' dropdown';
 			}
 
@@ -86,7 +100,7 @@ class Wp_Bootstrap_Navwalker extends Walker_Nav_Menu {
 			$atts['rel']    = ! empty( $item->xfn ) ? $item->xfn : '';
 
 			// If item has_children add atts to a.
-			if ( $args->has_children && 0 === $depth ) {
+			if ( $has_children && 0 === $depth ) {
 				$atts['href'] = ! empty( $item->url ) ? $item->url : '';
 				// $atts['data-toggle'] = 'dropdown';
 				// $atts['class']       = 'dropdown-toggle';
@@ -96,7 +110,7 @@ class Wp_Bootstrap_Navwalker extends Walker_Nav_Menu {
 
 			if ( 'shapely-section' == $extra ) {
 				if ( ! is_front_page() ) {
-					$atts['href'] = site_url() . esc_attr( $item->url );
+					$atts['href'] = site_url() . $item->url;
 				}
 
 				if ( '' != $widget ) {
@@ -114,7 +128,7 @@ class Wp_Bootstrap_Navwalker extends Walker_Nav_Menu {
 				}
 			}
 
-			$item_output = $args->before;
+			$item_output = isset( $args->before ) ? $args->before : '';
 
 			/*
 			 * Glyphicons
@@ -129,9 +143,11 @@ class Wp_Bootstrap_Navwalker extends Walker_Nav_Menu {
 				$item_output .= '<a' . $attributes . '>';
 			}
 
-			$item_output .= $args->link_before . apply_filters( 'the_title', $item->title, $item->ID ) . $args->link_after;
-			$item_output .= ( $args->has_children ) ? ' </a><span class="dropdown-toggle shapely-dropdown" data-toggle="dropdown"><i class="fa fa-angle-down" aria-hidden="true"></i></span>' : '</a>';
-			$item_output .= $args->after;
+			$link_before  = isset( $args->link_before ) ? $args->link_before : '';
+			$link_after   = isset( $args->link_after ) ? $args->link_after : '';
+			$item_output .= $link_before . apply_filters( 'the_title', $item->title, $item->ID ) . $link_after;
+			$item_output .= ( $has_children ) ? ' </a><span class="dropdown-toggle shapely-dropdown" data-toggle="dropdown"><i class="fa fa-angle-down" aria-hidden="true"></i></span>' : '</a>';
+			$item_output .= isset( $args->after ) ? $args->after : '';
 
 			$output .= apply_filters( 'walker_nav_menu_start_el', $item_output, $item, $depth, $args );
 
@@ -167,7 +183,7 @@ class Wp_Bootstrap_Navwalker extends Walker_Nav_Menu {
 		$id_field = $this->db_fields['id'];
 
 		// Display this element.
-		if ( is_object( $args[0] ) ) {
+		if ( is_array( $args ) && isset( $args[0] ) && is_object( $args[0] ) ) {
 			$args[0]->has_children = ! empty( $children_elements[ $element->$id_field ] );
 		}
 
@@ -188,17 +204,20 @@ class Wp_Bootstrap_Navwalker extends Walker_Nav_Menu {
 	public static function fallback( $args ) {
 		if ( current_user_can( 'manage_options' ) ) {
 
-			$fb_output = null;
+			$fb_output = '';
 
-			if ( isset( $args['container'] ) ) {
-				$fb_output = '<' . $args['container'];
+			// wp_nav_menu() allows 'container' => false, which isset() happily passes.
+			$container = ! empty( $args['container'] ) ? sanitize_key( $args['container'] ) : '';
 
-				if ( isset( $args['container_id'] ) ) {
-					$fb_output .= ' id="' . $args['container_id'] . '"';
+			if ( '' !== $container ) {
+				$fb_output = '<' . $container;
+
+				if ( ! empty( $args['container_id'] ) ) {
+					$fb_output .= ' id="' . esc_attr( $args['container_id'] ) . '"';
 				}
 
-				if ( isset( $args['container_class'] ) ) {
-					$fb_output .= ' class="' . $args['container_class'] . '"';
+				if ( ! empty( $args['container_class'] ) ) {
+					$fb_output .= ' class="' . esc_attr( $args['container_class'] ) . '"';
 				}
 
 				$fb_output .= '>';
@@ -206,23 +225,23 @@ class Wp_Bootstrap_Navwalker extends Walker_Nav_Menu {
 
 			$fb_output .= '<ul';
 
-			if ( isset( $args['menu_id'] ) ) {
-				$fb_output .= ' id="' . $args['menu_id'] . '"';
+			if ( ! empty( $args['menu_id'] ) ) {
+				$fb_output .= ' id="' . esc_attr( $args['menu_id'] ) . '"';
 			}
 
-			if ( isset( $args['menu_class'] ) ) {
-				$fb_output .= ' class="' . $args['menu_class'] . '"';
+			if ( ! empty( $args['menu_class'] ) ) {
+				$fb_output .= ' class="' . esc_attr( $args['menu_class'] ) . '"';
 			}
 
 			$fb_output .= '>';
 			$fb_output .= '<li><a href="' . esc_url( admin_url( 'nav-menus.php' ) ) . '">' . esc_html__( 'Add a menu', 'shapely' ) . '</a></li>';
 			$fb_output .= '</ul>';
 
-			if ( isset( $args['container'] ) ) {
-				$fb_output .= '</' . $args['container'] . '>';
+			if ( '' !== $container ) {
+				$fb_output .= '</' . $container . '>';
 			}
 
-			echo $fb_output;
+			echo wp_kses_post( $fb_output );
 		}// End if().
 	}
 }

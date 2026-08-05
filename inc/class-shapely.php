@@ -40,6 +40,28 @@ class Shapely {
 
 	public $theme_slug = 'shapely';
 
+	/**
+	 * @var Shapely|null Single shared instance.
+	 */
+	private static $instance = null;
+
+	/**
+	 * Return the one shared instance.
+	 *
+	 * The class used to be instantiated three separate times (file scope, an
+	 * `init` callback, and shapely_init_plugins()), which registered every
+	 * admin hook — and the whole Epsilon framework — three times over.
+	 *
+	 * @return Shapely
+	 */
+	public static function get_instance() {
+		if ( null === self::$instance ) {
+			self::$instance = new self();
+		}
+
+		return self::$instance;
+	}
+
 	function __construct() {
 
 		if ( ! is_admin() && ! is_customize_preview() ) {
@@ -237,5 +259,3 @@ class Shapely {
 
 }
 endif;
-
-new Shapely();

@@ -22,7 +22,6 @@
 				$show_categories_globally = get_theme_mod( 'show_categories_globally', true );
 				$show_category = $show_category && $show_categories_globally;
 				
-				$image = '<img class="wp-post-image" alt="" src="' . esc_url( get_template_directory_uri() ) . '/assets/images/placeholder_wide.jpg" />';
 				if ( has_post_thumbnail() ) {
 					$layout = shapely_get_layout_class();
 					$size   = 'shapely-featured';
@@ -31,25 +30,20 @@
 						$size = 'shapely-full';
 					}
 					$image = get_the_post_thumbnail( get_the_ID(), $size );
+				} else {
+					/*
+					 * Route through shapely_get_thumbnail() so this layout honours the
+					 * "enable placeholder" and custom-placeholder customizer settings.
+					 * It previously hardcoded placeholder_wide.jpg and ignored both.
+					 */
+					$image = shapely_get_thumbnail( 'shapely-featured', 'placeholder_wide.jpg' );
 				}
-				$allowed_tags = array(
-					'img'      => array(
-						'data-srcset' => true,
-						'data-src'    => true,
-						'srcset'      => true,
-						'sizes'       => true,
-						'src'         => true,
-						'class'       => true,
-						'alt'         => true,
-						'width'       => true,
-						'height'      => true,
-					),
-					'noscript' => array(),
-				);
 				?>
-				<a href="<?php echo esc_url( get_the_permalink() ); ?>">
-					<?php echo wp_kses( $image, $allowed_tags ); ?>
+				<?php if ( ! empty( $image ) ) : ?>
+				<a href="<?php echo esc_url( get_the_permalink() ); ?>" aria-label="<?php echo esc_attr( get_the_title() ); ?>">
+					<?php echo wp_kses( $image, shapely_image_allowed_html() ); ?>
 				</a>
+				<?php endif; ?>
 
 				<?php if ( isset( $category[0] ) && $show_category ) : ?>
 					<span class="shapely-category">
@@ -61,7 +55,7 @@
 			</header><!-- .entry-header -->
 			<div class="entry-content">
 				<h2 class="post-title">
-					<a href="<?php echo esc_url( get_the_permalink() ); ?>"><?php echo wp_trim_words( get_the_title(), 9 ); ?></a>
+					<a href="<?php echo esc_url( get_the_permalink() ); ?>"><?php echo esc_html( wp_trim_words( get_the_title(), 9 ) ); ?></a>
 				</h2>
 
 				<div class="entry-meta">

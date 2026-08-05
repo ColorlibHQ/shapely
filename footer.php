@@ -39,7 +39,7 @@
 		</div>
 	</div>
 
-	<a class="btn btn-sm fade-half back-to-top inner-link" href="#top"><i class="fa fa-angle-up"></i></a>
+	<a class="btn btn-sm fade-half back-to-top inner-link" href="#top"><i class="fa fa-angle-up" aria-hidden="true"></i><span class="screen-reader-text"><?php esc_html_e( 'Back to top', 'shapely' ); ?></span></a>
 </footer><!-- #colophon -->
 </div>
 </div><!-- #page -->
