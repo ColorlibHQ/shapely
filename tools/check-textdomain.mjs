@@ -9,7 +9,13 @@ import { readdir, readFile } from 'node:fs/promises';
 import path from 'node:path';
 
 const ROOT = path.resolve(import.meta.dirname, '..');
-const ALLOWED = new Set(['shapely', 'epsilon-framework']);
+/*
+ * A theme on WordPress.org must use exactly one text domain, matching its
+ * slug -- otherwise language packs do not cover the other domain's strings.
+ * The vendored Epsilon framework used 'epsilon-framework'; those 114 strings
+ * now use 'shapely' like the rest of the theme.
+ */
+const ALLOWED = new Set( [ 'shapely' ] );
 const SKIP = /^(node_modules|vendor|build|\.git|tools)(\/|$)/;
 
 /** fn name -> 1-based index of its $domain argument. */

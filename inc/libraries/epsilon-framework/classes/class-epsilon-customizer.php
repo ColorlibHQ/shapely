@@ -476,7 +476,7 @@ class Epsilon_Customizer {
 		}
 
 
-		$actions['customize'] = '<a href="' . esc_url( get_admin_url() . 'customize.php?url=' . get_permalink( $post->ID ) ) . '" />' . esc_html__( 'Customize', 'epsilon-framework' ) . '</a>';
+		$actions['customize'] = '<a href="' . esc_url( get_admin_url() . 'customize.php?url=' . get_permalink( $post->ID ) ) . '" />' . esc_html__( 'Customize', 'shapely' ) . '</a>';
 
 		return $actions;
 	}

@@ -22,7 +22,7 @@ add_thickbox();
 		<div class="col plugin_box">
 
 			<?php if ( isset( $info['info']->recommended ) && $info['info']->recommended ) { ?>
-				<span class="recommended"><?php echo esc_html__( 'Recommended', 'epsilon-framework' ); ?></span>
+				<span class="recommended"><?php echo esc_html__( 'Recommended', 'shapely' ); ?></span>
 			<?php } ?>
 
 			<?php if ( ! empty( $info['icon'] ) ) { ?>
@@ -30,7 +30,7 @@ add_thickbox();
 			<?php } ?>
 			
 			<?php if ( ! is_wp_error( $info['info'] ) ) { ?>
-				<span class="version"><?php echo esc_html__( 'Version:', 'epsilon-framework' ); ?><?php echo esc_html( $info['info']->version ); ?></span>
+				<span class="version"><?php echo esc_html__( 'Version:', 'shapely' ); ?><?php echo esc_html( $info['info']->version ); ?></span>
 				<span class="separator">|</span> <?php echo wp_kses_post( $info['info']->author ); ?>
 			<?php } ?>
 			

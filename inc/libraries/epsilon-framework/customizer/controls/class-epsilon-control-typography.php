@@ -269,7 +269,7 @@ class Epsilon_Control_Typography extends WP_Customize_Control {
 			<# if( _.contains( data.choices, 'font-family' ) ) { #>
 				<div class="epsilon-typography-font-family">
 					<select id="{{{ data.id }}}-font-family" class="epsilon-typography-input">
-						<option value="default_font"><?php echo esc_html__( 'Theme default', 'epsilon-framework' ); ?></option>
+						<option value="default_font"><?php echo esc_html__( 'Theme default', 'shapely' ); ?></option>
 						<# for ( font in data.fonts ) { #>
 							<option value="{{ font }}" <# if( font === data.inputs['font-family'] ) { #> selected="selected" <# } #> > {{ font }} </option>
 						<# } #>
@@ -302,7 +302,7 @@ class Epsilon_Control_Typography extends WP_Customize_Control {
 				<div class="epsilon-typography-advanced-options" id="{{{ data.id }}}-toggle">
 					<# if( _.contains( data.choices, 'font-size' ) ) { #>
 						<label for="{{{ data.id }}}-font-size">
-							<?php echo esc_html__( 'Font Size', 'epsilon-framework' ); ?>
+							<?php echo esc_html__( 'Font Size', 'shapely' ); ?>
 						</label>
 						<div class="slider-container" data-slider-type="font-size">
 							<input data-default-font-size="{{{ data.fontDefaults[data.id]['font-size'] }}}" type="text" class="epsilon-typography-input rl-slider" id="{{{ data.id }}}-font-size" value="{{{ data.inputs['font-size'] }}}"/>
@@ -311,7 +311,7 @@ class Epsilon_Control_Typography extends WP_Customize_Control {
 					<# } #>
 					<# if( _.contains( data.choices, 'line-height' ) ) { #>
 						<label for="{{{ data.id }}}-line-height">
-							<?php echo esc_html__( 'Line Height', 'epsilon-framework' ); ?>
+							<?php echo esc_html__( 'Line Height', 'shapely' ); ?>
 						</label>
 						<div class="slider-container" data-slider-type="line-height">
 							<input data-default-line-height="{{{ data.fontDefaults[data.id]['line-height'] }}}" type="text" class="epsilon-typography-input rl-slider" id="{{{ data.id }}}-line-height" value="{{{ data.inputs['line-height'] }}}"/>
@@ -320,7 +320,7 @@ class Epsilon_Control_Typography extends WP_Customize_Control {
 					<# } #>
 					<# if( _.contains( data.choices, 'letter-spacing' ) ) { #>
 						<label for="{{{ data.id }}}-letter-spacing">
-							<?php echo esc_html__( 'Letter Spacing', 'epsilon-framework' ); ?>
+							<?php echo esc_html__( 'Letter Spacing', 'shapely' ); ?>
 						</label>
 						<div class="slider-container" data-slider-type="letter-spacing">
 							<input data-default-letter-spacing="{{{ data.fontDefaults[data.id]['letter-spacing'] }}}" type="text" class="epsilon-typography-input rl-slider" id="{{{ data.id }}}-letter-spacing" value="{{{ data.inputs['letter-spacing'] }}}"/>

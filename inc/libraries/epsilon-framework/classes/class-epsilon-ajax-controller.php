@@ -31,7 +31,7 @@ class Epsilon_Ajax_Controller {
 				wp_json_encode(
 					array(
 						'status' => false,
-						'error'  => esc_html__( 'Not allowed', 'epsilon-framework' ),
+						'error'  => esc_html__( 'Not allowed', 'shapely' ),
 					)
 				)
 			);
@@ -55,7 +55,7 @@ class Epsilon_Ajax_Controller {
 				wp_json_encode(
 					array(
 						'status' => false,
-						'error'  => esc_html__( 'Not allowed', 'epsilon-framework' ),
+						'error'  => esc_html__( 'Not allowed', 'shapely' ),
 					)
 				)
 			);
@@ -68,7 +68,7 @@ class Epsilon_Ajax_Controller {
 				wp_json_encode(
 					array(
 						'status' => false,
-						'error'  => esc_html__( 'Class does not exist', 'epsilon-framework' ),
+						'error'  => esc_html__( 'Class does not exist', 'shapely' ),
 					)
 				)
 			);

@@ -13,7 +13,7 @@ import path from 'node:path';
 import sharp from 'sharp';
 
 const ROOT = path.resolve(import.meta.dirname, '..');
-const TARGETS = ['assets/images', 'assets/css/fontawesome6', 'screenshot.png'];
+const TARGETS = ['assets/images', 'assets/css/fontawesome6', 'screenshot.jpg'];
 const WRITE = process.argv.includes('--write');
 const PALETTE = process.argv.includes('--palette');
 
@@ -51,9 +51,16 @@ for (const rel of files) {
    * WordPress.org and its sky gradients are exactly what banding shows up in.
    * Pass --palette if you have a flat-colour PNG where that is acceptable.
    */
+  /*
+   * screenshot.jpg is the storefront image on WordPress.org, so it is encoded
+   * at a higher quality than the in-theme placeholders. Using the same q82
+   * here would silently degrade it a little further on every run.
+   */
+  const quality = /(^|\/)screenshot\.jpe?g$/i.test(rel) ? 92 : 82;
+
   const out = isPng
     ? await sharp(original).png({ compressionLevel: 9, effort: 10, palette: PALETTE }).toBuffer()
-    : await sharp(original).jpeg({ quality: 82, mozjpeg: true, progressive: true }).toBuffer();
+    : await sharp(original).jpeg({ quality, mozjpeg: true, progressive: true }).toBuffer();
 
   before += original.length;
   // Never write a bigger file than we started with.

@@ -186,7 +186,7 @@ class Epsilon_Welcome_Screen {
 				wp_json_encode(
 					array(
 						'status' => false,
-						'error'  => esc_html__( 'Not allowed', 'epsilon-framework' ),
+						'error'  => esc_html__( 'Not allowed', 'shapely' ),
 					)
 				)
 			);
@@ -210,7 +210,7 @@ class Epsilon_Welcome_Screen {
 				wp_json_encode(
 					array(
 						'status' => false,
-						'error'  => esc_html__( 'Not allowed', 'epsilon-framework' ),
+						'error'  => esc_html__( 'Not allowed', 'shapely' ),
 					)
 				)
 			);
@@ -221,7 +221,7 @@ class Epsilon_Welcome_Screen {
 				wp_json_encode(
 					array(
 						'status' => false,
-						'error'  => esc_html__( 'Class Not allowed', 'epsilon-framework' ),
+						'error'  => esc_html__( 'Class Not allowed', 'shapely' ),
 					)
 				)
 			);
@@ -232,7 +232,7 @@ class Epsilon_Welcome_Screen {
 				wp_json_encode(
 					array(
 						'status' => false,
-						'error'  => esc_html__( 'Class does not exist', 'epsilon-framework' ),
+						'error'  => esc_html__( 'Class does not exist', 'shapely' ),
 					)
 				)
 			);
@@ -315,11 +315,11 @@ class Epsilon_Welcome_Screen {
 				array(
 					'nr_actions_required'      => absint( $this->count_actions() ),
 					'template_directory'       => esc_url( get_template_directory_uri() ),
-					'no_required_actions_text' => esc_html__( 'Hooray! There are no required actions for you right now.', 'epsilon-framework' ),
+					'no_required_actions_text' => esc_html__( 'Hooray! There are no required actions for you right now.', 'shapely' ),
 					'ajax_nonce'               => wp_create_nonce( 'welcome_nonce' ),
-					'activating_string'        => esc_html__( 'Activating', 'epsilon-framework' ),
+					'activating_string'        => esc_html__( 'Activating', 'shapely' ),
 					'body_class'               => 'appearance_page_' . $this->theme_slug . '-welcome',
-					'no_actions'               => esc_html__( 'Hooray! There are no required actions for you right now.', 'epsilon-framework' ),
+					'no_actions'               => esc_html__( 'Hooray! There are no required actions for you right now.', 'shapely' ),
 				)
 			);
 		}
@@ -373,18 +373,18 @@ class Epsilon_Welcome_Screen {
 
 		if ( empty( $this->notice ) ) {
 			/* Translators: Notice Title */
-			$this->notice .= '<h3>' . sprintf( esc_html__( 'Welcome to %1$s', 'epsilon-framework' ), $this->theme_name ) . '</h3>';
+			$this->notice .= '<h3>' . sprintf( esc_html__( 'Welcome to %1$s', 'shapely' ), $this->theme_name ) . '</h3>';
 			$this->notice .= '<p>';
 			$this->notice .=
 				sprintf( /* Translators: Notice */
-					esc_html__( 'Welcome! Thank you for choosing %3$s! To fully take advantage of the best our theme can offer please make sure you visit our %1$swelcome page%2$s.', 'epsilon-framework' ),
+					esc_html__( 'Welcome! Thank you for choosing %3$s! To fully take advantage of the best our theme can offer please make sure you visit our %1$swelcome page%2$s.', 'shapely' ),
 					'<a href="' . esc_url( admin_url( 'themes.php?page=' . $this->theme_slug . '-welcome' ) ) . '">',
 					'</a>',
 					$this->theme_name
 				);
 			$this->notice .= '</p>';
 			/* Translators: Notice URL */
-			$this->notice .= '<p><a href="' . esc_url( admin_url( 'themes.php?page=' . $this->theme_slug . '-welcome&tab=recommended-actions' ) ) . '" class="button button-primary" style="text-decoration: none;"> ' . sprintf( esc_html__( 'Get started with %1$s', 'epsilon-framework' ), $this->theme_name ) . '</a></p>';
+			$this->notice .= '<p><a href="' . esc_url( admin_url( 'themes.php?page=' . $this->theme_slug . '-welcome&tab=recommended-actions' ) ) . '" class="button button-primary" style="text-decoration: none;"> ' . sprintf( esc_html__( 'Get started with %1$s', 'shapely' ), $this->theme_name ) . '</a></p>';
 
 		}
 
@@ -403,7 +403,7 @@ class Epsilon_Welcome_Screen {
 	 */
 	public function welcome_screen_menu() {
 		/* Translators: Menu Title */
-		$title = sprintf( esc_html__( 'About %1$s', 'epsilon-framework' ), esc_html( $this->theme_name ) );
+		$title = sprintf( esc_html__( 'About %1$s', 'shapely' ), esc_html( $this->theme_name ) );
 
 		if ( 0 < $this->actions_count ) {
 			$title .= '<span class="badge-action-count">' . esc_html( $this->actions_count ) . '</span>';
@@ -437,13 +437,13 @@ class Epsilon_Welcome_Screen {
 			<h1>
 				<?php
 				/* Translators: Welcome Screen Title. */
-				echo sprintf( esc_html__( 'Welcome to %1$s - v', 'epsilon-framework' ), esc_html( $this->theme_name ) ) . esc_html( $theme['Version'] );
+				echo sprintf( esc_html__( 'Welcome to %1$s - v', 'shapely' ), esc_html( $this->theme_name ) ) . esc_html( $theme['Version'] );
 				?>
 			</h1>
 			<div class="about-text">
 				<?php
 				/* Translators: Welcome Screen Description. */
-				echo sprintf( esc_html__( '%1$s is now installed and ready to use! Get ready to build something beautiful. We hope you enjoy it! We want to make sure you have the best experience using %1$s and that is why we gathered here all the necessary information for you. We hope you will enjoy using %1$s, as much as we enjoy creating great products.', 'epsilon-framework' ), esc_html( $this->theme_name ) );
+				echo sprintf( esc_html__( '%1$s is now installed and ready to use! Get ready to build something beautiful. We hope you enjoy it! We want to make sure you have the best experience using %1$s and that is why we gathered here all the necessary information for you. We hope you will enjoy using %1$s, as much as we enjoy creating great products.', 'shapely' ), esc_html( $this->theme_name ) );
 				?>
 			</div>
 			<div class="wp-badge epsilon-welcome-logo"></div>
@@ -512,31 +512,31 @@ class Epsilon_Welcome_Screen {
 			'getting-started'     => array(
 				'id'    => 'getting-started',
 				'url'   => $this->generate_admin_url( 'getting-started' ),
-				'label' => __( 'Getting Started', 'epsilon-framework' ),
+				'label' => __( 'Getting Started', 'shapely' ),
 				'path'  => get_template_directory() . '/inc/libraries/welcome-screen/sections/getting-started.php',
 			),
 			'recommended-actions' => array(
 				'id'    => 'recommended-actions',
 				'url'   => $this->generate_admin_url( 'recommended-actions' ),
-				'label' => __( 'Recommended Actions', 'epsilon-framework' ),
+				'label' => __( 'Recommended Actions', 'shapely' ),
 				'path'  => get_template_directory() . '/inc/libraries/welcome-screen/sections/recommended-actions.php',
 			),
 			'recommended-plugins' => array(
 				'id'    => 'recommended-plugins',
 				'url'   => $this->generate_admin_url( 'recommended-plugins' ),
-				'label' => __( 'Recommended Plugins', 'epsilon-framework' ),
+				'label' => __( 'Recommended Plugins', 'shapely' ),
 				'path'  => get_template_directory() . '/inc/libraries/welcome-screen/sections/recommended-plugins.php',
 			),
 			'support'             => array(
 				'id'    => 'support',
 				'url'   => $this->generate_admin_url( 'support' ),
-				'label' => __( 'Support', 'epsilon-framework' ),
+				'label' => __( 'Support', 'shapely' ),
 				'path'  => get_template_directory() . '/inc/libraries/welcome-screen/sections/support.php',
 			),
 			'registration'        => array(
 				'id'    => 'registration',
 				'url'   => $this->generate_admin_url( 'registration' ),
-				'label' => __( 'Registration', 'epsilon-framework' ),
+				'label' => __( 'Registration', 'shapely' ),
 				'path'  => get_template_directory() . '/inc/libraries/welcome-screen/sections/registration.php',
 			),
 		);
@@ -581,7 +581,7 @@ class Epsilon_Welcome_Screen {
 			'active'    => Epsilon_Notify_System::check_plugin_is_active( $slug ),
 			'needs'     => 'install',
 			'class'     => 'install-now button',
-			'label'     => __( 'Install and Activate', 'epsilon-framework' ),
+			'label'     => __( 'Install and Activate', 'shapely' ),
 		);
 
 		if ( in_array( $slug, array( 'contact-form-7' ) ) ) {
@@ -602,13 +602,13 @@ class Epsilon_Welcome_Screen {
 		if ( $arr['installed'] ) {
 			$arr['needs'] = 'activate';
 			$arr['class'] = 'activate-now button button-primary';
-			$arr['label'] = __( 'Activate now', 'epsilon-framework' );
+			$arr['label'] = __( 'Activate now', 'shapely' );
 		}
 
 		if ( $arr['active'] ) {
 			$arr['needs'] = 'deactivate';
 			$arr['class'] = 'deactivate-now button button-primary';
-			$arr['label'] = __( 'Deactivate now', 'epsilon-framework' );
+			$arr['label'] = __( 'Deactivate now', 'shapely' );
 		}
 
 		$arr['url'] = $this->create_plugin_link( $arr['needs'], $slug );
@@ -823,7 +823,7 @@ class Epsilon_Welcome_Screen {
 		if ( null === $home ) {
 			$id = wp_insert_post(
 				array(
-					'post_title'  => __( 'Homepage', 'epsilon-framework' ),
+					'post_title'  => __( 'Homepage', 'shapely' ),
 					'post_type'   => 'page',
 					'post_status' => 'publish',
 				)
@@ -836,7 +836,7 @@ class Epsilon_Welcome_Screen {
 		if ( null === $blog ) {
 			$id = wp_insert_post(
 				array(
-					'post_title'  => __( 'Blog', 'epsilon-framework' ),
+					'post_title'  => __( 'Blog', 'shapely' ),
 					'post_type'   => 'page',
 					'post_status' => 'publish',
 				)

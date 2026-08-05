@@ -79,7 +79,7 @@ class Epsilon_Control_Color_Picker extends WP_Customize_Control {
 			<span class="customize-control-title epsilon-color-picker-title">
 				{{{ data.label }}}
 				<# if( data.default ){ #>
-				<a href="#" data-default="{{ data.default }}" class="epsilon-color-picker-default"><?php echo esc_html__( '(clear)', 'epsilon-framework' ); ?></a>
+				<a href="#" data-default="{{ data.default }}" class="epsilon-color-picker-default"><?php echo esc_html__( '(clear)', 'shapely' ); ?></a>
 				<# } #>
 
 				<# if( data.description ){ #>

@@ -109,7 +109,7 @@ class Epsilon_Color_Coded_Categories {
 			) );
 			$wp_customize->add_control( new Epsilon_Control_Color_Picker( $wp_customize, 'epsilon_category_color_' . get_cat_ID( $wp_category_list[ $category_list->cat_ID ] ), array(
 				'label'       => sprintf( '%s', $wp_category_list[ $category_list->cat_ID ] ),
-				'description' => esc_html__( 'This color will affect category related elements such as links, titles, etc. (defined by your theme)', 'epsilon-framework' ),
+				'description' => esc_html__( 'This color will affect category related elements such as links, titles, etc. (defined by your theme)', 'shapely' ),
 				'section'     => $this->section['id'],
 				'settings'    => 'epsilon_category_color_' . get_cat_ID( $wp_category_list[ $category_list->cat_ID ] ),
 				'priority'    => $i,

@@ -85,7 +85,7 @@ $hooray = true;
 	<?php } /* End if(). */ ?>
 
 	<?php if ( $hooray ) { ?>
-		<span class="hooray"><?php echo esc_html__( 'Hooray! There are no required actions for you right now.', 'epsilon-framework' ); ?> </span>
+		<span class="hooray"><?php echo esc_html__( 'Hooray! There are no required actions for you right now.', 'shapely' ); ?> </span>
 	<?php } ?>
 
 </div>
