@@ -1,11 +1,21 @@
-node_modules/*
-.idea/*
-.jscsrc
-.jshintignore
-.jshintrc
-.travis.yml
-Gruntfile.js
-phpcs.ruleset.xml
-.standard.json
+# Dependencies
+node_modules/
+vendor/
+
+# Build output
+build/
 shapely.zip
-package-lock.json
+
+# Editors / OS
+.idea/
+.vscode/
+.DS_Store
+*.swp
+
+# Compiled / generated
+.sass-cache/
+*.map
+
+# package-lock.json is intentionally committed so `npm ci` installs the exact
+# tree that was tested. phpcs.ruleset.xml is a real config used by linting.
+# Both were previously ignored here by mistake.

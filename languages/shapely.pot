@@ -1,701 +1,1092 @@
-# Copyright (C) 2017 colorlib
+# Copyright (C) 2026 Colorlib
 # This file is distributed under the GNU General Public License v3.
 msgid ""
 msgstr ""
-"Project-Id-Version: Shapely 1.7.0\n"
+"Project-Id-Version: Shapely 1.2.20 1.2.20\n"
 "Report-Msgid-Bugs-To: https://www.colorlib.com/\n"
-"POT-Creation-Date: 2017-01-11 08:40:59+00:00\n"
-"MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=utf-8\n"
-"Content-Transfer-Encoding: 8bit\n"
-"PO-Revision-Date: 2017-MO-DA HO:MI+ZONE\n"
 "Last-Translator: Colorlib <office@colorlib.com>\n"
 "Language-Team: Colorlib <office@colorlib.com>\n"
-"X-Generator: grunt-wp-i18n 0.5.4\n"
-"X-Poedit-KeywordsList: "
-"__;_e;_x:1,2c;_ex:1,2c;_n:1,2;_nx:1,2,4c;_n_noop:1,2;_nx_noop:1,2,3c;esc_"
-"attr__;esc_html__;esc_attr_e;esc_html_e;esc_attr_x:1,2c;esc_html_x:1,2c;\n"
-"Language: en\n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Poedit-Country: United States\n"
-"X-Poedit-SourceCharset: UTF-8\n"
-"X-Poedit-Basepath: ../\n"
-"X-Poedit-SearchPath-0: .\n"
-"X-Poedit-Bookmarks: \n"
-"X-Textdomain-Support: yes\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"POT-Creation-Date: 2026-08-04T15:12:29+00:00\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"X-Generator: WP-CLI 2.12.0\n"
+"X-Domain: shapely\n"
+
+#. Theme Name of the theme
+#: style.css
+msgid "Shapely"
+msgstr ""
+
+#. Theme URI of the theme
+#: style.css
+msgid "https://colorlib.com/wp/themes/shapely/"
+msgstr ""
+
+#. Description of the theme
+#: style.css
+msgid "Shapely is a powerful and versatile one page WordPress theme with pixel perfect design and outstanding functionality. It is by far the most advanced free WordPress theme available today with loads of unmatched customization options. This theme comes with several homepage widgets that can be used to add portfolio, testimonials, parallax sections, your product or service information, call for action and much more. Shapely supports most free and premium WordPress plugins such as WooCommerce, Jetpack, Gravity Forms, Contact Form 7, Yoast SEO, Google Analytics by Yoast and much more. This theme is the best suited for business, landing page, portfolio, ecommerce, store, local business,  personal websites but can be tweaked to be used as blog, magazine or any other awesome website while highlighting its unique one page setup. This is going to be the last WordPress theme you will ever want to use because it is so much better than anything you have seen. Needless to say that this theme is SEO friendly thanks to its well optimized strucutre. Shapely theme is mobile friendly and fully responsive making it your best multipurpose partnert for any project and website."
+msgstr ""
+
+#. Author of the theme
+#: style.css
+msgid "Colorlib"
+msgstr ""
+
+#. Author URI of the theme
+#: style.css
+msgid "https://colorlib.com"
+msgstr ""
 
 #: 404.php:17
 msgid "Oops! That page can&rsquo;t be found."
 msgstr ""
 
 #: 404.php:21
-msgid ""
-"It looks like nothing was found at this location. Maybe try one of the "
-"links below or a search?"
+msgid "It looks like nothing was found at this location. Maybe try one of the links below or a search?"
 msgstr ""
 
-#: 404.php:33
-msgid "Most Used Categories"
+#. translators: %s: post title
+#: comments.php:30
+msgctxt "comments title"
+msgid "1 COMMENT"
 msgstr ""
 
-#: 404.php:51
-#. translators: %1$s: smiley
-msgid "Try looking in the monthly archives. %1$s"
-msgstr ""
+#. translators: number of comments
+#: comments.php:34
+#, php-format
+msgctxt "comments title"
+msgid "%1$s COMMENT"
+msgid_plural "%1$s COMMENTS"
+msgstr[0] ""
+msgstr[1] ""
 
-#: comments.php:38 comments.php:64
+#: comments.php:49
+#: comments.php:77
 msgid "Comment navigation"
 msgstr ""
 
-#: comments.php:41 comments.php:67
+#: comments.php:52
+#: comments.php:80
 msgid "Older Comments"
 msgstr ""
 
-#: comments.php:42 comments.php:68
+#: comments.php:53
+#: comments.php:81
 msgid "Newer Comments"
 msgstr ""
 
-#: comments.php:81
+#: comments.php:95
 msgid "Comments are closed."
 msgstr ""
 
-#: functions.php:64
+#: footer.php:42
+msgid "Back to top"
+msgstr ""
+
+#: functions.php:124
 msgid "Primary"
 msgstr ""
 
-#: functions.php:65
+#: functions.php:125
 msgid "Social Menu"
 msgstr ""
 
-#: functions.php:139
-msgid "Import content"
-msgstr ""
-
-#: functions.php:173
+#: functions.php:212
 msgid "Sidebar"
 msgstr ""
 
-#: functions.php:182
+#: functions.php:223
 msgid "Homepage"
 msgstr ""
 
-#: functions.php:192
+#: functions.php:235
+#, php-format
 msgid "Footer Widget %s"
 msgstr ""
 
-#: functions.php:193
+#: functions.php:236
 msgid "Used for footer widget area"
 msgstr ""
 
-#: header.php:25
+#: functions.php:249
+msgid "Shop Sidebar"
+msgstr ""
+
+#: header.php:59
 msgid "Skip to content"
 msgstr ""
 
-#: header.php:46
+#: header.php:73
+msgid "Toggle navigation menu"
+msgstr ""
+
+#: header.php:84
 msgid "Site Search"
 msgstr ""
 
-#: inc/admin/welcome-screen/notify-system-checks.php:125
-#: inc/admin/welcome-screen/notify-system-checks.php:133
+#: inc/class-shapely-builder.php:91
+#, php-format
+msgid "Page: %s"
+msgstr ""
+
+#: inc/class-shapely-builder.php:93
+#, php-format
+msgid "This widgets will appear in %s page"
+msgstr ""
+
+#: inc/class-shapely-notify-system.php:157
+#: inc/class-shapely-notify-system.php:165
 msgid "Install: Shapely Companion Plugin"
 msgstr ""
 
-#: inc/admin/welcome-screen/notify-system-checks.php:130
+#: inc/class-shapely-notify-system.php:162
 msgid "Activate: Shapely Companion Plugin"
 msgstr ""
 
-#: inc/admin/welcome-screen/notify-system-checks.php:139
-#: inc/admin/welcome-screen/notify-system-checks.php:147
+#: inc/class-shapely-notify-system.php:171
+#: inc/class-shapely-notify-system.php:179
 msgid "Install: Yoast SEO Plugin"
 msgstr ""
 
-#: inc/admin/welcome-screen/notify-system-checks.php:144
+#: inc/class-shapely-notify-system.php:176
 msgid "Activate: Yoast SEO Plugin"
 msgstr ""
 
-#: inc/admin/welcome-screen/notify-system-checks.php:153
-#: inc/admin/welcome-screen/notify-system-checks.php:161
+#: inc/class-shapely-notify-system.php:185
+#: inc/class-shapely-notify-system.php:193
 msgid "Install: Jetpack by WordPress"
 msgstr ""
 
-#: inc/admin/welcome-screen/notify-system-checks.php:158
+#: inc/class-shapely-notify-system.php:190
 msgid "Activate: Jetpack by WordPress"
 msgstr ""
 
-#: inc/admin/welcome-screen/notify-system-checks.php:171
-#: inc/admin/welcome-screen/notify-system-checks.php:179
+#: inc/class-shapely-notify-system.php:199
+#: inc/class-shapely-notify-system.php:207
+msgid "Install: Kali Forms"
+msgstr ""
+
+#: inc/class-shapely-notify-system.php:204
+msgid "Activate: Kali Forms"
+msgstr ""
+
+#: inc/class-shapely-notify-system.php:217
+#: inc/class-shapely-notify-system.php:225
 msgid "Please install Shapely Companion plugin."
 msgstr ""
 
-#: inc/admin/welcome-screen/notify-system-checks.php:176
+#: inc/class-shapely-notify-system.php:222
 msgid "Please activate Shapely Companion plugin."
 msgstr ""
 
-#: inc/admin/welcome-screen/notify-system-checks.php:189
-#: inc/admin/welcome-screen/notify-system-checks.php:197
-msgid ""
-"Please install Jetpack by WordPress. Note that you won't be able to use the "
-"Testimonials and Portfolio widgets without it."
+#: inc/class-shapely-notify-system.php:235
+#: inc/class-shapely-notify-system.php:243
+msgid "Please install Jetpack by WordPress. Note that you won't be able to use the Testimonials and Portfolio widgets without it."
 msgstr ""
 
-#: inc/admin/welcome-screen/notify-system-checks.php:194
-msgid ""
-"Please activate Jetpack by WordPress. Note that you won't be able to use "
-"the Testimonials and Portfolio widgets without it."
+#: inc/class-shapely-notify-system.php:240
+msgid "Please activate Jetpack by WordPress. Note that you won't be able to use the Testimonials and Portfolio widgets without it."
 msgstr ""
 
-#: inc/admin/welcome-screen/notify-system-checks.php:203
-#: inc/admin/welcome-screen/notify-system-checks.php:211
+#: inc/class-shapely-notify-system.php:250
+#: inc/class-shapely-notify-system.php:258
+msgid "Please install Kali Forms. Note that you won't be able to use Contact widget without it."
+msgstr ""
+
+#: inc/class-shapely-notify-system.php:255
+msgid "Please activate Kali Forms. Note that you won't be able to use Contact widget without it."
+msgstr ""
+
+#: inc/class-shapely-notify-system.php:264
+#: inc/class-shapely-notify-system.php:272
 msgid "Please install Yoast SEO plugin."
 msgstr ""
 
-#: inc/admin/welcome-screen/notify-system-checks.php:208
+#: inc/class-shapely-notify-system.php:269
 msgid "Please activate Yoast SEO plugin."
 msgstr ""
 
-#: inc/admin/welcome-screen/sections/actions-required.php:55
-#: inc/admin/welcome-screen/sections/recommended-plugins.php:24
-msgid "Install"
+#: inc/class-shapely-related-posts.php:216
+msgid "Related projects"
 msgstr ""
 
-#: inc/admin/welcome-screen/sections/actions-required.php:59
-#: inc/admin/welcome-screen/sections/recommended-plugins.php:28
-msgid "Activate"
-msgstr ""
-
-#: inc/admin/welcome-screen/sections/actions-required.php:63
-#: inc/admin/welcome-screen/sections/recommended-plugins.php:32
-msgid "Deactivate"
-msgstr ""
-
-#: inc/admin/welcome-screen/sections/actions-required.php:84
-#: inc/admin/welcome-screen/welcome-screen.php:94
-msgid "Hooray! There are no required actions for you right now."
-msgstr ""
-
-#: inc/admin/welcome-screen/sections/getting-started.php:11
-msgid "Step 1 - Implement recommended actions"
-msgstr ""
-
-#: inc/admin/welcome-screen/sections/getting-started.php:12
-msgid ""
-"We've compiled a list of steps for you, to take make sure the experience "
-"you'll have using one of our products is very easy to follow."
-msgstr ""
-
-#: inc/admin/welcome-screen/sections/getting-started.php:15
-msgid "No recommended actions left to perform"
-msgstr ""
-
-#: inc/admin/welcome-screen/sections/getting-started.php:19
-msgid "Check recommended actions"
-msgstr ""
-
-#: inc/admin/welcome-screen/sections/getting-started.php:25
-msgid "Step 2 - Check our documentation"
-msgstr ""
-
-#: inc/admin/welcome-screen/sections/getting-started.php:26
-msgid ""
-"Even if you're a long-time WordPress user, we still believe you should give "
-"our documentation a very quick Read."
-msgstr ""
-
-#: inc/admin/welcome-screen/sections/getting-started.php:29
-msgid "Full documentation"
-msgstr ""
-
-#: inc/admin/welcome-screen/sections/getting-started.php:34
-msgid "Step 3 - Customize everything"
-msgstr ""
-
-#: inc/admin/welcome-screen/sections/getting-started.php:35
-msgid ""
-"Using the WordPress Customizer you can easily customize every aspect of the "
-"theme."
-msgstr ""
-
-#: inc/admin/welcome-screen/sections/getting-started.php:37
-msgid "Go to Customizer"
-msgstr ""
-
-#: inc/admin/welcome-screen/sections/recommended-plugins.php:40
-msgid "Version:"
-msgstr ""
-
-#: inc/admin/welcome-screen/sections/support.php:4
-#: inc/admin/welcome-screen/sections/support.php:9
-msgid "Contact Support"
-msgstr ""
-
-#: inc/admin/welcome-screen/sections/support.php:6
-msgid ""
-"We offer excellent support through our advanced ticketing system. Make sure "
-"to register your purchase before contacting support!"
-msgstr ""
-
-#: inc/admin/welcome-screen/sections/support.php:14
-#: inc/shapely-documentation/class-customize.php:73
-msgid "Documentation"
-msgstr ""
-
-#: inc/admin/welcome-screen/sections/support.php:16
-msgid ""
-"This is the place to go to reference different aspects of the theme. Our "
-"online documentation is an incredible resource for learning the ins and "
-"outs of using shapely."
-msgstr ""
-
-#: inc/admin/welcome-screen/sections/support.php:19
-msgid "See our full documentation"
-msgstr ""
-
-#: inc/admin/welcome-screen/sections/support.php:24
-#: inc/admin/welcome-screen/welcome-screen.php:357
-msgid "Changelog"
-msgstr ""
-
-#: inc/admin/welcome-screen/sections/support.php:26
-msgid ""
-"Want to get the gist on the latest theme changes? Just consult our "
-"changelog below to get a taste of the recent fixes and features implemented."
-msgstr ""
-
-#: inc/admin/welcome-screen/sections/support.php:29
-msgid "See changelog"
-msgstr ""
-
-#: inc/admin/welcome-screen/welcome-screen.php:43
-msgid "About Shapely"
-msgstr ""
-
-#: inc/admin/welcome-screen/welcome-screen.php:72
-msgid ""
-"Welcome! Thank you for choosing shapely! To fully take advantage of the "
-"best our theme can offer please make sure you visit our %swelcome page%s."
-msgstr ""
-
-#: inc/admin/welcome-screen/welcome-screen.php:74
-msgid "Get started with shapely"
-msgstr ""
-
-#: inc/admin/welcome-screen/welcome-screen.php:113
-msgid "View Theme Info"
-msgstr ""
-
-#: inc/admin/welcome-screen/welcome-screen.php:145
-msgid "I've fallen and can't get up"
-msgstr ""
-
-#: inc/admin/welcome-screen/welcome-screen.php:338
-msgid "Welcome to Shapely! - Version "
-msgstr ""
-
-#: inc/admin/welcome-screen/welcome-screen.php:341
-msgid ""
-"Shapely is now installed and ready to use! Get ready to build something "
-"beautiful. We hope you enjoy it! We want to make sure you have the best "
-"experience using shapely and that is why we gathered here all the necessary "
-"information for you. We hope you will enjoy using shapely, as much as we "
-"enjoy creating great products."
-msgstr ""
-
-#: inc/admin/welcome-screen/welcome-screen.php:348
-msgid "Getting Started"
-msgstr ""
-
-#: inc/admin/welcome-screen/welcome-screen.php:350
-msgid "Recommended Actions"
-msgstr ""
-
-#: inc/admin/welcome-screen/welcome-screen.php:353
-msgid "Recommended Plugins"
-msgstr ""
-
-#: inc/admin/welcome-screen/welcome-screen.php:355
-msgid "Support"
-msgstr ""
-
-#: inc/class-shapely-related-posts.php:156
+#: inc/class-shapely-related-posts.php:218
 msgid "Related articles "
 msgstr ""
 
-#: inc/customizer.php:72
-msgid "Shapely Options"
+#: inc/class-shapely-related-posts.php:230
+msgid "Previous"
 msgstr ""
 
-#: inc/customizer.php:73
-msgid "Panel to update shapely theme options"
+#: inc/class-shapely-related-posts.php:231
+msgid "Next"
 msgstr ""
 
-#: inc/customizer.php:79
-msgid "Layout options"
+#: inc/class-shapely.php:134
+msgid "Recomended Actions"
 msgstr ""
 
-#: inc/customizer.php:86
-msgid "Blog Settings"
+#: inc/class-shapely.php:135
+msgid " is social :"
 msgstr ""
 
-#: inc/customizer.php:96
-msgid "Link Color"
+#: inc/class-shapely.php:136
+msgid "Recomended Plugins :"
 msgstr ""
 
-#: inc/customizer.php:97 inc/customizer.php:106 inc/customizer.php:115
-#: inc/customizer.php:124 inc/customizer.php:134
-msgid "Default used if no color is selected"
+#: inc/class-shapely.php:156
+#: inc/class-shapely.php:203
+#: inc/class-shapely.php:205
+msgid "Import Demo Content"
 msgstr ""
 
-#: inc/customizer.php:105
-msgid "Link Hover Color"
+#: inc/class-shapely.php:157
+msgid "Clicking the button below will install and activate plugins, add widgets and set static front page to your WordPress installation. Click advanced to customize the import process."
 msgstr ""
 
-#: inc/customizer.php:114
-msgid "Button Color"
+#: inc/class-shapely.php:189
+msgid "Set Static FrontPage"
 msgstr ""
 
-#: inc/customizer.php:123
-msgid "Button Hover Color"
+#: inc/class-shapely.php:190
+msgid "Import HomePage Widgets"
 msgstr ""
 
-#: inc/customizer.php:133
-msgid "Social Icon Color"
+#: inc/class-shapely.php:194
+msgid "Shapely Companion"
 msgstr ""
 
-#: inc/customizer.php:140
-msgid "Main options"
+#: inc/class-shapely.php:195
+msgid "Jetpack"
 msgstr ""
 
-#: inc/customizer.php:156
-msgid "Show title in top call out box"
+#: inc/class-shapely.php:196
+msgid "Kali Forms"
 msgstr ""
 
-#: inc/customizer.php:164
-msgid "check to show title in top call out box"
+#: inc/class-shapely.php:206
+msgid "Advanced"
 msgstr ""
 
-#: inc/customizer.php:182 inc/customizer.php:189
-msgid "Title in blog post"
+#: inc/class-shapely.php:217
+msgid "Plugins"
 msgstr ""
 
-#: inc/customizer.php:201
-msgid "Blog Name in top callout"
+#: inc/class-shapely.php:225
+msgid "Demo Content"
 msgstr ""
 
-#: inc/customizer.php:202
-msgid "Heading for the Blog page"
-msgstr ""
-
-#: inc/customizer.php:212
-msgid "Portfolio Archive Title"
-msgstr ""
-
-#: inc/customizer.php:222
-msgid "Portfolio Archive Description"
-msgstr ""
-
-#: inc/customizer.php:233
-msgid "Text for footer callout"
-msgstr ""
-
-#: inc/customizer.php:234
-msgid "Footer Callout"
-msgstr ""
-
-#: inc/customizer.php:244
-msgid "Text for footer callout button"
-msgstr ""
-
-#: inc/customizer.php:253
-msgid "CFA button link"
-msgstr ""
-
-#: inc/customizer.php:255
-msgid "Enter the link for Call For Action button in footer"
-msgstr ""
-
-#: inc/customizer.php:261
-msgid "Footer"
-msgstr ""
-
-#: inc/customizer.php:273
-msgid "Copyright Text"
-msgstr ""
-
-#: inc/customizer.php:289
-msgid "Color scheme"
-msgstr ""
-
-#: inc/customizer.php:290
-msgid "Select a color scheme"
-msgstr ""
-
-#: inc/customizer.php:365 inc/customizer.php:407
-msgid "First Letter Caps"
-msgstr ""
-
-#: inc/customizer.php:374 inc/customizer.php:412
-msgid "Tags Post Meta"
-msgstr ""
-
-#: inc/customizer.php:383 inc/customizer.php:417
-msgid "Related Posts Area"
-msgstr ""
-
-#: inc/customizer.php:392 inc/customizer.php:422
-msgid "Post Author Area"
-msgstr ""
-
-#: inc/customizer.php:401 inc/customizer.php:427
-msgid "Post Author Left Side"
-msgstr ""
-
-#: inc/customizer.php:439
-msgid "Blog Layout"
-msgstr ""
-
-#: inc/customizer.php:443
-msgid "Grid only"
-msgstr ""
-
-#: inc/customizer.php:444
-msgid "Large Image and Grid"
-msgstr ""
-
-#: inc/customizer.php:445
-msgid "Large Images"
-msgstr ""
-
-#: inc/customizer.php:455
-msgid "Blog Template"
-msgstr ""
-
-#. Template Name of the plugin/theme
-msgid "Full Width"
-msgstr ""
-
-#. Template Name of the plugin/theme
-msgid "No Sidebar"
-msgstr ""
-
-#. Template Name of the plugin/theme
-msgid "Sidebar Left"
-msgstr ""
-
-#. Template Name of the plugin/theme
-msgid "Sidebar Right"
-msgstr ""
-
-#: inc/customizer.php:485
-msgid "Left Sidebar"
-msgstr ""
-
-#: inc/customizer.php:486
-msgid "Right Sidebar"
-msgstr ""
-
-#: inc/extras.php:63
-msgid "Untitled"
-msgstr ""
-
-#: inc/extras.php:80
-msgid ""
-"This post is password protected. To view it please enter your password "
-"below:"
-msgstr ""
-
-#: inc/extras.php:81
-msgid "Password:"
-msgstr ""
-
-#: inc/extras.php:84
-msgid "Submit"
-msgstr ""
-
-#: inc/extras.php:123
-msgid "Theme by %1$s Powered by %2$s"
-msgstr ""
-
-#: inc/extras.php:270
-msgid "Search for:"
-msgstr ""
-
-#: inc/extras.php:271
-msgid "Type Here"
-msgstr ""
-
-#: inc/extras.php:272 inc/extras.php:653
-msgid "Search"
-msgstr ""
-
-#: inc/extras.php:489
-#. translators: 1: date, 2: time
-msgid "%1$s at %2$s"
-msgstr ""
-
-#: inc/extras.php:489
-msgid "Edit"
-msgstr ""
-
-#: inc/extras.php:501
-msgid "Your comment is awaiting moderation."
-msgstr ""
-
-#: inc/extras.php:535
-msgid "Your Name"
-msgstr ""
-
-#: inc/extras.php:539
-msgid "Email Address"
-msgstr ""
-
-#: inc/extras.php:543
-msgid "Your Website (optional)"
-msgstr ""
-
-#: inc/extras.php:548
-msgid "Leave Comment"
-msgstr ""
-
-#: inc/extras.php:655 inc/extras.php:657
-msgid "Portfolio"
-msgstr ""
-
-#: inc/navwalker.php:203
+#: inc/class-wp-bootstrap-navwalker.php:237
 msgid "Add a menu"
 msgstr ""
 
-#. Theme Name of the plugin/theme
-msgid "Shapely"
+#: inc/custom-controls/class-shapely-logo-dimensions.php:42
+msgid "Logo Width:"
 msgstr ""
 
-#: inc/template-tags.php:58
+#: inc/custom-controls/class-shapely-logo-dimensions.php:46
+msgid "Logo Height:"
+msgstr ""
+
+#: inc/customizer.php:88
+msgid "Theme documentation"
+msgstr ""
+
+#: inc/customizer.php:89
+msgid "Learn more"
+msgstr ""
+
+#: inc/customizer.php:101
+msgid "Theme Options"
+msgstr ""
+
+#: inc/customizer.php:102
+msgid "Panel to update shapely theme options"
+msgstr ""
+
+#: inc/customizer.php:111
+msgid "Blog Settings"
+msgstr ""
+
+#: inc/customizer.php:112
+msgid "Panel to update Blog related options"
+msgstr ""
+
+#: inc/customizer.php:148
+msgid "Blog Index Header Image"
+msgstr ""
+
+#: inc/customizer.php:166
+msgid "Blog Hero Image"
+msgstr ""
+
+#: inc/customizer.php:167
+msgid "The image displayed as a banner on blog pages"
+msgstr ""
+
+#: inc/customizer.php:176
+msgid "Blog Index Settings"
+msgstr ""
+
+#: inc/customizer.php:194
+#: inc/customizer.php:204
+msgid "Show Placeholder Images"
+msgstr ""
+
+#: inc/customizer.php:195
+#: inc/customizer.php:205
+msgid "Show/hide placeholder images for posts without a featured image"
+msgstr ""
+
+#: inc/customizer.php:223
+msgid "Custom Placeholder Image"
+msgstr ""
+
+#: inc/customizer.php:224
+msgid "Upload a custom placeholder image to use instead of the default"
+msgstr ""
+
+#: inc/customizer.php:236
+msgid "Blog Single Settings"
+msgstr ""
+
+#: inc/customizer.php:251
+msgid "Link Color"
+msgstr ""
+
+#: inc/customizer.php:252
+#: inc/customizer.php:267
+#: inc/customizer.php:282
+#: inc/customizer.php:297
+msgid "Default used if no color is selected"
+msgstr ""
+
+#: inc/customizer.php:266
+msgid "Link Hover Color"
+msgstr ""
+
+#: inc/customizer.php:281
+msgid "Button Color"
+msgstr ""
+
+#: inc/customizer.php:296
+msgid "Button Hover Color"
+msgstr ""
+
+#: inc/customizer.php:306
+msgid "Main Options"
+msgstr ""
+
+#: inc/customizer.php:323
+#: inc/customizer.php:333
+msgid "Show Blog Title"
+msgstr ""
+
+#: inc/customizer.php:324
+#: inc/customizer.php:334
+msgid "Show/hide the title from the Blog Page"
+msgstr ""
+
+#: inc/customizer.php:353
+#: inc/customizer.php:361
+msgid "Title in Blog Post"
+msgstr ""
+
+#: inc/customizer.php:377
+msgid "Blog Name in Top Callout"
+msgstr ""
+
+#: inc/customizer.php:378
+msgid "Heading for the Blog page"
+msgstr ""
+
+#: inc/customizer.php:394
+#: inc/customizer.php:403
+msgid "Mobile Menu on Desktop"
+msgstr ""
+
+#: inc/customizer.php:395
+#: inc/customizer.php:404
+msgid "Always the menu will be like the mobile menu"
+msgstr ""
+
+#: inc/customizer.php:420
+msgid "Text for Footer Callout"
+msgstr ""
+
+#: inc/customizer.php:421
+msgid "The title of the call to action section from footer"
+msgstr ""
+
+#: inc/customizer.php:435
+msgid "Text for Footer Callout Button"
+msgstr ""
+
+#: inc/customizer.php:436
+msgid "The label of the call to action section's button from the footer"
+msgstr ""
+
+#: inc/customizer.php:449
+msgid "CFA Button Link"
+msgstr ""
+
+#: inc/customizer.php:451
+msgid "The URL of the call to action section's button from footer"
+msgstr ""
+
+#: inc/customizer.php:474
+#: inc/customizer.php:483
+msgid "Transparent header"
+msgstr ""
+
+#: inc/customizer.php:475
+#: inc/customizer.php:484
+msgid "Toggling this to ON will make the header have a transparent background"
+msgstr ""
+
+#: inc/customizer.php:503
+#: inc/customizer.php:520
+msgid "Sticky header background opacity"
+msgstr ""
+
+#: inc/customizer.php:504
+#: inc/customizer.php:521
+msgid "Increase the header background opacity"
+msgstr ""
+
+#: inc/customizer.php:541
+#: inc/customizer.php:551
+msgid "Sticky header"
+msgstr ""
+
+#: inc/customizer.php:542
+#: inc/customizer.php:552
+msgid "Toggling this to ON will make your header stick to the top of the browser bar"
+msgstr ""
+
+#: inc/customizer.php:571
+msgid "Footer"
+msgstr ""
+
+#: inc/customizer.php:587
+msgid "Copyright Text"
+msgstr ""
+
+#: inc/customizer.php:666
+#: inc/customizer.php:1140
+msgid "Show title in header"
+msgstr ""
+
+#: inc/customizer.php:667
+msgid "This will show/hide the post title from callout"
+msgstr ""
+
+#: inc/customizer.php:676
+msgid "Show title above post"
+msgstr ""
+
+#: inc/customizer.php:677
+msgid "This will show/hide the post title above post content"
+msgstr ""
+
+#: inc/customizer.php:686
+#: inc/customizer.php:1160
+msgid "Show the date"
+msgstr ""
+
+#: inc/customizer.php:687
+msgid "This will show/hide the date when post was published"
+msgstr ""
+
+#: inc/customizer.php:696
+#: inc/customizer.php:1170
+msgid "Show the author"
+msgstr ""
+
+#: inc/customizer.php:697
+msgid "This will show/hide the author who written the post under the post title"
+msgstr ""
+
+#: inc/customizer.php:706
+msgid "Show the category"
+msgstr ""
+
+#: inc/customizer.php:707
+msgid "This will show/hide the categories of post"
+msgstr ""
+
+#: inc/customizer.php:716
+#: inc/customizer.php:770
+#: inc/customizer.php:1190
+#: inc/customizer.php:1244
+msgid "First Letter Caps"
+msgstr ""
+
+#: inc/customizer.php:717
+#: inc/customizer.php:771
+msgid "This will transform your first letter from a post into uppercase"
+msgstr ""
+
+#: inc/customizer.php:725
+#: inc/customizer.php:778
+msgid "Tags Post Meta"
+msgstr ""
+
+#: inc/customizer.php:726
+#: inc/customizer.php:779
+msgid "This will show/hide tags from the end of post"
+msgstr ""
+
+#: inc/customizer.php:734
+#: inc/customizer.php:786
+msgid "Related Posts Area"
+msgstr ""
+
+#: inc/customizer.php:735
+#: inc/customizer.php:787
+msgid "This will enable/disable the related posts"
+msgstr ""
+
+#: inc/customizer.php:743
+#: inc/customizer.php:794
+msgid "Post Author Area"
+msgstr ""
+
+#: inc/customizer.php:744
+#: inc/customizer.php:795
+#: inc/customizer.php:1218
+#: inc/customizer.php:1269
+msgid "This will show/hide the author box"
+msgstr ""
+
+#: inc/customizer.php:752
+#: inc/customizer.php:802
+msgid "Post Author Left Side"
+msgstr ""
+
+#: inc/customizer.php:753
+#: inc/customizer.php:803
+msgid "This will move the author box from the bottom of the post on top on the left side"
+msgstr ""
+
+#: inc/customizer.php:761
+#: inc/customizer.php:810
+#: inc/customizer.php:1235
+#: inc/customizer.php:1284
+msgid "Show Author Email"
+msgstr ""
+
+#: inc/customizer.php:762
+#: inc/customizer.php:811
+#: inc/customizer.php:1236
+#: inc/customizer.php:1285
+msgid "This will show/hide the author's email from the author box"
+msgstr ""
+
+#: inc/customizer.php:826
+msgid "Single Post Template"
+msgstr ""
+
+#: inc/customizer.php:827
+msgid "Set the default template for single posts"
+msgstr ""
+
+#. Template Name of the theme
+#: inc/customizer.php:831
+#: inc/customizer.php:874
+#: inc/customizer.php:1056
+#: inc/customizer.php:1305
+#: inc/customizer.php:1385
+msgid "Full Width"
+msgstr ""
+
+#. Template Name of the theme
+#: inc/customizer.php:832
+#: inc/customizer.php:875
+#: inc/customizer.php:1057
+#: inc/customizer.php:1306
+#: inc/customizer.php:1384
+msgid "No Sidebar"
+msgstr ""
+
+#. Template Name of the theme
+#: inc/customizer.php:833
+#: inc/customizer.php:876
+#: inc/customizer.php:1058
+#: inc/customizer.php:1307
+msgid "Sidebar Left"
+msgstr ""
+
+#. Template Name of the theme
+#: inc/customizer.php:834
+#: inc/customizer.php:877
+#: inc/customizer.php:1059
+#: inc/customizer.php:1308
+msgid "Sidebar Right"
+msgstr ""
+
+#: inc/customizer.php:848
+msgid "Blog Layout"
+msgstr ""
+
+#: inc/customizer.php:849
+msgid "Choose how you want to display posts in grid"
+msgstr ""
+
+#: inc/customizer.php:853
+msgid "Grid only"
+msgstr ""
+
+#: inc/customizer.php:854
+msgid "Large Image and Grid"
+msgstr ""
+
+#: inc/customizer.php:855
+msgid "Large Images"
+msgstr ""
+
+#: inc/customizer.php:869
+msgid "Blog Template"
+msgstr ""
+
+#: inc/customizer.php:870
+msgid "Choose the template for your posts page"
+msgstr ""
+
+#: inc/customizer.php:893
+#: inc/customizer.php:902
+msgid "Show Category on Posts"
+msgstr ""
+
+#: inc/customizer.php:894
+#: inc/customizer.php:903
+msgid "Show/hide posts' categories from the Category Page"
+msgstr ""
+
+#: inc/customizer.php:921
+#: inc/customizer.php:930
+msgid "Show Categories Globally"
+msgstr ""
+
+#: inc/customizer.php:922
+#: inc/customizer.php:931
+msgid "Show/hide categories on all blog pages and single posts"
+msgstr ""
+
+#: inc/customizer.php:945
+msgid "Projects Settings"
+msgstr ""
+
+#: inc/customizer.php:946
+msgid "Panel to update projects related options"
+msgstr ""
+
+#: inc/customizer.php:952
+msgid "Projects Page Settings"
+msgstr ""
+
+#: inc/customizer.php:960
+msgid "Project Single Settings"
+msgstr ""
+
+#: inc/customizer.php:977
+#: inc/customizer.php:986
+msgid "Show Portfolio Archive Title"
+msgstr ""
+
+#: inc/customizer.php:978
+#: inc/customizer.php:987
+msgid "Show/hide the title from the Portfolio Archive Page"
+msgstr ""
+
+#: inc/customizer.php:1001
+msgid "Portfolio Archive Title"
+msgstr ""
+
+#: inc/customizer.php:1002
+msgid "Add a title on the Portfolio Archive Page."
+msgstr ""
+
+#: inc/customizer.php:1016
+msgid "Portfolio Archive Description"
+msgstr ""
+
+#: inc/customizer.php:1017
+msgid "Add a description on the Portfolio Archive Page."
+msgstr ""
+
+#: inc/customizer.php:1031
+msgid "Projects Layout"
+msgstr ""
+
+#: inc/customizer.php:1032
+msgid "Choose how you want to display projects"
+msgstr ""
+
+#: inc/customizer.php:1036
+msgid "Masonry"
+msgstr ""
+
+#: inc/customizer.php:1037
+msgid "Grid"
+msgstr ""
+
+#: inc/customizer.php:1051
+msgid "Projects Template"
+msgstr ""
+
+#: inc/customizer.php:1052
+msgid "Choose the template for your projects archive page"
+msgstr ""
+
+#: inc/customizer.php:1141
+msgid "This will show/hide the project title from callout"
+msgstr ""
+
+#: inc/customizer.php:1150
+msgid "Show title above project"
+msgstr ""
+
+#: inc/customizer.php:1151
+msgid "This will show/hide the project title above project content"
+msgstr ""
+
+#: inc/customizer.php:1161
+msgid "This will show/hide the date when project was published"
+msgstr ""
+
+#: inc/customizer.php:1171
+msgid "This will show/hide the author who written the project under the project title"
+msgstr ""
+
+#: inc/customizer.php:1180
+msgid "Show the project type"
+msgstr ""
+
+#: inc/customizer.php:1181
+msgid "This will show/hide the type of project"
+msgstr ""
+
+#: inc/customizer.php:1191
+#: inc/customizer.php:1245
+msgid "This will transform your first letter from a project into uppercase"
+msgstr ""
+
+#: inc/customizer.php:1199
+#: inc/customizer.php:1252
+msgid "Tags Project Meta"
+msgstr ""
+
+#: inc/customizer.php:1200
+#: inc/customizer.php:1253
+msgid "This will show/hide tags from the end of project"
+msgstr ""
+
+#: inc/customizer.php:1208
+#: inc/customizer.php:1260
+msgid "Related Projects Area"
+msgstr ""
+
+#: inc/customizer.php:1209
+#: inc/customizer.php:1261
+msgid "This will enable/disable the related projects"
+msgstr ""
+
+#: inc/customizer.php:1217
+#: inc/customizer.php:1268
+msgid "Project Author Area"
+msgstr ""
+
+#: inc/customizer.php:1226
+#: inc/customizer.php:1276
+msgid "Project Author Left Side"
+msgstr ""
+
+#: inc/customizer.php:1227
+#: inc/customizer.php:1277
+msgid "This will move the author box from the bottom of the project on top on the left side"
+msgstr ""
+
+#: inc/customizer.php:1300
+msgid "Single Project Template"
+msgstr ""
+
+#: inc/customizer.php:1301
+msgid "Set the default template for single project"
+msgstr ""
+
+#: inc/customizer.php:1382
+msgid "Left Sidebar"
+msgstr ""
+
+#: inc/customizer.php:1383
+msgid "Right Sidebar"
+msgstr ""
+
+#: inc/extras.php:60
+msgid "Untitled"
+msgstr ""
+
+#: inc/extras.php:79
+msgid "This post is password protected. To view it please enter your password below:"
+msgstr ""
+
+#: inc/extras.php:80
+msgid "Password:"
+msgstr ""
+
+#: inc/extras.php:83
+msgid "Submit"
+msgstr ""
+
+#: inc/extras.php:129
+#, php-format
+msgid "Theme by %1$s Powered by %2$s"
+msgstr ""
+
+#. translators: %s: Name of current post
+#: inc/extras.php:450
+#, php-format
+msgid "Continue reading %s"
+msgstr ""
+
+#: inc/extras.php:477
+msgid "Previous page"
+msgstr ""
+
+#: inc/extras.php:478
+msgid "Next page"
+msgstr ""
+
+#: inc/extras.php:521
+msgctxt "label"
+msgid "Search for:"
+msgstr ""
+
+#: inc/extras.php:522
+msgctxt "placeholder"
+msgid "Search &hellip;"
+msgstr ""
+
+#: inc/extras.php:524
+msgctxt "submit button"
+msgid "Search"
+msgstr ""
+
+#. translators: 1: date, 2: time
+#: inc/extras.php:669
+#, php-format
+msgid "%1$s at %2$s"
+msgstr ""
+
+#: inc/extras.php:673
+msgid "Edit"
+msgstr ""
+
+#: inc/extras.php:688
+msgid "Your comment is awaiting moderation."
+msgstr ""
+
+#: inc/extras.php:725
+msgid "Your Name"
+msgstr ""
+
+#: inc/extras.php:726
+msgid "Email Address"
+msgstr ""
+
+#: inc/extras.php:727
+msgid "Your Website (optional)"
+msgstr ""
+
+#: inc/extras.php:731
+msgid "Leave Comment"
+msgstr ""
+
+#: inc/extras.php:732
+msgctxt "noun"
+msgid "Comment"
+msgstr ""
+
+#: inc/extras.php:904
+msgid "Blog"
+msgstr ""
+
+#: inc/extras.php:906
+msgid "Search"
+msgstr ""
+
+#: inc/extras.php:909
+msgid "Portfolio"
+msgstr ""
+
+#: inc/libraries/welcome-screen/sections/getting-started.php:11
+msgid "Step 1 - Implement recommended actions"
+msgstr ""
+
+#: inc/libraries/welcome-screen/sections/getting-started.php:12
+msgid "We've compiled a list of steps for you, to take make sure the experience you'll have using one of our products is very easy to follow."
+msgstr ""
+
+#: inc/libraries/welcome-screen/sections/getting-started.php:15
+msgid "No recommended actions left to perform"
+msgstr ""
+
+#: inc/libraries/welcome-screen/sections/getting-started.php:19
+msgid "Check recommended actions"
+msgstr ""
+
+#: inc/libraries/welcome-screen/sections/getting-started.php:27
+msgid "Step 2 - Check our documentation"
+msgstr ""
+
+#: inc/libraries/welcome-screen/sections/getting-started.php:28
+msgid "Even if you're a long-time WordPress user, we still believe you should give our documentation a very quick Read."
+msgstr ""
+
+#: inc/libraries/welcome-screen/sections/getting-started.php:30
+msgid "Full documentation"
+msgstr ""
+
+#: inc/libraries/welcome-screen/sections/getting-started.php:35
+msgid "Step 3 - Customize everything"
+msgstr ""
+
+#: inc/libraries/welcome-screen/sections/getting-started.php:36
+msgid "Using the WordPress Customizer you can easily customize every aspect of the theme."
+msgstr ""
+
+#: inc/libraries/welcome-screen/sections/getting-started.php:37
+msgid "Go to Customizer"
+msgstr ""
+
+#: inc/libraries/welcome-screen/sections/support.php:3
+#: inc/libraries/welcome-screen/sections/support.php:7
+msgid "Contact Support"
+msgstr ""
+
+#: inc/libraries/welcome-screen/sections/support.php:5
+msgid "We offer excellent support through our advanced ticketing system. Make sure to register your purchase before contacting support!"
+msgstr ""
+
+#: inc/libraries/welcome-screen/sections/support.php:12
+msgid "Documentation"
+msgstr ""
+
+#: inc/libraries/welcome-screen/sections/support.php:14
+msgid "This is the place to go to reference different aspects of the theme. Our online documentation is an incredible resource for learning the ins and outs of using shapely."
+msgstr ""
+
+#: inc/libraries/welcome-screen/sections/support.php:17
+msgid "See our full documentation"
+msgstr ""
+
+#: inc/template-tags.php:84
 msgid "by"
 msgstr ""
 
-#: inc/template-tags.php:74 inc/template-tags.php:80
 #. translators: used between list items, there is a space after the comma
+#: inc/template-tags.php:100
+#: inc/template-tags.php:106
 msgid ", "
 msgstr ""
 
-#: inc/template-tags.php:76
+#: inc/template-tags.php:102
+#, php-format
 msgid "Posted in %1$s"
 msgstr ""
 
-#: inc/template-tags.php:83
+#: inc/template-tags.php:109
+#, php-format
 msgid "Tagged %1$s"
 msgstr ""
 
-#: inc/template-tags.php:89
+#: inc/template-tags.php:115
 msgid "Leave a comment"
 msgstr ""
 
-#: inc/template-tags.php:89
+#: inc/template-tags.php:115
 msgid "1 Comment"
 msgstr ""
 
-#: inc/template-tags.php:89
+#: inc/template-tags.php:115
 msgid "% Comments"
 msgstr ""
 
-#: inc/template-tags.php:96 template-parts/content-page.php:59
 #. translators: %s: Name of current post
+#: inc/template-tags.php:122
+#: template-parts/content-page.php:52
+#, php-format
 msgid "Edit %s"
 msgstr ""
 
-#: inc/template-tags.php:158
+#: inc/template-tags.php:191
+#, php-format
 msgid "View all posts in %s"
 msgstr ""
 
-#: page-templates/template-home.php:14
+#. Template Name of the theme
+msgid "Home Page"
+msgstr ""
+
+#: page-templates/template-home.php:15
 msgid "This is the \"Home Sidebar Section\", add some widgets to it to change it."
 msgstr ""
 
-#: search.php:24
+#: page-templates/template-home.php:16
+msgid "Go to Appearance &rarr; Widgets and add widgets to the Homepage area."
+msgstr ""
+
+#. Template Name of the theme
+msgid "Builder Page"
+msgstr ""
+
+#: page-templates/template-widget.php:19
+#, php-format
+msgid "This is the %s sidebar, add some widgets to it to change it."
+msgstr ""
+
+#: page-templates/template-widget.php:20
+msgid "Go to Appearance → Widgets and add widgets to this area."
+msgstr ""
+
+#: search.php:25
+#, php-format
 msgid "Search Results for: %s"
 msgstr ""
 
-#: template-parts/content-grid-small.php:59
-#: template-parts/content-grid-wide.php:66
-#. translators: %s: Name of current post.
-msgid "Read more %s <span class=\"meta-nav\">&rarr;</span>"
+#: template-parts/content-attachment.php:37
+#: template-parts/content-grid-small.php:74
+#: template-parts/content-grid-wide.php:85
+#: template-parts/content-page.php:22
+#: template-parts/content-portfolio.php:74
+#: template-parts/content-portfolio.php:88
+#: template-parts/content.php:86
+#: template-parts/content.php:100
+msgid "Pages:"
 msgstr ""
 
-#: template-parts/content-grid-small.php:64
-#: template-parts/content-grid-wide.php:71 template-parts/content-page.php:30
-#: template-parts/content.php:79 template-parts/content.php:91
-msgid "Pages:"
+#: template-parts/content-grid-small.php:62
+#: template-parts/content-grid-wide.php:73
+#, php-format
+msgid "Read more %s <span class=\"meta-nav\">&rarr;</span>"
 msgstr ""
 
 #: template-parts/content-none.php:14
 msgid "Nothing Found"
 msgstr ""
 
-#: template-parts/content-none.php:21
+#: template-parts/content-none.php:30
+#, php-format
 msgid "Ready to publish your first post? <a href=\"%1$s\">Get started here</a>."
 msgstr ""
 
-#: template-parts/content-none.php:25
-msgid ""
-"Sorry, but nothing matched your search terms. Please try again with some "
-"different keywords."
+#: template-parts/content-none.php:36
+msgid "Sorry, but nothing matched your search terms. Please try again with some different keywords."
 msgstr ""
 
-#: template-parts/content-none.php:31
-msgid ""
-"It seems we can&rsquo;t find what you&rsquo;re looking for. Perhaps "
-"searching can help."
-msgstr ""
-
-#. Theme URI of the plugin/theme
-msgid "https://colorlib.com/wp/themes/shapely"
-msgstr ""
-
-#. Description of the plugin/theme
-msgid ""
-"Shapely is a powerful and versatile one page WordPress theme with pixel "
-"perfect design and outstanding functionality. It is by far the most "
-"advanced free WordPress theme available today with loads of unmatched "
-"customization options. This theme comes with several homepage widgets that "
-"can be used to add portfolio, testimonials, parallax sections, your product "
-"or service information, call for action and much more. Shapely supports "
-"most free and premium WordPress plugins such as WooCommerce, Jetpack, "
-"Gravity Forms, Contact Form 7, Yoast SEO, Google Analytics by Yoast and "
-"much more. This theme is the best suited for business, landing page, "
-"portfolio, ecommerce, store, local business,  personal websites but can be "
-"tweaked to be used as blog, magazine or any other awesome website while "
-"highlighting its unique one page setup. This is going to be the last "
-"WordPress theme you will ever want to use because it is so much better than "
-"anything you have seen. Needless to say that this theme is SEO friendly "
-"thanks to its well optimized strucutre. Shapely theme is mobile friendly "
-"and fully responsive making it your best multipurpose partnert for any "
-"project and website."
-msgstr ""
-
-#. Author of the plugin/theme
-msgid "colorlib"
-msgstr ""
-
-#. Author URI of the plugin/theme
-msgid "https://colorlib.com/"
-msgstr ""
-
-#. Template Name of the plugin/theme
-msgid "Home Page"
-msgstr ""
-
-#: comments.php:30
-msgctxt "comments title"
-msgid "1 COMMENT"
-msgid_plural "%1$s COMMENTS"
-msgstr[0] ""
-msgstr[1] ""
-
-#: inc/extras.php:239
-msgctxt "Read More"
-msgid "Read More"
-msgstr ""
-
-#: inc/extras.php:549
-msgctxt "noun"
-msgid "Comment"
+#: template-parts/content-none.php:43
+msgid "It seems we can&rsquo;t find what you&rsquo;re looking for. Perhaps searching can help."
 msgstr ""
