@@ -9,7 +9,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2026-08-04T15:12:29+00:00\n"
+"POT-Creation-Date: 2026-08-05T13:40:01+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "X-Generator: WP-CLI 2.12.0\n"
 "X-Domain: shapely\n"
@@ -26,7 +26,7 @@ msgstr ""
 
 #. Description of the theme
 #: style.css
-msgid "Shapely is a powerful and versatile one page WordPress theme with pixel perfect design and outstanding functionality. It is by far the most advanced free WordPress theme available today with loads of unmatched customization options. This theme comes with several homepage widgets that can be used to add portfolio, testimonials, parallax sections, your product or service information, call for action and much more. Shapely supports most free and premium WordPress plugins such as WooCommerce, Jetpack, Gravity Forms, Contact Form 7, Yoast SEO, Google Analytics by Yoast and much more. This theme is the best suited for business, landing page, portfolio, ecommerce, store, local business,  personal websites but can be tweaked to be used as blog, magazine or any other awesome website while highlighting its unique one page setup. This is going to be the last WordPress theme you will ever want to use because it is so much better than anything you have seen. Needless to say that this theme is SEO friendly thanks to its well optimized strucutre. Shapely theme is mobile friendly and fully responsive making it your best multipurpose partnert for any project and website."
+msgid "Shapely is a one-page WordPress theme for business, portfolio and small e-commerce sites. The front page is assembled from widgets, so you can stack parallax sections, a portfolio grid, testimonials, a client logo carousel, a call to action and a contact block in whatever order you need. It also ships conventional blog templates with a choice of left, right, full-width or no sidebar, four footer widget areas, and a social icon menu. WooCommerce and Jetpack are supported, and the theme is translation ready."
 msgstr ""
 
 #. Author of the theme
@@ -85,32 +85,33 @@ msgstr ""
 msgid "Back to top"
 msgstr ""
 
-#: functions.php:124
+#: functions.php:123
 msgid "Primary"
 msgstr ""
 
-#: functions.php:125
+#: functions.php:124
 msgid "Social Menu"
 msgstr ""
 
-#: functions.php:212
+#: functions.php:211
 msgid "Sidebar"
 msgstr ""
 
-#: functions.php:223
+#: functions.php:222
+#: inc/libraries/welcome-screen/class-epsilon-welcome-screen.php:826
 msgid "Homepage"
 msgstr ""
 
-#: functions.php:235
+#: functions.php:234
 #, php-format
 msgid "Footer Widget %s"
 msgstr ""
 
-#: functions.php:236
+#: functions.php:235
 msgid "Used for footer widget area"
 msgstr ""
 
-#: functions.php:249
+#: functions.php:248
 msgid "Shop Sidebar"
 msgstr ""
 
@@ -911,6 +912,7 @@ msgid "Comment"
 msgstr ""
 
 #: inc/extras.php:904
+#: inc/libraries/welcome-screen/class-epsilon-welcome-screen.php:839
 msgid "Blog"
 msgstr ""
 
@@ -920,6 +922,391 @@ msgstr ""
 
 #: inc/extras.php:909
 msgid "Portfolio"
+msgstr ""
+
+#: inc/libraries/epsilon-framework/class-epsilon-framework.php:256
+#: inc/libraries/epsilon-framework/classes/output/class-epsilon-repeater-templates.php:56
+#: inc/libraries/epsilon-framework/classes/output/class-epsilon-repeater-templates.php:128
+#: inc/libraries/epsilon-framework/classes/output/class-epsilon-repeater-templates.php:284
+#: inc/libraries/epsilon-framework/customizer/controls/class-epsilon-control-image.php:118
+msgid "Remove"
+msgstr ""
+
+#: inc/libraries/epsilon-framework/class-epsilon-framework.php:257
+#: inc/libraries/epsilon-framework/customizer/controls/class-epsilon-control-repeater.php:101
+msgid "Add"
+msgstr ""
+
+#: inc/libraries/epsilon-framework/class-epsilon-framework.php:258
+#: inc/libraries/epsilon-framework/classes/output/class-epsilon-repeater-templates.php:276
+#: inc/libraries/epsilon-framework/customizer/controls/class-epsilon-control-image.php:110
+msgid "Upload image"
+msgstr ""
+
+#: inc/libraries/epsilon-framework/class-epsilon-framework.php:259
+#: inc/libraries/epsilon-framework/customizer/controls/class-epsilon-control-repeater.php:242
+msgid "Row"
+msgstr ""
+
+#: inc/libraries/epsilon-framework/classes/backend/class-epsilon-content-backup.php:221
+msgid "This page contains the content created by the customizer."
+msgstr ""
+
+#. Translators: %s is the plugin name.
+#: inc/libraries/epsilon-framework/classes/backend/class-epsilon-notify-system.php:121
+#, php-format
+msgid "Install: %s"
+msgstr ""
+
+#. Translators: %s is the plugin name.
+#: inc/libraries/epsilon-framework/classes/backend/class-epsilon-notify-system.php:123
+#, php-format
+msgid "Please install %s in order to create the demo content."
+msgstr ""
+
+#. Translators: %s is the plugin name
+#: inc/libraries/epsilon-framework/classes/backend/class-epsilon-notify-system.php:127
+#, php-format
+msgid "Activate: %s"
+msgstr ""
+
+#. Translators: %s is the plugin name
+#: inc/libraries/epsilon-framework/classes/backend/class-epsilon-notify-system.php:129
+#, php-format
+msgid "Please activate %s in order to create the demo content."
+msgstr ""
+
+#: inc/libraries/epsilon-framework/classes/class-epsilon-ajax-controller.php:34
+#: inc/libraries/epsilon-framework/classes/class-epsilon-ajax-controller.php:58
+#: inc/libraries/welcome-screen/class-epsilon-welcome-screen.php:189
+#: inc/libraries/welcome-screen/class-epsilon-welcome-screen.php:213
+msgid "Not allowed"
+msgstr ""
+
+#: inc/libraries/epsilon-framework/classes/class-epsilon-ajax-controller.php:71
+#: inc/libraries/welcome-screen/class-epsilon-welcome-screen.php:235
+msgid "Class does not exist"
+msgstr ""
+
+#: inc/libraries/epsilon-framework/classes/class-epsilon-customizer.php:479
+msgid "Customize"
+msgstr ""
+
+#: inc/libraries/epsilon-framework/classes/output/class-epsilon-color-coded-categories.php:112
+msgid "This color will affect category related elements such as links, titles, etc. (defined by your theme)"
+msgstr ""
+
+#: inc/libraries/epsilon-framework/classes/output/class-epsilon-repeater-templates.php:57
+#: inc/libraries/epsilon-framework/classes/output/class-epsilon-repeater-templates.php:129
+#: inc/libraries/epsilon-framework/customizer/sections/class-epsilon-section-doubled.php:56
+msgid "Close"
+msgstr ""
+
+#: inc/libraries/epsilon-framework/classes/output/class-epsilon-repeater-templates.php:81
+msgid "Fields"
+msgstr ""
+
+#: inc/libraries/epsilon-framework/classes/output/class-epsilon-repeater-templates.php:84
+msgid "Styles"
+msgstr ""
+
+#: inc/libraries/epsilon-framework/classes/output/class-epsilon-repeater-templates.php:87
+msgid "Layout"
+msgstr ""
+
+#: inc/libraries/epsilon-framework/classes/output/class-epsilon-repeater-templates.php:278
+#: inc/libraries/epsilon-framework/customizer/controls/class-epsilon-control-image.php:112
+msgid "Recommended resolution:"
+msgstr ""
+
+#: inc/libraries/epsilon-framework/classes/output/class-epsilon-repeater-templates.php:288
+#: inc/libraries/epsilon-framework/customizer/controls/class-epsilon-control-image.php:126
+msgid "Select File"
+msgstr ""
+
+#: inc/libraries/epsilon-framework/classes/output/class-epsilon-repeater-templates.php:377
+#: inc/libraries/epsilon-framework/customizer/controls/class-epsilon-control-color-picker.php:82
+msgid "(clear)"
+msgstr ""
+
+#: inc/libraries/epsilon-framework/customizer/controls/class-epsilon-control-image.php:122
+msgid "Default"
+msgstr ""
+
+#: inc/libraries/epsilon-framework/customizer/controls/class-epsilon-control-layouts.php:201
+msgid "Edit column size"
+msgstr ""
+
+#. Translators: Section limit
+#: inc/libraries/epsilon-framework/customizer/controls/class-epsilon-control-repeater.php:290
+#: inc/libraries/epsilon-framework/customizer/controls/class-epsilon-control-section-repeater.php:590
+msgid "Limit: "
+msgstr ""
+
+#. Translators: Section limit
+#: inc/libraries/epsilon-framework/customizer/controls/class-epsilon-control-repeater.php:290
+#: inc/libraries/epsilon-framework/customizer/controls/class-epsilon-control-section-repeater.php:591
+msgid "sections"
+msgstr ""
+
+#: inc/libraries/epsilon-framework/customizer/controls/class-epsilon-control-section-repeater.php:250
+#: inc/libraries/epsilon-framework/customizer/controls/class-epsilon-control-upsell.php:70
+msgid "See what's in the PRO version"
+msgstr ""
+
+#: inc/libraries/epsilon-framework/customizer/controls/class-epsilon-control-section-repeater.php:315
+msgid "Background Color"
+msgstr ""
+
+#: inc/libraries/epsilon-framework/customizer/controls/class-epsilon-control-section-repeater.php:329
+msgid "Background Image"
+msgstr ""
+
+#: inc/libraries/epsilon-framework/customizer/controls/class-epsilon-control-section-repeater.php:344
+msgid "Background Position"
+msgstr ""
+
+#: inc/libraries/epsilon-framework/customizer/controls/class-epsilon-control-section-repeater.php:350
+msgid "Top Left"
+msgstr ""
+
+#: inc/libraries/epsilon-framework/customizer/controls/class-epsilon-control-section-repeater.php:351
+msgid "Top"
+msgstr ""
+
+#: inc/libraries/epsilon-framework/customizer/controls/class-epsilon-control-section-repeater.php:352
+msgid "Top Right"
+msgstr ""
+
+#: inc/libraries/epsilon-framework/customizer/controls/class-epsilon-control-section-repeater.php:353
+msgid "Left"
+msgstr ""
+
+#: inc/libraries/epsilon-framework/customizer/controls/class-epsilon-control-section-repeater.php:354
+msgid "Center"
+msgstr ""
+
+#: inc/libraries/epsilon-framework/customizer/controls/class-epsilon-control-section-repeater.php:355
+msgid "Right"
+msgstr ""
+
+#: inc/libraries/epsilon-framework/customizer/controls/class-epsilon-control-section-repeater.php:356
+msgid "Bottom Left"
+msgstr ""
+
+#: inc/libraries/epsilon-framework/customizer/controls/class-epsilon-control-section-repeater.php:357
+msgid "Bottom"
+msgstr ""
+
+#: inc/libraries/epsilon-framework/customizer/controls/class-epsilon-control-section-repeater.php:358
+msgid "Bottom Right"
+msgstr ""
+
+#: inc/libraries/epsilon-framework/customizer/controls/class-epsilon-control-section-repeater.php:367
+msgid "Background Size"
+msgstr ""
+
+#: inc/libraries/epsilon-framework/customizer/controls/class-epsilon-control-section-repeater.php:373
+msgid "Cover"
+msgstr ""
+
+#: inc/libraries/epsilon-framework/customizer/controls/class-epsilon-control-section-repeater.php:374
+msgid "Contain"
+msgstr ""
+
+#: inc/libraries/epsilon-framework/customizer/controls/class-epsilon-control-section-repeater.php:375
+msgid "Initial"
+msgstr ""
+
+#: inc/libraries/epsilon-framework/customizer/controls/class-epsilon-control-section-repeater.php:403
+msgid "Alignment"
+msgstr ""
+
+#: inc/libraries/epsilon-framework/customizer/controls/class-epsilon-control-section-repeater.php:430
+msgid "Vertical Alignment"
+msgstr ""
+
+#: inc/libraries/epsilon-framework/customizer/controls/class-epsilon-control-section-repeater.php:457
+msgid "Column Stretch"
+msgstr ""
+
+#: inc/libraries/epsilon-framework/customizer/controls/class-epsilon-control-section-repeater.php:484
+msgid "Column Spacing"
+msgstr ""
+
+#: inc/libraries/epsilon-framework/customizer/controls/class-epsilon-control-section-repeater.php:507
+msgid "Column Group"
+msgstr ""
+
+#: inc/libraries/epsilon-framework/customizer/controls/class-epsilon-control-section-repeater.php:596
+msgid "Add a Section"
+msgstr ""
+
+#: inc/libraries/epsilon-framework/customizer/controls/class-epsilon-control-section-repeater.php:602
+msgid "Search sections"
+msgstr ""
+
+#: inc/libraries/epsilon-framework/customizer/controls/class-epsilon-control-section-repeater.php:603
+msgid "Search sections &hellip;"
+msgstr ""
+
+#: inc/libraries/epsilon-framework/customizer/controls/class-epsilon-control-section-repeater.php:606
+msgid "Clear Results"
+msgstr ""
+
+#: inc/libraries/epsilon-framework/customizer/controls/class-epsilon-control-section-repeater.php:608
+msgid "The search results will be updated as you type."
+msgstr ""
+
+#: inc/libraries/epsilon-framework/customizer/controls/class-epsilon-control-section-repeater.php:613
+msgid "Sections"
+msgstr ""
+
+#: inc/libraries/epsilon-framework/customizer/controls/class-epsilon-control-section-repeater.php:614
+msgid "Integrations"
+msgstr ""
+
+#: inc/libraries/epsilon-framework/customizer/controls/class-epsilon-control-typography.php:272
+msgid "Theme default"
+msgstr ""
+
+#: inc/libraries/epsilon-framework/customizer/controls/class-epsilon-control-typography.php:305
+msgid "Font Size"
+msgstr ""
+
+#: inc/libraries/epsilon-framework/customizer/controls/class-epsilon-control-typography.php:314
+msgid "Line Height"
+msgstr ""
+
+#: inc/libraries/epsilon-framework/customizer/controls/class-epsilon-control-typography.php:323
+msgid "Letter Spacing"
+msgstr ""
+
+#: inc/libraries/epsilon-framework/customizer/sections/class-epsilon-section-doubled.php:51
+msgid "Press return or enter to open this section"
+msgstr ""
+
+#: inc/libraries/epsilon-framework/customizer/sections/class-epsilon-section-doubled.php:64
+msgid "Help"
+msgstr ""
+
+#: inc/libraries/epsilon-framework/customizer/sections/class-epsilon-section-recommended-actions.php:114
+msgid "Facebook"
+msgstr ""
+
+#: inc/libraries/epsilon-framework/customizer/sections/class-epsilon-section-recommended-actions.php:116
+msgid "Twitter"
+msgstr ""
+
+#: inc/libraries/epsilon-framework/customizer/sections/class-epsilon-section-recommended-actions.php:118
+msgid "Review this theme on w.org"
+msgstr ""
+
+#: inc/libraries/epsilon-framework/customizer/sections/class-epsilon-section-recommended-actions.php:279
+#: inc/libraries/epsilon-framework/customizer/sections/class-epsilon-section-recommended-actions.php:345
+msgid "Install"
+msgstr ""
+
+#: inc/libraries/epsilon-framework/customizer/sections/class-epsilon-section-recommended-actions.php:283
+#: inc/libraries/epsilon-framework/customizer/sections/class-epsilon-section-recommended-actions.php:349
+msgid "Activate"
+msgstr ""
+
+#: inc/libraries/epsilon-framework/customizer/sections/class-epsilon-section-recommended-actions.php:287
+#: inc/libraries/epsilon-framework/customizer/sections/class-epsilon-section-recommended-actions.php:353
+msgid "Update"
+msgstr ""
+
+#: inc/libraries/epsilon-framework/customizer/sections/class-epsilon-section-recommended-actions.php:291
+#: inc/libraries/epsilon-framework/customizer/sections/class-epsilon-section-recommended-actions.php:357
+msgid "Deactivate"
+msgstr ""
+
+#: inc/libraries/epsilon-framework/customizer/sections/class-epsilon-section-recommended-actions.php:369
+#, php-format
+msgid "Error fetching info for %s"
+msgstr ""
+
+#: inc/libraries/welcome-screen/class-epsilon-welcome-screen.php:224
+msgid "Class Not allowed"
+msgstr ""
+
+#: inc/libraries/welcome-screen/class-epsilon-welcome-screen.php:318
+#: inc/libraries/welcome-screen/class-epsilon-welcome-screen.php:322
+#: inc/libraries/welcome-screen/sections/recommended-actions.php:88
+msgid "Hooray! There are no required actions for you right now."
+msgstr ""
+
+#: inc/libraries/welcome-screen/class-epsilon-welcome-screen.php:320
+msgid "Activating"
+msgstr ""
+
+#. Translators: Notice Title
+#: inc/libraries/welcome-screen/class-epsilon-welcome-screen.php:376
+#, php-format
+msgid "Welcome to %1$s"
+msgstr ""
+
+#. Translators: Notice
+#: inc/libraries/welcome-screen/class-epsilon-welcome-screen.php:380
+#, php-format
+msgid "Welcome! Thank you for choosing %3$s! To fully take advantage of the best our theme can offer please make sure you visit our %1$swelcome page%2$s."
+msgstr ""
+
+#. Translators: Notice URL
+#: inc/libraries/welcome-screen/class-epsilon-welcome-screen.php:387
+#, php-format
+msgid "Get started with %1$s"
+msgstr ""
+
+#. Translators: Menu Title
+#: inc/libraries/welcome-screen/class-epsilon-welcome-screen.php:406
+#, php-format
+msgid "About %1$s"
+msgstr ""
+
+#. Translators: Welcome Screen Title.
+#: inc/libraries/welcome-screen/class-epsilon-welcome-screen.php:440
+#, php-format
+msgid "Welcome to %1$s - v"
+msgstr ""
+
+#. Translators: Welcome Screen Description.
+#: inc/libraries/welcome-screen/class-epsilon-welcome-screen.php:446
+#, php-format
+msgid "%1$s is now installed and ready to use! Get ready to build something beautiful. We hope you enjoy it! We want to make sure you have the best experience using %1$s and that is why we gathered here all the necessary information for you. We hope you will enjoy using %1$s, as much as we enjoy creating great products."
+msgstr ""
+
+#: inc/libraries/welcome-screen/class-epsilon-welcome-screen.php:515
+msgid "Getting Started"
+msgstr ""
+
+#: inc/libraries/welcome-screen/class-epsilon-welcome-screen.php:521
+msgid "Recommended Actions"
+msgstr ""
+
+#: inc/libraries/welcome-screen/class-epsilon-welcome-screen.php:527
+msgid "Recommended Plugins"
+msgstr ""
+
+#: inc/libraries/welcome-screen/class-epsilon-welcome-screen.php:533
+msgid "Support"
+msgstr ""
+
+#: inc/libraries/welcome-screen/class-epsilon-welcome-screen.php:539
+msgid "Registration"
+msgstr ""
+
+#: inc/libraries/welcome-screen/class-epsilon-welcome-screen.php:584
+msgid "Install and Activate"
+msgstr ""
+
+#: inc/libraries/welcome-screen/class-epsilon-welcome-screen.php:605
+msgid "Activate now"
+msgstr ""
+
+#: inc/libraries/welcome-screen/class-epsilon-welcome-screen.php:611
+msgid "Deactivate now"
 msgstr ""
 
 #: inc/libraries/welcome-screen/sections/getting-started.php:11
@@ -960,6 +1347,14 @@ msgstr ""
 
 #: inc/libraries/welcome-screen/sections/getting-started.php:37
 msgid "Go to Customizer"
+msgstr ""
+
+#: inc/libraries/welcome-screen/sections/recommended-plugins.php:25
+msgid "Recommended"
+msgstr ""
+
+#: inc/libraries/welcome-screen/sections/recommended-plugins.php:33
+msgid "Version:"
 msgstr ""
 
 #: inc/libraries/welcome-screen/sections/support.php:3
