@@ -35,7 +35,12 @@ try {
 const args = [
   'i18n', 'make-pot', ROOT, DEST,
   '--domain=shapely',
-  '--package-name=' + `Shapely ${version}`.trim(),
+  /*
+   * Just the name. WP-CLI reads the version out of style.css and appends it
+   * itself, so passing "Shapely 1.2.20" here produced the doubled
+   * "Project-Id-Version: Shapely 1.2.20 1.2.20".
+   */
+  '--package-name=Shapely',
   '--exclude=node_modules,vendor,build,tools,src,.github',
   '--headers=' + JSON.stringify({
     'Report-Msgid-Bugs-To': 'https://www.colorlib.com/',

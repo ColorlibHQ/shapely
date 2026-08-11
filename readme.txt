@@ -67,6 +67,14 @@ This page template is used to create the Parallax homepage from our demo : https
 
 == Changelog ==
 
+= 1.2.21 =
+* Fixed the theme's Font Awesome 6 never loading on sites running Elementor or any other plugin that registers the generic "font-awesome" handle. WordPress keeps only the first registration of a handle, so the theme's stylesheet was silently dropped and every fa-brands / fa-solid icon -- the social links, the search button, the menu and pagination arrows -- rendered as a blank box. It now uses its own "shapely-font-awesome" handle
+* Fixed the customizer loading Font Awesome from .../shapely/inc/assets/css/..., a path that has never existed, so the customizer's own icons 404'd
+* Fixed related posts on portfolio items returning the wrong posts when the portfolio taxonomies are not registered: wp_get_object_terms() returns a WP_Error there, and it was being passed straight into the query
+* Regenerated languages/shapely.pot, which had been built before the text domain unification and was missing 86 translatable strings
+* Added a version check to the build so style.css, readme.txt, changelog.txt and package.json can no longer drift apart (readme.txt had been left at 1.2.19)
+* Fixed the coding-standards CI job, which had been failing to install PHPCS rather than actually checking anything
+
 = 1.2.20 =
 * PHP 8.5 compatibility: removed every runtime deprecation and warning raised by the theme
 * Verified on WordPress 7.0.2 / PHP 8.5: zero PHP notices across all templates, the customizer, the welcome screen and the block editor
@@ -194,4 +202,4 @@ This page template is used to create the Parallax homepage from our demo : https
 = 1.0.0 - March 26 2016 =
 * Initial release
 
-Stable tag: 1.2.19
+Stable tag: 1.2.21
