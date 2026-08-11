@@ -1659,6 +1659,18 @@ nav {
   content: "\f105"; /* fa-angle-right */
   right: 10px;
   display: inline-block;
+  /*
+   * The base .dropdown:after rule centres the glyph with line-height: 53px,
+   * which is the height of the 55px top-level bar. A submenu row is 32px
+   * (6px padding + 20px line-height + 6px), so inherited unchanged the arrow
+   * painted 11.5px below the label it belongs to.
+   *
+   * Anchored to the link row via line-height rather than top/transform: 50%,
+   * because this li also contains its child <ul>, so its own height is not the
+   * row height wherever that submenu expands in flow (the mobile accordion).
+   */
+  top: 0;
+  line-height: 32px;
 }
 
 .shapely-dropdown {
