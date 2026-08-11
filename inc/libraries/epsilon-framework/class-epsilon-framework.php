@@ -268,7 +268,7 @@ class Epsilon_Framework {
 		 * Elementor and others register, making this a silent no-op on those sites.
 		 * Reuse the theme's handle so both screens load the same file once.
 		 */
-		wp_enqueue_style( 'shapely-font-awesome', get_template_directory_uri() . '/assets/css/fontawesome6/all.min.css', array(), '6.4.2' );
+		wp_enqueue_style( 'shapely-font-awesome', get_template_directory_uri() . '/assets/css/fontawesome6/all.min.css', array(), SHAPELY_VERSION );
 		wp_enqueue_style( 'epsilon-styles', EPSILON_URI . '/assets/css/style.css' );
 	}
 
