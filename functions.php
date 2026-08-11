@@ -51,6 +51,7 @@ require_once get_template_directory() . '/inc/socialnav.php';
 require_once get_template_directory() . '/inc/class-shapely-related-posts.php';
 require_once get_template_directory() . '/inc/class-shapely.php';
 require_once get_template_directory() . '/inc/class-shapely-builder.php';
+require_once get_template_directory() . '/inc/block-editor.php';
 
 if ( ! defined( 'SHAPELY_SETUP_LOADED' ) ) {
 	define( 'SHAPELY_SETUP_LOADED', true );
@@ -150,6 +151,19 @@ if ( ! function_exists( 'shapely_setup' ) ) :
 		 */
 		add_theme_support( 'responsive-embeds' );
 		add_theme_support( 'align-wide' );
+
+		/*
+		 * Core's default block styles. Without this, blocks that rely on them
+		 * -- separators, the gallery, quote variations -- fall back to
+		 * unstyled markup on the front end.
+		 */
+		add_theme_support( 'wp-block-styles' );
+
+		/*
+		 * Make the editor canvas resemble the front end. Enqueued rather than
+		 * inlined so it is cached and overridable by a child theme.
+		 */
+		add_editor_style( 'assets/css/editor-style.css' );
 
 		// Set up the WordPress core custom background feature.
 		add_theme_support(
