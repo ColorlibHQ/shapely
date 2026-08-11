@@ -102,7 +102,13 @@ class Shapely_Builder {
 
         public function enqueue_builder_js() {
                 $builder_settings = array(
-                        'siteURL' => esc_url( site_url() ),
+                        /*
+                         * Compared in customizer-builder.js against api.settings.url.preview,
+                         * which is a front-end URL -- so this has to be home_url(), not the
+                         * WordPress files location. The trailing slash matters too: the preview
+                         * URL carries one, so the unslashed site_url() could never match it.
+                         */
+                        'siteURL' => esc_url( home_url( '/' ) ),
                         'pages'   => $this->pages,
                         'ajaxurl' => admin_url( 'admin-ajax.php' ),
                         'nonce'   => wp_create_nonce( 'shapely_builder_nonce' ),

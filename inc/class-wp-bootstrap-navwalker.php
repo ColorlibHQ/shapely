@@ -110,7 +110,13 @@ class Wp_Bootstrap_Navwalker extends Walker_Nav_Menu {
 
 			if ( 'shapely-section' == $extra ) {
 				if ( ! is_front_page() ) {
-					$atts['href'] = site_url() . $item->url;
+					/*
+					 * home_url(), not site_url(): this builds a link back to the front
+					 * page plus an anchor. site_url() is where the WordPress files live,
+					 * so on an install with WordPress in a subdirectory every one-page
+					 * section link pointed at /wp/#section instead of /#section.
+					 */
+					$atts['href'] = home_url() . $item->url;
 				}
 
 				if ( '' != $widget ) {
