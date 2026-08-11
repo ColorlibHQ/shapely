@@ -68,6 +68,7 @@ This page template is used to create the Parallax homepage from our demo : https
 == Changelog ==
 
 = 1.2.21 =
+* Fixed the back-to-top arrow sitting off-centre in its button. The 36px button's content box was 22px tall and 10px wide after border and padding, so a 18px glyph with a 27px line box could not centre on either axis; measured 2.8px right and 1.9px high before, sub-pixel after
 * Fixed one-page section links in the menu, and the page-builder customizer, using site_url() where home_url() was meant. On installs with WordPress in its own subdirectory those pointed at /wp/ instead of the site address
 * Added add_theme_support( 'wp-block-styles' ) and add_editor_style(), so core block styles apply on the front end and the editor canvas matches the theme's typography
 * Added three block styles (two button styles and a short rule) and two block patterns, built from the theme's own button and colour values

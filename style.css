@@ -3563,7 +3563,22 @@ footer.bg-dark a {
   -webkit-transform: translateX(-50%);
   height: 36px;
   width: 36px;
-  padding: 5px 11px;
+  /*
+   * Centred with flex rather than padding + line-height. The button is a fixed
+   * 36px box, so with a 2px border and 5px/11px padding the content box was
+   * 22px tall and 10px wide -- while the glyph is 18px with a 27px line box
+   * inherited from .btn-sm. Neither axis could centre: the arrow sat 1px high
+   * and 3.4px right of centre, measured on the rendered button.
+   *
+   * letter-spacing is reset because .btn adds 1px after every character,
+   * including the last, which offsets any centred single glyph by half that.
+   */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  line-height: 1;
+  letter-spacing: 0;
 }
 
 .back-to-top .fa {
