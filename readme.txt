@@ -68,6 +68,8 @@ This page template is used to create the Parallax homepage from our demo : https
 == Changelog ==
 
 = 1.2.21 =
+* Fixed Font Awesome 6 loading its glyphs from a leftover Font Awesome 5.15.3 font directory. The bundled stylesheet asked for "../webfonts/", which resolves out of assets/css/fontawesome6/ and into the old assets/css/webfonts/, so every icon added after 5.15.3 rendered as a blank gap -- the X (Twitter) icon in the footer social links being the visible one
+* Removed the orphaned Font Awesome 5 font files, which nothing referenced once the path above was corrected. The release zip drops from 3.16 MB to 1.88 MB
 * Fixed the theme's Font Awesome 6 never loading on sites running Elementor or any other plugin that registers the generic "font-awesome" handle. WordPress keeps only the first registration of a handle, so the theme's stylesheet was silently dropped and every fa-brands / fa-solid icon -- the social links, the search button, the menu and pagination arrows -- rendered as a blank box. It now uses its own "shapely-font-awesome" handle
 * Fixed the customizer loading Font Awesome from .../shapely/inc/assets/css/..., a path that has never existed, so the customizer's own icons 404'd
 * Fixed related posts on portfolio items returning the wrong posts when the portfolio taxonomies are not registered: wp_get_object_terms() returns a WP_Error there, and it was being passed straight into the query
