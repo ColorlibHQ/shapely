@@ -50,6 +50,11 @@ jobs:
 
       - name: Install PHPCS + standards
         run: |
+          # phpcodesniffer-composer-installer is a Composer plugin, and Composer
+          # refuses to run plugins that are not explicitly allow-listed. Without
+          # this the require aborts before PHPCS is ever installed.
+          composer global config --no-plugins --no-interaction \
+            allow-plugins.dealerdirect/phpcodesniffer-composer-installer true
           composer global require --no-interaction --no-progress \
             squizlabs/php_codesniffer \
             phpcompatibility/php-compatibility \

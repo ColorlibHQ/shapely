@@ -143,6 +143,20 @@ if ( ! class_exists( 'Shapely_Related_Posts' ) ) {
 				$types      = wp_get_object_terms( get_the_ID(), 'jetpack-portfolio-type', $terms_args );
 				$tags       = wp_get_object_terms( get_the_ID(), 'jetpack-portfolio-tag', $terms_args );
 
+				/*
+				 * These return WP_Error when the taxonomy is not registered, which
+				 * happens whenever whatever supplied the portfolio post type is
+				 * deactivated while its posts remain. ! empty() is true for an
+				 * object, so without this the WP_Error was pushed straight into
+				 * tax_query and WP_Query silently returned the wrong posts.
+				 */
+				if ( is_wp_error( $types ) ) {
+					$types = array();
+				}
+				if ( is_wp_error( $tags ) ) {
+					$tags = array();
+				}
+
 				$tax_query = array();
 
 				if ( ! empty( $types ) ) {

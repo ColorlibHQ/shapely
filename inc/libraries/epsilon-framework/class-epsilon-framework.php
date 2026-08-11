@@ -259,7 +259,16 @@ class Epsilon_Framework {
 			'row'        => esc_html__( 'Row', 'shapely' ),
 		) );
 
-		wp_enqueue_style( 'font-awesome', EPSILON_URI . '../../assets/css/fontawesome6/all.min.css' );
+		/*
+		 * Two faults here, both fixed in place (this library is vendored, not a
+		 * submodule). EPSILON_URI already ends in .../inc/libraries/epsilon-framework/,
+		 * so '../../' resolved to .../inc/assets/css/... -- one level short of the
+		 * theme root, and a 404, which is why the customizer's own icons were
+		 * missing. And the generic 'font-awesome' handle collides with the one
+		 * Elementor and others register, making this a silent no-op on those sites.
+		 * Reuse the theme's handle so both screens load the same file once.
+		 */
+		wp_enqueue_style( 'shapely-font-awesome', get_template_directory_uri() . '/assets/css/fontawesome6/all.min.css', array(), '6.4.2' );
 		wp_enqueue_style( 'epsilon-styles', EPSILON_URI . '/assets/css/style.css' );
 	}
 
