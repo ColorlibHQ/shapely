@@ -2,7 +2,7 @@
 # This file is distributed under the GNU General Public License v3.
 msgid ""
 msgstr ""
-"Project-Id-Version: Shapely 1.2.20 1.2.20\n"
+"Project-Id-Version: Shapely 1.2.21\n"
 "Report-Msgid-Bugs-To: https://www.colorlib.com/\n"
 "Last-Translator: Colorlib <office@colorlib.com>\n"
 "Language-Team: Colorlib <office@colorlib.com>\n"

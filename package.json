@@ -1,6 +1,6 @@
 {
   "name": "shapely",
-  "version": "1.2.20",
+  "version": "1.2.21",
   "description": "Build and lint tooling for the Shapely WordPress theme.",
   "homepage": "https://www.colorlib.com",
   "author": "Colorlib",
@@ -25,9 +25,10 @@
     "i18n": "node tools/make-pot.mjs",
     "i18n:check": "node tools/check-textdomain.mjs",
     "images": "node tools/optimize-images.mjs",
-    "prebuild": "npm run i18n:check",
+    "prebuild": "npm-run-all i18n:check version:check",
     "build": "node tools/build-zip.mjs",
-    "verify": "npm-run-all lint i18n:check"
+    "verify": "npm-run-all lint i18n:check version:check",
+    "version:check": "node tools/check-version.mjs"
   },
   "devDependencies": {
     "@eslint/js": "^10.0.1",
