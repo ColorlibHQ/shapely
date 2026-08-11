@@ -288,8 +288,16 @@ function shapely_scripts() {
 	// Add Bootstrap default CSS
 	wp_enqueue_style( 'bootstrap', $uri . '/assets/css/bootstrap.min.css', array(), '3.3.7' );
 
-	// Replace old Font Awesome with Font Awesome 6
-	wp_enqueue_style( 'font-awesome', $uri . '/assets/css/fontawesome6/all.min.css', array(), '6.4.2' );
+	/*
+	 * Registered under a theme-specific handle rather than the generic
+	 * 'font-awesome'. WordPress deduplicates by handle, so whichever plugin
+	 * registers 'font-awesome' first wins and every later enqueue is silently
+	 * a no-op. Elementor ships Font Awesome 4.7 under exactly that handle, so
+	 * on any site running it the theme's Font Awesome 6 never loaded at all --
+	 * and the theme's fa-brands / fa-solid classes do not exist in 4.x, which
+	 * is why the social, search and menu icons rendered as blank boxes.
+	 */
+	wp_enqueue_style( 'shapely-font-awesome', $uri . '/assets/css/fontawesome6/all.min.css', array(), '6.4.2' );
 
 	// Add Google Fonts
 	wp_enqueue_style( 'shapely-fonts', 'https://fonts.googleapis.com/css?family=Raleway:100,300,400,500,600,700&display=swap', array(), null );
