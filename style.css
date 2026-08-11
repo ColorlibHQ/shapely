@@ -2407,6 +2407,16 @@ nav.fixed.scrolled {
     padding: 10px 16px;
   }
 
+  /*
+   * Submenu rows are 44px here (10px + 24px line-height + 10px) rather than the
+   * 32px they are on desktop, so the arrow's line box has to match or it rides
+   * high. Same reasoning as the base rule -- see the comment there.
+   */
+  .main-navigation .menu > li > ul li.menu-item-has-children:after,
+  .main-navigation .menu > li > ul li.menu-item-has-children > .dropdown:after {
+    line-height: 44px;
+  }
+
   .main-navigation .dropdown .dropdown li {
     padding-left: 18px;
   }
