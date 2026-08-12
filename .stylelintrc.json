@@ -9,7 +9,6 @@
     "assets/css/fontawesome6/**",
     "assets/css/flexslider.css",
     "assets/js/**",
-    "inc/libraries/**",
     "layouts/**"
   ],
   "rules": {

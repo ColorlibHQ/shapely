@@ -4,7 +4,17 @@ if ( ! class_exists( 'Shapely_Notify_System' ) ) {
 	/**
 	 * Class Shapely_Notify_System
 	 */
-	class Shapely_Notify_System extends Epsilon_Notify_System {
+	/**
+	 * Plugin / content state checks for the welcome screen.
+	 *
+	 * Previously extended Epsilon_Notify_System. Nothing was actually inherited:
+	 * every self:: call in this class resolves to a method defined here, the two
+	 * methods that looked inherited (check_plugin_is_installed, check_plugin_is_active)
+	 * were already overridden because the parent hardcoded
+	 * ABSPATH . 'wp-content/plugins/' and broke on relocated content directories,
+	 * and no parent-only method is referenced anywhere in the theme.
+	 */
+	class Shapely_Notify_System {
 		/**
 		 * @param $ver
 		 *

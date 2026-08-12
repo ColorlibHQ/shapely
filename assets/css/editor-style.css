@@ -1,76 +1,39 @@
 /*
  * Block editor styles.
  *
- * Mirrors the front-end typography from style.css so that what is written in
- * the editor resembles what the visitor sees. Values are copied from the
- * corresponding front-end rules rather than reinvented -- when style.css
- * changes, this file needs the same change.
+ * Deliberately short. theme.json now carries the palette, the type scale, the
+ * heading sizes and the link and button treatments, and WordPress applies those
+ * to the editor canvas on its own -- so anything expressible there has been
+ * removed from here rather than maintained in two places that can drift.
  *
- * Scoped by the editor itself: WordPress rewrites these selectors to apply
- * inside the editor canvas only, so plain element selectors are correct here
- * and must not be prefixed by hand.
+ * What is left is the handful of front-end rules from style.css that theme.json
+ * has no vocabulary for.
  */
 
-.editor-styles-wrapper {
-	font-family: Raleway, 'Helvetica Neue', Helvetica, Arial, sans-serif;
-	font-size: 14px;
-	font-weight: 400;
-	line-height: 24px;
-	color: #8c979e;
-	-webkit-font-smoothing: antialiased;
-	-moz-osx-font-smoothing: grayscale;
-}
-
+/*
+ * theme.json sets the body font size, but not the reading rhythm the front end
+ * uses: style.css gives every block-level element a flat 24px bottom margin
+ * rather than the editor's default spacing.
+ */
 .editor-styles-wrapper p,
 .editor-styles-wrapper ul,
 .editor-styles-wrapper ol,
 .editor-styles-wrapper table,
-.editor-styles-wrapper blockquote {
-	margin-top: 0;
-	margin-bottom: 24px;
-}
-
+.editor-styles-wrapper blockquote,
 .editor-styles-wrapper h1,
 .editor-styles-wrapper h2,
 .editor-styles-wrapper h3,
 .editor-styles-wrapper h4,
 .editor-styles-wrapper h5,
 .editor-styles-wrapper h6 {
-	font-family: inherit;
-	font-weight: 400;
-	color: #0e1015;
 	margin-top: 0;
 	margin-bottom: 24px;
 }
 
-.editor-styles-wrapper h1 {
-	font-size: 60px;
-}
-
-.editor-styles-wrapper h2 {
-	font-size: 45px;
-}
-
-.editor-styles-wrapper h3 {
-	font-size: 30px;
-}
-
-.editor-styles-wrapper h4 {
-	font-size: 25px;
-}
-
-.editor-styles-wrapper h5 {
-	font-size: 22px;
-	line-height: 28px;
-}
-
-.editor-styles-wrapper h6 {
-	font-size: 18px;
-	line-height: 25px;
-}
-
-/* The front end drops heading sizes sharply on small screens; match it so the
-   editor's mobile preview is not wildly larger than the real thing. */
+/*
+ * Headings drop sharply on narrow screens on the front end. Without this the
+ * editor's mobile preview shows a 60px h1 where the visitor sees 32px.
+ */
 @media all and (max-width: 767px) {
 
 	.editor-styles-wrapper h1 {
@@ -78,11 +41,7 @@
 	}
 }
 
-.editor-styles-wrapper a {
-	color: #745cf9;
-	font-weight: 600;
-}
-
+/* style.css blockquote: no rule, larger type, its own colour. */
 .editor-styles-wrapper blockquote {
 	overflow: hidden;
 	padding: 32px 0;

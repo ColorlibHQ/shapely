@@ -4,7 +4,7 @@ Theme URI: https://colorlib.com/wp/themes/shapely/
 Author: Colorlib
 Author URI: https://colorlib.com
 Description: Shapely is a one-page WordPress theme for business, portfolio and small e-commerce sites. The front page is assembled from widgets, so you can stack parallax sections, a portfolio grid, testimonials, a client logo carousel, a call to action and a contact block in whatever order you need. It also ships conventional blog templates with a choice of left, right, full-width or no sidebar, four footer widget areas, and a social icon menu. WooCommerce and Jetpack are supported, and the theme is translation ready.
-Version: 1.2.21
+Version: 1.3.0
 Requires at least: 6.4
 Tested up to: 7.0
 Requires PHP: 7.4
@@ -759,6 +759,56 @@ a:hover {
   margin-left: auto;
   margin-right: auto;
 }
+
+/*
+ * Block alignments.
+ *
+ * The theme has declared add_theme_support( 'align-wide' ) for years, but never
+ * shipped any CSS for the classes it enables -- so choosing "Wide width" or
+ * "Full width" on a block did nothing at all. These are additive: content that
+ * does not use the alignments is unaffected.
+ *
+ * The breakout is done with viewport-relative margins because post content sits
+ * inside a fixed-width Bootstrap .container, which cannot otherwise be escaped.
+ */
+.entry-content .alignfull,
+.post-content .alignfull {
+  width: 100vw;
+  max-width: 100vw;
+  margin-left: calc(50% - 50vw);
+  margin-right: calc(50% - 50vw);
+}
+
+.entry-content .alignwide,
+.post-content .alignwide {
+  /* content_width is 1140px; step outside the column but not to the edge. */
+  max-width: 1140px;
+  margin-left: calc(50% - 50vw);
+  margin-right: calc(50% - 50vw);
+  margin-left: max(calc(50% - 50vw), calc((100% - 1140px) / 2));
+  margin-right: max(calc(50% - 50vw), calc((100% - 1140px) / 2));
+}
+
+/* A full-width block should not inherit the column's inner padding. */
+.entry-content .alignfull > .wp-block-group__inner-container,
+.post-content .alignfull > .wp-block-group__inner-container {
+  max-width: 1140px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/*
+ * Bootstrap 3 only makes images responsive via .img-responsive, which block
+ * markup never carries. Without this a wide image overflows its column.
+ */
+.entry-content img,
+.post-content img,
+.entry-content .wp-block-image img,
+.post-content .wp-block-image img {
+  max-width: 100%;
+  height: auto;
+}
+
 
 /*--------------------------------------------------------------
 # Clearings
