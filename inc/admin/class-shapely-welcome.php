@@ -501,7 +501,12 @@ if ( ! class_exists( 'Shapely_Welcome' ) ) :
 
 			foreach ( $this->plugins as $slug => $plugin ) {
 				$slug = is_string( $slug ) ? $slug : ( isset( $plugin['slug'] ) ? $plugin['slug'] : '' );
-				$name = isset( $plugin['name'] ) ? $plugin['name'] : $slug;
+				$info = $this->plugin_info( $slug );
+				$name = isset( $plugin['name'] ) ? $plugin['name'] : $info['name'];
+
+				if ( empty( $plugin['description'] ) && '' !== $info['description'] ) {
+					$plugin['description'] = $info['description'];
+				}
 				?>
 				<li class="shapely-action">
 					<h3><?php echo esc_html( $name ); ?></h3>
@@ -514,6 +519,72 @@ if ( ! class_exists( 'Shapely_Welcome' ) ) :
 			}
 
 			echo '</ul>';
+		}
+
+		/**
+		 * Name and short description for a wordpress.org plugin.
+		 *
+		 * The recommended-plugins list is only slugs, so without this the screen
+		 * shows "colorlib-login-customizer" where it should say "Colorlib Login
+		 * Customizer". Cached for a day: this runs on an admin screen, and one
+		 * API round trip per plugin per page load would make it crawl.
+		 *
+		 * Falls back to a tidied slug, so the screen still reads sensibly when
+		 * the site cannot reach wordpress.org at all.
+		 *
+		 * @param string $slug Plugin directory slug.
+		 * @return array{name:string,description:string}
+		 */
+		private function plugin_info( $slug ) {
+			$fallback = array(
+				'name'        => ucwords( str_replace( '-', ' ', $slug ) ),
+				'description' => '',
+			);
+
+			if ( '' === $slug ) {
+				return $fallback;
+			}
+
+			$key    = 'shapely_plugin_info_' . md5( $slug );
+			$cached = get_transient( $key );
+
+			if ( is_array( $cached ) ) {
+				return $cached;
+			}
+
+			if ( ! function_exists( 'plugins_api' ) ) {
+				require_once ABSPATH . 'wp-admin/includes/plugin-install.php';
+			}
+
+			$api = plugins_api(
+				'plugin_information',
+				array(
+					'slug'   => $slug,
+					'fields' => array(
+						'short_description' => true,
+						'sections'          => false,
+						'reviews'           => false,
+						'banners'           => false,
+						'icons'             => false,
+					),
+				)
+			);
+
+			if ( is_wp_error( $api ) || empty( $api->name ) ) {
+				// Cache the miss briefly too, so an unreachable API is not retried on every load.
+				set_transient( $key, $fallback, HOUR_IN_SECONDS );
+
+				return $fallback;
+			}
+
+			$info = array(
+				'name'        => (string) $api->name,
+				'description' => isset( $api->short_description ) ? (string) $api->short_description : '',
+			);
+
+			set_transient( $key, $info, DAY_IN_SECONDS );
+
+			return $info;
 		}
 
 		/**
