@@ -73,9 +73,6 @@ class Shapely {
 
 		$this->load_class();
 
-		// Initialize epsilon framework first
-		$this->init_epsilon();
-
 		// Set up recommended actions and welcome screen on init
 		add_action('init', array($this, 'setup_recommended_actions'), 0);
 		add_action('init', array($this, 'init_welcome_screen'), 1);
@@ -91,21 +88,8 @@ class Shapely {
 			return;
 		}
 
-		require_once get_template_directory() . '/inc/libraries/epsilon-framework/class-epsilon-autoloader.php';
 		require_once get_template_directory() . '/inc/class-shapely-notify-system.php';
-		require_once get_template_directory() . '/inc/libraries/welcome-screen/class-epsilon-welcome-screen.php';
-
-	}
-
-	public function init_epsilon() {
-
-		$args = array(
-			'controls' => array( 'slider', 'toggle' ), // array of controls to load
-			'sections' => array( 'recommended-actions', 'pro' ), // array of sections to load
-			'backup'   => false,
-		);
-
-		new Epsilon_Framework( $args );
+		require_once get_template_directory() . '/inc/admin/class-shapely-welcome.php';
 
 	}
 
@@ -115,37 +99,40 @@ class Shapely {
 			$this->setup_recommended_actions();
 		}
 
-		Epsilon_Welcome_Screen::get_instance(
-			$config = array(
-				'theme-name' => 'Shapely',
-				'theme-slug' => 'shapely',
-				'actions'    => $this->recommended_actions,
-				'plugins'    => $this->recommended_plugins,
+		Shapely_Welcome::get_instance(
+			array(
+				'actions' => $this->recommended_actions,
+				'plugins' => $this->recommended_plugins,
 			)
 		);
 
 	}
 
 	public function init_customizer( $wp_customize ) {
-		$current_theme = wp_get_theme();
+		require_once get_template_directory() . '/inc/custom-controls/class-shapely-section-link.php';
+
+		$wp_customize->register_section_type( 'Shapely_Section_Link' );
+
+		/*
+		 * Epsilon_Section_Recommended_Actions rendered the recommended actions,
+		 * the recommended plugins and a set of social links inside the
+		 * customizer -- a second copy of what the welcome screen already shows.
+		 * Rather than maintain two implementations of the same list that can
+		 * drift apart, the customizer now links to the one that is complete.
+		 *
+		 * Section id preserved so any stored customizer state keyed on it, and
+		 * the deep link from the old admin notice, keep resolving.
+		 */
 		$wp_customize->add_section(
-			new Epsilon_Section_Recommended_Actions(
+			new Shapely_Section_Link(
 				$wp_customize, 'epsilon_recomended_section', array(
-					'title'                        => esc_html__( 'Recomended Actions', 'shapely' ),
-					'social_text'                  => esc_html( $current_theme->get( 'Author' ) ) . esc_html__( ' is social :', 'shapely' ),
-					'plugin_text'                  => esc_html__( 'Recomended Plugins :', 'shapely' ),
-					'actions'                      => $this->recommended_actions,
-					'plugins'                      => $this->recommended_plugins,
-					'theme_specific_option'        => $this->theme_slug . '_show_required_actions',
-					'theme_specific_plugin_option' => $this->theme_slug . '_show_required_plugins',
-					'facebook'                     => 'https://www.facebook.com/colorlib',
-					'twitter'                      => 'https://twitter.com/colorlib',
-					'wp_review'                    => true,
-					'priority'                     => 0,
+					'title'       => esc_html__( 'Recommended Actions', 'shapely' ),
+					'button_text' => esc_html__( 'View', 'shapely' ),
+					'button_url'  => admin_url( 'themes.php?page=shapely-welcome&tab=recommended-actions' ),
+					'priority'    => 0,
 				)
 			)
 		);
-
 	}
 
 	public function setup_recommended_actions() {

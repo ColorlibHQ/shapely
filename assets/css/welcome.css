@@ -1,0 +1,139 @@
+/*
+ * Shapely welcome screen.
+ *
+ * Deliberately plain: this is a WordPress admin page, so it borrows core's
+ * type and colour rather than introducing a second visual language inside
+ * wp-admin. Replaces welcome-screen/css/welcome.css from the Epsilon bundle.
+ */
+
+.shapely-welcome__title {
+	margin-bottom: 0.2em;
+}
+
+.shapely-welcome__intro {
+	max-width: 60em;
+	margin-top: 0;
+	color: #50575e;
+	font-size: 14px;
+}
+
+.shapely-welcome__tabs {
+	margin-bottom: 1.5em;
+}
+
+.shapely-welcome__count {
+	display: inline-block;
+	min-width: 1.6em;
+	padding: 0 0.4em;
+	border-radius: 9px;
+	background: #d63638;
+	color: #fff;
+	font-size: 11px;
+	line-height: 1.6;
+	text-align: center;
+}
+
+/* ---- card grid ---- */
+
+.shapely-cards {
+	display: grid;
+	grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+	gap: 20px;
+	max-width: 1100px;
+}
+
+.shapely-card {
+	padding: 20px;
+	border: 1px solid #dcdcde;
+	background: #fff;
+	border-radius: 4px;
+}
+
+.shapely-card h3 {
+	margin-top: 0;
+}
+
+.shapely-card p:last-child {
+	margin-bottom: 0;
+}
+
+/* ---- recommended actions ---- */
+
+.shapely-actions {
+	max-width: 800px;
+	margin: 0;
+	padding: 0;
+	list-style: none;
+}
+
+.shapely-action {
+	position: relative;
+	margin: 0 0 16px;
+	padding: 20px 48px 20px 20px;
+	border: 1px solid #dcdcde;
+	background: #fff;
+	border-radius: 4px;
+}
+
+.shapely-action h3 {
+	margin-top: 0;
+}
+
+.shapely-action__dismiss {
+	position: absolute;
+	top: 12px;
+	right: 12px;
+	padding: 0;
+	border: 0;
+	background: none;
+	color: #a7aaad;
+	cursor: pointer;
+	line-height: 1;
+}
+
+.shapely-action__dismiss:hover,
+.shapely-action__dismiss:focus {
+	color: #d63638;
+}
+
+.shapely-action__done {
+	color: #008a20;
+	font-weight: 600;
+}
+
+.shapely-action__error {
+	color: #d63638;
+}
+
+.shapely-empty {
+	max-width: 800px;
+	padding: 20px;
+	border: 1px solid #dcdcde;
+	background: #fff;
+	border-radius: 4px;
+}
+
+/* ---- import options ---- */
+
+.import-content-container {
+	display: none;
+	margin-top: 12px;
+	padding-top: 12px;
+	border-top: 1px solid #f0f0f1;
+}
+
+.import-content-container h4 {
+	margin: 12px 0 6px;
+}
+
+.checkbox-group {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 6px 20px;
+}
+
+.checkbox-group label {
+	display: inline-flex;
+	align-items: center;
+	gap: 6px;
+}

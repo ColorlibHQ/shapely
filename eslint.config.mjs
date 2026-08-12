@@ -19,7 +19,6 @@ export default [
       'assets/js/**/*.min.js',
       'assets/js/owl-carousel/**',
       'assets/js/dev/**',
-      'inc/libraries/**',
     ],
   },
   js.configs.recommended,
