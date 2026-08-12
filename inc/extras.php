@@ -342,6 +342,43 @@ if ( ! function_exists( 'shapely_enqueue_theme_options_css' ) ) :
 		shapely_get_theme_options();
 		$css = (string) ob_get_clean();
 
+		/*
+		 * Re-point the theme.json presets at the customizer's values.
+		 *
+		 * theme.json is the source of truth for the palette, which is what the
+		 * block editor and any future block templates read. The customizer is
+		 * still where a site owner changes those colours, so rather than have
+		 * two palettes disagree, each colour theme mod overrides the preset
+		 * custom property it corresponds to. Blocks and the classic front end
+		 * then resolve to the same value from one place.
+		 *
+		 * Only emitted when a mod is actually set, so an untouched site keeps
+		 * the theme.json defaults verbatim.
+		 */
+		$presets = array(
+			'link_color'         => 'primary',
+			'link_hover_color'   => 'primary-hover',
+			'button_color'       => 'primary',
+			'button_hover_color' => 'primary-hover',
+		);
+
+		$vars = array();
+		foreach ( $presets as $mod => $slug ) {
+			$value = get_theme_mod( $mod );
+			if ( $value ) {
+				// Later keys win, which is why button_* follows link_*.
+				$vars[ $slug ] = $value;
+			}
+		}
+
+		if ( ! empty( $vars ) ) {
+			$declarations = '';
+			foreach ( $vars as $slug => $value ) {
+				$declarations .= '--wp--preset--color--' . sanitize_key( $slug ) . ':' . esc_attr( $value ) . ';';
+			}
+			$css = ':root{' . $declarations . '}' . $css;
+		}
+
 		// Drop the wrapping <style> tags the function emits.
 		$css = trim( preg_replace( '#</?style[^>]*>#i', '', $css ) );
 

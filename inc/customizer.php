@@ -81,9 +81,18 @@ function shapely_customizer( $wp_customize ) {
 	// Load custom controls
 	require_once get_template_directory() . '/inc/custom-controls/class-shapely-logo-dimensions.php';
 	require_once get_template_directory() . '/inc/custom-controls/class-shapely-custom-label.php';
+	require_once get_template_directory() . '/inc/custom-controls/class-shapely-section-link.php';
+	require_once get_template_directory() . '/inc/custom-controls/class-shapely-control-range.php';
 
+	$wp_customize->register_section_type( 'Shapely_Section_Link' );
+
+	/*
+	 * Section id kept as 'epsilon-section-pro'. It is not a setting, so nothing
+	 * is stored against it, but renaming it would drop any customizer state
+	 * keyed on the id for no benefit.
+	 */
 	$wp_customize->add_section(
-		new Epsilon_Section_Pro(
+		new Shapely_Section_Link(
 			$wp_customize, 'epsilon-section-pro', array(
 				'title'       => esc_html__( 'Theme documentation', 'shapely' ),
 				'button_text' => esc_html__( 'Learn more', 'shapely' ),
@@ -187,28 +196,15 @@ function shapely_customizer( $wp_customize ) {
 		)
 	);
 
-	if ( class_exists( 'Epsilon_Control_Toggle' ) ) {
-		$wp_customize->add_control(
-			new Epsilon_Control_Toggle(
-				$wp_customize, 'shapely_placeholder_image_enabled', array(
-					'label'       => esc_html__( 'Show Placeholder Images', 'shapely' ),
-					'description' => esc_html__( 'Show/hide placeholder images for posts without a featured image', 'shapely' ),
-					'section'     => 'shapely_blog_section',
-					'priority'    => 25,
-				)
-			)
-		);
-	} else {
-		$wp_customize->add_control(
-			'shapely_placeholder_image_enabled', array(
+	$wp_customize->add_control(
+		'shapely_placeholder_image_enabled', array(
+			'type'        => 'checkbox',
 				'label'       => esc_html__( 'Show Placeholder Images', 'shapely' ),
 				'description' => esc_html__( 'Show/hide placeholder images for posts without a featured image', 'shapely' ),
 				'section'     => 'shapely_blog_section',
 				'priority'    => 25,
-				'type'        => 'checkbox',
-			)
-		);
-	}
+		)
+	);
 
 	$wp_customize->add_setting(
 		'shapely_placeholder_image', array(
@@ -316,28 +312,15 @@ function shapely_customizer( $wp_customize ) {
 		)
 	);
 
-	if ( class_exists( 'Epsilon_Control_Toggle' ) ) {
-		$wp_customize->add_control(
-			new Epsilon_Control_Toggle(
-				$wp_customize, 'top_callout', array(
-					'label'       => esc_html__( 'Show Blog Title', 'shapely' ),
-					'description' => esc_html__( 'Show/hide the title from the Blog Page', 'shapely' ),
-					'section'     => 'shapely_blog_section',
-					'priority'    => 20,
-				)
-			)
-		);
-	} else {
-		$wp_customize->add_control(
-			'top_callout', array(
+	$wp_customize->add_control(
+		'top_callout', array(
+			'type'        => 'checkbox',
 				'label'       => esc_html__( 'Show Blog Title', 'shapely' ),
 				'description' => esc_html__( 'Show/hide the title from the Blog Page', 'shapely' ),
 				'section'     => 'shapely_blog_section',
 				'priority'    => 20,
-				'type'        => 'checkbox',
-			)
-		);
-	}
+		)
+	);
 
 	$wp_customize->add_setting(
 		'hide_post_title', array(
@@ -346,24 +329,13 @@ function shapely_customizer( $wp_customize ) {
 		)
 	);
 
-	if ( class_exists( 'Epsilon_Control_Toggle' ) ) {
-		$wp_customize->add_control(
-			new Epsilon_Control_Toggle(
-				$wp_customize, 'hide_post_title', array(
-					'label'   => esc_html__( 'Title in Blog Post', 'shapely' ),
-					'section' => 'wpseo_breadcrumbs_customizer_section',
-				)
-			)
-		);
-	} else {
-		$wp_customize->add_control(
-			'hide_post_title', array(
+	$wp_customize->add_control(
+		'hide_post_title', array(
+			'type'        => 'checkbox',
 				'label'   => esc_html__( 'Title in Blog Post', 'shapely' ),
 				'section' => 'wpseo_breadcrumbs_customizer_section',
-				'type'    => 'checkbox',
-			)
-		);
-	}
+		)
+	);
 
 	$wp_customize->add_setting(
 		'blog_name', array(
@@ -387,26 +359,14 @@ function shapely_customizer( $wp_customize ) {
 		)
 	);
 
-	if ( class_exists( 'Epsilon_Control_Toggle' ) ) {
-		$wp_customize->add_control(
-			new Epsilon_Control_Toggle(
-				$wp_customize, 'mobile_menu_on_desktop', array(
-					'label'       => esc_html__( 'Mobile Menu on Desktop', 'shapely' ),
-					'description' => esc_html__( 'Always the menu will be like the mobile menu', 'shapely' ),
-					'section'     => 'shapely_main_section',
-				)
-			)
-		);
-	} else {
-		$wp_customize->add_control(
-			'mobile_menu_on_desktop', array(
+	$wp_customize->add_control(
+		'mobile_menu_on_desktop', array(
+			'type'        => 'checkbox',
 				'label'       => esc_html__( 'Mobile Menu on Desktop', 'shapely' ),
 				'description' => esc_html__( 'Always the menu will be like the mobile menu', 'shapely' ),
 				'section'     => 'shapely_main_section',
-				'type'        => 'checkbox',
-			)
-		);
-	}
+		)
+	);
 
 	$wp_customize->add_setting(
 		'footer_callout_text', array(
@@ -467,26 +427,14 @@ function shapely_customizer( $wp_customize ) {
 		)
 	);
 
-	if ( class_exists( 'Epsilon_Control_Toggle' ) ) {
-		$wp_customize->add_control(
-			new Epsilon_Control_Toggle(
-				$wp_customize, 'shapely_transparent_header', array(
-					'label'       => esc_html__( 'Transparent header', 'shapely' ),
-					'description' => esc_html__( 'Toggling this to ON will make the header have a transparent background', 'shapely' ),
-					'section'     => 'shapely_main_section',
-				)
-			)
-		);
-	} else {
-		$wp_customize->add_control(
-			'shapely_transparent_header', array(
+	$wp_customize->add_control(
+		'shapely_transparent_header', array(
+			'type'        => 'checkbox',
 				'label'       => esc_html__( 'Transparent header', 'shapely' ),
 				'description' => esc_html__( 'Toggling this to ON will make the header have a transparent background', 'shapely' ),
 				'section'     => 'shapely_main_section',
-				'type'        => 'checkbox',
-			)
-		);
-	}
+		)
+	);
 
 	// transparent header: opacity range slider
 	$wp_customize->add_setting(
@@ -496,35 +444,21 @@ function shapely_customizer( $wp_customize ) {
 		)
 	);
 
-	if ( class_exists( 'Epsilon_Control_Slider' ) ) {
-		$wp_customize->add_control(
-			new Epsilon_Control_Slider(
-				$wp_customize, 'shapely_sticky_header_transparency', array(
-					'label'           => esc_html__( 'Sticky header background opacity', 'shapely' ),
-					'description'     => esc_html__( 'Increase the header background opacity', 'shapely' ),
-					'section'         => 'shapely_main_section',
-					'type'            => 'epsilon-slider',
-					'choices'         => array(
-						'min'  => 10,
-						'max'  => 100,
-						'step' => 5,
-					),
-					'active_callback' => 'active_callback_toggle_choice',
-
-				)
-			)
-		);
-	} else {
-		$wp_customize->add_control(
-			'shapely_sticky_header_transparency', array(
+	$wp_customize->add_control(
+		new Shapely_Control_Range(
+			$wp_customize, 'shapely_sticky_header_transparency', array(
 				'label'           => esc_html__( 'Sticky header background opacity', 'shapely' ),
 				'description'     => esc_html__( 'Increase the header background opacity', 'shapely' ),
 				'section'         => 'shapely_main_section',
-				'type'            => 'number',
+				'input_attrs'     => array(
+					'min'  => 10,
+					'max'  => 100,
+					'step' => 5,
+				),
 				'active_callback' => 'active_callback_toggle_choice',
 			)
-		);
-	}
+		)
+	);
 
 	// sticky header
 	$wp_customize->add_setting(
@@ -534,28 +468,14 @@ function shapely_customizer( $wp_customize ) {
 		)
 	);
 
-	if ( class_exists( 'Epsilon_Control_Toggle' ) ) {
-		$wp_customize->add_control(
-			new Epsilon_Control_Toggle(
-				$wp_customize, 'shapely_sticky_header', array(
-					'label'       => esc_html__( 'Sticky header', 'shapely' ),
-					'description' => esc_html__( 'Toggling this to ON will make your header stick to the top of the browser bar', 'shapely' ),
-					'section'     => 'shapely_main_section',
-
-				)
-			)
-		);
-	} else {
-		$wp_customize->add_control(
-			'shapely_sticky_header', array(
+	$wp_customize->add_control(
+		'shapely_sticky_header', array(
+			'type'        => 'checkbox',
 				'label'       => esc_html__( 'Sticky header', 'shapely' ),
 				'description' => esc_html__( 'Toggling this to ON will make your header stick to the top of the browser bar', 'shapely' ),
 				'section'     => 'shapely_main_section',
-				'type'        => 'checkbox',
-
-			)
-		);
-	}
+		)
+	);
 
 	/**
 	 *
@@ -658,162 +578,99 @@ function shapely_customizer( $wp_customize ) {
 	);
 
 	// Single Post Settings
-	if ( class_exists( 'Epsilon_Control_Toggle' ) ) {
+	$wp_customize->add_control(
+		'title_in_header', array(
+			'type'        => 'checkbox',
+				'label'       => esc_html__( 'Show title in header', 'shapely' ),
+				'description' => esc_html__( 'This will show/hide the post title from callout', 'shapely' ),
+				'section'     => 'shapely_single_post_section',
+		)
+	);
 
-		$wp_customize->add_control(
-			new Epsilon_Control_Toggle(
-				$wp_customize, 'title_in_header', array(
-					'label'       => esc_html__( 'Show title in header', 'shapely' ),
-					'description' => esc_html__( 'This will show/hide the post title from callout', 'shapely' ),
-					'section'     => 'shapely_single_post_section',
-				)
-			)
-		);
+	$wp_customize->add_control(
+		'title_above_post', array(
+			'type'        => 'checkbox',
+				'label'       => esc_html__( 'Show title above post', 'shapely' ),
+				'description' => esc_html__( 'This will show/hide the post title above post content', 'shapely' ),
+				'section'     => 'shapely_single_post_section',
+		)
+	);
 
-		$wp_customize->add_control(
-			new Epsilon_Control_Toggle(
-				$wp_customize, 'title_above_post', array(
-					'label'       => esc_html__( 'Show title above post', 'shapely' ),
-					'description' => esc_html__( 'This will show/hide the post title above post content', 'shapely' ),
-					'section'     => 'shapely_single_post_section',
-				)
-			)
-		);
+	$wp_customize->add_control(
+		'post_date', array(
+			'type'        => 'checkbox',
+				'label'       => esc_html__( 'Show the date', 'shapely' ),
+				'description' => esc_html__( 'This will show/hide the date when post was published', 'shapely' ),
+				'section'     => 'shapely_single_post_section',
+		)
+	);
 
-		$wp_customize->add_control(
-			new Epsilon_Control_Toggle(
-				$wp_customize, 'post_date', array(
-					'label'       => esc_html__( 'Show the date', 'shapely' ),
-					'description' => esc_html__( 'This will show/hide the date when post was published', 'shapely' ),
-					'section'     => 'shapely_single_post_section',
-				)
-			)
-		);
+	$wp_customize->add_control(
+		'post_author', array(
+			'type'        => 'checkbox',
+				'label'       => esc_html__( 'Show the author', 'shapely' ),
+				'description' => esc_html__( 'This will show/hide the author who written the post under the post title', 'shapely' ),
+				'section'     => 'shapely_single_post_section',
+		)
+	);
 
-		$wp_customize->add_control(
-			new Epsilon_Control_Toggle(
-				$wp_customize, 'post_author', array(
-					'label'       => esc_html__( 'Show the author', 'shapely' ),
-					'description' => esc_html__( 'This will show/hide the author who written the post under the post title', 'shapely' ),
-					'section'     => 'shapely_single_post_section',
-				)
-			)
-		);
+	$wp_customize->add_control(
+		'post_category', array(
+			'type'        => 'checkbox',
+				'label'       => esc_html__( 'Show the category', 'shapely' ),
+				'description' => esc_html__( 'This will show/hide the categories of post', 'shapely' ),
+				'section'     => 'shapely_single_post_section',
+		)
+	);
 
-		$wp_customize->add_control(
-			new Epsilon_Control_Toggle(
-				$wp_customize, 'post_category', array(
-					'label'       => esc_html__( 'Show the category', 'shapely' ),
-					'description' => esc_html__( 'This will show/hide the categories of post', 'shapely' ),
-					'section'     => 'shapely_single_post_section',
-				)
-			)
-		);
-
-		$wp_customize->add_control(
-			new Epsilon_Control_Toggle(
-				$wp_customize, 'first_letter_caps', array(
-					'label'       => esc_html__( 'First Letter Caps', 'shapely' ),
-					'description' => esc_html__( 'This will transform your first letter from a post into uppercase', 'shapely' ),
-					'section'     => 'shapely_single_post_section',
-				)
-			)
-		);
-		$wp_customize->add_control(
-			new Epsilon_Control_Toggle(
-				$wp_customize, 'tags_post_meta', array(
-					'label'       => esc_html__( 'Tags Post Meta', 'shapely' ),
-					'description' => esc_html__( 'This will show/hide tags from the end of post', 'shapely' ),
-					'section'     => 'shapely_single_post_section',
-				)
-			)
-		);
-		$wp_customize->add_control(
-			new Epsilon_Control_Toggle(
-				$wp_customize, 'related_posts_area', array(
-					'label'       => esc_html__( 'Related Posts Area', 'shapely' ),
-					'description' => esc_html__( 'This will enable/disable the related posts', 'shapely' ),
-					'section'     => 'shapely_single_post_section',
-				)
-			)
-		);
-		$wp_customize->add_control(
-			new Epsilon_Control_Toggle(
-				$wp_customize, 'post_author_area', array(
-					'label'       => esc_html__( 'Post Author Area', 'shapely' ),
-					'description' => esc_html__( 'This will show/hide the author box', 'shapely' ),
-					'section'     => 'shapely_single_post_section',
-				)
-			)
-		);
-		$wp_customize->add_control(
-			new Epsilon_Control_Toggle(
-				$wp_customize, 'post_author_left_side', array(
-					'label'       => esc_html__( 'Post Author Left Side', 'shapely' ),
-					'description' => esc_html__( 'This will move the author box from the bottom of the post on top on the left side', 'shapely' ),
-					'section'     => 'shapely_single_post_section',
-				)
-			)
-		);
-		$wp_customize->add_control(
-			new Epsilon_Control_Toggle(
-				$wp_customize, 'post_author_email', array(
-					'label'       => esc_html__( 'Show Author Email', 'shapely' ),
-					'description' => esc_html__( 'This will show/hide the author\'s email from the author box', 'shapely' ),
-					'section'     => 'shapely_single_post_section',
-				)
-			)
-		);
-	} else {
-		$wp_customize->add_control(
-			'first_letter_caps', array(
+	$wp_customize->add_control(
+		'first_letter_caps', array(
+			'type'        => 'checkbox',
 				'label'       => esc_html__( 'First Letter Caps', 'shapely' ),
 				'description' => esc_html__( 'This will transform your first letter from a post into uppercase', 'shapely' ),
 				'section'     => 'shapely_single_post_section',
-				'type'        => 'checkbox',
-			)
-		);
-		$wp_customize->add_control(
-			'tags_post_meta', array(
+		)
+	);
+	$wp_customize->add_control(
+		'tags_post_meta', array(
+			'type'        => 'checkbox',
 				'label'       => esc_html__( 'Tags Post Meta', 'shapely' ),
 				'description' => esc_html__( 'This will show/hide tags from the end of post', 'shapely' ),
 				'section'     => 'shapely_single_post_section',
-				'type'        => 'checkbox',
-			)
-		);
-		$wp_customize->add_control(
-			'related_posts_area', array(
+		)
+	);
+	$wp_customize->add_control(
+		'related_posts_area', array(
+			'type'        => 'checkbox',
 				'label'       => esc_html__( 'Related Posts Area', 'shapely' ),
 				'description' => esc_html__( 'This will enable/disable the related posts', 'shapely' ),
 				'section'     => 'shapely_single_post_section',
-				'type'        => 'checkbox',
-			)
-		);
-		$wp_customize->add_control(
-			'post_author_area', array(
+		)
+	);
+	$wp_customize->add_control(
+		'post_author_area', array(
+			'type'        => 'checkbox',
 				'label'       => esc_html__( 'Post Author Area', 'shapely' ),
 				'description' => esc_html__( 'This will show/hide the author box', 'shapely' ),
 				'section'     => 'shapely_single_post_section',
-				'type'        => 'checkbox',
-			)
-		);
-		$wp_customize->add_control(
-			'post_author_left_side', array(
+		)
+	);
+	$wp_customize->add_control(
+		'post_author_left_side', array(
+			'type'        => 'checkbox',
 				'label'       => esc_html__( 'Post Author Left Side', 'shapely' ),
 				'description' => esc_html__( 'This will move the author box from the bottom of the post on top on the left side', 'shapely' ),
 				'section'     => 'shapely_single_post_section',
-				'type'        => 'checkbox',
-			)
-		);
-		$wp_customize->add_control(
-			'post_author_email', array(
+		)
+	);
+	$wp_customize->add_control(
+		'post_author_email', array(
+			'type'        => 'checkbox',
 				'label'       => esc_html__( 'Show Author Email', 'shapely' ),
 				'description' => esc_html__( 'This will show/hide the author\'s email from the author box', 'shapely' ),
 				'section'     => 'shapely_single_post_section',
-				'type'        => 'checkbox',
-			)
-		);
-	} // End if().
+		)
+	);
 	$wp_customize->add_setting(
 		'single_post_layout_template', array(
 			'default'           => 'sidebar-right',
@@ -886,26 +743,14 @@ function shapely_customizer( $wp_customize ) {
 			'sanitize_callback' => 'shapely_sanitize_checkbox',
 		)
 	);
-	if ( class_exists( 'Epsilon_Control_Toggle' ) ) {
-		$wp_customize->add_control(
-			new Epsilon_Control_Toggle(
-				$wp_customize, 'show_category_on_category_page', array(
-					'label'       => esc_html__( 'Show Category on Posts', 'shapely' ),
-					'description' => esc_html__( 'Show/hide posts\' categories from the Category Page', 'shapely' ),
-					'section'     => 'shapely_blog_section',
-				)
-			)
-		);
-	} else {
-		$wp_customize->add_control(
-			'show_category_on_category_page', array(
+	$wp_customize->add_control(
+		'show_category_on_category_page', array(
+			'type'        => 'checkbox',
 				'label'       => esc_html__( 'Show Category on Posts', 'shapely' ),
 				'description' => esc_html__( 'Show/hide posts\' categories from the Category Page', 'shapely' ),
 				'section'     => 'shapely_blog_section',
-				'type'        => 'checkbox',
-			)
-		);
-	}
+		)
+	);
 
 	// Global category display setting
 	$wp_customize->add_setting(
@@ -914,26 +759,14 @@ function shapely_customizer( $wp_customize ) {
 			'sanitize_callback' => 'shapely_sanitize_checkbox',
 		)
 	);
-	if ( class_exists( 'Epsilon_Control_Toggle' ) ) {
-		$wp_customize->add_control(
-			new Epsilon_Control_Toggle(
-				$wp_customize, 'show_categories_globally', array(
-					'label'       => esc_html__( 'Show Categories Globally', 'shapely' ),
-					'description' => esc_html__( 'Show/hide categories on all blog pages and single posts', 'shapely' ),
-					'section'     => 'shapely_blog_section',
-				)
-			)
-		);
-	} else {
-		$wp_customize->add_control(
-			'show_categories_globally', array(
+	$wp_customize->add_control(
+		'show_categories_globally', array(
+			'type'        => 'checkbox',
 				'label'       => esc_html__( 'Show Categories Globally', 'shapely' ),
 				'description' => esc_html__( 'Show/hide categories on all blog pages and single posts', 'shapely' ),
 				'section'     => 'shapely_blog_section',
-				'type'        => 'checkbox',
-			)
-		);
-	}
+		)
+	);
 
 	if ( post_type_exists( 'jetpack-portfolio' ) ) {
 
@@ -970,26 +803,14 @@ function shapely_customizer( $wp_customize ) {
 				'sanitize_callback' => 'shapely_sanitize_checkbox',
 			)
 		);
-		if ( class_exists( 'Epsilon_Control_Toggle' ) ) {
-			$wp_customize->add_control(
-				new Epsilon_Control_Toggle(
-					$wp_customize, 'portfolio_archive_title', array(
-						'label'       => esc_html__( 'Show Portfolio Archive Title', 'shapely' ),
-						'description' => esc_html__( 'Show/hide the title from the Portfolio Archive Page', 'shapely' ),
-						'section'     => 'shapely_projects_section',
-					)
-				)
-			);
-		} else {
-			$wp_customize->add_control(
-				'portfolio_archive_title', array(
+		$wp_customize->add_control(
+			'portfolio_archive_title', array(
+			'type'        => 'checkbox',
 					'label'       => esc_html__( 'Show Portfolio Archive Title', 'shapely' ),
 					'description' => esc_html__( 'Show/hide the title from the Portfolio Archive Page', 'shapely' ),
 					'section'     => 'shapely_projects_section',
-					'type'        => 'checkbox',
-				)
-			);
-		}
+		)
+		);
 		$wp_customize->add_setting(
 			'portfolio_name', array(
 				'default'           => '',
@@ -1132,162 +953,99 @@ function shapely_customizer( $wp_customize ) {
 	);
 
 	// Single Project Settings
-	if ( class_exists( 'Epsilon_Control_Toggle' ) ) {
+	$wp_customize->add_control(
+		'project_title_in_header', array(
+			'type'        => 'checkbox',
+				'label'       => esc_html__( 'Show title in header', 'shapely' ),
+				'description' => esc_html__( 'This will show/hide the project title from callout', 'shapely' ),
+				'section'     => 'shapely_single_project_section',
+		)
+	);
 
-		$wp_customize->add_control(
-			new Epsilon_Control_Toggle(
-				$wp_customize, 'project_title_in_header', array(
-					'label'       => esc_html__( 'Show title in header', 'shapely' ),
-					'description' => esc_html__( 'This will show/hide the project title from callout', 'shapely' ),
-					'section'     => 'shapely_single_project_section',
-				)
-			)
-		);
+	$wp_customize->add_control(
+		'title_above_project', array(
+			'type'        => 'checkbox',
+				'label'       => esc_html__( 'Show title above project', 'shapely' ),
+				'description' => esc_html__( 'This will show/hide the project title above project content', 'shapely' ),
+				'section'     => 'shapely_single_project_section',
+		)
+	);
 
-		$wp_customize->add_control(
-			new Epsilon_Control_Toggle(
-				$wp_customize, 'title_above_project', array(
-					'label'       => esc_html__( 'Show title above project', 'shapely' ),
-					'description' => esc_html__( 'This will show/hide the project title above project content', 'shapely' ),
-					'section'     => 'shapely_single_project_section',
-				)
-			)
-		);
+	$wp_customize->add_control(
+		'project_date', array(
+			'type'        => 'checkbox',
+				'label'       => esc_html__( 'Show the date', 'shapely' ),
+				'description' => esc_html__( 'This will show/hide the date when project was published', 'shapely' ),
+				'section'     => 'shapely_single_project_section',
+		)
+	);
 
-		$wp_customize->add_control(
-			new Epsilon_Control_Toggle(
-				$wp_customize, 'project_date', array(
-					'label'       => esc_html__( 'Show the date', 'shapely' ),
-					'description' => esc_html__( 'This will show/hide the date when project was published', 'shapely' ),
-					'section'     => 'shapely_single_project_section',
-				)
-			)
-		);
+	$wp_customize->add_control(
+		'project_author', array(
+			'type'        => 'checkbox',
+				'label'       => esc_html__( 'Show the author', 'shapely' ),
+				'description' => esc_html__( 'This will show/hide the author who written the project under the project title', 'shapely' ),
+				'section'     => 'shapely_single_project_section',
+		)
+	);
 
-		$wp_customize->add_control(
-			new Epsilon_Control_Toggle(
-				$wp_customize, 'project_author', array(
-					'label'       => esc_html__( 'Show the author', 'shapely' ),
-					'description' => esc_html__( 'This will show/hide the author who written the project under the project title', 'shapely' ),
-					'section'     => 'shapely_single_project_section',
-				)
-			)
-		);
+	$wp_customize->add_control(
+		'project_category', array(
+			'type'        => 'checkbox',
+				'label'       => esc_html__( 'Show the project type', 'shapely' ),
+				'description' => esc_html__( 'This will show/hide the type of project', 'shapely' ),
+				'section'     => 'shapely_single_project_section',
+		)
+	);
 
-		$wp_customize->add_control(
-			new Epsilon_Control_Toggle(
-				$wp_customize, 'project_category', array(
-					'label'       => esc_html__( 'Show the project type', 'shapely' ),
-					'description' => esc_html__( 'This will show/hide the type of project', 'shapely' ),
-					'section'     => 'shapely_single_project_section',
-				)
-			)
-		);
-
-		$wp_customize->add_control(
-			new Epsilon_Control_Toggle(
-				$wp_customize, 'project_first_letter_caps', array(
-					'label'       => esc_html__( 'First Letter Caps', 'shapely' ),
-					'description' => esc_html__( 'This will transform your first letter from a project into uppercase', 'shapely' ),
-					'section'     => 'shapely_single_project_section',
-				)
-			)
-		);
-		$wp_customize->add_control(
-			new Epsilon_Control_Toggle(
-				$wp_customize, 'tags_project_meta', array(
-					'label'       => esc_html__( 'Tags Project Meta', 'shapely' ),
-					'description' => esc_html__( 'This will show/hide tags from the end of project', 'shapely' ),
-					'section'     => 'shapely_single_project_section',
-				)
-			)
-		);
-		$wp_customize->add_control(
-			new Epsilon_Control_Toggle(
-				$wp_customize, 'related_projects_area', array(
-					'label'       => esc_html__( 'Related Projects Area', 'shapely' ),
-					'description' => esc_html__( 'This will enable/disable the related projects', 'shapely' ),
-					'section'     => 'shapely_single_project_section',
-				)
-			)
-		);
-		$wp_customize->add_control(
-			new Epsilon_Control_Toggle(
-				$wp_customize, 'project_author_area', array(
-					'label'       => esc_html__( 'Project Author Area', 'shapely' ),
-					'description' => esc_html__( 'This will show/hide the author box', 'shapely' ),
-					'section'     => 'shapely_single_project_section',
-				)
-			)
-		);
-		$wp_customize->add_control(
-			new Epsilon_Control_Toggle(
-				$wp_customize, 'project_author_left_side', array(
-					'label'       => esc_html__( 'Project Author Left Side', 'shapely' ),
-					'description' => esc_html__( 'This will move the author box from the bottom of the project on top on the left side', 'shapely' ),
-					'section'     => 'shapely_single_project_section',
-				)
-			)
-		);
-		$wp_customize->add_control(
-			new Epsilon_Control_Toggle(
-				$wp_customize, 'project_author_email', array(
-					'label'       => esc_html__( 'Show Author Email', 'shapely' ),
-					'description' => esc_html__( 'This will show/hide the author\'s email from the author box', 'shapely' ),
-					'section'     => 'shapely_single_project_section',
-				)
-			)
-		);
-	} else {
-		$wp_customize->add_control(
-			'project_first_letter_caps', array(
+	$wp_customize->add_control(
+		'project_first_letter_caps', array(
+			'type'        => 'checkbox',
 				'label'       => esc_html__( 'First Letter Caps', 'shapely' ),
 				'description' => esc_html__( 'This will transform your first letter from a project into uppercase', 'shapely' ),
 				'section'     => 'shapely_single_project_section',
-				'type'        => 'checkbox',
-			)
-		);
-		$wp_customize->add_control(
-			'tags_project_meta', array(
+		)
+	);
+	$wp_customize->add_control(
+		'tags_project_meta', array(
+			'type'        => 'checkbox',
 				'label'       => esc_html__( 'Tags Project Meta', 'shapely' ),
 				'description' => esc_html__( 'This will show/hide tags from the end of project', 'shapely' ),
 				'section'     => 'shapely_single_project_section',
-				'type'        => 'checkbox',
-			)
-		);
-		$wp_customize->add_control(
-			'related_projects_area', array(
+		)
+	);
+	$wp_customize->add_control(
+		'related_projects_area', array(
+			'type'        => 'checkbox',
 				'label'       => esc_html__( 'Related Projects Area', 'shapely' ),
 				'description' => esc_html__( 'This will enable/disable the related projects', 'shapely' ),
 				'section'     => 'shapely_single_project_section',
-				'type'        => 'checkbox',
-			)
-		);
-		$wp_customize->add_control(
-			'project_author_area', array(
+		)
+	);
+	$wp_customize->add_control(
+		'project_author_area', array(
+			'type'        => 'checkbox',
 				'label'       => esc_html__( 'Project Author Area', 'shapely' ),
 				'description' => esc_html__( 'This will show/hide the author box', 'shapely' ),
 				'section'     => 'shapely_single_project_section',
-				'type'        => 'checkbox',
-			)
-		);
-		$wp_customize->add_control(
-			'project_author_left_side', array(
+		)
+	);
+	$wp_customize->add_control(
+		'project_author_left_side', array(
+			'type'        => 'checkbox',
 				'label'       => esc_html__( 'Project Author Left Side', 'shapely' ),
 				'description' => esc_html__( 'This will move the author box from the bottom of the project on top on the left side', 'shapely' ),
 				'section'     => 'shapely_single_project_section',
-				'type'        => 'checkbox',
-			)
-		);
-		$wp_customize->add_control(
-			'project_author_email', array(
+		)
+	);
+	$wp_customize->add_control(
+		'project_author_email', array(
+			'type'        => 'checkbox',
 				'label'       => esc_html__( 'Show Author Email', 'shapely' ),
 				'description' => esc_html__( 'This will show/hide the author\'s email from the author box', 'shapely' ),
 				'section'     => 'shapely_single_project_section',
-				'type'        => 'checkbox',
-			)
-		);
-	} // End if().
+		)
+	);
 	$wp_customize->add_setting(
 		'single_project_layout_template', array(
 			'default'           => 'sidebar-right',
@@ -1452,6 +1210,44 @@ function shapely_customizer_custom_label_css() {
 			margin-top: 5px;
 			color: #555;
 			font-style: italic;
+		}
+
+		/* Shapely_Control_Range: slider with its value alongside. */
+		.shapely-range {
+			display: flex;
+			align-items: center;
+			gap: 10px;
+		}
+		.shapely-range input[type="range"] {
+			flex: 1 1 auto;
+			min-width: 0;
+		}
+		.shapely-range__value {
+			flex: 0 0 auto;
+			min-width: 3ch;
+			text-align: right;
+			font-variant-numeric: tabular-nums;
+			color: #50575e;
+		}
+
+		/* Shapely_Section_Link: a section that is just an outbound button. */
+		.shapely-link-section {
+			display: flex;
+			align-items: center;
+			justify-content: space-between;
+			gap: 10px;
+			padding: 12px 15px;
+			border-bottom: 1px solid #ddd;
+			background: #fff;
+		}
+		.shapely-link-section__title {
+			margin: 0;
+			font-size: 14px;
+			font-weight: 600;
+			color: #50575e;
+		}
+		.shapely-link-section__button {
+			flex: 0 0 auto;
 		}
 	</style>
 	<?php
