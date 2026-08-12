@@ -56,12 +56,12 @@ The version lives in **four** places, all currently in sync at 1.2.20: `style.cs
 Nearly all theme behavior is driven by `get_theme_mod()` reads scattered across templates. The chain:
 
 1. `inc/customizer.php` (~1500 lines) registers the `shapely_main_options` panel and its sections/controls.
-2. `inc/libraries/epsilon-framework/` — a **vendored** third-party customizer framework (Macho Themes) supplying `Epsilon_Control_Toggle`, `Epsilon_Control_Slider`, `Epsilon_Section_Pro`, `Epsilon_Section_Recommended_Actions`. `Shapely::init_epsilon()` passes a whitelist of controls/sections to load. Classes resolve through `class-epsilon-autoloader.php`, which maps `Foo_Bar` → `class-foo-bar.php` across a fixed directory list.
+2. `inc/custom-controls/` — the theme's own customizer controls and sections: `Shapely_Custom_Label`, `Shapely_Logo_Dimensions`, `Shapely_Control_Range` (a range input with a value readout), and `Shapely_Section_Link` (a section rendered as a single outbound button). Everything else uses core control types. The vendored Epsilon framework that used to supply these was removed in 1.3.0.
 3. `shapely_get_theme_options()` in `inc/extras.php` builds a CSS string from those theme mods. `shapely_enqueue_theme_options_css()` buffers it and hands it to `wp_add_inline_style( 'shapely-style', … )`, so it rides along with the main stylesheet rather than being echoed straight into `wp_head`.
 
 So **adding a color/typography option means two edits**: a control in `inc/customizer.php` *and* a selector block in `shapely_get_theme_options()`. Sanitizers (`shapely_sanitize_checkbox`, `shapely_sanitize_layout`, …) live at the bottom of `customizer.php`.
 
-The Epsilon JS bundles (`assets/js/epsilon-framework-*.js`) are webpack output from TypeScript/Vue sources in `inc/libraries/epsilon-framework/assets/vendors/` — do not hand-edit the bundles; rebuild with `npm run build` **inside `inc/libraries/epsilon-framework/`** (its own webpack setup, unrelated to the theme's `npm run build`).
+`theme.json` (v2, matching the WordPress 6.4 floor) is the source of truth for the palette, type scale, heading sizes and layout widths — it is what the block editor reads. The customizer is still where a site owner changes colours: `shapely_enqueue_theme_options_css()` emits each colour theme mod as an override of the matching `--wp--preset--color--*` property, so blocks and the classic front end resolve to one value rather than two palettes disagreeing. **Adding a colour option now means three edits**: a control in `inc/customizer.php`, a selector block in `shapely_get_theme_options()`, and a preset in `theme.json` plus its entry in the `$presets` map.
 
 ### Layout resolution
 
@@ -80,7 +80,7 @@ Blog listings (`index.php`, `archive.php`) dispatch on the `blog_layout_view` th
 
 - **WooCommerce**: theme support in `functions.php`, `woocommerce.php` as the wrapper, `woocommerce/product-searchform.php` as the only template override. The `shop-sidebar` widget area registers only when `shapely_is_woocommerce_activated()`. `woocommerce/` is excluded from phpcs.
 - **Jetpack**: `inc/jetpack.php` plus `archive-jetpack-portfolio.php` / `single-jetpack-portfolio.php` for the portfolio CPT (masonry is enqueued only when that CPT exists).
-- **Welcome screen / recommended plugins**: `inc/libraries/welcome-screen/` + `inc/class-shapely-notify-system.php` drive the "Import Demo Content" flow and the recommended-plugins list defined in `Shapely::$recommended_plugins`.
+- **Welcome screen / recommended plugins**: `inc/admin/class-shapely-welcome.php` + `inc/class-shapely-notify-system.php` drive the "Import Demo Content" flow and the recommended-plugins list defined in `Shapely::$recommended_plugins`. The import itself is **not** in the theme: the button posts `shapely_companion_import_content` with a `welcome_nonce` to a handler in the shapely-companion plugin, so that action name, its `import` values and the nonce name are a fixed contract — changing any of them breaks the import against every released version of the plugin. Plugin installation is handed to core's `wp.updates`.
 
 ### Frontend JS
 
@@ -96,14 +96,14 @@ Every optional third-party plugin (FlexSlider, OwlCarousel, imagesLoaded, YTPlay
 - Font Awesome 6 splits families: brand glyphs (`fa-github`, `fa-x-twitter`, …) need `fa-brands`, everything else uses `fa`/`fa-solid`. A brand icon rendered with plain `fa` shows a blank box. FA4 `-o` outline suffixes no longer exist. The bundled build is 6.4.2, so icons added later (e.g. `fa-bluesky`, 6.6) are unavailable.
 - PHP follows WordPress-Core via `phpcs.ruleset.xml` (plus `PHPCompatibility`; `node_modules/` and `woocommerce/` excluded). Newer files open with an `ABSPATH` guard.
 - JS follows `.jshintrc`: `es3`, single quotes, mandatory curly braces, `eqeqeq`. New localized objects must be added to its `globals` whitelist or jshint fails.
-- Text domain is `shapely` (`epsilon-framework` is also allowed by checktextdomain). Translations live in `languages/`.
+- Text domain is `shapely`, and it is the only one allowed by `npm run i18n:check`. Translations live in `languages/`.
 - Supported floor: WordPress 6.4 / PHP 7.4, tested to WordPress 6.8 / PHP 8.4 (stated in `style.css`, `readme.txt`, and `functions.php`).
 
 ## Repo quirks worth knowing
 
-- `README.md` documents a git-submodule workflow and `setup.sh` / `setup.bat` — **none of that exists**: `.gitmodules` is empty, no submodules are registered, and the Epsilon framework is vendored directly in `inc/libraries/`.
+- `README.md` documents a git-submodule workflow and `setup.sh` / `setup.bat` — **none of that exists**: `.gitmodules` is empty and no submodules are registered.
 - `.gitignore` used to list `Gruntfile.js`, `.jshintrc`, `.travis.yml`, `phpcs.ruleset.xml` and `package-lock.json`. The first three are gone; the last two are now deliberately tracked (`npm ci` needs the lockfile, and the phpcs ruleset is real config).
 - The zip builder in `tools/build-zip.mjs` is deny-by-default: a file ships unless `EXCLUDE` matches it. The old Grunt copy task was allow-everything-then-subtract, which is how `CLAUDE.md` and a nested `package.json` ended up inside released zips.
-- The vendored `inc/libraries/` code is third-party but **not** a submodule, so it is edited in place when it blocks a PHP/WordPress upgrade. Two such patches exist: optional-before-required parameters in `class-epsilon-control-section-repeater.php`, and `get_page_by_title()` (deprecated in WP 6.2) in `class-epsilon-welcome-screen.php`.
+- `inc/class-shapely-migrations.php` runs one-time upgrade steps, keyed on the `shapely_migrated_version` option. No theme mod has ever been renamed, so it does not map settings — it carries the state the retired Epsilon framework owned (`shapely_actions_left` → `shapely_dismissed_actions`) and suppresses the onboarding notice on sites that were already established.
 - `Shapely_Notify_System` overrides the vendored `check_plugin_is_installed()`/`check_plugin_is_active()` because the parent hardcodes `ABSPATH . 'wp-content/plugins/'` and breaks on relocated content directories.
 - `layouts/content-sidebar.css` and `layouts/sidebar-content.css` are leftovers from Underscores and are not enqueued anywhere.

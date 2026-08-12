@@ -136,6 +136,15 @@ class Shapely {
 	}
 
 	public function setup_recommended_actions() {
+		/*
+		 * load_class() only runs for admin and customizer requests, so anything
+		 * calling this directly outside those would hit an undefined class.
+		 * Cheap to make that impossible rather than rely on call order.
+		 */
+		if ( ! class_exists( 'Shapely_Notify_System' ) ) {
+			require_once get_template_directory() . '/inc/class-shapely-notify-system.php';
+		}
+
 		$this->recommended_actions = apply_filters(
 			'shapely_required_actions', array(
 				array(

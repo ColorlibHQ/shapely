@@ -92,7 +92,14 @@
 			"padding": true,
 			"margin": true,
 			"blockGap": true,
-			"units": [ "px", "em", "rem", "%", "vw", "vh" ]
+			"units": [
+				"px",
+				"em",
+				"rem",
+				"%",
+				"vw",
+				"vh"
+			]
 		},
 		"layout": {
 			"contentSize": "1140px",
@@ -149,6 +156,38 @@
 						"background": "var(--wp--preset--color--primary-hover)",
 						"text": "var(--wp--preset--color--background)"
 					}
+				}
+			},
+			"h1": {
+				"typography": {
+					"fontSize": "60px"
+				}
+			},
+			"h2": {
+				"typography": {
+					"fontSize": "45px"
+				}
+			},
+			"h3": {
+				"typography": {
+					"fontSize": "30px"
+				}
+			},
+			"h4": {
+				"typography": {
+					"fontSize": "25px"
+				}
+			},
+			"h5": {
+				"typography": {
+					"fontSize": "22px",
+					"lineHeight": "28px"
+				}
+			},
+			"h6": {
+				"typography": {
+					"fontSize": "18px",
+					"lineHeight": "25px"
 				}
 			}
 		}

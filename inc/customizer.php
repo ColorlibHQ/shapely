@@ -7,10 +7,25 @@
  */
 if ( ! function_exists( 'shapely_customize_register' ) ) :
 function shapely_customize_register( $wp_customize ) {
-	$wp_customize->get_setting( 'blogname' )->transport         = 'postMessage';
-	$wp_customize->get_setting( 'blogdescription' )->transport  = 'postMessage';
-	$wp_customize->get_setting( 'header_textcolor' )->transport = 'postMessage';
-	$wp_customize->get_setting( 'custom_logo' )->transport      = 'refresh';
+	/*
+	 * These are core settings, but a plugin is free to remove any of them --
+	 * and get_setting() then returns null, so assigning ->transport straight
+	 * onto the result is a fatal on PHP 8 rather than a notice.
+	 */
+	$transports = array(
+		'blogname'         => 'postMessage',
+		'blogdescription'  => 'postMessage',
+		'header_textcolor' => 'postMessage',
+		'custom_logo'      => 'refresh',
+	);
+
+	foreach ( $transports as $setting_id => $transport ) {
+		$setting = $wp_customize->get_setting( $setting_id );
+
+		if ( $setting instanceof WP_Customize_Setting ) {
+			$setting->transport = $transport;
+		}
+	}
 
 	// Abort if selective refresh is not available.
 	if ( ! isset( $wp_customize->selective_refresh ) ) {
