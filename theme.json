@@ -23,6 +23,16 @@
 					"name": "Primary hover"
 				},
 				{
+					"slug": "button",
+					"color": "#745cf9",
+					"name": "Button"
+				},
+				{
+					"slug": "button-hover",
+					"color": "#5234f9",
+					"name": "Button hover"
+				},
+				{
 					"slug": "heading",
 					"color": "#0e1015",
 					"name": "Heading"
@@ -140,7 +150,7 @@
 			},
 			"button": {
 				"color": {
-					"background": "var(--wp--preset--color--primary)",
+					"background": "var(--wp--preset--color--button)",
 					"text": "var(--wp--preset--color--background)"
 				},
 				"border": {
@@ -153,7 +163,7 @@
 				},
 				":hover": {
 					"color": {
-						"background": "var(--wp--preset--color--primary-hover)",
+						"background": "var(--wp--preset--color--button-hover)",
 						"text": "var(--wp--preset--color--background)"
 					}
 				}

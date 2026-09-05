@@ -355,18 +355,25 @@ if ( ! function_exists( 'shapely_enqueue_theme_options_css' ) ) :
 		 * Only emitted when a mod is actually set, so an untouched site keeps
 		 * the theme.json defaults verbatim.
 		 */
+		/*
+		 * One theme mod per preset slug, never two.
+		 *
+		 * 1.3.0 mapped link_color and button_color both onto 'primary', so on a
+		 * site that set different colours for links and buttons the second one
+		 * silently overwrote the first: links rendered in the button's colour.
+		 * Buttons have their own slugs now.
+		 */
 		$presets = array(
 			'link_color'         => 'primary',
 			'link_hover_color'   => 'primary-hover',
-			'button_color'       => 'primary',
-			'button_hover_color' => 'primary-hover',
+			'button_color'       => 'button',
+			'button_hover_color' => 'button-hover',
 		);
 
 		$vars = array();
 		foreach ( $presets as $mod => $slug ) {
 			$value = get_theme_mod( $mod );
 			if ( $value ) {
-				// Later keys win, which is why button_* follows link_*.
 				$vars[ $slug ] = $value;
 			}
 		}
@@ -1231,3 +1238,82 @@ function shapely_get_thumbnail( $size = 'full', $default_file = 'placeholder.jpg
 	);
 }
 endif;
+
+if ( ! function_exists( 'shapely_legacy_asset_handles' ) ) :
+	/**
+	 * The generic asset handles this theme used before 1.3.0.
+	 *
+	 * @return array old handle => current handle
+	 */
+	function shapely_legacy_asset_handles() {
+		return array(
+			'bootstrap'          => 'shapely-bootstrap',
+			'flexslider'         => 'shapely-flexslider',
+			'owl.carousel'       => 'shapely-owl-carousel',
+			'owl.carousel.theme' => 'shapely-owl-carousel-theme',
+		);
+	}
+endif;
+
+if ( ! function_exists( 'shapely_register_legacy_handle_aliases' ) ) :
+	/**
+	 * Keep pre-1.3.0 handle names working for child themes.
+	 *
+	 * 1.3.0 renamed four generic handles so a plugin claiming 'bootstrap' could
+	 * no longer suppress the theme's own stylesheet. That fixed a real fault,
+	 * but it silently broke the most common child-theme pattern there is:
+	 *
+	 *     wp_dequeue_style( 'bootstrap' );   // swap in my own build
+	 *
+	 * After the rename that call names a handle nobody registers, so it does
+	 * nothing, the parent's Bootstrap loads again, and it lands on top of
+	 * whatever the child theme had replaced it with. Nothing errors -- the
+	 * layout just changes under them on update.
+	 *
+	 * So each old name is registered as an empty placeholder and enqueued. If a
+	 * child theme dequeues it, shapely_mirror_legacy_handle_dequeues() sees that
+	 * and drops the real stylesheet too, which is what the old code did.
+	 *
+	 * The placeholder is only registered when nothing else has claimed the
+	 * handle, so this does not put the theme back in the business of squatting
+	 * on generic names.
+	 */
+	function shapely_register_legacy_handle_aliases() {
+		foreach ( shapely_legacy_asset_handles() as $legacy => $current ) {
+			if ( wp_style_is( $legacy, 'registered' ) ) {
+				// Someone else owns this handle; leave it alone.
+				continue;
+			}
+
+			// src of false registers the handle without ever requesting a file.
+			wp_register_style( $legacy, false, array(), SHAPELY_VERSION );
+			wp_enqueue_style( $legacy );
+		}
+	}
+endif;
+
+add_action( 'wp_enqueue_scripts', 'shapely_register_legacy_handle_aliases', 11 );
+
+if ( ! function_exists( 'shapely_mirror_legacy_handle_dequeues' ) ) :
+	/**
+	 * Apply a dequeue of an old handle to the stylesheet it used to name.
+	 *
+	 * Runs late so child themes and plugins -- which conventionally hook
+	 * wp_enqueue_scripts at 10 or 20 -- have already had their say.
+	 */
+	function shapely_mirror_legacy_handle_dequeues() {
+		foreach ( shapely_legacy_asset_handles() as $legacy => $current ) {
+			if ( ! wp_style_is( $legacy, 'registered' ) ) {
+				// Deregistered outright, which the old code treated as removal.
+				wp_dequeue_style( $current );
+				continue;
+			}
+
+			if ( ! wp_style_is( $legacy, 'enqueued' ) ) {
+				wp_dequeue_style( $current );
+			}
+		}
+	}
+endif;
+
+add_action( 'wp_enqueue_scripts', 'shapely_mirror_legacy_handle_dequeues', 100 );

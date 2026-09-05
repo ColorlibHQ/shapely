@@ -67,6 +67,12 @@ This page template is used to create the Parallax homepage from our demo : https
 
 == Upgrade Notice ==
 
+= 1.3.1 =
+Fixes two regressions from 1.3.0: links taking the button colour when the two
+were set differently, and child themes that replace the theme's Bootstrap,
+FlexSlider or Owl Carousel silently getting the parent's copy back. Both are
+fixed automatically -- nothing to change on your site.
+
 = 1.3.0 =
 Removes the bundled Epsilon framework and adds theme.json. Your settings carry
 over untouched and the site should look identical. Child themes that dequeue the
@@ -75,6 +81,10 @@ to shapely-bootstrap, shapely-flexslider, shapely-owl-carousel and
 shapely-owl-carousel-theme.
 
 == Changelog ==
+
+= 1.3.1 =
+* Fixed link colours changing after the 1.3.0 update on sites that set a different colour for links and for buttons. Both were being written to the same internal colour slot, so whichever was saved last won and links took the button's colour
+* Fixed child themes that swap out the theme's Bootstrap, FlexSlider or Owl Carousel. 1.3.0 renamed those asset handles, which silently turned `wp_dequeue_style( 'bootstrap' )` into a no-op -- the parent's stylesheet came back on top of the child's replacement, with no error to explain it. The old handle names work again, while the rename that stopped plugins suppressing the theme's own stylesheets stays in place
 
 = 1.3.0 =
 * Removed the vendored Epsilon customizer framework. It was 144 files and 1.3 MB -- 52% of the theme -- and provided 31 toggle controls, one slider, two customizer sections and the welcome screen. All of those are now built on core WordPress APIs. The download is roughly a third smaller and the theme ships 51 PHP files instead of 88
@@ -229,4 +239,4 @@ shapely-owl-carousel-theme.
 = 1.0.0 - March 26 2016 =
 * Initial release
 
-Stable tag: 1.3.0
+Stable tag: 1.3.1

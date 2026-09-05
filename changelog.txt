@@ -1,3 +1,7 @@
+= 1.3.1 =
+* Fixed link colours changing after the 1.3.0 update on sites that set a different colour for links and for buttons. Both were being written to the same internal colour slot, so whichever was saved last won and links took the button's colour
+* Fixed child themes that swap out the theme's Bootstrap, FlexSlider or Owl Carousel. 1.3.0 renamed those asset handles, which silently turned `wp_dequeue_style( 'bootstrap' )` into a no-op -- the parent's stylesheet came back on top of the child's replacement, with no error to explain it. The old handle names work again, while the rename that stopped plugins suppressing the theme's own stylesheets stays in place
+
 = 1.3.0 =
 * Removed the vendored Epsilon customizer framework. It was 144 files and 1.3 MB -- 52% of the theme -- and provided 31 toggle controls, one slider, two customizer sections and the welcome screen. All of those are now built on core WordPress APIs. The download is roughly a third smaller and the theme ships 51 PHP files instead of 88
 * Added theme.json, so the palette, type scale and layout widths have a single source of truth that the block editor reads. Colour options in the customizer still work exactly as before -- each one now overrides the matching theme.json value rather than maintaining a second palette
