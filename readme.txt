@@ -250,4 +250,4 @@ shapely-owl-carousel-theme.
 = 1.0.0 - March 26 2016 =
 * Initial release
 
-Stable tag: 1.3.3
+Stable tag: 1.3.4
