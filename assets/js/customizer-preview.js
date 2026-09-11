@@ -23,7 +23,9 @@
                 style = $( 'head' ).append( '<style type="text/css" id="shapely-style-' + sufix + '" />' ).find( '#shapely-style-' + sufix );
               }
 
-              style.html( json.responseText );
+              // .text() rather than .html(): the payload is CSS, so it should never
+              // be parsed as markup on its way into the <style> element.
+              style.text( json.responseText );
             }
           } );
         } );
