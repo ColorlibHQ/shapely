@@ -67,6 +67,12 @@ This page template is used to create the Parallax homepage from our demo : https
 
 == Upgrade Notice ==
 
+= 1.3.3 =
+* Updated Font Awesome from 6.4.2 to a self-hosted 7.3.1. The theme loaded all.min.css, which carries v4 and v5 compatibility @font-face blocks and shipped a fa-v4compatibility font to back them; no shim is wanted, since every class the theme renders is a native Font Awesome name. The stylesheets now load split by style -- the core name map plus one file per family -- and only the solid and brands faces are bundled, the two the theme renders.
+* Only woff2 ships. The ttf copies beside it were never downloaded, because a browser takes the first format it supports from the @font-face src list.
+* Removed a second, complete icon font: FontAwesome.otf and five fontawesome-webfont files, 724 KB of Font Awesome 4 left behind by the upgrade to 6 and referenced by no stylesheet in the theme. Bundled icon fonts drop from 2,092 KB to 332 KB.
+* Bluesky has its own icon again. fa-bluesky arrived in Font Awesome 6.6 and the theme bundled 6.4.2, so bsky.app links deliberately fell through to the generic link glyph. All 30 mapped social networks were checked against the bundled build.
+
 = 1.3.2 =
 * Updated the bundled Bootstrap from 3.3.7 to 3.4.1, the final release of the 3.x line and the one that fixed CVE-2019-8331. Shapely enqueues only Bootstrap's stylesheet and never its JavaScript, so the theme was not exposed to that defect, which is a JavaScript one -- but there is no reason to keep the superseded build. Both stylesheets were stock 3.3.7, so this is a straight replacement.
 * The Customizer preview wrote its AJAX response into a <style> element with jQuery's .html(), which parses its argument as markup. The payload is CSS from the theme's own nonce- and capability-checked endpoint, so this was not reachable as a vulnerability, but it is inserted with .text() now.
@@ -244,4 +250,4 @@ shapely-owl-carousel-theme.
 = 1.0.0 - March 26 2016 =
 * Initial release
 
-Stable tag: 1.3.2
+Stable tag: 1.3.3
