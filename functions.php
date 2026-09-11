@@ -325,9 +325,21 @@ function shapely_scripts() {
  * reached a single returning visitor or CDN edge.
 	 */
 	$fa_uri = $uri . '/assets/css/fontawesome/';
-	wp_enqueue_style( 'shapely-font-awesome', $fa_uri . 'fontawesome.min.css', array(), SHAPELY_VERSION );
-	wp_enqueue_style( 'shapely-font-awesome-solid', $fa_uri . 'solid.min.css', array( 'shapely-font-awesome' ), SHAPELY_VERSION );
-	wp_enqueue_style( 'shapely-font-awesome-brands', $fa_uri . 'brands.min.css', array( 'shapely-font-awesome' ), SHAPELY_VERSION );
+	/*
+	 * The bundled Font Awesome is subsetted to the glyphs this theme renders, a few
+	 * kilobytes rather than a few hundred. A site that uses Font Awesome classes in
+	 * its own content -- a widget, a page builder, a child theme -- can load the
+	 * complete set instead:
+	 *
+	 *     add_filter( 'shapely_full_fontawesome', '__return_true' );
+	 */
+	if ( apply_filters( 'shapely_full_fontawesome', false ) ) {
+		wp_enqueue_style( 'shapely-font-awesome', $fa_uri . 'fontawesome.min.css', array(), SHAPELY_VERSION );
+		wp_enqueue_style( 'shapely-font-awesome-solid', $fa_uri . 'solid.min.css', array( 'shapely-font-awesome' ), SHAPELY_VERSION );
+		wp_enqueue_style( 'shapely-font-awesome-brands', $fa_uri . 'brands.min.css', array( 'shapely-font-awesome' ), SHAPELY_VERSION );
+	} else {
+		wp_enqueue_style( 'shapely-font-awesome', $fa_uri . 'subset/fontawesome-subset.min.css', array(), SHAPELY_VERSION );
+	}
 
 	// Add Google Fonts
 	wp_enqueue_style( 'shapely-fonts', 'https://fonts.googleapis.com/css?family=Raleway:100,300,400,500,600,700&display=swap', array(), null );
