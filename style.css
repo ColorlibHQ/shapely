@@ -1670,7 +1670,7 @@ nav {
   position: absolute;
   top: 0;
   right: 7px;
-  font-family: "Font Awesome 6 Free";
+  font-family: "Font Awesome 7 Free";
   font-weight: 900;
   content: "\f107"; /* fa-angle-down */
   font-size: 12px;
@@ -3287,7 +3287,7 @@ iframe {
 .flex-direction-nav a.flex-next:before,
 .flex-direction-nav a.flex-prev:before {
   content: '\f105';
-  font-family: "Font Awesome 6 Free";
+  font-family: "Font Awesome 7 Free";
   speak: none;
   font-style: normal;
   font-weight: 900;
@@ -4471,7 +4471,7 @@ input[type='tel']:focus {
   line-height: 46px;
   text-align: center;
   position: relative;
-  font-family: "Font Awesome 6 Free";
+  font-family: "Font Awesome 7 Free";
   color: #001c28;
 }
 
@@ -4500,7 +4500,7 @@ input[type='tel']:focus {
   text-align: center;
   position: relative;
   font-weight: 900;
-  font-family: "Font Awesome 6 Free";
+  font-family: "Font Awesome 7 Free";
   color: #001c28;
 }
 
@@ -4522,7 +4522,7 @@ input[type='tel']:focus {
 }
 
 .shapely-social .shapely-social-icon {
-  font-family: "Font Awesome 6 Free";
+  font-family: "Font Awesome 7 Free";
   display: block;
   width: 20px;
   height: 20px;
@@ -5130,7 +5130,7 @@ section .widget-post-excerpt {
     color: #fff;
 }
 
-/* Remove old social icon CSS code since we're using Font Awesome 6 properly now */
+/* Remove old social icon CSS code since we're using Font Awesome 7 properly now */
 /* Add new CSS for screen-reader-text used by social icons */
 .fa-brands .screen-reader-text {
   position: absolute;
@@ -5191,34 +5191,34 @@ section .widget-post-excerpt {
 .panel-icon:before {
   content: "\f107"; /* fa-angle-down */
   font: var(--fa-font-solid);
-  font-family: 'Font Awesome 6 Free';
+  font-family: "Font Awesome 7 Free";
 }
 
 .arrow_right:after {
   content: '\f105';
   font: var(--fa-font-solid);
-  font-family: 'Font Awesome 6 Free';
+  font-family: "Font Awesome 7 Free";
 }
 
 .arrow_left:before {
   content: '\f104';
   font: var(--fa-font-solid);
-  font-family: 'Font Awesome 6 Free';
+  font-family: "Font Awesome 7 Free";
 }
 
 .prev.page-numbers:before {
   content: '\f104';
   font: var(--fa-font-solid);
-  font-family: 'Font Awesome 6 Free';
+  font-family: "Font Awesome 7 Free";
 }
 
 .next.page-numbers:after {
   content: '\f105';
   font: var(--fa-font-solid);
-  font-family: 'Font Awesome 6 Free';
+  font-family: "Font Awesome 7 Free";
 }
 
-/* Clean up any old social icon code that's no longer needed with Font Awesome 6 */
+/* Clean up any old social icon code that's no longer needed with Font Awesome 7 */
 .shapely_home_parallax section,
 .small-screen-overlay .widget {
   /* Remove the font-family declaration */
@@ -5233,7 +5233,7 @@ section .widget-post-excerpt {
 .small-screen-overlay .widget .fas,
 .small-screen-overlay .widget .far,
 .small-screen-overlay .widget .fab {
-  font-family: 'Font Awesome 6 Free';
+  font-family: "Font Awesome 7 Free";
 }
 
 

@@ -308,16 +308,26 @@ function shapely_scripts() {
 	 * 'font-awesome'. WordPress deduplicates by handle, so whichever plugin
 	 * registers 'font-awesome' first wins and every later enqueue is silently
 	 * a no-op. Elementor ships Font Awesome 4.7 under exactly that handle, so
-	 * on any site running it the theme's Font Awesome 6 never loaded at all --
+	 * on any site running it the theme's own Font Awesome never loaded at all --
 	 * and the theme's fa-brands / fa-solid classes do not exist in 4.x, which
 	 * is why the social, search and menu icons rendered as blank boxes.
+ *
+ * Font Awesome 7, split by style: the core file carries the icon name map and
+	 * each style file adds one @font-face. all.min.css was replaced because it also
+	 * carries v4 and v5 compatibility @font-face blocks, and no shim is wanted --
+	 * every class the theme renders is a native Font Awesome 7 name. Only woff2 is
+	 * bundled, and only the solid and brands faces, which are the only two the
+	 * theme renders.
  *
  * Versioned with SHAPELY_VERSION, not the Font Awesome version. The latter
  * never changes when the bundled file does, and this stylesheet is served
  * cache-control: immutable for a year -- a corrected copy would not have
  * reached a single returning visitor or CDN edge.
 	 */
-	wp_enqueue_style( 'shapely-font-awesome', $uri . '/assets/css/fontawesome6/all.min.css', array(), SHAPELY_VERSION );
+	$fa_uri = $uri . '/assets/css/fontawesome/';
+	wp_enqueue_style( 'shapely-font-awesome', $fa_uri . 'fontawesome.min.css', array(), SHAPELY_VERSION );
+	wp_enqueue_style( 'shapely-font-awesome-solid', $fa_uri . 'solid.min.css', array( 'shapely-font-awesome' ), SHAPELY_VERSION );
+	wp_enqueue_style( 'shapely-font-awesome-brands', $fa_uri . 'brands.min.css', array( 'shapely-font-awesome' ), SHAPELY_VERSION );
 
 	// Add Google Fonts
 	wp_enqueue_style( 'shapely-fonts', 'https://fonts.googleapis.com/css?family=Raleway:100,300,400,500,600,700&display=swap', array(), null );

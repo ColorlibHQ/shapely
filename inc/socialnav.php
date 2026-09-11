@@ -79,9 +79,10 @@ if ( ! function_exists( 'shapely_get_social_networks' ) ) :
 			't.me'            => array( 'telegram', 'brands' ),
 			'whatsapp.com'    => array( 'whatsapp', 'brands' ),
 			'wa.me'           => array( 'whatsapp', 'brands' ),
+			'bsky.app'        => array( 'bluesky', 'brands' ),
 		);
-		// Note: fa-bluesky ships from Font Awesome 6.6; the bundled build is 6.4.2,
-		// so Bluesky URLs intentionally fall through to the generic link glyph.
+		// fa-bluesky arrived in Font Awesome 6.6 and the theme bundled 6.4.2, so
+		// Bluesky used to fall through to the generic link glyph. 7.3.1 has it.
 
 		/**
 		 * Filter the recognised social networks.
