@@ -67,6 +67,11 @@ This page template is used to create the Parallax homepage from our demo : https
 
 == Upgrade Notice ==
 
+= 1.3.2 =
+* Updated the bundled Bootstrap from 3.3.7 to 3.4.1, the final release of the 3.x line and the one that fixed CVE-2019-8331. Shapely enqueues only Bootstrap's stylesheet and never its JavaScript, so the theme was not exposed to that defect, which is a JavaScript one -- but there is no reason to keep the superseded build. Both stylesheets were stock 3.3.7, so this is a straight replacement.
+* The Customizer preview wrote its AJAX response into a <style> element with jQuery's .html(), which parses its argument as markup. The payload is CSS from the theme's own nonce- and capability-checked endpoint, so this was not reachable as a vulnerability, but it is inserted with .text() now.
+* parallax.js was enqueued with the theme's version string instead of its own, so its URL changed on every theme release and gave no indication of which build was in use. It declares 1.5.0, matching the bundled file.
+
 = 1.3.1 =
 Fixes two regressions from 1.3.0: links taking the button colour when the two
 were set differently, and child themes that replace the theme's Bootstrap,
@@ -239,4 +244,4 @@ shapely-owl-carousel-theme.
 = 1.0.0 - March 26 2016 =
 * Initial release
 
-Stable tag: 1.3.1
+Stable tag: 1.3.2
