@@ -301,7 +301,7 @@ function shapely_scripts() {
 	$uri = get_template_directory_uri();
 
 	// Add Bootstrap default CSS
-	wp_enqueue_style( 'shapely-bootstrap', $uri . '/assets/css/bootstrap.min.css', array(), '3.3.7' );
+	wp_enqueue_style( 'shapely-bootstrap', $uri . '/assets/css/bootstrap.min.css', array(), '3.4.1' );
 
 	/*
 	 * Registered under a theme-specific handle rather than the generic
