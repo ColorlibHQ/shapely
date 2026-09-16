@@ -67,6 +67,9 @@ This page template is used to create the Parallax homepage from our demo : https
 
 == Upgrade Notice ==
 
+= 1.3.5 =
+* Fixed the social icons rendering as blank boxes. The bundled Font Awesome subset was missing the rules that bind an icon class to a font face, so `.fa-brands` fell back to the Free face, which contains no brand glyphs
+
 = 1.3.3 =
 * Updated Font Awesome from 6.4.2 to a self-hosted 7.3.1. The theme loaded all.min.css, which carries v4 and v5 compatibility @font-face blocks and shipped a fa-v4compatibility font to back them; no shim is wanted, since every class the theme renders is a native Font Awesome name. The stylesheets now load split by style -- the core name map plus one file per family -- and only the solid and brands faces are bundled, the two the theme renders.
 * Only woff2 ships. The ttf copies beside it were never downloaded, because a browser takes the first format it supports from the @font-face src list.
@@ -250,4 +253,4 @@ shapely-owl-carousel-theme.
 = 1.0.0 - March 26 2016 =
 * Initial release
 
-Stable tag: 1.3.4
+Stable tag: 1.3.5

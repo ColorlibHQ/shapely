@@ -6,3 +6,6 @@
 /.github/        export-ignore
 /CLAUDE.md       export-ignore
 /README.md       export-ignore
+/eslint.config.mjs export-ignore
+/tools/          export-ignore
+/.stylelintrc.json export-ignore

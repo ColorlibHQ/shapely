@@ -1,3 +1,6 @@
+= 1.3.5 =
+* Fixed the social icons rendering as blank boxes. The bundled Font Awesome subset was missing the rules that bind an icon class to a font face, so .fa-brands fell back to the Free face, which contains no brand glyphs.
+
 = 1.3.4 =
 * Fixed the Font Awesome webfonts returning 404. The stylesheets reference url(../webfonts/...), which resolves next to the stylesheet, and the fonts had been placed a directory too high -- so no icon rendered at all.
 * The bundled Font Awesome is now subsetted to the glyphs the theme renders, loaded by default, with the complete build still shipped for sites that need it: add_filter( 'shapely_full_fontawesome', '__return_true' ). Measured on WordPress 7.1 and PHP 8.5, median of three Lighthouse runs: performance 72 to 91, First Contentful Paint 1.65s faster, font payload 297 KB to 44 KB.
