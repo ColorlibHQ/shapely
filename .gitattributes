@@ -9,3 +9,7 @@
 /eslint.config.mjs export-ignore
 /tools/          export-ignore
 /.stylelintrc.json export-ignore
+/package.json       export-ignore
+/package-lock.json  export-ignore
+/phpcs.ruleset.xml  export-ignore
+/set_tags.sh        export-ignore
