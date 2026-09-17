@@ -28,9 +28,6 @@ class Shapely {
 		'modula-best-grid-gallery' => array(
 			'recommended' => true,
 		),
-		'kb-support'               => array(
-			'recommended' => true,
-		),
 		'rsvp'                     => array(
 			'recommended' => true
 		),
