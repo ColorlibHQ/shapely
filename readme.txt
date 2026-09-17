@@ -2,7 +2,7 @@
 
 Theme Name: Shapely
 Theme URI: https://colorlib.com/wp/themes/shapely/
-Version: 1.2.20
+Version: 1.3.6
 
 Requires at least: 6.4
 Tested up to: 7.0
@@ -67,8 +67,15 @@ This page template is used to create the Parallax homepage from our demo : https
 
 == Upgrade Notice ==
 
+= 1.3.6 =
+* Removed KB Support from the recommended plugins. WordPress.org closed it on 2025-04-03 over a security issue.
+
 = 1.3.5 =
 * Fixed the social icons rendering as blank boxes. The bundled Font Awesome subset was missing the rules that bind an icon class to a font face, so `.fa-brands` fell back to the Free face, which contains no brand glyphs
+
+= 1.3.4 =
+* Fixed the Font Awesome webfonts returning 404. The stylesheets reference url(../webfonts/...), which resolves next to the stylesheet, and the fonts had been placed a directory too high -- so no icon rendered at all.
+* The bundled Font Awesome is now subsetted to the glyphs the theme renders, loaded by default, with the complete build still shipped for sites that need it: add_filter( 'shapely_full_fontawesome', '__return_true' ). Measured on WordPress 7.1 and PHP 8.5, median of three Lighthouse runs: performance 72 to 91, First Contentful Paint 1.65s faster, font payload 297 KB to 44 KB.
 
 = 1.3.3 =
 * Updated Font Awesome from 6.4.2 to a self-hosted 7.3.1. The theme loaded all.min.css, which carries v4 and v5 compatibility @font-face blocks and shipped a fa-v4compatibility font to back them; no shim is wanted, since every class the theme renders is a native Font Awesome name. The stylesheets now load split by style -- the core name map plus one file per family -- and only the solid and brands faces are bundled, the two the theme renders.
@@ -253,4 +260,4 @@ shapely-owl-carousel-theme.
 = 1.0.0 - March 26 2016 =
 * Initial release
 
-Stable tag: 1.3.5
+Stable tag: 1.3.6
