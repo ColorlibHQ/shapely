@@ -342,7 +342,7 @@ function shapely_scripts() {
 	}
 
 	// Add Google Fonts
-	wp_enqueue_style( 'shapely-fonts', 'https://fonts.googleapis.com/css?family=Raleway:100,300,400,500,600,700&display=swap', array(), null );
+	wp_enqueue_style( 'shapely-fonts', get_template_directory_uri() . '/assets/css/google-fonts.css', array(), null );
 
 	// Add slider CSS
 	wp_enqueue_style( 'shapely-flexslider', $uri . '/assets/css/flexslider.css', array(), SHAPELY_VERSION );
@@ -403,24 +403,6 @@ function shapely_scripts() {
 }
 
 add_action( 'wp_enqueue_scripts', 'shapely_scripts' );
-
-/**
- * Warm up the Google Fonts connection before the stylesheet is requested.
- *
- * Saves a DNS + TLS round trip on the render-blocking font request.
- */
-function shapely_resource_hints( $hints, $relation_type ) {
-	if ( 'preconnect' === $relation_type && wp_style_is( 'shapely-fonts', 'enqueued' ) ) {
-		$hints[] = array(
-			'href'        => 'https://fonts.gstatic.com',
-			'crossorigin' => 'anonymous',
-		);
-	}
-
-	return $hints;
-}
-
-add_filter( 'wp_resource_hints', 'shapely_resource_hints', 10, 2 );
 
 /*
  * Bootstrap the theme classes.
