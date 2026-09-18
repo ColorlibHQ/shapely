@@ -457,3 +457,14 @@ if ( class_exists( 'Shapely' ) ) {
 		0
 	);
 }
+
+
+/**
+ * Editor and markup support this theme predates.
+ */
+if ( ! function_exists( 'shapely_modern_supports' ) ) {
+	function shapely_modern_supports() {
+		add_theme_support( 'editor-styles' );
+	}
+	add_action( 'after_setup_theme', 'shapely_modern_supports', 20 );
+}
