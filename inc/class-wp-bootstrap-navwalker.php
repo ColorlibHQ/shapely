@@ -102,7 +102,7 @@ class Wp_Bootstrap_Navwalker extends Walker_Nav_Menu {
 			// If item has_children add atts to a.
 			if ( $has_children && 0 === $depth ) {
 				$atts['href'] = ! empty( $item->url ) ? $item->url : '';
-				// $atts['data-toggle'] = 'dropdown';
+				// $atts['data-bs-toggle'] = 'dropdown';
 				// $atts['class']       = 'dropdown-toggle';
 			} else {
 				$atts['href'] = ! empty( $item->url ) ? $item->url : '';
@@ -152,7 +152,7 @@ class Wp_Bootstrap_Navwalker extends Walker_Nav_Menu {
 			$link_before  = isset( $args->link_before ) ? $args->link_before : '';
 			$link_after   = isset( $args->link_after ) ? $args->link_after : '';
 			$item_output .= $link_before . apply_filters( 'the_title', $item->title, $item->ID ) . $link_after;
-			$item_output .= ( $has_children ) ? ' </a><span class="dropdown-toggle shapely-dropdown" data-toggle="dropdown"><i class="fa fa-angle-down" aria-hidden="true"></i></span>' : '</a>';
+			$item_output .= ( $has_children ) ? ' </a><span class="dropdown-toggle shapely-dropdown" data-bs-toggle="dropdown"><i class="fa-solid fa-angle-down" aria-hidden="true"></i></span>' : '</a>';
 			$item_output .= isset( $args->after ) ? $args->after : '';
 
 			$output .= apply_filters( 'walker_nav_menu_start_el', $item_output, $item, $depth, $args );

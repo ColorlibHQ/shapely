@@ -71,7 +71,7 @@ if ( 1 == $shapely_transparent_header && $shapely_transparent_header_opacity ) {
 							aria-expanded="false"
 							aria-controls="menu"
 							aria-label="<?php esc_attr_e( 'Toggle navigation menu', 'shapely' ); ?>">
-							<i class="fa fa-bars" aria-hidden="true"></i>
+							<i class="fa-solid fa-bars" aria-hidden="true"></i>
 						</button>
 						<div class="module-group right">
 							<div class="module left">
@@ -80,7 +80,7 @@ if ( 1 == $shapely_transparent_header && $shapely_transparent_header_opacity ) {
 							<!--end of menu module-->
 							<div class="module widget-handle search-widget-handle hidden-xs hidden-sm">
 								<button class="search">
-									<i class="fa fa-search"></i>
+									<i class="fa-solid fa-search"></i>
 									<span class="title"><?php esc_html_e( 'Site Search', 'shapely' ); ?></span>
 								</button>
 								<div class="function">

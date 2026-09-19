@@ -96,14 +96,14 @@ $post_category = get_theme_mod( 'project_category', true );
 
 	<?php
 	$prev = get_previous_post_link();
-	$prev = str_replace( '&laquo;', '<div class="wrapper"><span class="fa fa-angle-left"></span>', $prev );
+	$prev = str_replace( '&laquo;', '<div class="wrapper"><span class="fa-solid fa-angle-left"></span>', $prev );
 	$prev = str_replace( '</a>', '</a></div>', $prev );
 	$next = get_next_post_link();
-	$next = str_replace( '&raquo;', '<span class="fa fa-angle-right"></span></div>', $next );
+	$next = str_replace( '&raquo;', '<span class="fa-solid fa-angle-right"></span></div>', $next );
 	$next = str_replace( '<a', '<div class="wrapper"><a', $next );
 	?>
 	<div class="shapely-next-prev row">
-		<div class="col-md-6 text-left">
+		<div class="col-md-6 text-start">
 			<?php echo wp_kses_post( $prev ); ?>
 		</div>
 		<div class="col-md-6 text-right">
@@ -118,7 +118,7 @@ $post_category = get_theme_mod( 'project_category', true );
 
 	if ( $enable_tags ) :
 		$tags_list = get_the_term_list( get_the_ID(), 'jetpack-portfolio-tag', '', ' ' );
-		echo ! empty( $tags_list ) ? '<div class="shapely-tags"><span class="fa fa-tags"></span>' . $tags_list . '</div>' : '';
+		echo ! empty( $tags_list ) ? '<div class="shapely-tags"><span class="fa-solid fa-tags"></span>' . $tags_list . '</div>' : '';
 	endif;
 	?>
 

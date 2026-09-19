@@ -241,8 +241,8 @@ if ( ! class_exists( 'Shapely_Related_Posts' ) ) {
 			// Icon-only controls need a text alternative; these had none at all.
 			echo '<div class="shapely-carousel-navigation hidden-xs">';
 			echo '<ul class="shapely-carousel-arrows clearfix">';
-			echo '<li><a href="#" class="shapely-owl-prev fa fa-angle-left"><span class="screen-reader-text">' . esc_html__( 'Previous', 'shapely' ) . '</span></a></li>';
-			echo '<li><a href="#" class="shapely-owl-next fa fa-angle-right"><span class="screen-reader-text">' . esc_html__( 'Next', 'shapely' ) . '</span></a></li>';
+			echo '<li><a href="#" class="shapely-owl-prev fa-solid fa-angle-left"><span class="screen-reader-text">' . esc_html__( 'Previous', 'shapely' ) . '</span></a></li>';
+			echo '<li><a href="#" class="shapely-owl-next fa-solid fa-angle-right"><span class="screen-reader-text">' . esc_html__( 'Next', 'shapely' ) . '</span></a></li>';
 			echo '</ul>';
 			echo '</div>';
 

@@ -518,8 +518,8 @@ if ( ! function_exists( 'shapely_pagination' ) ) {
 				the_posts_pagination(
 					array(
 						'mid_size'  => 2,
-						'prev_text' => '<i class="fa fa-angle-left" aria-hidden="true"></i><span class="screen-reader-text">' . esc_html__( 'Previous page', 'shapely' ) . '</span>',
-						'next_text' => '<i class="fa fa-angle-right" aria-hidden="true"></i><span class="screen-reader-text">' . esc_html__( 'Next page', 'shapely' ) . '</span>',
+						'prev_text' => '<i class="fa-solid fa-angle-left" aria-hidden="true"></i><span class="screen-reader-text">' . esc_html__( 'Previous page', 'shapely' ) . '</span>',
+						'next_text' => '<i class="fa-solid fa-angle-right" aria-hidden="true"></i><span class="screen-reader-text">' . esc_html__( 'Next page', 'shapely' ) . '</span>',
 					)
 				);
 				?>

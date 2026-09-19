@@ -26,11 +26,11 @@ if ( ! function_exists( 'shapely_posted_on' ) ) :
 		); ?>
 
 		<ul class="post-meta">
-		<li><i class="fa fa-user"></i><span><a
+		<li><i class="fa-solid fa-user"></i><span><a
 					href="<?php echo esc_url( get_author_posts_url( get_the_author_meta( 'ID' ) ) ); ?>"
 					title="<?php echo esc_attr( get_the_author() ); ?>"><?php echo esc_html( get_the_author() ); ?></a></span>
 		</li>
-		<li><i class="fa fa-calendar"></i><span class="posted-on"><?php echo wp_kses_post( $time_string ); ?></span></li>
+		<li><i class="fa-solid fa-calendar"></i><span class="posted-on"><?php echo wp_kses_post( $time_string ); ?></span></li>
 		<?php shapely_post_category(); ?>
 		</ul>
 		<?php
@@ -188,7 +188,7 @@ if ( ! function_exists( 'shapely_post_category' ) ) :
 		$category = get_the_category();
 		if ( ! empty( $category ) ) {
 			$i = ( 'uncategorized' == $category[0]->slug && array_key_exists( '1', $category ) ) ? 1 : 0;
-			echo '<li><i class="fa fa-folder-open"></i><span class="cat-links"><a href="' . esc_url( get_category_link( $category[ $i ]->term_id ) ) . '" title="' . sprintf( esc_html__( 'View all posts in %s', 'shapely' ), esc_attr( $category[ $i ]->name ) ) . '" ' . '>' . esc_html( $category[ $i ]->name ) . '</a></span></li> ';
+			echo '<li><i class="fa-solid fa-folder-open"></i><span class="cat-links"><a href="' . esc_url( get_category_link( $category[ $i ]->term_id ) ) . '" title="' . sprintf( esc_html__( 'View all posts in %s', 'shapely' ), esc_attr( $category[ $i ]->name ) ) . '" ' . '>' . esc_html( $category[ $i ]->name ) . '</a></span></li> ';
 		}
 	}
 endif;
