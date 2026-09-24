@@ -116,7 +116,7 @@ $show_categories_globally = get_theme_mod( 'show_categories_globally', true );
 		$next = str_replace( '<a', '<div class="wrapper"><a', $next );
 		?>
 		<div class="shapely-next-prev row">
-			<div class="col-md-6 text-start">
+			<div class="col-md-6 text-left">
 				<?php echo wp_kses_post( $prev ); ?>
 			</div>
 			<div class="col-md-6 text-right">

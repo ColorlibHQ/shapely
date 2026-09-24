@@ -36,7 +36,7 @@
 		?>
 		<hr/>
 		<div class="shapely-next-prev row">
-			<div class="col-md-6 text-start">
+			<div class="col-md-6 text-left">
 				<?php echo wp_kses_post( $prev ); ?>
 			</div>
 			<div class="col-md-6 text-right">
